@@ -1,0 +1,15 @@
+{
+  "${ModID}:ConfigMenuText": {
+    "TEXT": [
+      "Spire Map Overhaul",
+      "StS Modding Community",
+      "Makes the map more interesting."
+    ]
+  },
+  "${ModID}:SingleCardReward": {
+    "TEXT": [
+      "[Card] ",
+      "Tip: Right-click for detailed card view!"
+    ]
+  }
+}
