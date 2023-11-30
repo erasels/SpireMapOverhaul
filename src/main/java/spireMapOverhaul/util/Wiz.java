@@ -20,7 +20,7 @@ import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
-import thePackmaster.actions.TimedVFXAction;
+import spireMapOverhaul.actions.TimedVFXAction;
 
 import java.util.ArrayList;
 import java.util.List;

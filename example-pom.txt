@@ -5,7 +5,7 @@
 	
     <artifactId>SpireMapOverhaul</artifactId>
     <version>1.0.0</version>
-    <name>The Packmaster</name>
+    <name>Spire Map Overhaul</name>
     <description>Modding Anniversary 6: Spire Map Overhaul</description>
 
     <properties>

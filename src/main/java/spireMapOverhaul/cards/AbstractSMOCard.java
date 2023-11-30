@@ -37,40 +37,20 @@ public abstract class AbstractSMOCard extends CustomCard {
     public boolean isSecondDamageModified;
 
     private boolean needsArtRefresh = false;
-    private String frameFolder;
-    private String orbString;
-
-    public AbstractSMOCard(final String cardID, final int cost, final CardType type, final CardRarity rarity, final CardTarget target, String frameID) {
-        this(cardID, cost, type, rarity, target, CardColor.COLORLESS, getCardTextureString(cardID.replace(modID + ":", ""), type), frameID, null);
-    }
-
-    public AbstractSMOCard(final String cardID, final int cost, final CardType type, final CardRarity rarity, final CardTarget target, String frameID, String orbPath) {
-        this(cardID, cost, type, rarity, target, CardColor.COLORLESS, getCardTextureString(cardID.replace(modID + ":", ""), type), frameID, orbPath);
-    }
-
-    public AbstractSMOCard(final String cardID, final int cost, final CardType type, final CardRarity rarity, final CardTarget target, final CardColor color, String frameID) {
-        this(cardID, cost, type, rarity, target, color, getCardTextureString(cardID.replace(modID + ":", ""), type), frameID, null);
-    }
-
-    public AbstractSMOCard(final String cardID, final int cost, final CardType type, final CardRarity rarity, final CardTarget target, final CardColor color, String frameID, String orbPath) {
-        this(cardID, cost, type, rarity, target, color, getCardTextureString(cardID.replace(modID + ":", ""), type), frameID, orbPath);
-    }
 
     public AbstractSMOCard(final String cardID, final int cost, final CardType type, final CardRarity rarity, final CardTarget target) {
-        this(cardID, cost, type, rarity, target, CardColor.COLORLESS, null, null);
+        this(cardID, cost, type, rarity, target, CardColor.COLORLESS);
     }
 
     public AbstractSMOCard(final String cardID, final int cost, final CardType type, final CardRarity rarity, final CardTarget target, final CardColor color) {
-        this(cardID, cost, type, rarity, target, color, getCardTextureString(cardID.replace(modID + ":", ""), type), null, null);
+        this(cardID, cost, type, rarity, target, color, getCardTextureString(cardID.replace(modID + ":", ""), type));
     }
 
-    public AbstractSMOCard(final String cardID, final int cost, final CardType type, final CardRarity rarity, final CardTarget target, final CardColor color, final String textureString, String frameID, String orbPath) {
+    public AbstractSMOCard(final String cardID, final int cost, final CardType type, final CardRarity rarity, final CardTarget target, final CardColor color, final String textureString) {
         super(cardID, "", textureString, cost, "", type, color, rarity, target);
         cardStrings = CardCrawlGame.languagePack.getCardStrings(this.cardID);
         rawDescription = cardStrings.DESCRIPTION;
         name = originalName = cardStrings.NAME;
-        frameFolder = frameID;
-        orbString = orbPath;
         initializeTitle();
         initializeDescription();
 
