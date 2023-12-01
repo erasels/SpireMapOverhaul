@@ -1,4 +1,4 @@
-package spireMapOverhaul.relics;
+package spireMapOverhaul.abstracts;
 
 import basemod.abstracts.CustomRelic;
 import com.megacrit.cardcrawl.cards.AbstractCard;

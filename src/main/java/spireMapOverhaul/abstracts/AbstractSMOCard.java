@@ -1,4 +1,4 @@
-package spireMapOverhaul.cards;
+package spireMapOverhaul.abstracts;
 
 import basemod.abstracts.CustomCard;
 import com.badlogic.gdx.Gdx;
