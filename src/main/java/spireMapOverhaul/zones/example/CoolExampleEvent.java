@@ -1,4 +1,4 @@
-package spireMapOverhaul.events;
+package spireMapOverhaul.zones.example;
 
 import basemod.abstracts.events.PhasedEvent;
 import basemod.abstracts.events.phases.CombatPhase;
