@@ -1,4 +1,4 @@
-package spireMapOverhaul.powers;
+package spireMapOverhaul.abstracts;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
 

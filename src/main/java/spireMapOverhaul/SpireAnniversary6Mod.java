@@ -22,12 +22,13 @@ import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import javassist.CtClass;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import spireMapOverhaul.cards.AbstractSMOCard;
+import spireMapOverhaul.abstracts.AbstractSMOCard;
 import spireMapOverhaul.patches.CustomRewardTypes;
-import spireMapOverhaul.relics.AbstractSMORelic;
+import spireMapOverhaul.abstracts.AbstractSMORelic;
 import spireMapOverhaul.rewards.SingleCardReward;
 import spireMapOverhaul.util.TexLoader;
-import spireMapOverhaul.zones.AbstractZone;
+import spireMapOverhaul.abstracts.AbstractZone;
+import spireMapOverhaul.zones.example.PlaceholderZone;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -36,7 +37,7 @@ import java.util.*;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
-@SuppressWarnings({"unused", "WeakerAccess"})
+@SuppressWarnings({"unused"})
 @SpireInitializer
 public class SpireAnniversary6Mod implements
         EditCardsSubscriber,
@@ -69,6 +70,9 @@ public class SpireAnniversary6Mod implements
     private static final String POWER_L_ART = modID + "Resources/images/1024/power.png";
 
     public static boolean initializedStrings = false;
+
+    public static List<AbstractZone> allZones = new ArrayList<>();
+    private List<AbstractZone> localZones = new ArrayList<>();
 
 
     public static String makeID(String idText) {
@@ -120,10 +124,23 @@ public class SpireAnniversary6Mod implements
         }
     }
 
+    private void loadZones() {
+        new AutoAdd(modID)
+                .packageFilter(SpireAnniversary6Mod.class)
+                .any(AbstractZone.class, (info, zone)->{
+                    if (!info.ignore)
+                        allZones.add(zone);
+                });
+        for (int i = 0; i < 10; ++i) {
+            allZones.add(new PlaceholderZone());
+        }
+        logger.info("Found zone classes with AutoAdd: " + allZones.size());
+    }
+
     @Override
     public void receiveEditRelics() {
         new AutoAdd(modID)
-                .packageFilter(AbstractSMORelic.class)
+                .packageFilter(SpireAnniversary6Mod.class)
                 .any(AbstractSMORelic.class, (info, relic) -> {
                     if (relic.color == null) {
                             BaseMod.addRelic(relic, RelicType.SHARED);
@@ -139,7 +156,7 @@ public class SpireAnniversary6Mod implements
     @Override
     public void receiveEditCards() {
         new AutoAdd(modID)
-                .packageFilter(AbstractSMOCard.class)
+                .packageFilter(SpireAnniversary6Mod.class)
                 .setDefaultSeen(true)
                 .cards();
 
@@ -148,6 +165,7 @@ public class SpireAnniversary6Mod implements
     @Override
     public void receivePostInitialize() {
         initializedStrings = true;
+        allZones.sort(Comparator.comparing(c->c.ID));
         addPotions();
         registerCustomRewards();
         initializeConfig();
@@ -193,20 +211,14 @@ public class SpireAnniversary6Mod implements
 
     @Override
     public void receiveEditStrings() {
+        loadZones();
+
         loadStrings("eng");
-
-        Collection<CtClass> zoneClasses = new AutoAdd(modID)
-                .packageFilter(AbstractZone.class)
-                .findClasses(AbstractZone.class)
-                .stream()
-                .collect(Collectors.toList());
-        logger.info("Found zone classes with AutoAdd: " + zoneClasses.size());
-
-        loadZoneStrings(zoneClasses, "eng");
+        loadZoneStrings(allZones, "eng");
         if (Settings.language != Settings.GameLanguage.ENG)
         {
             loadStrings(Settings.language.toString().toLowerCase());
-            loadZoneStrings(zoneClasses, Settings.language.toString().toLowerCase());
+            loadZoneStrings(allZones, Settings.language.toString().toLowerCase());
         }
     }
 
@@ -247,23 +259,18 @@ public class SpireAnniversary6Mod implements
         }
     }
 
-    public void loadZoneStrings(Collection<CtClass> zoneClasses, String langKey) {
-
-        for (CtClass zoneClass : zoneClasses) {
-            String zoneName = zoneClass.getSimpleName().toLowerCase(Locale.ROOT);
-            String languageAndZone = langKey + "/" + zoneName;
-            String filepath = modID + "Resources/localization/" + languageAndZone + "/";
+    public void loadZoneStrings(Collection<AbstractZone> zones, String langKey) {
+        for (AbstractZone zone : zones) {
+            String languageAndZone = langKey + "/" + zone.BASE_ID + "/";
+            String filepath = modID + "Resources/localization/" + languageAndZone;
             if (!Gdx.files.internal(filepath).exists()) {
                 continue;
             }
-            logger.info("Loading strings for zone " + zoneClass.getName() + "from \"resources/localization/" + languageAndZone + "\"");
-            //Do not need to be checked as these always need to exist
-            //He was wrong.
+            logger.info("Loading strings for zone " + zone.BASE_ID + "from \"resources/localization/" + languageAndZone + "\"");
 
             if (Gdx.files.internal(filepath + "Cardstrings.json").exists()) {
                 BaseMod.loadCustomStringsFile(CardStrings.class, filepath + "Cardstrings.json");
             }
-
             if (Gdx.files.internal(filepath + "Relicstrings.json").exists()) {
                 BaseMod.loadCustomStringsFile(RelicStrings.class, filepath + "Relicstrings.json");
             }
@@ -287,18 +294,13 @@ public class SpireAnniversary6Mod implements
 
     @Override
     public void receiveEditKeywords() {
-        Collection<CtClass> zoneClasses = new AutoAdd(modID)
-                .packageFilter(AbstractZone.class)
-                .findClasses(AbstractZone.class)
-                .stream()
-                .collect(Collectors.toList());
-        loadKeywords(zoneClasses, "eng");
+        loadKeywords("eng");
         if (Settings.language != Settings.GameLanguage.ENG) {
-            loadKeywords(zoneClasses, Settings.language.toString().toLowerCase());
+            loadKeywords(Settings.language.toString().toLowerCase());
         }
     }
 
-    private void loadKeywords(Collection<CtClass> zoneClasses, String langKey) {
+    private void loadKeywords(String langKey) {
         String filepath = modID + "Resources/localization/" + langKey + "/Keywordstrings.json";
         Gson gson = new Gson();
         List<Keyword> keywords = new ArrayList<>();
@@ -306,16 +308,14 @@ public class SpireAnniversary6Mod implements
             String json = Gdx.files.internal(filepath).readString(String.valueOf(StandardCharsets.UTF_8));
             keywords.addAll(Arrays.asList(gson.fromJson(json, Keyword[].class)));
         }
-        for (CtClass zoneClass : zoneClasses) {
-            String zoneName = zoneClass.getSimpleName().toLowerCase(Locale.ROOT);
-            String languageAndZone = langKey + "/" + zoneName;
+        for (AbstractZone zone : allZones) {
+            String languageAndZone = langKey + "/" + zone.BASE_ID;
             String zoneJson = modID + "Resources/localization/" + languageAndZone + "/Keywordstrings.json";
             FileHandle handle = Gdx.files.internal(zoneJson);
             if (handle.exists()) {
-                logger.info("Loading keywords for zone " + zoneClass.getName() + "from \"resources/localization/" + languageAndZone + "\"");
+                logger.info("Loading keywords for zone " + zone.BASE_ID + "from \"resources/localization/" + languageAndZone + "\"");
                 zoneJson = handle.readString(String.valueOf(StandardCharsets.UTF_8));
-                List<Keyword> zoneKeywords = new ArrayList<>(Arrays.asList(gson.fromJson(zoneJson, Keyword[].class)));
-                keywords.addAll(zoneKeywords);
+                keywords.addAll(Arrays.asList(gson.fromJson(zoneJson, Keyword[].class)));
             }
         }
 

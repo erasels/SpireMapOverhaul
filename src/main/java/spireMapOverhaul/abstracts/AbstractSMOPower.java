@@ -1,4 +1,4 @@
-package spireMapOverhaul.powers;
+package spireMapOverhaul.abstracts;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;

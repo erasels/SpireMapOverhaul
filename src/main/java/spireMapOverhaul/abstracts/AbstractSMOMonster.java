@@ -1,4 +1,4 @@
-package spireMapOverhaul.monsters;
+package spireMapOverhaul.abstracts;
 
 import basemod.abstracts.CustomMonster;
 import com.megacrit.cardcrawl.core.Settings;

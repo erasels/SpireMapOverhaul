@@ -21,7 +21,7 @@ import com.megacrit.cardcrawl.cards.red.Defend_Red;
 import com.megacrit.cardcrawl.cards.red.Strike_Red;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.random.Random;
-import spireMapOverhaul.cards.AbstractSMOCard;
+import spireMapOverhaul.abstracts.AbstractSMOCard;
 
 import java.util.ArrayList;
 import java.util.HashMap;
