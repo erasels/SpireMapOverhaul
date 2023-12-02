@@ -38,8 +38,12 @@ public class BetterMapGenerator {
 
     public ArrayList<ArrayList<MapRoomNode>> generate(Random rng, int width, int height, int pathDensity) {
         MapPlanner planner;
-        List<AbstractZone> possibleZones = new ArrayList<>(SpireAnniversary6Mod.allZones);
         do {
+            List<AbstractZone> possibleZones = new ArrayList<>();
+            for (AbstractZone zone : SpireAnniversary6Mod.allZones)
+                if (zone.canSpawn())
+                    possibleZones.add(zone);
+
             planner = new MapPlanner(width, height);
 
             AbstractZone zone;

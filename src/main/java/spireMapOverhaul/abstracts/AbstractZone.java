@@ -3,6 +3,7 @@ package spireMapOverhaul.abstracts;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
@@ -12,6 +13,7 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.screens.DungeonMapScreen;
 import spireMapOverhaul.BetterMapGenerator.MapPlanner;
 import spireMapOverhaul.BetterMapGenerator.MapPlanner.PlanningNode;
+import spireMapOverhaul.SpireAnniversary6Mod;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -20,13 +22,18 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
+import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
+
 public abstract class AbstractZone {
     private static final float OFFSET_X = Settings.isMobile ? 496.0F * Settings.xScale : 560.0F * Settings.xScale;
     private static final float OFFSET_Y = 180.0F * Settings.scale;
     private static final float SPACING_X = Settings.isMobile ? (int)(Settings.xScale * 64.0F) * 2.2F : (int)(Settings.xScale * 64.0F) * 2.0F;
+    private static final String[] NO_TEXT = new String[] { };
 
+    public final String BASE_ID;
     public final String ID;
-    public String name;
+    public String[] TEXT = NO_TEXT;
+    public String name = "";
     protected Color labelColor = Color.WHITE;
 
     protected List<MapRoomNode> nodes = new ArrayList<>();
@@ -36,11 +43,42 @@ public abstract class AbstractZone {
     //They will then be adjusted to their final values in mapGenDone
     protected float labelX = 0, labelY = 0;
 
-    public AbstractZone(String ID) {
-        this.ID = ID;
+    public AbstractZone() {
+        this(null);
+    }
+    public AbstractZone(String baseID) {
+        if (baseID == null) {
+            baseID = getClass().getSimpleName();
+        }
+        this.BASE_ID = baseID;
+        this.ID = makeID(BASE_ID);
+        loadStrings();
     }
 
     public abstract AbstractZone copy();
+
+    public boolean canSpawn() {
+        System.out.println("ActNum: " + AbstractDungeon.actNum);
+        for (int i = 1; i <= 3; ++i)
+            System.out.println("IsAct" + i + ": " + isAct(i));
+        return true;
+    }
+
+    //Utility methods for use in canSpawn
+    protected final boolean isAct(int actNum) {
+        if (Settings.isEndless) return AbstractDungeon.actNum % 3 == actNum;
+        return AbstractDungeon.actNum == actNum;
+    }
+
+    protected void loadStrings() {
+        if (SpireAnniversary6Mod.initializedStrings) {
+            TEXT = CardCrawlGame.languagePack.getUIString(this.ID).TEXT;
+            name = TEXT[0];
+        }
+        else {
+            TEXT = NO_TEXT;
+        }
+    }
 
     public String modifyRolledEvent(String eventKey) {
         if (AbstractDungeon.eventRng.randomBoolean(eventChance())) {
@@ -93,14 +131,15 @@ public abstract class AbstractZone {
     protected boolean allowSideConnections() {
         return true;
     }
-    //Whether the map generator can add additional paths within the zone
+    //Whether the map generator can add any additional nodes within the zone.
     protected boolean allowAdditionalPaths() {
         return true;
     }
-    //Whether the map generator can add additional paths entering into the zone.
-    //If false, will only be enterable through a single node.
-    //Basically, more specific version of allowAdditionalPaths.
-    //If allowAdditionalPaths is false, this will only affect attempts to enter through the side onto active nodes.
+    /**
+     * Whether the map generator can add additional paths entering into the zone.
+     * If false, will only be enterable through a single node.
+     * If allowAdditionalPaths is false, this will only affect attempts to enter through the side onto active nodes.
+    */
     protected boolean allowAdditionalEntrances() {
         return false;
     }

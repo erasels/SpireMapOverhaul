@@ -28,6 +28,7 @@ import spireMapOverhaul.abstracts.AbstractSMORelic;
 import spireMapOverhaul.rewards.SingleCardReward;
 import spireMapOverhaul.util.TexLoader;
 import spireMapOverhaul.abstracts.AbstractZone;
+import spireMapOverhaul.zones.example.PlaceholderZone;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -36,7 +37,7 @@ import java.util.*;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
-@SuppressWarnings({"unused", "WeakerAccess"})
+@SuppressWarnings({"unused"})
 @SpireInitializer
 public class SpireAnniversary6Mod implements
         EditCardsSubscriber,
@@ -81,7 +82,6 @@ public class SpireAnniversary6Mod implements
 
     public SpireAnniversary6Mod() {
         BaseMod.subscribe(this);
-        
     }
 
     public static String makePath(String resourcePath) {
@@ -122,6 +122,19 @@ public class SpireAnniversary6Mod implements
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void loadZones() {
+        new AutoAdd(modID)
+                .packageFilter(SpireAnniversary6Mod.class)
+                .any(AbstractZone.class, (info, zone)->{
+                    if (!info.ignore)
+                        allZones.add(zone);
+                });
+        for (int i = 0; i < 10; ++i) {
+            allZones.add(new PlaceholderZone());
+        }
+        logger.info("Found zone classes with AutoAdd: " + allZones.size());
     }
 
     @Override
@@ -198,13 +211,7 @@ public class SpireAnniversary6Mod implements
 
     @Override
     public void receiveEditStrings() {
-        new AutoAdd(modID)
-            .packageFilter(SpireAnniversary6Mod.class)
-            .any(AbstractZone.class, (info, zone)->{
-                if (!info.ignore)
-                    allZones.add(zone);
-            });
-        logger.info("Found zone classes with AutoAdd: " + allZones.size());
+        loadZones();
 
         loadStrings("eng");
         loadZoneStrings(allZones, "eng");
@@ -253,14 +260,13 @@ public class SpireAnniversary6Mod implements
     }
 
     public void loadZoneStrings(Collection<AbstractZone> zones, String langKey) {
-
         for (AbstractZone zone : zones) {
-            String languageAndZone = langKey + "/" + zone.ID + "/";
+            String languageAndZone = langKey + "/" + zone.BASE_ID + "/";
             String filepath = modID + "Resources/localization/" + languageAndZone;
             if (!Gdx.files.internal(filepath).exists()) {
                 continue;
             }
-            logger.info("Loading strings for zone " + zone.ID + "from \"resources/localization/" + languageAndZone + "\"");
+            logger.info("Loading strings for zone " + zone.BASE_ID + "from \"resources/localization/" + languageAndZone + "\"");
 
             if (Gdx.files.internal(filepath + "Cardstrings.json").exists()) {
                 BaseMod.loadCustomStringsFile(CardStrings.class, filepath + "Cardstrings.json");
@@ -288,18 +294,13 @@ public class SpireAnniversary6Mod implements
 
     @Override
     public void receiveEditKeywords() {
-        Collection<CtClass> zoneClasses = new AutoAdd(modID)
-                .packageFilter(AbstractZone.class)
-                .findClasses(AbstractZone.class)
-                .stream()
-                .collect(Collectors.toList());
-        loadKeywords(zoneClasses, "eng");
+        loadKeywords("eng");
         if (Settings.language != Settings.GameLanguage.ENG) {
-            loadKeywords(zoneClasses, Settings.language.toString().toLowerCase());
+            loadKeywords(Settings.language.toString().toLowerCase());
         }
     }
 
-    private void loadKeywords(Collection<CtClass> zoneClasses, String langKey) {
+    private void loadKeywords(String langKey) {
         String filepath = modID + "Resources/localization/" + langKey + "/Keywordstrings.json";
         Gson gson = new Gson();
         List<Keyword> keywords = new ArrayList<>();
@@ -307,16 +308,14 @@ public class SpireAnniversary6Mod implements
             String json = Gdx.files.internal(filepath).readString(String.valueOf(StandardCharsets.UTF_8));
             keywords.addAll(Arrays.asList(gson.fromJson(json, Keyword[].class)));
         }
-        for (CtClass zoneClass : zoneClasses) {
-            String zoneName = zoneClass.getSimpleName().toLowerCase(Locale.ROOT);
-            String languageAndZone = langKey + "/" + zoneName;
+        for (AbstractZone zone : allZones) {
+            String languageAndZone = langKey + "/" + zone.BASE_ID;
             String zoneJson = modID + "Resources/localization/" + languageAndZone + "/Keywordstrings.json";
             FileHandle handle = Gdx.files.internal(zoneJson);
             if (handle.exists()) {
-                logger.info("Loading keywords for zone " + zoneClass.getName() + "from \"resources/localization/" + languageAndZone + "\"");
+                logger.info("Loading keywords for zone " + zone.BASE_ID + "from \"resources/localization/" + languageAndZone + "\"");
                 zoneJson = handle.readString(String.valueOf(StandardCharsets.UTF_8));
-                List<Keyword> zoneKeywords = new ArrayList<>(Arrays.asList(gson.fromJson(zoneJson, Keyword[].class)));
-                keywords.addAll(zoneKeywords);
+                keywords.addAll(Arrays.asList(gson.fromJson(zoneJson, Keyword[].class)));
             }
         }
 

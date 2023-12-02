@@ -2,7 +2,6 @@ package spireMapOverhaul.zones.example;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
@@ -25,8 +24,8 @@ public class PlaceholderZone extends AbstractZone {
     }
 
     public PlaceholderZone() {
-        this(randomName(), MathUtils.random(1, 4), MathUtils.random(1, 4));
-        System.out.println("Placeholder Zone " + name + ": " + width + "x" + height);
+        this(randomName(), MathUtils.random(1, 4), MathUtils.random(2, 6));
+        System.out.println("Placeholder Zone " + name + " " + width + "x" + height);
     }
 
     @Override
@@ -35,7 +34,7 @@ public class PlaceholderZone extends AbstractZone {
     }
 
     private PlaceholderZone(String name, int width, int height) {
-        super("PLACEHOLDER" + name);
+        super("Placeholder");
 
         this.width = width;
         this.height = height;
