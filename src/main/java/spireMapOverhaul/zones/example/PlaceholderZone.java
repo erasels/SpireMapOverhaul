@@ -49,28 +49,21 @@ public class PlaceholderZone extends AbstractZone {
     }
 
     @Override
-    protected boolean allowSideConnections() {
-        return true;
-    }
-
-    @Override
-    protected boolean allowAdditionalEntrances() {
-        return false;
-    }
-
-    @Override
     public boolean generateMapArea(BetterMapGenerator.MapPlanner planner) {
         return generateNormalArea(planner, width, height);
     }
 
     @Override
-    public Color getColor() {
+    public Color getColor() { //I considered changing this to a variable, but a method lets you do funky stuff like a rainbow zone that changes colors or something.
         return color;
     }
 
     @Override
     public void manualRoomPlacement(Random rng, ArrayList<AbstractRoom> roomList) {
         for (MapRoomNode node : nodes) {
+            //set all nodes to elite rooms, taken from the generated room list first.
+            //For future reference: Might need to change the method a bit.
+            //Remove a normal combat room from room list if no elite rooms remain in list? To avoid messing with distribution of other types of nodes
             node.setRoom(roomOrDefault(roomList, (room)->room instanceof MonsterRoomElite, MonsterRoomElite::new));
         }
     }
