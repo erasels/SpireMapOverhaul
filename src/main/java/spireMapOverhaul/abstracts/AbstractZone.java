@@ -57,6 +57,8 @@ public abstract class AbstractZone {
 
     public abstract AbstractZone copy();
 
+    public abstract Color getColor();
+
     public boolean canSpawn() {
         System.out.println("ActNum: " + AbstractDungeon.actNum);
         for (int i = 1; i <= 3; ++i)
@@ -80,15 +82,6 @@ public abstract class AbstractZone {
         }
     }
 
-    public String modifyRolledEvent(String eventKey) {
-        if (AbstractDungeon.eventRng.randomBoolean(eventChance())) {
-            List<String> possibleEvents = events();
-            return possibleEvents.remove(AbstractDungeon.eventRng.random(events().size()));
-        }
-        return eventKey;
-    }
-
-
     /**
      * @return The chance of an event specifically for this zone appearing, from 0 to 1.
      * Will also be effectively 0 if all events for the zone have been seen, even if set to 1.
@@ -99,6 +92,16 @@ public abstract class AbstractZone {
     public List<String> events() {
         return Collections.emptyList();
     }
+
+    public String modifyRolledEvent(String eventKey) {
+        if (AbstractDungeon.eventRng.randomBoolean(eventChance())) {
+            List<String> possibleEvents = events();
+            return possibleEvents.remove(AbstractDungeon.eventRng.random(events().size()));
+        }
+        return eventKey;
+    }
+
+
 
     public void renderOnMap(SpriteBatch sb, float alpha) {
         if (alpha > 0) {
@@ -244,11 +247,29 @@ public abstract class AbstractZone {
         labelColor.mul(0.75f);
     }
 
-    //Room placement
-    public void manualRoomPlacement(Random rng, ArrayList<AbstractRoom> roomList) {
+
+    /**
+     * Occurs before any normal room placement related stuff. For room placement that breaks normal rules, eg. only one room type or single unique nodes.
+     */
+    public void manualRoomPlacement(Random rng) {
     }
 
-    //Removes first room that fits the filter from the list, or if none are found returns the default room.
+    /**
+     * Occurs before any rooms are distributed normally, for guaranteeing the appearance of specific types of rooms at a reasonable rate.
+     */
+    public void distributeRooms(Random rng, ArrayList<AbstractRoom> roomList) {
+    }
+
+    /**
+     * Occurs after all rooms have been distributed to replace specific types of rooms.
+     * @see spireMapOverhaul.abstracts.AbstractZone#replaceRoomsRandomly
+     */
+    public void replaceRooms(Random rng) {
+    }
+
+    /**
+     * Removes first room that fits the filter from the list, or if none are found returns the default room.
+     */
     protected final AbstractRoom roomOrDefault(ArrayList<AbstractRoom> roomList, Predicate<AbstractRoom> filter, Supplier<AbstractRoom> defaultRoom) {
         Iterator<AbstractRoom> roomIterator = roomList.iterator();
         while (roomIterator.hasNext()) {
@@ -261,5 +282,101 @@ public abstract class AbstractZone {
         return defaultRoom.get();
     }
 
-    public abstract Color getColor();
+    /**
+     * Replace rooms that match a filter with rooms from a supplier.
+     * @param percentage The percentage of valid rooms to replace, from 0-1
+     */
+    protected final void replaceRoomsRandomly(Random rng, Supplier<AbstractRoom> roomSupplier, Predicate<AbstractRoom> roomFilter, float percentage) {
+        replaceRoomsRandomly(rng, roomSupplier, roomFilter, percentage, percentage);
+    }
+
+    /**
+     * Replace rooms that match a filter with rooms from a supplier.
+     * @param minPercentage The minimum percentage of valid rooms to replace, from 0-1
+     * @param maxPercentage The maximum percentage of valid rooms to replace, from 0-1
+     */
+    protected final void replaceRoomsRandomly(Random rng, Supplier<AbstractRoom> roomSupplier, Predicate<AbstractRoom> roomFilter, float minPercentage, float maxPercentage) {
+        List<MapRoomNode> possibleNodes = new ArrayList<>();
+
+        for (MapRoomNode node : nodes) {
+            if (node.getRoom() != null && roomFilter.test(node.getRoom())) {
+                possibleNodes.add(node);
+            }
+        }
+        if (possibleNodes.isEmpty()) return;
+
+        int min = (int) (minPercentage * possibleNodes.size()), max = (int) (maxPercentage * possibleNodes.size());
+        if (max > possibleNodes.size()) max = possibleNodes.size();
+
+        int amount;
+        if (min >= max) amount = max;
+        else amount = rng.random(min, max);
+
+        for (int i = 0; i < amount; ++i) {
+            _placeRoomRandomly(possibleNodes, rng, roomSupplier.get(), amount < nodes.size() / 2);
+        }
+    }
+
+    /**
+     * Places a room in a random empty node within the zone
+     */
+    protected final void placeRoomRandomly(Random rng, AbstractRoom room) {
+        List<MapRoomNode> possibleNodes = new ArrayList<>();
+        for (MapRoomNode node : nodes) {
+            if (node.getRoom() == null) {
+                possibleNodes.add(node);
+            }
+        }
+        _placeRoomRandomly(possibleNodes, rng, room, true);
+    }
+
+    /**
+     * Places a room in a random node in the given list
+     * @param tryFollowRules If true, first tries to avoid placing the room with a duplicate parent or sibling.
+     */
+    private static void _placeRoomRandomly(List<MapRoomNode> nodes, Random rng, AbstractRoom room, boolean tryFollowRules) {
+        if (tryFollowRules) {
+            List<MapRoomNode> possibleNodes = new ArrayList<>();
+
+            outer:
+            for (MapRoomNode node : nodes) {
+                for (MapRoomNode parent : node.getParents()) {
+                    if (parent.getRoom() != null && room.getClass().equals(parent.getRoom().getClass())) {
+                        continue outer;
+                    }
+                }
+                for (MapRoomNode sibling : getSiblingsInZone(nodes, node.getParents(), node)) {
+                    if (sibling.getRoom() != null && room.getClass().equals(sibling.getRoom().getClass())) {
+                        continue outer;
+                    }
+                }
+                possibleNodes.add(node);
+            }
+
+            if (!possibleNodes.isEmpty()) {
+                possibleNodes.get(rng.random(possibleNodes.size() - 1)).setRoom(room);
+                return;
+            }
+            //no nodes following the rules :(
+        }
+
+        if (nodes.isEmpty()) return;
+        nodes.get(rng.random(nodes.size() - 1)).setRoom(room);
+    }
+
+    private static ArrayList<MapRoomNode> getSiblingsInZone(List<MapRoomNode> nodes, List<MapRoomNode> parents, MapRoomNode n) {
+        ArrayList<MapRoomNode> siblings = new ArrayList<>();
+
+        for (MapRoomNode node : nodes) {
+            if (node.equals(n)) continue;
+
+            for (MapRoomNode parent : parents) {
+                if (node.getParents().contains(parent)) {
+                    siblings.add(node);
+                }
+            }
+        }
+
+        return siblings;
+    }
 }

@@ -70,6 +70,12 @@ public class BetterMapGenerator {
         } while (!finishMap(rng, planner, pathDensity));
 
         lastMap = planner.generate();
+
+        List<AbstractZone> zones = getActiveZones(lastMap);
+        for (AbstractZone zone : zones) {
+            zone.manualRoomPlacement(rng);
+        }
+
         return lastMap;
     }
 
