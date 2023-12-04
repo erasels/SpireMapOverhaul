@@ -5,7 +5,9 @@ import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import com.megacrit.cardcrawl.rooms.EventRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
+import com.megacrit.cardcrawl.rooms.TreasureRoom;
 import spireMapOverhaul.BetterMapGenerator;
 import spireMapOverhaul.abstracts.AbstractZone;
 
@@ -59,12 +61,22 @@ public class PlaceholderZone extends AbstractZone {
     }
 
     @Override
-    public void manualRoomPlacement(Random rng, ArrayList<AbstractRoom> roomList) {
+    public void manualRoomPlacement(Random rng) {
+        //set all nodes to elite rooms.
         for (MapRoomNode node : nodes) {
-            //set all nodes to elite rooms, taken from the generated room list first.
-            //For future reference: Might need to change the method a bit.
-            //Remove a normal combat room from room list if no elite rooms remain in list? To avoid messing with distribution of other types of nodes
-            node.setRoom(roomOrDefault(roomList, (room)->room instanceof MonsterRoomElite, MonsterRoomElite::new));
+            node.setRoom(new MonsterRoomElite());
         }
+    }
+
+    @Override
+    public void distributeRooms(Random rng, ArrayList<AbstractRoom> roomList) {
+        //Won't work because it's full of elites already, but this is how you'd guarantee at least One Elite Room in zone
+        placeRoomRandomly(rng, roomOrDefault(roomList, (room)->room instanceof MonsterRoomElite, MonsterRoomElite::new));
+    }
+
+    @Override
+    public void replaceRooms(Random rng) {
+        //Replace 100% of event rooms with treasure rooms. Does nothing since there's only elites.
+        replaceRoomsRandomly(rng, TreasureRoom::new, (room)->room instanceof EventRoom, 1);
     }
 }

@@ -19,8 +19,7 @@ public class BetterMapGenPatch {
 
     @SpirePrefixPatch
     public static SpireReturn<ArrayList<ArrayList<MapRoomNode>>> altGen(int height, int width, int pathDensity, Random rng) {
-        Random rngCpy = rng.copy(); //Avoid affecting map gen if false
-        if (rngCpy.randomBoolean(chance)) {
+        if (chance >= 1 || rng.copy().randomBoolean(chance)) { //Avoid affecting map gen if false
             return SpireReturn.Return(BetterMapGenerator.generator.generate(rng, width, height, pathDensity));
         }
         return SpireReturn.Continue();
