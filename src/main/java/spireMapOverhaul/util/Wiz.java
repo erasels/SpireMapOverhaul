@@ -20,7 +20,9 @@ import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.actions.TimedVFXAction;
+import spireMapOverhaul.patches.ZonePatches;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -422,5 +424,12 @@ public class Wiz {
         return (int) c.powers.stream()
                 .filter(pow -> pow.type == AbstractPower.PowerType.DEBUFF )
                 .count();
+    }
+
+    /************************************************************
+     *              Anniversary 6 specific utility methods
+     ************************************************************/
+    public static AbstractZone getCurZone() {
+        return ZonePatches.currentZone();
     }
 }
