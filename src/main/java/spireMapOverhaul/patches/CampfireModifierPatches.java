@@ -3,6 +3,7 @@ package spireMapOverhaul.patches;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.rooms.CampfireUI;
+import com.megacrit.cardcrawl.rooms.RestRoom;
 import com.megacrit.cardcrawl.ui.campfire.AbstractCampfireOption;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
@@ -55,6 +56,19 @@ public class CampfireModifierPatches {
             public int[] Locate(CtBehavior ctMethodToPatch) throws CannotCompileException, PatchingException {
                 Matcher finalMatcher = new Matcher.FieldAccessMatcher(CampfireUI.class, "somethingSelected");
                 return new int[]{LineFinder.findAllInOrder(ctMethodToPatch, finalMatcher)[1]}; // After useOption()
+            }
+        }
+    }
+
+    @SpirePatch2(clz = RestRoom.class, method = "onPlayerEntry")
+    public static class RestRoomEntryCatcher {
+        @SpirePostfixPatch
+        public static void patch() {
+            optionsSelectedAmt = 0;
+
+            AbstractZone curZone = ZonePatches.currentZone();
+            if (curZone instanceof CampfireModifyingZone) {
+                ((CampfireModifyingZone) curZone).onEnterRestRoom();
             }
         }
     }

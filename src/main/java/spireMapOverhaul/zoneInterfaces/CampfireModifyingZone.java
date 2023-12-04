@@ -5,6 +5,13 @@ import com.megacrit.cardcrawl.ui.campfire.AbstractCampfireOption;
 import java.util.ArrayList;
 
 public interface CampfireModifyingZone {
+
+    /**
+     * This executes after the relic method and after the CampfireOptions are already generated.
+     * Should only be used for effects that do not affect the options.
+     */
+    default void onEnterRestRoom() {}
+
     /**
      * Happens after all possible buttons were added to the buttons list and before the game checks whether there are any
      * usable buttons. This list can be modified to make buttons (un)usable, removing options or adding CampfireOptions.
