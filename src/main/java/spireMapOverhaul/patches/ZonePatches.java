@@ -4,11 +4,16 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireField;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import spireMapOverhaul.abstracts.AbstractZone;
 
 //For basically all zone hooks.
 public class ZonePatches {
+    public static AbstractZone currentZone() {
+        return AbstractDungeon.currMapNode == null ? null : Fields.zone.get(AbstractDungeon.currMapNode);
+    }
+
     @SpirePatch(
             clz = MapRoomNode.class,
             method = SpirePatch.CLASS
