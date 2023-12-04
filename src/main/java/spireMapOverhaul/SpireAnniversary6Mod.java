@@ -28,6 +28,8 @@ import spireMapOverhaul.abstracts.AbstractSMORelic;
 import spireMapOverhaul.rewards.SingleCardReward;
 import spireMapOverhaul.util.TexLoader;
 import spireMapOverhaul.abstracts.AbstractZone;
+import spireMapOverhaul.util.Wiz;
+import spireMapOverhaul.zoneInterfaces.CampfireModifyingZone;
 import spireMapOverhaul.zones.example.PlaceholderZone;
 
 import java.lang.reflect.InvocationTargetException;
@@ -46,7 +48,8 @@ public class SpireAnniversary6Mod implements
         EditKeywordsSubscriber,
         PostInitializeSubscriber,
         AddAudioSubscriber,
-        PostRenderSubscriber {
+        PostRenderSubscriber,
+        PostCampfireSubscriber {
 
     public static final Logger logger = LogManager.getLogger("Zonemaster");
 
@@ -368,6 +371,17 @@ public class SpireAnniversary6Mod implements
     }
 
     public void initializeEvents() {
+    }
+
+    @Override
+    public boolean receivePostCampfire() {
+        boolean allowAdditionalSelection = false;
+        AbstractZone zone = Wiz.getCurZone();
+        if(zone instanceof CampfireModifyingZone) {
+            allowAdditionalSelection = ((CampfireModifyingZone) zone).allowAdditionalOption();
+        }
+
+        return !allowAdditionalSelection;
     }
 }
 
