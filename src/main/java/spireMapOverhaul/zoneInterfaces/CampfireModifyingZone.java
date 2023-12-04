@@ -21,9 +21,10 @@ public interface CampfireModifyingZone {
 
     /**
      * Method for deciding whether another campfire option may be selected after the first.
+     * @param optionsSelectedAmt int value that represents the amount of options that have already been selected for this campfire
      * @return returning true here will allow for another selection, will trigger after each selection.
      */
-    default boolean allowAdditionalOption() {
+    default boolean allowAdditionalOption(int optionsSelectedAmt) {
         return false;
     }
 

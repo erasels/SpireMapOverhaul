@@ -13,6 +13,8 @@ import spireMapOverhaul.zoneInterfaces.CampfireModifyingZone;
 import java.util.ArrayList;
 
 public class CampfireModifierPatches {
+    public static int optionsSelectedAmt = 0;
+
     @SpirePatch2(clz = CampfireUI.class, method = "initializeButtons")
     public static class PostButtonAddingCatcher {
         @SpireInsertPatch(rloc = 25) // 117: boolean cannotProceed = true;

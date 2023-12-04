@@ -23,6 +23,7 @@ import javassist.CtClass;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import spireMapOverhaul.abstracts.AbstractSMOCard;
+import spireMapOverhaul.patches.CampfireModifierPatches;
 import spireMapOverhaul.patches.CustomRewardTypes;
 import spireMapOverhaul.abstracts.AbstractSMORelic;
 import spireMapOverhaul.rewards.SingleCardReward;
@@ -378,10 +379,15 @@ public class SpireAnniversary6Mod implements
         boolean allowAdditionalSelection = false;
         AbstractZone zone = Wiz.getCurZone();
         if(zone instanceof CampfireModifyingZone) {
-            allowAdditionalSelection = ((CampfireModifyingZone) zone).allowAdditionalOption();
+            allowAdditionalSelection = ((CampfireModifyingZone) zone).allowAdditionalOption(CampfireModifierPatches.optionsSelectedAmt);
         }
 
-        return !allowAdditionalSelection;
+        if(allowAdditionalSelection) {
+            CampfireModifierPatches.optionsSelectedAmt++;
+            return false;
+        } else {
+            return true;
+        }
     }
 }
 
