@@ -25,4 +25,11 @@ public interface CampfireModifyingZone {
      * @param messages The current list of messages which can be modified to your liking.
      */
     default void postAddCampfireMessages(ArrayList<String> messages) {}
+
+    /**
+     * This hook allows you to execute code after an option was used.
+     * NOTE: Most options execute their actual code in effects, so if you want something to happen after those, use the effectslist
+     * @param option The option that was selected
+     */
+    default void postUseCampfireOption(AbstractCampfireOption option) {}
 }
