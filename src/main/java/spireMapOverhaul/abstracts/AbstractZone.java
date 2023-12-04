@@ -80,15 +80,6 @@ public abstract class AbstractZone {
         }
     }
 
-    public String modifyRolledEvent(String eventKey) {
-        if (AbstractDungeon.eventRng.randomBoolean(eventChance())) {
-            List<String> possibleEvents = events();
-            return possibleEvents.remove(AbstractDungeon.eventRng.random(events().size()));
-        }
-        return eventKey;
-    }
-
-
     /**
      * @return The chance of an event specifically for this zone appearing, from 0 to 1.
      * Will also be effectively 0 if all events for the zone have been seen, even if set to 1.
@@ -99,6 +90,16 @@ public abstract class AbstractZone {
     public List<String> events() {
         return Collections.emptyList();
     }
+
+    public String modifyRolledEvent(String eventKey) {
+        if (AbstractDungeon.eventRng.randomBoolean(eventChance())) {
+            List<String> possibleEvents = events();
+            return possibleEvents.remove(AbstractDungeon.eventRng.random(events().size()));
+        }
+        return eventKey;
+    }
+
+
 
     public void renderOnMap(SpriteBatch sb, float alpha) {
         if (alpha > 0) {
@@ -261,5 +262,81 @@ public abstract class AbstractZone {
         return defaultRoom.get();
     }
 
+    /**
+     * Distributes rooms from a supplier within the zone.
+     * @param minPercentage The minimum percentage of the zone to contain the room, from 0-1
+     * @param maxPercentage The maximum percentage of the zone to contain the room, from 0-1
+     */
+    protected final void distributeRoom(Random rng, Supplier<AbstractRoom> roomSupplier, float minPercentage, float maxPercentage) {
+        int min = (int) (minPercentage * nodes.size()), max = (int) (maxPercentage * nodes.size());
+        if (max > nodes.size()) max = nodes.size();
+
+        int amount;
+        if (min >= max) amount = max;
+        else amount = rng.random(min, max);
+
+        for (int i = 0; i < amount; ++i) {
+            placeRoomRandomly(rng, roomSupplier.get(), amount < nodes.size() / 2);
+        }
+    }
+
+    //Places a room in a random empty node
+    protected final void placeRoomRandomly(Random rng, AbstractRoom room, boolean tryFollowRules) {
+        List<MapRoomNode> possibleNodes = new ArrayList<>();
+
+        if (tryFollowRules) {
+
+            outer:
+            for (MapRoomNode node : nodes) {
+                if (node.getRoom() == null) {
+                    for (MapRoomNode parent : node.getParents()) {
+                        if (parent.getRoom() != null && room.getClass().equals(parent.getRoom().getClass())) {
+                            continue outer;
+                        }
+                    }
+                    for (MapRoomNode sibling : getSiblingsInZone(node.getParents(), node)) {
+                        if (sibling.getRoom() != null && room.getClass().equals(sibling.getRoom().getClass())) {
+                            continue outer;
+                        }
+                    }
+                    possibleNodes.add(node);
+                }
+            }
+
+            if (!possibleNodes.isEmpty()) {
+                possibleNodes.get(rng.random(possibleNodes.size() - 1)).setRoom(room);
+                return;
+            }
+            //no nodes following the rules :(
+        }
+
+        for (MapRoomNode node : nodes) {
+            if (node.getRoom() == null) {
+                possibleNodes.add(node);
+            }
+        }
+        if (possibleNodes.isEmpty()) return;
+
+        possibleNodes.get(rng.random(possibleNodes.size() - 1)).setRoom(room);
+    }
+
     public abstract Color getColor();
+
+
+    //Utility methods, from RoomTypeAssigner
+    private ArrayList<MapRoomNode> getSiblingsInZone(ArrayList<MapRoomNode> parents, MapRoomNode n) {
+        ArrayList<MapRoomNode> siblings = new ArrayList<>();
+
+        for (MapRoomNode node : nodes) {
+            if (node.equals(n)) continue;
+
+            for (MapRoomNode parent : parents) {
+                if (node.getParents().contains(parent)) {
+                    siblings.add(node);
+                }
+            }
+        }
+
+        return siblings;
+    }
 }
