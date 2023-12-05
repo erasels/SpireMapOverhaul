@@ -1,4 +1,4 @@
-package spireMapOverhaul.patches;
+package spireMapOverhaul.patches.interfacePatches;
 
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.ui.campfire.AbstractCampfireOption;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
 import spireMapOverhaul.abstracts.AbstractZone;
+import spireMapOverhaul.patches.ZonePatches;
 import spireMapOverhaul.zoneInterfaces.CampfireModifyingZone;
 
 import java.util.ArrayList;

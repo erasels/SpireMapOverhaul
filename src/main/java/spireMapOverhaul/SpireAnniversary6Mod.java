@@ -19,11 +19,9 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.rewards.RewardSave;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
-import javassist.CtClass;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import spireMapOverhaul.abstracts.AbstractSMOCard;
-import spireMapOverhaul.patches.CampfireModifierPatches;
+import spireMapOverhaul.patches.interfacePatches.CampfireModifierPatches;
 import spireMapOverhaul.patches.CustomRewardTypes;
 import spireMapOverhaul.abstracts.AbstractSMORelic;
 import spireMapOverhaul.rewards.SingleCardReward;
@@ -38,7 +36,6 @@ import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.function.Consumer;
-import java.util.stream.Collectors;
 
 @SuppressWarnings({"unused"})
 @SpireInitializer
