@@ -85,27 +85,4 @@ public class CombatModifierPatches {
             }
         }
     }
-
-    @SpirePatch2(clz = AbstractPlayer.class, method = "damage")
-    public static class OnAttackedPlayerHook {
-        @SpireInsertPatch(rloc = 57, localvars = {"damageAmount"}) // before onLoseHpLast loop
-        public static void patch(AbstractPlayer __instance, DamageInfo info, @ByRef int[] damageAmount) {
-             Wiz.forCurZone(CombatModifyingZone.class, z -> damageAmount[0] = z.onAttacked(info, damageAmount[0], __instance));
-        }
-    }
-
-    @SpirePatch2(clz = AbstractMonster.class, method = "damage")
-    public static class OnAttackedMonsterHook {
-        @SpireInsertPatch(locator = Locator.class, localvars = {"damageAmount"})
-        public static void patch(AbstractMonster __instance, DamageInfo info, @ByRef int[] damageAmount) {
-            Wiz.forCurZone(CombatModifyingZone.class, z -> damageAmount[0] = z.onAttacked(info, damageAmount[0], __instance));
-        }
-
-        private static class Locator extends SpireInsertLocator {
-            public int[] Locate(CtBehavior ctMethodToPatch) throws CannotCompileException, PatchingException {
-                Matcher finalMatcher = new Matcher.FieldAccessMatcher(AbstractMonster.class, "lastDamageTaken");
-                return LineFinder.findInOrder(ctMethodToPatch, finalMatcher);
-            }
-        }
-    }
 }
