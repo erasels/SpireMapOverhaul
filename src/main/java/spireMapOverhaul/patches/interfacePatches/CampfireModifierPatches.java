@@ -7,8 +7,7 @@ import com.megacrit.cardcrawl.rooms.RestRoom;
 import com.megacrit.cardcrawl.ui.campfire.AbstractCampfireOption;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
-import spireMapOverhaul.abstracts.AbstractZone;
-import spireMapOverhaul.patches.ZonePatches;
+import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.zoneInterfaces.CampfireModifyingZone;
 
 import java.util.ArrayList;
@@ -20,10 +19,7 @@ public class CampfireModifierPatches {
     public static class PostButtonAddingCatcher {
         @SpireInsertPatch(rloc = 25) // 117: boolean cannotProceed = true;
         public static void postAddingButtons(CampfireUI __instance, ArrayList<AbstractCampfireOption> ___buttons) {
-            AbstractZone curZone = ZonePatches.currentZone();
-            if (curZone instanceof CampfireModifyingZone) {
-                ((CampfireModifyingZone) curZone).postAddButtons(___buttons);
-            }
+            Wiz.forCurZone(CampfireModifyingZone.class, z -> z.postAddButtons(___buttons));
         }
     }
 
@@ -31,10 +27,7 @@ public class CampfireModifierPatches {
     public static class CampfireMessageCatcher {
         @SpireInsertPatch(locator = Locator.class, localvars = {"msgs"})
         public static void patch(ArrayList<String> msgs) {
-            AbstractZone curZone = ZonePatches.currentZone();
-            if (curZone instanceof CampfireModifyingZone) {
-                ((CampfireModifyingZone) curZone).postAddCampfireMessages(msgs);
-            }
+            Wiz.forCurZone(CampfireModifyingZone.class, z -> z.postAddCampfireMessages(msgs));
         }
 
         private static class Locator extends SpireInsertLocator {
@@ -49,10 +42,7 @@ public class CampfireModifierPatches {
     public static class PostCampfireUseOptionCatcher {
         @SpireInsertPatch(locator = Locator.class)
         public static void patch(AbstractCampfireOption __instance) {
-            AbstractZone curZone = ZonePatches.currentZone();
-            if (curZone instanceof CampfireModifyingZone) {
-                ((CampfireModifyingZone) curZone).postUseCampfireOption(__instance);
-            }
+            Wiz.forCurZone(CampfireModifyingZone.class, z -> z.postUseCampfireOption(__instance));
         }
 
         private static class Locator extends SpireInsertLocator {
@@ -69,10 +59,7 @@ public class CampfireModifierPatches {
         public static void patch() {
             optionsSelectedAmt = 0;
 
-            AbstractZone curZone = ZonePatches.currentZone();
-            if (curZone instanceof CampfireModifyingZone) {
-                ((CampfireModifyingZone) curZone).onEnterRestRoom();
-            }
+            Wiz.forCurZone(CampfireModifyingZone.class, CampfireModifyingZone::onEnterRestRoom);
         }
     }
 }
