@@ -23,6 +23,8 @@ import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.actions.TimedVFXAction;
 import spireMapOverhaul.patches.ZonePatches;
+import spireMapOverhaul.zoneInterfaces.CampfireModifyingZone;
+import spireMapOverhaul.zoneInterfaces.CombatModifyingZone;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -431,5 +433,19 @@ public class Wiz {
      ************************************************************/
     public static AbstractZone getCurZone() {
         return ZonePatches.currentZone();
+    }
+
+    public static void forCurZone(Consumer<AbstractZone> doForZone) {
+        AbstractZone curZone = getCurZone();
+        if (curZone != null) {
+            doForZone.accept(curZone);
+        }
+    }
+
+    public static <T> void forCurZone(Class<T> clazz, Consumer<T> doForZone) {
+        AbstractZone curZone = getCurZone();
+        if (clazz.isInstance(curZone)) {
+            doForZone.accept(clazz.cast(curZone));
+        }
     }
 }
