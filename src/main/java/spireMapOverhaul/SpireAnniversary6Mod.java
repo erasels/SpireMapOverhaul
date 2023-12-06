@@ -3,6 +3,8 @@ package spireMapOverhaul;
 import basemod.AutoAdd;
 import basemod.BaseMod;
 import basemod.ModPanel;
+import basemod.eventUtil.AddEventParams;
+import basemod.eventUtil.util.Condition;
 import basemod.helpers.RelicType;
 import basemod.interfaces.*;
 import com.badlogic.gdx.Gdx;
@@ -16,16 +18,17 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.events.AbstractEvent;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.rewards.RewardSave;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import javassist.CtClass;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import spireMapOverhaul.abstracts.AbstractSMOCard;
 import spireMapOverhaul.patches.CampfireModifierPatches;
 import spireMapOverhaul.patches.CustomRewardTypes;
 import spireMapOverhaul.abstracts.AbstractSMORelic;
+import spireMapOverhaul.patches.ZonePatches;
 import spireMapOverhaul.rewards.SingleCardReward;
 import spireMapOverhaul.util.TexLoader;
 import spireMapOverhaul.abstracts.AbstractZone;
@@ -33,12 +36,13 @@ import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.zoneInterfaces.CampfireModifyingZone;
 import spireMapOverhaul.zones.example.PlaceholderZone;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.function.Consumer;
-import java.util.stream.Collectors;
 
 @SuppressWarnings({"unused"})
 @SpireInitializer
@@ -76,7 +80,7 @@ public class SpireAnniversary6Mod implements
     public static boolean initializedStrings = false;
 
     public static List<AbstractZone> allZones = new ArrayList<>();
-    private List<AbstractZone> localZones = new ArrayList<>();
+    private static Map<String, AbstractZone> zonePackages = new HashMap<>();
 
 
     public static String makeID(String idText) {
@@ -132,8 +136,13 @@ public class SpireAnniversary6Mod implements
         new AutoAdd(modID)
                 .packageFilter(SpireAnniversary6Mod.class)
                 .any(AbstractZone.class, (info, zone)->{
-                    if (!info.ignore)
+                    if (!info.ignore) {
+                        String pkg = zone.getClass().getName();
+                        int lastSeparator = pkg.lastIndexOf('.');
+                        if (lastSeparator >= 0) pkg = pkg.substring(0, lastSeparator);
                         allZones.add(zone);
+                        zonePackages.put(pkg, zone);
+                    }
                 });
         for (int i = 0; i < 10; ++i) {
             allZones.add(new PlaceholderZone());
@@ -169,7 +178,7 @@ public class SpireAnniversary6Mod implements
     @Override
     public void receivePostInitialize() {
         initializedStrings = true;
-        allZones.sort(Comparator.comparing(c->c.ID));
+        allZones.sort(Comparator.comparing(c->c.id));
         addPotions();
         registerCustomRewards();
         initializeConfig();
@@ -265,12 +274,12 @@ public class SpireAnniversary6Mod implements
 
     public void loadZoneStrings(Collection<AbstractZone> zones, String langKey) {
         for (AbstractZone zone : zones) {
-            String languageAndZone = langKey + "/" + zone.BASE_ID + "/";
+            String languageAndZone = langKey + "/" + zone.id + "/";
             String filepath = modID + "Resources/localization/" + languageAndZone;
             if (!Gdx.files.internal(filepath).exists()) {
                 continue;
             }
-            logger.info("Loading strings for zone " + zone.BASE_ID + "from \"resources/localization/" + languageAndZone + "\"");
+            logger.info("Loading strings for zone " + zone.id + "from \"resources/localization/" + languageAndZone + "\"");
 
             if (Gdx.files.internal(filepath + "Cardstrings.json").exists()) {
                 BaseMod.loadCustomStringsFile(CardStrings.class, filepath + "Cardstrings.json");
@@ -313,11 +322,11 @@ public class SpireAnniversary6Mod implements
             keywords.addAll(Arrays.asList(gson.fromJson(json, Keyword[].class)));
         }
         for (AbstractZone zone : allZones) {
-            String languageAndZone = langKey + "/" + zone.BASE_ID;
+            String languageAndZone = langKey + "/" + zone.id;
             String zoneJson = modID + "Resources/localization/" + languageAndZone + "/Keywordstrings.json";
             FileHandle handle = Gdx.files.internal(zoneJson);
             if (handle.exists()) {
-                logger.info("Loading keywords for zone " + zone.BASE_ID + "from \"resources/localization/" + languageAndZone + "\"");
+                logger.info("Loading keywords for zone " + zone.id + "from \"resources/localization/" + languageAndZone + "\"");
                 zoneJson = handle.readString(String.valueOf(StandardCharsets.UTF_8));
                 keywords.addAll(Arrays.asList(gson.fromJson(zoneJson, Keyword[].class)));
             }
@@ -325,6 +334,82 @@ public class SpireAnniversary6Mod implements
 
         for (Keyword keyword : keywords) {
             BaseMod.addKeyword(modID, keyword.PROPER_NAME, keyword.NAMES, keyword.DESCRIPTION);
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    public void initializeEvents() {
+        Collection<CtClass> foundClasses =
+                new AutoAdd(modID)
+                        .packageFilter(SpireAnniversary6Mod.class)
+                        .findClasses(AbstractEvent.class);
+
+        for (CtClass ctClass : foundClasses) {
+            if (ctClass.hasAnnotation(AutoAdd.Ignore.class)) continue;
+
+            try {
+                Class<? extends AbstractEvent> eventClass = (Class<? extends AbstractEvent>) Loader.getClassPool().getClassLoader().loadClass(ctClass.getName());
+                Field idField = eventClass.getDeclaredField("ID");
+                if (Modifier.isStatic(idField.getModifiers()) && String.class.equals(idField.getType())) {
+                    idField.setAccessible(true);
+                    String id = (String) idField.get(null);
+
+                    AddEventParams.Builder eventBuilder = new AddEventParams.Builder(id, eventClass);
+
+                    Condition eventCondition = null;
+                    Method[] methods = eventClass.getDeclaredMethods();
+                    for (Method m : methods) {
+                        if (Modifier.isStatic(m.getModifiers()) && m.getName().equals("bonusCondition")
+                                && m.getReturnType().equals(boolean.class) && m.getParameterCount() == 0) {
+                            m.setAccessible(true);
+                            eventCondition = ()-> {
+                                try {
+                                    return (boolean)m.invoke(null);
+                                } catch (IllegalAccessException | InvocationTargetException e) {
+                                    throw new RuntimeException(e);
+                                }
+                            };
+                            break;
+                        }
+                    }
+
+                    AbstractZone zone = null;
+                    String pkg = eventClass.getName();
+                    while (zone == null) {
+                        int separatorIndex = pkg.lastIndexOf('.');
+                        if (separatorIndex == -1) break;
+                        pkg = pkg.substring(0, separatorIndex);
+                        zone = zonePackages.get(pkg);
+                    }
+
+                    if (zone != null) {
+                        AbstractZone finalZone = zone;
+
+                        Condition old = eventCondition;
+                        eventCondition = old == null ? ()->{
+                            AbstractZone current = ZonePatches.currentZone();
+                            return current != null && current.id.equals(finalZone.id);
+                        } : ()->{
+                            AbstractZone current = ZonePatches.currentZone();
+                            return old.test() && current != null && current.id.equals(finalZone.id);
+                        };
+                        logger.info("Registered event " + eventClass.getSimpleName() + " | Zone: " + finalZone.id);
+                    }
+                    else {
+                        logger.info("Event " + eventClass.getSimpleName() + " has no linked zone.");
+                    }
+
+                    if (eventCondition != null)
+                        eventBuilder.bonusCondition(eventCondition);
+
+                    BaseMod.addEvent(eventBuilder.create());
+                }
+                else {
+                    logger.warn("Failed to find ID on event class " + eventClass.getName());
+                }
+            } catch (ClassCastException | IllegalAccessException | ClassNotFoundException | NoSuchFieldException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
@@ -369,9 +454,6 @@ public class SpireAnniversary6Mod implements
     }
 
     private void initializeSavedData() {
-    }
-
-    public void initializeEvents() {
     }
 
     @Override

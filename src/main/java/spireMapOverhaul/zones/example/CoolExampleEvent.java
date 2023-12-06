@@ -22,6 +22,10 @@ public class CoolExampleEvent extends PhasedEvent {
     private static final String[] OPTIONS = eventStrings.OPTIONS;
     private static final String title = eventStrings.NAME;
 
+    public static boolean bonusCondition() {
+        return true;
+    }
+
     public CoolExampleEvent() {
         super(ID, title, "images/events/theNest.jpg");
 

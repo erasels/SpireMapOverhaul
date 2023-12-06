@@ -14,6 +14,8 @@ import spireMapOverhaul.abstracts.AbstractZone;
 import java.util.ArrayList;
 
 public class PlaceholderZone extends AbstractZone {
+    public static final String ID = "Placeholder";
+
     private final int width, height;
     private final Color color;
 
@@ -36,7 +38,7 @@ public class PlaceholderZone extends AbstractZone {
     }
 
     private PlaceholderZone(String name, int width, int height) {
-        super("Placeholder");
+        super(ID);
 
         this.width = width;
         this.height = height;
