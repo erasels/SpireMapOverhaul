@@ -29,7 +29,8 @@ public class RoomDistributionPatches {
                 public void edit(MethodCall m) throws CannotCompileException {
                     if (!done && m.getMethodName().equals("hasEdges") && m.getClassName().equals(MapRoomNode.class.getName())) {
                         m.replace(
-                                "$_ = $proceed($$) && ($0.getRoom() == null);"
+                                "$_ = $proceed($$) && ($0.getRoom() == null)" +
+                                        "&& ($0.y != 0) && ($0.y != 8) && ($0.y != (" + AbstractDungeon.class.getName() + ".map.size() - 1));"
                         );
                         done = true;
                     }

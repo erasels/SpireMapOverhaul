@@ -81,6 +81,7 @@ public class SpireAnniversary6Mod implements
 
     public static List<AbstractZone> allZones = new ArrayList<>();
     private static Map<String, AbstractZone> zonePackages = new HashMap<>();
+    public static Map<String, Set<String>> zoneEvents = new HashMap<>();
 
 
     public static String makeID(String idText) {
@@ -352,9 +353,9 @@ public class SpireAnniversary6Mod implements
                 Field idField = eventClass.getDeclaredField("ID");
                 if (Modifier.isStatic(idField.getModifiers()) && String.class.equals(idField.getType())) {
                     idField.setAccessible(true);
-                    String id = (String) idField.get(null);
+                    String eventID = (String) idField.get(null);
 
-                    AddEventParams.Builder eventBuilder = new AddEventParams.Builder(id, eventClass);
+                    AddEventParams.Builder eventBuilder = new AddEventParams.Builder(eventID, eventClass);
 
                     Condition eventCondition = null;
                     Method[] methods = eventClass.getDeclaredMethods();
@@ -393,6 +394,10 @@ public class SpireAnniversary6Mod implements
                             AbstractZone current = ZonePatches.currentZone();
                             return old.test() && current != null && current.id.equals(finalZone.id);
                         };
+
+                        Set<String> eventList = zoneEvents.computeIfAbsent(zone.id, k -> new HashSet<>());
+                        eventList.add(eventID);
+
                         logger.info("Registered event " + eventClass.getSimpleName() + " | Zone: " + finalZone.id);
                     }
                     else {
