@@ -7,6 +7,11 @@ public interface ModifiedEventRateZone {
      * @return If not null, forces the event rolled to be this. Recommended to use with y-position based checks,
      */
     default AbstractEvent forceEvent() { return null; }
-    default float zoneSpecificEventRate() { return 0; }; //Chance of guaranteeing an event tied to this zone
-    //Not required to have zone specific events, only if you want to give them an increased appearance rate.
+
+    /**
+     * Provides a chance to guarantee a zone-specific event. Will do nothing if the zone has no events or if all events have been seen.
+     * Not required for zone specific events, only for giving them an increased appearance rate.
+     * @return Chance of guaranteeing a zone-specific event from 0 to 1.
+     */
+    default float zoneSpecificEventRate() { return 0; }
 }
