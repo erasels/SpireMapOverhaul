@@ -22,6 +22,7 @@ import com.megacrit.cardcrawl.events.AbstractEvent;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.rewards.RewardSave;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import javassist.CtClass;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import spireMapOverhaul.patches.interfacePatches.CampfireModifierPatches;
