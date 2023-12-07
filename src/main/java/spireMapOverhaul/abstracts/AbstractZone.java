@@ -1,5 +1,6 @@
 package spireMapOverhaul.abstracts;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -114,10 +115,14 @@ public abstract class AbstractZone {
             //do Stuff
             float anchorX = labelX * SPACING_X + OFFSET_X;
             float anchorY = labelY * Settings.MAP_DST_Y + OFFSET_Y + DungeonMapScreen.offsetY;
+            //float arbitraryYOffset = 210f; //need to actually figure this one out
             if (shapeRegion == null || shapeRegion.getTexture() == null) {
                 shapeRegion = ZoneShapeMaker.makeShape(this, this.nodes, anchorX, anchorY, sb);
             }
-            sb.draw(shapeRegion,anchorX,anchorY);
+            sb.setColor(getColor().cpy().mul(1, 1, 1, alpha*0.8f));
+            sb.draw(shapeRegion, anchorX - Gdx.graphics.getWidth()/2f, (anchorY - Gdx.graphics.getHeight()/4f));
+            sb.setColor(Color.WHITE);
+
 
             Texture backgroundTexture = backgroundTexture();
             if (backgroundTexture != null) {

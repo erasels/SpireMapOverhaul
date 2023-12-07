@@ -13,6 +13,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.map.MapRoomNode;
+import com.megacrit.cardcrawl.screens.DungeonMapScreen;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
 
@@ -25,17 +26,18 @@ public class ZoneShapeMaker {
     private static final float OFFSET_X = Settings.isMobile ? 496.0F * Settings.xScale : 560.0F * Settings.xScale;
     private static final float OFFSET_Y = 180.0F * Settings.scale;
     private static final float SPACING_X = Settings.isMobile ? (int)(Settings.xScale * 64.0F) * 2.2F : (int)(Settings.xScale * 64.0F) * 2.0F;
+    private static final int FB_HEIGHT_FACTOR = 1;
 
-    private static ShaderProgram shader = new ShaderProgram(Gdx.files.internal("anniv6Resources/shaders/shapeMaker/vertex.vs"),
+    private static final ShaderProgram shader = new ShaderProgram(Gdx.files.internal("anniv6Resources/shaders/shapeMaker/vertex.vs"),
                                                             Gdx.files.internal("anniv6Resources/shaders/shapeMaker/fragment.fs"));
 
-    private static FrameBuffer commonBuffer = new FrameBuffer(Pixmap.Format.RGBA8888, Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), false);
+    private static final FrameBuffer commonBuffer = new FrameBuffer(Pixmap.Format.RGBA8888, Gdx.graphics.getWidth(), Gdx.graphics.getHeight() * FB_HEIGHT_FACTOR, false);
 
-    private static final TextureRegion CIRCLE = new TextureRegion(TexLoader.getTexture(SpireAnniversary6Mod.makeImagePath("ui/whiteCircle.png")));
+    private static final TextureRegion CIRCLE = new TextureRegion(TexLoader.getTexture(SpireAnniversary6Mod.makeImagePath("ui/WhiteCircle.png")));
 
     public static TextureRegion makeShape(AbstractZone zone, List<MapRoomNode> nodes, float anchorX, float anchorY, SpriteBatch sb) {
         if (zone.zoneFb == null) {
-            zone.zoneFb = new FrameBuffer(Pixmap.Format.RGBA8888, Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), false);
+            zone.zoneFb = new FrameBuffer(Pixmap.Format.RGBA8888, Gdx.graphics.getWidth(), Gdx.graphics.getHeight() * FB_HEIGHT_FACTOR, false);
         }
 
 
@@ -45,19 +47,22 @@ public class ZoneShapeMaker {
         Gdx.gl.glClearColor(0.0F, 0.0F, 0.0F, 0.0F);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
         Gdx.gl.glColorMask(true, true, true, true);
+        float yScale = (float)Gdx.graphics.getHeight() / (float)commonBuffer.getHeight();
 
         for (MapRoomNode n : nodes) {
             float d = getClosestNodeAndDistance(n, (no) -> !nodes.contains(no)).getValue();
             float circleScale = Math.min(d/(300f), 1f);
+            float cX = (float)n.x * SPACING_X + OFFSET_X + n.offsetX;
+            float cY = (float)n.y * Settings.MAP_DST_Y + OFFSET_Y + DungeonMapScreen.offsetY + n.offsetY;
             sb.draw(CIRCLE,
-                    n.hb.cX - (CIRCLE.getTexture().getWidth() * 0.5f) + 300 - anchorX,
-                    n.hb.cY - (CIRCLE.getTexture().getHeight() * 0.5f) + 300 - anchorY,
+                    cX - (CIRCLE.getTexture().getWidth() * 0.5f) - anchorX + Gdx.graphics.getWidth()/2f,
+                    yScale * (cY - (CIRCLE.getTexture().getHeight() * 0.5f) - (anchorY) + Gdx.graphics.getHeight()/4f),
                     CIRCLE.getTexture().getWidth() / 2f,
                     CIRCLE.getTexture().getHeight() / 2f,
                     CIRCLE.getTexture().getWidth(),
                     CIRCLE.getTexture().getHeight(),
                     Settings.scale * circleScale,
-                    Settings.scale * circleScale,
+                    Settings.scale * circleScale * yScale,
                     0f);
         }
         sb.flush();
@@ -71,7 +76,10 @@ public class ZoneShapeMaker {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
         Gdx.gl.glColorMask(true, true, true, true);
         //setShader
-        sb.draw(resultRegion, -Settings.VERT_LETTERBOX_AMT, -Settings.HORIZ_LETTERBOX_AMT);
+        sb.draw(resultRegion, -Settings.VERT_LETTERBOX_AMT, -Settings.HORIZ_LETTERBOX_AMT
+                ,resultRegion.getRegionWidth()/2f,resultRegion.getRegionHeight()/2f,
+                resultRegion.getRegionWidth(),resultRegion.getRegionHeight(),
+                Settings.scale, Settings.scale * yScale, 0);
         sb.flush();
         zone.zoneFb.end();
         resultRegion.setTexture(zone.zoneFb.getColorBufferTexture());
