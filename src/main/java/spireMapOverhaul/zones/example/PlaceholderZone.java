@@ -2,18 +2,22 @@ package spireMapOverhaul.zones.example;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.events.AbstractEvent;
+import com.megacrit.cardcrawl.events.shrines.GremlinWheelGame;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.EventRoom;
-import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
-import com.megacrit.cardcrawl.rooms.TreasureRoom;
 import spireMapOverhaul.BetterMapGenerator;
 import spireMapOverhaul.abstracts.AbstractZone;
+import spireMapOverhaul.zoneInterfaces.ModifiedEventRateZone;
 
 import java.util.ArrayList;
 
-public class PlaceholderZone extends AbstractZone {
+public class PlaceholderZone extends AbstractZone implements ModifiedEventRateZone {
+    public static final String ID = "Placeholder";
+
     private final int width, height;
     private final Color color;
 
@@ -23,6 +27,16 @@ public class PlaceholderZone extends AbstractZone {
             randString.append((char)MathUtils.random('a', 'z'));
         }
         return randString.toString();
+    }
+
+    @Override
+    public AbstractEvent forceEvent() {
+        return ModifiedEventRateZone.returnIfUnseen(CoolExampleEvent.ID);
+    }
+
+    @Override
+    public float zoneSpecificEventRate() {
+        return 1;
     }
 
     public PlaceholderZone() {
@@ -36,7 +50,7 @@ public class PlaceholderZone extends AbstractZone {
     }
 
     private PlaceholderZone(String name, int width, int height) {
-        super("Placeholder");
+        super(ID);
 
         this.width = width;
         this.height = height;
@@ -62,21 +76,21 @@ public class PlaceholderZone extends AbstractZone {
 
     @Override
     public void manualRoomPlacement(Random rng) {
-        //set all nodes to elite rooms.
+        //set all nodes to a specific room.
         for (MapRoomNode node : nodes) {
-            node.setRoom(new MonsterRoomElite());
+            node.setRoom(new EventRoom());//new MonsterRoomElite());
         }
     }
 
     @Override
     public void distributeRooms(Random rng, ArrayList<AbstractRoom> roomList) {
-        //Won't work because it's full of elites already, but this is how you'd guarantee at least One Elite Room in zone
-        placeRoomRandomly(rng, roomOrDefault(roomList, (room)->room instanceof MonsterRoomElite, MonsterRoomElite::new));
+        //Guarantee at least One Elite Room in zone. This method will do nothing if the zone is already full.
+        //placeRoomRandomly(rng, roomOrDefault(roomList, (room)->room instanceof MonsterRoomElite, MonsterRoomElite::new));
     }
 
     @Override
     public void replaceRooms(Random rng) {
-        //Replace 100% of event rooms with treasure rooms. Does nothing since there's only elites.
-        replaceRoomsRandomly(rng, TreasureRoom::new, (room)->room instanceof EventRoom, 1);
+        //Replace 100% of event rooms with treasure rooms.
+        //replaceRoomsRandomly(rng, TreasureRoom::new, (room)->room instanceof EventRoom, 1);
     }
 }

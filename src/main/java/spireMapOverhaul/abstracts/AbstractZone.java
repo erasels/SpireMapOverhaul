@@ -34,8 +34,7 @@ public abstract class AbstractZone {
     private static final float SPACING_X = Settings.isMobile ? (int)(Settings.xScale * 64.0F) * 2.2F : (int)(Settings.xScale * 64.0F) * 2.0F;
     private static final String[] NO_TEXT = new String[] { };
 
-    public final String BASE_ID;
-    public final String ID;
+    public final String id;
     public String[] TEXT = NO_TEXT;
     public String name = "";
     protected Color labelColor = Color.WHITE;
@@ -53,12 +52,13 @@ public abstract class AbstractZone {
     public AbstractZone() {
         this(null);
     }
-    public AbstractZone(String baseID) {
-        if (baseID == null) {
-            baseID = getClass().getSimpleName();
+
+    //Id given should not be prefixed.
+    public AbstractZone(String id) {
+        if (id == null) {
+            id = getClass().getSimpleName();
         }
-        this.BASE_ID = baseID;
-        this.ID = makeID(BASE_ID);
+        this.id = id;
         loadStrings();
     }
 
@@ -81,7 +81,7 @@ public abstract class AbstractZone {
 
     protected void loadStrings() {
         if (SpireAnniversary6Mod.initializedStrings) {
-            TEXT = CardCrawlGame.languagePack.getUIString(this.ID).TEXT;
+            TEXT = CardCrawlGame.languagePack.getUIString(makeID(this.id)).TEXT;
             name = TEXT[0];
         }
         else {
@@ -89,24 +89,13 @@ public abstract class AbstractZone {
         }
     }
 
-    /**
-     * @return The chance of an event specifically for this zone appearing, from 0 to 1.
-     * Will also be effectively 0 if all events for the zone have been seen, even if set to 1.
-     */
-    public float eventChance() {
-        return 0.4f;
-    }
-    public List<String> events() {
-        return Collections.emptyList();
-    }
-
-    public String modifyRolledEvent(String eventKey) {
+    /*public String modifyRolledEvent(String eventKey) {
         if (AbstractDungeon.eventRng.randomBoolean(eventChance())) {
             List<String> possibleEvents = events();
             return possibleEvents.remove(AbstractDungeon.eventRng.random(events().size()));
         }
         return eventKey;
-    }
+    }*/
 
 
 
