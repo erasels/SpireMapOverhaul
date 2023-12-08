@@ -108,7 +108,7 @@ public abstract class AbstractZone {
             if (shapeRegion == null || shapeRegion.getTexture() == null) {
                 shapeRegion = ZoneShapeMaker.makeShape(this, this.nodes, anchorX, anchorY, sb);
             }
-            sb.setColor(getColor().cpy().mul(1, 1, 1, alpha*0.8f));
+            sb.setColor(getColor().cpy().mul(1, 0.9f, 0.85f, alpha*0.8f)); //just making the random color more palatable
             sb.draw(shapeRegion, anchorX - Gdx.graphics.getWidth()/2f, (anchorY - Gdx.graphics.getHeight()/4f));
             sb.setColor(Color.WHITE);
 
@@ -254,7 +254,7 @@ public abstract class AbstractZone {
         labelX /= count;
 
         labelColor = getColor().cpy();
-        labelColor.mul(0.75f);
+        labelColor.mul(0.5f,0.5f,0.5f,0.8f);
     }
 
 

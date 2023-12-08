@@ -11,6 +11,7 @@ uniform float sizeY;
 uniform float stepSize;
 uniform float subDiv;
 uniform float thresholdDivider;
+uniform float darkening;
 //---------------------------------------------------------------------------
 void main()
     {
@@ -26,7 +27,14 @@ void main()
     vec4 selfColor = texture(txr, pos);
 
     if (selfColor.a > 0) {
-        result = vec4(1.,0.,0.,1.);
+        if (darkening < 0)
+        {
+            result = vec4(1.,1.,1.,1.);
+        }
+        else
+        {
+            result = vec4(selfColor.r * darkening,selfColor.r * darkening,selfColor.r * darkening,1.);
+        }
     } else {
         for (int i = -int(subDiv); i <= int(subDiv); i++) {
             for (int j = -int(subDiv); j <= int(subDiv); j++) {
