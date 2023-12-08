@@ -31,9 +31,7 @@ public class PlaceholderZone extends AbstractZone implements ModifiedEventRateZo
 
     @Override
     public AbstractEvent forceEvent() {
-        if (AbstractDungeon.currMapNode != null && AbstractDungeon.currMapNode.y == y)
-            return new GremlinWheelGame();
-        return null;
+        return ModifiedEventRateZone.returnIfUnseen(CoolExampleEvent.ID);
     }
 
     @Override
