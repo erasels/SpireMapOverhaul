@@ -28,9 +28,6 @@ public class BetterMapGenerator {
     public static List<AbstractZone> getActiveZones(ArrayList<ArrayList<MapRoomNode>> map) {
         if (map != lastMap) {
             lastMap = map;
-            for (AbstractZone z : activeZones) {
-                z.dispose();
-            }
             activeZones.clear();
         }
         return activeZones;
