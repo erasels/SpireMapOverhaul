@@ -104,7 +104,6 @@ public abstract class AbstractZone {
             //do Stuff
             float anchorX = labelX * SPACING_X + OFFSET_X;
             float anchorY = labelY * Settings.MAP_DST_Y + OFFSET_Y + DungeonMapScreen.offsetY;
-            //float arbitraryYOffset = 210f; //need to actually figure this one out
             if (shapeRegion == null || shapeRegion.getTexture() == null) {
                 shapeRegion = ZoneShapeMaker.makeShape(this, this.nodes, anchorX, anchorY, sb);
             }
