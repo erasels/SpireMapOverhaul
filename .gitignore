@@ -4,6 +4,7 @@
 .idea/
 out/
 *.iml
+*.xml
 
 # Eclipse
 .classpath

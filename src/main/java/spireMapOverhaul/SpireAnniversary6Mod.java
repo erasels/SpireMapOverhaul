@@ -34,7 +34,6 @@ import spireMapOverhaul.rewards.SingleCardReward;
 import spireMapOverhaul.util.TexLoader;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.util.Wiz;
-import spireMapOverhaul.util.ZoneShapeMaker;
 import spireMapOverhaul.zoneInterfaces.CampfireModifyingZone;
 import spireMapOverhaul.zones.example.PlaceholderZone;
 

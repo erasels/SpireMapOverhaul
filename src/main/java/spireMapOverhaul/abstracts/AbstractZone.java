@@ -133,7 +133,10 @@ public abstract class AbstractZone {
     }
 
     public void dispose() {
-        shapeRegion = null;
+        if (shapeRegion != null && shapeRegion.getTexture() != null) {
+            shapeRegion.getTexture().dispose();
+        }
+        if (zoneFb != null) zoneFb.dispose();
     }
 
 
