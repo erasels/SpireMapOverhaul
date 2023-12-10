@@ -1,8 +1,11 @@
 package spireMapOverhaul.abstracts;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -14,6 +17,7 @@ import com.megacrit.cardcrawl.screens.DungeonMapScreen;
 import spireMapOverhaul.BetterMapGenerator.MapPlanner;
 import spireMapOverhaul.BetterMapGenerator.MapPlanner.PlanningNode;
 import spireMapOverhaul.SpireAnniversary6Mod;
+import spireMapOverhaul.util.ZoneShapeMaker;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -41,6 +45,9 @@ public abstract class AbstractZone {
     //These two should be set during initial generation in generateMapArea
     //They will then be adjusted to their final values in mapGenDone
     protected float labelX = 0, labelY = 0;
+
+    public FrameBuffer zoneFb = null;
+    private TextureRegion shapeRegion = null;
 
     public AbstractZone() {
         this(null);
@@ -95,6 +102,16 @@ public abstract class AbstractZone {
     public void renderOnMap(SpriteBatch sb, float alpha) {
         if (alpha > 0) {
             //do Stuff
+            float anchorX = labelX * SPACING_X + OFFSET_X;
+            float anchorY = labelY * Settings.MAP_DST_Y + OFFSET_Y + DungeonMapScreen.offsetY;
+            if (shapeRegion == null || shapeRegion.getTexture() == null) {
+                shapeRegion = ZoneShapeMaker.makeShape(this, this.nodes, anchorX, anchorY, sb);
+            }
+            sb.setColor(getColor().cpy().mul(1, 0.9f, 0.85f, alpha*0.8f)); //just making the random color more palatable
+            sb.draw(shapeRegion, anchorX - Gdx.graphics.getWidth()/2f, (anchorY - Gdx.graphics.getHeight()/4f));
+            sb.setColor(Color.WHITE);
+
+
             Texture backgroundTexture = backgroundTexture();
             if (backgroundTexture != null) {
 
@@ -114,7 +131,12 @@ public abstract class AbstractZone {
         return null;
     }
 
-
+    public void dispose() {
+        if (shapeRegion != null && shapeRegion.getTexture() != null) {
+            shapeRegion.getTexture().dispose();
+        }
+        if (zoneFb != null) zoneFb.dispose();
+    }
 
 
     //-----Map Gen-----
@@ -233,7 +255,7 @@ public abstract class AbstractZone {
         labelX /= count;
 
         labelColor = getColor().cpy();
-        labelColor.mul(0.75f);
+        labelColor.mul(0.5f,0.5f,0.5f,0.8f);
     }
 
 

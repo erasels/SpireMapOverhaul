@@ -47,6 +47,9 @@ public class BetterMapGenerator {
             planner = new MapPlanner(width, height);
 
             AbstractZone zone;
+            for (AbstractZone z : activeZones) {
+                z.dispose();
+            }
             activeZones.clear();
             float zoneRate = 1;
 
