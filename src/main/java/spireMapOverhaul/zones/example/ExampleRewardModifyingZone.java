@@ -36,6 +36,7 @@ public class ExampleRewardModifyingZone extends AbstractZone implements RewardMo
 
     @Override
     public ArrayList<AbstractCard> getAdditionalCardReward() {
+        // Note: This is a custom card reward and thus does not follow the normal upgrade logic, etc
         AbstractCard c1 = AbstractDungeon.getCard(AbstractCard.CardRarity.UNCOMMON);
         AbstractCard c2 = AbstractDungeon.getCard(AbstractCard.CardRarity.UNCOMMON);
         AbstractCard c3 = AbstractDungeon.getCard(AbstractCard.CardRarity.UNCOMMON);
@@ -83,5 +84,15 @@ public class ExampleRewardModifyingZone extends AbstractZone implements RewardMo
     @Override
     public int changeRareCardRewardChance(int rareCardRewardChance) {
         return rareCardRewardChance + 50;
+    }
+
+    @Override
+    public boolean allowUpgradingRareCards() {
+        return true;
+    }
+
+    @Override
+    public float changeCardUpgradeChance(float curChance) {
+        return 1f;
     }
 }
