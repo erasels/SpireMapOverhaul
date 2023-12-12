@@ -103,6 +103,10 @@ public class SpireAnniversary6Mod implements
         return modID + "Resources/images/" + resourcePath;
     }
 
+    public static String makeUIPath(String resourcePath) {
+        return modID + "Resources/images/ui/" + resourcePath;
+    }
+
     public static String makeRelicPath(String resourcePath) {
         return modID + "Resources/images/relics/" + resourcePath;
     }
