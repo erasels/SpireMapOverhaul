@@ -66,4 +66,10 @@ public interface IRewardModifyingZone {
      * @param rewards The set of rewards.
      */
     default void modifyRewards(ArrayList<RewardItem> rewards) {}
+
+    /**
+     * Hook for triggering effects when a card is added to the deck.
+     * @param card The card added.
+     */
+    default void onObtainCard(AbstractCard card) {}
 }

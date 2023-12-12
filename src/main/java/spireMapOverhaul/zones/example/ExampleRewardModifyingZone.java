@@ -72,4 +72,9 @@ public class ExampleRewardModifyingZone extends AbstractZone implements IRewardM
             rewards.removeIf(r -> r.type == RewardItem.RewardType.RELIC && !(r.relic instanceof Circlet));
         }
     }
+
+    @Override
+    public void onObtainCard(AbstractCard c) {
+        AbstractDungeon.player.increaseMaxHp(1, false);
+    }
 }

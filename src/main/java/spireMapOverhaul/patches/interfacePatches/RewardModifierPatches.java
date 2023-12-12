@@ -1,5 +1,6 @@
 package spireMapOverhaul.patches.interfacePatches;
 
+import basemod.ReflectionHacks;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -7,6 +8,8 @@ import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.saveAndContinue.SaveAndContinue;
 import com.megacrit.cardcrawl.screens.CombatRewardScreen;
+import com.megacrit.cardcrawl.vfx.FastCardObtainEffect;
+import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import javassist.CtBehavior;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.util.Wiz;
@@ -79,6 +82,34 @@ public class RewardModifierPatches {
                 Matcher firstMatcher = new Matcher.MethodCallMatcher(SaveAndContinue.class, "save");
                 Matcher finalMatcher = new Matcher.FieldAccessMatcher(AbstractDungeon.class, "loading_post_combat");
                 return LineFinder.findInOrder(ctMethodToPatch, Collections.singletonList(firstMatcher), finalMatcher);
+            }
+        }
+    }
+
+    @SpirePatch2(clz = ShowCardAndObtainEffect.class, method = "update")
+    public static class OnObtainCardShowCardAndObtainPatch {
+        @SpirePostfixPatch
+        public static void OnObtainCardPatch(ShowCardAndObtainEffect __instance) {
+            AbstractZone zone = Wiz.getCurZone();
+            if (zone instanceof IRewardModifyingZone) {
+                AbstractCard card = ReflectionHacks.getPrivate(__instance, ShowCardAndObtainEffect.class, "card");
+                if (__instance.isDone) {
+                    ((IRewardModifyingZone)zone).onObtainCard(card);
+                }
+            }
+        }
+    }
+
+    @SpirePatch2(clz = FastCardObtainEffect.class, method = "update")
+    public static class OnObtainCardFastCardObtainPatch {
+        @SpirePostfixPatch
+        public static void OnObtainCardPatch(FastCardObtainEffect __instance) {
+            AbstractZone zone = Wiz.getCurZone();
+            if (zone instanceof IRewardModifyingZone) {
+                AbstractCard card = ReflectionHacks.getPrivate(__instance, FastCardObtainEffect.class, "card");
+                if (__instance.isDone) {
+                    ((IRewardModifyingZone)zone).onObtainCard(card);
+                }
             }
         }
     }
