@@ -72,4 +72,13 @@ public interface IRewardModifyingZone {
      * @param card The card added.
      */
     default void onObtainCard(AbstractCard card) {}
+
+    /**
+     * Hook for changing the chance of rare cards in rewards.
+     * @param rareCardRewardChance The base chance of rare cards in rewards. Effects such as N'loth's Gift are already applied.
+     * @return The new rare card reward chance.
+     */
+    default int changeRareCardRewardChance(int rareCardRewardChance) {
+        return rareCardRewardChance;
+    }
 }

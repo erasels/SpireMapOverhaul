@@ -77,4 +77,9 @@ public class ExampleRewardModifyingZone extends AbstractZone implements IRewardM
     public void onObtainCard(AbstractCard c) {
         AbstractDungeon.player.increaseMaxHp(1, false);
     }
+
+    @Override
+    public int changeRareCardRewardChance(int rareCardRewardChance) {
+        return rareCardRewardChance + 50;
+    }
 }

@@ -113,4 +113,15 @@ public class RewardModifierPatches {
             }
         }
     }
+
+    @SpirePatch2(clz = AbstractRoom.class, method = "alterCardRarityProbabilities")
+    public static class ChangeRareCardRewardChancePatch {
+        @SpirePostfixPatch
+        public static void ChangeRareCardRewardChance(AbstractRoom __instance) {
+            AbstractZone zone = Wiz.getCurZone();
+            if (zone instanceof IRewardModifyingZone) {
+                __instance.rareCardChance = ((IRewardModifyingZone)zone).changeRareCardRewardChance((__instance.rareCardChance));
+            }
+        }
+    }
 }
