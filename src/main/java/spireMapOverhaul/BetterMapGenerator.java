@@ -343,7 +343,7 @@ public class BetterMapGenerator {
             }
 
             for (AbstractZone zone : activeZones) {
-                zone.mapGenDone();
+                zone.mapGenDone(map);
             }
 
             return map;

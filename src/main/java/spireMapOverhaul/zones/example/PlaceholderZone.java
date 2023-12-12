@@ -77,9 +77,9 @@ public class PlaceholderZone extends AbstractZone implements ModifiedEventRateZo
     @Override
     public void manualRoomPlacement(Random rng) {
         //set all nodes to a specific room.
-        for (MapRoomNode node : nodes) {
+        /*for (MapRoomNode node : nodes) {
             node.setRoom(new EventRoom());//new MonsterRoomElite());
-        }
+        }*/
     }
 
     @Override

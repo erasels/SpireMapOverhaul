@@ -1,8 +1,6 @@
 package spireMapOverhaul.abstracts;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
@@ -66,6 +64,19 @@ public abstract class AbstractZone {
 
     public abstract Color getColor();
 
+    public int getX() {
+        return x;
+    }
+    public int getY() {
+        return y;
+    }
+    public int getWidth() {
+        return width;
+    }
+    public int getHeight() {
+        return height;
+    }
+
     public boolean canSpawn() {
         System.out.println("ActNum: " + AbstractDungeon.actNum);
         for (int i = 1; i <= 3; ++i)
@@ -101,34 +112,19 @@ public abstract class AbstractZone {
 
     public void renderOnMap(SpriteBatch sb, float alpha) {
         if (alpha > 0) {
-            //do Stuff
-            float anchorX = labelX * SPACING_X + OFFSET_X;
-            float anchorY = labelY * Settings.MAP_DST_Y + OFFSET_Y + DungeonMapScreen.offsetY;
-            if (shapeRegion == null || shapeRegion.getTexture() == null) {
-                shapeRegion = ZoneShapeMaker.makeShape(this, this.nodes, anchorX, anchorY, sb);
+            if (shapeRegion == null) {
+                shapeRegion = ZoneShapeMaker.makeShape(this, AbstractDungeon.map, this.nodes, sb);
             }
+            float anchorX = x * SPACING_X + OFFSET_X - ZoneShapeMaker.FB_OFFSET;
+            float anchorY = y * Settings.MAP_DST_Y + OFFSET_Y + DungeonMapScreen.offsetY - ZoneShapeMaker.FB_OFFSET;
             sb.setColor(getColor().cpy().mul(1, 0.9f, 0.85f, alpha*0.8f)); //just making the random color more palatable
-            sb.draw(shapeRegion, anchorX - Gdx.graphics.getWidth()/2f, (anchorY - Gdx.graphics.getHeight()/4f));
-            sb.setColor(Color.WHITE);
+            sb.draw(shapeRegion, anchorX, anchorY);
 
-
-            Texture backgroundTexture = backgroundTexture();
-            if (backgroundTexture != null) {
-
-            }
             FontHelper.renderFontCentered(sb, FontHelper.menuBannerFont, name,
                     labelX * SPACING_X + OFFSET_X, labelY * Settings.MAP_DST_Y + OFFSET_Y + DungeonMapScreen.offsetY,
                     labelColor.cpy().mul(1, 1, 1, alpha), 0.8f
             );
         }
-    }
-
-    //used by default renderOnMap method
-    public List<Texture> mapMarks() {
-        return Collections.emptyList();
-    }
-    public Texture backgroundTexture() {
-        return null;
     }
 
     public void dispose() {
@@ -244,7 +240,7 @@ public abstract class AbstractZone {
     }
 
     //Called when map generation (nodes and paths) is complete
-    public void mapGenDone() {
+    public void mapGenDone(ArrayList<ArrayList<MapRoomNode>> map) {
         int count = 1;
         for (MapRoomNode node : nodes) {
             if (node.y == y) {

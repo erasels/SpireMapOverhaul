@@ -6,6 +6,7 @@ import basemod.ModPanel;
 import basemod.eventUtil.AddEventParams;
 import basemod.eventUtil.util.Condition;
 import basemod.helpers.RelicType;
+import basemod.helpers.TextCodeInterpreter;
 import basemod.interfaces.*;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
@@ -33,6 +34,7 @@ import spireMapOverhaul.rewards.SingleCardReward;
 import spireMapOverhaul.util.TexLoader;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.util.Wiz;
+import spireMapOverhaul.util.ZoneShapeMaker;
 import spireMapOverhaul.zoneInterfaces.CampfireModifyingZone;
 import spireMapOverhaul.zones.example.PlaceholderZone;
 
@@ -185,6 +187,8 @@ public class SpireAnniversary6Mod implements
         initializeConfig();
         initializeSavedData();
         initializeEvents();
+
+        TextCodeInterpreter.addAccessible(ZoneShapeMaker.class);
     }
 
     public static void addPotions() {
