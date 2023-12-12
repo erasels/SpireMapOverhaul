@@ -81,4 +81,13 @@ public interface RewardModifyingZone {
     default int changeRareCardRewardChance(int rareCardRewardChance) {
         return rareCardRewardChance;
     }
+
+    /**
+     * Hook for changing the chance of uncommon cards in rewards.
+     * @param uncommonCardRewardChance The base chance of uncommon cards in rewards. Relic effects are already applied
+     * @return The new uncommon card reward chance.
+     */
+    default int changeUncommonCardRewardChance(int uncommonCardRewardChance) {
+        return uncommonCardRewardChance;
+    }
 }
