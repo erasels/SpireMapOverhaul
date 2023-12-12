@@ -4,6 +4,7 @@ import basemod.cardmods.EtherealMod;
 import basemod.helpers.CardModifierManager;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.colorless.MindBlast;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.Circlet;
 import com.megacrit.cardcrawl.rewards.RewardItem;
@@ -51,6 +52,7 @@ public class ExampleRewardModifyingZone extends AbstractZone implements IRewardM
 
     @Override
     public void modifyRewardCards(ArrayList<AbstractCard> cards) {
+        cards.add(new MindBlast());
         for (AbstractCard card : cards) {
             CardModifierManager.addModifier(card, new EtherealMod());
         }
