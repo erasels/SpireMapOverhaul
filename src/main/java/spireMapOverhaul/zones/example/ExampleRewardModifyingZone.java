@@ -10,12 +10,12 @@ import com.megacrit.cardcrawl.relics.Circlet;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
-import spireMapOverhaul.zoneInterfaces.IRewardModifyingZone;
+import spireMapOverhaul.zoneInterfaces.RewardModifyingZone;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class ExampleRewardModifyingZone extends AbstractZone implements IRewardModifyingZone {
+public class ExampleRewardModifyingZone extends AbstractZone implements RewardModifyingZone {
     public static final String ID = "ExampleRewardModifying";
 
     public ExampleRewardModifyingZone() {

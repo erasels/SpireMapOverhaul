@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.rewards.RewardItem;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public interface IRewardModifyingZone {
+public interface RewardModifyingZone {
     /**
      * Hook for adding any number of additional card rewards.
      * AbstractDungeon.cardRng should be the only RNG used in this method.

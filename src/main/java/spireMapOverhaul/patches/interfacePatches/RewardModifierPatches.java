@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import javassist.CtBehavior;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.util.Wiz;
-import spireMapOverhaul.zoneInterfaces.IRewardModifyingZone;
+import spireMapOverhaul.zoneInterfaces.RewardModifyingZone;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,8 +24,8 @@ public class RewardModifierPatches {
         @SpireInsertPatch(locator = Locator.class)
         public static void AddCardRewards(CombatRewardScreen __instance) {
             AbstractZone zone = Wiz.getCurZone();
-            if (zone instanceof IRewardModifyingZone) {
-                ArrayList<ArrayList<AbstractCard>> additionalCardRewards = ((IRewardModifyingZone)zone).getAdditionalCardRewards();
+            if (zone instanceof RewardModifyingZone) {
+                ArrayList<ArrayList<AbstractCard>> additionalCardRewards = ((RewardModifyingZone)zone).getAdditionalCardRewards();
                 for (ArrayList<AbstractCard> cards : additionalCardRewards) {
                     RewardItem rewardItem = new RewardItem();
                     rewardItem.cards = cards;
@@ -54,10 +54,10 @@ public class RewardModifierPatches {
         @SpireInsertPatch(locator = Locator.class)
         public static void ModifyRewards(AbstractRoom __instance) {
             AbstractZone zone = Wiz.getCurZone();
-            if (zone instanceof IRewardModifyingZone) {
+            if (zone instanceof RewardModifyingZone) {
                 // We don't want to affect uses of CombatRewardScreen that are in non-battle events such as Sensory Stone
                 if (AbstractDungeon.getCurrMapNode() != null && AbstractDungeon.getCurrMapNode().room != null && AbstractDungeon.getCurrMapNode().room.isBattleOver) {
-                    IRewardModifyingZone z = ((IRewardModifyingZone)zone);
+                    RewardModifyingZone z = ((RewardModifyingZone)zone);
                     for (RewardItem rewardItem : AbstractDungeon.combatRewardScreen.rewards) {
                         if (rewardItem.type == RewardItem.RewardType.CARD && rewardItem.cards != null && !rewardItem.cards.isEmpty()) {
                             z.modifyRewardCards(rewardItem.cards);
@@ -91,10 +91,10 @@ public class RewardModifierPatches {
         @SpirePostfixPatch
         public static void OnObtainCardPatch(ShowCardAndObtainEffect __instance) {
             AbstractZone zone = Wiz.getCurZone();
-            if (zone instanceof IRewardModifyingZone) {
+            if (zone instanceof RewardModifyingZone) {
                 AbstractCard card = ReflectionHacks.getPrivate(__instance, ShowCardAndObtainEffect.class, "card");
                 if (__instance.isDone) {
-                    ((IRewardModifyingZone)zone).onObtainCard(card);
+                    ((RewardModifyingZone)zone).onObtainCard(card);
                 }
             }
         }
@@ -105,10 +105,10 @@ public class RewardModifierPatches {
         @SpirePostfixPatch
         public static void OnObtainCardPatch(FastCardObtainEffect __instance) {
             AbstractZone zone = Wiz.getCurZone();
-            if (zone instanceof IRewardModifyingZone) {
+            if (zone instanceof RewardModifyingZone) {
                 AbstractCard card = ReflectionHacks.getPrivate(__instance, FastCardObtainEffect.class, "card");
                 if (__instance.isDone) {
-                    ((IRewardModifyingZone)zone).onObtainCard(card);
+                    ((RewardModifyingZone)zone).onObtainCard(card);
                 }
             }
         }
@@ -119,8 +119,8 @@ public class RewardModifierPatches {
         @SpirePostfixPatch
         public static void ChangeRareCardRewardChance(AbstractRoom __instance) {
             AbstractZone zone = Wiz.getCurZone();
-            if (zone instanceof IRewardModifyingZone) {
-                __instance.rareCardChance = ((IRewardModifyingZone)zone).changeRareCardRewardChance((__instance.rareCardChance));
+            if (zone instanceof RewardModifyingZone) {
+                __instance.rareCardChance = ((RewardModifyingZone)zone).changeRareCardRewardChance((__instance.rareCardChance));
             }
         }
     }
