@@ -1,15 +1,15 @@
 package spireMapOverhaul;
 
-import basemod.AutoAdd;
-import basemod.BaseMod;
-import basemod.ModPanel;
+import basemod.*;
 import basemod.eventUtil.AddEventParams;
 import basemod.eventUtil.util.Condition;
 import basemod.helpers.RelicType;
 import basemod.helpers.TextCodeInterpreter;
 import basemod.interfaces.*;
+import basemod.patches.com.megacrit.cardcrawl.screens.options.DropdownMenu.DropdownColoring;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
@@ -17,11 +17,16 @@ import com.evacipated.cardcrawl.modthespire.Loader;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
+import com.megacrit.cardcrawl.cards.CardGroup;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.events.AbstractEvent;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.rewards.RewardSave;
+import com.megacrit.cardcrawl.screens.options.DropdownMenu;
+import com.megacrit.cardcrawl.screens.options.DropdownMenuListener;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import javassist.CtClass;
 import org.apache.logging.log4j.LogManager;
@@ -38,6 +43,7 @@ import spireMapOverhaul.util.ZoneShapeMaker;
 import spireMapOverhaul.zoneInterfaces.CampfireModifyingZone;
 import spireMapOverhaul.zones.example.PlaceholderZone;
 
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -56,7 +62,8 @@ public class SpireAnniversary6Mod implements
         PostInitializeSubscriber,
         AddAudioSubscriber,
         PostRenderSubscriber,
-        PostCampfireSubscriber {
+        PostCampfireSubscriber,
+        PostCreateStartingDeckSubscriber {
 
     public static final Logger logger = LogManager.getLogger("Zonemaster");
 
@@ -81,6 +88,7 @@ public class SpireAnniversary6Mod implements
 
     public static boolean initializedStrings = false;
 
+    public static List<AbstractZone> unfilteredAllZones = new ArrayList<>();
     public static List<AbstractZone> allZones = new ArrayList<>();
     private static Map<String, AbstractZone> zonePackages = new HashMap<>();
     public static Map<String, Set<String>> zoneEvents = new HashMap<>();
@@ -147,14 +155,16 @@ public class SpireAnniversary6Mod implements
                         String pkg = zone.getClass().getName();
                         int lastSeparator = pkg.lastIndexOf('.');
                         if (lastSeparator >= 0) pkg = pkg.substring(0, lastSeparator);
+                        unfilteredAllZones.add(zone);
                         allZones.add(zone);
                         zonePackages.put(pkg, zone);
                     }
                 });
         for (int i = 0; i < 10; ++i) {
+            unfilteredAllZones.add(new PlaceholderZone());
             allZones.add(new PlaceholderZone());
         }
-        logger.info("Found zone classes with AutoAdd: " + allZones.size());
+        logger.info("Found zone classes with AutoAdd: " + unfilteredAllZones.size());
     }
 
     @Override
@@ -455,6 +465,14 @@ public class SpireAnniversary6Mod implements
         }
     }
     private ModPanel settingsPanel;
+    private DropdownMenu filterDropdown;
+    private static final float DROPDOWN_X = 400f;
+    private static final float DROPDOWN_Y = 600f;
+    private ModLabeledToggleButton filterCheckbox;
+    private static final float CHECKBOX_X = 650f;
+    private static final float CHECKBOX_Y = 500f;
+    private AbstractZone filterViewedZone;
+
 
     private void initializeConfig() {
         UIStrings configStrings = CardCrawlGame.languagePack.getUIString(makeID("ConfigMenuText"));
@@ -463,7 +481,36 @@ public class SpireAnniversary6Mod implements
 
         settingsPanel = new ModPanel();
 
+        ArrayList<String> filterOptions = new ArrayList<>();
+        for (AbstractZone z : unfilteredAllZones) {
+            filterOptions.add(z.name);
+        }
+
+        filterDropdown = new DropdownMenu((dropdownMenu, index, s) -> filterSetViewedZone(index),
+                filterOptions, FontHelper.tipBodyFont, Settings.CREAM_COLOR);
+        DropdownColoring.RowToColor.function.set(filterDropdown, (index) -> getFilterConfig(unfilteredAllZones.get(index).id) ? null : Settings.RED_TEXT_COLOR);
+        IUIElement wrapperDropdown = new IUIElement() {
+            public void render(SpriteBatch sb) {
+                filterDropdown.render(sb, DROPDOWN_X * Settings.xScale,DROPDOWN_Y * Settings.yScale);
+            }
+            public void update() {
+                filterDropdown.update();
+            }
+            public int renderLayer() {return 0;}
+            public int updateOrder() {return 0;}
+        };
+        settingsPanel.addUIElement(wrapperDropdown);
+        filterCheckbox = new ModLabeledToggleButton("TO LOCALIZE", CHECKBOX_X, CHECKBOX_Y, Color.WHITE, FontHelper.tipBodyFont, true, null,
+                (label) -> {},
+                (button) -> setFilterConfig(filterViewedZone.id, button.enabled));
+        settingsPanel.addUIElement(filterCheckbox);
+
         BaseMod.registerModBadge(badge, configStrings.TEXT[0], configStrings.TEXT[1], configStrings.TEXT[2], settingsPanel);
+    }
+
+    private void filterSetViewedZone(int index) {
+        filterViewedZone = allZones.get(index);
+        filterCheckbox.toggle.enabled = getFilterConfig(filterViewedZone.id);
     }
 
     private void initializeSavedData() {
@@ -484,6 +531,42 @@ public class SpireAnniversary6Mod implements
             return true;
         }
     }
+
+    @Override
+    public void receivePostCreateStartingDeck(AbstractPlayer.PlayerClass playerClass, CardGroup cardGroup) {
+        updateZoneList(); //only updated on new games to not mess anything up if settings are changed and a game is loaded
+    }
+
+    private void updateZoneList() {
+        allZones.clear();
+        for (AbstractZone z : unfilteredAllZones) {
+            if (getFilterConfig(z.id)) {
+                allZones.add(z);
+            }
+        }
+    }
+
+    private boolean getFilterConfig(String zoneId) {
+        if (modConfig != null && modConfig.has( zoneId +"_ENABLED")) {
+            return modConfig.getBool(zoneId +"_ENABLED");
+        } else {
+            return true;
+        }
+    }
+
+    private void setFilterConfig(String zoneId, boolean enable) {
+        if (modConfig != null) {
+            modConfig.setBool(zoneId + "_ENABLED", enable);
+            try {
+                modConfig.save();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
+
 }
 
 
