@@ -11,5 +11,10 @@
       "[Card] ",
       "Tip: Right-click for detailed card view!"
     ]
+  },
+  "${ModID}:CombatExplainButton": {
+    "TEXT": [
+      "Combat Modifier"
+    ]
   }
 }
