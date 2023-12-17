@@ -291,7 +291,7 @@ public class ZoneShapeMaker {
     }
 
 
-    //imgui menu. the Remake Shapes button won't work if zone.dispose() actually disposes the stuff. I replaced it with just setting to null when testing.
+    //imgui menu
     private final ImFloat imFloat = new ImFloat();
 
     public void makeImgui() {

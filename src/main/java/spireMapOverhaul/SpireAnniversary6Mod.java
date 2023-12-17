@@ -63,7 +63,7 @@ public class SpireAnniversary6Mod implements
         AddAudioSubscriber,
         PostRenderSubscriber,
         PostCampfireSubscriber,
-        PostCreateStartingDeckSubscriber,
+        StartGameSubscriber,
         ImGuiSubscriber {
 
     public static final Logger logger = LogManager.getLogger("Zonemaster");
@@ -75,6 +75,7 @@ public class SpireAnniversary6Mod implements
 
     public static SpireAnniversary6Mod thismod;
     public static SpireConfig modConfig = null;
+    public static SpireConfig currentRunConfig = null;
 
     public static final String modID = "anniv6";
 
@@ -146,6 +147,11 @@ public class SpireAnniversary6Mod implements
         } catch (Exception e) {
             e.printStackTrace();
         }
+        try {
+            currentRunConfig = new SpireConfig(modID, "anniv6ConfigCurrentRun");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void loadZones() {
@@ -157,13 +163,18 @@ public class SpireAnniversary6Mod implements
                         int lastSeparator = pkg.lastIndexOf('.');
                         if (lastSeparator >= 0) pkg = pkg.substring(0, lastSeparator);
                         unfilteredAllZones.add(zone);
-                        allZones.add(zone);
+                        if (getCurrentRunFilterConfig(zone.id)) {
+                            allZones.add(zone);
+                        }
                         zonePackages.put(pkg, zone);
                     }
                 });
         for (int i = 0; i < 10; ++i) {
-            unfilteredAllZones.add(new PlaceholderZone());
-            allZones.add(new PlaceholderZone());
+            AbstractZone zone = new PlaceholderZone();
+            unfilteredAllZones.add(zone);
+            if (getCurrentRunFilterConfig(zone.id)) {
+                allZones.add(zone);
+            }
         }
         logger.info("Found zone classes with AutoAdd: " + unfilteredAllZones.size());
     }
@@ -542,16 +553,27 @@ public class SpireAnniversary6Mod implements
     }
 
     @Override
-    public void receivePostCreateStartingDeck(AbstractPlayer.PlayerClass playerClass, CardGroup cardGroup) {
-        updateZoneList(); //only updated on new games to not mess anything up if settings are changed and a game is loaded
+    public void receiveStartGame() {
+        if (!CardCrawlGame.loadingSave) {
+            updateZoneList(); //only updated on new games to not mess anything up if settings are changed and a game is loaded
+        }
     }
 
     private void updateZoneList() {
         allZones.clear();
+        currentRunConfig.clear();
         for (AbstractZone z : unfilteredAllZones) {
             if (getFilterConfig(z.id)) {
                 allZones.add(z);
+                setCurrentRunFilterConfig(z.id, true);
+            } else {
+                setCurrentRunFilterConfig(z.id, false);
             }
+        }
+        try {
+            currentRunConfig.save();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -571,6 +593,20 @@ public class SpireAnniversary6Mod implements
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    private boolean getCurrentRunFilterConfig(String zoneId) {
+        if (currentRunConfig != null && currentRunConfig.has( zoneId +"_ONCURRENTRUN")) {
+            return currentRunConfig.getBool(zoneId +"_ONCURRENTRUN");
+        } else {
+            return false;
+        }
+    }
+
+    private void setCurrentRunFilterConfig(String zoneId, boolean enable) {
+        if (currentRunConfig != null) {
+            currentRunConfig.setBool(zoneId + "_ONCURRENTRUN", enable);
         }
     }
 
