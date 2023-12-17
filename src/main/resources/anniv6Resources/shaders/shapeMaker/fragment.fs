@@ -41,6 +41,7 @@ void main()
             }
         }
     }
-    count -= (subDiv*subDiv/thresholdDivider);
-    gl_FragColor = vec4(count);
+    vec4 result = vec4(0.);
+    if (count > subDiv*subDiv/thresholdDivider) result = vec4(1.);
+    gl_FragColor = result;
 }

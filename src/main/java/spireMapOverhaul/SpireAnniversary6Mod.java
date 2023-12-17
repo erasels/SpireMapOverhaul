@@ -63,7 +63,8 @@ public class SpireAnniversary6Mod implements
         AddAudioSubscriber,
         PostRenderSubscriber,
         PostCampfireSubscriber,
-        PostCreateStartingDeckSubscriber {
+        PostCreateStartingDeckSubscriber,
+        ImGuiSubscriber {
 
     public static final Logger logger = LogManager.getLogger("Zonemaster");
 
@@ -565,8 +566,12 @@ public class SpireAnniversary6Mod implements
         }
     }
 
-
-
+    private static ZoneShapeMaker shapeUi = null;
+    @Override
+    public void receiveImGui() {
+        if (shapeUi == null) shapeUi = new ZoneShapeMaker();
+        shapeUi.receiveImGui();
+    }
 }
 
 
