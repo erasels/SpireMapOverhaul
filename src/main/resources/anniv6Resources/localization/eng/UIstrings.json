@@ -3,7 +3,8 @@
     "TEXT": [
       "Spire Map Overhaul",
       "StS Modding Community",
-      "Makes the map more interesting."
+      "Makes the map more interesting.",
+      "Enabled"
     ]
   },
   "${ModID}:SingleCardReward": {

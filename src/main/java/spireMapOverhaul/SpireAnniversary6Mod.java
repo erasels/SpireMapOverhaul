@@ -471,9 +471,11 @@ public class SpireAnniversary6Mod implements
     private static final float DROPDOWN_Y = 600f;
     private ModLabeledToggleButton filterCheckbox;
     private static final float CHECKBOX_X = 650f;
-    private static final float CHECKBOX_Y = 500f;
+    private static final float CHECKBOX_Y = 575f;
     private AbstractZone filterViewedZone;
-
+    private ModLabel viewedZoneDescription;
+    private static final float DESC_X = 400f;
+    private static final float DESC_Y = 540f;
 
     private void initializeConfig() {
         UIStrings configStrings = CardCrawlGame.languagePack.getUIString(makeID("ConfigMenuText"));
@@ -497,21 +499,27 @@ public class SpireAnniversary6Mod implements
             public void update() {
                 filterDropdown.update();
             }
-            public int renderLayer() {return 0;}
+            public int renderLayer() {return 3;}
             public int updateOrder() {return 0;}
         };
         settingsPanel.addUIElement(wrapperDropdown);
-        filterCheckbox = new ModLabeledToggleButton("TO LOCALIZE", CHECKBOX_X, CHECKBOX_Y, Color.WHITE, FontHelper.tipBodyFont, true, null,
+        filterCheckbox = new ModLabeledToggleButton(configStrings.TEXT[3], CHECKBOX_X, CHECKBOX_Y, Color.WHITE, FontHelper.tipBodyFont, true, null,
                 (label) -> {},
                 (button) -> setFilterConfig(filterViewedZone.id, button.enabled));
         settingsPanel.addUIElement(filterCheckbox);
+
+        viewedZoneDescription = new ModLabel("Unassigned",DESC_X,DESC_Y,FontHelper.tipBodyFont,settingsPanel,
+                (label) -> {});
+        settingsPanel.addUIElement(viewedZoneDescription);
+        filterSetViewedZone(0);
 
         BaseMod.registerModBadge(badge, configStrings.TEXT[0], configStrings.TEXT[1], configStrings.TEXT[2], settingsPanel);
     }
 
     private void filterSetViewedZone(int index) {
-        filterViewedZone = allZones.get(index);
+        filterViewedZone = unfilteredAllZones.get(index);
         filterCheckbox.toggle.enabled = getFilterConfig(filterViewedZone.id);
+        viewedZoneDescription.text = filterViewedZone.name;
     }
 
     private void initializeSavedData() {
