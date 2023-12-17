@@ -23,8 +23,7 @@ import spireMapOverhaul.zoneInterfaces.CombatModifyingZone;
 public class CombatModifierPatches {
     private static GenericButton combatBtn = new GenericButton(TexLoader.getTexture(SpireAnniversary6Mod.makeUIPath("CombatModifierButton.png")),
             16 * Settings.scale,
-            Settings.HEIGHT - 356 * Settings.scale)
-            .setClickableCond(()-> !AbstractDungeon.isScreenUp);
+            Settings.HEIGHT - 356 * Settings.scale);
 
     private static UIStrings uiStrings;
     private static boolean hideButton = true;
