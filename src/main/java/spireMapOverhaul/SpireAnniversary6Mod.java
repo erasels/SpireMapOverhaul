@@ -258,11 +258,11 @@ public class SpireAnniversary6Mod implements
         loadZones();
 
         loadStrings("eng");
-        loadZoneStrings(allZones, "eng");
+        loadZoneStrings(unfilteredAllZones, "eng");
         if (Settings.language != Settings.GameLanguage.ENG)
         {
             loadStrings(Settings.language.toString().toLowerCase());
-            loadZoneStrings(allZones, Settings.language.toString().toLowerCase());
+            loadZoneStrings(unfilteredAllZones, Settings.language.toString().toLowerCase());
         }
     }
 
