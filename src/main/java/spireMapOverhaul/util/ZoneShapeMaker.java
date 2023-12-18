@@ -1,5 +1,6 @@
 package spireMapOverhaul.util;
 
+import basemod.Pair;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -12,6 +13,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Matrix4;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import imgui.ImGui;
 import imgui.ImVec2;
@@ -64,7 +66,8 @@ public class ZoneShapeMaker {
         int zoneWidth = (int) ((zone.getWidth() + 1) * SPACING_X) + FB_MARGIN;
         int zoneHeight = (int) ((zone.getHeight() + 1) * Settings.MAP_DST_Y) + FB_MARGIN;
         int zX = zone.getX(), zY = zone.getY();
-
+        zone.hitboxes = new ArrayList<>();
+        zone.hitboxRelativePositions = new HashMap<>();
         if (zone.zoneFb == null) {
             zone.zoneFb = new FrameBuffer(Pixmap.Format.RGBA8888, zoneWidth, zoneHeight, false);
         }
@@ -101,6 +104,7 @@ public class ZoneShapeMaker {
             float cY = (n.y - zY) * Settings.MAP_DST_Y + FB_OFFSET + n.offsetY;
 
             drawCircle(sb, cX, cY, circleScale);
+            addHitbox(zone, cX, cY, circleScale);
         }
 
         //in-between circles. Each node in the zone looks to add a circle between it and nodes from the same zone if they are adjacent
@@ -121,6 +125,7 @@ public class ZoneShapeMaker {
                         float cY = MathUtils.lerp(nY, mY, i / 4f);
 
                         drawCircle(sb, cX, cY, circleScale);
+                        addHitbox(zone, cX, cY, circleScale);
                     }
                 }
             }
@@ -213,6 +218,12 @@ public class ZoneShapeMaker {
                 Settings.scale * scale,
                 Settings.scale * scale,
                 0f);
+    }
+
+    private static void addHitbox(AbstractZone z, float cX, float cY, float scale) {
+        Hitbox hb = new Hitbox(300f * scale, 300 * scale);
+        z.hitboxes.add(hb);
+        z.hitboxRelativePositions.put(hb, new Pair<>(cX,cY));
     }
 
 
