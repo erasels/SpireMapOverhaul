@@ -1,5 +1,7 @@
 package spireMapOverhaul.abstracts;
 
+import basemod.Pair;
+import basemod.helpers.TooltipInfo;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -8,6 +10,9 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
+import com.megacrit.cardcrawl.helpers.Hitbox;
+import com.megacrit.cardcrawl.helpers.TipHelper;
+import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
@@ -17,10 +22,7 @@ import spireMapOverhaul.BetterMapGenerator.MapPlanner.PlanningNode;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.util.ZoneShapeMaker;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
@@ -35,6 +37,7 @@ public abstract class AbstractZone {
     public final String id;
     public String[] TEXT = NO_TEXT;
     public String name = "";
+    public String tooltipBody = "";
     protected Color labelColor = Color.WHITE;
 
     protected List<MapRoomNode> nodes = new ArrayList<>();
@@ -46,6 +49,9 @@ public abstract class AbstractZone {
 
     public FrameBuffer zoneFb = null;
     private TextureRegion shapeRegion = null;
+
+    public List<Hitbox> hitboxes;
+    public HashMap<Hitbox, Pair<Float, Float>> hitboxRelativePositions;
 
     public AbstractZone() {
         this(null);
@@ -94,6 +100,7 @@ public abstract class AbstractZone {
         if (SpireAnniversary6Mod.initializedStrings) {
             TEXT = CardCrawlGame.languagePack.getUIString(makeID(this.id)).TEXT;
             name = TEXT[0];
+            tooltipBody = TEXT[1];
         }
         else {
             TEXT = NO_TEXT;
@@ -119,11 +126,24 @@ public abstract class AbstractZone {
             float anchorY = y * Settings.MAP_DST_Y + OFFSET_Y + DungeonMapScreen.offsetY - ZoneShapeMaker.FB_OFFSET;
             sb.setColor(getColor().cpy().mul(1, 0.9f, 0.85f, alpha*0.8f)); //just making the random color more palatable
             sb.draw(shapeRegion, anchorX, anchorY);
+            boolean showTooltip = false;
+            for (Hitbox hb : hitboxes) {
+                hb.move(hitboxRelativePositions.get(hb).getKey() + anchorX, hitboxRelativePositions.get(hb).getValue() + anchorY);
+                hb.update();
+                hb.render(sb);
+                if (hb.hovered) {
+                    showTooltip = true;
+                }
+            }
+            if (showTooltip) {
+                TipHelper.renderGenericTip(InputHelper.mX + 40f*Settings.scale, InputHelper.mY - 65f*Settings.scale, name, tooltipBody);
+            }
 
             FontHelper.renderFontCentered(sb, FontHelper.menuBannerFont, name,
                     labelX * SPACING_X + OFFSET_X, labelY * Settings.MAP_DST_Y + OFFSET_Y + DungeonMapScreen.offsetY,
                     labelColor.cpy().mul(1, 1, 1, alpha), 0.8f
             );
+
         }
     }
 

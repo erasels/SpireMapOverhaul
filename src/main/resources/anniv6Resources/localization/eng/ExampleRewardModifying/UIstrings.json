@@ -1,7 +1,7 @@
 {
   "${ModID}:ExampleRewardModifying": {
     "TEXT": [
-      "Example Reward Modifying"
+      "Example Reward Modifying","Tooltip Body"
     ]
   }
 }

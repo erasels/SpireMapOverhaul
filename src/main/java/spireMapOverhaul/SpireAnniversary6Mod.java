@@ -530,7 +530,7 @@ public class SpireAnniversary6Mod implements
     private void filterSetViewedZone(int index) {
         filterViewedZone = unfilteredAllZones.get(index);
         filterCheckbox.toggle.enabled = getFilterConfig(filterViewedZone.id);
-        viewedZoneDescription.text = filterViewedZone.name;
+        viewedZoneDescription.text = filterViewedZone.tooltipBody;
     }
 
     private void initializeSavedData() {
