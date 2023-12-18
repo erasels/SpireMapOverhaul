@@ -29,9 +29,9 @@ public class ZoneShapeMaker {
     private static final float SPACING_X = Settings.isMobile ? (int)(Settings.xScale * 64.0F) * 2.2F : (int)(Settings.xScale * 64.0F) * 2.0F;
 
     //adjusts size and scaling of initial circles
-    private static final float MAX_NODE_SPACING = 125f * Settings.scale;
-    private static final float CIRCLE_SIZE_MULT = 0.4f;
-    private static final float MAX_CIRCLE_SCALE = 2f;
+    private static float MAX_NODE_SPACING = 125f * Settings.scale;
+    private static float CIRCLE_SIZE_MULT = 0.4f;
+    private static float MAX_CIRCLE_SCALE = 2f;
 
     private static float FIRST_PASS_STEPSIZE = 8f;  //1 = max quality, x1 range, 2 = lower quality, x2 range
     private static float FIRST_PASS_SUBDIV = 6f;  //= range when multiplied by stepSize, lowers performance quadratically
@@ -299,6 +299,24 @@ public class ZoneShapeMaker {
         ImGui.setNextWindowPos(wPos.x + 50.0F, wPos.y + 70.0F, 4);
         ImGui.setNextWindowSize(465.0F, 465.0F, 4);
         if (ImGui.begin("Zone Shapes")) {
+            imFloat.set(MAX_NODE_SPACING);
+            ImGui.sliderFloat("Max node spacing", imFloat.getData(),25f,400f);
+            if (imFloat.get() != MAX_NODE_SPACING) {
+                MAX_NODE_SPACING = imFloat.get() * Settings.scale;
+            }
+            ImGui.separator();
+            imFloat.set(CIRCLE_SIZE_MULT);
+            ImGui.sliderFloat("Circle Size Mult", imFloat.getData(),0.1f,3f);
+            if (imFloat.get() != CIRCLE_SIZE_MULT) {
+                CIRCLE_SIZE_MULT = imFloat.get();
+            }
+            ImGui.separator();
+            imFloat.set(MAX_CIRCLE_SCALE);
+            ImGui.sliderFloat("Max Circle Scale", imFloat.getData(),1f,5f);
+            if (imFloat.get() != MAX_CIRCLE_SCALE) {
+                MAX_CIRCLE_SCALE = imFloat.get();
+            }
+            ImGui.separator();
             imFloat.set(FIRST_PASS_STEPSIZE);
             ImGui.sliderFloat("firstPassStep", imFloat.getData(),1f,15f);
             if (imFloat.get() != FIRST_PASS_STEPSIZE) {
