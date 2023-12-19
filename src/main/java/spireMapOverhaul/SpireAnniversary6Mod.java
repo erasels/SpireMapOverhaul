@@ -35,6 +35,7 @@ import spireMapOverhaul.patches.interfacePatches.CampfireModifierPatches;
 import spireMapOverhaul.patches.CustomRewardTypes;
 import spireMapOverhaul.abstracts.AbstractSMORelic;
 import spireMapOverhaul.patches.ZonePatches;
+import spireMapOverhaul.patches.interfacePatches.EncounterModifierPatches;
 import spireMapOverhaul.rewards.SingleCardReward;
 import spireMapOverhaul.util.TexLoader;
 import spireMapOverhaul.abstracts.AbstractZone;
@@ -211,6 +212,7 @@ public class SpireAnniversary6Mod implements
         allZones.sort(Comparator.comparing(c->c.id));
         addMonsters();
         addPotions();
+        addSaveFields();
         registerCustomRewards();
         initializeConfig();
         initializeSavedData();
@@ -245,6 +247,11 @@ public class SpireAnniversary6Mod implements
             Consumer<String> whitelist = getWidePotionsWhitelistMethod();
 
         }
+    }
+
+    public static void addSaveFields() {
+        BaseMod.addSaveField(EncounterModifierPatches.LastZoneNormalEncounter.SaveKey, new EncounterModifierPatches.LastZoneNormalEncounter());
+        BaseMod.addSaveField(EncounterModifierPatches.LastZoneEliteEncounter.SaveKey, new EncounterModifierPatches.LastZoneEliteEncounter());
     }
 
     private static Consumer<String> getWidePotionsWhitelistMethod() {
