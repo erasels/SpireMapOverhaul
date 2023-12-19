@@ -330,6 +330,10 @@ public class SpireAnniversary6Mod implements
         if (Gdx.files.internal(filepath).exists()) {
             BaseMod.loadCustomStringsFile(EventStrings.class, filepath);
         }
+        filepath = modID + "Resources/localization/" + langKey + "/Monsterstrings.json";
+        if (Gdx.files.internal(filepath).exists()) {
+            BaseMod.loadCustomStringsFile(MonsterStrings.class, filepath);
+        }
     }
 
     public void loadZoneStrings(Collection<AbstractZone> zones, String langKey) {
@@ -361,6 +365,9 @@ public class SpireAnniversary6Mod implements
             }
             if (Gdx.files.internal(filepath + "Potionstrings.json").exists()) {
                 BaseMod.loadCustomStringsFile(PotionStrings.class, filepath + "Potionstrings.json");
+            }
+            if (Gdx.files.internal(filepath + "Monsterstrings.json").exists()) {
+                BaseMod.loadCustomStringsFile(MonsterStrings.class, filepath + "Monsterstrings.json");
             }
         }
     }

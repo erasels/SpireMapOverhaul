@@ -1,0 +1,39 @@
+{
+  "${ModID}:WhisperingWraith": {
+    "MOVES": [
+      "Fade Away",
+      "Ghostly Touch",
+      "Absorb Life"
+    ],
+    "NAME": "Whispering Wraith"
+  },
+  "${ModID}:StygianBoar": {
+    "MOVES": [
+      "Tusk Slash",
+      "Breathe Fire",
+      "Enraging Charge"
+    ],
+    "NAME": "Stygian Boar"
+  },
+  "${ModID}:Hexasnake": {
+    "MOVES": [
+      "Serpent's Gaze",
+      "Venomous Bite",
+      "Constrict"
+    ],
+    "NAME": "Hexasnake"
+  },
+  "${ModID}:GraftedWorm": {
+    "MOVES": [
+      "Leaf Blade"
+    ],
+    "NAME": "Grafted Worm"
+  },
+  "${ModID}:DreadMoth": {
+    "MOVES": [
+      "Wing Ward",
+      "Dread Wave"
+    ],
+    "NAME": "Dread Moth"
+  }
+}
