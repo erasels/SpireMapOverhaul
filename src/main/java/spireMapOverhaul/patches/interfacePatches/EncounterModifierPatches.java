@@ -7,6 +7,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import spireMapOverhaul.abstracts.AbstractZone;
+import spireMapOverhaul.util.ActUtil;
 import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
 
@@ -25,6 +26,7 @@ public class EncounterModifierPatches {
             if (zone instanceof EncounterModifyingZone) {
                 List<EncounterModifyingZone.ZoneEncounter> encounters = ((EncounterModifyingZone) zone).getNormalEncounters();
                 if (encounters != null) {
+                    encounters = encounters.stream().filter(e -> e.getActNum() == ActUtil.getRealActNum()).collect(Collectors.toList());
                     if (LastZoneNormalEncounter.lastZoneNormalEncounter != null && LastZoneNormalEncounter.lastZoneNormalEncounter.startsWith(zone.id + ":")) {
                         String encounterId = LastZoneNormalEncounter.lastZoneNormalEncounter.substring(zone.id.length() + 1);
                         encounters = encounters.stream().filter(e -> !e.getID().equals(encounterId)).collect(Collectors.toList());
@@ -51,6 +53,7 @@ public class EncounterModifierPatches {
             if (zone instanceof EncounterModifyingZone) {
                 List<EncounterModifyingZone.ZoneEncounter> encounters = ((EncounterModifyingZone) zone).getEliteEncounters();
                 if (encounters != null) {
+                    encounters = encounters.stream().filter(e -> e.getActNum() == ActUtil.getRealActNum()).collect(Collectors.toList());
                     if (LastZoneEliteEncounter.lastZoneEliteEncounter != null && LastZoneEliteEncounter.lastZoneEliteEncounter.startsWith(zone.id + ":")) {
                         String encounterId = LastZoneEliteEncounter.lastZoneEliteEncounter.substring(zone.id.length() + 1);
                         encounters = encounters.stream().filter(e -> !e.getID().equals(encounterId)).collect(Collectors.toList());

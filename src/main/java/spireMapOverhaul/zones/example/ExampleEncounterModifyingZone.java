@@ -37,13 +37,13 @@ public class ExampleEncounterModifyingZone extends AbstractZone implements Encou
     @Override
     public List<ZoneEncounter> getNormalEncounters() {
         return Arrays.asList(
-            new ZoneEncounter(Hexasnake.ID, () -> new Hexasnake(0.0f, 0.0f)),
-            new ZoneEncounter(STYGIAN_BOAR_AND_WHISPERING_WRAITH, () -> new MonsterGroup(
+            new ZoneEncounter(Hexasnake.ID, 1, () -> new Hexasnake(0.0f, 0.0f)),
+            new ZoneEncounter(STYGIAN_BOAR_AND_WHISPERING_WRAITH, 1, () -> new MonsterGroup(
                 new AbstractMonster[] {
                         new WhisperingWraith(-350.0F, 0.0F),
                         new StygianBoar(0.0F, 0.0F)
                 })),
-            new ZoneEncounter(DREAD_MOTH_AND_GRAFTED_WORMS, () -> new MonsterGroup(
+            new ZoneEncounter(DREAD_MOTH_AND_GRAFTED_WORMS, 1, () -> new MonsterGroup(
                 new AbstractMonster[] {
                         new GraftedWorm(-550.0F, 0.0F),
                         new GraftedWorm(-300.0F, 0.0F),
@@ -56,8 +56,8 @@ public class ExampleEncounterModifyingZone extends AbstractZone implements Encou
     @Override
     public List<ZoneEncounter> getEliteEncounters() {
         return Arrays.asList(
-            new ZoneEncounter(BookOfStabbing.ID, BookOfStabbing::new),
-            new ZoneEncounter(Reptomancer.ID, Reptomancer::new)
+            new ZoneEncounter(BookOfStabbing.ID, 1, BookOfStabbing::new),
+            new ZoneEncounter(Reptomancer.ID, 1, Reptomancer::new)
         );
     }
 }

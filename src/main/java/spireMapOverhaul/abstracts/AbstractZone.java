@@ -20,6 +20,7 @@ import com.megacrit.cardcrawl.screens.DungeonMapScreen;
 import spireMapOverhaul.BetterMapGenerator.MapPlanner;
 import spireMapOverhaul.BetterMapGenerator.MapPlanner.PlanningNode;
 import spireMapOverhaul.SpireAnniversary6Mod;
+import spireMapOverhaul.util.ActUtil;
 import spireMapOverhaul.util.ZoneShapeMaker;
 
 import java.util.*;
@@ -92,8 +93,7 @@ public abstract class AbstractZone {
 
     //Utility methods for use in canSpawn
     protected final boolean isAct(int actNum) {
-        if (Settings.isEndless) return AbstractDungeon.actNum % 3 == actNum;
-        return AbstractDungeon.actNum == actNum;
+        return ActUtil.getRealActNum() == actNum;
     }
 
     protected void loadStrings() {
