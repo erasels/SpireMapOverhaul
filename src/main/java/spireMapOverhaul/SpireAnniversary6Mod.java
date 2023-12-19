@@ -224,19 +224,7 @@ public class SpireAnniversary6Mod implements
     public static void addMonsters() {
         for (AbstractZone zone : allZones) {
             if (zone instanceof EncounterModifyingZone) {
-                List<EncounterModifyingZone.ZoneEncounter> normalEncounters = ((EncounterModifyingZone) zone).getNormalEncounters();
-                List<EncounterModifyingZone.ZoneEncounter> eliteEncounters = ((EncounterModifyingZone) zone).getEliteEncounters();
-                List<EncounterModifyingZone.ZoneEncounter> encounters = new ArrayList<>();
-                if (normalEncounters != null) {
-                    encounters.addAll(normalEncounters);
-                }
-                if (eliteEncounters != null) {
-                    encounters.addAll(eliteEncounters);
-                }
-
-                for (EncounterModifyingZone.ZoneEncounter ze : encounters) {
-                    BaseMod.addMonster(ze.getID(), ze.getName(), () -> ze.getMonsterSupplier().get());
-                }
+                ((EncounterModifyingZone) zone).registerEncounters();
             }
         }
     }

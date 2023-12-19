@@ -3,6 +3,7 @@ package spireMapOverhaul.zoneInterfaces;
 import basemod.BaseMod;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 
@@ -23,6 +24,28 @@ public interface EncounterModifyingZone {
      * @return The list of elite encounters for the zone.
      */
     default List<ZoneEncounter> getEliteEncounters() { return null; }
+
+    /**
+     * Registers the encounters in the zone with BaseMod.
+     * You should not need to override this unless you're doing something unusual.
+     * If you do override this, make sure you either call EncounterModifyingZone.super.registerEncounters() or
+     * register everything defined in getNormalEncounters and getEliteEncounters yourself.
+     */
+    default void registerEncounters() {
+        List<ZoneEncounter> normalEncounters = this.getNormalEncounters();
+        List<ZoneEncounter> eliteEncounters = this.getEliteEncounters();
+        List<ZoneEncounter> encounters = new ArrayList<>();
+        if (normalEncounters != null) {
+            encounters.addAll(normalEncounters);
+        }
+        if (eliteEncounters != null) {
+            encounters.addAll(eliteEncounters);
+        }
+
+        for (ZoneEncounter ze : encounters) {
+            BaseMod.addMonster(ze.getID(), ze.getName(), () -> ze.getMonsterSupplier().get());
+        }
+    }
 
     /**
      * Defines a new encounter in a zone.
