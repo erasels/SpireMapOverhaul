@@ -1,5 +1,6 @@
 package spireMapOverhaul.util;
 
+import basemod.Pair;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -11,7 +12,13 @@ import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Matrix4;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.map.MapRoomNode;
+import imgui.ImGui;
+import imgui.ImVec2;
+import imgui.type.ImFloat;
+import spireMapOverhaul.BetterMapGenerator;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
 
@@ -24,26 +31,26 @@ public class ZoneShapeMaker {
     private static final float SPACING_X = Settings.isMobile ? (int)(Settings.xScale * 64.0F) * 2.2F : (int)(Settings.xScale * 64.0F) * 2.0F;
 
     //adjusts size and scaling of initial circles
-    private static final float MAX_NODE_SPACING = 200f * Settings.scale;
-    private static final float CIRCLE_SIZE_MULT = 0.4f;
-    private static final float MAX_CIRCLE_SCALE = 0.9f;
+    private static float MAX_NODE_SPACING = 125f * Settings.scale;
+    private static float CIRCLE_SIZE_MULT = 0.4f;
+    private static float MAX_CIRCLE_SCALE = 2f;
 
-    private static float FIRST_PASS_STEPSIZE = 4f;  //1 = max quality, x1 range, 2 = lower quality, x2 range
-    private static float FIRST_PASS_SUBDIV = 8f;  //= range when multiplied by stepSize, lowers performance quadratically
-    private static float FIRST_PASS_DIVIDER = 1.25f;   //higher = more range, more "amalgamation", but edges get rougher
-    private static float FIRST_PASS_WHITENING = 0.5f; //Adds to color of existing pixels.
-    private static float FIRST_PASS_DARKENING = 0.5f; //Multiplies color of existing pixels
+    private static float FIRST_PASS_STEPSIZE = 8f;  //1 = max quality, x1 range, 2 = lower quality, x2 range
+    private static float FIRST_PASS_SUBDIV = 6f;  //= range when multiplied by stepSize, lowers performance quadratically
+    private static float FIRST_PASS_DIVIDER = 0.9f;   //higher = more range, more "amalgamation", but edges get rougher
+    private static float FIRST_PASS_WHITENING = 1f;//0.5f; //Adds to color of existing pixels.
+    private static float FIRST_PASS_DARKENING = 0f; //Multiplies color of existing pixels
 
-    private static float SECOND_PASS_STEPSIZE = 1f;
-    private static float SECOND_PASS_SUBDIV = 6f;
-    private static float SECOND_PASS_DIVIDER = 1.11f;
+    private static float SECOND_PASS_STEPSIZE = 8f;
+    private static float SECOND_PASS_SUBDIV = 4f;
+    private static float SECOND_PASS_DIVIDER = 1.2f;
     private static float SECOND_PASS_WHITENING = 0.65f;
     private static float SECOND_PASS_DARKENING = 0.2f; //0.9f;
 
     private static float SMOOTHING_STEPSIZE = 1f;
     private static float SMOOTHING_SUBDIV = 8f;
     private static float SMOOTHING_DIVIDER = 1.25f;
-    private static float SMOOTHING_WHITENING = 0.4f;
+    private static float SMOOTHING_WHITENING = 0.4f; //0f;
     private static float SMOOTHING_DARKENING = 0.4f; //0.8f;
 
     public static final int FB_OFFSET = (int) (150 * Settings.scale); //Offset of positioning of nodes to fit circles
@@ -59,7 +66,8 @@ public class ZoneShapeMaker {
         int zoneWidth = (int) ((zone.getWidth() + 1) * SPACING_X) + FB_MARGIN;
         int zoneHeight = (int) ((zone.getHeight() + 1) * Settings.MAP_DST_Y) + FB_MARGIN;
         int zX = zone.getX(), zY = zone.getY();
-
+        zone.hitboxes = new ArrayList<>();
+        zone.hitboxRelativePositions = new HashMap<>();
         if (zone.zoneFb == null) {
             zone.zoneFb = new FrameBuffer(Pixmap.Format.RGBA8888, zoneWidth, zoneHeight, false);
         }
@@ -96,6 +104,7 @@ public class ZoneShapeMaker {
             float cY = (n.y - zY) * Settings.MAP_DST_Y + FB_OFFSET + n.offsetY;
 
             drawCircle(sb, cX, cY, circleScale);
+            addHitbox(zone, cX, cY, circleScale);
         }
 
         //in-between circles. Each node in the zone looks to add a circle between it and nodes from the same zone if they are adjacent
@@ -116,6 +125,7 @@ public class ZoneShapeMaker {
                         float cY = MathUtils.lerp(nY, mY, i / 4f);
 
                         drawCircle(sb, cX, cY, circleScale);
+                        addHitbox(zone, cX, cY, circleScale);
                     }
                 }
             }
@@ -210,6 +220,12 @@ public class ZoneShapeMaker {
                 0f);
     }
 
+    private static void addHitbox(AbstractZone z, float cX, float cY, float scale) {
+        Hitbox hb = new Hitbox(300f * scale, 300 * scale);
+        z.hitboxes.add(hb);
+        z.hitboxRelativePositions.put(hb, new Pair<>(cX,cY));
+    }
+
 
     public static float getClosestNodeDistance(MapRoomNode center, ArrayList<ArrayList<MapRoomNode>> map, Predicate<MapRoomNode> filter) {
         int centerFloor = -1;
@@ -283,5 +299,82 @@ public class ZoneShapeMaker {
     }
     public static float nodeDistanceSquared(MapRoomNode n1, MapRoomNode n2) {
         return (n1.hb.cX - n2.hb.cX)*(n1.hb.cX - n2.hb.cX) + (n1.hb.cY - n2.hb.cY)*(n1.hb.cY - n2.hb.cY);
+    }
+
+
+    //imgui menu
+    private final ImFloat imFloat = new ImFloat();
+
+    public void makeImgui() {
+        ImVec2 wPos = ImGui.getMainViewport().getPos();
+        ImGui.setNextWindowPos(wPos.x + 50.0F, wPos.y + 70.0F, 4);
+        ImGui.setNextWindowSize(465.0F, 465.0F, 4);
+        if (ImGui.begin("Zone Shapes")) {
+            imFloat.set(MAX_NODE_SPACING);
+            ImGui.sliderFloat("Max node spacing", imFloat.getData(),25f,400f);
+            if (imFloat.get() != MAX_NODE_SPACING) {
+                MAX_NODE_SPACING = imFloat.get() * Settings.scale;
+            }
+            ImGui.separator();
+            imFloat.set(CIRCLE_SIZE_MULT);
+            ImGui.sliderFloat("Circle Size Mult", imFloat.getData(),0.1f,3f);
+            if (imFloat.get() != CIRCLE_SIZE_MULT) {
+                CIRCLE_SIZE_MULT = imFloat.get();
+            }
+            ImGui.separator();
+            imFloat.set(MAX_CIRCLE_SCALE);
+            ImGui.sliderFloat("Max Circle Scale", imFloat.getData(),1f,5f);
+            if (imFloat.get() != MAX_CIRCLE_SCALE) {
+                MAX_CIRCLE_SCALE = imFloat.get();
+            }
+            ImGui.separator();
+            imFloat.set(FIRST_PASS_STEPSIZE);
+            ImGui.sliderFloat("firstPassStep", imFloat.getData(),1f,15f);
+            if (imFloat.get() != FIRST_PASS_STEPSIZE) {
+                FIRST_PASS_STEPSIZE = imFloat.get();
+            }
+            ImGui.separator();
+            imFloat.set(FIRST_PASS_SUBDIV);
+            ImGui.sliderFloat("firstPassSubdiv", imFloat.getData(),1f,10f);
+            if (imFloat.get() != FIRST_PASS_SUBDIV) {
+                FIRST_PASS_SUBDIV = imFloat.get();
+            }
+            ImGui.separator();
+            imFloat.set(FIRST_PASS_DIVIDER);
+            ImGui.sliderFloat("firstPassDivider", imFloat.getData(),0.5f,3f);
+            if (imFloat.get() != FIRST_PASS_DIVIDER) {
+                FIRST_PASS_DIVIDER = imFloat.get();
+            }
+            ImGui.separator();
+            imFloat.set(SECOND_PASS_STEPSIZE);
+            ImGui.sliderFloat("secondPassStep", imFloat.getData(),1f,15f);
+            if (imFloat.get() != SECOND_PASS_STEPSIZE) {
+                SECOND_PASS_STEPSIZE = imFloat.get();
+            }
+            ImGui.separator();
+            imFloat.set(SECOND_PASS_SUBDIV);
+            ImGui.sliderFloat("secondPassSubdiv", imFloat.getData(),1f,10f);
+            if (imFloat.get() != SECOND_PASS_SUBDIV) {
+                SECOND_PASS_SUBDIV = imFloat.get();
+            }
+            ImGui.separator();
+            imFloat.set(SECOND_PASS_DIVIDER);
+            ImGui.sliderFloat("secondPassDivider", imFloat.getData(),0.5f,3f);
+            if (imFloat.get() != SECOND_PASS_DIVIDER) {
+                SECOND_PASS_DIVIDER = imFloat.get();
+            }
+            ImGui.separator();
+            if (ImGui.button("Remake Shapes")) {
+                for (AbstractZone z : BetterMapGenerator.getActiveZones(AbstractDungeon.map)) {
+                    z.dispose();
+                    z.zoneFb = null;
+                }
+            }
+        }
+        ImGui.end();
+    }
+
+    public void receiveImGui() {
+        if (AbstractDungeon.isPlayerInDungeon()) makeImgui();
     }
 }

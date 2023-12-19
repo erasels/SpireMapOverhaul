@@ -1,25 +1,49 @@
 package spireMapOverhaul.patches.interfacePatches;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.helpers.FontHelper;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.OverlayMenu;
+import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import com.megacrit.cardcrawl.ui.panels.DrawPilePanel;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
+import spireMapOverhaul.SpireAnniversary6Mod;
+import spireMapOverhaul.ui.GenericButton;
+import spireMapOverhaul.util.TexLoader;
 import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.zoneInterfaces.CombatModifyingZone;
 
 public class CombatModifierPatches {
+    private static GenericButton combatBtn = new GenericButton(TexLoader.getTexture(SpireAnniversary6Mod.makeUIPath("CombatModifierButton.png")),
+            16 * Settings.scale,
+            Settings.HEIGHT - 356 * Settings.scale);
+
+    private static UIStrings uiStrings;
+    private static boolean hideButton = true;
+
     @SpirePatch2(clz =AbstractPlayer.class, method = "applyPreCombatLogic")
     public static class PreCombat {
         @SpirePostfixPatch
         public static void patch() {
-            Wiz.forCurZone(CombatModifyingZone.class, CombatModifyingZone::atPreBattle);
+            Wiz.forCurZone(CombatModifyingZone.class, z -> {
+                String txt = z.getCombatText();
+                if(txt != null) {
+                    hideButton = false;
+                    if(uiStrings == null)
+                        uiStrings = CardCrawlGame.languagePack.getUIString(SpireAnniversary6Mod.makeID("CombatExplainButton"));
+                    combatBtn = combatBtn.setHoverTip(uiStrings.TEXT[0], txt);
+                } else {
+                    hideButton = true;
+                }
+                z.atPreBattle();
+            });
         }
     }
 
@@ -75,7 +99,10 @@ public class CombatModifierPatches {
     public static class OnVictory {
         @SpireInsertPatch(locator = Locator.class)
         public static void patch() {
-            Wiz.forCurZone(CombatModifyingZone.class, CombatModifyingZone::onVictory);
+            Wiz.forCurZone(CombatModifyingZone.class, z -> {
+                z.onVictory();
+                hideButton = true;
+            });
         }
 
         private static class Locator extends SpireInsertLocator {
@@ -83,6 +110,24 @@ public class CombatModifierPatches {
                 Matcher finalMatcher = new Matcher.FieldAccessMatcher(AbstractRoom.class, "endBattleTimer");
                 return LineFinder.findInOrder(ctMethodToPatch, finalMatcher);
             }
+        }
+    }
+
+    @SpirePatch2(clz = DrawPilePanel.class, method = "render")
+    public static class RenderCombatBtn {
+        @SpirePostfixPatch
+        public static void patch(SpriteBatch sb) {
+            if(!hideButton)
+                combatBtn.render(sb);
+        }
+    }
+
+    @SpirePatch2(clz = OverlayMenu.class, method = "update")
+    public static class UpdateCombatBtn {
+        @SpirePostfixPatch
+        public static void patch() {
+            if(!hideButton)
+                combatBtn.update();
         }
     }
 }

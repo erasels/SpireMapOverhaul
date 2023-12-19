@@ -22,4 +22,11 @@ public interface CombatModifyingZone {
     default void atRoundEnd() {}
 
     default void onVictory() {}
+
+    /**
+     * Returns a String that will be displayed when hovering a button during combat to explain modifications to it.
+     * Should be used if the effect isn't immediately noticeable during combat start.
+     * @return The string the button will display when hovered. This is decided at combat start and not dynamic.
+     */
+    default String getCombatText() {return null;}
 }

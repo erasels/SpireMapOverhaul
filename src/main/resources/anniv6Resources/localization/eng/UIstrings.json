@@ -3,13 +3,19 @@
     "TEXT": [
       "Spire Map Overhaul",
       "StS Modding Community",
-      "Makes the map more interesting."
+      "Makes the map more interesting.",
+      "Enabled"
     ]
   },
   "${ModID}:SingleCardReward": {
     "TEXT": [
       "[Card] ",
       "Tip: Right-click for detailed card view!"
+    ]
+  },
+  "${ModID}:CombatExplainButton": {
+    "TEXT": [
+      "Combat Modifier"
     ]
   }
 }
