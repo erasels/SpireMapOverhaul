@@ -41,6 +41,7 @@ import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.util.ZoneShapeMaker;
 import spireMapOverhaul.zoneInterfaces.CampfireModifyingZone;
+import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
 import spireMapOverhaul.zones.example.PlaceholderZone;
 
 import java.io.IOException;
@@ -208,6 +209,7 @@ public class SpireAnniversary6Mod implements
     public void receivePostInitialize() {
         initializedStrings = true;
         allZones.sort(Comparator.comparing(c->c.id));
+        addMonsters();
         addPotions();
         registerCustomRewards();
         initializeConfig();
@@ -215,6 +217,26 @@ public class SpireAnniversary6Mod implements
         initializeEvents();
 
         TextCodeInterpreter.addAccessible(ZoneShapeMaker.class);
+    }
+
+    public static void addMonsters() {
+        for (AbstractZone zone : allZones) {
+            if (zone instanceof EncounterModifyingZone) {
+                List<EncounterModifyingZone.ZoneEncounter> normalEncounters = ((EncounterModifyingZone) zone).getNormalEncounters();
+                List<EncounterModifyingZone.ZoneEncounter> eliteEncounters = ((EncounterModifyingZone) zone).getEliteEncounters();
+                List<EncounterModifyingZone.ZoneEncounter> encounters = new ArrayList<>();
+                if (normalEncounters != null) {
+                    encounters.addAll(normalEncounters);
+                }
+                if (eliteEncounters != null) {
+                    encounters.addAll(eliteEncounters);
+                }
+
+                for (EncounterModifyingZone.ZoneEncounter ze : encounters) {
+                    BaseMod.addMonster(ze.getID(), ze.getName(), () -> ze.getMonsterSupplier().get());
+                }
+            }
+        }
     }
 
     public static void addPotions() {

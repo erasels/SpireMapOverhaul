@@ -1,0 +1,7 @@
+{
+  "${ModID}:ExampleEncounterModifying": {
+    "TEXT": [
+      "Example Encounter Modifying"
+    ]
+  }
+}
