@@ -222,7 +222,7 @@ public class SpireAnniversary6Mod implements
     }
 
     public static void addMonsters() {
-        for (AbstractZone zone : allZones) {
+        for (AbstractZone zone : unfilteredAllZones) {
             if (zone instanceof EncounterModifyingZone) {
                 ((EncounterModifyingZone) zone).registerEncounters();
             }
