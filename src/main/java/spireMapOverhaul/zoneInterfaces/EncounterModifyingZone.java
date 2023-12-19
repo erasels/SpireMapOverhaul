@@ -41,28 +41,6 @@ public interface EncounterModifyingZone {
     default List<AbstractMonster> getAdditionalMonsters() { return null; }
 
     /**
-     * Registers the encounters in the zone with BaseMod.
-     * You should not need to override this unless you're doing something unusual.
-     * If you do override this, make sure you either call EncounterModifyingZone.super.registerEncounters() or
-     * register everything defined in getNormalEncounters and getEliteEncounters yourself.
-     */
-    default void registerEncounters() {
-        List<ZoneEncounter> normalEncounters = this.getNormalEncounters();
-        List<ZoneEncounter> eliteEncounters = this.getEliteEncounters();
-        List<ZoneEncounter> encounters = new ArrayList<>();
-        if (normalEncounters != null) {
-            encounters.addAll(normalEncounters);
-        }
-        if (eliteEncounters != null) {
-            encounters.addAll(eliteEncounters);
-        }
-
-        for (ZoneEncounter ze : encounters) {
-            BaseMod.addMonster(ze.getID(), ze.getName(), () -> ze.getMonsterSupplier().get());
-        }
-    }
-
-    /**
      * Defines a new encounter in a zone.
      * An encounter requires an ID, which should be the same as the monster ID for single enemy encounters. This is
      * needed by BaseMod (and can be used to fight your new encounter from the console with the fight command).
@@ -109,6 +87,36 @@ public interface EncounterModifyingZone {
 
         public String getName() {
             return name;
+        }
+    }
+
+    /**
+     * Lets you change the encounter however you want.
+     * You should not need to use this unless you're doing something unusual.
+     * @param monsterGroup The encounter.
+     * @return The changed encounter.
+     */
+    default MonsterGroup changeEncounter(MonsterGroup monsterGroup) { return monsterGroup; }
+
+    /**
+     * Registers the encounters in the zone with BaseMod.
+     * You should not need to override this unless you're doing something unusual.
+     * If you do override this, make sure you either call EncounterModifyingZone.super.registerEncounters() or
+     * register everything defined in getNormalEncounters and getEliteEncounters yourself.
+     */
+    default void registerEncounters() {
+        List<ZoneEncounter> normalEncounters = this.getNormalEncounters();
+        List<ZoneEncounter> eliteEncounters = this.getEliteEncounters();
+        List<ZoneEncounter> encounters = new ArrayList<>();
+        if (normalEncounters != null) {
+            encounters.addAll(normalEncounters);
+        }
+        if (eliteEncounters != null) {
+            encounters.addAll(eliteEncounters);
+        }
+
+        for (ZoneEncounter ze : encounters) {
+            BaseMod.addMonster(ze.getID(), ze.getName(), () -> ze.getMonsterSupplier().get());
         }
     }
 }

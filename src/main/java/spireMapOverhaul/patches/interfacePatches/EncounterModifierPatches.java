@@ -27,7 +27,8 @@ public class EncounterModifierPatches {
             MonsterGroup result = __result;
             AbstractZone zone = Wiz.getCurZone();
             if (zone instanceof EncounterModifyingZone) {
-                List<EncounterModifyingZone.ZoneEncounter> encounters = ((EncounterModifyingZone)zone).getNormalEncounters();
+                EncounterModifyingZone z = (EncounterModifyingZone)zone;
+                List<EncounterModifyingZone.ZoneEncounter> encounters = z.getNormalEncounters();
                 if (encounters != null) {
                     encounters = encounters.stream().filter(e -> e.getActNum() == ActUtil.getRealActNum()).collect(Collectors.toList());
                     if (LastZoneNormalEncounter.lastZoneNormalEncounter != null && LastZoneNormalEncounter.lastZoneNormalEncounter.startsWith(zone.id + ":")) {
@@ -46,6 +47,7 @@ public class EncounterModifierPatches {
                 }
 
                 addAdditionalMonsters((EncounterModifyingZone)zone, result);
+                result = z.changeEncounter(result);
             }
             return result;
         }
@@ -58,7 +60,8 @@ public class EncounterModifierPatches {
             MonsterGroup result = __result;
             AbstractZone zone = Wiz.getCurZone();
             if (zone instanceof EncounterModifyingZone) {
-                List<EncounterModifyingZone.ZoneEncounter> encounters = ((EncounterModifyingZone)zone).getEliteEncounters();
+                EncounterModifyingZone z = (EncounterModifyingZone)zone;
+                List<EncounterModifyingZone.ZoneEncounter> encounters = z.getEliteEncounters();
                 if (encounters != null) {
                     encounters = encounters.stream().filter(e -> e.getActNum() == ActUtil.getRealActNum()).collect(Collectors.toList());
                     if (LastZoneEliteEncounter.lastZoneEliteEncounter != null && LastZoneEliteEncounter.lastZoneEliteEncounter.startsWith(zone.id + ":")) {
@@ -77,6 +80,7 @@ public class EncounterModifierPatches {
                 }
 
                 addAdditionalMonsters((EncounterModifyingZone)zone, result);
+                result = z.changeEncounter(result);
             }
             return result;
         }
