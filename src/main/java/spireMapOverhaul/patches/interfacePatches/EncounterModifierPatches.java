@@ -1,16 +1,18 @@
 package spireMapOverhaul.patches.interfacePatches;
 
 import basemod.abstracts.CustomSavable;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.util.ActUtil;
 import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,9 +24,10 @@ public class EncounterModifierPatches {
     public static class NormalEncounterPatch {
         @SpirePostfixPatch
         public static MonsterGroup ChangeEncounter(AbstractDungeon __instance, MonsterGroup __result) {
+            MonsterGroup result = __result;
             AbstractZone zone = Wiz.getCurZone();
             if (zone instanceof EncounterModifyingZone) {
-                List<EncounterModifyingZone.ZoneEncounter> encounters = ((EncounterModifyingZone) zone).getNormalEncounters();
+                List<EncounterModifyingZone.ZoneEncounter> encounters = ((EncounterModifyingZone)zone).getNormalEncounters();
                 if (encounters != null) {
                     encounters = encounters.stream().filter(e -> e.getActNum() == ActUtil.getRealActNum()).collect(Collectors.toList());
                     if (LastZoneNormalEncounter.lastZoneNormalEncounter != null && LastZoneNormalEncounter.lastZoneNormalEncounter.startsWith(zone.id + ":")) {
@@ -33,15 +36,18 @@ public class EncounterModifierPatches {
                     }
                     if (encounters.isEmpty()) {
                         LastZoneNormalEncounter.lastZoneNormalEncounter = null;
-                        return __result;
                     }
-                    EncounterModifyingZone.ZoneEncounter ze = encounters.get(AbstractDungeon.monsterRng.random(encounters.size() - 1));
-                    AbstractDungeon.lastCombatMetricKey = ze.getID();
-                    LastZoneNormalEncounter.lastZoneNormalEncounter = zone.id + ":" + ze.getID();
-                    return ze.getMonsterSupplier().get();
+                    else {
+                        EncounterModifyingZone.ZoneEncounter ze = encounters.get(AbstractDungeon.monsterRng.random(encounters.size() - 1));
+                        AbstractDungeon.lastCombatMetricKey = ze.getID();
+                        LastZoneNormalEncounter.lastZoneNormalEncounter = zone.id + ":" + ze.getID();
+                        result = ze.getMonsterSupplier().get();
+                    }
                 }
+
+                addAdditionalMonsters((EncounterModifyingZone)zone, result);
             }
-            return __result;
+            return result;
         }
     }
 
@@ -49,9 +55,10 @@ public class EncounterModifierPatches {
     public static class EliteEncounterPatch {
         @SpirePostfixPatch
         public static MonsterGroup ChangeEncounter(AbstractDungeon __instance, MonsterGroup __result) {
+            MonsterGroup result = __result;
             AbstractZone zone = Wiz.getCurZone();
             if (zone instanceof EncounterModifyingZone) {
-                List<EncounterModifyingZone.ZoneEncounter> encounters = ((EncounterModifyingZone) zone).getEliteEncounters();
+                List<EncounterModifyingZone.ZoneEncounter> encounters = ((EncounterModifyingZone)zone).getEliteEncounters();
                 if (encounters != null) {
                     encounters = encounters.stream().filter(e -> e.getActNum() == ActUtil.getRealActNum()).collect(Collectors.toList());
                     if (LastZoneEliteEncounter.lastZoneEliteEncounter != null && LastZoneEliteEncounter.lastZoneEliteEncounter.startsWith(zone.id + ":")) {
@@ -60,19 +67,38 @@ public class EncounterModifierPatches {
                     }
                     if (encounters.isEmpty()) {
                         LastZoneEliteEncounter.lastZoneEliteEncounter = null;
-                        return __result;
                     }
-                    EncounterModifyingZone.ZoneEncounter ze = encounters.get(AbstractDungeon.monsterRng.random(encounters.size() - 1));
-                    AbstractDungeon.lastCombatMetricKey = ze.getID();
-                    LastZoneEliteEncounter.lastZoneEliteEncounter = zone.id + ":" + ze.getID();
-                    return ze.getMonsterSupplier().get();
+                    else {
+                        EncounterModifyingZone.ZoneEncounter ze = encounters.get(AbstractDungeon.monsterRng.random(encounters.size() - 1));
+                        AbstractDungeon.lastCombatMetricKey = ze.getID();
+                        LastZoneEliteEncounter.lastZoneEliteEncounter = zone.id + ":" + ze.getID();
+                        result = ze.getMonsterSupplier().get();
+                    }
                 }
+
+                addAdditionalMonsters((EncounterModifyingZone)zone, result);
             }
-            return __result;
+            return result;
         }
     }
 
-    @SpirePatch(clz = AbstractDungeon.class, method = "generateSeeds")
+    private static void addAdditionalMonsters(EncounterModifyingZone zone, MonsterGroup monsterGroup) {
+        List<AbstractMonster> additionalMonsters = zone.getAdditionalMonsters();
+        if (additionalMonsters != null) {
+            float currentX = monsterGroup.monsters.stream().map(m -> m.drawX).min(Comparator.comparingDouble(x -> (double)x)).orElse(0.0f);
+            for (AbstractMonster monster : additionalMonsters) {
+                // We give healthy additional space to account for fights such as Reptomancer, which spawn minions in
+                // the empty space near the main monster. Since there are modded enemies with this behavior too, this
+                // isn't perfect, but it's pretty much impossible to get perfect positioning for this given all the
+                // modded enemies out there and other ways that enemies can be added to fights.
+                currentX -= monster.hb_w + 150.0f * Settings.xScale;
+                monster.drawX = currentX;
+                monsterGroup.monsters.add(0, monster);
+            }
+        }
+    }
+
+    @SpirePatch2(clz = AbstractDungeon.class, method = "generateSeeds")
     public static class NullOutZoneEncountersPatch {
         @SpirePostfixPatch
         public static void NullOutZoneEncounters() {

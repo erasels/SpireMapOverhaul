@@ -1,6 +1,7 @@
 package spireMapOverhaul.zoneInterfaces;
 
 import basemod.BaseMod;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 
 import java.util.ArrayList;
@@ -24,6 +25,20 @@ public interface EncounterModifyingZone {
      * @return The list of elite encounters for the zone.
      */
     default List<ZoneEncounter> getEliteEncounters() { return null; }
+
+    /**
+     * Gets additional monsters that should be added to encounters in the zone (in addition to the enemies already present).
+     * If this is non-null, the monsters will be added to the current encounter.
+     * Note that as part of this method, you can check the current act (use ActUtil.getRealActNum()), the room type
+     * (e.g. AbstractDungeon.getCurrRoom instanceof MonsterRoomElite), etc.
+     * The x position of the monster is automatically determined and will be to the left of all the enemies already present,
+     * with space automatically allocated based on the size of the monster's hitbox. (Any x position set as part of the
+     * monster's constructor will be overwritten.)
+     * Keep the number of size of additional monsters small to avoid them taking up so much space that they overlap with
+     * the player when added to fights that already have many enemies.
+     * @return The monsters to add to the encounter.
+     */
+    default List<AbstractMonster> getAdditionalMonsters() { return null; }
 
     /**
      * Registers the encounters in the zone with BaseMod.

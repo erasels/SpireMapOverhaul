@@ -1,16 +1,20 @@
 package spireMapOverhaul.zones.example;
 
 import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.monsters.beyond.Reptomancer;
 import com.megacrit.cardcrawl.monsters.city.BookOfStabbing;
+import com.megacrit.cardcrawl.monsters.exordium.LouseNormal;
+import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
 import spireMapOverhaul.zones.example.monsters.*;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class ExampleEncounterModifyingZone extends AbstractZone implements EncounterModifyingZone {
@@ -59,5 +63,15 @@ public class ExampleEncounterModifyingZone extends AbstractZone implements Encou
             new ZoneEncounter(BookOfStabbing.ID, 1, BookOfStabbing::new),
             new ZoneEncounter(Reptomancer.ID, 1, Reptomancer::new)
         );
+    }
+
+    @Override
+    public List<AbstractMonster> getAdditionalMonsters() {
+        if (AbstractDungeon.getCurrRoom() instanceof MonsterRoomElite) {
+            // It's best to stick to adding only one additional enemy like this example, because the positioning
+            // logic isn't perfect and there's only so much space on the screen.
+            return Collections.singletonList(new LouseNormal(0.0f, 0.0f));
+        }
+        return null;
     }
 }
