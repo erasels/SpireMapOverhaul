@@ -1,6 +1,7 @@
 package spireMapOverhaul;
 
 import basemod.*;
+import basemod.abstracts.CustomSavable;
 import basemod.eventUtil.AddEventParams;
 import basemod.eventUtil.util.Condition;
 import basemod.helpers.RelicType;
@@ -17,8 +18,6 @@ import com.evacipated.cardcrawl.modthespire.Loader;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
-import com.megacrit.cardcrawl.cards.CardGroup;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.events.AbstractEvent;
@@ -26,7 +25,6 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.rewards.RewardSave;
 import com.megacrit.cardcrawl.screens.options.DropdownMenu;
-import com.megacrit.cardcrawl.screens.options.DropdownMenuListener;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import javassist.CtClass;
 import org.apache.logging.log4j.LogManager;
@@ -35,6 +33,7 @@ import spireMapOverhaul.patches.interfacePatches.CampfireModifierPatches;
 import spireMapOverhaul.patches.CustomRewardTypes;
 import spireMapOverhaul.abstracts.AbstractSMORelic;
 import spireMapOverhaul.patches.ZonePatches;
+import spireMapOverhaul.patches.interfacePatches.TravelTrackingPatches;
 import spireMapOverhaul.patches.interfacePatches.EncounterModifierPatches;
 import spireMapOverhaul.rewards.SingleCardReward;
 import spireMapOverhaul.util.TexLoader;
@@ -558,6 +557,19 @@ public class SpireAnniversary6Mod implements
     }
 
     private void initializeSavedData() {
+        BaseMod.addSaveField(TravelTrackingPatches.Field.ID, new CustomSavable<String>() {
+            @Override
+            public String onSave() {
+                return TravelTrackingPatches.Field.lastZoneID();
+            }
+
+            @Override
+            public void onLoad(String s) {
+                if (s != null) {
+                    TravelTrackingPatches.Field.setLastZoneID(s);
+                }
+            }
+        });
     }
 
     @Override
