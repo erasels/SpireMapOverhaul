@@ -376,7 +376,7 @@ public class SpireAnniversary6Mod implements
             String json = Gdx.files.internal(filepath).readString(String.valueOf(StandardCharsets.UTF_8));
             keywords.addAll(Arrays.asList(gson.fromJson(json, Keyword[].class)));
         }
-        for (AbstractZone zone : allZones) {
+        for (AbstractZone zone : unfilteredAllZones) {
             String languageAndZone = langKey + "/" + zone.id;
             String zoneJson = modID + "Resources/localization/" + languageAndZone + "/Keywordstrings.json";
             FileHandle handle = Gdx.files.internal(zoneJson);

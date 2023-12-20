@@ -27,7 +27,7 @@ public class BestiaryIntegrationPatch {
     @SpireInsertPatch(locator = Locator.class, localvars = {"arr"})
     public static void AddMonsters(Object __instance, JsonArray arr) {
         logger.info("Loading Bestiary entries for modded monsters");
-        for (AbstractZone zone : SpireAnniversary6Mod.allZones) {
+        for (AbstractZone zone : SpireAnniversary6Mod.unfilteredAllZones) {
             addZoneMonstersForLanguage(arr, zone.id, "eng");
             if (Settings.language != Settings.GameLanguage.ENG)
             {
