@@ -78,6 +78,7 @@ public class SpireAnniversary6Mod implements
     public static SpireAnniversary6Mod thismod;
     public static SpireConfig modConfig = null;
     public static SpireConfig currentRunConfig = null;
+    public static boolean currentRunActive = false;
 
     public static final String modID = "anniv6";
 
@@ -144,7 +145,7 @@ public class SpireAnniversary6Mod implements
 
         try {
             Properties defaults = new Properties();
-            //defaults.put("Example", "FALSE");
+            defaults.put("active", true);
             modConfig = new SpireConfig(modID, "anniv6Config", defaults);
         } catch (Exception e) {
             e.printStackTrace();
@@ -239,6 +240,7 @@ public class SpireAnniversary6Mod implements
     }
 
     public static void addSaveFields() {
+        BaseMod.addSaveField(SavableCurrentRunActive.SaveKey, new SavableCurrentRunActive());
         BaseMod.addSaveField(ZonePerFloorRunHistoryPatch.ZonePerFloorLog.SaveKey, new ZonePerFloorRunHistoryPatch.ZonePerFloorLog());
         BaseMod.addSaveField(EncounterModifierPatches.LastZoneNormalEncounter.SaveKey, new EncounterModifierPatches.LastZoneNormalEncounter());
         BaseMod.addSaveField(EncounterModifierPatches.LastZoneEliteEncounter.SaveKey, new EncounterModifierPatches.LastZoneEliteEncounter());
@@ -613,6 +615,35 @@ public class SpireAnniversary6Mod implements
             currentRunConfig.save();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public static class SavableCurrentRunActive implements CustomSavable<Boolean> {
+        public final static String SaveKey = "CurrentRunActive";
+
+        @Override
+        public Boolean onSave() {
+            return currentRunActive;
+        }
+
+        @Override
+        public void onLoad(Boolean b) {
+            currentRunActive = b == null ? true : b;
+        }
+    }
+
+    public static boolean getActiveConfig() {
+        return modConfig == null || modConfig.getBool("active");
+    }
+
+    public static void setActiveConfig(boolean active) {
+        if (modConfig != null) {
+            modConfig.setBool("active", active);
+            try {
+                modConfig.save();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
