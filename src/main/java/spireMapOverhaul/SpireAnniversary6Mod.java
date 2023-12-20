@@ -34,12 +34,14 @@ import spireMapOverhaul.patches.CustomRewardTypes;
 import spireMapOverhaul.abstracts.AbstractSMORelic;
 import spireMapOverhaul.patches.ZonePatches;
 import spireMapOverhaul.patches.interfacePatches.TravelTrackingPatches;
+import spireMapOverhaul.patches.interfacePatches.EncounterModifierPatches;
 import spireMapOverhaul.rewards.SingleCardReward;
 import spireMapOverhaul.util.TexLoader;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.util.ZoneShapeMaker;
 import spireMapOverhaul.zoneInterfaces.CampfireModifyingZone;
+import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
 import spireMapOverhaul.zones.example.PlaceholderZone;
 
 import java.io.IOException;
@@ -207,7 +209,9 @@ public class SpireAnniversary6Mod implements
     public void receivePostInitialize() {
         initializedStrings = true;
         allZones.sort(Comparator.comparing(c->c.id));
+        addMonsters();
         addPotions();
+        addSaveFields();
         registerCustomRewards();
         initializeConfig();
         initializeSavedData();
@@ -216,12 +220,25 @@ public class SpireAnniversary6Mod implements
         TextCodeInterpreter.addAccessible(ZoneShapeMaker.class);
     }
 
+    public static void addMonsters() {
+        for (AbstractZone zone : unfilteredAllZones) {
+            if (zone instanceof EncounterModifyingZone) {
+                ((EncounterModifyingZone) zone).registerEncounters();
+            }
+        }
+    }
+
     public static void addPotions() {
 
         if (Loader.isModLoaded("widepotions")) {
             Consumer<String> whitelist = getWidePotionsWhitelistMethod();
 
         }
+    }
+
+    public static void addSaveFields() {
+        BaseMod.addSaveField(EncounterModifierPatches.LastZoneNormalEncounter.SaveKey, new EncounterModifierPatches.LastZoneNormalEncounter());
+        BaseMod.addSaveField(EncounterModifierPatches.LastZoneEliteEncounter.SaveKey, new EncounterModifierPatches.LastZoneEliteEncounter());
     }
 
     private static Consumer<String> getWidePotionsWhitelistMethod() {
@@ -300,6 +317,10 @@ public class SpireAnniversary6Mod implements
         if (Gdx.files.internal(filepath).exists()) {
             BaseMod.loadCustomStringsFile(EventStrings.class, filepath);
         }
+        filepath = modID + "Resources/localization/" + langKey + "/Monsterstrings.json";
+        if (Gdx.files.internal(filepath).exists()) {
+            BaseMod.loadCustomStringsFile(MonsterStrings.class, filepath);
+        }
     }
 
     public void loadZoneStrings(Collection<AbstractZone> zones, String langKey) {
@@ -332,6 +353,9 @@ public class SpireAnniversary6Mod implements
             if (Gdx.files.internal(filepath + "Potionstrings.json").exists()) {
                 BaseMod.loadCustomStringsFile(PotionStrings.class, filepath + "Potionstrings.json");
             }
+            if (Gdx.files.internal(filepath + "Monsterstrings.json").exists()) {
+                BaseMod.loadCustomStringsFile(MonsterStrings.class, filepath + "Monsterstrings.json");
+            }
         }
     }
 
@@ -351,7 +375,7 @@ public class SpireAnniversary6Mod implements
             String json = Gdx.files.internal(filepath).readString(String.valueOf(StandardCharsets.UTF_8));
             keywords.addAll(Arrays.asList(gson.fromJson(json, Keyword[].class)));
         }
-        for (AbstractZone zone : allZones) {
+        for (AbstractZone zone : unfilteredAllZones) {
             String languageAndZone = langKey + "/" + zone.id;
             String zoneJson = modID + "Resources/localization/" + languageAndZone + "/Keywordstrings.json";
             FileHandle handle = Gdx.files.internal(zoneJson);
