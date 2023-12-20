@@ -25,7 +25,7 @@
   },
   "${ModID}:CharacterSelectScreen": {
     "TEXT": [
-      "Zones",
+      "Enable Spawning Zones",
       "Adds zones to the Spire, which change parts of the map to have new content."
     ]
   }
