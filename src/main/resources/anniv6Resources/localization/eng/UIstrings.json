@@ -17,5 +17,10 @@
     "TEXT": [
       "Combat Modifier"
     ]
+  },
+  "${ModID}:RunHistoryScreen": {
+    "TEXT": [
+      "Zone: {0}"
+    ]
   }
 }
