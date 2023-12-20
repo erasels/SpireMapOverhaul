@@ -96,7 +96,7 @@ public abstract class AbstractZone {
         return ActUtil.getRealActNum() == actNum;
     }
 
-    protected void loadStrings() {
+    public void loadStrings() {
         if (SpireAnniversary6Mod.initializedStrings) {
             TEXT = CardCrawlGame.languagePack.getUIString(makeID(this.id)).TEXT;
             name = TEXT[0];

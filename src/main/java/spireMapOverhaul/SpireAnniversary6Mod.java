@@ -29,6 +29,7 @@ import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import javassist.CtClass;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import spireMapOverhaul.patches.ZonePerFloorRunHistoryPatch;
 import spireMapOverhaul.patches.interfacePatches.CampfireModifierPatches;
 import spireMapOverhaul.patches.CustomRewardTypes;
 import spireMapOverhaul.abstracts.AbstractSMORelic;
@@ -208,6 +209,7 @@ public class SpireAnniversary6Mod implements
     @Override
     public void receivePostInitialize() {
         initializedStrings = true;
+        unfilteredAllZones.forEach(AbstractZone::loadStrings);
         allZones.sort(Comparator.comparing(c->c.id));
         addMonsters();
         addPotions();
@@ -237,6 +239,7 @@ public class SpireAnniversary6Mod implements
     }
 
     public static void addSaveFields() {
+        BaseMod.addSaveField(ZonePerFloorRunHistoryPatch.ZonePerFloorLog.SaveKey, new ZonePerFloorRunHistoryPatch.ZonePerFloorLog());
         BaseMod.addSaveField(EncounterModifierPatches.LastZoneNormalEncounter.SaveKey, new EncounterModifierPatches.LastZoneNormalEncounter());
         BaseMod.addSaveField(EncounterModifierPatches.LastZoneEliteEncounter.SaveKey, new EncounterModifierPatches.LastZoneEliteEncounter());
     }
