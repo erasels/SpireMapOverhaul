@@ -12,12 +12,15 @@ import com.megacrit.cardcrawl.monsters.city.Mugger;
 import com.megacrit.cardcrawl.monsters.exordium.Looter;
 import com.megacrit.cardcrawl.monsters.exordium.LouseNormal;
 import com.megacrit.cardcrawl.monsters.exordium.SlaverRed;
+import com.megacrit.cardcrawl.random.Random;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
 import spireMapOverhaul.zones.example.monsters.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -49,6 +52,18 @@ public class ExampleEncounterModifyingZone extends AbstractZone implements Encou
     @Override
     public boolean canSpawn() {
         return this.isAct(1) || this.isAct(2);
+    }
+
+    @Override
+    protected boolean canIncludeEarlyRows() {
+        //Since this zone always has an elite, we don't want it to show up in the rows of the act that never have elites
+        return false;
+    }
+
+    @Override
+    public void distributeRooms(Random rng, ArrayList<AbstractRoom> roomList) {
+        //Guarantee at least one elite
+        placeRoomRandomly(rng, roomOrDefault(roomList, (room)->room instanceof MonsterRoomElite, MonsterRoomElite::new));
     }
 
     @Override
