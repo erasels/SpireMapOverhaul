@@ -509,7 +509,7 @@ public class SpireAnniversary6Mod implements
     private static final float DROPDOWN_X = 400f;
     private static final float DROPDOWN_Y = 600f;
     private ModLabeledToggleButton filterCheckbox;
-    private static final float CHECKBOX_X = 650f;
+    private static final float CHECKBOX_X = 800f;
     private static final float CHECKBOX_Y = 575f;
     private AbstractZone filterViewedZone;
     private ModLabel viewedZoneDescription;
