@@ -1,15 +1,16 @@
 package spireMapOverhaul;
 
-import basemod.AutoAdd;
-import basemod.BaseMod;
-import basemod.ModPanel;
+import basemod.*;
+import basemod.abstracts.CustomSavable;
 import basemod.eventUtil.AddEventParams;
 import basemod.eventUtil.util.Condition;
 import basemod.helpers.RelicType;
 import basemod.helpers.TextCodeInterpreter;
 import basemod.interfaces.*;
+import basemod.patches.com.megacrit.cardcrawl.screens.options.DropdownMenu.DropdownColoring;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
@@ -20,24 +21,31 @@ import com.google.gson.Gson;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.events.AbstractEvent;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.rewards.RewardSave;
+import com.megacrit.cardcrawl.screens.options.DropdownMenu;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import javassist.CtClass;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import spireMapOverhaul.patches.ZonePerFloorRunHistoryPatch;
 import spireMapOverhaul.patches.interfacePatches.CampfireModifierPatches;
 import spireMapOverhaul.patches.CustomRewardTypes;
 import spireMapOverhaul.abstracts.AbstractSMORelic;
 import spireMapOverhaul.patches.ZonePatches;
+import spireMapOverhaul.patches.interfacePatches.TravelTrackingPatches;
+import spireMapOverhaul.patches.interfacePatches.EncounterModifierPatches;
 import spireMapOverhaul.rewards.SingleCardReward;
 import spireMapOverhaul.util.TexLoader;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.util.ZoneShapeMaker;
 import spireMapOverhaul.zoneInterfaces.CampfireModifyingZone;
+import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
 import spireMapOverhaul.zones.example.PlaceholderZone;
 
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -56,7 +64,9 @@ public class SpireAnniversary6Mod implements
         PostInitializeSubscriber,
         AddAudioSubscriber,
         PostRenderSubscriber,
-        PostCampfireSubscriber {
+        PostCampfireSubscriber,
+        StartGameSubscriber,
+        ImGuiSubscriber {
 
     public static final Logger logger = LogManager.getLogger("Zonemaster");
 
@@ -67,6 +77,8 @@ public class SpireAnniversary6Mod implements
 
     public static SpireAnniversary6Mod thismod;
     public static SpireConfig modConfig = null;
+    public static SpireConfig currentRunConfig = null;
+    public static boolean currentRunActive = false;
 
     public static final String modID = "anniv6";
 
@@ -81,6 +93,7 @@ public class SpireAnniversary6Mod implements
 
     public static boolean initializedStrings = false;
 
+    public static List<AbstractZone> unfilteredAllZones = new ArrayList<>();
     public static List<AbstractZone> allZones = new ArrayList<>();
     private static Map<String, AbstractZone> zonePackages = new HashMap<>();
     public static Map<String, Set<String>> zoneEvents = new HashMap<>();
@@ -132,8 +145,13 @@ public class SpireAnniversary6Mod implements
 
         try {
             Properties defaults = new Properties();
-            //defaults.put("Example", "FALSE");
+            defaults.put("active", true);
             modConfig = new SpireConfig(modID, "anniv6Config", defaults);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            currentRunConfig = new SpireConfig(modID, "anniv6ConfigCurrentRun");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -147,14 +165,21 @@ public class SpireAnniversary6Mod implements
                         String pkg = zone.getClass().getName();
                         int lastSeparator = pkg.lastIndexOf('.');
                         if (lastSeparator >= 0) pkg = pkg.substring(0, lastSeparator);
-                        allZones.add(zone);
+                        unfilteredAllZones.add(zone);
+                        if (getCurrentRunFilterConfig(zone.id)) {
+                            allZones.add(zone);
+                        }
                         zonePackages.put(pkg, zone);
                     }
                 });
         for (int i = 0; i < 10; ++i) {
-            allZones.add(new PlaceholderZone());
+            AbstractZone zone = new PlaceholderZone();
+            unfilteredAllZones.add(zone);
+            if (getCurrentRunFilterConfig(zone.id)) {
+                allZones.add(zone);
+            }
         }
-        logger.info("Found zone classes with AutoAdd: " + allZones.size());
+        logger.info("Found zone classes with AutoAdd: " + unfilteredAllZones.size());
     }
 
     @Override
@@ -185,8 +210,11 @@ public class SpireAnniversary6Mod implements
     @Override
     public void receivePostInitialize() {
         initializedStrings = true;
+        unfilteredAllZones.forEach(AbstractZone::loadStrings);
         allZones.sort(Comparator.comparing(c->c.id));
+        addMonsters();
         addPotions();
+        addSaveFields();
         registerCustomRewards();
         initializeConfig();
         initializeSavedData();
@@ -195,12 +223,27 @@ public class SpireAnniversary6Mod implements
         TextCodeInterpreter.addAccessible(ZoneShapeMaker.class);
     }
 
+    public static void addMonsters() {
+        for (AbstractZone zone : unfilteredAllZones) {
+            if (zone instanceof EncounterModifyingZone) {
+                ((EncounterModifyingZone) zone).registerEncounters();
+            }
+        }
+    }
+
     public static void addPotions() {
 
         if (Loader.isModLoaded("widepotions")) {
             Consumer<String> whitelist = getWidePotionsWhitelistMethod();
 
         }
+    }
+
+    public static void addSaveFields() {
+        BaseMod.addSaveField(SavableCurrentRunActive.SaveKey, new SavableCurrentRunActive());
+        BaseMod.addSaveField(ZonePerFloorRunHistoryPatch.ZonePerFloorLog.SaveKey, new ZonePerFloorRunHistoryPatch.ZonePerFloorLog());
+        BaseMod.addSaveField(EncounterModifierPatches.LastZoneNormalEncounter.SaveKey, new EncounterModifierPatches.LastZoneNormalEncounter());
+        BaseMod.addSaveField(EncounterModifierPatches.LastZoneEliteEncounter.SaveKey, new EncounterModifierPatches.LastZoneEliteEncounter());
     }
 
     private static Consumer<String> getWidePotionsWhitelistMethod() {
@@ -236,11 +279,11 @@ public class SpireAnniversary6Mod implements
         loadZones();
 
         loadStrings("eng");
-        loadZoneStrings(allZones, "eng");
+        loadZoneStrings(unfilteredAllZones, "eng");
         if (Settings.language != Settings.GameLanguage.ENG)
         {
             loadStrings(Settings.language.toString().toLowerCase());
-            loadZoneStrings(allZones, Settings.language.toString().toLowerCase());
+            loadZoneStrings(unfilteredAllZones, Settings.language.toString().toLowerCase());
         }
     }
 
@@ -279,6 +322,10 @@ public class SpireAnniversary6Mod implements
         if (Gdx.files.internal(filepath).exists()) {
             BaseMod.loadCustomStringsFile(EventStrings.class, filepath);
         }
+        filepath = modID + "Resources/localization/" + langKey + "/Monsterstrings.json";
+        if (Gdx.files.internal(filepath).exists()) {
+            BaseMod.loadCustomStringsFile(MonsterStrings.class, filepath);
+        }
     }
 
     public void loadZoneStrings(Collection<AbstractZone> zones, String langKey) {
@@ -311,6 +358,9 @@ public class SpireAnniversary6Mod implements
             if (Gdx.files.internal(filepath + "Potionstrings.json").exists()) {
                 BaseMod.loadCustomStringsFile(PotionStrings.class, filepath + "Potionstrings.json");
             }
+            if (Gdx.files.internal(filepath + "Monsterstrings.json").exists()) {
+                BaseMod.loadCustomStringsFile(MonsterStrings.class, filepath + "Monsterstrings.json");
+            }
         }
     }
 
@@ -330,7 +380,7 @@ public class SpireAnniversary6Mod implements
             String json = Gdx.files.internal(filepath).readString(String.valueOf(StandardCharsets.UTF_8));
             keywords.addAll(Arrays.asList(gson.fromJson(json, Keyword[].class)));
         }
-        for (AbstractZone zone : allZones) {
+        for (AbstractZone zone : unfilteredAllZones) {
             String languageAndZone = langKey + "/" + zone.id;
             String zoneJson = modID + "Resources/localization/" + languageAndZone + "/Keywordstrings.json";
             FileHandle handle = Gdx.files.internal(zoneJson);
@@ -455,6 +505,16 @@ public class SpireAnniversary6Mod implements
         }
     }
     private ModPanel settingsPanel;
+    private DropdownMenu filterDropdown;
+    private static final float DROPDOWN_X = 400f;
+    private static final float DROPDOWN_Y = 600f;
+    private ModLabeledToggleButton filterCheckbox;
+    private static final float CHECKBOX_X = 800f;
+    private static final float CHECKBOX_Y = 575f;
+    private AbstractZone filterViewedZone;
+    private ModLabel viewedZoneDescription;
+    private static final float DESC_X = 400f;
+    private static final float DESC_Y = 540f;
 
     private void initializeConfig() {
         UIStrings configStrings = CardCrawlGame.languagePack.getUIString(makeID("ConfigMenuText"));
@@ -463,10 +523,58 @@ public class SpireAnniversary6Mod implements
 
         settingsPanel = new ModPanel();
 
+        ArrayList<String> filterOptions = new ArrayList<>();
+        for (AbstractZone z : unfilteredAllZones) {
+            filterOptions.add(z.name);
+        }
+
+        filterDropdown = new DropdownMenu((dropdownMenu, index, s) -> filterSetViewedZone(index),
+                filterOptions, FontHelper.tipBodyFont, Settings.CREAM_COLOR);
+        DropdownColoring.RowToColor.function.set(filterDropdown, (index) -> getFilterConfig(unfilteredAllZones.get(index).id) ? null : Settings.RED_TEXT_COLOR);
+        IUIElement wrapperDropdown = new IUIElement() {
+            public void render(SpriteBatch sb) {
+                filterDropdown.render(sb, DROPDOWN_X * Settings.xScale,DROPDOWN_Y * Settings.yScale);
+            }
+            public void update() {
+                filterDropdown.update();
+            }
+            public int renderLayer() {return 3;}
+            public int updateOrder() {return 0;}
+        };
+        settingsPanel.addUIElement(wrapperDropdown);
+        filterCheckbox = new ModLabeledToggleButton(configStrings.TEXT[3], CHECKBOX_X, CHECKBOX_Y, Color.WHITE, FontHelper.tipBodyFont, true, null,
+                (label) -> {},
+                (button) -> setFilterConfig(filterViewedZone.id, button.enabled));
+        settingsPanel.addUIElement(filterCheckbox);
+
+        viewedZoneDescription = new ModLabel("Unassigned",DESC_X,DESC_Y,FontHelper.tipBodyFont,settingsPanel,
+                (label) -> {});
+        settingsPanel.addUIElement(viewedZoneDescription);
+        filterSetViewedZone(0);
+
         BaseMod.registerModBadge(badge, configStrings.TEXT[0], configStrings.TEXT[1], configStrings.TEXT[2], settingsPanel);
     }
 
+    private void filterSetViewedZone(int index) {
+        filterViewedZone = unfilteredAllZones.get(index);
+        filterCheckbox.toggle.enabled = getFilterConfig(filterViewedZone.id);
+        viewedZoneDescription.text = filterViewedZone.tooltipBody;
+    }
+
     private void initializeSavedData() {
+        BaseMod.addSaveField(TravelTrackingPatches.Field.ID, new CustomSavable<String>() {
+            @Override
+            public String onSave() {
+                return TravelTrackingPatches.Field.lastZoneID();
+            }
+
+            @Override
+            public void onLoad(String s) {
+                if (s != null) {
+                    TravelTrackingPatches.Field.setLastZoneID(s);
+                }
+            }
+        });
     }
 
     @Override
@@ -483,6 +591,100 @@ public class SpireAnniversary6Mod implements
         } else {
             return true;
         }
+    }
+
+    @Override
+    public void receiveStartGame() {
+        if (!CardCrawlGame.loadingSave) {
+            updateZoneList(); //only updated on new games to not mess anything up if settings are changed and a game is loaded
+        }
+    }
+
+    private void updateZoneList() {
+        allZones.clear();
+        currentRunConfig.clear();
+        for (AbstractZone z : unfilteredAllZones) {
+            if (getFilterConfig(z.id)) {
+                allZones.add(z);
+                setCurrentRunFilterConfig(z.id, true);
+            } else {
+                setCurrentRunFilterConfig(z.id, false);
+            }
+        }
+        try {
+            currentRunConfig.save();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static class SavableCurrentRunActive implements CustomSavable<Boolean> {
+        public final static String SaveKey = "CurrentRunActive";
+
+        @Override
+        public Boolean onSave() {
+            return currentRunActive;
+        }
+
+        @Override
+        public void onLoad(Boolean b) {
+            currentRunActive = b == null ? true : b;
+        }
+    }
+
+    public static boolean getActiveConfig() {
+        return modConfig == null || modConfig.getBool("active");
+    }
+
+    public static void setActiveConfig(boolean active) {
+        if (modConfig != null) {
+            modConfig.setBool("active", active);
+            try {
+                modConfig.save();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private boolean getFilterConfig(String zoneId) {
+        if (modConfig != null && modConfig.has( zoneId +"_ENABLED")) {
+            return modConfig.getBool(zoneId +"_ENABLED");
+        } else {
+            return true;
+        }
+    }
+
+    private void setFilterConfig(String zoneId, boolean enable) {
+        if (modConfig != null) {
+            modConfig.setBool(zoneId + "_ENABLED", enable);
+            try {
+                modConfig.save();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private boolean getCurrentRunFilterConfig(String zoneId) {
+        if (currentRunConfig != null && currentRunConfig.has( zoneId +"_ONCURRENTRUN")) {
+            return currentRunConfig.getBool(zoneId +"_ONCURRENTRUN");
+        } else {
+            return false;
+        }
+    }
+
+    private void setCurrentRunFilterConfig(String zoneId, boolean enable) {
+        if (currentRunConfig != null) {
+            currentRunConfig.setBool(zoneId + "_ONCURRENTRUN", enable);
+        }
+    }
+
+    private static ZoneShapeMaker shapeUi = null;
+    @Override
+    public void receiveImGui() {
+        if (shapeUi == null) shapeUi = new ZoneShapeMaker();
+        shapeUi.receiveImGui();
     }
 }
 

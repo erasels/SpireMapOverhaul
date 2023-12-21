@@ -1,19 +1,16 @@
 package spireMapOverhaul;
 
 import com.badlogic.gdx.math.MathUtils;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.map.MapEdge;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.random.Random;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import spireMapOverhaul.patches.ZonePatches;
 import spireMapOverhaul.abstracts.AbstractZone;
-import spireMapOverhaul.zones.example.PlaceholderZone;
+import spireMapOverhaul.patches.ZonePatches;
 
 import java.util.*;
 import java.util.function.Predicate;
-import java.util.function.Supplier;
 
 public class BetterMapGenerator {
     public static final Logger mapGenLogger = LogManager.getLogger("BetterMapGen");
@@ -138,7 +135,7 @@ public class BetterMapGenerator {
 
         return true;
     }
-    
+
 
     public static class MapPlanner {
         public final PlanningNode[][] area;
@@ -163,10 +160,11 @@ public class BetterMapGenerator {
             }
         }
 
-        public List<PlanningNode> validNodes(int requiredWidth, int requiredHeight) {
+        public List<PlanningNode> validNodes(int requiredWidth, int requiredHeight, List<Integer> forbiddenRows) {
             List<PlanningNode> valid = new ArrayList<>();
             for (PlanningNode node : availableNodes) {
                 if (requiredWidth - 1 >= node.availability.length || requiredWidth < 1) continue;
+                if(forbiddenRows.stream().anyMatch(row -> node.y <= row && node.y + requiredHeight - 1 >= row)) continue;
                 if (node.availability[requiredWidth - 1] >= requiredHeight) {
                     valid.add(node);
                 }

@@ -3,7 +3,8 @@
     "TEXT": [
       "Spire Map Overhaul",
       "StS Modding Community",
-      "Makes the map more interesting."
+      "Makes the map more interesting.",
+      "Enabled"
     ]
   },
   "${ModID}:SingleCardReward": {
@@ -15,6 +16,17 @@
   "${ModID}:CombatExplainButton": {
     "TEXT": [
       "Combat Modifier"
+    ]
+  },
+  "${ModID}:RunHistoryScreen": {
+    "TEXT": [
+      "Zone: {0}"
+    ]
+  },
+  "${ModID}:CharacterSelectScreen": {
+    "TEXT": [
+      "Enable Spawning Zones",
+      "Adds zones to the Spire, which change parts of the map to have new content."
     ]
   }
 }

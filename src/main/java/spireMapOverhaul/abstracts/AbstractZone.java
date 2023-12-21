@@ -1,5 +1,6 @@
 package spireMapOverhaul.abstracts;
 
+import basemod.Pair;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -8,6 +9,9 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
+import com.megacrit.cardcrawl.helpers.Hitbox;
+import com.megacrit.cardcrawl.helpers.TipHelper;
+import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
@@ -15,12 +19,10 @@ import com.megacrit.cardcrawl.screens.DungeonMapScreen;
 import spireMapOverhaul.BetterMapGenerator.MapPlanner;
 import spireMapOverhaul.BetterMapGenerator.MapPlanner.PlanningNode;
 import spireMapOverhaul.SpireAnniversary6Mod;
+import spireMapOverhaul.util.ActUtil;
 import spireMapOverhaul.util.ZoneShapeMaker;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
@@ -31,10 +33,14 @@ public abstract class AbstractZone {
     private static final float OFFSET_Y = 180.0F * Settings.scale;
     private static final float SPACING_X = Settings.isMobile ? (int)(Settings.xScale * 64.0F) * 2.2F : (int)(Settings.xScale * 64.0F) * 2.0F;
     private static final String[] NO_TEXT = new String[] { };
+    private static final int NO_ELITES_BOUNDARY_ROW = 4;
+    private static final int TREASURE_ROW = 8;
+    private static final int FINAL_CAMPFIRE_ROW = 15;
 
     public final String id;
     public String[] TEXT = NO_TEXT;
     public String name = "";
+    public String tooltipBody = "";
     protected Color labelColor = Color.WHITE;
 
     protected List<MapRoomNode> nodes = new ArrayList<>();
@@ -46,6 +52,9 @@ public abstract class AbstractZone {
 
     public FrameBuffer zoneFb = null;
     private TextureRegion shapeRegion = null;
+
+    public List<Hitbox> hitboxes;
+    public HashMap<Hitbox, Pair<Float, Float>> hitboxRelativePositions;
 
     public AbstractZone() {
         this(null);
@@ -86,14 +95,14 @@ public abstract class AbstractZone {
 
     //Utility methods for use in canSpawn
     protected final boolean isAct(int actNum) {
-        if (Settings.isEndless) return AbstractDungeon.actNum % 3 == actNum;
-        return AbstractDungeon.actNum == actNum;
+        return ActUtil.getRealActNum() == actNum;
     }
 
-    protected void loadStrings() {
+    public void loadStrings() {
         if (SpireAnniversary6Mod.initializedStrings) {
             TEXT = CardCrawlGame.languagePack.getUIString(makeID(this.id)).TEXT;
             name = TEXT[0];
+            tooltipBody = TEXT[1];
         }
         else {
             TEXT = NO_TEXT;
@@ -119,23 +128,83 @@ public abstract class AbstractZone {
             float anchorY = y * Settings.MAP_DST_Y + OFFSET_Y + DungeonMapScreen.offsetY - ZoneShapeMaker.FB_OFFSET;
             sb.setColor(getColor().cpy().mul(1, 0.9f, 0.85f, alpha*0.8f)); //just making the random color more palatable
             sb.draw(shapeRegion, anchorX, anchorY);
+            boolean showTooltip = false;
+            for (Hitbox hb : hitboxes) {
+                hb.move(hitboxRelativePositions.get(hb).getKey() + anchorX, hitboxRelativePositions.get(hb).getValue() + anchorY);
+                hb.update();
+                hb.render(sb);
+                if (hb.hovered) {
+                    showTooltip = true;
+                }
+            }
+            if (showTooltip) {
+                TipHelper.renderGenericTip(InputHelper.mX + 40f*Settings.scale, InputHelper.mY - 65f*Settings.scale, name, tooltipBody);
+            }
 
             FontHelper.renderFontCentered(sb, FontHelper.menuBannerFont, name,
                     labelX * SPACING_X + OFFSET_X, labelY * Settings.MAP_DST_Y + OFFSET_Y + DungeonMapScreen.offsetY,
                     labelColor.cpy().mul(1, 1, 1, alpha), 0.8f
             );
+
         }
     }
 
     public void dispose() {
+
         if (shapeRegion != null && shapeRegion.getTexture() != null) {
             shapeRegion.getTexture().dispose();
         }
         if (zoneFb != null) zoneFb.dispose();
+
+
+        shapeRegion = null;
+        zoneFb = null;
     }
 
 
     //-----Map Gen-----
+
+    //Whether the zone can include early rows (rows 0-4).
+    //This should be overridden to return false for zones that always have an elite room.
+    //Zones that substantially increase encounter difficulty may also want to override this to false.
+    protected boolean canIncludeEarlyRows() {
+        return true;
+    }
+    //Whether the zone can include the row that always has treasure nodes (row 8).
+    //This should be overridden to return false for zones that might replace the treasure node with something else.
+    //(We consider it important for play experience, game balance, and compatibility that the treasure nodes stay).
+    protected boolean canIncludeTreasureRow() {
+        return true;
+    }
+    //Whether the zone can include the row that always has the campfire node before the boss (row 15).
+    //This should be overridden to return false for zones that might replace the campfire node with something else.
+    //(We consider it important for play experience, game balance, and compatibility that the campfire nodes stay).
+    protected boolean canIncludeFinalCampfireRow() {
+        return true;
+    }
+
+    protected List<Integer> forbiddenRows() {
+        ArrayList<Integer> list = new ArrayList<>();
+        if (!canIncludeEarlyRows()) {
+            for (int i = 0; i <= NO_ELITES_BOUNDARY_ROW; i++) {
+                list.add(i);
+            }
+        }
+        if (!canIncludeTreasureRow()) {
+            list.add(TREASURE_ROW);
+        }
+        if (!canIncludeFinalCampfireRow()) {
+            list.add(FINAL_CAMPFIRE_ROW);
+        }
+        return list;
+    }
+
+    //By default, the rows for treasure nodes and the final campfire before the boss are protected, meaning that random
+    //(re)placement with the built-in AbstractZone methods won't affect them. Zones with manual placement logic should
+    //either replicate these checks or override canIncludeTreasureRow/canIncludeFinalCampfireRow to return false.
+    private boolean isProtectedRow(int row) {
+        return row == TREASURE_ROW || row == FINAL_CAMPFIRE_ROW;
+    }
 
     //Whether the map generator can connect to the zone from points besides the start and end.
     protected boolean allowSideConnections() {
@@ -200,7 +269,7 @@ public abstract class AbstractZone {
         //Additional paths/intersections may be generated later by map generation depending on other methods provided.
         Random rng = AbstractDungeon.mapRng;
 
-        List<PlanningNode> validNodes = planner.validNodes(width, height);
+        List<PlanningNode> validNodes = planner.validNodes(width, height, this.forbiddenRows());
         if (validNodes.isEmpty())
             return false;
 
@@ -298,7 +367,7 @@ public abstract class AbstractZone {
     }
 
     /**
-     * Replace rooms that match a filter with rooms from a supplier.
+     * Replace rooms that match a filter (and aren't in protected rows) with rooms from a supplier.
      * @param minPercentage The minimum percentage of valid rooms to replace, from 0-1
      * @param maxPercentage The maximum percentage of valid rooms to replace, from 0-1
      */
@@ -306,7 +375,7 @@ public abstract class AbstractZone {
         List<MapRoomNode> possibleNodes = new ArrayList<>();
 
         for (MapRoomNode node : nodes) {
-            if (node.getRoom() != null && roomFilter.test(node.getRoom())) {
+            if (node.getRoom() != null && roomFilter.test(node.getRoom()) && !isProtectedRow(node.y)) {
                 possibleNodes.add(node);
             }
         }
@@ -325,12 +394,12 @@ public abstract class AbstractZone {
     }
 
     /**
-     * Places a room in a random empty node within the zone
+     * Places a room in a random empty node within the zone that is not in a protected row
      */
     protected final void placeRoomRandomly(Random rng, AbstractRoom room) {
         List<MapRoomNode> possibleNodes = new ArrayList<>();
         for (MapRoomNode node : nodes) {
-            if (node.getRoom() == null) {
+            if (node.getRoom() == null && !isProtectedRow(node.y)) {
                 possibleNodes.add(node);
             }
         }
