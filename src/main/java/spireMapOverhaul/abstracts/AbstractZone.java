@@ -37,6 +37,21 @@ public abstract class AbstractZone {
     private static final int TREASURE_ROW = 8;
     private static final int FINAL_CAMPFIRE_ROW = 15;
 
+    private static final HashMap<Icons, String> iconsMap;
+    static {
+        iconsMap = new HashMap<>();
+        iconsMap.put(Icons.MONSTER, "[" +SpireAnniversary6Mod.modID+":MonsterIcon]");
+        iconsMap.put(Icons.ELITE, "[" +SpireAnniversary6Mod.modID+":EliteIcon]");
+        iconsMap.put(Icons.REWARD, "[" +SpireAnniversary6Mod.modID+":RewardIcon]");
+        iconsMap.put(Icons.EVENT, "[" +SpireAnniversary6Mod.modID+":EventIcon]");
+        iconsMap.put(Icons.SHOP, "[" +SpireAnniversary6Mod.modID+":ShopIcon]");
+        iconsMap.put(Icons.REST, "[" +SpireAnniversary6Mod.modID+":RestIcon]");
+    }
+
+    public enum Icons {
+        MONSTER, ELITE, REWARD, EVENT, REST, SHOP
+    }
+
     public final String id;
     public String[] TEXT = NO_TEXT;
     public String name = "";
@@ -56,16 +71,19 @@ public abstract class AbstractZone {
     public List<Hitbox> hitboxes;
     public HashMap<Hitbox, Pair<Float, Float>> hitboxRelativePositions;
 
+    protected Icons[] icons;
+
     public AbstractZone() {
         this(null);
     }
 
     //Id given should not be prefixed.
-    public AbstractZone(String id) {
+    public AbstractZone(String id, Icons... icons) {
         if (id == null) {
             id = getClass().getSimpleName();
         }
         this.id = id;
+        this.icons = icons;
         loadStrings();
     }
 
@@ -102,22 +120,23 @@ public abstract class AbstractZone {
         if (SpireAnniversary6Mod.initializedStrings) {
             TEXT = CardCrawlGame.languagePack.getUIString(makeID(this.id)).TEXT;
             name = TEXT[0];
-            tooltipBody = TEXT[1];
+            updateDescription();
         }
         else {
             TEXT = NO_TEXT;
         }
     }
 
-    /*public String modifyRolledEvent(String eventKey) {
-        if (AbstractDungeon.eventRng.randomBoolean(eventChance())) {
-            List<String> possibleEvents = events();
-            return possibleEvents.remove(AbstractDungeon.eventRng.random(events().size()));
+    public void updateDescription() {
+        StringBuilder sb = new StringBuilder();
+        for(Icons icon : icons) {
+            sb.append(iconsMap.get(icon)).append(" ");
         }
-        return eventKey;
-    }*/
-
-
+        if (icons.length > 0)
+            sb.append(" NL ");
+        sb.append(TEXT[1]);
+        tooltipBody = sb.toString();
+    }
 
     public void renderOnMap(SpriteBatch sb, float alpha) {
         if (alpha > 0) {

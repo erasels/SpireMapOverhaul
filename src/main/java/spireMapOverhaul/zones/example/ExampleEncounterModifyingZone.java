@@ -34,7 +34,7 @@ public class ExampleEncounterModifyingZone extends AbstractZone implements Encou
     public static final String LOOTER_AND_SLAVER = SpireAnniversary6Mod.makeID("LOOTER_AND_SLAVER");
 
     public ExampleEncounterModifyingZone() {
-        super(ID);
+        super(ID, Icons.MONSTER, Icons.ELITE);
         this.width = 3;
         this.height = 3;
     }
