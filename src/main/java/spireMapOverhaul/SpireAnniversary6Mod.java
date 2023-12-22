@@ -147,7 +147,7 @@ public class SpireAnniversary6Mod implements
 
         try {
             Properties defaults = new Properties();
-            defaults.put("active", true);
+            defaults.put("active", "TRUE");
             modConfig = new SpireConfig(modID, "anniv6Config", defaults);
         } catch (Exception e) {
             e.printStackTrace();
@@ -636,7 +636,7 @@ public class SpireAnniversary6Mod implements
 
         @Override
         public void onLoad(Boolean b) {
-            currentRunActive = b == null ? true : b;
+            currentRunActive = b == null || b;
         }
     }
 
