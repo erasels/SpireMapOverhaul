@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
+import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Matrix4;
 import com.megacrit.cardcrawl.core.Settings;
@@ -120,9 +121,9 @@ public class ZoneShapeMaker {
                     float mY = (m.y - zY) * Settings.MAP_DST_Y + FB_OFFSET + m.offsetY;
 
                     for (int i = 1; i < 4; ++i) { //1-3
-                        float circleScale = MathUtils.lerp(circleScales.get(n), circleScales.get(m), i / 4f);
-                        float cX = MathUtils.lerp(nX, mX, i / 4f);
-                        float cY = MathUtils.lerp(nY, mY, i / 4f);
+                        float circleScale = Interpolation.linear.apply(circleScales.get(n), circleScales.get(m), i / 4f);
+                        float cX = Interpolation.linear.apply(nX, mX, i / 4f);
+                        float cY = Interpolation.linear.apply(nY, mY, i / 4f);
 
                         drawCircle(sb, cX, cY, circleScale);
                         addHitbox(zone, cX, cY, circleScale);
