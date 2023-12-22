@@ -14,6 +14,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
+import com.evacipated.cardcrawl.mod.stslib.icons.CustomIconHelper;
 import com.evacipated.cardcrawl.modthespire.Loader;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
@@ -37,6 +38,7 @@ import spireMapOverhaul.patches.ZonePatches;
 import spireMapOverhaul.patches.interfacePatches.TravelTrackingPatches;
 import spireMapOverhaul.patches.interfacePatches.EncounterModifierPatches;
 import spireMapOverhaul.rewards.SingleCardReward;
+import spireMapOverhaul.ui.*;
 import spireMapOverhaul.util.TexLoader;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.util.Wiz;
@@ -205,6 +207,12 @@ public class SpireAnniversary6Mod implements
                 .setDefaultSeen(true)
                 .cards();
 
+        CustomIconHelper.addCustomIcon(MonsterIcon.get());
+        CustomIconHelper.addCustomIcon(EliteIcon.get());
+        CustomIconHelper.addCustomIcon(EventIcon.get());
+        CustomIconHelper.addCustomIcon(RewardIcon.get());
+        CustomIconHelper.addCustomIcon(ShopIcon.get());
+        CustomIconHelper.addCustomIcon(RestIcon.get());
     }
 
     @Override
