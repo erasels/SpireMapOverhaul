@@ -5,6 +5,8 @@ For a full write-up, please see https://docs.google.com/document/d/1ecUm3TWngPBo
   
 ## Contribution
 The scope of a contribution will commonly be a Zone with its various changes. For guidelines regarding what kind of content is allowed/accounted for and about the minimum content required, please see the google doc linked above.  
+
+Either modargo or I (erasels) will be reviewing your pull request and suggest changes to code and/or design and balance if needed to keep the project cohesive. Since the start of this project is during the christmas holidays, we may be slow to respond but don't worry, we will.
   
 ### Technical Guidelines
 Create a package within the zones package; this is where you will put all your code. This allows all zone content to be grouped together, so you're not supposed to put your patches/monsters/etc in the top-level packages anymore (which is a change from previous anniversary projects that we think will help with organization). You are free to define subpackages within your zone package.    
