@@ -32,3 +32,6 @@ https://docs.github.com/en/get-started/quickstart/contributing-to-projects
    
 I recommend using the GitHub desktop client for this if you have no experience with Github  
 https://desktop.github.com/
+
+### Bestiary
+If you add new monsters, consider adding [Bestiary](https://steamcommunity.com/sharedfiles/filedetails/?id=2285965269) entries for them, so that players have an easy way to understand and analyze what the monsters do. This also helps document the logic for your new monsters. See the existing `bestiary.json` files for examples.
