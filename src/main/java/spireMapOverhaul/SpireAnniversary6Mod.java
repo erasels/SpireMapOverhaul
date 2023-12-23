@@ -2,6 +2,7 @@ package spireMapOverhaul;
 
 import basemod.*;
 import basemod.abstracts.CustomSavable;
+import basemod.devcommands.ConsoleCommand;
 import basemod.eventUtil.AddEventParams;
 import basemod.eventUtil.util.Condition;
 import basemod.helpers.RelicType;
@@ -39,6 +40,7 @@ import spireMapOverhaul.patches.interfacePatches.TravelTrackingPatches;
 import spireMapOverhaul.patches.interfacePatches.EncounterModifierPatches;
 import spireMapOverhaul.rewards.SingleCardReward;
 import spireMapOverhaul.ui.*;
+import spireMapOverhaul.util.QueueZoneCommand;
 import spireMapOverhaul.util.TexLoader;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.util.Wiz;
@@ -219,7 +221,7 @@ public class SpireAnniversary6Mod implements
     public void receivePostInitialize() {
         initializedStrings = true;
         unfilteredAllZones.forEach(AbstractZone::loadStrings);
-        allZones.sort(Comparator.comparing(c->c.id));
+        unfilteredAllZones.sort(Comparator.comparing(c->c.id));
         addMonsters();
         addPotions();
         addSaveFields();
@@ -228,6 +230,7 @@ public class SpireAnniversary6Mod implements
         initializeSavedData();
         initializeEvents();
 
+        ConsoleCommand.addCommand("addzone", QueueZoneCommand.class);
         TextCodeInterpreter.addAccessible(ZoneShapeMaker.class);
     }
 

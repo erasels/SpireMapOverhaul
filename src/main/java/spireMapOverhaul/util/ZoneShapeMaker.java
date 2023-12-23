@@ -243,7 +243,7 @@ public class ZoneShapeMaker {
         MapRoomNode closestNode = null;
 
         //check floor before
-        if (centerFloor != 0) {
+        if (centerFloor > 0) {
             for (MapRoomNode n : map.get(centerFloor -1)) {
                 if (filter.test(n)) {
                     float d = nodeDistanceSquared(center, n);

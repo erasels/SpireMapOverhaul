@@ -22,6 +22,8 @@ public class BetterMapGenerator {
     private static ArrayList<ArrayList<MapRoomNode>> lastMap = null;
     private static List<AbstractZone> activeZones = new ArrayList<>();
 
+    public static List<AbstractZone> queueCommandZones = new ArrayList<>();
+
     public static List<AbstractZone> getActiveZones(ArrayList<ArrayList<MapRoomNode>> map) {
         if (map != lastMap) {
             lastMap = map;
@@ -49,6 +51,15 @@ public class BetterMapGenerator {
             }
             activeZones.clear();
             float zoneRate = 1;
+
+            for (AbstractZone queuedZone : queueCommandZones) {
+                if (queuedZone.generateMapArea(planner)) {
+                    activeZones.add(queuedZone);
+                } else {
+                    mapGenLogger.info("Failed to place " + queuedZone.id + " zone queued by command.");
+                }
+            }
+            queueCommandZones.clear();
 
             outer:
             while (rng.randomBoolean(zoneRate) && activeZones.size() < pathDensity) {
