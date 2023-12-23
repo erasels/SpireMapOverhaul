@@ -22,7 +22,9 @@ In case your zone replaces or changes nodes, be sure to look at the following me
 - canIncludeTreasureRow()
 - canIncludeFinalCampfireRow()
 
-If your zone includes manual node replacement logic, you need to either check for the last campfire before the boss node and the mid-act chest as these should not be overridden, or have those methods return `false` so that your zone never includes those rows.
+If your zone includes manual node replacement logic, you need to either check for the last campfire before the boss node and the mid-act chest as these should not be overridden, or have those methods return `false` so that your zone never includes those rows.  
+
+To test your zone, you can add the console command `addzone ID` which will make ti spawn in the next act. Zones are also toggleable in the mod config menu.
   
 To make a contribution, you must have a GitHub account. 
 For the specifics of how to fork this repo and then make a pull request, please look at this guide:  
