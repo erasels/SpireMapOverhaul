@@ -176,13 +176,6 @@ public class SpireAnniversary6Mod implements
                         zonePackages.put(pkg, zone);
                     }
                 });
-        for (int i = 0; i < 10; ++i) {
-            AbstractZone zone = new PlaceholderZone();
-            unfilteredAllZones.add(zone);
-            if (getCurrentRunFilterConfig(zone.id)) {
-                allZones.add(zone);
-            }
-        }
         logger.info("Found zone classes with AutoAdd: " + unfilteredAllZones.size());
     }
 
