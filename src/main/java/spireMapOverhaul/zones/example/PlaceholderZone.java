@@ -1,5 +1,6 @@
 package spireMapOverhaul.zones.example;
 
+import basemod.AutoAdd;
 import basemod.helpers.TooltipInfo;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
@@ -16,19 +17,12 @@ import spireMapOverhaul.zoneInterfaces.ModifiedEventRateZone;
 
 import java.util.ArrayList;
 
+@AutoAdd.Ignore
 public class PlaceholderZone extends AbstractZone implements ModifiedEventRateZone {
     public static final String ID = "Placeholder";
 
     private final int width, height;
     private final Color color;
-
-    private static String randomName() {
-        StringBuilder randString = new StringBuilder();
-        while (randString.length() < 4 || MathUtils.randomBoolean(0.6f)) {
-            randString.append((char)MathUtils.random('a', 'z'));
-        }
-        return randString.toString();
-    }
 
     @Override
     public AbstractEvent forceEvent() {
@@ -41,7 +35,7 @@ public class PlaceholderZone extends AbstractZone implements ModifiedEventRateZo
     }
 
     public PlaceholderZone() {
-        this(randomName(), MathUtils.random(1, 4), MathUtils.random(2, 6));
+        this("Placeholder 0", 2, 4);
         System.out.println("Placeholder Zone " + name + " " + width + "x" + height);
     }
 
