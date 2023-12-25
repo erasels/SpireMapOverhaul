@@ -47,6 +47,7 @@ import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.util.ZoneShapeMaker;
 import spireMapOverhaul.zoneInterfaces.CampfireModifyingZone;
 import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
+import spireMapOverhaul.rewards.HealReward;
 import spireMapOverhaul.zones.example.PlaceholderZone;
 
 import java.io.IOException;
@@ -502,6 +503,14 @@ public class SpireAnniversary6Mod implements
                             "|" +
                             ((SingleCardReward) reward).card.misc;
                     return new RewardSave(CustomRewardTypes.SMO_SINGLECARDREWARD.toString(), s);
+                }
+        );
+
+        BaseMod.registerCustomReward(CustomRewardTypes.HEALREWARD,
+                rewardSave -> new HealReward(rewardSave.id, rewardSave.amount),
+                reward -> {
+                    int i = ((HealReward) reward).amount;
+                    return new RewardSave(CustomRewardTypes.HEALREWARD.toString(), ((HealReward) reward).iconPath, i, 0);
                 }
         );
     }

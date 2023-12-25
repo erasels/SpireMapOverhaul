@@ -1,0 +1,8 @@
+{
+  "${ModID}:CandyLand": {
+    "TEXT": [
+      "Candy Land",
+      "All rewards here are edible. It will be hard here to improve much, most rewards are healing, max hp or otherwise temporary."
+    ]
+  }
+}

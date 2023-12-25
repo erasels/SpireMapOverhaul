@@ -1,0 +1,174 @@
+package spireMapOverhaul.zones.candyland;
+
+import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.colorless.Bite;
+import com.megacrit.cardcrawl.cards.red.Feed;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.relics.*;
+import com.megacrit.cardcrawl.rewards.RewardItem;
+import com.megacrit.cardcrawl.shop.ShopScreen;
+import com.megacrit.cardcrawl.shop.StorePotion;
+import com.megacrit.cardcrawl.shop.StoreRelic;
+import com.megacrit.cardcrawl.ui.campfire.AbstractCampfireOption;
+import com.megacrit.cardcrawl.ui.campfire.RestOption;
+import com.megacrit.cardcrawl.ui.campfire.SmithOption;
+import spireMapOverhaul.SpireAnniversary6Mod;
+import spireMapOverhaul.abstracts.AbstractZone;
+import spireMapOverhaul.rewards.HealReward;
+import spireMapOverhaul.zoneInterfaces.CampfireModifyingZone;
+import spireMapOverhaul.zoneInterfaces.RewardModifyingZone;
+import spireMapOverhaul.zoneInterfaces.ShopModifyingZone;
+import spireMapOverhaul.zones.candyland.consumables.AbstractConsumable;
+import spireMapOverhaul.zones.candyland.consumables.common.*;
+import spireMapOverhaul.zones.candyland.consumables.rare.Banana;
+import spireMapOverhaul.zones.candyland.consumables.rare.ChocolateBar;
+import spireMapOverhaul.zones.candyland.consumables.rare.Cocktail;
+import spireMapOverhaul.zones.candyland.consumables.rare.GoldCandy;
+import spireMapOverhaul.zones.candyland.consumables.uncommon.*;
+
+import java.util.ArrayList;
+
+public class CandyLand extends AbstractZone implements RewardModifyingZone, CampfireModifyingZone, ShopModifyingZone {
+    public static final String ID = "CandyLand";
+
+    public CandyLand() {
+        super(ID, Icons.REWARD);
+        this.width = 3;
+        this.height = 3;
+    }
+
+    @Override
+    public AbstractZone copy() {
+        return new CandyLand();
+    }
+
+    @Override
+    public Color getColor() {
+        return Color.PINK.cpy();
+    }
+
+    @Override
+    public void modifyRewardCards(ArrayList<AbstractCard> cards) {
+        for (AbstractCard card : (ArrayList<AbstractCard>) cards.clone()) {
+            cards.remove(card);
+            ArrayList<AbstractConsumable> consumables = getConsumables();
+            consumables.removeIf(c -> c.rarity != card.rarity || cards.contains(c));
+            cards.add(consumables.get(AbstractDungeon.cardRng.random(0, consumables.size()-1)));
+        }
+    }
+
+    @Override
+    public void modifyReward(RewardItem rewardItem) {
+        if(rewardItem.type == RewardItem.RewardType.RELIC && !(rewardItem.relic instanceof Mango || rewardItem.relic instanceof Pear || rewardItem.relic instanceof Strawberry || rewardItem.relic instanceof Waffle)){
+            switch(rewardItem.relic.tier){
+                case RARE:
+                    SpireAnniversary6Mod.logger.info("Replacing " + rewardItem.relic.name + " with Mango");
+                    rewardItem.relic = new Mango();
+                    break;
+                case UNCOMMON:
+                    SpireAnniversary6Mod.logger.info("Replacing " + rewardItem.relic.name + " with Pear");
+                    rewardItem.relic = new Pear();
+                    break;
+                case COMMON:
+                    SpireAnniversary6Mod.logger.info("Replacing " + rewardItem.relic.name + " with Strawberry");
+                    rewardItem.relic = new Strawberry();
+                    break;
+                default:
+                    SpireAnniversary6Mod.logger.info("Non-standard rarity found, replacing " + rewardItem.relic.name + " with Waffle");
+                    rewardItem.relic = new Waffle();
+                    break;
+            }
+        } else if(rewardItem.type == RewardItem.RewardType.POTION){
+            while(rewardItem.potion.isThrown){
+                SpireAnniversary6Mod.logger.info("Try to replace " + rewardItem.potion.name + "with drinkable potion.");
+                rewardItem.potion = AbstractDungeon.returnRandomPotion(rewardItem.potion.rarity, false);
+            }
+        }
+    }
+
+    @Override
+    public void modifyRewards(ArrayList<RewardItem> rewards) {
+        SpireAnniversary6Mod.logger.info("Turning Gold into Chocolate");
+        for(RewardItem r : (ArrayList<RewardItem>) rewards.clone()){
+            if(r.type == RewardItem.RewardType.GOLD){
+                rewards.add(new HealReward("ChocolateCoins.png", r.goldAmt));
+            }
+        }
+        rewards.removeIf(r -> r.type == RewardItem.RewardType.GOLD);
+    }
+
+    public void postAddButtons(ArrayList<AbstractCampfireOption> buttons) {
+        for (AbstractCampfireOption button : buttons){
+            if (button instanceof SmithOption){
+                button.usable = false;
+            }
+        }
+    }
+
+    public void postUseCampfireOption(AbstractCampfireOption option) {
+        if(option instanceof RestOption) {
+            AbstractDungeon.player.increaseMaxHp(5, true);
+        }
+    }
+
+    public void postCreateShopCards(ArrayList<AbstractCard> coloredCards, ArrayList<AbstractCard> colorlessCards) {
+        ArrayList<AbstractConsumable> topRow = new ArrayList<>();
+        for(AbstractCard card : coloredCards){
+            ArrayList<AbstractConsumable> consumables = getConsumables();
+            consumables.removeIf(c -> c.rarity != card.rarity || c.type != card.type || topRow.contains(c));
+            topRow.add(consumables.get(AbstractDungeon.cardRng.random(0, consumables.size()-1)));
+        }
+        coloredCards.removeIf(c -> true);
+        coloredCards.addAll(topRow);
+
+        colorlessCards.removeIf(c -> true);
+        colorlessCards.add(new Bite());
+        colorlessCards.add(new Feed());
+    }
+
+    public void postCreateShopRelics(ShopScreen screen, ArrayList<StoreRelic> relics) {
+        relics.removeIf(c -> true);
+        ArrayList<AbstractRelic> fruits = new ArrayList<>();
+        fruits.add(new Strawberry());
+        fruits.add(new Pear());
+        fruits.add(new Mango());
+        for(int i = 0; i<2; i++) {
+            int r = AbstractDungeon.relicRng.random(0, fruits.size()-1);
+            relics.add(new StoreRelic(fruits.get(r), i, screen));
+            fruits.remove(r);
+        }
+        relics.add(new StoreRelic(new Waffle(), 2, screen));
+    }
+
+    public void postCreateShopPotions(ShopScreen screen, ArrayList<StorePotion> potions) {
+        for(StorePotion potion : potions){
+            while(potion.potion.isThrown){
+                potion.potion = AbstractDungeon.returnRandomPotion(potion.potion.rarity, true);
+            }
+        }
+    }
+
+    public ArrayList<AbstractConsumable> getConsumables(){
+        ArrayList<AbstractConsumable> consumables = new ArrayList<>();
+        consumables.add(new Banana());
+        consumables.add(new ChocolateBar());
+        consumables.add(new Cocktail());
+        consumables.add(new GoldCandy());
+        consumables.add(new Cake());
+        consumables.add(new FrozenYoghurt());
+        consumables.add(new JawBreaker());
+        consumables.add(new JellyBeans());
+        consumables.add(new Milk());
+        consumables.add(new Pepper());
+        consumables.add(new RottenFlesh());
+        consumables.add(new Sugar());
+        consumables.add(new Broccoli());
+        consumables.add(new CandyCane());
+        consumables.add(new Cookie());
+        consumables.add(new EnergyDrink());
+        consumables.add(new FastFood());
+        return consumables;
+    }
+
+}
