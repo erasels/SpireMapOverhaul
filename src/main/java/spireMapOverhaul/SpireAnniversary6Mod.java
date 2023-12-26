@@ -370,6 +370,9 @@ public class SpireAnniversary6Mod implements
             if (Gdx.files.internal(filepath + "Monsterstrings.json").exists()) {
                 BaseMod.loadCustomStringsFile(MonsterStrings.class, filepath + "Monsterstrings.json");
             }
+            if (Gdx.files.internal(filepath + "Eventstrings.json").exists()) {
+                BaseMod.loadCustomStringsFile(EventStrings.class, filepath + "Eventstrings.json");
+            }
         }
     }
 
