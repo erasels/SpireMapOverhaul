@@ -75,18 +75,22 @@ public class CandyLand extends AbstractZone implements RewardModifyingZone, Camp
                 case RARE:
                     SpireAnniversary6Mod.logger.info("Replacing " + rewardItem.relic.name + " with Mango");
                     rewardItem.relic = new Mango();
+                    rewardItem.text = rewardItem.relic.name;
                     break;
                 case UNCOMMON:
                     SpireAnniversary6Mod.logger.info("Replacing " + rewardItem.relic.name + " with Pear");
                     rewardItem.relic = new Pear();
+                    rewardItem.text = rewardItem.relic.name;
                     break;
                 case COMMON:
                     SpireAnniversary6Mod.logger.info("Replacing " + rewardItem.relic.name + " with Strawberry");
                     rewardItem.relic = new Strawberry();
+                    rewardItem.text = rewardItem.relic.name;
                     break;
                 default:
                     SpireAnniversary6Mod.logger.info("Non-standard rarity found, replacing " + rewardItem.relic.name + " with Waffle");
                     rewardItem.relic = new Waffle();
+                    rewardItem.text = rewardItem.relic.name;
                     break;
             }
         } else if(rewardItem.type == RewardItem.RewardType.POTION){
@@ -184,6 +188,9 @@ public class CandyLand extends AbstractZone implements RewardModifyingZone, Camp
         consumables.add(new Cookie());
         consumables.add(new EnergyDrink());
         consumables.add(new FastFood());
+        for(AbstractConsumable c : consumables){
+            c.setRarity();
+        }
         return consumables;
     }
 
