@@ -35,5 +35,38 @@
       "Dread Wave"
     ],
     "NAME": "Dread Moth"
+  },
+  "${ModID}:OrbOfFire": {
+    "MOVES": [
+      "Firebolt",
+      "Flare",
+      "Irradiate"
+    ],
+    "NAME": "Orb of Fire"
+  },
+  "${ModID}:LivingStormcloud": {
+    "MOVES": [
+      "Zap",
+      "Gust",
+      "Rainfall"
+    ],
+    "NAME": "Living Stormcloud"
+  },
+  "${ModID}:OpulentOffering": {
+    "MOVES": [
+      "Goblet Bash",
+      "Coin Barrage",
+      "Opulent Barrier",
+      "Opulent Overflow"
+    ],
+    "NAME": "Opulent Offering"
+  },
+  "${ModID}:ShimmeringMirage": {
+    "MOVES": [
+      "Shine",
+      "Glow",
+      "Pulse"
+    ],
+    "NAME": "Shimmering Mirage"
   }
 }

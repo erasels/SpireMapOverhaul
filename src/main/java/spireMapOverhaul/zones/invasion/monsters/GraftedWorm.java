@@ -1,4 +1,4 @@
-package spireMapOverhaul.zones.example.monsters;
+package spireMapOverhaul.zones.invasion.monsters;
 
 import basemod.abstracts.CustomMonster;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.powers.LoseStrengthPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import spireMapOverhaul.SpireAnniversary6Mod;
-import spireMapOverhaul.zones.example.powers.LeafSporesPower;
+import spireMapOverhaul.zones.invasion.powers.LeafSporesPower;
 
 public class GraftedWorm extends CustomMonster
 {

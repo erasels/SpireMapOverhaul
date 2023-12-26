@@ -1,4 +1,4 @@
-package spireMapOverhaul.zones.example.monsters;
+package spireMapOverhaul.zones.invasion.monsters;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.AnimateFastAttackAction;

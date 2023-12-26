@@ -1,4 +1,4 @@
-package spireMapOverhaul.zones.example.powers;
+package spireMapOverhaul.zones.invasion.powers;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -17,7 +17,7 @@ public class LeafSporesPower extends AbstractSMOPower {
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     public LeafSporesPower(AbstractCreature owner, int amount) {
-        super(POWER_ID, NAME, PowerType.BUFF,false, owner, amount);
+        super(POWER_ID, NAME, PowerType.BUFF, false, owner, amount);
     }
 
     @Override

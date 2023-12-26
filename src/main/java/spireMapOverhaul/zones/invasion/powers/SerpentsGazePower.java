@@ -1,4 +1,4 @@
-package spireMapOverhaul.zones.example.powers;
+package spireMapOverhaul.zones.invasion.powers;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;

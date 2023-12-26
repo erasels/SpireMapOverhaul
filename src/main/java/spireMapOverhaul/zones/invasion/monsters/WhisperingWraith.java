@@ -1,4 +1,4 @@
-package spireMapOverhaul.zones.example.monsters;
+package spireMapOverhaul.zones.invasion.monsters;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.AnimateFastAttackAction;
@@ -15,7 +15,7 @@ import com.megacrit.cardcrawl.powers.IntangiblePower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractSMOMonster;
-import spireMapOverhaul.zones.example.powers.FixedTextIntangiblePower;
+import spireMapOverhaul.zones.invasion.powers.FixedTextIntangiblePower;
 
 import java.util.Random;
 

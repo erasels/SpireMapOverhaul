@@ -1,4 +1,4 @@
-package spireMapOverhaul.zones.example.monsters;
+package spireMapOverhaul.zones.invasion.monsters;
 
 import basemod.abstracts.CustomMonster;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -15,7 +15,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.powers.ConstrictedPower;
 import spireMapOverhaul.SpireAnniversary6Mod;
-import spireMapOverhaul.zones.example.powers.SerpentsGazePower;
+import spireMapOverhaul.zones.invasion.powers.SerpentsGazePower;
 
 public class Hexasnake extends CustomMonster {
     public static final String ID = SpireAnniversary6Mod.makeID("Hexasnake");

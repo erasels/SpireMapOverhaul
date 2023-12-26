@@ -1,0 +1,8 @@
+{
+  "${ModID}:Invasion": {
+    "TEXT": [
+      "Invasion",
+      "The Spire is being invaded by monsters from alternate acts! Fight new monsters and elites. Elites give special powerful card rewards instead of relics. Shops have special cards for sale."
+    ]
+  }
+}

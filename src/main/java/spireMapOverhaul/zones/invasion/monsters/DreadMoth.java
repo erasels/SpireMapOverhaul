@@ -1,4 +1,4 @@
-package spireMapOverhaul.zones.example.monsters;
+package spireMapOverhaul.zones.invasion.monsters;
 
 import basemod.abstracts.CustomMonster;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;

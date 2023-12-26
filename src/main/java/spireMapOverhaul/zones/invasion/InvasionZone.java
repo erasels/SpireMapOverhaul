@@ -1,4 +1,4 @@
-package spireMapOverhaul.zones.example;
+package spireMapOverhaul.zones.invasion;
 
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -8,40 +8,36 @@ import com.megacrit.cardcrawl.monsters.beyond.GiantHead;
 import com.megacrit.cardcrawl.monsters.beyond.Nemesis;
 import com.megacrit.cardcrawl.monsters.beyond.Reptomancer;
 import com.megacrit.cardcrawl.monsters.city.BookOfStabbing;
-import com.megacrit.cardcrawl.monsters.city.Mugger;
-import com.megacrit.cardcrawl.monsters.exordium.Looter;
 import com.megacrit.cardcrawl.monsters.exordium.LouseNormal;
-import com.megacrit.cardcrawl.monsters.exordium.SlaverRed;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
+import org.graalvm.util.CollectionsUtil;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
-import spireMapOverhaul.zones.example.monsters.*;
+import spireMapOverhaul.zones.invasion.monsters.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class ExampleEncounterModifyingZone extends AbstractZone implements EncounterModifyingZone {
-    public static final String ID = "ExampleEncounterModifying";
+public class InvasionZone extends AbstractZone implements EncounterModifyingZone {
+    public static final String ID = "Invasion";
     public static final String STYGIAN_BOAR_AND_WHISPERING_WRAITH = SpireAnniversary6Mod.makeID("STYGIAN_BOAR_AND_WHISPERING_WRAITH");
     public static final String DREAD_MOTH_AND_GRAFTED_WORMS = SpireAnniversary6Mod.makeID("DREAD_MOTH_AND_GRAFTED_WORMS");
-    public static final String THREE_LOOTERS = SpireAnniversary6Mod.makeID("THREE_LOOTERS");
-    public static final String TWO_MUGGERS = SpireAnniversary6Mod.makeID("TWO_MUGGERS");
-    public static final String LOOTER_AND_SLAVER = SpireAnniversary6Mod.makeID("LOOTER_AND_SLAVER");
+    public static final String THREE_ELEMENTS = SpireAnniversary6Mod.makeID("THREE_ELEMENTALS");
 
-    public ExampleEncounterModifyingZone() {
-        super(ID, Icons.MONSTER, Icons.ELITE);
+    public InvasionZone() {
+        super(ID, Icons.MONSTER, Icons.ELITE, Icons.SHOP);
         this.width = 3;
         this.height = 3;
     }
 
     @Override
     public AbstractZone copy() {
-        return new ExampleEncounterModifyingZone();
+        return new InvasionZone();
     }
 
     @Override
@@ -50,13 +46,9 @@ public class ExampleEncounterModifyingZone extends AbstractZone implements Encou
     }
 
     @Override
-    public boolean canSpawn() {
-        return this.isAct(1) || this.isAct(2);
-    }
-
-    @Override
     protected boolean canIncludeEarlyRows() {
         //Since this zone always has an elite, we don't want it to show up in the rows of the act that never have elites
+        //It also has normal fights that are tuned as hard pool fights, so that's another reason
         return false;
     }
 
@@ -68,8 +60,6 @@ public class ExampleEncounterModifyingZone extends AbstractZone implements Encou
 
     @Override
     public List<ZoneEncounter> getNormalEncounters() {
-        // This example has new custom enemies in act 1, remixes of base game enemies in act 2, and isn't valid in act 3
-        // (Ignore the lack of any thematic connection, it's just an example)
         return Arrays.asList(
             new ZoneEncounter(Hexasnake.ID, 1, () -> new Hexasnake(0.0f, 0.0f)),
             new ZoneEncounter(STYGIAN_BOAR_AND_WHISPERING_WRAITH, 1, () -> new MonsterGroup(
@@ -84,24 +74,42 @@ public class ExampleEncounterModifyingZone extends AbstractZone implements Encou
                         new GraftedWorm(-50.0F, 0.0F),
                         new DreadMoth(200.0F, 125.0F),
                 })),
-
-            new ZoneEncounter(THREE_LOOTERS, 2, () -> new MonsterGroup(
-                new AbstractMonster[] {
-                        new Looter(-400.0F, 0.0F),
-                        new Looter(-150.0F, 0.0F),
-                        new Looter(100.0F, 0.0F)
-                })),
-            new ZoneEncounter(TWO_MUGGERS, 2, () -> new MonsterGroup(
-                new AbstractMonster[] {
-                        new Mugger(-200.0F, 0.0F),
-                        new Mugger(100.0F, 0.0F),
-                })),
-            new ZoneEncounter(LOOTER_AND_SLAVER, 2, () -> new MonsterGroup(
-                new AbstractMonster[] {
-                        new Looter(-200.0F, 0.0F),
-                        new SlaverRed(100.0F, 0.0F),
-                }))
+            new ZoneEncounter(THREE_ELEMENTS, 2, () -> new MonsterGroup(generateElementalGroup()))
         );
+    }
+
+    private static AbstractMonster[] generateElementalGroup() {
+        float[] groupPositions = {-450.0F, -200.0F, 50.0F};
+        ArrayList<String> monstersList = new ArrayList<>();
+        monstersList.add(OrbOfFire.ID);
+        monstersList.add(LivingStormcloud.ID);
+        monstersList.add(OpulentOffering.ID);
+        monstersList.add(ShimmeringMirage.ID);
+        Collections.shuffle(monstersList, new java.util.Random(AbstractDungeon.monsterRng.randomLong()));
+
+        AbstractMonster[] monsters = new AbstractMonster[3];
+        for (int i = 0; i < 3; i++) {
+            monsters[i] = getElemental(monstersList.get(i), groupPositions[i], 125.0F);
+        }
+
+        return monsters;
+    }
+
+    public static AbstractMonster getElemental(String elementalID, float x, float y) {
+        if (elementalID.equals(OrbOfFire.ID)) {
+            return new OrbOfFire(x, y);
+        }
+        if (elementalID.equals(LivingStormcloud.ID)) {
+            return new LivingStormcloud(x, y);
+        }
+        if (elementalID.equals(OpulentOffering.ID)) {
+            return new OpulentOffering(x, y);
+        }
+        if (elementalID.equals(ShimmeringMirage.ID)) {
+            return new ShimmeringMirage(x, y);
+        }
+        SpireAnniversary6Mod.logger.warn("Didn't match any elemental. ElementalID:" + elementalID);
+        return new OrbOfFire(x, y);
     }
 
     @Override

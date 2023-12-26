@@ -1,18 +1,19 @@
-package spireMapOverhaul.zones.example.powers;
+package spireMapOverhaul.zones.invasion.powers;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.powers.IntangiblePower;
 import spireMapOverhaul.SpireAnniversary6Mod;
+import spireMapOverhaul.abstracts.AbstractSMOPower;
 
-public class FixedTextIntangiblePower extends IntangiblePower {
-    public static final String POWER_ID = SpireAnniversary6Mod.makeID("FixedTextIntangiblePower");
+public class GoldenBulwarkPower extends AbstractSMOPower {
+    public static final String POWER_ID = SpireAnniversary6Mod.makeID("GoldenBulwark");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
+    public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    public FixedTextIntangiblePower(AbstractCreature owner, int turns) {
-        super(owner, turns);
+    public GoldenBulwarkPower(AbstractCreature owner, int amount) {
+        super(POWER_ID, NAME, PowerType.BUFF, false, owner, amount);
     }
 
     @Override
