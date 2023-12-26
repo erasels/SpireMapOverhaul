@@ -68,5 +68,29 @@
       "Pulse"
     ],
     "NAME": "Shimmering Mirage"
+  },
+  "${ModID}:CroakingBrute": {
+    "MOVES": [
+      "Lacerate",
+      "Bull Rush"
+    ],
+    "NAME": "Croaking Brute",
+    "DIALOG": ["*CROAK*"]
+  },
+  "${ModID}:CroakingPelter": {
+    "MOVES": [
+      "Lacerate",
+      "Rock Toss"
+    ],
+    "NAME": "Croaking Pelter",
+    "DIALOG": ["cRoAK"]
+  },
+  "${ModID}:CroakingSeer": {
+    "MOVES": [
+      "Lacerate",
+      "Protective Ward"
+    ],
+    "NAME": "Croaking Seer",
+    "DIALOG": ["*croak*"]
   }
 }

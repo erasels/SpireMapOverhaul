@@ -17,8 +17,7 @@ import com.megacrit.cardcrawl.powers.BeatOfDeathPower;
 import com.megacrit.cardcrawl.vfx.combat.ShockWaveEffect;
 import spireMapOverhaul.SpireAnniversary6Mod;
 
-public class DreadMoth extends CustomMonster
-{
+public class DreadMoth extends CustomMonster {
     public static final String ID = SpireAnniversary6Mod.makeID("DreadMoth");
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
     public static final String NAME = monsterStrings.NAME;;

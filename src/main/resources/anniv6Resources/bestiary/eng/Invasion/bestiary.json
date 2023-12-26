@@ -1725,6 +1725,352 @@
 					]
 				}
 			]
+		},
+		{
+			"name": "Croaking Brute",
+			"id": "${ModID}:CroakingBrute",
+			"ai": [
+				{
+					"min_asc": 0,
+					"desc": "60-40 split between #wBull #wRush and #wLacerate. Can't use #wBull #wRush three times in a row or #wLacerate twice in a row.",
+					"hp": "(50 - 55 HP)",
+					"notes": "Innate #uWary 1.",
+					"moves": [
+						{
+							"name": "Lacerate",
+							"effects": [
+								{
+									"name": "1x2",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Bull Rush",
+							"effects": [
+								{
+									"name": "7",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 2,
+					"desc": "60-40 split between #wBull #wRush and #wLacerate. Can't use #wBull #wRush three times in a row or #wLacerate twice in a row.",
+					"hp": "(50 - 55 HP)",
+					"notes": "Innate #uWary 1.",
+					"moves": [
+						{
+							"name": "Lacerate",
+							"effects": [
+								{
+									"name": "2x2",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Bull Rush",
+							"effects": [
+								{
+									"name": "8",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 7,
+					"desc": "60-40 split between #wBull #wRush and #wLacerate. Can't use #wBull #wRush three times in a row or #wLacerate twice in a row.",
+					"hp": "(53 - 58 HP)",
+					"notes": "Innate #uWary 1.",
+					"moves": [
+						{
+							"name": "Lacerate",
+							"effects": [
+								{
+									"name": "2x2",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Bull Rush",
+							"effects": [
+								{
+									"name": "8",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 17,
+					"desc": "60-40 split between #wBull #wRush and #wLacerate. Can't use #wBull #wRush three times in a row or #wLacerate twice in a row.",
+					"hp": "(53 - 58 HP)",
+					"notes": "Innate #uWary 2.",
+					"moves": [
+						{
+							"name": "Lacerate",
+							"effects": [
+								{
+									"name": "2x2",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Bull Rush",
+							"effects": [
+								{
+									"name": "8",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Croaking Pelter",
+			"id": "${ModID}:CroakingPelter",
+			"ai": [
+				{
+					"min_asc": 0,
+					"desc": "60-40 split between #wRock #wToss and #wLacerate. Can't use #wRock #wToss three times in a row or #wLacerate twice in a row.",
+					"hp": "(50 - 55 HP)",
+					"notes": "Innate #uEnrage 1.",
+					"moves": [
+						{
+							"name": "Lacerate",
+							"effects": [
+								{
+									"name": "1x2",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Rock Toss",
+							"effects": [
+								{
+									"name": "3",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Block 5",
+									"color": "BLOCK"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 2,
+					"desc": "60-40 split between #wRock #wToss and #wLacerate. Can't use #wRock #wToss three times in a row or #wLacerate twice in a row.",
+					"hp": "(50 - 55 HP)",
+					"notes": "Innate #uEnrage 1.",
+					"moves": [
+						{
+							"name": "Lacerate",
+							"effects": [
+								{
+									"name": "2x2",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Rock Toss",
+							"effects": [
+								{
+									"name": "4",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Block 5",
+									"color": "BLOCK"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 7,
+					"desc": "60-40 split between #wRock #wToss and #wLacerate. Can't use #wRock #wToss three times in a row or #wLacerate twice in a row.",
+					"hp": "(53 - 58 HP)",
+					"notes": "Innate #uEnrage 1.",
+					"moves": [
+						{
+							"name": "Lacerate",
+							"effects": [
+								{
+									"name": "2x2",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Rock Toss",
+							"effects": [
+								{
+									"name": "4",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Block 8",
+									"color": "BLOCK"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 17,
+					"desc": "60-40 split between #wRock #wToss and #wLacerate. Can't use #wRock #wToss three times in a row or #wLacerate twice in a row.",
+					"hp": "(53 - 58 HP)",
+					"notes": "Innate #uEnrage 2.",
+					"moves": [
+						{
+							"name": "Lacerate",
+							"effects": [
+								{
+									"name": "2x2",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Rock Toss",
+							"effects": [
+								{
+									"name": "4",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Block 8",
+									"color": "BLOCK"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Croaking Seer",
+			"id": "${ModID}:CroakingSeer",
+			"ai": [
+				{
+					"min_asc": 0,
+					"desc": "60-40 split between #wProtective #wWard and #wLacerate. Can't use #wProtetive #wWard three times in a row or #wLacerate twice in a row.",
+					"hp": "(50 - 55 HP)",
+					"notes": "Innate #uCuriosity 1.",
+					"moves": [
+						{
+							"name": "Lacerate",
+							"effects": [
+								{
+									"name": "1x2",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Protective Ward",
+							"effects": [
+								{
+									"name": "Party Block 3",
+									"color": "BLOCK"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 2,
+					"desc": "60-40 split between #wProtective #wWard and #wLacerate. Can't use #wProtetive #wWard three times in a row or #wLacerate twice in a row.",
+					"hp": "(50 - 55 HP)",
+					"notes": "Innate #uCuriosity 1.",
+					"moves": [
+						{
+							"name": "Lacerate",
+							"effects": [
+								{
+									"name": "2x2",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Protective Ward",
+							"effects": [
+								{
+									"name": "Party Block 3",
+									"color": "BLOCK"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 7,
+					"desc": "60-40 split between #wProtective #wWard and #wLacerate. Can't use #wProtetive #wWard three times in a row or #wLacerate twice in a row.",
+					"hp": "(53 - 58 HP)",
+					"notes": "Innate #uCuriosity 1.",
+					"moves": [
+						{
+							"name": "Lacerate",
+							"effects": [
+								{
+									"name": "2x2",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Protective Ward",
+							"effects": [
+								{
+									"name": "Party Block 5",
+									"color": "BLOCK"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 17,
+					"desc": "60-40 split between #wProtective #wWard and #wLacerate. Can't use #wProtetive #wWard three times in a row or #wLacerate twice in a row.",
+					"hp": "(53 - 58 HP)",
+					"notes": "Innate #uCuriosity 2.",
+					"moves": [
+						{
+							"name": "Lacerate",
+							"effects": [
+								{
+									"name": "2x2",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Protective Ward",
+							"effects": [
+								{
+									"name": "Party Block 5",
+									"color": "BLOCK"
+								}
+							]
+						}
+					]
+				}
+			]
 		}
 	]
 }

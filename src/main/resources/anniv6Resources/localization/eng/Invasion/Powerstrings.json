@@ -33,5 +33,9 @@
   "${ModID}:DelayedAbysstouched": {
     "NAME": "Abysstouched",
     "DESCRIPTIONS": ["Take #b{0}% more damage from #yAttacks. At the end of your turn, take #b{0} damage."]
+  },
+  "${ModID}:Wary": {
+    "NAME": "Wary",
+    "DESCRIPTIONS": ["Whenever you play an #yAttack, gains #b{0} Strength."]
   }
 }
