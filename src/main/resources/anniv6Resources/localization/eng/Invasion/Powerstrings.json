@@ -9,5 +9,29 @@
   "${ModID}:LeafSpores": {
     "NAME": "Leaf Spores",
     "DESCRIPTIONS": ["On death, applies #b{0} #yWeak and #b{0} #yFrail."]
+  },
+  "Elementarium:Hover": {
+    "NAME": "Hover",
+    "DESCRIPTIONS": ["Takes #b{0}% less damage from attacks."]
+  },
+  "Elementarium:MidasAura": {
+    "NAME": "Midas Aura",
+    "DESCRIPTIONS": ["When you play an upgraded attack, skill, or power, #yExhaust it and add a Gilded Strike, Gilded Defend, or Gilded Essence to your discard pile."]
+  },
+  "Elementarium:GoldenBulwark": {
+    "NAME": "Golden Bulwark",
+    "DESCRIPTIONS": ["Gains #b1 block at the start of combat for every #b{0} gold you have (rounded up)."]
+  },
+  "Elementarium:Cleanse": {
+    "NAME": "Cleanse",
+    "DESCRIPTIONS": ["Reduce all debuffs by #b{0} at the end of each turn.", "Wears off after this turn."]
+  },
+  "${ModID}:Abysstouched": {
+    "NAME": "Abysstouched",
+    "DESCRIPTIONS": ["Take #b{0}% more damage from #yAttacks. At the end of your turn, take #b{0} damage.", "Receive #b{0}% more damage from #yAttacks. At the start of its turn, takes #b{0} damage."]
+  },
+  "${ModID}:DelayedAbysstouched": {
+    "NAME": "Abysstouched",
+    "DESCRIPTIONS": ["Take #b{0}% more damage from #yAttacks. At the end of your turn, take #b{0} damage."]
   }
 }

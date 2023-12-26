@@ -28,6 +28,7 @@ public class InvasionZone extends AbstractZone implements EncounterModifyingZone
     public static final String STYGIAN_BOAR_AND_WHISPERING_WRAITH = SpireAnniversary6Mod.makeID("STYGIAN_BOAR_AND_WHISPERING_WRAITH");
     public static final String DREAD_MOTH_AND_GRAFTED_WORMS = SpireAnniversary6Mod.makeID("DREAD_MOTH_AND_GRAFTED_WORMS");
     public static final String THREE_ELEMENTS = SpireAnniversary6Mod.makeID("THREE_ELEMENTALS");
+    public static final String THREE_HATCHLINGS = SpireAnniversary6Mod.makeID("THREE_HATCHLINGS");
 
     public InvasionZone() {
         super(ID, Icons.MONSTER, Icons.ELITE, Icons.SHOP);
@@ -80,7 +81,13 @@ public class InvasionZone extends AbstractZone implements EncounterModifyingZone
                         new GraftedWorm(-50.0F, 0.0F),
                         new DreadMoth(200.0F, 125.0F),
                 })),
-            new ZoneEncounter(THREE_ELEMENTS, 2, () -> new MonsterGroup(generateElementalGroup()))
+            new ZoneEncounter(THREE_ELEMENTS, 2, () -> new MonsterGroup(generateElementalGroup())),
+            new ZoneEncounter(THREE_HATCHLINGS, 3, () -> new MonsterGroup(
+                    new AbstractMonster[] {
+                            new Hatchling(-450.0F, 10.0F, false),
+                            new Hatchling(-150.0F, -30.0F, false),
+                            new Hatchling(150.0F, 20.0F, false)
+                    }))
         );
     }
 

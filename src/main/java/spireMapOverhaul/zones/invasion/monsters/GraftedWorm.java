@@ -15,8 +15,7 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.zones.invasion.powers.LeafSporesPower;
 
-public class GraftedWorm extends CustomMonster
-{
+public class GraftedWorm extends CustomMonster {
     public static final String ID = SpireAnniversary6Mod.makeID("GraftedWorm");
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
     public static final String NAME = monsterStrings.NAME;
