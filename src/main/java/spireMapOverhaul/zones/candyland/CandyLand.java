@@ -28,12 +28,13 @@ import spireMapOverhaul.zones.candyland.consumables.rare.GoldCandy;
 import spireMapOverhaul.zones.candyland.consumables.uncommon.*;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class CandyLand extends AbstractZone implements RewardModifyingZone, CampfireModifyingZone, ShopModifyingZone {
     public static final String ID = "CandyLand";
 
     public CandyLand() {
-        super(ID, Icons.REWARD);
+        super(ID, Icons.REWARD, Icons.REST, Icons.SHOP);
         this.width = 3;
         this.height = 3;
     }
@@ -53,9 +54,18 @@ public class CandyLand extends AbstractZone implements RewardModifyingZone, Camp
         for (AbstractCard card : (ArrayList<AbstractCard>) cards.clone()) {
             cards.remove(card);
             ArrayList<AbstractConsumable> consumables = getConsumables();
-            consumables.removeIf(c -> c.rarity != card.rarity || cards.contains(c));
-            cards.add(consumables.get(AbstractDungeon.cardRng.random(0, consumables.size()-1)));
+            consumables.removeIf(c -> c.rarity != card.rarity || containCard(cards, c));
+            AbstractCard c = consumables.get(AbstractDungeon.cardRng.random(0, consumables.size()-1));
+            SpireAnniversary6Mod.logger.info("Adding " + c.name + cards.contains(c));
+            cards.add(c);
         }
+    }
+
+    private boolean containCard(ArrayList<AbstractCard> list, AbstractCard c){
+        for(AbstractCard card : list)
+            if (Objects.equals(c.cardID, card.cardID))
+                return true;
+        return false;
     }
 
     @Override
@@ -113,32 +123,38 @@ public class CandyLand extends AbstractZone implements RewardModifyingZone, Camp
     }
 
     public void postCreateShopCards(ArrayList<AbstractCard> coloredCards, ArrayList<AbstractCard> colorlessCards) {
-        ArrayList<AbstractConsumable> topRow = new ArrayList<>();
+        ArrayList<AbstractCard> topRow = new ArrayList<>();
         for(AbstractCard card : coloredCards){
             ArrayList<AbstractConsumable> consumables = getConsumables();
-            consumables.removeIf(c -> c.rarity != card.rarity || c.type != card.type || topRow.contains(c));
+            consumables.removeIf(c -> c.rarity != card.rarity || c.type != card.type || containCard(topRow, c));
+            if(consumables.isEmpty()){
+                consumables = getConsumables();
+                consumables.removeIf(c -> c.type != card.type || containCard(topRow, c));
+
+            }
             topRow.add(consumables.get(AbstractDungeon.cardRng.random(0, consumables.size()-1)));
         }
-        coloredCards.removeIf(c -> true);
+        coloredCards.clear();
         coloredCards.addAll(topRow);
 
-        colorlessCards.removeIf(c -> true);
+        colorlessCards.clear();
         colorlessCards.add(new Bite());
         colorlessCards.add(new Feed());
     }
 
-    public void postCreateShopRelics(ShopScreen screen, ArrayList<StoreRelic> relics) {
-        relics.removeIf(c -> true);
-        ArrayList<AbstractRelic> fruits = new ArrayList<>();
-        fruits.add(new Strawberry());
-        fruits.add(new Pear());
-        fruits.add(new Mango());
-        for(int i = 0; i<2; i++) {
-            int r = AbstractDungeon.relicRng.random(0, fruits.size()-1);
-            relics.add(new StoreRelic(fruits.get(r), i, screen));
-            fruits.remove(r);
+    public float modifyCardBaseCost(AbstractCard c, float baseCost) {
+        switch(c.cardID) {
+            case Bite.ID: return 80 + AbstractDungeon.merchantRng.random(1, 19); // Uncommon Colorless cost
+            case Feed.ID: return baseCost;
+            default: return (float) (baseCost*0.5);
         }
-        relics.add(new StoreRelic(new Waffle(), 2, screen));
+    }
+
+    public void postCreateShopRelics(ShopScreen screen, ArrayList<StoreRelic> relics) {
+        relics.clear();
+        relics.add(new StoreRelic(new Waffle(), 0, screen));
+        relics.add(new StoreRelic(new Pear(), 1, screen));
+        relics.add(new StoreRelic(new Mango(), 2, screen));
     }
 
     public void postCreateShopPotions(ShopScreen screen, ArrayList<StorePotion> potions) {
@@ -162,7 +178,7 @@ public class CandyLand extends AbstractZone implements RewardModifyingZone, Camp
         consumables.add(new Milk());
         consumables.add(new Pepper());
         consumables.add(new RottenFlesh());
-        consumables.add(new Sugar());
+        consumables.add(new ChewingGum());
         consumables.add(new Broccoli());
         consumables.add(new CandyCane());
         consumables.add(new Cookie());

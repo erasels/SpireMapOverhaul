@@ -16,7 +16,7 @@ public class GoldCandy extends AbstractConsumable {
     public final static String ID = makeID(GoldCandy.class.getSimpleName());
 
     public GoldCandy() {
-        super(ID, 1, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
+        super(ID, 0, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
         baseMagicNumber = magicNumber = 30;
     }
 

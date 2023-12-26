@@ -1,33 +1,31 @@
 package spireMapOverhaul.zones.candyland.consumables.uncommon;
 
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
+import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
+import com.megacrit.cardcrawl.cards.status.Slimed;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.DrawReductionPower;
-import com.megacrit.cardcrawl.powers.watcher.EnergyDownPower;
 import spireMapOverhaul.zones.candyland.consumables.AbstractConsumable;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 import static spireMapOverhaul.util.Wiz.atb;
 
 
-public class Sugar extends AbstractConsumable {
-    public final static String ID = makeID(Sugar.class.getSimpleName());
+public class ChewingGum extends AbstractConsumable {
+    public final static String ID = makeID(ChewingGum.class.getSimpleName());
 
-    public Sugar() {
+    public ChewingGum() {
         super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
         baseMagicNumber = magicNumber = 2;
-        baseSecondMagic = secondMagic = 1;
+        cardsToPreview = new Slimed();
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         atb(new GainEnergyAction(magicNumber));
         atb(new DrawCardAction(magicNumber));
-        atb(new ApplyPowerAction(p, p, new EnergyDownPower(p, secondMagic)));
-        atb(new ApplyPowerAction(p, p, new DrawReductionPower(p, secondMagic)));
+        atb(new MakeTempCardInDrawPileAction(cardsToPreview.makeCopy(), 1, false, true));
     }
 
     @Override

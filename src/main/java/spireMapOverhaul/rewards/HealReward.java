@@ -19,7 +19,7 @@ public class HealReward extends CustomReward {
     }
 
     public HealReward(String iconPath, int amount) {
-        super(TexLoader.getTexture(modID + "Resources/images/ui/" + iconPath), String.format(uiStrings[0], amount), CustomRewardTypes.HEALREWARD);
+        super(TexLoader.getTexture(modID + "Resources/images/ui/" + iconPath), uiStrings[0] + amount, CustomRewardTypes.HEALREWARD);
         this.amount = amount;
         this.iconPath = iconPath;
     }

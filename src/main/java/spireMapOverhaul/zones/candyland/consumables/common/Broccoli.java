@@ -15,7 +15,7 @@ public class Broccoli extends AbstractConsumable {
     public final static String ID = makeID(Broccoli.class.getSimpleName());
 
     public Broccoli() {
-        super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.SELF);
+        super(ID, 1, CardType.POWER, CardRarity.COMMON, CardTarget.SELF);
         baseMagicNumber = magicNumber = 2;
     }
 

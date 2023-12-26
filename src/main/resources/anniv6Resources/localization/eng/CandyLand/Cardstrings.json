@@ -63,8 +63,8 @@
     "NAME": "Rotten Flesh",
     "DESCRIPTION": "Apply !M! Poison. NL Take !${ModID}:m2! damage. NL Fleeting."
   },
-  "${ModID}:Sugar": {
-    "NAME": "Sugar",
-    "DESCRIPTION": "Draw !M! cards and gain{@@}{!M!|1= [E] |2= [E] [E] |3= [E] [E] [E] |@= !M! [E] } . NL Next turn, draw !${ModID}:m2! card{@@}{!${ModID}:m2!|1=|@=s) less and lose{@@}{!M!|1= [E] |2= [E] [E] |3= [E] [E] [E] |@= !M! [E] }. NL Fleeting."
+  "${ModID}:ChewingGum": {
+    "NAME": "Chewing Gum",
+    "DESCRIPTION": "Draw !M! cards and gain{@@}{!M!|1= [E] |2= [E] [E] |3= [E] [E] [E] |@= !M! [E] } . NL Add *Slime to the top of your draw pile. NL Fleeting."
   }
 }
