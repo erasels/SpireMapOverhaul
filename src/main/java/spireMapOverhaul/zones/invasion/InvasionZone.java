@@ -46,6 +46,12 @@ public class InvasionZone extends AbstractZone implements EncounterModifyingZone
     }
 
     @Override
+    public boolean canSpawn() {
+        //The enemies in this zone are invaders from these acts, so it doesn't make sense to spawn the zone in them
+        return !Arrays.asList("Menagerie:Menagerie", "Elementarium:Elementarium", "Abyss:Abyss").contains(AbstractDungeon.id);
+    }
+
+    @Override
     protected boolean canIncludeEarlyRows() {
         //Since this zone always has an elite, we don't want it to show up in the rows of the act that never have elites
         //It also has normal fights that are tuned as hard pool fights, so that's another reason
