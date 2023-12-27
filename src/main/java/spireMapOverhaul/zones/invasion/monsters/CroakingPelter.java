@@ -16,7 +16,7 @@ import spireMapOverhaul.SpireAnniversary6Mod;
 public class CroakingPelter extends AbstractCroaking {
     public static final String ID = SpireAnniversary6Mod.makeID("CroakingPelter");
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;;
+    public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
     public static final String[] DIALOG = monsterStrings.DIALOG;
     private static final String IMG = SpireAnniversary6Mod.makeImagePath("monsters/CroakingPelter/CroakingPelter.png");

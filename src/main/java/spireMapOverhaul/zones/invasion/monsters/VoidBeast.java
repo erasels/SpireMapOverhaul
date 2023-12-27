@@ -18,7 +18,7 @@ import spireMapOverhaul.zones.invasion.powers.VoidPressurePower;
 public class VoidBeast extends CustomMonster {
     public static final String ID = SpireAnniversary6Mod.makeID("VoidBeast");
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;;
+    public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
     private static final String IMG = SpireAnniversary6Mod.makeImagePath("monsters/VoidBeast/VoidBeast.png");
     private boolean firstMove = true;

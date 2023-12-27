@@ -20,7 +20,7 @@ import spireMapOverhaul.SpireAnniversary6Mod;
 public class DreadMoth extends CustomMonster {
     public static final String ID = SpireAnniversary6Mod.makeID("DreadMoth");
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;;
+    public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
     private static final String IMG = SpireAnniversary6Mod.makeImagePath("monsters/DreadMoth/DreadMoth.png");
     private boolean firstMove = true;

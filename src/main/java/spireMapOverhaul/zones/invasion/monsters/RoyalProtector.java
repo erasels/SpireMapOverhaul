@@ -19,7 +19,7 @@ import spireMapOverhaul.SpireAnniversary6Mod;
 public class RoyalProtector extends CustomMonster {
     public static final String ID = SpireAnniversary6Mod.makeID("RoyalProtector");
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;;
+    public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
     private static final String IMG = SpireAnniversary6Mod.makeImagePath("monsters/RoyalProtector/RoyalProtector.png");
     private boolean firstMove = true;

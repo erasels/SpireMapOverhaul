@@ -24,7 +24,7 @@ import spireMapOverhaul.zones.invasion.powers.FixedTextDrawPower;
 public class VoidCorruption extends CustomMonster {
     public static final String ID = SpireAnniversary6Mod.makeID("VoidCorruption");
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;;
+    public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
     private static final String IMG = SpireAnniversary6Mod.makeImagePath("monsters/VoidCorruption/VoidCorruption.png");
     private boolean firstMove = true;

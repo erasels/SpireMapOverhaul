@@ -21,7 +21,7 @@ import spireMapOverhaul.zones.invasion.powers.BrokenCrystalSealPower;
 public class UnboundAbyssal extends CustomMonster {
     public static final String ID = SpireAnniversary6Mod.makeID("UnboundAbyssal");
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;;
+    public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
     public static final String[] DIALOG = monsterStrings.DIALOG;
     private static final String IMG = SpireAnniversary6Mod.makeImagePath("monsters/UnboundAbyssal/UnboundAbyssal.png");

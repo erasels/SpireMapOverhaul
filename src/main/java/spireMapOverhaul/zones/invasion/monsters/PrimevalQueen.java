@@ -26,7 +26,7 @@ public class PrimevalQueen extends CustomMonster {
     public static final Logger logger = LogManager.getLogger(PrimevalQueen.class.getName());
     public static final String ID = SpireAnniversary6Mod.makeID("PrimevalQueen");
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;;
+    public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
     private static final String IMG = SpireAnniversary6Mod.makeImagePath("monsters/PrimevalQueen/PrimevalQueen.png");
     private boolean firstMove = true;

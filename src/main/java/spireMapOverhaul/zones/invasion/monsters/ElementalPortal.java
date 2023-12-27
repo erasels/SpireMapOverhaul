@@ -30,7 +30,7 @@ public class ElementalPortal extends CustomMonster {
     public static final Logger logger = LogManager.getLogger(ElementalPortal.class.getName());
     public static final String ID = SpireAnniversary6Mod.makeID("ElementalPortal");
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;;
+    public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
     private static final String IMG = SpireAnniversary6Mod.makeImagePath("monsters/ElementalPortal/ElementalPortal.png");
     public static final int MAX_ELEMENTALS_ON_FIELD = 3;
