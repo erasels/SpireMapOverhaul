@@ -83,6 +83,7 @@ public class InvasionZone extends AbstractZone implements EncounterModifyingZone
         for (int i = 0; i < rewards.size(); i++) {
             if (rewards.get(i).type == RewardItem.RewardType.RELIC) {
                 RewardItem rewardItem = new RewardItem();
+                //Note that this reward does not get the normal act-dependent chance of cards being upgraded
                 rewardItem.cards = InvasionUtil.getRewardCards();
                 for (AbstractRelic r : AbstractDungeon.player.relics) {
                     for (AbstractCard c : rewardItem.cards) {
