@@ -246,7 +246,9 @@ public class InvasionZone extends AbstractZone implements EncounterModifyingZone
             new ZoneEncounter(Hydra.ID, 1, (BaseMod.GetMonster)Hydra::new),
             new ZoneEncounter(VoidReaper.ID, 1, (BaseMod.GetMonster)VoidReaper::new),
             new ZoneEncounter(WarGolem.ID, 2, (BaseMod.GetMonster)WarGolem::new),
-            new ZoneEncounter(ElementalPortal.ID, 2, () -> new ElementalPortal(150.0F, 0.0F))
+            new ZoneEncounter(ElementalPortal.ID, 2, () -> new ElementalPortal(150.0F, 0.0F)),
+            new ZoneEncounter(PrimevalQueen.ID, 3, () -> new PrimevalQueen(250.0F, 0.0F)),
+            new ZoneEncounter(Behemoth.ID, 3, (BaseMod.GetMonster)Behemoth::new)
         );
     }
 }

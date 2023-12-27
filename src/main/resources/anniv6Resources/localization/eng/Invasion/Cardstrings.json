@@ -9,7 +9,7 @@
   },
   "${ModID}:GildedEssence": {
     "NAME": "Gilded Essence",
-    "DESCRIPTION": "Gain !M! *Plated *Armor."
+    "DESCRIPTION": "Gain !M! ${ModID}:Plated\u00a0Armor."
   },
   "${ModID}:Necropotence": {
     "NAME": "Necropotence",
@@ -26,7 +26,7 @@
   },
   "${ModID}:EarthblessedBlade": {
     "NAME": "Earth-blessed Blade",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Gain !B! *Plated *Armor. NL Gain !M! Thorns. NL Exhaust."
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Gain !B! ${ModID}:Plated\u00a0Armor. NL Gain !M! Thorns. NL Exhaust."
   },
   "${ModID}:IceblessedBlade": {
     "NAME": "Ice-blessed Blade",
@@ -65,7 +65,7 @@
   },
   "${ModID}:SteelWall": {
     "NAME": "Steel Wall",
-    "DESCRIPTION": "Gain !B! Block. NL Gain !M! *Metallicize. NL Exhaust."
+    "DESCRIPTION": "Gain !B! Block. NL Gain !M! ${ModID}:Metallicize. NL Exhaust."
   },
   "${ModID}:LightningBolt": {
     "NAME": "Lightning Bolt",

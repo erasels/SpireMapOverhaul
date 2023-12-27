@@ -152,5 +152,30 @@
     ],
     "NAME": "Unbound Abyssal",
     "DIALOG": ["Won't... go... back...!"]
+  },
+  "${ModID}:PrimevalQueen": {
+    "MOVES": [
+      "Scythe",
+      "Strengthen Carapace",
+      "Call Protector"
+    ],
+    "NAME": "Primeval Queen"
+  },
+  "${ModID}:RoyalProtector": {
+    "MOVES": [
+      "Carapace",
+      "Burning Spit",
+      "Acid Explosion",
+      "For the Queen"
+    ],
+    "NAME": "Royal Protector"
+  },
+  "${ModID}:Behemoth": {
+    "MOVES": [
+      "Bide",
+      "Evolve",
+      "Claw Swipe"
+    ],
+    "NAME": "Behemoth"
   }
 }

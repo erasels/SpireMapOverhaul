@@ -98,5 +98,29 @@
   "${ModID}:BrokenCrystalSeal": {
     "NAME": "Broken Crystal Seal",
     "DESCRIPTIONS": ["Add #b2 #yBroken #yCrystals to your draw pile each turn. NL Fragments of the crystal once used to seal this enemy litter the ground. Use them to weaken its regeneration!"]
+  },
+  "${ModID}:PrimevalCall": {
+    "NAME": "Primeval Call",
+    "DESCRIPTIONS": ["Summons a #pRoyal #pProtector each turn."]
+  },
+  "${ModID}:Evolving": {
+    "NAME": "Evolving",
+    "DESCRIPTIONS": ["Evolves at the end of each turn."]
+  },
+  "${ModID}:FrailPulse": {
+    "NAME": "Frail Pulse",
+    "DESCRIPTIONS": ["At the end of each round, apply #b{0} #yFrail."]
+  },
+  "${ModID}:DazedPulse": {
+    "NAME": "Dazed Pulse",
+    "DESCRIPTIONS": ["At the end of each round, shuffle #b{0} #yDazed into your draw pile."]
+  },
+  "${ModID}:AbysstouchedPulse": {
+    "NAME": "Abysstouched Pulse",
+    "DESCRIPTIONS": ["At the end of each round, apply #b{0} #yAbysstouched."]
+  },
+  "${ModID}:SlimyBody": {
+    "NAME": "Slimy Body",
+    "DESCRIPTIONS": ["When this enemy takes attack damage, add a #ySlimed to your discard pile."]
   }
 }

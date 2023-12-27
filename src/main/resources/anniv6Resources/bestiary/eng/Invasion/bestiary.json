@@ -3461,6 +3461,535 @@
 					]
 				}
 			]
+		},
+		{
+			"name": "Behemoth",
+			"id": "${ModID}:Behemoth",
+			"ai": [
+				{
+					"min_asc": 0,
+					"desc": "Starts with #wBide, then #wEvolve, then repeats #wClaw. NL NL Evolution choices cycle as follows: NL (1) Enrage 2, Ritual 5, or Strength 20 NL (2) Beat of Death 1, Thorns 3, or Burns 4 NL (3) Buffer 5, Metallicize 25, or Max HP 75 NL (4) Frail Pulse, Dazed Pulse, or Abysstouched Pulse 2 NL (5) Artifact 5, Slimy Body, or Invincible 50. NL NL Evolution cycles after the first skip repeat only the first three chocies.",
+					"hp": "(330 HP)",
+					"notes": "Innate #uBarricade. Starts with 90 block.",
+					"moves": [
+						{
+							"name": "Bide",
+							"effects": [
+								{
+									"name": "Skip turn",
+									"color": "SKIP"
+								}
+							]
+						},
+						{
+							"name": "Evolve",
+							"effects": [
+								{
+									"name": "Evolving",
+									"color": "BUFF"
+								}
+							]
+						},
+						{
+							"name": "Claw Swipe",
+							"effects": [
+								{
+									"name": "13",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 3,
+					"desc": "Starts with #wBide, then #wEvolve, then repeats #wClaw. NL NL Evolution choices cycle as follows: NL (1) Enrage 2, Ritual 5, or Strength 20 NL (2) Beat of Death 1, Thorns 3, or Burns 4 NL (3) Buffer 5, Metallicize 25, or Max HP 75 NL (4) Frail Pulse, Dazed Pulse, or Abysstouched Pulse 2 NL (5) Artifact 5, Slimy Body, or Invincible 50. NL NL Evolution cycles after the first skip repeat only the first three chocies.",
+					"hp": "(330 HP)",
+					"notes": "Innate #uBarricade. Starts with 90 block.",
+					"moves": [
+						{
+							"name": "Bide",
+							"effects": [
+								{
+									"name": "Skip turn",
+									"color": "SKIP"
+								}
+							]
+						},
+						{
+							"name": "Evolve",
+							"effects": [
+								{
+									"name": "Evolving",
+									"color": "BUFF"
+								}
+							]
+						},
+						{
+							"name": "Claw Swipe",
+							"effects": [
+								{
+									"name": "15",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 8,
+					"desc": "Starts with #wBide, then #wEvolve, then repeats #wClaw. NL NL Evolution choices cycle as follows: NL (1) Enrage 2, Ritual 5, or Strength 20 NL (2) Beat of Death 1, Thorns 3, or Burns 4 NL (3) Buffer 5, Metallicize 25, or Max HP 75 NL (4) Frail Pulse, Dazed Pulse, or Abysstouched Pulse 2 NL (5) Artifact 5, Slimy Body, or Invincible 50. NL NL Evolution cycles after the first skip repeat only the first three chocies.",
+					"hp": "(360 HP)",
+					"notes": "Innate #uBarricade. Starts with 100 block.",
+					"moves": [
+						{
+							"name": "Bide",
+							"effects": [
+								{
+									"name": "Skip turn",
+									"color": "SKIP"
+								}
+							]
+						},
+						{
+							"name": "Evolve",
+							"effects": [
+								{
+									"name": "Evolving",
+									"color": "BUFF"
+								}
+							]
+						},
+						{
+							"name": "Claw Swipe",
+							"effects": [
+								{
+									"name": "15",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 18,
+					"desc": "Starts with #wEvolve, then repeats #wClaw. NL NL Evolution choices cycle as follows: NL (1) Enrage 2, Ritual 5, or Strength 20 NL (2) Beat of Death 1, Thorns 3, or Burns 4 NL (3) Buffer 5, Metallicize 25, or Max HP 75 NL (4) Frail Pulse, Dazed Pulse, or Abysstouched Pulse 2 NL (5) Artifact 5, Slimy Body, or Invincible 50. NL NL Evolution cycles after the first skip repeat only the first three chocies.",
+					"hp": "(360 HP)",
+					"notes": "Innate #uBarricade. Starts with 100 block.",
+					"moves": [
+						{
+							"name": "Evolve",
+							"effects": [
+								{
+									"name": "Evolving",
+									"color": "BUFF"
+								}
+							]
+						},
+						{
+							"name": "Claw Swipe",
+							"effects": [
+								{
+									"name": "15",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Primeval Queen",
+			"id": "${ModID}:PrimevalQueen",
+			"ai": [
+				{
+					"min_asc": 0,
+					"desc": "Starts with #wScythe. Afterwards equal chance of using each move, but always uses #wScythe if it hasn't been used in the last three moves, can't use #wCall #wProtector if there are 3 or more minions alive, can't use #wScythe or #wCall #wProtector three times in a row, and can't use #wStrengthen #wCarapace twice in a row.",
+					"hp": "(210 HP)",
+					"notes": "Innate #uPrimeval #uCall. Spawns with 1 #wRoyal #wProtector.",
+					"moves": [
+						{
+							"name": "Scythe",
+							"effects": [
+								{
+									"name": "22",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Strengthen Carapace",
+							"effects": [
+								{
+									"name": "Block 20",
+									"color": "BLOCK"
+								},
+								{
+									"name": "Strength 3",
+									"color": "BUFF"
+								}
+							]
+						},
+						{
+							"name": "Call Protector",
+							"effects": [
+								{
+									"name": "Summon Royal Protector",
+									"color": "SPECIAL"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 3,
+					"desc": "Starts with #wScythe. Afterwards equal chance of using each move, but always uses #wScythe if it hasn't been used in the last three moves, can't use #wCall #wProtector if there are 3 or more minions alive, can't use #wScythe or #wCall #wProtector three times in a row, and can't use #wStrengthen #wCarapace twice in a row.",
+					"hp": "(210 HP)",
+					"notes": "Innate #uPrimeval #uCall. Spawns with 1 #wRoyal #wProtector.",
+					"moves": [
+						{
+							"name": "Scythe",
+							"effects": [
+								{
+									"name": "24",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Strengthen Carapace",
+							"effects": [
+								{
+									"name": "Block 20",
+									"color": "BLOCK"
+								},
+								{
+									"name": "Strength 3",
+									"color": "BUFF"
+								}
+							]
+						},
+						{
+							"name": "Call Protector",
+							"effects": [
+								{
+									"name": "Summon Royal Protector",
+									"color": "SPECIAL"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 8,
+					"desc": "Starts with #wScythe. Afterwards equal chance of using each move, but always uses #wScythe if it hasn't been used in the last three moves, can't use #wCall #wProtector if there are 3 or more minions alive, can't use #wScythe or #wCall #wProtector three times in a row, and can't use #wStrengthen #wCarapace twice in a row.",
+					"hp": "(230 HP)",
+					"notes": "Innate #uPrimeval #uCall. Spawns with 1 #wRoyal #wProtector.",
+					"moves": [
+						{
+							"name": "Scythe",
+							"effects": [
+								{
+									"name": "24",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Strengthen Carapace",
+							"effects": [
+								{
+									"name": "Block 25",
+									"color": "BLOCK"
+								},
+								{
+									"name": "Strength 3",
+									"color": "BUFF"
+								}
+							]
+						},
+						{
+							"name": "Call Protector",
+							"effects": [
+								{
+									"name": "Summon Royal Protector",
+									"color": "SPECIAL"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 18,
+					"desc": "Starts with #wScythe. Afterwards equal chance of using each move, but always uses #wScythe if it hasn't been used in the last three moves, can't use #wCall #wProtector if there are 3 or more minions alive, can't use #wScythe or #wCall #wProtector three times in a row, and can't use #wStrengthen #wCarapace twice in a row.",
+					"hp": "(230 HP)",
+					"notes": "Innate #uPrimeval #uCall. Spawns with 2 #wRoyal #wProtectors.",
+					"moves": [
+						{
+							"name": "Scythe",
+							"effects": [
+								{
+									"name": "24",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Strengthen Carapace",
+							"effects": [
+								{
+									"name": "Block 25",
+									"color": "BLOCK"
+								},
+								{
+									"name": "Strength 6",
+									"color": "BUFF"
+								}
+							]
+						},
+						{
+							"name": "Call Protector",
+							"effects": [
+								{
+									"name": "Summon Royal Protector",
+									"color": "SPECIAL"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Royal Protector",
+			"id": "${ModID}:RoyalProtector",
+			"ai": [
+				{
+					"min_asc": 0,
+					"desc": "Uses #wCarapace -> #wBurning #wSpit -> #wAcid #wExplosion -> #wFor #wthe #wQueen.",
+					"hp": "(31 - 35 HP)",
+					"notes": "Burn status cards go into the discard pile.",
+					"moves": [
+						{
+							"name": "Carapace",
+							"effects": [
+								{
+									"name": "Block 2",
+									"color": "BLOCK"
+								}
+							]
+						},
+						{
+							"name": "Burning Spit",
+							"effects": [
+								{
+									"name": "7",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Burn 1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Burning Spit",
+							"effects": [
+								{
+									"name": "22",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "For the Queen",
+							"effects": [
+								{
+									"name": "2",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Weak 1",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Frail 1",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 3,
+					"desc": "Uses #wCarapace -> #wBurning #wSpit -> #wAcid #wExplosion -> #wFor #wthe #wQueen.",
+					"hp": "(31 - 35 HP)",
+					"notes": "Burn status cards go into the discard pile.",
+					"moves": [
+						{
+							"name": "Carapace",
+							"effects": [
+								{
+									"name": "Block 2",
+									"color": "BLOCK"
+								}
+							]
+						},
+						{
+							"name": "Burning Spit",
+							"effects": [
+								{
+									"name": "8",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Burn 1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Burning Spit",
+							"effects": [
+								{
+									"name": "25",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "For the Queen",
+							"effects": [
+								{
+									"name": "3",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Weak 1",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Frail 1",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 8,
+					"desc": "Uses #wCarapace -> #wBurning #wSpit -> #wAcid #wExplosion -> #wFor #wthe #wQueen.",
+					"hp": "(33 - 37 HP)",
+					"notes": "Burn status cards go into the discard pile.",
+					"moves": [
+						{
+							"name": "Carapace",
+							"effects": [
+								{
+									"name": "Block 2",
+									"color": "BLOCK"
+								}
+							]
+						},
+						{
+							"name": "Burning Spit",
+							"effects": [
+								{
+									"name": "8",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Burn 1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Burning Spit",
+							"effects": [
+								{
+									"name": "25",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "For the Queen",
+							"effects": [
+								{
+									"name": "3",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Weak 1",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Frail 1",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 18,
+					"desc": "Uses #wCarapace -> #wBurning #wSpit -> #wAcid #wExplosion -> #wFor #wthe #wQueen.",
+					"hp": "(33 - 37 HP)",
+					"notes": "Burn status cards go into the draw pile.",
+					"moves": [
+						{
+							"name": "Carapace",
+							"effects": [
+								{
+									"name": "Block 5",
+									"color": "BLOCK"
+								}
+							]
+						},
+						{
+							"name": "Burning Spit",
+							"effects": [
+								{
+									"name": "8",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Burn 1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Burning Spit",
+							"effects": [
+								{
+									"name": "25",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "For the Queen",
+							"effects": [
+								{
+									"name": "3",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Weak 2",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Frail 2",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				}
+			]
 		}
 	]
 }
