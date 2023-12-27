@@ -221,14 +221,4 @@ public class InvasionZone extends AbstractZone implements EncounterModifyingZone
             new ZoneEncounter(ElementalPortal.ID, 1, () -> new ElementalPortal(150.0F, 0.0F))
         );
     }
-
-    @Override
-    public List<AbstractMonster> getAdditionalMonsters() {
-        if (AbstractDungeon.getCurrRoom() instanceof MonsterRoomElite) {
-            // It's best to stick to adding only one additional enemy like this example, because the positioning
-            // logic isn't perfect and there's only so much space on the screen.
-            return Collections.singletonList(new LouseNormal(0.0f, 0.0f));
-        }
-        return null;
-    }
 }
