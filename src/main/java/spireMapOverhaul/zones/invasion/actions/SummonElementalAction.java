@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.powers.MinionPower;
 import com.megacrit.cardcrawl.powers.SlowPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import spireMapOverhaul.zones.invasion.InvasionZone;
+import spireMapOverhaul.zones.invasion.InvasionUtil;
 import spireMapOverhaul.zones.invasion.powers.DurableMinionPower;
 
 public class SummonElementalAction extends AbstractGameAction {
@@ -35,7 +35,7 @@ public class SummonElementalAction extends AbstractGameAction {
         this.duration = this.startDuration;
         this.strength = strength;
         this.block = block;
-        this.m = InvasionZone.getElemental(elementalID, x, y);
+        this.m = InvasionUtil.getElemental(elementalID, x, y);
         if (!firstTurn) {
             for (AbstractRelic r : AbstractDungeon.player.relics) {
                 r.onSpawnMonster(this.m);

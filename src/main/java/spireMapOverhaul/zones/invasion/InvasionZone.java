@@ -3,10 +3,6 @@ package spireMapOverhaul.zones.invasion;
 import basemod.BaseMod;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.colorless.Apotheosis;
-import com.megacrit.cardcrawl.cards.colorless.MasterOfStrategy;
-import com.megacrit.cardcrawl.cards.colorless.Mayhem;
-import com.megacrit.cardcrawl.cards.colorless.SecretTechnique;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
@@ -15,14 +11,12 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
-import com.megacrit.cardcrawl.rooms.ShopRoom;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
-import spireMapOverhaul.util.ActUtil;
 import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
 import spireMapOverhaul.zoneInterfaces.RewardModifyingZone;
 import spireMapOverhaul.zoneInterfaces.ShopModifyingZone;
-import spireMapOverhaul.zones.invasion.cards.*;
+import spireMapOverhaul.zones.invasion.cards.HandOfTheAbyss;
 import spireMapOverhaul.zones.invasion.monsters.*;
 
 import java.util.ArrayList;
@@ -89,7 +83,7 @@ public class InvasionZone extends AbstractZone implements EncounterModifyingZone
         for (int i = 0; i < rewards.size(); i++) {
             if (rewards.get(i).type == RewardItem.RewardType.RELIC) {
                 RewardItem rewardItem = new RewardItem();
-                rewardItem.cards = getRewardCards();
+                rewardItem.cards = InvasionUtil.getRewardCards();
                 for (AbstractRelic r : AbstractDungeon.player.relics) {
                     for (AbstractCard c : rewardItem.cards) {
                         r.onPreviewObtainCard(c);
@@ -100,67 +94,11 @@ public class InvasionZone extends AbstractZone implements EncounterModifyingZone
         }
     }
 
-    private static List<AbstractCard> getSpells() {
-        return Arrays.asList(
-                new DarkRitual(),
-                new Foresee(),
-                new Languish(),
-                new LightningBolt(),
-                new LightningHelix(),
-                new MirarisWake(),
-                new Staggershock(),
-                new SteelWall(),
-                new WallOfBlossoms()
-        );
-    }
-
-    private static List<AbstractCard> getBlades() {
-        return Arrays.asList(
-                new EarthblessedBlade(),
-                new FireblessedBlade(),
-                new IceblessedBlade(),
-                new VoidblessedBlade(),
-                new WindblessedBlade()
-        );
-    }
-
-    private static ArrayList<AbstractCard> getRewardCards() {
-        List<AbstractCard> spells = getSpells();
-        List<AbstractCard> blades = getBlades();
-        ArrayList<AbstractCard> cards = new ArrayList<>();
-        switch (ActUtil.getRealActNum()) {
-            case 1:
-                cards.addAll(spells);
-                break;
-            case 2:
-                cards.addAll(blades);
-                break;
-            case 3:
-                cards.add(new Apotheosis());
-                cards.add(new MasterOfStrategy());
-                cards.add(new Mayhem());
-                cards.add(new SecretTechnique());
-                cards.add(new HandOfTheAbyss());
-                cards.add(spells.get(AbstractDungeon.cardRng.random(spells.size() - 1)));
-                cards.add(blades.get(AbstractDungeon.cardRng.random(blades.size() - 1)));
-                break;
-        }
-
-        int numCards = 3;
-        for (AbstractRelic r : AbstractDungeon.player.relics) {
-            numCards = r.changeNumberOfCardsInReward(numCards);
-        }
-        numCards = Math.min(numCards, cards.size());
-
-        Collections.shuffle(cards, new java.util.Random(AbstractDungeon.cardRng.randomLong()));
-        return new ArrayList<>(cards.subList(0, numCards));
-    }
-
     @Override
     public void postCreateShopCards(ArrayList<AbstractCard> coloredCards, ArrayList<AbstractCard> colorlessCards) {
         ArrayList<AbstractCard> cards = new ArrayList<>();
-        cards.addAll(getSpells());
-        cards.addAll(getBlades());
+        cards.addAll(InvasionUtil.getSpells());
+        cards.addAll(InvasionUtil.getBlades());
         cards.add(new HandOfTheAbyss());
         Collections.shuffle(cards, new java.util.Random(AbstractDungeon.merchantRng.randomLong()));
         colorlessCards.set(0, cards.get(0));
@@ -184,7 +122,7 @@ public class InvasionZone extends AbstractZone implements EncounterModifyingZone
                     new DreadMoth(200.0F, 125.0F),
                 })),
             new ZoneEncounter(VoidBeast.ID, 2, () -> new VoidBeast(0.0f, 0.0f)),
-            new ZoneEncounter(THREE_ELEMENTALS, 2, () -> new MonsterGroup(generateElementalGroup())),
+            new ZoneEncounter(THREE_ELEMENTALS, 2, () -> new MonsterGroup(InvasionUtil.generateElementalGroup())),
             new ZoneEncounter(VOID_CORRUPTION_AND_ORB_OF_FIRE, 2,  () -> new MonsterGroup(
                 new AbstractMonster[] {
                     new OrbOfFire(-350.0F, 125.0F),
@@ -204,40 +142,6 @@ public class InvasionZone extends AbstractZone implements EncounterModifyingZone
                     new CroakingSeer(150.0F, 0.0F)
                 }))
         );
-    }
-
-    private static AbstractMonster[] generateElementalGroup() {
-        float[] groupPositions = {-450.0F, -200.0F, 50.0F};
-        ArrayList<String> monstersList = new ArrayList<>();
-        monstersList.add(OrbOfFire.ID);
-        monstersList.add(LivingStormcloud.ID);
-        monstersList.add(OpulentOffering.ID);
-        monstersList.add(ShimmeringMirage.ID);
-        Collections.shuffle(monstersList, new java.util.Random(AbstractDungeon.monsterRng.randomLong()));
-
-        AbstractMonster[] monsters = new AbstractMonster[3];
-        for (int i = 0; i < 3; i++) {
-            monsters[i] = getElemental(monstersList.get(i), groupPositions[i], 125.0F);
-        }
-
-        return monsters;
-    }
-
-    public static AbstractMonster getElemental(String elementalID, float x, float y) {
-        if (elementalID.equals(OrbOfFire.ID)) {
-            return new OrbOfFire(x, y);
-        }
-        if (elementalID.equals(LivingStormcloud.ID)) {
-            return new LivingStormcloud(x, y);
-        }
-        if (elementalID.equals(OpulentOffering.ID)) {
-            return new OpulentOffering(x, y);
-        }
-        if (elementalID.equals(ShimmeringMirage.ID)) {
-            return new ShimmeringMirage(x, y);
-        }
-        SpireAnniversary6Mod.logger.warn("Didn't match any elemental. ElementalID:" + elementalID);
-        return new OrbOfFire(x, y);
     }
 
     @Override
