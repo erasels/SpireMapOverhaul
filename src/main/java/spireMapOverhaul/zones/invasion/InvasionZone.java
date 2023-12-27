@@ -74,7 +74,7 @@ public class InvasionZone extends AbstractZone implements EncounterModifyingZone
     @Override
     public void modifyReward(RewardItem rewardItem) {
         if (AbstractDungeon.getCurrRoom().eliteTrigger && rewardItem.type == RewardItem.RewardType.GOLD) {
-            rewardItem.goldAmt += ELITE_EXTRA_GOLD;
+            rewardItem.incrementGold(ELITE_EXTRA_GOLD);
         }
     }
 
