@@ -37,6 +37,7 @@ public class InvasionZone extends AbstractZone implements EncounterModifyingZone
     private static final String THREE_ELEMENTALS = SpireAnniversary6Mod.makeID("THREE_ELEMENTALS");
     private static final String VOID_CORRUPTION_AND_ORB_OF_FIRE = SpireAnniversary6Mod.makeID("VOID_CORRUPTION_AND_ORB_OF_FIRE");
     private static final String THREE_HATCHLINGS = SpireAnniversary6Mod.makeID("THREE_HATCHLINGS");
+    private static final String CROAKING_TRIO = SpireAnniversary6Mod.makeID("CROAKING_TRIO");
 
     private static final int ELITE_EXTRA_GOLD = 100;
 
@@ -152,28 +153,34 @@ public class InvasionZone extends AbstractZone implements EncounterModifyingZone
             new ZoneEncounter(Hexasnake.ID, 1, () -> new Hexasnake(0.0f, 0.0f)),
             new ZoneEncounter(STYGIAN_BOAR_AND_WHISPERING_WRAITH, 1, () -> new MonsterGroup(
                 new AbstractMonster[] {
-                        new WhisperingWraith(-350.0F, 0.0F),
-                        new StygianBoar(0.0F, 0.0F)
+                    new WhisperingWraith(-350.0F, 0.0F),
+                    new StygianBoar(0.0F, 0.0F)
                 })),
             new ZoneEncounter(DREAD_MOTH_AND_GRAFTED_WORMS, 1, () -> new MonsterGroup(
                 new AbstractMonster[] {
-                        new GraftedWorm(-550.0F, 0.0F),
-                        new GraftedWorm(-300.0F, 0.0F),
-                        new GraftedWorm(-50.0F, 0.0F),
-                        new DreadMoth(200.0F, 125.0F),
+                    new GraftedWorm(-550.0F, 0.0F),
+                    new GraftedWorm(-300.0F, 0.0F),
+                    new GraftedWorm(-50.0F, 0.0F),
+                    new DreadMoth(200.0F, 125.0F),
                 })),
             new ZoneEncounter(VoidBeast.ID, 2, () -> new VoidBeast(0.0f, 0.0f)),
             new ZoneEncounter(THREE_ELEMENTALS, 2, () -> new MonsterGroup(generateElementalGroup())),
             new ZoneEncounter(VOID_CORRUPTION_AND_ORB_OF_FIRE, 2,  () -> new MonsterGroup(
                 new AbstractMonster[] {
-                        new OrbOfFire(-350.0F, 125.0F),
-                        new VoidCorruption(0.0F, 0.0F)
+                    new OrbOfFire(-350.0F, 125.0F),
+                    new VoidCorruption(0.0F, 0.0F)
                 })),
             new ZoneEncounter(THREE_HATCHLINGS, 3, () -> new MonsterGroup(
                 new AbstractMonster[] {
-                        new Hatchling(-450.0F, 10.0F, false),
-                        new Hatchling(-150.0F, -30.0F, false),
-                        new Hatchling(150.0F, 20.0F, false)
+                    new Hatchling(-450.0F, 10.0F, false),
+                    new Hatchling(-150.0F, -30.0F, false),
+                    new Hatchling(150.0F, 20.0F, false)
+                })),
+            new ZoneEncounter(CROAKING_TRIO, 3, () -> new MonsterGroup(
+                new AbstractMonster[] {
+                    new CroakingBrute(-450.0F, 0.0F),
+                    new CroakingPelter(-150.0F, 0.0F),
+                    new CroakingSeer(150.0F, 0.0F)
                 }))
         );
     }
