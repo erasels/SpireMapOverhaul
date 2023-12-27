@@ -4,16 +4,14 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
 import spireMapOverhaul.SpireAnniversary6Mod;
-import spireMapOverhaul.abstracts.AbstractSMOCard;
 
-public class LightningBolt extends AbstractSMOCard {
+public class LightningBolt extends AbstractInvasionZoneRewardCard {
     public static final String ID = SpireAnniversary6Mod.makeID("LightningBolt");
     private static final int COST = 1;
     private static final int DAMAGE = 11;

@@ -9,9 +9,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.GainStrengthPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import spireMapOverhaul.SpireAnniversary6Mod;
-import spireMapOverhaul.abstracts.AbstractSMOCard;
 
-public class Languish extends AbstractSMOCard {
+public class Languish extends AbstractInvasionZoneRewardCard {
     public static final String ID = SpireAnniversary6Mod.makeID("Languish");
     private static final int COST = 0;
     private static final int EFFECT = 4;

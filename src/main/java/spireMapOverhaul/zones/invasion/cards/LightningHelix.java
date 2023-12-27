@@ -11,9 +11,8 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
 import spireMapOverhaul.SpireAnniversary6Mod;
-import spireMapOverhaul.abstracts.AbstractSMOCard;
 
-public class LightningHelix extends AbstractSMOCard {
+public class LightningHelix extends AbstractInvasionZoneRewardCard {
     public static final String ID = SpireAnniversary6Mod.makeID("LightningHelix");
     private static final int COST = 0;
     private static final int DAMAGE = 3;

@@ -11,9 +11,8 @@ import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.powers.FocusPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import spireMapOverhaul.SpireAnniversary6Mod;
-import spireMapOverhaul.abstracts.AbstractSMOCard;
 
-public class FireblessedBlade extends AbstractSMOCard {
+public class FireblessedBlade extends AbstractInvasionZoneRewardCard {
     public static final String ID = SpireAnniversary6Mod.makeID("FireblessedBlade");
     private static final int COST = 1;
     private static final int BASE_DAMAGE = 12;

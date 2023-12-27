@@ -6,10 +6,9 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import spireMapOverhaul.SpireAnniversary6Mod;
-import spireMapOverhaul.abstracts.AbstractSMOCard;
 import spireMapOverhaul.zones.invasion.powers.MirarisWakePower;
 
-public class MirarisWake extends AbstractSMOCard {
+public class MirarisWake extends AbstractInvasionZoneRewardCard {
     public static final String ID = SpireAnniversary6Mod.makeID("MirarisWake");
     private static final int COST = 3;
     private static final int STATS = 1;

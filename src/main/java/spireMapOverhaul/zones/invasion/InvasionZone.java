@@ -10,18 +10,18 @@ import com.megacrit.cardcrawl.cards.colorless.SecretTechnique;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
-import com.megacrit.cardcrawl.monsters.exordium.LouseNormal;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
+import com.megacrit.cardcrawl.rooms.ShopRoom;
 import spireMapOverhaul.SpireAnniversary6Mod;
-import spireMapOverhaul.abstracts.AbstractSMOCard;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.util.ActUtil;
 import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
 import spireMapOverhaul.zoneInterfaces.RewardModifyingZone;
+import spireMapOverhaul.zoneInterfaces.ShopModifyingZone;
 import spireMapOverhaul.zones.invasion.cards.*;
 import spireMapOverhaul.zones.invasion.monsters.*;
 
@@ -30,7 +30,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class InvasionZone extends AbstractZone implements EncounterModifyingZone, RewardModifyingZone {
+public class InvasionZone extends AbstractZone implements EncounterModifyingZone, RewardModifyingZone, ShopModifyingZone {
     public static final String ID = "Invasion";
     private static final String STYGIAN_BOAR_AND_WHISPERING_WRAITH = SpireAnniversary6Mod.makeID("STYGIAN_BOAR_AND_WHISPERING_WRAITH");
     private static final String DREAD_MOTH_AND_GRAFTED_WORMS = SpireAnniversary6Mod.makeID("DREAD_MOTH_AND_GRAFTED_WORMS");
@@ -74,6 +74,7 @@ public class InvasionZone extends AbstractZone implements EncounterModifyingZone
     public void distributeRooms(Random rng, ArrayList<AbstractRoom> roomList) {
         //Guarantee at least one elite
         placeRoomRandomly(rng, roomOrDefault(roomList, (room)->room instanceof MonsterRoomElite, MonsterRoomElite::new));
+
     }
 
     @Override
@@ -99,25 +100,33 @@ public class InvasionZone extends AbstractZone implements EncounterModifyingZone
         }
     }
 
+    private static List<AbstractCard> getSpells() {
+        return Arrays.asList(
+                new DarkRitual(),
+                new Foresee(),
+                new Languish(),
+                new LightningBolt(),
+                new LightningHelix(),
+                new MirarisWake(),
+                new Staggershock(),
+                new SteelWall(),
+                new WallOfBlossoms()
+        );
+    }
+
+    private static List<AbstractCard> getBlades() {
+        return Arrays.asList(
+                new EarthblessedBlade(),
+                new FireblessedBlade(),
+                new IceblessedBlade(),
+                new VoidblessedBlade(),
+                new WindblessedBlade()
+        );
+    }
+
     private static ArrayList<AbstractCard> getRewardCards() {
-        List<AbstractCard> spells = Arrays.asList(
-            new DarkRitual(),
-            new Foresee(),
-            new Languish(),
-            new LightningBolt(),
-            new LightningHelix(),
-            new MirarisWake(),
-            new Staggershock(),
-            new SteelWall(),
-            new WallOfBlossoms()
-        );
-        List<AbstractCard> blades = Arrays.asList(
-            new EarthblessedBlade(),
-            new FireblessedBlade(),
-            new IceblessedBlade(),
-            new VoidblessedBlade(),
-            new WindblessedBlade()
-        );
+        List<AbstractCard> spells = getSpells();
+        List<AbstractCard> blades = getBlades();
         ArrayList<AbstractCard> cards = new ArrayList<>();
         switch (ActUtil.getRealActNum()) {
             case 1:
@@ -145,6 +154,17 @@ public class InvasionZone extends AbstractZone implements EncounterModifyingZone
 
         Collections.shuffle(cards, new java.util.Random(AbstractDungeon.cardRng.randomLong()));
         return new ArrayList<>(cards.subList(0, numCards));
+    }
+
+    @Override
+    public void postCreateShopCards(ArrayList<AbstractCard> coloredCards, ArrayList<AbstractCard> colorlessCards) {
+        ArrayList<AbstractCard> cards = new ArrayList<>();
+        cards.addAll(getSpells());
+        cards.addAll(getBlades());
+        cards.add(new HandOfTheAbyss());
+        Collections.shuffle(cards, new java.util.Random(AbstractDungeon.merchantRng.randomLong()));
+        colorlessCards.set(0, cards.get(0));
+        colorlessCards.set(1, cards.get(1));
     }
 
     @Override

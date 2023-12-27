@@ -4,10 +4,9 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import spireMapOverhaul.SpireAnniversary6Mod;
-import spireMapOverhaul.abstracts.AbstractSMOCard;
 import spireMapOverhaul.zones.invasion.powers.HandOfTheAbyssPower;
 
-public class HandOfTheAbyss extends AbstractSMOCard {
+public class HandOfTheAbyss extends AbstractInvasionZoneRewardCard {
     public static final String ID = SpireAnniversary6Mod.makeID("HandOfTheAbyss");
     private static final int COST = 1;
     private static final int AMOUNT = 2;

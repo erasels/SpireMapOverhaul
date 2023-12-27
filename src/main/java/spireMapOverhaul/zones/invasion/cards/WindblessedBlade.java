@@ -9,9 +9,8 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import spireMapOverhaul.SpireAnniversary6Mod;
-import spireMapOverhaul.abstracts.AbstractSMOCard;
 
-public class WindblessedBlade extends AbstractSMOCard {
+public class WindblessedBlade extends AbstractInvasionZoneRewardCard {
     public static final String ID = SpireAnniversary6Mod.makeID("WindblessedBlade");
     private static final int COST = 1;
     private static final int BASE_DAMAGE = 4;
