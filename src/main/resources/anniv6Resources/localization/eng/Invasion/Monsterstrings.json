@@ -118,5 +118,13 @@
       "Void Volley"
     ],
     "NAME": "Void Corruption"
+  },
+  "${ModID}:VoidBeast": {
+    "MOVES": [
+      "Corrupting Bite",
+      "Void Gaze",
+      "Shadow Claw"
+    ],
+    "NAME": "Void Beast"
   }
 }

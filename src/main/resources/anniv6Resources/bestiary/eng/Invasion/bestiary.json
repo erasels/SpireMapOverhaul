@@ -2677,6 +2677,200 @@
 					]
 				}
 			]
+		},
+		{
+			"name": "Void Beast",
+			"id": "${ModID}:VoidBeast",
+			"ai": [
+				{
+					"min_asc": 0,
+					"desc": "Starts with #wCorrupting #wBite, then #wVoid #wGaze, then #wShadow #wClaw. Afterwards 60-40 split between #wCorrupting #wBite and #wShadow #wClaw, but can't use either move three times in a row.",
+					"hp": "(110 - 116 HP)",
+					"notes": "Starts with #uVoid #uPressure 2 applied to the player. Dazed status cards from #wCorrupting #wBite go on top of the draw pile. Dazed status cards from #wVoid #wGaze go into the discard pile.",
+					"moves": [
+						{
+							"name": "Corrupting Bite",
+							"effects": [
+								{
+									"name": "8",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Dazed 2",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Player Draw 2",
+									"color": "BUFF"
+								}
+							]
+						},
+						{
+							"name": "Void Gaze",
+							"effects": [
+								{
+									"name": "Frail 2",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Dazed 2",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Shadow Claw",
+							"effects": [
+								{
+									"name": "6x2",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 2,
+					"desc": "Starts with #wCorrupting #wBite, then #wVoid #wGaze, then #wShadow #wClaw. Afterwards 60-40 split between #wCorrupting #wBite and #wShadow #wClaw, but can't use either move three times in a row.",
+					"hp": "(110 - 116 HP)",
+					"notes": "Starts with #uVoid #uPressure 2 applied to the player. Dazed status cards from #wCorrupting #wBite go on top of the draw pile. Dazed status cards from #wVoid #wGaze go into the discard pile.",
+					"moves": [
+						{
+							"name": "Corrupting Bite",
+							"effects": [
+								{
+									"name": "10",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Dazed 2",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Player Draw 2",
+									"color": "BUFF"
+								}
+							]
+						},
+						{
+							"name": "Void Gaze",
+							"effects": [
+								{
+									"name": "Frail 2",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Dazed 2",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Shadow Claw",
+							"effects": [
+								{
+									"name": "7x2",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 7,
+					"desc": "Starts with #wCorrupting #wBite, then #wVoid #wGaze, then #wShadow #wClaw. Afterwards 60-40 split between #wCorrupting #wBite and #wShadow #wClaw, but can't use either move three times in a row.",
+					"hp": "(116 - 122 HP)",
+					"notes": "Starts with #uVoid #uPressure 2 applied to the player. Dazed status cards from #wCorrupting #wBite go on top of the draw pile. Dazed status cards from #wVoid #wGaze go into the discard pile.",
+					"moves": [
+						{
+							"name": "Corrupting Bite",
+							"effects": [
+								{
+									"name": "10",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Dazed 2",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Player Draw 2",
+									"color": "BUFF"
+								}
+							]
+						},
+						{
+							"name": "Void Gaze",
+							"effects": [
+								{
+									"name": "Frail 2",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Dazed 2",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Shadow Claw",
+							"effects": [
+								{
+									"name": "7x2",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 17,
+					"desc": "Starts with #wCorrupting #wBite, then #wVoid #wGaze, then #wShadow #wClaw. Afterwards 60-40 split between #wCorrupting #wBite and #wShadow #wClaw, but can't use either move three times in a row.",
+					"hp": "(116 - 122 HP)",
+					"notes": "Starts with #uVoid #uPressure 3 applied to the player. Dazed status cards from #wCorrupting #wBite go on top of the draw pile. Dazed status cards from #wVoid #wGaze go into the discard pile.",
+					"moves": [
+						{
+							"name": "Corrupting Bite",
+							"effects": [
+								{
+									"name": "10",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Dazed 2",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Player Draw 2",
+									"color": "BUFF"
+								}
+							]
+						},
+						{
+							"name": "Void Gaze",
+							"effects": [
+								{
+									"name": "Frail 3",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Dazed 3",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Shadow Claw",
+							"effects": [
+								{
+									"name": "7x2",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				}
+			]
 		}
 	]
 }

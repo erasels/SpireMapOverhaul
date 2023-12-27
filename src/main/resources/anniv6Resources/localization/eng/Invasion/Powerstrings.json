@@ -70,5 +70,9 @@
       " additional cards.",
       " less cards."
     ]
+  },
+  "${ModID}:VoidPressure": {
+    "NAME": "Void Pressure",
+    "DESCRIPTIONS": ["#pUncleansable. Whenever a card is #yExhausted or you play a power, take #b{0} damage. Exhaust a random card in your hand that isn't a Status, a Curse, or Ethereal at the end of your turn."]
   }
 }

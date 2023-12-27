@@ -16,7 +16,7 @@ public class SerpentsGazePower extends AbstractSMOPower {
     private int counter;
 
     public SerpentsGazePower(AbstractCreature owner, int amount) {
-        super(POWER_ID, NAME, PowerType.DEBUFF,false, owner, amount);
+        super(POWER_ID, NAME, PowerType.DEBUFF, false, owner, amount);
         this.counter = 0;
     }
 

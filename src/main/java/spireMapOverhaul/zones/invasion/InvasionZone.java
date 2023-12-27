@@ -1,5 +1,6 @@
 package spireMapOverhaul.zones.invasion;
 
+import basemod.BaseMod;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -77,6 +78,7 @@ public class InvasionZone extends AbstractZone implements EncounterModifyingZone
                         new GraftedWorm(-50.0F, 0.0F),
                         new DreadMoth(200.0F, 125.0F),
                 })),
+            new ZoneEncounter(VoidBeast.ID, 2, () -> new VoidBeast(0.0f, 0.0f)),
             new ZoneEncounter(THREE_ELEMENTALS, 2, () -> new MonsterGroup(generateElementalGroup())),
             new ZoneEncounter(VOID_CORRUPTION_AND_ORB_OF_FIRE, 2,  () -> new MonsterGroup(
                 new AbstractMonster[] {
