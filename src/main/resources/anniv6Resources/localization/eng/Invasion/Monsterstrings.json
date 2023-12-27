@@ -92,5 +92,21 @@
     ],
     "NAME": "Croaking Seer",
     "DIALOG": ["*croak*"]
+  },
+  "${ModID}:Hydra": {
+    "MOVES": [
+      "Tail Whip",
+      "Swipe",
+      "Ravenous Hunger"
+    ],
+    "NAME": "Hydra"
+  },
+  "${ModID}:VoidReaper": {
+    "MOVES": [
+      "Cut the Future",
+      "Reap",
+      "Scythe Dance"
+    ],
+    "NAME": "Void Reaper"
   }
 }

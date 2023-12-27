@@ -1,0 +1,19 @@
+{
+  "${ModID}:GildedStrike": {
+    "NAME": "Gilded Strike",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Vulnerable."
+  },
+  "${ModID}:GildedDefend": {
+    "NAME": "Gilded Defend",
+    "DESCRIPTION": "Gain !B! Block. NL Lose !M! Dexterity."
+  },
+  "${ModID}:GildedEssence": {
+    "NAME": "Gilded Essence",
+    "DESCRIPTION": "Gain !M! *Plated *Armor."
+  },
+  "${ModID}:Necropotence": {
+    "NAME": "Necropotence",
+    "DESCRIPTION": "Retain. NL Draw !M! card. NL Lose 1 HP. NL Return this card to your hand.",
+    "UPGRADE_DESCRIPTION": "Retain. NL Draw !M! cards. NL Lose 1 HP. NL Return this card to your hand."
+  }
+}

@@ -4,15 +4,10 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
-import com.megacrit.cardcrawl.monsters.beyond.GiantHead;
-import com.megacrit.cardcrawl.monsters.beyond.Nemesis;
-import com.megacrit.cardcrawl.monsters.beyond.Reptomancer;
-import com.megacrit.cardcrawl.monsters.city.BookOfStabbing;
 import com.megacrit.cardcrawl.monsters.exordium.LouseNormal;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
-import org.graalvm.util.CollectionsUtil;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
@@ -27,7 +22,7 @@ public class InvasionZone extends AbstractZone implements EncounterModifyingZone
     public static final String ID = "Invasion";
     public static final String STYGIAN_BOAR_AND_WHISPERING_WRAITH = SpireAnniversary6Mod.makeID("STYGIAN_BOAR_AND_WHISPERING_WRAITH");
     public static final String DREAD_MOTH_AND_GRAFTED_WORMS = SpireAnniversary6Mod.makeID("DREAD_MOTH_AND_GRAFTED_WORMS");
-    public static final String THREE_ELEMENTS = SpireAnniversary6Mod.makeID("THREE_ELEMENTALS");
+    public static final String THREE_ELEMENTALS = SpireAnniversary6Mod.makeID("THREE_ELEMENTALS");
     public static final String THREE_HATCHLINGS = SpireAnniversary6Mod.makeID("THREE_HATCHLINGS");
 
     public InvasionZone() {
@@ -81,7 +76,7 @@ public class InvasionZone extends AbstractZone implements EncounterModifyingZone
                         new GraftedWorm(-50.0F, 0.0F),
                         new DreadMoth(200.0F, 125.0F),
                 })),
-            new ZoneEncounter(THREE_ELEMENTS, 2, () -> new MonsterGroup(generateElementalGroup())),
+            new ZoneEncounter(THREE_ELEMENTALS, 2, () -> new MonsterGroup(generateElementalGroup())),
             new ZoneEncounter(THREE_HATCHLINGS, 3, () -> new MonsterGroup(
                     new AbstractMonster[] {
                             new Hatchling(-450.0F, 10.0F, false),
@@ -127,12 +122,9 @@ public class InvasionZone extends AbstractZone implements EncounterModifyingZone
 
     @Override
     public List<ZoneEncounter> getEliteEncounters() {
-        // These are completely unreasonable for their acts, but this is just an example
         return Arrays.asList(
-            new ZoneEncounter(BookOfStabbing.ID, 1, BookOfStabbing::new),
-            new ZoneEncounter(Reptomancer.ID, 1, Reptomancer::new),
-            new ZoneEncounter(GiantHead.ID, 2, GiantHead::new),
-            new ZoneEncounter(Nemesis.ID, 2, Nemesis::new)
+            new ZoneEncounter(Hydra.ID, 1, () -> new Hydra(0.0f, 0.0f)),
+            new ZoneEncounter(VoidReaper.ID, 1, () -> new VoidReaper(0.0f, 0.0f))
         );
     }
 

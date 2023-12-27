@@ -10,19 +10,19 @@
     "NAME": "Leaf Spores",
     "DESCRIPTIONS": ["On death, applies #b{0} #yWeak and #b{0} #yFrail."]
   },
-  "Elementarium:Hover": {
+  "${ModID}:Hover": {
     "NAME": "Hover",
     "DESCRIPTIONS": ["Takes #b{0}% less damage from attacks."]
   },
-  "Elementarium:MidasAura": {
+  "${ModID}:MidasAura": {
     "NAME": "Midas Aura",
     "DESCRIPTIONS": ["When you play an upgraded attack, skill, or power, #yExhaust it and add a Gilded Strike, Gilded Defend, or Gilded Essence to your discard pile."]
   },
-  "Elementarium:GoldenBulwark": {
+  "${ModID}:GoldenBulwark": {
     "NAME": "Golden Bulwark",
     "DESCRIPTIONS": ["Gains #b1 block at the start of combat for every #b{0} gold you have (rounded up)."]
   },
-  "Elementarium:Cleanse": {
+  "${ModID}:Cleanse": {
     "NAME": "Cleanse",
     "DESCRIPTIONS": ["Reduce all debuffs by #b{0} at the end of each turn.", "Wears off after this turn."]
   },
@@ -37,5 +37,24 @@
   "${ModID}:Wary": {
     "NAME": "Wary",
     "DESCRIPTIONS": ["Whenever you play an #yAttack, gains #b{0} Strength."]
+  },
+  "${ModID}:HydraHeads": {
+    "NAME": "Hydra Heads",
+    "DESCRIPTIONS": ["Has #b1 #yStrength per head. When this enemy takes #b{0} or more damage from a single hit, loses a head. Regrows twice as many heads in two turns."]
+  },
+  "${ModID}:HydraHeadRegrowth": {
+    "NAME": "Head Regrowth",
+    "DESCRIPTIONS": ["Regrowing #b{0} heads in two turns."]
+  },
+  "${ModID}:DrawReductionSingleTurn": {
+    "NAME": "Draw Reduction",
+    "DESCRIPTIONS": ["Draw #b1 less card next turn.", "Draw #b{0} less cards next turn."]
+  },
+  "${ModID}:PermanentDrawReduction": {
+    "NAME": "Draw",
+    "DESCRIPTIONS": [
+      "At the start of your turn, draw #b{0} less card.",
+      "At the start of your turn, draw #b{0} less cards."
+    ]
   }
 }

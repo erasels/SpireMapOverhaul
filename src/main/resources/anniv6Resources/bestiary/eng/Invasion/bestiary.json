@@ -1008,7 +1008,7 @@
 		},
 		{
 			"name": "Orb of Fire",
-			"id": "Elementarium:OrbOfFire",
+			"id": "${ModID}:OrbOfFire",
 			"ai": [
 				{
 					"min_asc": 0,
@@ -1170,7 +1170,7 @@
 		},
 		{
 			"name": "Living Stormcloud",
-			"id": "Elementarium:LivingStormcloud",
+			"id": "${ModID}:LivingStormcloud",
 			"ai": [
 				{
 					"min_asc": 0,
@@ -1332,7 +1332,7 @@
 		},
 		{
 			"name": "Opulent Offering",
-			"id": "Elementarium:OpulentOffering",
+			"id": "${ModID}:OpulentOffering",
 			"ai": [
 				{
 					"min_asc": 0,
@@ -1546,7 +1546,7 @@
 		},
 		{
 			"name": "Shimmering Mirage",
-			"id": "Elementarium:ShimmeringMirage",
+			"id": "${ModID}:ShimmeringMirage",
 			"ai": [
 				{
 					"min_asc": 0,
@@ -2064,6 +2064,346 @@
 							"effects": [
 								{
 									"name": "Party Block 5",
+									"color": "BLOCK"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Hydra",
+			"id": "${ModID}:Hydra",
+			"ai": [
+				{
+					"min_asc": 0,
+					"desc": "Starts with #wTail #wWhip. Afterwards cycles #wRavenous #wHunger -> #wSwipe.",
+					"notes": "Innate #uStrength 4 and #uHydra #uHeads.",
+					"hp": "(94 - 97 HP)",
+					"moves": [
+						{
+							"name": "Tail Whip",
+							"effects": [
+								{
+									"name": "8",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Weak 1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Swipe",
+							"effects": [
+								{
+									"name": "9",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Ravenous Hunger",
+							"effects": [
+								{
+									"name": "0x5",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 3,
+					"desc": "Starts with #wTail #wWhip. Afterwards cycles #wRavenous #wHunger -> #wSwipe.",
+					"notes": "Innate #uStrength 5 and #uHydra #uHeads.",
+					"hp": "(94 - 97 HP)",
+					"moves": [
+						{
+							"name": "Tail Whip",
+							"effects": [
+								{
+									"name": "8",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Weak 1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Swipe",
+							"effects": [
+								{
+									"name": "9",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Ravenous Hunger",
+							"effects": [
+								{
+									"name": "0x5",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 8,
+					"desc": "Starts with #wTail #wWhip. Afterwards cycles #wRavenous #wHunger -> #wSwipe.",
+					"notes": "Innate #uStrength 5 and #uHydra #uHeads.",
+					"hp": "(96 - 99 HP)",
+					"moves": [
+						{
+							"name": "Tail Whip",
+							"effects": [
+								{
+									"name": "8",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Weak 1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Swipe",
+							"effects": [
+								{
+									"name": "9",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Ravenous Hunger",
+							"effects": [
+								{
+									"name": "0x5",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 18,
+					"desc": "Starts with #wTail #wWhip. Afterwards cycles #wRavenous #wHunger -> #wRavenous #wHunger -> #wSwipe.",
+					"notes": "Innate #uStrength 5 and #uHydra #uHeads.",
+					"hp": "(96 - 99 HP)",
+					"moves": [
+						{
+							"name": "Tail Whip",
+							"effects": [
+								{
+									"name": "8",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Weak 1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Swipe",
+							"effects": [
+								{
+									"name": "9",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Ravenous Hunger",
+							"effects": [
+								{
+									"name": "0x5",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Void Reaper",
+			"id": "${ModID}:VoidReaper",
+			"ai": [
+				{
+					"min_asc": 0,
+					"desc": "Cycles #wScythe #wDance -> #wCut #wthe #wFuture -> #wReap.",
+					"notes": "Puts a Necropotence card into your hand at the start of the fight. NL NL Each use of #wCut #wthe #wFuture after the first converts one draw reduction to permanent draw reduction.",
+					"hp": "(100 - 105 HP)",
+					"moves": [
+						{
+							"name": "Cut the Future",
+							"effects": [
+								{
+									"name": "14",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Draw Reduction 2",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Reap",
+							"effects": [
+								{
+									"name": "12",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Scythe Dance",
+							"effects": [
+								{
+									"name": "5x3",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Block 1",
+									"color": "BLOCK"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 3,
+					"desc": "Cycles #wScythe #wDance -> #wCut #wthe #wFuture -> #wReap.",
+					"notes": "Puts a Necropotence card into your hand at the start of the fight. NL NL Each use of #wCut #wthe #wFuture after the first converts one draw reduction to permanent draw reduction.",
+					"hp": "(100 - 105 HP)",
+					"moves": [
+						{
+							"name": "Cut the Future",
+							"effects": [
+								{
+									"name": "16",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Draw Reduction 2",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Reap",
+							"effects": [
+								{
+									"name": "14",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Scythe Dance",
+							"effects": [
+								{
+									"name": "6x3",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Block 1",
+									"color": "BLOCK"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 8,
+					"desc": "Cycles #wScythe #wDance -> #wCut #wthe #wFuture -> #wReap.",
+					"notes": "Puts a Necropotence card into your hand at the start of the fight. NL NL Each use of #wCut #wthe #wFuture after the first converts one draw reduction to permanent draw reduction.",
+					"hp": "(104 - 109 HP)",
+					"moves": [
+						{
+							"name": "Cut the Future",
+							"effects": [
+								{
+									"name": "16",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Draw Reduction 2",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Reap",
+							"effects": [
+								{
+									"name": "14",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Scythe Dance",
+							"effects": [
+								{
+									"name": "6x3",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Block 2",
+									"color": "BLOCK"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 18,
+					"desc": "Cycles #wCut #wthe #wFuture -> #wReap -> #wScythe #wDance.",
+					"notes": "Puts a Necropotence card into your hand at the start of the fight. NL NL Each use of #wCut #wthe #wFuture after the first converts one draw reduction to permanent draw reduction.",
+					"hp": "(104 - 109 HP)",
+					"moves": [
+						{
+							"name": "Cut the Future",
+							"effects": [
+								{
+									"name": "16",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Draw Reduction 2",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Reap",
+							"effects": [
+								{
+									"name": "14",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Scythe Dance",
+							"effects": [
+								{
+									"name": "6x3",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Block 2",
 									"color": "BLOCK"
 								}
 							]
