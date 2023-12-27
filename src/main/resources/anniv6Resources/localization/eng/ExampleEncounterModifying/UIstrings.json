@@ -1,8 +1,0 @@
-{
-  "${ModID}:ExampleEncounterModifying": {
-    "TEXT": [
-      "Example Encounter Modifying",
-      "An example zone that modifies encounters in various ways."
-    ]
-  }
-}
