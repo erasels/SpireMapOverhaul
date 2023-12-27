@@ -14,8 +14,7 @@ import com.megacrit.cardcrawl.powers.AngerPower;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractSMOMonster;
 
-public class StygianBoar extends AbstractSMOMonster
-{
+public class StygianBoar extends AbstractSMOMonster {
     public static final String ID = SpireAnniversary6Mod.makeID("StygianBoar");
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
     public static final String NAME = monsterStrings.NAME;;

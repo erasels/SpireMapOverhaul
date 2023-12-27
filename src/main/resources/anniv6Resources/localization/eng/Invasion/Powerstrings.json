@@ -94,5 +94,9 @@
   "${ModID}:HandOfTheAbyss": {
     "NAME": "Hand of the Abyss",
     "DESCRIPTIONS": ["Whenever you deal unblocked attack damage, apply #b{0} #yAbysstouched."]
+  },
+  "${ModID}:BrokenCrystalSeal": {
+    "NAME": "Broken Crystal Seal",
+    "DESCRIPTIONS": ["Add #b2 #yBroken #yCrystals to your draw pile each turn. NL Fragments of the crystal once used to seal this enemy litter the ground. Use them to weaken its regeneration!"]
   }
 }

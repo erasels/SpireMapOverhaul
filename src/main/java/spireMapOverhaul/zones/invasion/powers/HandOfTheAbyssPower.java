@@ -8,8 +8,6 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractSMOPower;
 
-import java.text.MessageFormat;
-
 public class HandOfTheAbyssPower extends AbstractSMOPower {
     public static final String POWER_ID = SpireAnniversary6Mod.makeID("HandOfTheAbyss");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
@@ -30,6 +28,6 @@ public class HandOfTheAbyssPower extends AbstractSMOPower {
 
     @Override
     public void updateDescription() {
-        this.description = MessageFormat.format(DESCRIPTIONS[0], this.amount);
+        this.description = DESCRIPTIONS[0].replace("{0}", this.amount + "");
     }
 }

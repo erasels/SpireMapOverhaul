@@ -170,6 +170,7 @@ public class InvasionZone extends AbstractZone implements EncounterModifyingZone
                     new OrbOfFire(-350.0F, 125.0F),
                     new VoidCorruption(0.0F, 0.0F)
                 })),
+            new ZoneEncounter(UnboundAbyssal.ID, 3, (BaseMod.GetMonster)UnboundAbyssal::new),
             new ZoneEncounter(THREE_HATCHLINGS, 3, () -> new MonsterGroup(
                 new AbstractMonster[] {
                     new Hatchling(-450.0F, 10.0F, false),

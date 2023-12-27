@@ -143,5 +143,14 @@
       "Elemental Blast"
     ],
     "NAME": "Elemental Portal"
+  },
+  "${ModID}:UnboundAbyssal": {
+    "MOVES": [
+      "Sludge",
+      "Won't Go Back",
+      "Tendrils"
+    ],
+    "NAME": "Unbound Abyssal",
+    "DIALOG": ["Won't... go... back...!"]
   }
 }

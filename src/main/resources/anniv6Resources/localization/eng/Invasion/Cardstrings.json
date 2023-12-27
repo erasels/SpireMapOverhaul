@@ -78,5 +78,9 @@
   "${ModID}:HandOfTheAbyss": {
     "NAME": "Hand of the Abyss",
     "DESCRIPTION": "Whenever an Attack deals unblocked damage, apply !M! ${ModID}:Abysstouched."
+  },
+  "${ModID}:BrokenCrystal": {
+    "NAME": "Broken Crystal",
+    "DESCRIPTION": "When you draw this, randomize its cost and draw a card. NL Reduce regeneration of ALL enemies by !M!. NL Exhaust."
   }
 }

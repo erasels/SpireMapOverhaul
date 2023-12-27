@@ -3295,6 +3295,172 @@
 					]
 				}
 			]
+		},
+		{
+			"name": "Unbound Abyssal",
+			"id": "${ModID}:UnboundAbyssal",
+			"ai": [
+				{
+					"min_asc": 0,
+					"desc": "Cycles #wSludge -> #wWon't #wGo #wBack -> #wTendrils.",
+					"hp": "(135 HP)",
+					"notes": "Innate #uRegenerate 45, #uBroken #uCrystal #uSeal 2. Slimed status cards go into the discard pile.",
+					"moves": [
+						{
+							"name": "Sludge",
+							"effects": [
+								{
+									"name": "13",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Slimed 2",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Won't Go Back",
+							"effects": [
+								{
+									"name": "Strength 4",
+									"color": "BUFF"
+								}
+							]
+						},
+						{
+							"name": "Tendrils",
+							"effects": [
+								{
+									"name": "4x2",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 2,
+					"desc": "Cycles #wSludge -> #wWon't #wGo #wBack -> #wTendrils.",
+					"hp": "(135 HP)",
+					"notes": "Innate #uRegenerate 45, #uBroken #uCrystal #uSeal 2. Slimed status cards go into the discard pile.",
+					"moves": [
+						{
+							"name": "Sludge",
+							"effects": [
+								{
+									"name": "15",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Slimed 2",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Won't Go Back",
+							"effects": [
+								{
+									"name": "Strength 4",
+									"color": "BUFF"
+								}
+							]
+						},
+						{
+							"name": "Tendrils",
+							"effects": [
+								{
+									"name": "5x2",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 7,
+					"desc": "Cycles #wSludge -> #wWon't #wGo #wBack -> #wTendrils.",
+					"hp": "(150 HP)",
+					"notes": "Innate #uRegenerate 45, #uBroken #uCrystal #uSeal 2. Slimed status cards go into the discard pile.",
+					"moves": [
+						{
+							"name": "Sludge",
+							"effects": [
+								{
+									"name": "15",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Slimed 2",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Won't Go Back",
+							"effects": [
+								{
+									"name": "Strength 4",
+									"color": "BUFF"
+								}
+							]
+						},
+						{
+							"name": "Tendrils",
+							"effects": [
+								{
+									"name": "5x2",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 17,
+					"desc": "Cycles #wSludge -> #wWon't #wGo #wBack -> #wTendrils.",
+					"hp": "(150 HP)",
+					"notes": "Innate #uRegenerate 60, #uBroken #uCrystal #uSeal 2. Slimed status cards go into the discard pile.",
+					"moves": [
+						{
+							"name": "Sludge",
+							"effects": [
+								{
+									"name": "15",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Slimed 2",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Won't Go Back",
+							"effects": [
+								{
+									"name": "12",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Strength 4",
+									"color": "BUFF"
+								}
+							]
+						},
+						{
+							"name": "Tendrils",
+							"effects": [
+								{
+									"name": "5x2",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				}
+			]
 		}
 	]
 }
