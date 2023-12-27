@@ -2,16 +2,27 @@ package spireMapOverhaul.zones.invasion;
 
 import basemod.BaseMod;
 import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.colorless.Apotheosis;
+import com.megacrit.cardcrawl.cards.colorless.MasterOfStrategy;
+import com.megacrit.cardcrawl.cards.colorless.Mayhem;
+import com.megacrit.cardcrawl.cards.colorless.SecretTechnique;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.monsters.exordium.LouseNormal;
 import com.megacrit.cardcrawl.random.Random;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
 import spireMapOverhaul.SpireAnniversary6Mod;
+import spireMapOverhaul.abstracts.AbstractSMOCard;
 import spireMapOverhaul.abstracts.AbstractZone;
+import spireMapOverhaul.util.ActUtil;
 import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
+import spireMapOverhaul.zoneInterfaces.RewardModifyingZone;
+import spireMapOverhaul.zones.invasion.cards.*;
 import spireMapOverhaul.zones.invasion.monsters.*;
 
 import java.util.ArrayList;
@@ -19,13 +30,15 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class InvasionZone extends AbstractZone implements EncounterModifyingZone {
+public class InvasionZone extends AbstractZone implements EncounterModifyingZone, RewardModifyingZone {
     public static final String ID = "Invasion";
     private static final String STYGIAN_BOAR_AND_WHISPERING_WRAITH = SpireAnniversary6Mod.makeID("STYGIAN_BOAR_AND_WHISPERING_WRAITH");
     private static final String DREAD_MOTH_AND_GRAFTED_WORMS = SpireAnniversary6Mod.makeID("DREAD_MOTH_AND_GRAFTED_WORMS");
     private static final String THREE_ELEMENTALS = SpireAnniversary6Mod.makeID("THREE_ELEMENTALS");
     private static final String VOID_CORRUPTION_AND_ORB_OF_FIRE = SpireAnniversary6Mod.makeID("VOID_CORRUPTION_AND_ORB_OF_FIRE");
     private static final String THREE_HATCHLINGS = SpireAnniversary6Mod.makeID("THREE_HATCHLINGS");
+
+    private static final int ELITE_EXTRA_GOLD = 100;
 
     public InvasionZone() {
         super(ID, Icons.MONSTER, Icons.ELITE, Icons.SHOP);
@@ -52,7 +65,7 @@ public class InvasionZone extends AbstractZone implements EncounterModifyingZone
     @Override
     protected boolean canIncludeEarlyRows() {
         //Since this zone always has an elite, we don't want it to show up in the rows of the act that never have elites
-        //It also has normal fights that are tuned as hard pool fights, so that's another reason
+        //It also has normal fights that are tuned as hard pool fights, so that's another reason to prevent early spawns
         return false;
     }
 
@@ -60,6 +73,77 @@ public class InvasionZone extends AbstractZone implements EncounterModifyingZone
     public void distributeRooms(Random rng, ArrayList<AbstractRoom> roomList) {
         //Guarantee at least one elite
         placeRoomRandomly(rng, roomOrDefault(roomList, (room)->room instanceof MonsterRoomElite, MonsterRoomElite::new));
+    }
+
+    @Override
+    public void modifyReward(RewardItem rewardItem) {
+        if (AbstractDungeon.getCurrRoom().eliteTrigger && rewardItem.type == RewardItem.RewardType.GOLD) {
+            rewardItem.goldAmt += ELITE_EXTRA_GOLD;
+        }
+    }
+
+    @Override
+    public void modifyRewards(ArrayList<RewardItem> rewards) {
+        for (int i = 0; i < rewards.size(); i++) {
+            if (rewards.get(i).type == RewardItem.RewardType.RELIC) {
+                RewardItem rewardItem = new RewardItem();
+                rewardItem.cards = getRewardCards();
+                for (AbstractRelic r : AbstractDungeon.player.relics) {
+                    for (AbstractCard c : rewardItem.cards) {
+                        r.onPreviewObtainCard(c);
+                    }
+                }
+                rewards.set(i, rewardItem);
+            }
+        }
+    }
+
+    private static ArrayList<AbstractCard> getRewardCards() {
+        List<AbstractCard> spells = Arrays.asList(
+            new DarkRitual(),
+            new Foresee(),
+            new Languish(),
+            new LightningBolt(),
+            new LightningHelix(),
+            new MirarisWake(),
+            new Staggershock(),
+            new SteelWall(),
+            new WallOfBlossoms()
+        );
+        List<AbstractCard> blades = Arrays.asList(
+            new EarthblessedBlade(),
+            new FireblessedBlade(),
+            new IceblessedBlade(),
+            new VoidblessedBlade(),
+            new WindblessedBlade()
+        );
+        ArrayList<AbstractCard> cards = new ArrayList<>();
+        switch (ActUtil.getRealActNum()) {
+            case 1:
+                cards.addAll(spells);
+                break;
+            case 2:
+                cards.addAll(blades);
+                break;
+            case 3:
+                cards.add(new Apotheosis());
+                cards.add(new MasterOfStrategy());
+                cards.add(new Mayhem());
+                cards.add(new SecretTechnique());
+                cards.add(new HandOfTheAbyss());
+                cards.add(spells.get(AbstractDungeon.cardRng.random(spells.size() - 1)));
+                cards.add(blades.get(AbstractDungeon.cardRng.random(blades.size() - 1)));
+                break;
+        }
+
+        int numCards = 3;
+        for (AbstractRelic r : AbstractDungeon.player.relics) {
+            numCards = r.changeNumberOfCardsInReward(numCards);
+        }
+        numCards = Math.min(numCards, cards.size());
+
+        Collections.shuffle(cards, new java.util.Random(AbstractDungeon.cardRng.randomLong()));
+        return new ArrayList<>(cards.subList(0, numCards));
     }
 
     @Override

@@ -82,5 +82,17 @@
   "${ModID}:DurableMinion": {
     "NAME": "Durable Minion",
     "DESCRIPTIONS": ["This minion will not abandon combat when its leader is defeated."]
+  },
+  "${ModID}:MirarisWake": {
+    "NAME": "Mirari's Wake",
+    "DESCRIPTIONS": ["At the start of your turn, gain {0} ."]
+  },
+  "${ModID}:StaggershockRebound": {
+    "NAME": "Staggershock Rebound",
+    "DESCRIPTIONS": ["At the start of your next turn, play Staggershock."]
+  },
+  "${ModID}:HandOfTheAbyss": {
+    "NAME": "Hand of the Abyss",
+    "DESCRIPTIONS": ["Whenever you deal unblocked attack damage, apply #b{0} #yAbysstouched."]
   }
 }

@@ -31,8 +31,4 @@ public class GildedDefend extends AbstractSMOCard {
     public void upp() {
         this.upgradeBlock(UPGRADE_BLOCK);
     }
-
-    public AbstractCard makeCopy() {
-        return new GildedDefend();
-    }
 }
