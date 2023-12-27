@@ -2411,6 +2411,272 @@
 					]
 				}
 			]
+		},
+		{
+			"name": "Void Corruption",
+			"id": "${ModID}:VoidCorruption",
+			"ai": [
+				{
+					"min_asc": 0,
+					"desc": "Starts with #wCorrupting #wTouch or #wVigor #wDrain, then #wEnergy #wDrain. Afterwards cycles #wVoid #wSlam or #wVoid #wVolley -> #wCorrupting #wTouch or #wVigor #wDrain.",
+					"hp": "(97 - 101 HP)",
+					"notes": "Void status cards go into the discard pile.",
+					"moves": [
+						{
+							"name": "Energy Drain",
+							"effects": [
+								{
+									"name": "Energy Limit",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Permanent Draw -1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Corrupting Touch",
+							"effects": [
+								{
+									"name": "13",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Void 1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Vigor Drain",
+							"effects": [
+								{
+									"name": "Weak 2",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Strength 2",
+									"color": "BUFF"
+								}
+							]
+						},
+						{
+							"name": "Void Slam",
+							"effects": [
+								{
+									"name": "19",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Void Volley",
+							"effects": [
+								{
+									"name": "4x2",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 2,
+					"desc": "Starts with #wCorrupting #wTouch or #wVigor #wDrain, then #wEnergy #wDrain. Afterwards cycles #wVoid #wSlam or #wVoid #wVolley -> #wCorrupting #wTouch or #wVigor #wDrain.",
+					"hp": "(97 - 101 HP)",
+					"notes": "Void status cards go into the discard pile.",
+					"moves": [
+						{
+							"name": "Energy Drain",
+							"effects": [
+								{
+									"name": "Energy Limit",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Permanent Draw -1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Corrupting Touch",
+							"effects": [
+								{
+									"name": "15",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Void 1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Vigor Drain",
+							"effects": [
+								{
+									"name": "Weak 2",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Strength 2",
+									"color": "BUFF"
+								}
+							]
+						},
+						{
+							"name": "Void Slam",
+							"effects": [
+								{
+									"name": "22",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Void Volley",
+							"effects": [
+								{
+									"name": "4x3",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 7,
+					"desc": "Starts with #wCorrupting #wTouch or #wVigor #wDrain, then #wEnergy #wDrain. Afterwards cycles #wVoid #wSlam or #wVoid #wVolley -> #wCorrupting #wTouch or #wVigor #wDrain.",
+					"hp": "(99 - 103 HP)",
+					"notes": "Void status cards go into the discard pile.",
+					"moves": [
+						{
+							"name": "Energy Drain",
+							"effects": [
+								{
+									"name": "Energy Limit",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Permanent Draw -1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Corrupting Touch",
+							"effects": [
+								{
+									"name": "15",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Void 1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Vigor Drain",
+							"effects": [
+								{
+									"name": "Weak 2",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Strength 2",
+									"color": "BUFF"
+								}
+							]
+						},
+						{
+							"name": "Void Slam",
+							"effects": [
+								{
+									"name": "22",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Void Volley",
+							"effects": [
+								{
+									"name": "4x3",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 17,
+					"desc": "Starts with #wEnergy #wDrain. Afterwards cycles #wVoid #wSlam or #wVoid #wVolley -> #wCorrupting #wTouch or #wVigor #wDrain.",
+					"hp": "(99 - 103 HP)",
+					"notes": "Void status cards go into the discard pile.",
+					"moves": [
+						{
+							"name": "Energy Drain",
+							"effects": [
+								{
+									"name": "Energy Limit",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Permanent Draw -1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Corrupting Touch",
+							"effects": [
+								{
+									"name": "15",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Void 1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Vigor Drain",
+							"effects": [
+								{
+									"name": "Weak 2",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Strength 2",
+									"color": "BUFF"
+								}
+							]
+						},
+						{
+							"name": "Void Slam",
+							"effects": [
+								{
+									"name": "22",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Void Volley",
+							"effects": [
+								{
+									"name": "4x3",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				}
+			]
 		}
 	]
 }

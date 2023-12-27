@@ -56,5 +56,19 @@
       "At the start of your turn, draw #b{0} less card.",
       "At the start of your turn, draw #b{0} less cards."
     ]
+  },
+  "${ModID}:EnergyLimit": {
+    "NAME": "Energy Limit",
+    "DESCRIPTIONS": ["Start with at most #b3 energy each turn."]
+  },
+  "${ModID}:FixedTextDraw": {
+    "NAME": "Draw",
+    "DESCRIPTIONS": [
+      "At the start of your turn, draw #b",
+      " additional card.",
+      " less card.",
+      " additional cards.",
+      " less cards."
+    ]
   }
 }

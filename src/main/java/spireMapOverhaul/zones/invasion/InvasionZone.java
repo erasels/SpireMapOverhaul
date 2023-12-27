@@ -20,10 +20,11 @@ import java.util.List;
 
 public class InvasionZone extends AbstractZone implements EncounterModifyingZone {
     public static final String ID = "Invasion";
-    public static final String STYGIAN_BOAR_AND_WHISPERING_WRAITH = SpireAnniversary6Mod.makeID("STYGIAN_BOAR_AND_WHISPERING_WRAITH");
-    public static final String DREAD_MOTH_AND_GRAFTED_WORMS = SpireAnniversary6Mod.makeID("DREAD_MOTH_AND_GRAFTED_WORMS");
-    public static final String THREE_ELEMENTALS = SpireAnniversary6Mod.makeID("THREE_ELEMENTALS");
-    public static final String THREE_HATCHLINGS = SpireAnniversary6Mod.makeID("THREE_HATCHLINGS");
+    private static final String STYGIAN_BOAR_AND_WHISPERING_WRAITH = SpireAnniversary6Mod.makeID("STYGIAN_BOAR_AND_WHISPERING_WRAITH");
+    private static final String DREAD_MOTH_AND_GRAFTED_WORMS = SpireAnniversary6Mod.makeID("DREAD_MOTH_AND_GRAFTED_WORMS");
+    private static final String THREE_ELEMENTALS = SpireAnniversary6Mod.makeID("THREE_ELEMENTALS");
+    private static final String VOID_CORRUPTION_AND_ORB_OF_FIRE = SpireAnniversary6Mod.makeID("VOID_CORRUPTION_AND_ORB_OF_FIRE");
+    private static final String THREE_HATCHLINGS = SpireAnniversary6Mod.makeID("THREE_HATCHLINGS");
 
     public InvasionZone() {
         super(ID, Icons.MONSTER, Icons.ELITE, Icons.SHOP);
@@ -77,12 +78,17 @@ public class InvasionZone extends AbstractZone implements EncounterModifyingZone
                         new DreadMoth(200.0F, 125.0F),
                 })),
             new ZoneEncounter(THREE_ELEMENTALS, 2, () -> new MonsterGroup(generateElementalGroup())),
+            new ZoneEncounter(VOID_CORRUPTION_AND_ORB_OF_FIRE, 2,  () -> new MonsterGroup(
+                new AbstractMonster[] {
+                        new OrbOfFire(-350.0F, 125.0F),
+                        new VoidCorruption(0.0F, 0.0F)
+                })),
             new ZoneEncounter(THREE_HATCHLINGS, 3, () -> new MonsterGroup(
-                    new AbstractMonster[] {
-                            new Hatchling(-450.0F, 10.0F, false),
-                            new Hatchling(-150.0F, -30.0F, false),
-                            new Hatchling(150.0F, 20.0F, false)
-                    }))
+                new AbstractMonster[] {
+                        new Hatchling(-450.0F, 10.0F, false),
+                        new Hatchling(-150.0F, -30.0F, false),
+                        new Hatchling(150.0F, 20.0F, false)
+                }))
         );
     }
 

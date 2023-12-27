@@ -108,5 +108,15 @@
       "Scythe Dance"
     ],
     "NAME": "Void Reaper"
+  },
+  "${ModID}:VoidCorruption": {
+    "MOVES": [
+      "Energy Drain",
+      "Corrupting Touch",
+      "Vigor Drain",
+      "Void Slam",
+      "Void Volley"
+    ],
+    "NAME": "Void Corruption"
   }
 }

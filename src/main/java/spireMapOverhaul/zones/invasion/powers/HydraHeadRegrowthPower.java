@@ -9,8 +9,6 @@ import com.megacrit.cardcrawl.powers.GainStrengthPower;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractSMOPower;
 
-import java.text.MessageFormat;
-
 public class HydraHeadRegrowthPower extends AbstractSMOPower {
     public static final String POWER_ID = SpireAnniversary6Mod.makeID("HydraHeadRegrowth");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
@@ -23,7 +21,7 @@ public class HydraHeadRegrowthPower extends AbstractSMOPower {
 
     @Override
     public void updateDescription() {
-        this.description = MessageFormat.format(DESCRIPTIONS[0], this.amount);
+        this.description = DESCRIPTIONS[0].replace("{0}", this.amount + "");
     }
 
     @Override
