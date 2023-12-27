@@ -22,7 +22,9 @@ In case your zone replaces or changes nodes, be sure to look at the following me
 - canIncludeTreasureRow()
 - canIncludeFinalCampfireRow()
 
-If your zone includes manual node replacement logic, you need to either check for the last campfire before the boss node and the mid-act chest as these should not be overridden, or have those methods return `false` so that your zone never includes those rows.
+If your zone includes manual node replacement logic, you need to either check for the last campfire before the boss node and the mid-act chest as these should not be overridden, or have those methods return `false` so that your zone never includes those rows.  
+
+To test your zone, you can add the console command `addzone ID` which will make ti spawn in the next act. Zones are also toggleable in the mod config menu.
   
 To make a contribution, you must have a GitHub account. 
 For the specifics of how to fork this repo and then make a pull request, please look at this guide:  
@@ -30,3 +32,6 @@ https://docs.github.com/en/get-started/quickstart/contributing-to-projects
    
 I recommend using the GitHub desktop client for this if you have no experience with Github  
 https://desktop.github.com/
+
+### Bestiary
+If you add new monsters, consider adding [Bestiary](https://steamcommunity.com/sharedfiles/filedetails/?id=2285965269) entries for them, so that players have an easy way to understand and analyze what the monsters do. This also helps document the logic for your new monsters. See the existing `bestiary.json` files for examples.

@@ -1,0 +1,181 @@
+{
+  "${ModID}:WhisperingWraith": {
+    "MOVES": [
+      "Fade Away",
+      "Ghostly Touch",
+      "Absorb Life"
+    ],
+    "NAME": "Whispering Wraith"
+  },
+  "${ModID}:StygianBoar": {
+    "MOVES": [
+      "Tusk Slash",
+      "Breathe Fire",
+      "Enraging Charge"
+    ],
+    "NAME": "Stygian Boar"
+  },
+  "${ModID}:Hexasnake": {
+    "MOVES": [
+      "Serpent's Gaze",
+      "Venomous Bite",
+      "Constrict"
+    ],
+    "NAME": "Hexasnake"
+  },
+  "${ModID}:GraftedWorm": {
+    "MOVES": [
+      "Leaf Blade"
+    ],
+    "NAME": "Grafted Worm"
+  },
+  "${ModID}:DreadMoth": {
+    "MOVES": [
+      "Wing Ward",
+      "Dread Wave"
+    ],
+    "NAME": "Dread Moth"
+  },
+  "${ModID}:OrbOfFire": {
+    "MOVES": [
+      "Firebolt",
+      "Flare",
+      "Irradiate"
+    ],
+    "NAME": "Orb of Fire"
+  },
+  "${ModID}:LivingStormcloud": {
+    "MOVES": [
+      "Zap",
+      "Gust",
+      "Rainfall"
+    ],
+    "NAME": "Living Stormcloud"
+  },
+  "${ModID}:OpulentOffering": {
+    "MOVES": [
+      "Goblet Bash",
+      "Coin Barrage",
+      "Opulent Barrier",
+      "Opulent Overflow"
+    ],
+    "NAME": "Opulent Offering"
+  },
+  "${ModID}:ShimmeringMirage": {
+    "MOVES": [
+      "Shine",
+      "Glow",
+      "Pulse"
+    ],
+    "NAME": "Shimmering Mirage"
+  },
+  "${ModID}:CroakingBrute": {
+    "MOVES": [
+      "Lacerate",
+      "Bull Rush"
+    ],
+    "NAME": "Croaking Brute",
+    "DIALOG": ["*CROAK*"]
+  },
+  "${ModID}:CroakingPelter": {
+    "MOVES": [
+      "Lacerate",
+      "Rock Toss"
+    ],
+    "NAME": "Croaking Pelter",
+    "DIALOG": ["cRoAK"]
+  },
+  "${ModID}:CroakingSeer": {
+    "MOVES": [
+      "Lacerate",
+      "Protective Ward"
+    ],
+    "NAME": "Croaking Seer",
+    "DIALOG": ["*croak*"]
+  },
+  "${ModID}:Hydra": {
+    "MOVES": [
+      "Tail Whip",
+      "Swipe",
+      "Ravenous Hunger"
+    ],
+    "NAME": "Hydra"
+  },
+  "${ModID}:VoidReaper": {
+    "MOVES": [
+      "Cut the Future",
+      "Reap",
+      "Scythe Dance"
+    ],
+    "NAME": "Void Reaper"
+  },
+  "${ModID}:VoidCorruption": {
+    "MOVES": [
+      "Energy Drain",
+      "Corrupting Touch",
+      "Vigor Drain",
+      "Void Slam",
+      "Void Volley"
+    ],
+    "NAME": "Void Corruption"
+  },
+  "${ModID}:VoidBeast": {
+    "MOVES": [
+      "Corrupting Bite",
+      "Void Gaze",
+      "Shadow Claw"
+    ],
+    "NAME": "Void Beast"
+  },
+  "${ModID}:WarGolem": {
+    "MOVES": [
+      "Heartseeker",
+      "Shieldbreaker",
+      "Legbuster"
+    ],
+    "NAME": "War Golem"
+  },
+  "${ModID}:ElementalPortal": {
+    "MOVES": [
+      "Portal",
+      "Strengthening Restoration",
+      "Chaotic Energies",
+      "Elemental Blast"
+    ],
+    "NAME": "Elemental Portal"
+  },
+  "${ModID}:UnboundAbyssal": {
+    "MOVES": [
+      "Sludge",
+      "Won't Go Back",
+      "Tendrils"
+    ],
+    "NAME": "Unbound Abyssal",
+    "DIALOG": ["Won't... go... back...!"]
+  },
+  "${ModID}:PrimevalQueen": {
+    "MOVES": [
+      "Scythe",
+      "Strengthen Carapace",
+      "Call Protector"
+    ],
+    "NAME": "Primeval Queen"
+  },
+  "${ModID}:RoyalProtector": {
+    "MOVES": [
+      "Carapace",
+      "Burning Spit",
+      "Acid Explosion",
+      "For the Queen"
+    ],
+    "NAME": "Royal Protector"
+  },
+  "${ModID}:Behemoth": {
+    "MOVES": [
+      "Bide",
+      "Evolve",
+      "Claw Swipe"
+    ],
+    "NAME": "Behemoth"
+  }
+}

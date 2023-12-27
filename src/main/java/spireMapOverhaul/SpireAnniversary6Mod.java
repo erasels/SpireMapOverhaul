@@ -31,6 +31,8 @@ import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import javassist.CtClass;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import spireMapOverhaul.cardvars.SecondDamage;
+import spireMapOverhaul.cardvars.SecondMagicNumber;
 import spireMapOverhaul.patches.ZonePerFloorRunHistoryPatch;
 import spireMapOverhaul.patches.interfacePatches.CampfireModifierPatches;
 import spireMapOverhaul.patches.CustomRewardTypes;
@@ -176,13 +178,6 @@ public class SpireAnniversary6Mod implements
                         zonePackages.put(pkg, zone);
                     }
                 });
-        for (int i = 0; i < 10; ++i) {
-            AbstractZone zone = new PlaceholderZone();
-            unfilteredAllZones.add(zone);
-            if (getCurrentRunFilterConfig(zone.id)) {
-                allZones.add(zone);
-            }
-        }
         logger.info("Found zone classes with AutoAdd: " + unfilteredAllZones.size());
     }
 
@@ -215,6 +210,9 @@ public class SpireAnniversary6Mod implements
         CustomIconHelper.addCustomIcon(RewardIcon.get());
         CustomIconHelper.addCustomIcon(ShopIcon.get());
         CustomIconHelper.addCustomIcon(RestIcon.get());
+
+        BaseMod.addDynamicVariable(new SecondMagicNumber());
+        BaseMod.addDynamicVariable(new SecondDamage());
     }
 
     @Override
@@ -371,6 +369,9 @@ public class SpireAnniversary6Mod implements
             }
             if (Gdx.files.internal(filepath + "Monsterstrings.json").exists()) {
                 BaseMod.loadCustomStringsFile(MonsterStrings.class, filepath + "Monsterstrings.json");
+            }
+            if (Gdx.files.internal(filepath + "Eventstrings.json").exists()) {
+                BaseMod.loadCustomStringsFile(EventStrings.class, filepath + "Eventstrings.json");
             }
         }
     }
