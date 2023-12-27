@@ -2871,6 +2871,430 @@
 					]
 				}
 			]
+		},
+		{
+			"name": "War Golem",
+			"id": "${ModID}:WarGolem",
+			"ai": [
+				{
+					"min_asc": 0,
+					"desc": "Cycles #wHeartseeker -> #wShieldbreaker or #wLegbuster -> the other.",
+					"hp": "(102 - 104 HP)",
+					"notes": "Innate #uMetallicize 6, #uArtifact 1.",
+					"moves": [
+						{
+							"name": "Heartseeker",
+							"effects": [
+								{
+									"name": "18",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Vulnerable 1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Shieldbreaker",
+							"effects": [
+								{
+									"name": "15",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Frail 1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Legbuster",
+							"effects": [
+								{
+									"name": "13",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Dexterity -1",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 3,
+					"desc": "Cycles #wHeartseeker -> #wShieldbreaker or #wLegbuster -> the other.",
+					"hp": "(102 - 104 HP)",
+					"notes": "Innate #uMetallicize 6, #uArtifact 1.",
+					"moves": [
+						{
+							"name": "Heartseeker",
+							"effects": [
+								{
+									"name": "20",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Vulnerable 1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Shieldbreaker",
+							"effects": [
+								{
+									"name": "17",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Frail 1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Legbuster",
+							"effects": [
+								{
+									"name": "15",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Dexterity -1",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 8,
+					"desc": "Cycles #wHeartseeker -> #wShieldbreaker or #wLegbuster -> the other.",
+					"hp": "(106 - 108 HP)",
+					"notes": "Innate #uMetallicize 9, #uArtifact 1.",
+					"moves": [
+						{
+							"name": "Heartseeker",
+							"effects": [
+								{
+									"name": "20",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Vulnerable 1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Shieldbreaker",
+							"effects": [
+								{
+									"name": "17",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Frail 1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Legbuster",
+							"effects": [
+								{
+									"name": "15",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Dexterity -1",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 18,
+					"desc": "Cycles #wHeartseeker -> #wShieldbreaker or #wLegbuster -> the other.",
+					"hp": "(106 - 108 HP)",
+					"notes": "Innate #uMetallicize 9, #uArtifact 1.",
+					"moves": [
+						{
+							"name": "Heartseeker",
+							"effects": [
+								{
+									"name": "20",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Vulnerable 2",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Shieldbreaker",
+							"effects": [
+								{
+									"name": "17",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Frail 2",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Legbuster",
+							"effects": [
+								{
+									"name": "15",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Dexterity -2",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Elemental Portal",
+			"id": "${ModID}:ElementalPortal",
+			"ai": [
+				{
+					"min_asc": 0,
+					"desc": "Repeats #wPortal until 5 elementals have been summoned. Afterwards uses #wStrengthening #wRestoration, then #wChaotic #wEnergies, then repeats #wElemental #wBlast. NL NL Elementals are randomly chosen from Orb of Fire, Living Stormcloud, Opulent Offering, and Shimmering Mirage, with at most two of each appearing over the course of the fight.",
+					"hp": "(48 - 49 HP)",
+					"notes": "Innate #uSummoning #uPortal 5. Spawns with 3 elementals.",
+					"moves": [
+						{
+							"name": "Portal",
+							"effects": [
+								{
+									"name": "Summon Elementals",
+									"color": "SPECIAL"
+								}
+							]
+						},
+						{
+							"name": "Strengthening Restoration",
+							"effects": [
+								{
+									"name": "Party Strength 1",
+									"color": "BUFF"
+								},
+								{
+									"name": "Party Heal 2",
+									"color": "BUFF"
+								}
+							]
+						},
+						{
+							"name": "Chaotic Energies",
+							"effects": [
+								{
+									"name": "Strength -1",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Dexterity -1",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Focus -1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Elemental Blast",
+							"effects": [
+								{
+									"name": "16",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 3,
+					"desc": "Repeats #wPortal until 5 elementals have been summoned. Afterwards uses #wStrengthening #wRestoration, then #wChaotic #wEnergies, then repeats #wElemental #wBlast. NL NL Elementals are randomly chosen from Orb of Fire, Living Stormcloud, Opulent Offering, and Shimmering Mirage, with at most two of each appearing over the course of the fight.",
+					"hp": "(48 - 49 HP)",
+					"notes": "Innate #uSummoning #uPortal 5. Spawns with 3 elementals.",
+					"moves": [
+						{
+							"name": "Portal",
+							"effects": [
+								{
+									"name": "Summon Elementals",
+									"color": "SPECIAL"
+								}
+							]
+						},
+						{
+							"name": "Strengthening Restoration",
+							"effects": [
+								{
+									"name": "Party Strength 1",
+									"color": "BUFF"
+								},
+								{
+									"name": "Party Heal 2",
+									"color": "BUFF"
+								}
+							]
+						},
+						{
+							"name": "Chaotic Energies",
+							"effects": [
+								{
+									"name": "Strength -1",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Dexterity -1",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Focus -1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Elemental Blast",
+							"effects": [
+								{
+									"name": "18",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 8,
+					"desc": "Repeats #wPortal until 5 elementals have been summoned. Afterwards uses #wStrengthening #wRestoration, then #wChaotic #wEnergies, then repeats #wElemental #wBlast. NL NL Elementals are randomly chosen from Orb of Fire, Living Stormcloud, Opulent Offering, and Shimmering Mirage, with at most two of each appearing over the course of the fight.",
+					"hp": "(51 - 52 HP)",
+					"notes": "Innate #uSummoning #uPortal 5. Spawns with 3 elementals.",
+					"moves": [
+						{
+							"name": "Portal",
+							"effects": [
+								{
+									"name": "Summon Elementals",
+									"color": "SPECIAL"
+								}
+							]
+						},
+						{
+							"name": "Strengthening Restoration",
+							"effects": [
+								{
+									"name": "Party Strength 1",
+									"color": "BUFF"
+								},
+								{
+									"name": "Party Heal 2",
+									"color": "BUFF"
+								}
+							]
+						},
+						{
+							"name": "Chaotic Energies",
+							"effects": [
+								{
+									"name": "Strength -1",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Dexterity -1",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Focus -1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Elemental Blast",
+							"effects": [
+								{
+									"name": "18",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 18,
+					"desc": "Repeats #wPortal until 6 elementals have been summoned. Afterwards uses #wStrengthening #wRestoration, then #wChaotic #wEnergies, then repeats #wElemental #wBlast. NL NL Elementals are randomly chosen from Orb of Fire, Living Stormcloud, Opulent Offering, and Shimmering Mirage, with at most two of each appearing over the course of the fight.",
+					"hp": "(51 - 52 HP)",
+					"notes": "Innate #uSummoning #uPortal 6. Spawns with 3 elementals.",
+					"moves": [
+						{
+							"name": "Portal",
+							"effects": [
+								{
+									"name": "Summon Elementals",
+									"color": "SPECIAL"
+								}
+							]
+						},
+						{
+							"name": "Strengthening Restoration",
+							"effects": [
+								{
+									"name": "Party Strength 1",
+									"color": "BUFF"
+								},
+								{
+									"name": "Party Heal 2",
+									"color": "BUFF"
+								}
+							]
+						},
+						{
+							"name": "Chaotic Energies",
+							"effects": [
+								{
+									"name": "Strength -1",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Dexterity -1",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Focus -1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Elemental Blast",
+							"effects": [
+								{
+									"name": "18",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				}
+			]
 		}
 	]
 }

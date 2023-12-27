@@ -126,5 +126,22 @@
       "Shadow Claw"
     ],
     "NAME": "Void Beast"
+  },
+  "${ModID}:WarGolem": {
+    "MOVES": [
+      "Heartseeker",
+      "Shieldbreaker",
+      "Legbuster"
+    ],
+    "NAME": "War Golem"
+  },
+  "${ModID}:ElementalPortal": {
+    "MOVES": [
+      "Portal",
+      "Strengthening Restoration",
+      "Chaotic Energies",
+      "Elemental Blast"
+    ],
+    "NAME": "Elemental Portal"
   }
 }

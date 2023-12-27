@@ -131,8 +131,10 @@ public class InvasionZone extends AbstractZone implements EncounterModifyingZone
     @Override
     public List<ZoneEncounter> getEliteEncounters() {
         return Arrays.asList(
-            new ZoneEncounter(Hydra.ID, 1, () -> new Hydra(0.0f, 0.0f)),
-            new ZoneEncounter(VoidReaper.ID, 1, () -> new VoidReaper(0.0f, 0.0f))
+            new ZoneEncounter(Hydra.ID, 1, (BaseMod.GetMonster)Hydra::new),
+            new ZoneEncounter(VoidReaper.ID, 1, (BaseMod.GetMonster)VoidReaper::new),
+            new ZoneEncounter(WarGolem.ID, 1, (BaseMod.GetMonster)WarGolem::new),
+            new ZoneEncounter(ElementalPortal.ID, 1, () -> new ElementalPortal(150.0F, 0.0F))
         );
     }
 
