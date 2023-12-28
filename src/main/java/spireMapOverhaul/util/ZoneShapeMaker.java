@@ -10,7 +10,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.math.Interpolation;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Matrix4;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -22,10 +21,12 @@ import imgui.type.ImFloat;
 import spireMapOverhaul.BetterMapGenerator;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
+import spireMapOverhaul.zones.example.PlaceholderZone;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.function.Function;
 import java.util.function.Predicate;
 
 public class ZoneShapeMaker {
@@ -54,18 +55,21 @@ public class ZoneShapeMaker {
     private static float SMOOTHING_WHITENING = 0.4f; //0f;
     private static float SMOOTHING_DARKENING = 0.4f; //0.8f;
 
-    public static final int FB_OFFSET = (int) (150 * Settings.scale); //Offset of positioning of nodes to fit circles
-    private static final int FB_MARGIN = (int) (FB_OFFSET * 3);
+    public static final int FB_OFFSET = (int) (250 * Settings.scale); //Offset of positioning of nodes to fit circles
+    private static final int FB_MARGIN = FB_OFFSET * 2;
 
     private static final ShaderProgram shader = new ShaderProgram(Gdx.files.internal("anniv6Resources/shaders/shapeMaker/vertex.vs"),
                                                             Gdx.files.internal("anniv6Resources/shaders/shapeMaker/fragment.fs"));
     private static FrameBuffer commonBuffer = new FrameBuffer(Pixmap.Format.RGBA8888, 512, 512, false);
     private static final Matrix4 fbProjection = new Matrix4(), tempMatrix = new Matrix4();
     private static final TextureRegion CIRCLE = new TextureRegion(TexLoader.getTexture(SpireAnniversary6Mod.makeImagePath("ui/WhiteCircle.png")));
+    private static final TextureRegion iconRegion = new TextureRegion();
+    private static final Color ICON_COLOR = new Color(1f,1f,1f,0.5f);
 
     public static TextureRegion makeShape(AbstractZone zone, ArrayList<ArrayList<MapRoomNode>> map, List<MapRoomNode> nodes, SpriteBatch sb) {
-        int zoneWidth = (int) ((zone.getWidth() + 1) * SPACING_X) + FB_MARGIN;
-        int zoneHeight = (int) ((zone.getHeight() + 1) * Settings.MAP_DST_Y) + FB_MARGIN;
+        Pair<Integer,Integer> size = getEffectiveSize(nodes);
+        int zoneWidth = (int) ((size.getKey() + 1) * SPACING_X) + FB_MARGIN;
+        int zoneHeight = (int) ((size.getValue() + 1) * Settings.MAP_DST_Y) + FB_MARGIN;
         int zX = zone.getX(), zY = zone.getY();
         zone.hitboxes = new ArrayList<>();
         zone.hitboxRelativePositions = new HashMap<>();
@@ -96,6 +100,11 @@ public class ZoneShapeMaker {
 
         HashMap<MapRoomNode, Float> circleScales = new HashMap<>();
 
+        //for icon placement (larger, cut off)
+        float weighedCenterX = 0f;
+        float weighedCenterY = 0f;
+        float totalScale = 0f;
+
         //main circles
         for (MapRoomNode n : nodes) {
             float d = getClosestNodeDistance(n, map, (no) -> !nodes.contains(no));
@@ -103,11 +112,23 @@ public class ZoneShapeMaker {
             circleScales.put(n, circleScale);
             float cX = (n.x - zX) * SPACING_X + FB_OFFSET + n.offsetX;
             float cY = (n.y - zY) * Settings.MAP_DST_Y + FB_OFFSET + n.offsetY;
+            //values used for icon placement
+            //based on weighted center
+            weighedCenterX += cX * circleScale * circleScale;
+            weighedCenterY += cY * circleScale * circleScale;
+            totalScale += circleScale * circleScale;
 
             drawCircle(sb, cX, cY, circleScale);
             addHitbox(zone, cX, cY, circleScale);
         }
+        //icon placement (larger, cut off)
+        weighedCenterX /= totalScale;
+        weighedCenterY /= totalScale;
 
+        //icon placement (smaller, not cut off)
+        float candidateIconX = 0f;
+        float candidateIconY = 0f;
+        float candidateIconScale = 0f;
         //in-between circles. Each node in the zone looks to add a circle between it and nodes from the same zone if they are adjacent
         //(to the right and up to avoid drawing the same thing multiple times)
         for (MapRoomNode n : nodes) {
@@ -124,7 +145,12 @@ public class ZoneShapeMaker {
                         float circleScale = Interpolation.linear.apply(circleScales.get(n), circleScales.get(m), i / 4f);
                         float cX = Interpolation.linear.apply(nX, mX, i / 4f);
                         float cY = Interpolation.linear.apply(nY, mY, i / 4f);
-
+                        //icon placement (smaller, not cut off)
+                        if (circleScale > candidateIconScale) {
+                            candidateIconScale = circleScale;
+                            candidateIconX = cX;
+                            candidateIconY = cY;
+                        }
                         drawCircle(sb, cX, cY, circleScale);
                         addHitbox(zone, cX, cY, circleScale);
                     }
@@ -179,12 +205,14 @@ public class ZoneShapeMaker {
         commonBuffer.begin();
         sb.draw(resultRegion, 0, 0);
         sb.flush();
+
         commonBuffer.end();
 
         resultRegion.setRegion(commonBuffer.getColorBufferTexture());
         resultRegion.flip(false, true);
 
         //smoothing step (low range, high quality)
+        sb.setShader(shader);
         shader.setUniformf("sizeX", zone.zoneFb.getWidth());
         shader.setUniformf("sizeY", zone.zoneFb.getHeight());
         shader.setUniformf("stepSize", SMOOTHING_STEPSIZE);
@@ -198,13 +226,46 @@ public class ZoneShapeMaker {
         zone.zoneFb.begin();
         sb.draw(resultRegion, 0, 0);
         sb.flush();
+        //putting the icon in
+        sb.setShader(null);
+        sb.setColor(ICON_COLOR);
+        sb.setBlendFunction(GL20.GL_DST_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+        iconRegion.setTexture(zone.iconTexture);
+        iconRegion.setRegion(0,0, zone.iconTexture.getWidth(), zone.iconTexture.getHeight());
+        if (SpireAnniversary6Mod.getLargeIconsModeConfig()) {
+            //icon placement using weighted center, larger, cut off
+            sb.draw(iconRegion,
+                    weighedCenterX - iconRegion.getRegionWidth() / 2f,
+                    weighedCenterY - iconRegion.getRegionHeight() / 2f,
+                    iconRegion.getRegionWidth() / 2f,
+                    iconRegion.getRegionHeight() / 2f,
+                    (float) iconRegion.getRegionWidth(),
+                    iconRegion.getRegionHeight(),
+                    (float) Math.sqrt(totalScale) * Settings.scale * 0.6f,
+                    (float) Math.sqrt(totalScale) * Settings.scale * 0.6f,
+                    0f);
+        } else {
+            //icon placement using largest circle, smaller, not cut off
+            sb.draw(iconRegion,
+                    candidateIconX - iconRegion.getRegionWidth() / 2f,
+                    candidateIconY - iconRegion.getRegionHeight() / 2f,
+                    iconRegion.getRegionWidth() / 2f,
+                    iconRegion.getRegionHeight() / 2f,
+                    (float) iconRegion.getRegionWidth(),
+                    iconRegion.getRegionHeight(),
+                    candidateIconScale * Settings.scale * 0.7f,
+                    candidateIconScale * Settings.scale * 0.7f,
+                    0f);
+        }
+        sb.flush();
+        sb.setColor(Color.WHITE);
+        sb.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
         zone.zoneFb.end();
 
         resultRegion.setRegion(zone.zoneFb.getColorBufferTexture());
         resultRegion.flip(false, true);
 
         sb.setProjectionMatrix(tempMatrix); //Reset projection matrix
-        sb.setShader(null);
         return resultRegion;
     }
 
@@ -300,6 +361,20 @@ public class ZoneShapeMaker {
     }
     public static float nodeDistanceSquared(MapRoomNode n1, MapRoomNode n2) {
         return (n1.hb.cX - n2.hb.cX)*(n1.hb.cX - n2.hb.cX) + (n1.hb.cY - n2.hb.cY)*(n1.hb.cY - n2.hb.cY);
+    }
+
+    private static Pair<Integer, Integer> getEffectiveSize(List<MapRoomNode> nodes) {
+        int minX = nodes.get(0).x;
+        int maxX = nodes.get(0).x;
+        int minY = nodes.get(0).y;
+        int maxY = nodes.get(0).y;
+        for (MapRoomNode n : nodes) {
+            if (n.x < minX) minX = n.x;
+            if (n.x > maxX) maxX = n.x;
+            if (n.y < minY) minY = n.y;
+            if (n.y > maxY) maxY = n.y;
+        }
+        return new Pair<>(maxX - minX, maxY - minY);
     }
 
 

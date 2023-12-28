@@ -2,17 +2,23 @@ package spireMapOverhaul.zones.example;
 
 import basemod.AutoAdd;
 import basemod.helpers.TooltipInfo;
+import com.badlogic.gdx.assets.loaders.TextureLoader;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.AbstractEvent;
 import com.megacrit.cardcrawl.events.shrines.GremlinWheelGame;
+import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.EventRoom;
 import spireMapOverhaul.BetterMapGenerator;
+import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
+import spireMapOverhaul.util.ImageHelper;
+import spireMapOverhaul.util.TexLoader;
 import spireMapOverhaul.zoneInterfaces.ModifiedEventRateZone;
 
 import java.util.ArrayList;
@@ -20,7 +26,6 @@ import java.util.ArrayList;
 @AutoAdd.Ignore
 public class PlaceholderZone extends AbstractZone implements ModifiedEventRateZone {
     public static final String ID = "Placeholder";
-
     private final int width, height;
     private final Color color;
 
