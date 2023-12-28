@@ -26,6 +26,8 @@ If your zone includes manual node replacement logic, you need to either check fo
 
 To test your zone, you can add the console command `addzone ID` which will make ti spawn in the next act. Zones are also toggleable in the mod config menu.
 
+Your zone's icon should be a 512x512 png file located in `resources/anniv6Resources/images/ui/zoneIcons` and fit the template provided in that same folder. It should entirely black, optionally with some white. Ideally it should be pretty simple and easily recognizable.
+
 ### How to make PRs
   
 To make a contribution, you must have a GitHub account. 
