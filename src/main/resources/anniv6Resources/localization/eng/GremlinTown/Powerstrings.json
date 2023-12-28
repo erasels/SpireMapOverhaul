@@ -1,0 +1,15 @@
+{
+  "${ModID}:Tenderizer": {
+    "NAME": "Tenderizer",
+    "DESCRIPTIONS": ["Whenever you deal unblocked Attack damage this turn, apply #b{0} Weak."]
+  },
+  "${ModID}:DelayedVigor": {
+    "NAME": "Charging",
+    "DESCRIPTIONS": ["Gain #b{0} Vigor in #b2 turns.",
+      "Gain #b{0} Vigor in #b1 turn."]
+  },
+  "${ModID}:HeavyArmor": {
+    "NAME": "Heavy Armor",
+    "DESCRIPTIONS": ["This enemy deals #b2 times as much damage when it has Block."]
+  }
+}

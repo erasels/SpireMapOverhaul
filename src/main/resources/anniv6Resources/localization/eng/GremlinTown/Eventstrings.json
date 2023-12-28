@@ -1,0 +1,23 @@
+{
+  "${ModID}:GremlinRiderRed": {
+    "MOVES": [
+      "Charge",
+      "Tactical Attack"
+    ],
+    "NAME": "Gremlin Rider"
+  },
+  "${ModID}:GremlinRiderBlue": {
+    "MOVES": [
+      "Charge",
+      "Tactical Attack"
+    ],
+    "NAME": "Gremlin Rider"
+  },
+  "${ModID}:GremlinRiderGreen": {
+    "MOVES": [
+      "Charge",
+      "Tactical Attack"
+    ],
+    "NAME": "Gremlin Rider"
+  }
+}

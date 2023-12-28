@@ -1,0 +1,22 @@
+{
+  "${ModID}:SneakAttack": {
+    "NAME": "Sneak Attack",
+    "DESCRIPTION": "Deal !D! damage."
+  },
+  "${ModID}:MeatMallet": {
+    "NAME": "Meat Mallet",
+    "DESCRIPTION": "Whenever an Attack deals unblocked damage this turn, apply !M! Weak."
+  },
+  "${ModID}:AngryStrike": {
+    "NAME": "Angry Strike",
+    "DESCRIPTION": "Deal !D! damage. NL Exhaust 1 non-Attack card at random."
+  },
+  "${ModID}:Shield": {
+    "NAME": "Shield",
+    "DESCRIPTION": "Gain !B! Block. NL Exhaust."
+  },
+  "${ModID}:Charge": {
+    "NAME": "Charge",
+    "DESCRIPTION": "In !M! turns, gain !M! {ModID}:Vigor."
+  }
+}

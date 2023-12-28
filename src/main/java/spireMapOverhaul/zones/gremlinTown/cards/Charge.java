@@ -1,0 +1,32 @@
+package spireMapOverhaul.zones.gremlinTown.cards;
+
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import spireMapOverhaul.abstracts.AbstractSMOCard;
+import spireMapOverhaul.zones.gremlinTown.powers.DelayedVigorPower;
+
+import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
+import static spireMapOverhaul.util.Wiz.adp;
+import static spireMapOverhaul.util.Wiz.applyToSelf;
+
+public class Charge extends AbstractSMOCard {
+    public final static String ID = makeID(Charge.class.getSimpleName());
+    private final static int MAGIC = 12;
+    private final static int UPGRADE_MAGIC = 3;
+    private final static int COST = 1;
+
+    public Charge() {
+        super(ID, COST, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF, CardColor.COLORLESS);
+
+        baseMagicNumber = magicNumber = MAGIC;
+    }
+
+    @Override
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        applyToSelf(new DelayedVigorPower(adp(), magicNumber));
+    }
+
+    public void upp() {
+        upMagic(UPGRADE_MAGIC);
+    }
+}

@@ -1,0 +1,48 @@
+{
+  "${ModID}:GremlinRiderRed": {
+    "MOVES": [
+      "Charge",
+      "Tactical Attack"
+    ],
+    "NAME": "Gremlin Rider"
+  },
+  "${ModID}:GremlinRiderBlue": {
+    "MOVES": [
+      "Charge",
+      "Tactical Attack"
+    ],
+    "NAME": "Gremlin Rider"
+  },
+  "${ModID}:GremlinRiderGreen": {
+    "MOVES": [
+      "Charge",
+      "Tactical Attack"
+    ],
+    "NAME": "Gremlin Rider"
+  },
+  "${ModID}:GremlinHealer": {
+    "MOVES": [
+      "Cure",
+      "Attack"
+    ],
+    "NAME": "Gremlin Healer"
+  },
+  "${ModID}:ChubbyGremlin": {
+    "MOVES": [
+      "Sit"
+    ],
+    "NAME": "Chubby Gremlin"
+  },
+  "${ModID}:ArmoredGremlin": {
+    "MOVES": [
+      "Body Slam"
+    ],
+    "NAME": "Armored Gremlin"
+  },
+  "${ModID}:GremlinBarbarian": {
+    "MOVES": [
+      "Frenzy"
+    ],
+    "NAME": "Gremlin Barbarian"
+  }
+}

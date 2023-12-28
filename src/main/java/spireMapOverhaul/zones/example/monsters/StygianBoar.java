@@ -14,6 +14,8 @@ import com.megacrit.cardcrawl.powers.AngerPower;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractSMOMonster;
 
+import static spireMapOverhaul.util.Wiz.*;
+
 public class StygianBoar extends AbstractSMOMonster
 {
     public static final String ID = SpireAnniversary6Mod.makeID("StygianBoar");
@@ -46,69 +48,69 @@ public class StygianBoar extends AbstractSMOMonster
 
     public StygianBoar(final float x, final float y) {
         super(StygianBoar.NAME, ID, HP_MAX, -5.0F, 0, 215.0f, 135.0f, IMG, x, y);
-        this.type = EnemyType.NORMAL;
+        type = EnemyType.NORMAL;
         if (AbstractDungeon.ascensionLevel >= 7) {
-            this.setHp(A7_HP_MIN, A7_HP_MAX);
+            setHp(A7_HP_MIN, A7_HP_MAX);
         } else {
-            this.setHp(HP_MIN, HP_MAX);
+            setHp(HP_MIN, HP_MAX);
         }
 
         if (AbstractDungeon.ascensionLevel >= 2) {
-            this.tuskSlashDamage = A2_TUSK_SLASH_DAMAGE;
-            this.breathFireDamage = A2_BREATHE_FIRE_DAMAGE;
-            this.enragingChargeDamage = A2_ENRAGING_CHARGE_DAMAGE;
+            tuskSlashDamage = A2_TUSK_SLASH_DAMAGE;
+            breathFireDamage = A2_BREATHE_FIRE_DAMAGE;
+            enragingChargeDamage = A2_ENRAGING_CHARGE_DAMAGE;
         } else {
-            this.tuskSlashDamage = TUSK_SLASH_DAMAGE;
-            this.breathFireDamage = BREATHE_FIRE_DAMAGE;
-            this.enragingChargeDamage = ENRAGING_CHARGE_DAMAGE;
+            tuskSlashDamage = TUSK_SLASH_DAMAGE;
+            breathFireDamage = BREATHE_FIRE_DAMAGE;
+            enragingChargeDamage = ENRAGING_CHARGE_DAMAGE;
         }
-        this.damage.add(new DamageInfo(this, this.tuskSlashDamage));
-        this.damage.add(new DamageInfo(this, this.breathFireDamage));
-        this.damage.add(new DamageInfo(this, this.enragingChargeDamage));
+        damage.add(new DamageInfo(this, tuskSlashDamage));
+        damage.add(new DamageInfo(this, breathFireDamage));
+        damage.add(new DamageInfo(this, enragingChargeDamage));
     }
 
     @Override
     public void usePreBattleAction() {
         if (AbstractDungeon.ascensionLevel >= 17) {
-            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new AngerPower(this, 1), 1));
+            atb(new ApplyPowerAction(this, this, new AngerPower(this, 1), 1));
         }
     }
 
     @Override
     public void takeTurn() {
-        if (this.firstMove) {
-            this.firstMove = false;
+        if (firstMove) {
+            firstMove = false;
         }
-        switch (this.nextMove) {
+        switch (nextMove) {
             case TUSK_SLASH_ATTACK:
-                AbstractDungeon.actionManager.addToBottom(new AnimateFastAttackAction(this));
-                AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
-                AbstractDungeon.actionManager.addToBottom(new AnimateFastAttackAction(this));
-                AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
+                atb(new AnimateFastAttackAction(this));
+                atb(new DamageAction(AbstractDungeon.player, damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                atb(new AnimateFastAttackAction(this));
+                atb(new DamageAction(AbstractDungeon.player, damage.get(0), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
                 break;
             case BREATHE_FIRE_ATTACK:
-                AbstractDungeon.actionManager.addToBottom(new AnimateSlowAttackAction(this));
-                AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player, this.damage.get(1), AbstractGameAction.AttackEffect.FIRE));
+                atb(new AnimateSlowAttackAction(this));
+                atb(new DamageAction(AbstractDungeon.player, damage.get(1), AbstractGameAction.AttackEffect.FIRE));
                 break;
             case ENRAGING_CHARGE_ATTACK:
-                AbstractDungeon.actionManager.addToBottom(new AnimateSlowAttackAction(this));
-                AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_HEAVY));
-                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new AngerPower(this, 1), 1));
+                atb(new AnimateSlowAttackAction(this));
+                atb(new DamageAction(AbstractDungeon.player, damage.get(0), AbstractGameAction.AttackEffect.SLASH_HEAVY));
+                atb(new ApplyPowerAction(this, this, new AngerPower(this, 1), 1));
                 break;
         }
-        AbstractDungeon.actionManager.addToBottom(new RollMoveAction(this));
+        atb(new RollMoveAction(this));
     }
 
     @Override
     protected void getMove(final int num) {
-        if (this.firstMove && AbstractDungeon.ascensionLevel < 17) {
-            this.setMove(MOVES[2], ENRAGING_CHARGE_ATTACK, Intent.ATTACK_BUFF, this.enragingChargeDamage);
+        if (firstMove && AbstractDungeon.ascensionLevel < 17) {
+            setMove(MOVES[2], ENRAGING_CHARGE_ATTACK, Intent.ATTACK_BUFF, enragingChargeDamage);
         }
-        else if (this.firstMove || this.lastMove(BREATHE_FIRE_ATTACK)) {
-            this.setMove(MOVES[0], TUSK_SLASH_ATTACK, Intent.ATTACK, this.tuskSlashDamage, TUSK_SLASH_HITS, true);
+        else if (firstMove || lastMove(BREATHE_FIRE_ATTACK)) {
+            setMove(MOVES[0], TUSK_SLASH_ATTACK, Intent.ATTACK, tuskSlashDamage, TUSK_SLASH_HITS, true);
         }
         else {
-            this.setMove(MOVES[1], BREATHE_FIRE_ATTACK, Intent.ATTACK, this.breathFireDamage);
+            setMove(MOVES[1], BREATHE_FIRE_ATTACK, Intent.ATTACK, breathFireDamage);
         }
     }
 }

@@ -17,6 +17,8 @@ import com.megacrit.cardcrawl.powers.BeatOfDeathPower;
 import com.megacrit.cardcrawl.vfx.combat.ShockWaveEffect;
 import spireMapOverhaul.SpireAnniversary6Mod;
 
+import static spireMapOverhaul.util.Wiz.*;
+
 public class DreadMoth extends CustomMonster
 {
     public static final String ID = SpireAnniversary6Mod.makeID("DreadMoth");
@@ -46,60 +48,60 @@ public class DreadMoth extends CustomMonster
 
     public DreadMoth(final float x, final float y) {
         super(DreadMoth.NAME, ID, HP, -5.0F, 0, 155.0f, 150.0f, IMG, x, y);
-        this.type = EnemyType.NORMAL;
+        type = EnemyType.NORMAL;
         if (AbstractDungeon.ascensionLevel >= 7) {
-            this.setHp(A7_HP);
-            this.wingWardBlock = A7_WING_WARD_BLOCK;
+            setHp(A7_HP);
+            wingWardBlock = A7_WING_WARD_BLOCK;
         } else {
-            this.setHp(HP);
-            this.wingWardBlock = WING_WARD_BLOCK;
+            setHp(HP);
+            wingWardBlock = WING_WARD_BLOCK;
         }
 
         if (AbstractDungeon.ascensionLevel >= 2) {
-            this.dreadWaveDamage = A2_DREAD_WAVE_DAMAGE;
+            dreadWaveDamage = A2_DREAD_WAVE_DAMAGE;
         } else {
-            this.dreadWaveDamage = DREAD_WAVE_DAMAGE;
+            dreadWaveDamage = DREAD_WAVE_DAMAGE;
         }
-        this.damage.add(new DamageInfo(this, this.dreadWaveDamage));
+        damage.add(new DamageInfo(this, dreadWaveDamage));
 
         if (AbstractDungeon.ascensionLevel >= 17) {
-            this.startingBlock = A17_STARTING_BLOCK;
+            startingBlock = A17_STARTING_BLOCK;
         } else {
-            this.startingBlock = STARTING_BLOCK;
+            startingBlock = STARTING_BLOCK;
         }
     }
 
     @Override
     public void usePreBattleAction() {
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new BeatOfDeathPower(this, BEAT_OF_DEATH_AMOUNT)));
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new BarricadePower(this)));
-        AbstractDungeon.actionManager.addToBottom(new GainBlockAction(this, this.startingBlock));
+        atb(new ApplyPowerAction(this, this, new BeatOfDeathPower(this, BEAT_OF_DEATH_AMOUNT)));
+        atb(new ApplyPowerAction(this, this, new BarricadePower(this)));
+        atb(new GainBlockAction(this, startingBlock));
     }
 
     @Override
     public void takeTurn() {
-        if (this.firstMove) {
-            this.firstMove = false;
+        if (firstMove) {
+            firstMove = false;
         }
-        switch (this.nextMove) {
+        switch (nextMove) {
             case WING_WARD_MOVE:
-                AbstractDungeon.actionManager.addToBottom(new GainBlockAction(this, this.wingWardBlock));
+                atb(new GainBlockAction(this, wingWardBlock));
                 break;
             case DREAD_WAVE_ATTACK:
-                AbstractDungeon.actionManager.addToBottom(new VFXAction(this, new ShockWaveEffect(this.hb.cX, this.hb.cY, Settings.BLUE_TEXT_COLOR, ShockWaveEffect.ShockWaveType.CHAOTIC), 0.75F));
-                AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player, this.damage.get(0), AbstractGameAction.AttackEffect.NONE));
+                atb(new VFXAction(this, new ShockWaveEffect(hb.cX, hb.cY, Settings.BLUE_TEXT_COLOR, ShockWaveEffect.ShockWaveType.CHAOTIC), 0.75F));
+                atb(new DamageAction(AbstractDungeon.player, damage.get(0), AbstractGameAction.AttackEffect.NONE));
                 break;
         }
-        AbstractDungeon.actionManager.addToBottom(new RollMoveAction(this));
+        atb(new RollMoveAction(this));
     }
 
     @Override
     protected void getMove(final int num) {
-        if (!this.lastMove(WING_WARD_MOVE) || !this.lastMoveBefore(WING_WARD_MOVE)) {
-            this.setMove(MOVES[0], WING_WARD_MOVE, Intent.DEFEND);
+        if (!lastMove(WING_WARD_MOVE) || !lastMoveBefore(WING_WARD_MOVE)) {
+            setMove(MOVES[0], WING_WARD_MOVE, Intent.DEFEND);
         }
         else {
-            this.setMove(MOVES[1], DREAD_WAVE_ATTACK, Intent.ATTACK, this.dreadWaveDamage);
+            setMove(MOVES[1], DREAD_WAVE_ATTACK, Intent.ATTACK, dreadWaveDamage);
         }
     }
 }

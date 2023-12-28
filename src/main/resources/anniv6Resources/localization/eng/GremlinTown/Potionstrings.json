@@ -1,0 +1,9 @@
+{
+  "${ModID}:LouseMilk": {
+    "NAME": "Louse Milk",
+    "DESCRIPTIONS": [
+      "Gain #b",
+      " #yStrength, #yDexterity, and #yFocus."
+    ]
+  }
+}

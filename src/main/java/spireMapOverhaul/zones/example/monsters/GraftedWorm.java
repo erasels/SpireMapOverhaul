@@ -15,6 +15,8 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.zones.example.powers.LeafSporesPower;
 
+import static spireMapOverhaul.util.Wiz.*;
+
 public class GraftedWorm extends CustomMonster
 {
     public static final String ID = SpireAnniversary6Mod.makeID("GraftedWorm");
@@ -44,47 +46,47 @@ public class GraftedWorm extends CustomMonster
 
     public GraftedWorm(final float x, final float y) {
         super(GraftedWorm.NAME, ID, HP_MAX, -5.0F, 0, 155.0f, 150.0f, IMG, x, y);
-        this.type = EnemyType.NORMAL;
+        type = EnemyType.NORMAL;
         if (AbstractDungeon.ascensionLevel >= 7) {
-            this.setHp(A7_HP_MIN, A7_HP_MAX);
+            setHp(A7_HP_MIN, A7_HP_MAX);
         } else {
-            this.setHp(HP_MIN, HP_MAX);
+            setHp(HP_MIN, HP_MAX);
         }
 
         if (AbstractDungeon.ascensionLevel >= 2) {
-            this.leafBladeDamage = A2_LEAF_BLADE_DAMAGE;
+            leafBladeDamage = A2_LEAF_BLADE_DAMAGE;
         } else {
-            this.leafBladeDamage = LEAF_BLADE_DAMAGE;
+            leafBladeDamage = LEAF_BLADE_DAMAGE;
         }
-        this.damage.add(new DamageInfo(this, this.leafBladeDamage));
+        damage.add(new DamageInfo(this, leafBladeDamage));
 
         if (AbstractDungeon.ascensionLevel >= 17) {
-            this.leafSporesAmount = A17_LEAF_SPORES_AMOUNT;
-            this.temporaryStrength = A17_TEMPORARY_STRENGTH;
+            leafSporesAmount = A17_LEAF_SPORES_AMOUNT;
+            temporaryStrength = A17_TEMPORARY_STRENGTH;
         } else {
-            this.leafSporesAmount = LEAF_SPORES_AMOUNT;
-            this.temporaryStrength = TEMPORARY_STRENGTH;
+            leafSporesAmount = LEAF_SPORES_AMOUNT;
+            temporaryStrength = TEMPORARY_STRENGTH;
         }
     }
 
     @Override
     public void usePreBattleAction() {
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new LeafSporesPower(this, this.leafSporesAmount)));
-        if (this.temporaryStrength > 0) {
-            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new StrengthPower(this, this.temporaryStrength), this.temporaryStrength));
-            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new LoseStrengthPower(this, this.temporaryStrength), this.temporaryStrength));
+        atb(new ApplyPowerAction(this, this, new LeafSporesPower(this, leafSporesAmount)));
+        if (temporaryStrength > 0) {
+            atb(new ApplyPowerAction(this, this, new StrengthPower(this, temporaryStrength), temporaryStrength));
+            atb(new ApplyPowerAction(this, this, new LoseStrengthPower(this, temporaryStrength), temporaryStrength));
         }
     }
 
     @Override
     public void takeTurn() {
-        if (this.firstMove) {
-            this.firstMove = false;
+        if (firstMove) {
+            firstMove = false;
         }
-        switch (this.nextMove) {
+        switch (nextMove) {
             case LEAF_BLADE_ATTACK:
-                AbstractDungeon.actionManager.addToBottom(new AnimateSlowAttackAction(this));
-                AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
+                atb(new AnimateSlowAttackAction(this));
+                atb(new DamageAction(AbstractDungeon.player, damage.get(0), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
                 break;
         }
         AbstractDungeon.actionManager.addToBottom(new RollMoveAction(this));
@@ -92,6 +94,6 @@ public class GraftedWorm extends CustomMonster
 
     @Override
     protected void getMove(final int num) {
-        this.setMove(MOVES[0], LEAF_BLADE_ATTACK, Intent.ATTACK, this.leafBladeDamage);
+        setMove(MOVES[0], LEAF_BLADE_ATTACK, Intent.ATTACK, leafBladeDamage);
     }
 }

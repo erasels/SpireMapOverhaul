@@ -1,0 +1,9 @@
+{
+  "${ModID}:Duelity": {
+    "NAME": "Duelity",
+    "FLAVOR": "Apparently Gremlin Nobs are bad at spelling.",
+    "DESCRIPTIONS": [
+      "Whenever you play a Skill, gain #b1 temporary Dexterity."
+    ]
+  }
+}
