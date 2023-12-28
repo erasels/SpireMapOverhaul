@@ -10,8 +10,8 @@ import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
+import com.megacrit.cardcrawl.powers.RitualPower;
 import spireMapOverhaul.SpireAnniversary6Mod;
-import spireMapOverhaul.zones.gremlinTown.powers.RagingPower;
 
 import static spireMapOverhaul.util.Wiz.*;
 
@@ -26,14 +26,14 @@ public class GremlinBarbarian extends CustomMonster
             "monsters/GremlinTown/GremlinBarbarian/skeleton.json");
     private boolean firstMove = true;
     private static final byte ATTACK = 1;
-    private static final int DAMAGE = 2;
-    private static final int DAMAGE_A2 = 3;
+    private static final int DAMAGE = 4;
+    private static final int DAMAGE_A2 = 5;
     private static final int MIN_HP = 55;
     private static final int MAX_HP = 59;
     private static final int MIN_HP_A7 = 59;
     private static final int MAX_HP_A7 = 64;
     private static final int ATTACK_COUNT = 2;
-    private static final int RAGE_AMOUNT = 1;
+    private static final int RITUAL_AMOUNT = 2;
 
     private final int attackDamage;
 
@@ -65,7 +65,7 @@ public class GremlinBarbarian extends CustomMonster
     }
 
     public void usePreBattleAction() {
-        atb(new ApplyPowerAction(this, this, new RagingPower(this, RAGE_AMOUNT)));
+        atb(new ApplyPowerAction(this, this, new RitualPower(this, RITUAL_AMOUNT, false)));
     }
 
     @Override

@@ -44,5 +44,12 @@
       "Frenzy"
     ],
     "NAME": "Gremlin Barbarian"
+  },
+  "${ModID}:GremlinAssassin": {
+    "MOVES": [
+      "Hamstring",
+      "Sap"
+    ],
+    "NAME": "Gremlin Assassin"
   }
 }
