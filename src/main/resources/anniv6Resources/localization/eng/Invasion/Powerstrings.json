@@ -1,0 +1,126 @@
+{
+  "${ModID}:FixedTextIntangiblePower": {
+    "DESCRIPTIONS": ["Reduce ALL damage taken and HP loss to #b1 for #b{0} turns."]
+  },
+  "${ModID}:SerpentsGaze": {
+    "NAME": "Serpent's Gaze",
+    "DESCRIPTIONS": ["The first card you draw costs #b{0} more this turn.", "The first #b{0} cards you draw cost #b{1} more this turn."]
+  },
+  "${ModID}:LeafSpores": {
+    "NAME": "Leaf Spores",
+    "DESCRIPTIONS": ["On death, applies #b{0} #yWeak and #b{0} #yFrail."]
+  },
+  "${ModID}:Hover": {
+    "NAME": "Hover",
+    "DESCRIPTIONS": ["Takes #b{0}% less damage from attacks."]
+  },
+  "${ModID}:MidasAura": {
+    "NAME": "Midas Aura",
+    "DESCRIPTIONS": ["When you play an upgraded attack, skill, or power, #yExhaust it and add a Gilded Strike, Gilded Defend, or Gilded Essence to your discard pile."]
+  },
+  "${ModID}:GoldenBulwark": {
+    "NAME": "Golden Bulwark",
+    "DESCRIPTIONS": ["Gains #b1 block at the start of combat for every #b{0} gold you have (rounded up)."]
+  },
+  "${ModID}:Cleanse": {
+    "NAME": "Cleanse",
+    "DESCRIPTIONS": ["Reduce all debuffs by #b{0} at the end of each turn.", "Wears off after this turn."]
+  },
+  "${ModID}:Abysstouched": {
+    "NAME": "Abysstouched",
+    "DESCRIPTIONS": ["Take #b{0}% more damage from #yAttacks. At the end of your turn, take #b{0} damage.", "Receive #b{0}% more damage from #yAttacks. At the start of its turn, takes #b{0} damage."]
+  },
+  "${ModID}:DelayedAbysstouched": {
+    "NAME": "Abysstouched",
+    "DESCRIPTIONS": ["Take #b{0}% more damage from #yAttacks. At the end of your turn, take #b{0} damage."]
+  },
+  "${ModID}:Wary": {
+    "NAME": "Wary",
+    "DESCRIPTIONS": ["Whenever you play an #yAttack, gains #b{0} Strength."]
+  },
+  "${ModID}:HydraHeads": {
+    "NAME": "Hydra Heads",
+    "DESCRIPTIONS": ["Has #b1 #yStrength per head. When this enemy takes #b{0} or more damage from a single hit, loses a head. Regrows twice as many heads in two turns."]
+  },
+  "${ModID}:HydraHeadRegrowth": {
+    "NAME": "Head Regrowth",
+    "DESCRIPTIONS": ["Regrowing #b{0} heads in two turns."]
+  },
+  "${ModID}:DrawReductionSingleTurn": {
+    "NAME": "Draw Reduction",
+    "DESCRIPTIONS": ["Draw #b1 less card next turn.", "Draw #b{0} less cards next turn."]
+  },
+  "${ModID}:PermanentDrawReduction": {
+    "NAME": "Draw",
+    "DESCRIPTIONS": [
+      "At the start of your turn, draw #b{0} less card.",
+      "At the start of your turn, draw #b{0} less cards."
+    ]
+  },
+  "${ModID}:EnergyLimit": {
+    "NAME": "Energy Limit",
+    "DESCRIPTIONS": ["Start with at most #b3 energy each turn."]
+  },
+  "${ModID}:FixedTextDraw": {
+    "NAME": "Draw",
+    "DESCRIPTIONS": [
+      "At the start of your turn, draw #b",
+      " additional card.",
+      " less card.",
+      " additional cards.",
+      " less cards."
+    ]
+  },
+  "${ModID}:VoidPressure": {
+    "NAME": "Void Pressure",
+    "DESCRIPTIONS": ["#pUncleansable. Whenever a card is #yExhausted or you play a power, take #b{0} damage. Exhaust a random card in your hand that isn't a Status, a Curse, or Ethereal at the end of your turn."]
+  },
+  "${ModID}:SummoningPortal": {
+    "NAME": "Summoning Portal",
+    "DESCRIPTIONS": ["Summons elementals each turn up to a limit of #b{0} active. Invulnerable and won't attack until it has summoned #b{1} more elementals."]
+  },
+  "${ModID}:DurableMinion": {
+    "NAME": "Durable Minion",
+    "DESCRIPTIONS": ["This minion will not abandon combat when its leader is defeated."]
+  },
+  "${ModID}:MirarisWake": {
+    "NAME": "Mirari's Wake",
+    "DESCRIPTIONS": ["At the start of your turn, gain {0} ."]
+  },
+  "${ModID}:StaggershockRebound": {
+    "NAME": "Staggershock Rebound",
+    "DESCRIPTIONS": ["At the start of your next turn, play Staggershock."]
+  },
+  "${ModID}:HandOfTheAbyss": {
+    "NAME": "Hand of the Abyss",
+    "DESCRIPTIONS": ["Whenever you deal unblocked attack damage, apply #b{0} #yAbysstouched."]
+  },
+  "${ModID}:BrokenCrystalSeal": {
+    "NAME": "Broken Crystal Seal",
+    "DESCRIPTIONS": ["Add #b2 #yBroken #yCrystals to your draw pile each turn. NL Fragments of the crystal once used to seal this enemy litter the ground. Use them to weaken its regeneration!"]
+  },
+  "${ModID}:PrimevalCall": {
+    "NAME": "Primeval Call",
+    "DESCRIPTIONS": ["Summons a #pRoyal #pProtector each turn."]
+  },
+  "${ModID}:Evolving": {
+    "NAME": "Evolving",
+    "DESCRIPTIONS": ["Evolves at the end of each turn."]
+  },
+  "${ModID}:FrailPulse": {
+    "NAME": "Frail Pulse",
+    "DESCRIPTIONS": ["At the end of each round, apply #b{0} #yFrail."]
+  },
+  "${ModID}:DazedPulse": {
+    "NAME": "Dazed Pulse",
+    "DESCRIPTIONS": ["At the end of each round, shuffle #b{0} #yDazed into your draw pile."]
+  },
+  "${ModID}:AbysstouchedPulse": {
+    "NAME": "Abysstouched Pulse",
+    "DESCRIPTIONS": ["At the end of each round, apply #b{0} #yAbysstouched."]
+  },
+  "${ModID}:SlimyBody": {
+    "NAME": "Slimy Body",
+    "DESCRIPTIONS": ["When this enemy takes attack damage, add a #ySlimed to your discard pile."]
+  }
+}

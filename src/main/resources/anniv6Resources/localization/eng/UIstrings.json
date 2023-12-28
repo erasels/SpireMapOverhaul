@@ -4,7 +4,8 @@
       "Spire Map Overhaul",
       "StS Modding Community",
       "Makes the map more interesting.",
-      "Enabled"
+      "Enabled",
+      "Make zone icons larger but cut off by the zone's shape."
     ]
   },
   "${ModID}:SingleCardReward": {

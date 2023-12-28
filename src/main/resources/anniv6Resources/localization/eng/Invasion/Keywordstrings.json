@@ -1,0 +1,57 @@
+[
+  {
+    "PROPER_NAME": "Plated\u00a0Armor",
+    "NAMES": ["plated\u00a0armor"],
+    "DESCRIPTION": "Gain #yBlock at the end of you turn. Reduced by receiving unblocked attack damage."
+  },
+  {
+    "PROPER_NAME": "Abysstouched",
+    "NAMES": ["abysstouched"],
+    "DESCRIPTION": "Increases attack damage taken and deals damage every turn."
+  },
+  {
+    "PROPER_NAME": "Enraged",
+    "NAMES": ["enraged"],
+    "DESCRIPTION": "Whenever you play a skill, gains #yStrength."
+  },
+  {
+    "PROPER_NAME": "Beat of Death",
+    "NAMES": ["beat\u00a0of\u00a0death"],
+    "DESCRIPTION": "Whenever you play a card, take damage."
+  },
+  {
+    "PROPER_NAME": "Metallicize",
+    "NAMES": ["metallicize"],
+    "DESCRIPTION": "Gains #yBlock at the end of its turn."
+  },
+  {
+    "PROPER_NAME": "Buffer",
+    "NAMES": ["buffer"],
+    "DESCRIPTION": "Prevent the next HP loss."
+  },
+  {
+    "PROPER_NAME": "Frail Pulse",
+    "NAMES": ["frail\u00a0pulse"],
+    "DESCRIPTION": "Applies #yFrail to you each turn."
+  },
+  {
+    "PROPER_NAME": "Dazed Pulse",
+    "NAMES": ["dazed\u00a0pulse"],
+    "DESCRIPTION": "Shuffles a #yDazed into your draw pile each turn."
+  },
+  {
+    "PROPER_NAME": "Abysstouched Pulse",
+    "NAMES": ["abysstouched\u00a0pulse"],
+    "DESCRIPTION": "Applies #yAbysstouched to you each turn."
+  },
+  {
+    "PROPER_NAME": "Slimy Body",
+    "NAMES": ["slimy\u00a0body"],
+    "DESCRIPTION": "Shuffles a #ySlimed into your draw pile whenever you deal unblocked attack damage."
+  },
+  {
+    "PROPER_NAME": "Invincible",
+    "NAMES": ["invincible"],
+    "DESCRIPTION": "Caps how much HP can be lost each turn."
+  }
+]
