@@ -109,7 +109,7 @@ public class CandyLand extends AbstractZone implements RewardModifyingZone, Camp
                 button.usable = false;
             } else if(button instanceof RestOption){
                 String newDescription = ReflectionHacks.getPrivateInherited(button, RestOption.class, "description");
-                newDescription += "\n+5" + TEXT[2] + LocalizedStrings.PERIOD;
+                newDescription += TEXT[2];
                 ReflectionHacks.setPrivateInherited(button, RestOption.class, "description", newDescription);
 
             }
