@@ -98,6 +98,7 @@ public class CandyLand extends AbstractZone implements RewardModifyingZone, Camp
         rewards.removeIf(r -> r.type == RewardItem.RewardType.GOLD);
     }
 
+    @Override
     public void postAddButtons(ArrayList<AbstractCampfireOption> buttons) {
         for (AbstractCampfireOption button : buttons){
             if (button instanceof SmithOption){
@@ -106,12 +107,14 @@ public class CandyLand extends AbstractZone implements RewardModifyingZone, Camp
         }
     }
 
+    @Override
     public void postUseCampfireOption(AbstractCampfireOption option) {
         if(option instanceof RestOption) {
             AbstractDungeon.player.increaseMaxHp(5, true);
         }
     }
 
+    @Override
     public void postCreateShopCards(ArrayList<AbstractCard> coloredCards, ArrayList<AbstractCard> colorlessCards) {
         ArrayList<AbstractCard> topRow = new ArrayList<>();
         for(AbstractCard card : coloredCards){
@@ -132,6 +135,7 @@ public class CandyLand extends AbstractZone implements RewardModifyingZone, Camp
         colorlessCards.add(new Feed());
     }
 
+    @Override
     public float modifyCardBaseCost(AbstractCard c, float baseCost) {
         switch(c.cardID) {
             case Bite.ID: return 80 + AbstractDungeon.merchantRng.random(1, 19); // Uncommon Colorless cost
@@ -140,6 +144,7 @@ public class CandyLand extends AbstractZone implements RewardModifyingZone, Camp
         }
     }
 
+    @Override
     public void postCreateShopRelics(ShopScreen screen, ArrayList<StoreRelic> relics) {
         relics.clear();
         relics.add(new StoreRelic(new Waffle(), 0, screen));
@@ -147,6 +152,7 @@ public class CandyLand extends AbstractZone implements RewardModifyingZone, Camp
         relics.add(new StoreRelic(new Mango(), 2, screen));
     }
 
+    @Override
     public void postCreateShopPotions(ShopScreen screen, ArrayList<StorePotion> potions) {
         for(StorePotion potion : potions){
             while(potion.potion.isThrown){
@@ -154,6 +160,7 @@ public class CandyLand extends AbstractZone implements RewardModifyingZone, Camp
             }
         }
     }
+
 
     public ArrayList<AbstractConsumable> getConsumables(){
         ArrayList<AbstractConsumable> consumables = new ArrayList<>();
