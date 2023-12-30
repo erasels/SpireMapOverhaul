@@ -1,10 +1,14 @@
 package spireMapOverhaul.zones.candyland;
 
+import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.colorless.Bite;
 import com.megacrit.cardcrawl.cards.red.Feed;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.localization.LocalizedStrings;
+import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.relics.*;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.shop.ShopScreen;
@@ -103,6 +107,11 @@ public class CandyLand extends AbstractZone implements RewardModifyingZone, Camp
         for (AbstractCampfireOption button : buttons){
             if (button instanceof SmithOption){
                 button.usable = false;
+            } else if(button instanceof RestOption){
+                String newDescription = ReflectionHacks.getPrivateInherited(button, RestOption.class, "description");
+                newDescription += "\n+5" + TEXT[2] + LocalizedStrings.PERIOD;
+                ReflectionHacks.setPrivateInherited(button, RestOption.class, "description", newDescription);
+
             }
         }
     }
