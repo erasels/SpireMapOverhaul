@@ -149,7 +149,7 @@ public class CandyLand extends AbstractZone implements RewardModifyingZone, Camp
         switch(c.cardID) {
             case Bite.ID: return 80 + AbstractDungeon.merchantRng.random(1, 19); // Uncommon Colorless cost
             case Feed.ID: return baseCost;
-            default: return (float) (baseCost*0.5);
+            default: return (float) (baseCost*0.4);
         }
     }
 
