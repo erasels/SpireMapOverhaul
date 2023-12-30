@@ -1,12 +1,10 @@
 package spireMapOverhaul.patches;
 
-import basemod.BaseMod;
 import basemod.ReflectionHacks;
 import basemod.abstracts.CustomSavable;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.metrics.Metrics;
@@ -18,7 +16,6 @@ import javassist.*;
 import org.apache.logging.log4j.Logger;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
-import spireMapOverhaul.patches.interfacePatches.EncounterModifierPatches;
 import spireMapOverhaul.util.Wiz;
 
 import java.lang.reflect.Field;

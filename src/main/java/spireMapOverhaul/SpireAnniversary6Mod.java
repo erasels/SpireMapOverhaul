@@ -50,7 +50,6 @@ import spireMapOverhaul.util.ZoneShapeMaker;
 import spireMapOverhaul.zoneInterfaces.CampfireModifyingZone;
 import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
 import spireMapOverhaul.rewards.HealReward;
-import spireMapOverhaul.zones.example.PlaceholderZone;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -153,6 +152,7 @@ public class SpireAnniversary6Mod implements
         try {
             Properties defaults = new Properties();
             defaults.put("active", "TRUE");
+            defaults.put("largeIconsMode", "FALSE");
             modConfig = new SpireConfig(modID, "anniv6Config", defaults);
         } catch (Exception e) {
             e.printStackTrace();
@@ -371,6 +371,9 @@ public class SpireAnniversary6Mod implements
             if (Gdx.files.internal(filepath + "Monsterstrings.json").exists()) {
                 BaseMod.loadCustomStringsFile(MonsterStrings.class, filepath + "Monsterstrings.json");
             }
+            if (Gdx.files.internal(filepath + "Eventstrings.json").exists()) {
+                BaseMod.loadCustomStringsFile(EventStrings.class, filepath + "Eventstrings.json");
+            }
         }
     }
 
@@ -523,6 +526,8 @@ public class SpireAnniversary6Mod implements
         }
     }
     private ModPanel settingsPanel;
+    private static final float LARGEICONS_CHECKBOX_X = 400f;
+    private static final float LARGEICONS_CHECKBOX_Y = 650f;
     private DropdownMenu filterDropdown;
     private static final float DROPDOWN_X = 400f;
     private static final float DROPDOWN_Y = 600f;
@@ -540,6 +545,11 @@ public class SpireAnniversary6Mod implements
         Texture badge = TexLoader.getTexture(makeImagePath("ui/badge.png"));
 
         settingsPanel = new ModPanel();
+
+        ModLabeledToggleButton largeIconsModeToggle = new ModLabeledToggleButton(configStrings.TEXT[4], LARGEICONS_CHECKBOX_X, LARGEICONS_CHECKBOX_Y, Color.WHITE, FontHelper.tipBodyFont, getLargeIconsModeConfig(), null,
+                (label) -> {},
+                (button) -> setLargeIconsModeConfig(button.enabled));
+        settingsPanel.addUIElement(largeIconsModeToggle);
 
         ArrayList<String> filterOptions = new ArrayList<>();
         for (AbstractZone z : unfilteredAllZones) {
@@ -657,6 +667,21 @@ public class SpireAnniversary6Mod implements
     public static void setActiveConfig(boolean active) {
         if (modConfig != null) {
             modConfig.setBool("active", active);
+            try {
+                modConfig.save();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static boolean getLargeIconsModeConfig() {
+        return modConfig != null && modConfig.getBool("largeIconsMode");
+    }
+
+    public static void setLargeIconsModeConfig(boolean bool) {
+        if (modConfig != null) {
+            modConfig.setBool("largeIconsMode", bool);
             try {
                 modConfig.save();
             } catch (IOException e) {

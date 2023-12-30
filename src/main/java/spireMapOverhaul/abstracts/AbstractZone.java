@@ -1,7 +1,9 @@
 package spireMapOverhaul.abstracts;
 
 import basemod.Pair;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
@@ -20,9 +22,12 @@ import spireMapOverhaul.BetterMapGenerator.MapPlanner;
 import spireMapOverhaul.BetterMapGenerator.MapPlanner.PlanningNode;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.util.ActUtil;
+import spireMapOverhaul.util.TexLoader;
 import spireMapOverhaul.util.ZoneShapeMaker;
 
+import java.awt.*;
 import java.util.*;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
@@ -67,6 +72,7 @@ public abstract class AbstractZone {
 
     public FrameBuffer zoneFb = null;
     private TextureRegion shapeRegion = null;
+    public Texture iconTexture;
 
     public List<Hitbox> hitboxes;
     public HashMap<Hitbox, Pair<Float, Float>> hitboxRelativePositions;
@@ -85,6 +91,11 @@ public abstract class AbstractZone {
         this.id = id;
         this.icons = icons;
         loadStrings();
+        if (Gdx.files.internal(SpireAnniversary6Mod.makeImagePath("ui/zoneIcons/" + id + ".png")).exists()) {
+            iconTexture = TexLoader.getTexture(SpireAnniversary6Mod.makeImagePath("ui/zoneIcons/" + id + ".png"));
+        } else {
+            iconTexture = TexLoader.getTexture(SpireAnniversary6Mod.makeImagePath("ui/zoneIcons/zoneIconTemplate.png"));
+        }
     }
 
     public abstract AbstractZone copy();
