@@ -15,6 +15,7 @@ public class Banana extends AbstractConsumable {
     public Banana() {
         super(ID, 0, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
         baseMagicNumber = magicNumber = 2;
+        tags.add(CardTags.HEALING);
     }
 
     @Override

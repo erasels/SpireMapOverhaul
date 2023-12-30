@@ -16,6 +16,7 @@ public class Cocktail extends AbstractConsumable {
 
     public Cocktail() {
         super(ID, 1, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
+        tags.add(CardTags.HEALING);
     }
 
     @Override

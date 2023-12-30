@@ -18,6 +18,7 @@ public class GoldCandy extends AbstractConsumable {
     public GoldCandy() {
         super(ID, 0, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
         baseMagicNumber = magicNumber = 30;
+        tags.add(CardTags.HEALING);
     }
 
     @Override

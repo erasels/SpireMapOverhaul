@@ -16,6 +16,7 @@ public class ChocolateBar extends AbstractConsumable {
     public ChocolateBar() {
         super(ID, 0, CardType.POWER, CardRarity.RARE, CardTarget.SELF);
         baseMagicNumber = magicNumber = 4;
+        tags.add(CardTags.HEALING);
     }
 
     @Override
