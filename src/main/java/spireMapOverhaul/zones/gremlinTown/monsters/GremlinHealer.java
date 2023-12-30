@@ -20,7 +20,6 @@ public class GremlinHealer extends CustomMonster
 {
     public static final String ID = SpireAnniversary6Mod.makeID(GremlinHealer.class.getSimpleName());
     public static final String NAME;
-    public static final String[] MOVES;
     private static final String SKELETON_ATLAS = SpireAnniversary6Mod.makeImagePath(
             "monsters/GremlinTown/GremlinHealer/skeleton.atlas");
     private static final String SKELETON_JSON = SpireAnniversary6Mod.makeImagePath(
@@ -45,7 +44,7 @@ public class GremlinHealer extends CustomMonster
     }
 
     public GremlinHealer(final float x, final float y) {
-        super(GremlinHealer.NAME, ID, MAX_HP, 0, 0, 200.0f, 270.0f, null, x, y);
+        super(GremlinHealer.NAME, ID, MAX_HP, 40.0f/0.7f, -5f/0.7f, 130.0f/0.7f, 180.0f/0.7f, null, x - 35.0f/0.7f, y);
 
         type = EnemyType.NORMAL;
         loadAnimation(SKELETON_ATLAS, SKELETON_JSON, 0.7F);

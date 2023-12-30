@@ -2,8 +2,37 @@
   "${ModID}:LouseMilk": {
     "NAME": "Louse Milk",
     "DESCRIPTIONS": [
-      "Gain #b",
-      " #yStrength, #yDexterity, and #yFocus."
+      "Gain #b{0} #yStrength, #yDexterity, and #yFocus."
+    ]
+  },
+  "${ModID}:PreerelxsBlueRibbon": {
+    "NAME": "Preerelx's Blue Ribbon",
+    "DESCRIPTIONS": [
+      "Gain #b{0} #yVigor"
+    ]
+  },
+  "${ModID}:RitualBlood": {
+    "NAME": "Ritual Blood",
+    "DESCRIPTIONS": [
+      "Impairs the Heart"
+    ]
+  },
+  "${ModID}:NoxiousBrew": {
+    "NAME": "NoxiousBrew",
+    "DESCRIPTIONS": [
+      "Apply {0} #yPoison to a random enemy at the end of your turn."
+    ]
+  },
+  "${ModID}:MushroomSoup": {
+    "NAME": "Mushroom Soup",
+    "DESCRIPTIONS": [
+      "Gain {0} #yTemporary #yHP at the end of your turn."
+    ]
+  },
+  "${ModID}:GremsFire": {
+    "NAME": "Grem's Fire",
+    "DESCRIPTIONS": [
+      "Deal {0} damage to ALL enemies at the end of your turn."
     ]
   }
 }

@@ -21,7 +21,6 @@ public class GremlinRiderBlue extends CustomMonster
 {
     public static final String ID = SpireAnniversary6Mod.makeID(GremlinRiderBlue.class.getSimpleName());
     public static final String NAME;
-    public static final String[] MOVES;
     private static final String SKELETON_ATLAS = SpireAnniversary6Mod.makeImagePath(
             "monsters/GremlinTown/GremlinRiderBlue/GremlinRider.atlas");
     private static final String SKELETON_JSON = SpireAnniversary6Mod.makeImagePath(

@@ -20,7 +20,6 @@ public class ChubbyGremlin extends CustomMonster
 {
     public static final String ID = SpireAnniversary6Mod.makeID(ChubbyGremlin.class.getSimpleName());
     public static final String NAME;
-    public static final String[] MOVES;
     private static final String SKELETON_ATLAS = SpireAnniversary6Mod.makeImagePath(
             "monsters/GremlinTown/ChubbyGremlin/skeleton.atlas");
     private static final String SKELETON_JSON = SpireAnniversary6Mod.makeImagePath(
@@ -42,7 +41,7 @@ public class ChubbyGremlin extends CustomMonster
     }
 
     public ChubbyGremlin(final float x, final float y) {
-        super(ChubbyGremlin.NAME, ID, MAX_HP, 0, 0, 220.0f, 240.0f, null, x, y);
+        super(ChubbyGremlin.NAME, ID, MAX_HP, 0, 0, 110.0f/0.7f, 200.0f, null, x, y);
 
         type = EnemyType.NORMAL;
         loadAnimation(SKELETON_ATLAS, SKELETON_JSON, 0.5F);

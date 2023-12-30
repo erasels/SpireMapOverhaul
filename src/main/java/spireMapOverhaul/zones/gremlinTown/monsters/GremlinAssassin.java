@@ -3,22 +3,16 @@ package spireMapOverhaul.zones.gremlinTown.monsters;
 import basemod.abstracts.CustomMonster;
 import com.badlogic.gdx.math.MathUtils;
 import com.esotericsoftware.spine.AnimationState;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.AnimateSlowAttackAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
-import com.megacrit.cardcrawl.powers.DrawReductionPower;
-import com.megacrit.cardcrawl.powers.RitualPower;
-import com.megacrit.cardcrawl.powers.watcher.EnergyDownPower;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.zones.gremlinTown.powers.SapPower;
 import spireMapOverhaul.zones.invasion.powers.DrawReductionSingleTurnPower;
-import spireMapOverhaul.zones.invasion.powers.EnergyLimitPower;
 
 import static spireMapOverhaul.util.Wiz.*;
 
@@ -26,7 +20,6 @@ public class GremlinAssassin extends CustomMonster
 {
     public static final String ID = SpireAnniversary6Mod.makeID(GremlinAssassin.class.getSimpleName());
     public static final String NAME;
-    public static final String[] MOVES;
     private static final String SKELETON_ATLAS = SpireAnniversary6Mod.makeImagePath(
             "monsters/GremlinTown/GremlinAssassin/skeleton.atlas");
     private static final String SKELETON_JSON = SpireAnniversary6Mod.makeImagePath(
@@ -42,8 +35,8 @@ public class GremlinAssassin extends CustomMonster
     private static final int MAX_HP = 32;
     private static final int MIN_HP_A7 = 32;
     private static final int MAX_HP_A7 = 35;
-    private static final int HAMSTRING_AMOUNT = 2;
-    private static final int SAP_AMOUNT = 2;
+    private static final int HAMSTRING_AMOUNT = 1;
+    private static final int SAP_AMOUNT = 1;
 
     private final int hamstringDamage;
     private final int sapDamage;
@@ -53,10 +46,10 @@ public class GremlinAssassin extends CustomMonster
     }
 
     public GremlinAssassin(final float x, final float y) {
-        super(GremlinAssassin.NAME, ID, MAX_HP, 0, 0, 120.0f, 160.0f, null, x, y);
+        super(GremlinAssassin.NAME, ID, MAX_HP, 0, 0, 120.0f/0.7f, 160.0f/0.7f, null, x, y);
 
         type = EnemyType.NORMAL;
-        loadAnimation(SKELETON_ATLAS, SKELETON_JSON, 1.7F);
+        loadAnimation(SKELETON_ATLAS, SKELETON_JSON, 0.7F);
         AnimationState.TrackEntry e = this.state.setAnimation(0, "animation", true);
         e.setTime(e.getEndTime() * MathUtils.random());
 

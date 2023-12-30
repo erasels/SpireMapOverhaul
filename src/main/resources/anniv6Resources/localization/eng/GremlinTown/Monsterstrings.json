@@ -51,5 +51,16 @@
       "Sap"
     ],
     "NAME": "Gremlin Assassin"
+  },
+  "${ModID}:GremlinNib": {
+    "MOVES": [
+      "Bellow",
+      "Rush",
+      "Crit"
+    ],
+    "DIALOG": [
+      "RRrroohrrRGHHhhh!!"
+    ],
+    "NAME": "Gremlin Nib"
   }
 }

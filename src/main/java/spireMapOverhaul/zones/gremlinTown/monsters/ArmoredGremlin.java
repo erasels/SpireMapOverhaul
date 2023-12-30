@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
+import com.megacrit.cardcrawl.powers.BarricadePower;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.zones.gremlinTown.powers.HeavyArmorPower;
 
@@ -21,7 +22,6 @@ public class ArmoredGremlin extends CustomMonster
 {
     public static final String ID = SpireAnniversary6Mod.makeID(ArmoredGremlin.class.getSimpleName());
     public static final String NAME;
-    public static final String[] MOVES;
     private static final String SKELETON_ATLAS = SpireAnniversary6Mod.makeImagePath(
             "monsters/GremlinTown/ArmoredGremlin/skeleton.atlas");
     private static final String SKELETON_JSON = SpireAnniversary6Mod.makeImagePath(
@@ -32,8 +32,8 @@ public class ArmoredGremlin extends CustomMonster
     private static final int DAMAGE_A2 = 9;
     private static final int MIN_HP = 31;
     private static final int MAX_HP = 35;
-    private static final int BLOCK_AMOUNT = 8;
-    private static final int BLOCK_AMOUNT_A7 = 10;
+    private static final int BLOCK_AMOUNT = 7;
+    private static final int BLOCK_AMOUNT_A7 = 9;
 
     private final int attackDamage;
     private final int blockAmount;
@@ -43,7 +43,7 @@ public class ArmoredGremlin extends CustomMonster
     }
 
     public ArmoredGremlin(final float x, final float y) {
-        super(ArmoredGremlin.NAME, ID, MAX_HP, 0, 0, 180.0f, 300.0f, null, x, y);
+        super(ArmoredGremlin.NAME, ID, MAX_HP, 0, 0, 120.0f/0.7f, 200.0f/0.7f, null, x, y);
 
         type = EnemyType.NORMAL;
         loadAnimation(SKELETON_ATLAS, SKELETON_JSON, 0.7F);
@@ -67,7 +67,9 @@ public class ArmoredGremlin extends CustomMonster
     }
 
     public void usePreBattleAction() {
-        atb(new ApplyPowerAction(this, this, new HeavyArmorPower(this, 2)));
+        atb(new ApplyPowerAction(this, this, new HeavyArmorPower(this)));
+        atb(new ApplyPowerAction(this, this, new BarricadePower(this)));
+        SpireAnniversary6Mod.logger.info(name);
         atb(new GainBlockAction(this, blockAmount));
     }
 
@@ -78,9 +80,9 @@ public class ArmoredGremlin extends CustomMonster
 
         atb(new AnimateSlowAttackAction(this));
         if (currentBlock > 0)
-            atb(new DamageAction(adp(), damage.get(0), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
-        else
             atb(new DamageAction(adp(), damage.get(0), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
+        else
+            atb(new DamageAction(adp(), damage.get(0), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
         atb(new GainBlockAction(this, blockAmount));
 
         atb(new RollMoveAction(this));

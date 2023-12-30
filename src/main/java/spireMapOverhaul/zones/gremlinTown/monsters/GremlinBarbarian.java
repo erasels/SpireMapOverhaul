@@ -10,8 +10,8 @@ import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
-import com.megacrit.cardcrawl.powers.RitualPower;
 import spireMapOverhaul.SpireAnniversary6Mod;
+import spireMapOverhaul.zones.gremlinTown.powers.RagingPower;
 
 import static spireMapOverhaul.util.Wiz.*;
 
@@ -19,7 +19,6 @@ public class GremlinBarbarian extends CustomMonster
 {
     public static final String ID = SpireAnniversary6Mod.makeID(GremlinBarbarian.class.getSimpleName());
     public static final String NAME;
-    public static final String[] MOVES;
     private static final String SKELETON_ATLAS = SpireAnniversary6Mod.makeImagePath(
             "monsters/GremlinTown/GremlinBarbarian/skeleton.atlas");
     private static final String SKELETON_JSON = SpireAnniversary6Mod.makeImagePath(
@@ -42,7 +41,7 @@ public class GremlinBarbarian extends CustomMonster
     }
 
     public GremlinBarbarian(final float x, final float y) {
-        super(GremlinBarbarian.NAME, ID, MAX_HP, 0, 0, 180.0f, 300.0f, null, x, y);
+        super(GremlinBarbarian.NAME, ID, MAX_HP, 0, 0, 130.0f/0.7f, 194/0.7f, null, x, y);
 
         type = EnemyType.NORMAL;
         loadAnimation(SKELETON_ATLAS, SKELETON_JSON, 0.7F);
@@ -65,7 +64,7 @@ public class GremlinBarbarian extends CustomMonster
     }
 
     public void usePreBattleAction() {
-        atb(new ApplyPowerAction(this, this, new RitualPower(this, RITUAL_AMOUNT, false)));
+        atb(new ApplyPowerAction(this, this, new RagingPower(this, RITUAL_AMOUNT)));
     }
 
     @Override

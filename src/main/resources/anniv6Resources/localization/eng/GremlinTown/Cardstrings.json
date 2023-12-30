@@ -18,5 +18,48 @@
   "${ModID}:Charge": {
     "NAME": "Charge",
     "DESCRIPTION": "In !M! turns, gain !M! {ModID}:Vigor."
+  },
+  "${ModID}:Cure": {
+    "NAME": "Cure",
+    "DESCRIPTION": "Remove ALL of your debuffs. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Retain. NL Remove ALL of your debuffs. NL Exhaust."
+  },
+  "${ModID}:Sit": {
+    "NAME": "Sit",
+    "DESCRIPTION": "Enemy loses !M! Strength. NL Exhaust."
+  },
+  "${ModID}:FullPlate": {
+    "NAME": "Full Plate",
+    "DESCRIPTION": "At the end of your turn, gain !M! Block. NL Exhaust."
+  },
+  "${ModID}:Frenzy": {
+    "NAME": "Frenzy",
+    "DESCRIPTION": "Deal !D! damage twice. NL Gain !M! Strength."
+  },
+  "${ModID}:Assassinate": {
+    "NAME": "Assassinate",
+    "DESCRIPTION": "Innate. NL Deal !D! damage. NL Exhaust."
+  },
+  "${ModID}:MountedCombat": {
+    "NAME": "Mounted Combat",
+    "DESCRIPTION": "Ethereal. NL Apply ${ModID}:Slow to an enemy. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Ethereal. NL Apply ${ModID}:Slow to an enemy. NL Exhaust."
+  },
+  "${ModID}:RRrroohrrRGHHhhh": {
+    "NAME": "RRrroohrrRGHHhhh!!",
+    "DESCRIPTION": "Whenever an enemy doesn't attack during its turn, gain !M! Strength."
+  },
+  "${ModID}:CriticalHit": {
+    "NAME": "Critical Hit",
+    "DESCRIPTION": "Your next attack deals double damage. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Your next attack deals triple damage. NL Exhaust."
+  },
+  "${ModID}:Flurry": {
+    "NAME": "Flurry",
+    "DESCRIPTION": "Deal !D! damage to a random enemy X+1 times."
+  },
+  "${ModID}:OmegaBlast": {
+    "NAME": "Omega Blast",
+    "DESCRIPTION": "At the end of 3 turns, deal !M! damage to a random enemy."
   }
 }

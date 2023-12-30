@@ -49,6 +49,7 @@ import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.util.ZoneShapeMaker;
 import spireMapOverhaul.zoneInterfaces.CampfireModifyingZone;
 import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
+import spireMapOverhaul.zones.gremlinTown.potions.*;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -241,11 +242,21 @@ public class SpireAnniversary6Mod implements
     }
 
     public static void addPotions() {
-
         if (Loader.isModLoaded("widepotions")) {
             Consumer<String> whitelist = getWidePotionsWhitelistMethod();
-
+            whitelist.accept(LouseMilk.POTION_ID);
+            whitelist.accept(PreerelxsBlueRibbon.POTION_ID);
+            whitelist.accept(NoxiousBrew.POTION_ID);
+            whitelist.accept(MushroomSoup.POTION_ID);
+            whitelist.accept(GremsFire.POTION_ID);
         }
+
+        BaseMod.addPotion(LouseMilk.class, Color.WHITE.cpy(), null, null, LouseMilk.POTION_ID);
+        BaseMod.addPotion(PreerelxsBlueRibbon.class, Color.GOLDENROD.cpy(), null, null, PreerelxsBlueRibbon.POTION_ID);
+        BaseMod.addPotion(RitualBlood.class, RitualBlood.POTION_COLOR.cpy(), null, null, RitualBlood.POTION_ID);
+        BaseMod.addPotion(NoxiousBrew.class, NoxiousBrew.POTION_COLOR.cpy(), null, Color.DARK_GRAY.cpy(), NoxiousBrew.POTION_ID);
+        BaseMod.addPotion(MushroomSoup.class, MushroomSoup.POTION_COLOR.cpy(), null, Color.GRAY.cpy(), MushroomSoup.POTION_ID);
+        BaseMod.addPotion(GremsFire.class, Color.RED.cpy(), null, Color.ORANGE.cpy(), GremsFire.POTION_ID);
     }
 
     public static void addSaveFields() {
