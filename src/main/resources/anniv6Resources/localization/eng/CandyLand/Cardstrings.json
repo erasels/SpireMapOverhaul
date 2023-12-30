@@ -41,7 +41,7 @@
   },
   "${ModID}:FrozenYoghurt": {
     "NAME": "Frozen Yoghurt",
-    "DESCRIPTION": "Gain !M! Block at the end of your turn. NL Gain !${ModID}:m2! Vulnerable. NL Fleeting."
+    "DESCRIPTION": "Gain !M! ${ModID}:Metallicize. NL Gain !${ModID}:m2! Vulnerable. NL Fleeting."
   },
   "${ModID}:JawBreaker": {
     "NAME": "Jaw Breaker",
