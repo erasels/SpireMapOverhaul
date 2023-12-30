@@ -128,7 +128,7 @@ public class CandyLand extends AbstractZone implements RewardModifyingZone, Camp
         ArrayList<AbstractCard> topRow = new ArrayList<>();
         for(AbstractCard card : coloredCards){
             ArrayList<AbstractConsumable> consumables = getConsumables();
-            consumables.removeIf(c -> c.rarity != card.rarity || c.type != card.type || topRow.stream().anyMatch(rowCard -> c.cardID.equals(rowCard.cardID)));
+            consumables.removeIf(c -> c.rarity != card.rarity || c.type != card.type || topRow.stream().anyMatch(rowCard -> c.cardID.equals(rowCard.cardID)) || c.cardID.equals(GoldCandy.ID));
             if(consumables.isEmpty()){
                 consumables = getConsumables();
                 consumables.removeIf(c -> c.type != card.type || topRow.stream().anyMatch(rowCard -> c.cardID.equals(rowCard.cardID)));
