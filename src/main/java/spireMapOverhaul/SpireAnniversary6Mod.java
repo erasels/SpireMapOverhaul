@@ -31,23 +31,29 @@ import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import javassist.CtClass;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+<<<<<<< HEAD
+import spireMapOverhaul.abstracts.AbstractSMORelic;
+import spireMapOverhaul.abstracts.AbstractZone;
+import spireMapOverhaul.cardvars.SecondDamage;
+import spireMapOverhaul.cardvars.SecondMagicNumber;
+import spireMapOverhaul.patches.CustomRewardTypes;
+import spireMapOverhaul.patches.ZonePatches;
+=======
+import spireMapOverhaul.cardvars.SecondDamage;
+import spireMapOverhaul.cardvars.SecondMagicNumber;
+>>>>>>> 52433e9e9c39e2aa756409f0887164d40ad3367a
 import spireMapOverhaul.patches.ZonePerFloorRunHistoryPatch;
 import spireMapOverhaul.patches.interfacePatches.CampfireModifierPatches;
-import spireMapOverhaul.patches.CustomRewardTypes;
-import spireMapOverhaul.abstracts.AbstractSMORelic;
-import spireMapOverhaul.patches.ZonePatches;
-import spireMapOverhaul.patches.interfacePatches.TravelTrackingPatches;
 import spireMapOverhaul.patches.interfacePatches.EncounterModifierPatches;
+import spireMapOverhaul.patches.interfacePatches.TravelTrackingPatches;
 import spireMapOverhaul.rewards.SingleCardReward;
 import spireMapOverhaul.ui.*;
 import spireMapOverhaul.util.QueueZoneCommand;
 import spireMapOverhaul.util.TexLoader;
-import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.util.ZoneShapeMaker;
 import spireMapOverhaul.zoneInterfaces.CampfireModifyingZone;
 import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
-import spireMapOverhaul.zones.example.PlaceholderZone;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -208,6 +214,9 @@ public class SpireAnniversary6Mod implements
         CustomIconHelper.addCustomIcon(RewardIcon.get());
         CustomIconHelper.addCustomIcon(ShopIcon.get());
         CustomIconHelper.addCustomIcon(RestIcon.get());
+
+        BaseMod.addDynamicVariable(new SecondMagicNumber());
+        BaseMod.addDynamicVariable(new SecondDamage());
     }
 
     @Override
@@ -330,6 +339,8 @@ public class SpireAnniversary6Mod implements
         if (Gdx.files.internal(filepath).exists()) {
             BaseMod.loadCustomStringsFile(MonsterStrings.class, filepath);
         }
+        //Greetings, I kind of want Characterstrings please so I'm putting it here
+        filepath=modID+"Resources/localization/"+langKey+"/Characterstrings.json";if(Gdx.files.internal(filepath).exists()){BaseMod.loadCustomStringsFile(CharacterStrings.class,filepath);}
     }
 
     public void loadZoneStrings(Collection<AbstractZone> zones, String langKey) {
@@ -365,6 +376,14 @@ public class SpireAnniversary6Mod implements
             if (Gdx.files.internal(filepath + "Monsterstrings.json").exists()) {
                 BaseMod.loadCustomStringsFile(MonsterStrings.class, filepath + "Monsterstrings.json");
             }
+            if (Gdx.files.internal(filepath + "Eventstrings.json").exists()) {
+                BaseMod.loadCustomStringsFile(EventStrings.class, filepath + "Eventstrings.json");
+            }
+<<<<<<< HEAD
+            //Here too
+            if(Gdx.files.internal(filepath+"Characterstrings.json").exists()){BaseMod.loadCustomStringsFile(CharacterStrings.class,filepath+"Characterstrings.json");}
+=======
+>>>>>>> 52433e9e9c39e2aa756409f0887164d40ad3367a
         }
     }
 

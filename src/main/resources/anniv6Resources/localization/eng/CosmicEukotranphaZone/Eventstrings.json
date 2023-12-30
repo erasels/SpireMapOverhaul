@@ -1,0 +1,190 @@
+{"${ModID}:AstralightRoads":{"NAME":"Astralight Roads","DESCRIPTIONS":[
+ "",
+ "",
+ "",
+ "",
+ ""
+],"OPTIONS":[
+ "[Travel] Lose 2 hp. Walk down Astralight Roads",
+ "[Pass By] Heal 11 hp. Add Regret to deck",
+ "[Browse] Lose 2 hp. Change Place",
+ "[Place] Place X card",
+ "[Place] Place Basic card",
+ "[Place] Place Common card",
+ "[Place] Place Uncommon card",
+ "[Place] Place Rare card",
+ "[Place] Place Special card",
+ "[Place] Place Curse card",
+ "[Place] Place Power card",
+ "[Place] Place Any card",
+ "[Jump Off] Add Doubt to deck if you used Browse or Place less than 5 times total",
+ "[Exit] Open Map",
+ "",
+ "",
+ "",
+ ""
+]},
+ "${ModID}:CorpseColumn":{"NAME":"Corpse Column","DESCRIPTIONS":[
+  "",
+  "",
+  "",
+  "",
+  ""
+ ],"OPTIONS":[
+  "",
+  "",
+  "",
+  "",
+  ""
+ ]},
+ "${ModID}:CrystalsEvent":{"NAME":"Crystals","DESCRIPTIONS":[
+  "\"Hello, Do you really want to keep looking at the stars? Let's look at the crystals in the cave while we talk\"",
+  "\"You cheerfully accept the offer\" NL \"Thank you, Thank you! Come follow me!\" NL \"You know, I'm a bit lonely here. I always felt off here even though I spent so much effort getting here. I follow along with whatever they do but I can't understand. I still slip up calling them by their original names\" NL \"We're here. It looks decent right? Certainly not as great as the stars, but are those even stars you are looking at? I feel like there is something special in looking at these crystals for some time and taking a break to do something else\" NL \"You should probably get going though, The \"Heart\" or whatever isn't going to kill itself. Promise me you will talk to me again, won't you\"",
+  "\"You don't have to force yourself\" NL \"Just go. I just felt lonely, she isn't the same anymore\"",
+  "\"Don't worry, I won't hurt you. Well, You probably want to know more about this place. I'll keep it short. NL I was beckoned. I came here on the second trip to reach there. There are four confirmed deaths. The destination was no where near the spire. Everyone except me changed\" NL \"Is that enough? It gets pretty annoying to explain this everytime but it's necessary isn't it? I just want some time alone now, Remembering the past isn't pleasant\"",
+  "\"I see. Another who succumbs to bliss\""
+ ],"OPTIONS":[
+  "[Cheerfully Accept] Heal 8 hp. Add Crystal's Shotgun to deck",
+  "[Begrudgingly Accept] Heal 8 hp. Upgrade random card",
+  "[Suspiciously Accept] Heal 2 hp. Remove up to 1 of 4 randomly chosen cards in deck",
+  "[Pass By] Lose 20 hp. Gain a random common relic",
+  "[Exit] Open Map"
+ ]},
+ "${ModID}:CubeOfReflections":{"NAME":"Cu e of Refle tio s","DESCRIPTIONS":[
+  "",
+  "",
+  "",
+  "",
+  ""
+ ],"OPTIONS":[
+  "",
+  "",
+  "",
+  "",
+  ""
+ ]},
+ "${ModID}:DancingDevil":{"NAME":"Crazed Cosmo","DESCRIPTIONS":[
+  "",
+  "",
+  "",
+  "",
+  ""
+ ],"OPTIONS":[
+  "",
+  "",
+  "",
+  "",
+  ""
+ ]},
+ "${ModID}:DarknessInTheLight":{"NAME":"vOid in absOlute","DESCRIPTIONS":[
+  "",
+  "",
+  "",
+  "",
+  ""
+ ],"OPTIONS":[
+  "",
+  "",
+  "",
+  "",
+  ""
+ ]},
+ "${ModID}:FallingInvitation":{"NAME":"Falling Invitation","DESCRIPTIONS":[
+  "",
+  "",
+  "",
+  "",
+  ""
+ ],"OPTIONS":[
+  "",
+  "",
+  "",
+  "",
+  ""
+ ]},
+ "${ModID}:MonochromeRift":{"NAME":"Monochrome Rift","DESCRIPTIONS":[
+  "",
+  "",
+  "",
+  "",
+  ""
+ ],"OPTIONS":[
+  "",
+  "",
+  "",
+  "",
+  ""
+ ]},
+ "${ModID}:PinkRain":{"NAME":"Pink Rain","DESCRIPTIONS":[
+  "",
+  "",
+  "",
+  "",
+  ""
+ ],"OPTIONS":[
+  "",
+  "",
+  "",
+  "",
+  ""
+ ]},
+ "${ModID}:SleepInTheTrueNight":{"NAME":"Sleep in the True Night","DESCRIPTIONS":[
+  "",
+  "",
+  "",
+  "",
+  ""
+ ],"OPTIONS":[
+  "",
+  "",
+  "",
+  "",
+  ""
+ ]},
+ "${ModID}:TightropeOfDeserts":{"NAME":"Tightrope of Desserts","DESCRIPTIONS":[
+  "",
+  "",
+  "",
+  "",
+  ""
+ ],"OPTIONS":[
+  "",
+  "",
+  "",
+  "",
+  ""
+ ]},
+ "${ModID}:UnknownVoice":{"NAME":"Unknown Voice","DESCRIPTIONS":[
+  "",
+  "",
+  "",
+  "",
+  ""
+ ],"OPTIONS":[
+  "",
+  "",
+  "",
+  "",
+  ""
+ ]},
+ 
+  "${ModID}:EventID": {
+    "NAME": "Event Name",
+    "DESCRIPTIONS": [
+      "This is event text, generally used to describe what's happening.",
+      "#g~This~ #g~text~ #g~is~ #g~green~ #g~and~ #g~wavy.~",
+      "#r@RED@ #r@AND@ #r@VIBRATING@ #r@TEXT.@",
+      "#rRed #gGreen #yYellow #bBlue #pPurple. ~Wavy~ @vibrating.@",
+      "You have to mark every word individually.",
+      "You can also use [#ffffff]white[] hex color codes like this to color text.",
+      "This also works in card text! But not on keywords."
+    ],
+    "OPTIONS": [
+      "[Action Description] What you actually get.",
+      "[Denial] #rLose #r1 #rMax #rHP. Bad stuff is red.",
+      "[Acceptance] #gGain #gApotheosis. Good stuff is green.",
+      "[Leave]",
+      "Select card to remove. (You can also stick extra text like this in here.)"
+    ]
+  }
+}

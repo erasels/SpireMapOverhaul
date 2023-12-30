@@ -28,7 +28,7 @@ public class ShopModifierPatches {
 
         private static class Locator extends SpireInsertLocator {
             public int[] Locate(CtBehavior ctMethodToPatch) throws CannotCompileException, PatchingException {
-                Matcher finalMatcher = new Matcher.FieldAccessMatcher(Merchant.class, "speechTimer");
+                Matcher finalMatcher = new Matcher.MethodCallMatcher(ShopScreen.class, "init");
                 return LineFinder.findInOrder(ctMethodToPatch, finalMatcher);
             }
         }

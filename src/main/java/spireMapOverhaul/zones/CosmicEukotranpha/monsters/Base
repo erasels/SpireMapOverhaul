@@ -1,0 +1,55 @@
+package spireMapOverhaul.zones.CosmicEukotranpha.monsters;import spireMapOverhaul.zones.CosmicEukotranpha.cards.special.IBroughtSolarFlares;
+import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
+import com.megacrit.cardcrawl.cards.status.Dazed;
+import com.megacrit.cardcrawl.localization.MonsterStrings;
+import com.megacrit.cardcrawl.powers.CuriosityPower;
+import com.megacrit.cardcrawl.powers.EquilibriumPower;
+import com.megacrit.cardcrawl.powers.InvinciblePower;
+import static spireMapOverhaul.zones.CosmicEukotranpha.util.CosmicShortcuts.*;public class Claumissier extends CosmicZoneMonster{
+    public static final String ID="Claumissier";private static final MonsterStrings monsterStrings;public static final String NAME;public static final String[]MOVES;public static final String[]DIALOG;
+    public int clawsSeen=0;
+    public Claumissier(){super(NAME,"Claumissier",80,0.0F,-15.0F,380.0F,290.0F,null,70.0F,10.0F);
+        this.type=EnemyType.NORMAL;hpRange(80,80,90,90);clawsSeen=0;
+        genMove("Star Seeking",aM(15,17,17,20));
+        genMove("Cold Spot",0);
+        genMove("Dazzling Stars",aM(5,6,6,7));
+        genMove("Burning Wave",aM(5,6,6,7));
+        genMove("Hysteric Surge",0);
+    }
+    public void usePreBattleAction(){}
+    public void takeTurn(){switch(this.nextMove){
+        case 0:break;
+        case 1:break;
+        case 2:break;
+        case 3:break;
+        case 4:break;
+        default:loggeer("ERROR, takeTurn outside switch, Claumissier");
+    }lastMoveUpdt(nextMove);rollMove();}
+    protected void getMove(int num){}
+    public void changeState(String key){}
+    public void damage(DamageInfo info){super.damage(info);if(info.owner!=null&&info.type!=DamageType.THORNS&&info.output>0){}}
+    public void die(){super.die();}
+    //Dialogue:
+
+    //Combat start:
+    //""
+    //Fascination:
+    //""
+    //Use Hysteric Surge:
+    //""
+    //Normal Kill:
+    //""
+    //Fascination Kill:
+    //""
+    //Hysteric Kill:
+    //""
+    //Anti Cosmic monster card used:
+    //""
+    //Player death:
+    //""
+    //Player death while Fascinated or Hysteric
+    //""
+    static{
+        //monsterStrings=CardCrawlGame.languagePack.getMonsterStrings("Save");
+        NAME=monsterStrings.NAME;MOVES=monsterStrings.MOVES;DIALOG=monsterStrings.DIALOG;}}

@@ -1,6 +1,9 @@
 package spireMapOverhaul.patches;
 
-import com.evacipated.cardcrawl.modthespire.lib.*;
+import com.evacipated.cardcrawl.modthespire.lib.SpireInstrumentPatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.map.RoomTypeAssigner;
@@ -12,7 +15,6 @@ import spireMapOverhaul.BetterMapGenerator;
 import spireMapOverhaul.abstracts.AbstractZone;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class RoomDistributionPatches {
     /// Room Distribution Patches

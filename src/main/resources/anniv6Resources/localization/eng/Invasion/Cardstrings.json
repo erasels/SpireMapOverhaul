@@ -1,0 +1,86 @@
+{
+  "${ModID}:GildedStrike": {
+    "NAME": "Gilded Strike",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Vulnerable."
+  },
+  "${ModID}:GildedDefend": {
+    "NAME": "Gilded Defend",
+    "DESCRIPTION": "Gain !B! Block. NL Lose !M! Dexterity."
+  },
+  "${ModID}:GildedEssence": {
+    "NAME": "Gilded Essence",
+    "DESCRIPTION": "Gain !M! ${ModID}:Plated\u00a0Armor."
+  },
+  "${ModID}:Necropotence": {
+    "NAME": "Necropotence",
+    "DESCRIPTION": "Retain. NL Draw !M! card. NL Lose 1 HP. NL Return this card to your hand.",
+    "UPGRADE_DESCRIPTION": "Retain. NL Draw !M! cards. NL Lose 1 HP. NL Return this card to your hand."
+  },
+  "${ModID}:FireblessedBlade": {
+    "NAME": "Fire-blessed Blade",
+    "DESCRIPTION": "Deal !D! damage. NL Gain !M! Strength, 1 Dexterity, and 1 Focus. NL Exhaust."
+  },
+  "${ModID}:WindblessedBlade": {
+    "NAME": "Wind-blessed Blade",
+    "DESCRIPTION": "Deal !D! damage 3 times. NL Gain !B! Block 2 times. NL Apply !M! Weak. NL Exhaust."
+  },
+  "${ModID}:EarthblessedBlade": {
+    "NAME": "Earth-blessed Blade",
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Gain !B! ${ModID}:Plated\u00a0Armor. NL Gain !M! Thorns. NL Exhaust."
+  },
+  "${ModID}:IceblessedBlade": {
+    "NAME": "Ice-blessed Blade",
+    "DESCRIPTION": "Deal !D! damage. NL Gain !M! Artifact. NL Gain 1 *Buffer. NL Exhaust."
+  },
+  "${ModID}:VoidblessedBlade": {
+    "NAME": "Void-blessed Blade",
+    "DESCRIPTION": "Deal !D! damage !M! times. NL Enemy loses !M! Strength. NL Gain 1 *Blur. NL Exhaust."
+  },
+  "${ModID}:Languish": {
+    "NAME": "Languish",
+    "DESCRIPTION": "Ethereal. NL ALL enemies lose !M! Strength this turn and lose !M! HP. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "ALL enemies lose !M! Strength this turn and lose !M! HP. NL Exhaust."
+  },
+  "${ModID}:MirarisWake": {
+    "NAME": "Mirari's Wake",
+    "DESCRIPTION": "Ethereal. NL Gain !M! Strength. NL Gain !M! Dexterity. NL At the start of your turn gain [E] .",
+    "UPGRADE_DESCRIPTION": "Gain !M! Strength. NL Gain !M! Dexterity. NL At the start of your turn, gain [E] ."
+  },
+  "${ModID}:WallOfBlossoms": {
+    "NAME": "Wall of Blossoms",
+    "DESCRIPTION": "Gain !M! Dexterity. NL Draw 1 card."
+  },
+  "${ModID}:DarkRitual": {
+    "NAME": "Dark Ritual",
+    "DESCRIPTION": "Gain [E] [E] [E] . NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Retain. NL Gain [E] [E] [E] . NL Exhaust."
+  },
+  "${ModID}:LightningHelix": {
+    "NAME": "Lightning Helix",
+    "DESCRIPTION": "Deal !D! damage. NL Heal !M! HP. NL Exhaust."
+  },
+  "${ModID}:Foresee": {
+    "NAME": "Foresee",
+    "DESCRIPTION": "Scry !M!. NL Draw 2 cards."
+  },
+  "${ModID}:SteelWall": {
+    "NAME": "Steel Wall",
+    "DESCRIPTION": "Gain !B! Block. NL Gain !M! ${ModID}:Metallicize. NL Exhaust."
+  },
+  "${ModID}:LightningBolt": {
+    "NAME": "Lightning Bolt",
+    "DESCRIPTION": "Deal !D! damage. NL Shuffle this card into your draw pile."
+  },
+  "${ModID}:Staggershock": {
+    "NAME": "Staggershock",
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. At the start of your next turn, play this card again."
+  },
+  "${ModID}:HandOfTheAbyss": {
+    "NAME": "Hand of the Abyss",
+    "DESCRIPTION": "Whenever an Attack deals unblocked damage, apply !M! ${ModID}:Abysstouched."
+  },
+  "${ModID}:BrokenCrystal": {
+    "NAME": "Broken Crystal",
+    "DESCRIPTION": "When you draw this, randomize its cost and draw a card. NL Reduce regeneration of ALL enemies by !M!. NL Exhaust."
+  }
+}
