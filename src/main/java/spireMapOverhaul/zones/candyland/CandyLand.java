@@ -56,7 +56,6 @@ public class CandyLand extends AbstractZone implements RewardModifyingZone, Camp
             ArrayList<AbstractConsumable> consumables = getConsumables();
             consumables.removeIf(c -> c.rarity != card.rarity || cards.stream().anyMatch(listCard -> c.cardID.equals(listCard.cardID)));
             AbstractCard c = consumables.get(AbstractDungeon.cardRng.random(0, consumables.size()-1));
-            SpireAnniversary6Mod.logger.info("Adding " + c.name + cards.contains(c));
             cards.add(c);
         }
     }
@@ -66,29 +65,24 @@ public class CandyLand extends AbstractZone implements RewardModifyingZone, Camp
         if(rewardItem.type == RewardItem.RewardType.RELIC && !(rewardItem.relic instanceof Mango || rewardItem.relic instanceof Pear || rewardItem.relic instanceof Strawberry || rewardItem.relic instanceof Waffle)){
             switch(rewardItem.relic.tier){
                 case RARE:
-                    SpireAnniversary6Mod.logger.info("Replacing " + rewardItem.relic.name + " with Mango");
                     rewardItem.relic = new Mango();
                     rewardItem.text = rewardItem.relic.name;
                     break;
                 case UNCOMMON:
-                    SpireAnniversary6Mod.logger.info("Replacing " + rewardItem.relic.name + " with Pear");
                     rewardItem.relic = new Pear();
                     rewardItem.text = rewardItem.relic.name;
                     break;
                 case COMMON:
-                    SpireAnniversary6Mod.logger.info("Replacing " + rewardItem.relic.name + " with Strawberry");
                     rewardItem.relic = new Strawberry();
                     rewardItem.text = rewardItem.relic.name;
                     break;
                 default:
-                    SpireAnniversary6Mod.logger.info("Non-standard rarity found, replacing " + rewardItem.relic.name + " with Waffle");
                     rewardItem.relic = new Waffle();
                     rewardItem.text = rewardItem.relic.name;
                     break;
             }
         } else if(rewardItem.type == RewardItem.RewardType.POTION){
             while(rewardItem.potion.isThrown){
-                SpireAnniversary6Mod.logger.info("Try to replace " + rewardItem.potion.name + "with drinkable potion.");
                 rewardItem.potion = AbstractDungeon.returnRandomPotion(rewardItem.potion.rarity, false);
             }
         }
@@ -96,7 +90,6 @@ public class CandyLand extends AbstractZone implements RewardModifyingZone, Camp
 
     @Override
     public void modifyRewards(ArrayList<RewardItem> rewards) {
-        SpireAnniversary6Mod.logger.info("Turning Gold into Chocolate");
         for(RewardItem r : (ArrayList<RewardItem>) rewards.clone()){
             if(r.type == RewardItem.RewardType.GOLD){
                 rewards.add(new HealReward("ChocolateCoins.png", r.goldAmt));
