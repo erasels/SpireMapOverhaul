@@ -453,4 +453,10 @@ public class ZoneShapeMaker {
     public void receiveImGui() {
         if (AbstractDungeon.isPlayerInDungeon()) makeImgui();
     }
+
+    static {
+        if (!shader.isCompiled()) {
+            SpireAnniversary6Mod.logger.error("Shader compilation failed: " + shader.getLog());
+        }
+    }
 }
