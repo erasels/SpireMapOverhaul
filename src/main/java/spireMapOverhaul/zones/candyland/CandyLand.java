@@ -54,18 +54,11 @@ public class CandyLand extends AbstractZone implements RewardModifyingZone, Camp
         for (AbstractCard card : (ArrayList<AbstractCard>) cards.clone()) {
             cards.remove(card);
             ArrayList<AbstractConsumable> consumables = getConsumables();
-            consumables.removeIf(c -> c.rarity != card.rarity || containCard(cards, c));
+            consumables.removeIf(c -> c.rarity != card.rarity || cards.stream().anyMatch(listCard -> c.cardID.equals(listCard.cardID)));
             AbstractCard c = consumables.get(AbstractDungeon.cardRng.random(0, consumables.size()-1));
             SpireAnniversary6Mod.logger.info("Adding " + c.name + cards.contains(c));
             cards.add(c);
         }
-    }
-
-    private boolean containCard(ArrayList<AbstractCard> list, AbstractCard c){
-        for(AbstractCard card : list)
-            if (Objects.equals(c.cardID, card.cardID))
-                return true;
-        return false;
     }
 
     @Override
@@ -130,10 +123,10 @@ public class CandyLand extends AbstractZone implements RewardModifyingZone, Camp
         ArrayList<AbstractCard> topRow = new ArrayList<>();
         for(AbstractCard card : coloredCards){
             ArrayList<AbstractConsumable> consumables = getConsumables();
-            consumables.removeIf(c -> c.rarity != card.rarity || c.type != card.type || containCard(topRow, c));
+            consumables.removeIf(c -> c.rarity != card.rarity || c.type != card.type || topRow.stream().anyMatch(rowCard -> c.cardID.equals(rowCard.cardID)));
             if(consumables.isEmpty()){
                 consumables = getConsumables();
-                consumables.removeIf(c -> c.type != card.type || containCard(topRow, c));
+                consumables.removeIf(c -> c.type != card.type || topRow.stream().anyMatch(rowCard -> c.cardID.equals(rowCard.cardID)));
 
             }
             topRow.add(consumables.get(AbstractDungeon.cardRng.random(0, consumables.size()-1)));
