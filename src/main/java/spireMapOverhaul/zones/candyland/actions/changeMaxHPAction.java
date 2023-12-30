@@ -11,7 +11,7 @@ public class changeMaxHPAction extends AbstractGameAction {
 
     @Override
     public void update() {
-        if (this.duration == 0.5f) {
+        if (this.duration == AbstractGameAction.DEFAULT_DURATION) {
             target.increaseMaxHp(this.amount, false);
         }
         this.tickDuration();
