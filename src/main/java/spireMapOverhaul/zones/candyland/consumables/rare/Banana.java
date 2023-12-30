@@ -2,7 +2,7 @@ package spireMapOverhaul.zones.candyland.consumables.rare;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import spireMapOverhaul.zones.candyland.actions.changeMaxHPAction;
+import spireMapOverhaul.zones.candyland.actions.ChangeMaxHPAction;
 import spireMapOverhaul.zones.candyland.consumables.AbstractConsumable;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
@@ -19,7 +19,7 @@ public class Banana extends AbstractConsumable {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        atb(new changeMaxHPAction(p, p, this.magicNumber));
+        atb(new ChangeMaxHPAction(p, p, this.magicNumber));
     }
 
     @Override

@@ -3,8 +3,8 @@ package spireMapOverhaul.zones.candyland.actions;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 
-public class changeMaxHPAction extends AbstractGameAction {
-    public changeMaxHPAction(AbstractCreature target, AbstractCreature source, int amount) {
+public class ChangeMaxHPAction extends AbstractGameAction {
+    public ChangeMaxHPAction(AbstractCreature target, AbstractCreature source, int amount) {
         this.setValues(target, source, amount);
         this.actionType = AbstractGameAction.ActionType.HEAL;
     }
