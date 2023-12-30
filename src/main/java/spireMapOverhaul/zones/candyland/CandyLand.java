@@ -190,9 +190,6 @@ public class CandyLand extends AbstractZone implements RewardModifyingZone, Camp
         consumables.add(new Cookie());
         consumables.add(new EnergyDrink());
         consumables.add(new FastFood());
-        for(AbstractConsumable c : consumables){
-            c.setRarity();
-        }
         return consumables;
     }
 
