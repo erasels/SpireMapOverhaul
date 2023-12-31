@@ -1,6 +1,5 @@
 //---------------------------------------------------------------------------
 
-
 varying vec2 pos;                    // screen position <-1,+1>
                                 // fragment output color
 uniform sampler2D txr;          // texture to blu
