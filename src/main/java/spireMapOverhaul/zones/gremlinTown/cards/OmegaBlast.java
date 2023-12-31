@@ -16,7 +16,7 @@ public class OmegaBlast extends AbstractSMOCard {
     private final static int COST = 2;
 
     public OmegaBlast() {
-        super(ID, COST, CardType.SKILL, CardRarity.COMMON, CardTarget.ENEMY, CardColor.COLORLESS);
+        super(ID, COST, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF, CardColor.COLORLESS);
         baseMagicNumber = magicNumber = MAGIC;
     }
 

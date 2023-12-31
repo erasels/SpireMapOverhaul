@@ -24,6 +24,12 @@
       "Zone: {0}"
     ]
   },
+  "${ModID}:ZonePotionsPatch": {
+    "TEXT": [
+      "Zone:",
+      "Potions that can only be obtained in their specific zone."
+    ]
+  },
   "${ModID}:CharacterSelectScreen": {
     "TEXT": [
       "Enable Spawning Zones",

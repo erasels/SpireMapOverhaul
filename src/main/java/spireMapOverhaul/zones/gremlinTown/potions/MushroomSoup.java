@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.PotionStrings;
+import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.zones.gremlinTown.powers.MushroomSoupPower;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
@@ -18,7 +19,7 @@ public class MushroomSoup extends CustomPotion {
     private static final PotionStrings potionStrings = CardCrawlGame.languagePack.getPotionString(POTION_ID);
     private static final String NAME = potionStrings.NAME;
     private static final int DEFAULT_POTENCY = 3;
-    private static final PotionRarity RARITY = PotionRarity.COMMON;
+    private static final PotionRarity RARITY = SpireAnniversary6Mod.Enums.ZONE;
     private static final PotionSize SIZE = PotionSize.H;
     private static final PotionColor COLOR = PotionColor.STRENGTH;
     private static final boolean IS_THROWN = false;

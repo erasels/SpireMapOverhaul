@@ -5,10 +5,10 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import spireMapOverhaul.abstracts.AbstractSMOCard;
+import spireMapOverhaul.actions.WaitMoreAction;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
-import static spireMapOverhaul.util.Wiz.adp;
-import static spireMapOverhaul.util.Wiz.applyToSelf;
+import static spireMapOverhaul.util.Wiz.*;
 
 public class Frenzy extends AbstractSMOCard {
     public final static String ID = makeID(Frenzy.class.getSimpleName());
@@ -27,6 +27,7 @@ public class Frenzy extends AbstractSMOCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         dmg(m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
+        atb(new WaitMoreAction(0.13f));
         dmg(m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
         applyToSelf(new StrengthPower(adp(), magicNumber));
     }

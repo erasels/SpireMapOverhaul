@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.ending.CorruptHeart;
 import com.megacrit.cardcrawl.powers.BeatOfDeathPower;
 import com.megacrit.cardcrawl.powers.InvinciblePower;
+import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.zones.gremlinTown.powers.HeartImpairmentPower;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
@@ -21,7 +22,7 @@ public class RitualBlood extends CustomPotion {
     private static final PotionStrings potionStrings = CardCrawlGame.languagePack.getPotionString(POTION_ID);
     private static final String NAME = potionStrings.NAME;
     private static final int DEFAULT_POTENCY = 1;
-    private static final PotionRarity RARITY = PotionRarity.RARE;
+    private static final PotionRarity RARITY = SpireAnniversary6Mod.Enums.ZONE;
     private static final PotionSize SIZE = PotionSize.EYE;
     private static final PotionColor COLOR = PotionColor.FEAR;
     private static final boolean IS_THROWN = true;

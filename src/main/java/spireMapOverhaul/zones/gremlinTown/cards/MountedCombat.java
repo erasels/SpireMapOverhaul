@@ -20,7 +20,7 @@ public class MountedCombat extends AbstractSMOCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        applyToEnemy(m, new SlowPower(m, 1));
+        applyToEnemy(m, new SlowPower(m, 0));
     }
 
     public void upp() {

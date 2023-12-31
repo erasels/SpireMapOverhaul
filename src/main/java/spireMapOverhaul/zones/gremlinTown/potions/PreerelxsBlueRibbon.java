@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.powers.watcher.VigorPower;
+import spireMapOverhaul.SpireAnniversary6Mod;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 import static spireMapOverhaul.util.Wiz.adp;
@@ -18,7 +19,7 @@ public class PreerelxsBlueRibbon extends CustomPotion {
     private static final PotionStrings potionStrings = CardCrawlGame.languagePack.getPotionString(POTION_ID);
     private static final String NAME = potionStrings.NAME;
     private static final int DEFAULT_POTENCY = 9;
-    private static final PotionRarity RARITY = PotionRarity.COMMON;
+    private static final PotionRarity RARITY = SpireAnniversary6Mod.Enums.ZONE;
     private static final PotionSize SIZE = PotionSize.BOTTLE;
     private static final PotionColor COLOR = PotionColor.ENERGY;
     private static final boolean IS_THROWN = false;

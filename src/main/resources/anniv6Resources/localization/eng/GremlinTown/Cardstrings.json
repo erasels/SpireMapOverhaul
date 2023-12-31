@@ -17,7 +17,7 @@
   },
   "${ModID}:Charge": {
     "NAME": "Charge",
-    "DESCRIPTION": "In !M! turns, gain !M! {ModID}:Vigor."
+    "DESCRIPTION": "In 2 turns, gain !M! ${ModID}:Vigor."
   },
   "${ModID}:Cure": {
     "NAME": "Cure",
@@ -30,7 +30,7 @@
   },
   "${ModID}:FullPlate": {
     "NAME": "Full Plate",
-    "DESCRIPTION": "At the end of your turn, gain !M! Block. NL Exhaust."
+    "DESCRIPTION": "At the end of your turn, gain !M! Block."
   },
   "${ModID}:Frenzy": {
     "NAME": "Frenzy",
@@ -43,7 +43,7 @@
   "${ModID}:MountedCombat": {
     "NAME": "Mounted Combat",
     "DESCRIPTION": "Ethereal. NL Apply ${ModID}:Slow to an enemy. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "Ethereal. NL Apply ${ModID}:Slow to an enemy. NL Exhaust."
+    "UPGRADE_DESCRIPTION": "Apply ${ModID}:Slow to an enemy. NL Exhaust."
   },
   "${ModID}:RRrroohrrRGHHhhh": {
     "NAME": "RRrroohrrRGHHhhh!!",

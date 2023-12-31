@@ -28,6 +28,7 @@ public class BellowPower extends AbstractSMOPower {
 
     @Override
     public void onSpecificTrigger() {
+        flash();
         applyToSelf(new StrengthPower(adp(), amount));
     }
 }

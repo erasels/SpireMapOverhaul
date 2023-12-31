@@ -16,13 +16,13 @@ public class MushroomSoupPower extends AbstractSMOPower {
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     public MushroomSoupPower(AbstractCreature owner, int amount) {
-        super(POWER_ID, NAME, PowerType.BUFF,false, owner, -1);
+        super(POWER_ID, NAME, PowerType.BUFF,false, owner, amount);
         canGoNegative = false;
     }
 
     @Override
     public void updateDescription() {
-        description = DESCRIPTIONS[0];
+        description = DESCRIPTIONS[0].replace("{0}", Integer.toString(amount));
     }
 
     @Override

@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.badlogic.gdx.graphics.Color;
+import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.zones.gremlinTown.powers.NoxiousBrewPower;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
@@ -19,7 +20,7 @@ public class NoxiousBrew extends CustomPotion {
     private static final PotionStrings potionStrings = CardCrawlGame.languagePack.getPotionString(POTION_ID);
     private static final String NAME = potionStrings.NAME;
     private static final int DEFAULT_POTENCY = 3;
-    private static final PotionRarity RARITY = PotionRarity.UNCOMMON;
+    private static final PotionRarity RARITY = SpireAnniversary6Mod.Enums.ZONE;
     private static final PotionSize SIZE = PotionSize.M;
     private static final PotionColor COLOR = PotionColor.SMOKE;
     private static final boolean IS_THROWN = false;

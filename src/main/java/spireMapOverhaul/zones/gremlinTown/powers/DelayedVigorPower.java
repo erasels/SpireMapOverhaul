@@ -1,5 +1,6 @@
 package spireMapOverhaul.zones.gremlinTown.powers;
 
+import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -16,16 +17,18 @@ public class DelayedVigorPower extends AbstractSMOPower {
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
-    private int turns;
 
     public DelayedVigorPower(AbstractCreature owner, int amount) {
         super(POWER_ID, NAME, PowerType.BUFF,false, owner, amount);
-        turns = 2;
+        ID = POWER_ID + GameActionManager.turn;
+        isTwoAmount = true;
+        amount2 = 2;
+        updateDescription();
     }
 
     @Override
     public void updateDescription() {
-        if (turns == 2)
+        if (amount2 == 2)
             description = DESCRIPTIONS[0].replace("{0}", String.valueOf(amount));
         else
             description = DESCRIPTIONS[1].replace("{0}", String.valueOf(amount));
@@ -33,11 +36,12 @@ public class DelayedVigorPower extends AbstractSMOPower {
 
     @Override
     public void atStartOfTurn() {
-        turns--;
-        if (turns == 0) {
+        amount2--;
+        if (amount2 == 0) {
             atb(new RemoveSpecificPowerAction(owner, owner, this));
             applyToSelf(new VigorPower(owner, amount));
         }
+        updateDescription();
     }
 }
 

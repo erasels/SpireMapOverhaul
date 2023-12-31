@@ -18,7 +18,7 @@
     ]
   },
   "${ModID}:NoxiousBrew": {
-    "NAME": "NoxiousBrew",
+    "NAME": "Noxious Brew",
     "DESCRIPTIONS": [
       "Apply {0} #yPoison to a random enemy at the end of your turn."
     ]

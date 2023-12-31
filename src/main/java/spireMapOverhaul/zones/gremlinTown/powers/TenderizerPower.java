@@ -29,7 +29,8 @@ public class TenderizerPower extends AbstractSMOPower {
     }
 
     public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) {
-        if (damageAmount > 0 && target != owner && info.type == DamageInfo.DamageType.NORMAL) {
+        if (damageAmount > 0 && target instanceof AbstractMonster && info.type == DamageInfo.DamageType.NORMAL
+                && info.owner == owner) {
             flash();
             applyToEnemyTop((AbstractMonster) target, new WeakPower(target, amount, false));
         }
