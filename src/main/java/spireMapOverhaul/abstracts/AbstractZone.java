@@ -156,7 +156,7 @@ public abstract class AbstractZone {
             }
             float anchorX = x * SPACING_X + OFFSET_X - ZoneShapeMaker.FB_OFFSET;
             float anchorY = y * Settings.MAP_DST_Y + OFFSET_Y + DungeonMapScreen.offsetY - ZoneShapeMaker.FB_OFFSET;
-            sb.setColor(getColor().cpy().mul(1, 0.9f, 0.85f, alpha*0.8f)); //just making the random color more palatable
+            sb.setColor(getColor().cpy().mul(1f, 1f, 1f, alpha*0.5f));
             sb.draw(shapeRegion, anchorX, anchorY);
             boolean showTooltip = false;
             for (Hitbox hb : hitboxes) {

@@ -5,6 +5,7 @@ import basemod.helpers.CardModifierManager;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.colorless.MindBlast;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.Circlet;
 import com.megacrit.cardcrawl.rewards.RewardItem;
@@ -31,7 +32,7 @@ public class ExampleRewardModifyingZone extends AbstractZone implements RewardMo
 
     @Override
     public Color getColor() {
-        return Color.RED.cpy();
+        return new Color(1f,0f,0f,1f);
     }
 
     @Override
