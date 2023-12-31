@@ -39,3 +39,6 @@ https://desktop.github.com/
 
 ### Bestiary
 If you add new monsters, consider adding [Bestiary](https://steamcommunity.com/sharedfiles/filedetails/?id=2285965269) entries for them, so that players have an easy way to understand and analyze what the monsters do. This also helps document the logic for your new monsters. See the existing `bestiary.json` files for examples.
+
+### Potions
+If you add new potions that should only appear in your zone, set their rarity to `SpireAnniversary6Mod.Enums.ZONE`.  This will prevent them from showing up in combat rewards and randomly from events.
