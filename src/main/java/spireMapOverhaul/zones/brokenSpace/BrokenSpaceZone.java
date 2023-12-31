@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.RelicLibrary;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.CallingBell;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.shop.ShopScreen;
@@ -19,6 +20,7 @@ import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.zoneInterfaces.ModifiedEventRateZone;
 import spireMapOverhaul.zoneInterfaces.RewardModifyingZone;
 import spireMapOverhaul.zoneInterfaces.ShopModifyingZone;
+import spireMapOverhaul.zones.brokenSpace.patches.CallingBellFix;
 import spireMapOverhaul.zones.example.CoolExampleEvent;
 
 import java.util.ArrayList;
@@ -27,6 +29,7 @@ public class BrokenSpaceZone extends AbstractZone implements RewardModifyingZone
     public static final String ID = "BrokenSpace";
     private final int width, height;
     private final Color color;
+    public static ArrayList<String> BadRelics = new ArrayList<>();
 
     public BrokenSpaceZone() {
         this("Broken Space 0", 2, 4);
@@ -44,7 +47,7 @@ public class BrokenSpaceZone extends AbstractZone implements RewardModifyingZone
         this.width = width;
         this.height = height;
 
-        color = Color.GRAY.cpy();
+        color = Color.DARK_GRAY.cpy();
         this.name = name;
     }
 
@@ -53,6 +56,26 @@ public class BrokenSpaceZone extends AbstractZone implements RewardModifyingZone
     public boolean generateMapArea(BetterMapGenerator.MapPlanner planner) {
         return generateNormalArea(planner, width, height);
     }
+
+    @Override
+    protected boolean canIncludeEarlyRows() {
+        return false;
+    }
+
+    @Override
+    protected boolean canIncludeFinalCampfireRow() {
+        return false;
+    }
+
+    @Override
+    protected boolean canIncludeTreasureRow() {
+        return false;
+    }
+
+//    @Override
+//    public boolean canSpawn() {
+//        return AbstractDungeon.actNum >= 3;
+//    }
 
     @Override
     public Color getColor() { //I considered changing this to a variable, but a method lets you do funky stuff like a rainbow zone that changes colors or something.
@@ -68,13 +91,19 @@ public class BrokenSpaceZone extends AbstractZone implements RewardModifyingZone
         return c;
     }
 
-    public AbstractRelic GetTrulyRandomRelic(Random rng) {
+    public static AbstractRelic GetTrulyRandomRelic(Random rng) {
         ArrayList<AbstractRelic> relics = new ArrayList<>();
         relics.addAll(RelicLibrary.commonList);
         relics.addAll(RelicLibrary.uncommonList);
         relics.addAll(RelicLibrary.rareList);
         relics.addAll(RelicLibrary.bossList);
         relics.addAll(RelicLibrary.specialList);
+
+        for (String s : BadRelics) {
+            relics.removeIf(r -> r.relicId.equals(s));
+        }
+
+
         return relics.get(rng.random(relics.size() - 1)).makeCopy();
     }
 
@@ -88,12 +117,12 @@ public class BrokenSpaceZone extends AbstractZone implements RewardModifyingZone
         }
     }
 
-    @Override
-    public void modifyReward(RewardItem rewardItem) {
-        if (rewardItem.type == RewardItem.RewardType.RELIC) {
-            rewardItem.relic = GetTrulyRandomRelic(AbstractDungeon.relicRng);
-        }
-    }
+//    @Override
+//    public void modifyReward(RewardItem rewardItem) {
+//        if (rewardItem.type == RewardItem.RewardType.RELIC) {
+//            rewardItem.relic = GetTrulyRandomRelic(AbstractDungeon.relicRng);
+//        }
+//    }
 
     @Override
     public void modifyRewardCards(ArrayList<AbstractCard> cards) {
@@ -113,6 +142,15 @@ public class BrokenSpaceZone extends AbstractZone implements RewardModifyingZone
         for (int i = 0; i < amount; i++) {
             coloredCards.add(GetTrulyRandomCard(AbstractDungeon.cardRandomRng));
         }
+    }
+
+    static {
+        BadRelics.add("Orrery");
+
+        BadRelics.add("Tiny House");
+        BadRelics.add("Bottled Flame");
+        BadRelics.add("Bottled Lightning");
+        BadRelics.add("Bottled Tornado");
     }
 
 }

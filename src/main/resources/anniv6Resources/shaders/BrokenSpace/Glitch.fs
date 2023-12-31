@@ -50,7 +50,7 @@ vec2 mytrunc( vec2 x, float num_levels )
 	return floor(x*num_levels) / num_levels;
 }
 
-in vec2 pos;
+varying vec2 pos;
 uniform sampler2D u_texture;
 uniform vec2 u_screenSize;
 uniform float u_time;
@@ -107,7 +107,7 @@ void main()
 	sum.a *= RCP_NUM_SAMPLES_F;
 
     //gl_FragColor = vec4( sum.bbb, 1.0 ); return;
-
+    sum = vec4(1.0,0.0,0.0,0.0);
 	gl_FragColor.a = sum.a;
 	gl_FragColor.rgb = sum.rgb; // * outcol0.a;
 }
