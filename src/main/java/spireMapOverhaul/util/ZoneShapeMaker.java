@@ -42,18 +42,21 @@ public class ZoneShapeMaker {
     private static float FIRST_PASS_DIVIDER = 0.9f;   //higher = more range, more "amalgamation", but edges get rougher
     private static float FIRST_PASS_WHITENING = 1f;//0.5f; //Adds to color of existing pixels.
     private static float FIRST_PASS_DARKENING = 0f; //Multiplies color of existing pixels
+    private static float FIRST_PASS_ALPHAMULT = 1f;
 
     private static float SECOND_PASS_STEPSIZE = 8f;
     private static float SECOND_PASS_SUBDIV = 4f;
     private static float SECOND_PASS_DIVIDER = 1.2f;
-    private static float SECOND_PASS_WHITENING = 0.65f;
-    private static float SECOND_PASS_DARKENING = 0.2f; //0.9f;
+    private static float SECOND_PASS_WHITENING = 0.2f;
+    private static float SECOND_PASS_DARKENING = 1f; //0.9f;
+    private static float SECOND_PASS_ALPHAMULT = 0.8f;
 
-    private static float SMOOTHING_STEPSIZE = 1f;
+    private static float SMOOTHING_STEPSIZE = 2f;
     private static float SMOOTHING_SUBDIV = 8f;
-    private static float SMOOTHING_DIVIDER = 1.25f;
-    private static float SMOOTHING_WHITENING = 0.4f; //0f;
-    private static float SMOOTHING_DARKENING = 0.4f; //0.8f;
+    private static float SMOOTHING_DIVIDER = 1f;//1.25f;
+    private static float SMOOTHING_WHITENING = 0.1f; //0f;
+    private static float SMOOTHING_DARKENING = 0.9f; //0.8f;
+    private static float SMOOTHING_ALPHAMULT = 0.7f;
 
     public static final int FB_OFFSET = (int) (250 * Settings.scale); //Offset of positioning of nodes to fit circles
     private static final int FB_MARGIN = FB_OFFSET * 2;
@@ -176,6 +179,7 @@ public class ZoneShapeMaker {
         shader.setUniformf("thresholdDivider", FIRST_PASS_DIVIDER); //higher = more range, less effective at rounding concave angles (like when 2 circles meet)
         shader.setUniformf("whitening", FIRST_PASS_WHITENING);
         shader.setUniformf("darkening", FIRST_PASS_DARKENING);
+        shader.setUniformf("alphaMult", FIRST_PASS_ALPHAMULT);
 
         fbProjection.setToOrtho2D(0, 0, zone.zoneFb.getWidth(), zone.zoneFb.getHeight());
         sb.setProjectionMatrix(fbProjection);
@@ -199,10 +203,16 @@ public class ZoneShapeMaker {
         shader.setUniformf("thresholdDivider", SECOND_PASS_DIVIDER);
         shader.setUniformf("whitening", SECOND_PASS_WHITENING);
         shader.setUniformf("darkening", SECOND_PASS_DARKENING);
+        shader.setUniformf("alphaMult", SECOND_PASS_ALPHAMULT);
 
         fbProjection.setToOrtho2D(0, 0, commonBuffer.getWidth(), commonBuffer.getHeight());
         sb.setProjectionMatrix(fbProjection);
         commonBuffer.begin();
+
+        Gdx.gl.glClearColor(0.0F, 0.0F, 0.0F, 0.0F);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
+        Gdx.gl.glColorMask(true, true, true, true);
+
         sb.draw(resultRegion, 0, 0);
         sb.flush();
 
@@ -220,10 +230,14 @@ public class ZoneShapeMaker {
         shader.setUniformf("thresholdDivider", SMOOTHING_DIVIDER);
         shader.setUniformf("whitening", SMOOTHING_WHITENING);
         shader.setUniformf("darkening", SMOOTHING_DARKENING);
+        shader.setUniformf("alphaMult", SMOOTHING_ALPHAMULT);
 
         fbProjection.setToOrtho2D(0, 0, zone.zoneFb.getWidth(), zone.zoneFb.getHeight());
         sb.setProjectionMatrix(fbProjection);
         zone.zoneFb.begin();
+        Gdx.gl.glClearColor(0.0F, 0.0F, 0.0F, 0.0F);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
+        Gdx.gl.glColorMask(true, true, true, true);
         sb.draw(resultRegion, 0, 0);
         sb.flush();
         //putting the icon in
