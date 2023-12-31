@@ -62,5 +62,19 @@
       "RRrroohrrRGHHhhh!!"
     ],
     "NAME": "Gremlin Nib"
+  },
+  "${ModID}:GremlinElder": {
+    "MOVES": [
+      "Slam",
+      "Slap",
+      "Charging",
+      "Dying Curse"
+    ],
+    "DIALOG": [
+      "My body takes a heavy toll...",
+      "So here's my spell to curse thy soul...",
+      "You shall never again be whole!"
+    ],
+    "NAME": "Gremlin Elder"
   }
 }

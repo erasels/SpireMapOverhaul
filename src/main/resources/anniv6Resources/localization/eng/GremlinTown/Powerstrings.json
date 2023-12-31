@@ -49,8 +49,8 @@
     "NAME": "Critical",
     "DESCRIPTIONS": ["Your next Attack deals #b{0} times as much damage."]
   },
-  "${ModID}:OmegaBlast": {
-    "NAME": "Omega Blast",
-    "DESCRIPTIONS": ["At the end of #b{0} turns, deal #b{1} damage to a random enemy."]
+  "${ModID}:OmegaCurse": {
+    "NAME": "Omega Curse",
+    "DESCRIPTIONS": ["At the end of #b{0} turns, deal #b{1} #yWeak and #yVulnerable to ALL enemies."]
   }
 }

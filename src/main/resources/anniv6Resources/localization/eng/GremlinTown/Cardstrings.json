@@ -58,8 +58,8 @@
     "NAME": "Flurry",
     "DESCRIPTION": "Deal !D! damage to a random enemy X+1 times."
   },
-  "${ModID}:OmegaBlast": {
-    "NAME": "Omega Blast",
-    "DESCRIPTION": "At the end of 3 turns, deal !M! damage to a random enemy."
+  "${ModID}:OmegaCurse": {
+    "NAME": "Omega Curse",
+    "DESCRIPTION": "At the end of 3 turns, apply !M! Weak and Vulnerable to ALL enemies."
   }
 }

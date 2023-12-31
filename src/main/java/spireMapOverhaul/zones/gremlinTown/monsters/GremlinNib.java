@@ -40,12 +40,12 @@ public class GremlinNib extends CustomMonster
     public static final byte CRIT = 3;
     private static final int HP_MIN = 121;
     private static final int HP_MAX = 127;
-    private static final int A_2_HP_MIN = 130;
-    private static final int A_2_HP_MAX = 136;
+    private static final int HP_MIN_A7 = 130;
+    private static final int HP_MAX_A7 = 136;
     private static final int CRIT_DMG = 40;
     private static final int RUSH_DMG = 14;
-    private static final int A_3_CRIT_DMG = 45;
-    private static final int A_3_RUSH_DMG = 16;
+    private static final int CRIT_DMG_A2 = 45;
+    private static final int RUSH_DMG_A2 = 16;
     private static final int ANGER_AMOUNT = 1;
     private static final int PEN_AMOUNT_A18 = 8;
     private static final int PEN_AMOUNT = 10;
@@ -59,21 +59,21 @@ public class GremlinNib extends CustomMonster
     public static float wokeTimer = 0.0f;
 
     public GremlinNib(float x, float y) {
-        super(NAME, "GremlinNib", HP_MAX, -70.0F, -10.0F, 270.0F, 380.0F, (String)null, x, y);
+        super(NAME, ID, HP_MAX, -70.0F, -10.0F, 270.0F, 380.0F, (String)null, x, y);
         usedBellow = false;
         intentOffsetX = -30.0F * Settings.scale;
-        type = EnemyType.ELITE;
+        type = EnemyType.NORMAL;
         dialogX = -60.0F * Settings.scale;
         dialogY = 50.0F * Settings.scale;
-        if (AbstractDungeon.ascensionLevel >= 8) {
-            setHp(A_2_HP_MIN, A_2_HP_MAX);
+        if (AbstractDungeon.ascensionLevel >= 7) {
+            setHp(HP_MIN_A7, HP_MAX_A7);
         } else {
             setHp(HP_MIN, HP_MAX);
         }
 
-        if (AbstractDungeon.ascensionLevel >= 3) {
-            critDmg = A_3_CRIT_DMG;
-            rushDmg = A_3_RUSH_DMG;
+        if (AbstractDungeon.ascensionLevel >= 2) {
+            critDmg = CRIT_DMG_A2;
+            rushDmg = RUSH_DMG_A2;
         } else {
             critDmg = CRIT_DMG;
             rushDmg = RUSH_DMG;
