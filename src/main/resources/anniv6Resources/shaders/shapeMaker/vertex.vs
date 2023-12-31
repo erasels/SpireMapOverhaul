@@ -1,5 +1,3 @@
-#version 330
-
 uniform mat4 u_projTrans;
 
 attribute vec4 a_position;
@@ -14,3 +12,4 @@ void main() {
     v_color = a_color;
     pos = a_texCoord0;
 }
+
