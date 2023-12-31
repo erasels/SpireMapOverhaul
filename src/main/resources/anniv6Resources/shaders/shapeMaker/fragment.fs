@@ -30,7 +30,7 @@ void main()
         gl_FragColor = vec4(whitening + selfColor.r * darkening,
                             whitening + selfColor.g * darkening,
                             whitening + selfColor.b * darkening,
-                            (whitening + selfColor.a) * alphaMult);
+                            (whitening + selfColor.a) * alphaMult/((selfColor.r+selfColor.g+selfColor.b)/3.));
         return;
     }
 
