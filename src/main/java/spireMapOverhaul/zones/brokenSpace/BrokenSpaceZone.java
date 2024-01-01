@@ -1,27 +1,22 @@
 package spireMapOverhaul.zones.brokenSpace;
 
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.math.MathUtils;
+import com.evacipated.cardcrawl.modthespire.lib.SpireField;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.tempCards.Omega;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.events.AbstractEvent;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.RelicLibrary;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.relics.CallingBell;
-import com.megacrit.cardcrawl.rewards.RewardItem;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.shop.ShopScreen;
 import com.megacrit.cardcrawl.shop.StoreRelic;
 import spireMapOverhaul.BetterMapGenerator;
 import spireMapOverhaul.abstracts.AbstractZone;
-import spireMapOverhaul.zoneInterfaces.ModifiedEventRateZone;
 import spireMapOverhaul.zoneInterfaces.RewardModifyingZone;
 import spireMapOverhaul.zoneInterfaces.ShopModifyingZone;
-import spireMapOverhaul.zones.brokenSpace.patches.CallingBellFix;
-import spireMapOverhaul.zones.example.CoolExampleEvent;
 
 import java.util.ArrayList;
 
@@ -103,8 +98,10 @@ public class BrokenSpaceZone extends AbstractZone implements RewardModifyingZone
             relics.removeIf(r -> r.relicId.equals(s));
         }
 
+        AbstractRelic r = relics.get(rng.random(relics.size() - 1)).makeCopy();
+        UnnaturalRelicField.unnatural.set(r, true);
 
-        return relics.get(rng.random(relics.size() - 1)).makeCopy();
+        return r;
     }
 
     @Override
@@ -130,7 +127,10 @@ public class BrokenSpaceZone extends AbstractZone implements RewardModifyingZone
         cards.clear();
 
         for (int i = 0; i < amount; i++) {
-            cards.add(GetTrulyRandomCard(AbstractDungeon.cardRandomRng));
+            AbstractCard c = GetTrulyRandomCard(AbstractDungeon.cardRandomRng);
+            cards.add(c);
+            UnnaturalCardField.unnatural.set(c, true);
+
         }
     }
 
@@ -140,8 +140,27 @@ public class BrokenSpaceZone extends AbstractZone implements RewardModifyingZone
         coloredCards.clear();
 
         for (int i = 0; i < amount; i++) {
-            coloredCards.add(GetTrulyRandomCard(AbstractDungeon.cardRandomRng));
+            AbstractCard c = GetTrulyRandomCard(AbstractDungeon.cardRandomRng);
+            coloredCards.add(c);
+            UnnaturalCardField.unnatural.set(c, true);
+
         }
+    }
+
+    @SpirePatch2(
+            clz = AbstractCard.class,
+            method = SpirePatch.CLASS
+    )
+    public static class UnnaturalCardField {
+        public static SpireField<Boolean> unnatural = new SpireField<>(() -> false);
+    }
+
+    @SpirePatch2(
+            clz = AbstractRelic.class,
+            method = SpirePatch.CLASS
+    )
+    public static class UnnaturalRelicField {
+        public static SpireField<Boolean> unnatural = new SpireField<>(() -> false);
     }
 
     static {
