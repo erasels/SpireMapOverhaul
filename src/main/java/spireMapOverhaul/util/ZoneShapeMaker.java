@@ -21,12 +21,10 @@ import imgui.type.ImFloat;
 import spireMapOverhaul.BetterMapGenerator;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
-import spireMapOverhaul.zones.example.PlaceholderZone;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.function.Function;
 import java.util.function.Predicate;
 
 public class ZoneShapeMaker {
@@ -41,7 +39,7 @@ public class ZoneShapeMaker {
     private static float FIRST_PASS_SUBDIV = 6f;  //= range when multiplied by stepSize, lowers performance quadratically
     private static float FIRST_PASS_DIVIDER = 0.9f;   //higher = more range, more "amalgamation", but edges get rougher
     private static float FIRST_PASS_WHITENING = 1f;//0.5f; //Adds to color of existing pixels.
-    private static float FIRST_PASS_DARKENING = 0f; //Multiplies color of existing pixels
+    private static float FIRST_PASS_DARKENING = 1f; //Multiplies color of existing pixels
     private static float FIRST_PASS_ALPHAMULT = 1f;
 
     private static float SECOND_PASS_STEPSIZE = 8f;
@@ -216,30 +214,6 @@ public class ZoneShapeMaker {
         sb.draw(resultRegion, 0, 0);
         sb.flush();
 
-        commonBuffer.end();
-
-        resultRegion.setRegion(commonBuffer.getColorBufferTexture());
-        resultRegion.flip(false, true);
-
-        //smoothing step (low range, high quality)
-        sb.setShader(shader);
-        shader.setUniformf("sizeX", zone.zoneFb.getWidth());
-        shader.setUniformf("sizeY", zone.zoneFb.getHeight());
-        shader.setUniformf("stepSize", SMOOTHING_STEPSIZE);
-        shader.setUniformf("subDiv", SMOOTHING_SUBDIV);
-        shader.setUniformf("thresholdDivider", SMOOTHING_DIVIDER);
-        shader.setUniformf("whitening", SMOOTHING_WHITENING);
-        shader.setUniformf("darkening", SMOOTHING_DARKENING);
-        shader.setUniformf("alphaMult", SMOOTHING_ALPHAMULT);
-
-        fbProjection.setToOrtho2D(0, 0, zone.zoneFb.getWidth(), zone.zoneFb.getHeight());
-        sb.setProjectionMatrix(fbProjection);
-        zone.zoneFb.begin();
-        Gdx.gl.glClearColor(0.0F, 0.0F, 0.0F, 0.0F);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
-        Gdx.gl.glColorMask(true, true, true, true);
-        sb.draw(resultRegion, 0, 0);
-        sb.flush();
         //putting the icon in
         sb.setShader(null);
         sb.setColor(ICON_COLOR);
@@ -274,6 +248,31 @@ public class ZoneShapeMaker {
         sb.flush();
         sb.setColor(Color.WHITE);
         sb.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+
+        commonBuffer.end();
+
+        resultRegion.setRegion(commonBuffer.getColorBufferTexture());
+        resultRegion.flip(false, true);
+
+        //smoothing step (low range, high quality)
+        sb.setShader(shader);
+        shader.setUniformf("sizeX", zone.zoneFb.getWidth());
+        shader.setUniformf("sizeY", zone.zoneFb.getHeight());
+        shader.setUniformf("stepSize", SMOOTHING_STEPSIZE);
+        shader.setUniformf("subDiv", SMOOTHING_SUBDIV);
+        shader.setUniformf("thresholdDivider", SMOOTHING_DIVIDER);
+        shader.setUniformf("whitening", SMOOTHING_WHITENING);
+        shader.setUniformf("darkening", SMOOTHING_DARKENING);
+        shader.setUniformf("alphaMult", SMOOTHING_ALPHAMULT);
+
+        fbProjection.setToOrtho2D(0, 0, zone.zoneFb.getWidth(), zone.zoneFb.getHeight());
+        sb.setProjectionMatrix(fbProjection);
+        zone.zoneFb.begin();
+        Gdx.gl.glClearColor(0.0F, 0.0F, 0.0F, 0.0F);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
+        Gdx.gl.glColorMask(true, true, true, true);
+        sb.draw(resultRegion, 0, 0);
+        sb.flush();
         zone.zoneFb.end();
 
         resultRegion.setRegion(zone.zoneFb.getColorBufferTexture());
