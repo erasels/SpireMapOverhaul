@@ -1,21 +1,19 @@
 package spireMapOverhaul.zones.brokenSpace.patches;
 
-import basemod.BaseMod;
-import basemod.patches.com.megacrit.cardcrawl.core.CardCrawlGame.ApplyScreenPostProcessor;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Pixmap;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.evacipated.cardcrawl.modthespire.lib.*;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import com.megacrit.cardcrawl.rewards.RewardItem;
 import javassist.CtBehavior;
+import spireMapOverhaul.patches.ZonePatches;
 
-import java.awt.*;
 import java.util.logging.Logger;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeShaderPath;
@@ -25,59 +23,75 @@ public class BrokenSpaceRenderPatch {
 
     private static FrameBuffer fbo;
 
+
     private static Logger logger = Logger.getLogger(BrokenSpaceRenderPatch.class.getName());
 
-    @SpirePatch2(clz = AbstractDungeon.class, method = "render")
-    public static class RenderPatch {
-        @SpireInsertPatch(locator = Locator.class)
-        public static void patch(SpriteBatch sb){
-            fbo.end();
-            sb.end();
-            Texture img = fbo.getColorBufferTexture();
-            sb.begin();
-            sb.setShader(brokenSpaceShader);
-            sb.draw(img,0,0);
-            sb.setShader((ShaderProgram)null);// 95
-            sb.end();
-            sb.begin();
-
-        }
-
-        private static class Locator extends SpireInsertLocator{
-
-            @Override
-            public int[] Locate(CtBehavior ctBehavior) throws Exception {
-                Matcher finalMatcher = new Matcher.MethodCallMatcher(AbstractRoom.class, "render");
-                return LineFinder.findInOrder(ctBehavior, finalMatcher);
+    @SpirePatch(
+            clz = RewardItem.class,
+            method = "render"
+    )
+    public static class RenderBrokenSpaceRewards {
+        @SpirePrefixPatch
+        public static void addShader(RewardItem __instance, SpriteBatch sb) {
+            if (shouldRenderBrokenSpaceShader(__instance)) {
+                sb.flush();
+                fbo.begin();
+                Gdx.gl.glClearColor(0.0F, 0.0F, 0.0F, 0.0F);
+                Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
+                Gdx.gl.glColorMask(true, true, true, true);
             }
         }
 
+        @SpirePostfixPatch
+        public static void removeShader(RewardItem __instance, SpriteBatch sb) {
+            if (shouldRenderBrokenSpaceShader(__instance)) {
+                fbo.end();
 
-    }
+                TextureRegion region = new TextureRegion(fbo.getColorBufferTexture());
+                region.flip(false, true);
 
-    @SpirePatch2(clz = CardCrawlGame.class, method = "render")
-    public static class PreRenderPatch {
-        @SpireInsertPatch(locator = ApplyScreenPostProcessor.BeginLocator.class)
-        public static void patch(SpriteBatch ___sb){
-            fbo.begin();
-            ___sb.setBlendFunction(770, 771);// 56
-            Gdx.gl.glClearColor(0.0F, 0.0F, 0.0F, 0.0F);// 57
-            Gdx.gl.glClear(17664);// 58
+                sb.setShader(brokenSpaceShader);
+                sb.draw(region, 0, 0);
+                sb.setShader(null);
+
+
+            }
+        }
+
+        private static class Locator extends SpireInsertLocator {
+            @Override
+            public int[] Locate(CtBehavior ctBehavior) throws Exception {
+                Matcher matcher = new Matcher.MethodCallMatcher(SpriteBatch.class, "draw");
+                return LineFinder.findInOrder(ctBehavior, matcher);
+            }
         }
     }
+
+
+    private static boolean shouldRenderBrokenSpaceShader(RewardItem __instance) {
+        return shouldRenderBrokenSpaceShader() && (__instance.type == RewardItem.RewardType.CARD || __instance.type == RewardItem.RewardType.RELIC);
+
+    }
+
+    private static boolean shouldRenderBrokenSpaceShader(AbstractCard __instance) {
+        return shouldRenderBrokenSpaceShader() && __instance.color != AbstractDungeon.player.getCardColor();
+    }
+
+
+    private static boolean shouldRenderBrokenSpaceShader() {
+        return ZonePatches.currentZone() != null && ZonePatches.currentZone().id.equals("BrokenSpace");
+    }
+
 
 
     static {
         brokenSpaceShader = new ShaderProgram(Gdx.files.internal(makeShaderPath("BrokenSpace/Glitch.vs")), Gdx.files.internal(makeShaderPath( "BrokenSpace/Glitch.fs")));
-        if (!brokenSpaceShader.isCompiled()) {
-            logger.warning("Broken Space shader not compiled: " + brokenSpaceShader.getLog());
+        if (true) {
+            logger.warning("Broken Space shader: " + brokenSpaceShader.getLog());
+
+
         }
 
-    }
-
-    static {
-        int width = Gdx.graphics.getWidth();// 134
-        int height = Gdx.graphics.getHeight();// 135
-        fbo = new FrameBuffer(Pixmap.Format.RGBA8888, width, height, false, false);// 137
+        fbo = new FrameBuffer(Pixmap.Format.RGBA8888, Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), false, false);
     }
 }

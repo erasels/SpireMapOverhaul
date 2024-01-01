@@ -1,113 +1,114 @@
-float sat( float t ) {
-	return clamp( t, 0.0, 1.0 );
+
+vec3 mod289(vec3 x) {
+  return x - floor(x * (1.0 / 289.0)) * 289.0;
 }
 
-vec2 sat( vec2 t ) {
-	return clamp( t, 0.0, 1.0 );
+vec2 mod289(vec2 x) {
+  return x - floor(x * (1.0 / 289.0)) * 289.0;
 }
 
-//remaps inteval [a;b] to [0;1]
-float remap  ( float t, float a, float b ) {
-	return sat( (t - a) / (b - a) );
+vec3 permute(vec3 x) {
+  return mod289(((x*34.0)+1.0)*x);
 }
 
-//note: /\ t=[0;0.5;1], y=[0;1;0]
-float linterp( float t ) {
-	return sat( 1.0 - abs( 2.0*t - 1.0 ) );
+float snoise(vec2 v)
+  {
+  const vec4 C = vec4(0.211324865405187,  // (3.0-sqrt(3.0))/6.0
+                      0.366025403784439,  // 0.5*(sqrt(3.0)-1.0)
+                     -0.577350269189626,  // -1.0 + 2.0 * C.x
+                      0.024390243902439); // 1.0 / 41.0
+// First corner
+  vec2 i  = floor(v + dot(v, C.yy) );
+  vec2 x0 = v -   i + dot(i, C.xx);
+
+// Other corners
+  vec2 i1;
+  //i1.x = step( x0.y, x0.x ); // x0.x > x0.y ? 1.0 : 0.0
+  //i1.y = 1.0 - i1.x;
+  i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
+  // x0 = x0 - 0.0 + 0.0 * C.xx ;
+  // x1 = x0 - i1 + 1.0 * C.xx ;
+  // x2 = x0 - 1.0 + 2.0 * C.xx ;
+  vec4 x12 = x0.xyxy + C.xxzz;
+  x12.xy -= i1;
+
+// Permutations
+  i = mod289(i); // Avoid truncation effects in permutation
+  vec3 p = permute( permute( i.y + vec3(0.0, i1.y, 1.0 ))
+		+ i.x + vec3(0.0, i1.x, 1.0 ));
+
+  vec3 m = max(0.5 - vec3(dot(x0,x0), dot(x12.xy,x12.xy), dot(x12.zw,x12.zw)), 0.0);
+  m = m*m ;
+  m = m*m ;
+
+// Gradients: 41 points uniformly over a line, mapped onto a diamond.
+// The ring size 17*17 = 289 is close to a multiple of 41 (41*7 = 287)
+
+  vec3 x = 2.0 * fract(p * C.www) - 1.0;
+  vec3 h = abs(x) - 0.5;
+  vec3 ox = floor(x + 0.5);
+  vec3 a0 = x - ox;
+
+// Normalise gradients implicitly by scaling m
+// Approximation of: m *= inversesqrt( a0*a0 + h*h );
+  m *= 1.79284291400159 - 0.85373472095314 * ( a0*a0 + h*h );
+
+// Compute final noise value at P
+  vec3 g;
+  g.x  = a0.x  * x0.x  + h.x  * x0.y;
+  g.yz = a0.yz * x12.xz + h.yz * x12.yw;
+  return 130.0 * dot(m, g);
 }
 
-vec3 spectrum_offset( float t ) {
-    float t0 = 3.0 * t - 1.5;
-    //return vec3(1.0/3.0);
-	return clamp( vec3( -t0, 1.0-abs(t0), t0), 0.0, 1.0);
-    /*
-	vec3 ret;
-	float lo = step(t,0.5);
-	float hi = 1.0-lo;
-	float w = linterp( remap( t, 1.0/6.0, 5.0/6.0 ) );
-	float neg_w = 1.0-w;
-	ret = vec3(lo,1.0,hi) * vec3(neg_w, w, neg_w);
-	return pow( ret, vec3(1.0/2.2) );
-*/
-}
-
-//note: [0;1]
-float rand( vec2 n ) {
-  return fract(sin(dot(n.xy, vec2(12.9898, 78.233)))* 43758.5453);
-}
-
-//note: [-1;1]
-float srand( vec2 n ) {
-	return rand(n) * 2.0 - 1.0;
-}
-
-float mytrunc( float x, float num_levels )
+float rand(vec2 co)
 {
-	return floor(x*num_levels) / num_levels;
-}
-vec2 mytrunc( vec2 x, float num_levels )
-{
-	return floor(x*num_levels) / num_levels;
+   return fract(sin(dot(co.xy,vec2(12.9898,78.233))) * 43758.5453);
 }
 
 varying vec2 pos;
+
 uniform sampler2D u_texture;
 uniform vec2 u_screenSize;
 uniform float u_time;
 
 void main()
 {
-    float aspect = u_screenSize.x / u_screenSize.y;
-	vec2 uv = pos.xy / u_screenSize.xy;
-    uv.y = 1.0 - uv.y;
+	vec2 uv = pos.xy;
+    float time = u_time * 2.0;
+    
+    // Create large, incidental noise waves
+    float noise = max(0.0, snoise(vec2(time, uv.y * 0.1)) - 0.1) * (0.1);
+    
+    // Offset by smaller, constant noise waves
+    noise = noise + (snoise(vec2(time*10.0, uv.y * 2.4)) - 0.5) * 0.15;
+    
+    // Apply the noise as x displacement for every line
+    float xpos = uv.x - noise * noise * 0.25;
+	vec3 acc = texture2D(u_texture, vec2(xpos, uv.y)).rgb;
+    
+    // Mix in some random interference for lines
+     acc = mix(acc.rgb, vec3(rand(vec2(uv.y * time))), noise * 0.3).rgb;
+    
+    // Apply a line pattern every 4 pixels
+    if (floor(mod(pos.y * 0.25, 2.0)) == 0.0)
+    {
+        acc .rgb *= 1.0 - (0.15 * noise);
+    }
+    
+    // Shift green/blue channels (using the red channel)
+    acc.g = mix(acc.r, texture2D(u_texture, vec2(xpos + noise * 0.05, uv.y)).g, 0.25);
+    acc.b = mix(acc.r, texture2D(u_texture, vec2(xpos - noise * 0.05, uv.y)).b, 0.25);
 
-	float time = mod(u_time, 32.0); // + modelmat[0].x + modelmat[0].z;
 
-	float GLITCH = 0.1;
+    // calculate alpha from each sample
+    float alpha = 0.0;
+    alpha += acc.r;
+    alpha += acc.g;
+    alpha += acc.b;
+    alpha /= 3.0;
 
-    //float rdist = length( (uv - vec2(0.5,0.5))*vec2(aspect, 1.0) )/1.4;
-    //GLITCH *= rdist;
 
-	float gnm = sat( GLITCH );
-	float rnd0 = rand( mytrunc( vec2(time, time), 6.0 ) );
-	float r0 = sat((1.0-gnm)*0.7 + rnd0);
-	float rnd1 = rand( vec2(mytrunc( uv.x, 10.0*r0 ), time) ); //horz
-	//float r1 = 1.0f - sat( (1.0f-gnm)*0.5f + rnd1 );
-	float r1 = 0.5 - 0.5 * gnm + rnd1;
-	r1 = 1.0 - max( 0.0, ((r1<1.0) ? r1 : 0.9999999) ); //note: weird ass bug on old drivers
-	float rnd2 = rand( vec2(mytrunc( uv.y, 40.0*r1 ), time) ); //vert
-	float r2 = sat( rnd2 );
 
-	float rnd3 = rand( vec2(mytrunc( uv.y, 10.0*r0 ), time) );
-	float r3 = (1.0-sat(rnd3+0.8)) - 0.1;
+    gl_FragColor = vec4(acc, alpha);
 
-	float pxrnd = rand( uv + time );
-
-	float ofs = 0.05 * r2 * GLITCH * ( rnd0 > 0.5 ? 1.0 : -1.0 );
-	ofs += 0.5 * pxrnd * ofs;
-
-	uv.y += 0.1 * r3 * GLITCH;
-
-    const int NUM_SAMPLES = 10;
-    const float RCP_NUM_SAMPLES_F = 1.0 / float(NUM_SAMPLES);
-
-	vec4 sum = vec4(0.0);
-	vec3 wsum = vec3(0.0);
-	for( int i=0; i<NUM_SAMPLES; ++i )
-	{
-		float t = float(i) * RCP_NUM_SAMPLES_F;
-		uv.x = sat( uv.x + ofs * t );
-		vec4 samplecol = texture( iChannel0, uv, -10.0 );
-		vec3 s = spectrum_offset( t );
-		samplecol.rgb = samplecol.rgb * s;
-		sum += samplecol;
-		wsum += s;
-	}
-	sum.rgb /= wsum;
-	sum.a *= RCP_NUM_SAMPLES_F;
-
-    //gl_FragColor = vec4( sum.bbb, 1.0 ); return;
-    sum = vec4(1.0,0.0,0.0,0.0);
-	gl_FragColor.a = sum.a;
-	gl_FragColor.rgb = sum.rgb; // * outcol0.a;
 }
