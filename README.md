@@ -11,6 +11,8 @@ Either modargo or I (erasels) will be reviewing your pull request and suggest ch
 ### Technical Guidelines
 Create a package within the zones package; this is where you will put all your code. This allows all zone content to be grouped together, so you're not supposed to put your patches/monsters/etc in the top-level packages anymore (which is a change from previous anniversary projects that we think will help with organization). You are free to define subpackages within your zone package.    
 
+#### Zone
+
 You will need a Zone class which extends AbstractZone and implements the various interfaces for modifying aspects of the game (found in the zoneInterfaces package). Within it you will have most of the code which controls what your zone does, from adding new encouters to deciding what nodes spawn in your zone. It's okay to do things those interfaces don't support yet by writing patches, though if there's something that multiple people want to do, it may be worth adding to one of the interfaces.
 
 AbstractZone's constructor requires an unprefixed ID (so do not call makeID on your ID when creating it) and any of the Icons enums which will used to signify what type of content your zone modifies in its tooltip. Available icons are: MONSTER, ELITE, REWARD, EVENT, REST and SHOP.  
@@ -28,6 +30,14 @@ To test your zone, you can add the console command `addzone ID` which will make 
 
 Your zone's icon should be a 512x512 png file located in `resources/anniv6Resources/images/ui/zoneIcons` and fit the template provided in that same folder. It should entirely black, optionally with some white. Ideally it should be pretty simple and easily recognizable.
 
+#### Cards, relics, monsters, powers, etc.
+Cards, relics, monsters, powers, patches, and everything else should go in the package you created for your zone.
+
+There are abstract classes that you should extend in the abstracts package: `AbstractSMOCard`, `AbstractSMORelic`, `AbstractSMOMonster`, and `AbstractSMOPower`.
+
+#### Bestiary
+If you add new monsters, consider adding [Bestiary](https://steamcommunity.com/sharedfiles/filedetails/?id=2285965269) entries for them, so that players have an easy way to understand and analyze what the monsters do. This also helps document the logic for your new monsters. See the existing `bestiary.json` files for examples.
+
 ### How to make PRs
   
 To make a contribution, you must have a GitHub account. 
@@ -36,6 +46,3 @@ https://docs.github.com/en/get-started/quickstart/contributing-to-projects
    
 I recommend using the GitHub desktop client for this if you have no experience with Github  
 https://desktop.github.com/
-
-### Bestiary
-If you add new monsters, consider adding [Bestiary](https://steamcommunity.com/sharedfiles/filedetails/?id=2285965269) entries for them, so that players have an easy way to understand and analyze what the monsters do. This also helps document the logic for your new monsters. See the existing `bestiary.json` files for examples.
