@@ -1,7 +1,6 @@
 //---------------------------------------------------------------------------
 
-
-in vec2 pos;                    // screen position <-1,+1>
+varying vec2 pos;                    // screen position <-1,+1>
                                 // fragment output color
 uniform sampler2D txr;          // texture to blu
 
@@ -12,6 +11,7 @@ uniform float subDiv;
 uniform float thresholdDivider;
 uniform float whitening;
 uniform float darkening;
+uniform float alphaMult;
 
 //---------------------------------------------------------------------------
 void main()
@@ -29,7 +29,7 @@ void main()
         gl_FragColor = vec4(whitening + selfColor.r * darkening,
                             whitening + selfColor.g * darkening,
                             whitening + selfColor.b * darkening,
-                            whitening + selfColor.a);
+                            (whitening + selfColor.a) * alphaMult/((selfColor.r+selfColor.g+selfColor.b)/3.));
         return;
     }
 
