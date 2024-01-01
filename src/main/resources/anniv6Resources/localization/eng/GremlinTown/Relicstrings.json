@@ -6,22 +6,22 @@
       "Whenever you play a Skill, gain #b1 temporary Dexterity."
     ]
   },
-  "${ModID}:GremlinClaws": {
-    "NAME": "Gremlin Claws",
+  "${ModID}:GremlinClaw": {
+    "NAME": "Gremlin Claw",
     "FLAVOR": "Gremlins can be very dangerous even without a weapon.",
     "DESCRIPTIONS": [
-      "Whenever you strike a #yFatal blow, heal #b1 HP."
+      "Whenever you land a #yFatal blow, heal #b1 HP."
     ]
   },
-  "${ModID}:LargeScarf": {
-    "NAME": "Large Scarf",
-    "FLAVOR": "A rare scarf, only given to high ranking gremlins.",
+  "${ModID}:GremlinHood": {
+    "NAME": "Gremlin Hood",
+    "FLAVOR": "The orange mask bandits never really caught on.",
     "DESCRIPTIONS": [
       "Upgrade ALL of your current and future Gremlin cards."
     ]
   },
-  "${ModID}:GremlinClub": {
-    "NAME": "Gremlin Club",
+  "${ModID}:NobClub": {
+    "NAME": "Nob Club",
     "FLAVOR": "You can barely lift it.",
     "DESCRIPTIONS": [
       "Every time you play #b{0} attacks, apply #b1 #yVulnerable to a random enemy."
@@ -36,9 +36,9 @@
   },
   "${ModID}:WarHorn": {
     "NAME": "War Horn",
-    "FLAVOR": ".",
+    "FLAVOR": "Hopefully when you summon Gremlins with this, they'll think you're an ally.",
     "DESCRIPTIONS": [
-      "During boss combats, add a random Gremlin card into your hand at the start of your turn.  It costs 0 that turn."
+      "During boss combats, add a random Gremlin card into your hand at the start of your turn.  It costs #b0 that turn."
     ]
   }
 }

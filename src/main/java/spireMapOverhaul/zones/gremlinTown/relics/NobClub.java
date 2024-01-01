@@ -12,12 +12,11 @@ import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 import static spireMapOverhaul.util.Wiz.adp;
 import static spireMapOverhaul.util.Wiz.applyToEnemy;
 
-public class GremlinClub extends AbstractSMORelic {
-    public static final String ID = makeID(GremlinClub.class.getSimpleName());
-    private int counter;
+public class NobClub extends AbstractSMORelic {
+    public static final String ID = makeID(NobClub.class.getSimpleName());
     private static final int ATTACK_THRESHOLD = 5;
 
-    public GremlinClub() {
+    public NobClub() {
         super(ID, RelicTier.SPECIAL, LandingSound.HEAVY);
         counter = 0;
     }

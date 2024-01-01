@@ -20,6 +20,7 @@ public class WarHorn extends AbstractSMORelic {
     @Override
     public void atTurnStart() {
         if (AbstractDungeon.getCurrRoom() instanceof MonsterRoomBoss) {
+            flash();
             AbstractCard c = GremlinTown.getRandomGremlin();
             c.setCostForTurn(-99);
             atb(new MakeTempCardInHandAction(c));

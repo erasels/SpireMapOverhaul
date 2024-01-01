@@ -20,6 +20,11 @@ public class GremlinStaff extends AbstractSMORelic {
         return DESCRIPTIONS[0].replace("{0}", Integer.toString(VIGOR_AMOUNT));
     }
 
+    @Override
+    public void atBattleStart() {
+        counter = 0;
+    }
+
     public void atTurnStart() {
         if (!grayscale) {
             ++counter;

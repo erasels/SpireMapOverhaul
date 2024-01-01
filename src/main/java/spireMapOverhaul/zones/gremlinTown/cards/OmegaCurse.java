@@ -16,8 +16,9 @@ public class OmegaCurse extends AbstractSMOCard {
     private final static int UPGRADED_COST = 1;
 
     public OmegaCurse() {
-        super(ID, COST, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF, CardColor.COLORLESS);
+        super(ID, COST, CardType.SKILL, CardRarity.RARE, CardTarget.SELF, CardColor.COLORLESS);
         baseMagicNumber = magicNumber = MAGIC;
+        exhaust = true;
     }
 
     @Override

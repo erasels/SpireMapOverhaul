@@ -4,9 +4,9 @@ import basemod.abstracts.CustomMonster;
 import com.badlogic.gdx.math.MathUtils;
 import com.esotericsoftware.spine.AnimationState;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.animations.AnimateSlowAttackAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
@@ -17,6 +17,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import spireMapOverhaul.SpireAnniversary6Mod;
 
@@ -43,11 +44,15 @@ public class GremlinElder extends CustomMonster
     private static final int SLAP_DMG = 10;
     private static final int SLAP_DMG_A3 = 11;
 
+    private boolean firstTurn;
+
     public GremlinElder(float x, float y) {
         super(NAME, ID, HP_MAX, 100.0F, -12.5F, 325.0F, 450.0F, null, x -87.5F, y);
         type = EnemyType.ELITE;
         dialogX = 0F * Settings.scale;
         dialogY = 125.0F * Settings.scale;
+
+        firstTurn = true;
 
         if (AbstractDungeon.ascensionLevel >= 8) {
             setHp(HP_MIN_A8, HP_MAX_A8);
@@ -82,13 +87,15 @@ public class GremlinElder extends CustomMonster
             case SLAP:
                 atb(new AnimateSlowAttackAction(this));
                 atb(new DamageAction(adp(), damage.get(1), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
+                atb(new ApplyPowerAction(adp(), this, new StrengthPower(adp(), -1)));
                 break;
             case CHARGE:
-                if (lastMove(CHARGE))
+                if (lastMoveBefore(CHARGE))
                     atb(new TalkAction(this, DIALOG[1], 0.3F, 3.0F));
                 else
                     atb(new TalkAction(this, DIALOG[0], 0.3F, 3.0F));
                 playSfx();
+                break;
             case DYING_CURSE:
                 atb(new TalkAction(this, DIALOG[2], 0.3F, 3.0F));
                 playSfx();
@@ -100,19 +107,19 @@ public class GremlinElder extends CustomMonster
                         if (first[0]) {
                             first[0] = false;
                             duration = 1.5f;
-                        }
 
-                        AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(new Decay(),
-                                (float)Settings.WIDTH * 0.3F, (float)Settings.HEIGHT / 2.0F));
-                        if (asc() >= 18) {
-                            AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(new Pain(),
-                                    (float) Settings.WIDTH * 0.5F, (float) Settings.HEIGHT / 2.0F));
-                        } else {
                             AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(new Decay(),
-                                    (float) Settings.WIDTH * 0.5F, (float) Settings.HEIGHT / 2.0F));
+                                    (float)Settings.WIDTH * 0.3F, (float)Settings.HEIGHT / 2.0F));
+                            if (asc() >= 18) {
+                                AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(new Pain(),
+                                        (float) Settings.WIDTH * 0.5F, (float) Settings.HEIGHT / 2.0F));
+                            } else {
+                                AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(new Decay(),
+                                        (float) Settings.WIDTH * 0.5F, (float) Settings.HEIGHT / 2.0F));
+                            }
+                            AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(new Decay(),
+                                    (float)Settings.WIDTH * 0.7F, (float)Settings.HEIGHT / 2.0F));
                         }
-                        AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(new Decay(),
-                                (float)Settings.WIDTH * 0.7F, (float)Settings.HEIGHT / 2.0F));
 
                         tickDuration();
                     }
@@ -131,7 +138,8 @@ public class GremlinElder extends CustomMonster
     }
 
     protected void getMove(int num) {
-        if (GameActionManager.turn == 1) {
+        if (firstTurn) {
+            firstTurn = false;
             setMove(SLAM, Intent.ATTACK, damage.get(0).base);
         }
         else if (currentHealth > maxHealth/2f) {
@@ -155,19 +163,19 @@ public class GremlinElder extends CustomMonster
     private void playSfx() {
         int roll = MathUtils.random(1);
         if (roll == 0)
-            atb(new SFXAction("VO_GREMLINDOPEY_1A", -0.3f, true));
+            atb(new SFXAction("VO_GREMLINSPAZZY_1A"));
         else
-            atb(new SFXAction("VO_GREMLINDOPEY_1B", -0.3f, true));
+            atb(new SFXAction("VO_GREMLINSPAZZY_1B"));
     }
 
     public void playDeathSfx() {
         int roll = MathUtils.random(2);
         if (roll == 0)
-            CardCrawlGame.sound.playA("VO_GREMLINDOPEY_2A", -0.3f);
+            CardCrawlGame.sound.play("VO_GREMLINFAT_2A");
         else if (roll == 1)
-            CardCrawlGame.sound.playA("VO_GREMLINDOPEY_2B", -0.3f);
+            CardCrawlGame.sound.play("VO_GREMLINFAT_2B");
         else
-            CardCrawlGame.sound.playA("VO_GREMLINDOPEY_2C", -0.3f);
+            CardCrawlGame.sound.play("VO_GREMLINFAT_2C");
     }
 
     static {

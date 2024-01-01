@@ -59,7 +59,7 @@ public class GremlinNib extends CustomMonster
     public static float wokeTimer = 0.0f;
 
     public GremlinNib(float x, float y) {
-        super(NAME, ID, HP_MAX, -70.0F, -10.0F, 270.0F, 380.0F, (String)null, x, y);
+        super(NAME, ID, HP_MAX, -70.0F, -10.0F, 270.0F, 380.0F, null, x, y);
         usedBellow = false;
         intentOffsetX = -30.0F * Settings.scale;
         type = EnemyType.NORMAL;
@@ -148,10 +148,7 @@ public class GremlinNib extends CustomMonster
 
     @Override
     public void setMove(String moveName, byte nm, Intent intent, int baseDamage, int multiplier, boolean isMultiDamage) {
-        if (nm == CRIT)
-            isWoke = true;
-        else
-            isWoke = false;
+        isWoke = nm == CRIT;
 
         super.setMove(moveName, nm, intent, baseDamage, multiplier, isMultiDamage);
     }

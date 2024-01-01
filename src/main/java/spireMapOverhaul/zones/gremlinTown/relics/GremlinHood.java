@@ -12,10 +12,10 @@ import spireMapOverhaul.zones.gremlinTown.GremlinTown;
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 import static spireMapOverhaul.util.Wiz.adp;
 
-public class LargeScarf extends AbstractSMORelic {
-    public static final String ID = makeID(LargeScarf.class.getSimpleName());
+public class GremlinHood extends AbstractSMORelic {
+    public static final String ID = makeID(GremlinHood.class.getSimpleName());
 
-    public LargeScarf() {
+    public GremlinHood() {
         super(ID, RelicTier.SPECIAL, LandingSound.FLAT);
     }
 

@@ -403,11 +403,11 @@ public class GremlinTown extends AbstractZone
         // All special rarity, but they're distributed as if they have common/uncommon/rare
         commonGremlinRelics = new ArrayList<>();
         commonGremlinRelics.add(new GremlinClaw());
-        commonGremlinRelics.add(new GremlinClub());
+        commonGremlinRelics.add(new NobClub());
         Collections.shuffle(commonGremlinRelics);
 
         uncommonGremlinRelics = new ArrayList<>();
-        uncommonGremlinRelics.add(new LargeScarf());
+        uncommonGremlinRelics.add(new GremlinHood());
         uncommonGremlinRelics.add(new Duelity());
         Collections.shuffle(uncommonGremlinRelics);
 
