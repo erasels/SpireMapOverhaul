@@ -1,4 +1,51 @@
 {
+  "${ModID}:BrokenDataDisk": {
+    "NAME": "Broken Data Disk",
+    "FLAVOR": "no",
+    "DESCRIPTIONS": [
+      "At the start of each combat, lose #b",
+      " #yFocus. When you channel an orb, channel another orb of the same type."
+    ]
+  },
+  "${ModID}:BrokenSneckoSkull": {
+    "NAME": "Broken Snecko Skull",
+    "FLAVOR": "no",
+    "DESCRIPTIONS": [
+      "When you gain a buff, gain #b",
+      " more."
+    ]
+  },
+  "${ModID}:BrokenRedSkull": {
+    "NAME": "Broken Red Skull",
+    "FLAVOR": "no",
+    "DESCRIPTIONS": [
+      "When you are above #b",
+      "% #yHP, you have #b",
+      " extra #yDexterity."
+    ]
+  },
+  "${ModID}:BrokenOmamori": {
+    "NAME": "Broken Omamori",
+    "FLAVOR": "no",
+    "DESCRIPTIONS": [
+      "Add #b",
+      " #yCurses to your deck. whenever you rest, upgrade a random card in your deck."
+    ]
+  },
+  "${ModID}:BrokenDamaru": {
+    "NAME": "Broken Damaru",
+    "FLAVOR": "no",
+    "DESCRIPTIONS": [
+      "Start each combat in Divinity"
+    ]
+  },
+  "${ModID}:BrokenWingBoots": {
+    "NAME": "Broken Wing Boots",
+    "FLAVOR": "no",
+    "DESCRIPTIONS": [
+      "Future acts are a LOT denser."
+    ]
+  },
   "${ModID}:BrokenSozu": {
     "NAME": "Broken Sozu",
     "FLAVOR": "no",

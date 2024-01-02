@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.RelicLibrary;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.Circlet;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
@@ -23,6 +24,7 @@ import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.zoneInterfaces.RewardModifyingZone;
 import spireMapOverhaul.zoneInterfaces.ShopModifyingZone;
 import spireMapOverhaul.zones.brokenSpace.patches.BrokenSpaceRenderPatch;
+import spireMapOverhaul.zones.brokenSpace.relics.BrokenRelic;
 
 import java.util.ArrayList;
 import java.util.logging.Logger;
@@ -39,7 +41,7 @@ public class BrokenSpaceZone extends AbstractZone implements RewardModifyingZone
     private final Color color;
 
     public BrokenSpaceZone() {
-        this("Broken Space 0", 1, 3);
+        this("Broken Space 0", 2, 3);
 
     }
 
@@ -52,6 +54,7 @@ public class BrokenSpaceZone extends AbstractZone implements RewardModifyingZone
         color = Color.WHITE.cpy();
         this.name = name;
     }
+
 
     @Override
     public void distributeRooms(Random rng, ArrayList<AbstractRoom> roomList) {
@@ -100,10 +103,10 @@ public class BrokenSpaceZone extends AbstractZone implements RewardModifyingZone
         return false;
     }
 
-//    @Override
-//    public boolean canSpawn() {
-//        return AbstractDungeon.actNum >= 3;
-//    }
+    @Override
+    public boolean canSpawn() {
+        return AbstractDungeon.actNum >= 2;
+    }
 
     @Override
     public Color getColor() { //I considered changing this to a variable, but a method lets you do funky stuff like a rainbow zone that changes colors or something.
@@ -205,9 +208,20 @@ public class BrokenSpaceZone extends AbstractZone implements RewardModifyingZone
             }
         }
         if (validRelics.isEmpty()) {
-            return null;
+            return new Circlet();
         }
-        return RelicLibrary.getRelic(validRelics.get(AbstractDungeon.treasureRng.random(validRelics.size() - 1))).makeCopy();
+        AbstractRelic r;
+        do {
+            r = RelicLibrary.getRelic(validRelics.get(AbstractDungeon.relicRng.random(validRelics.size() - 1))).makeCopy();
+            validRelics.remove(r.relicId);
+            if (validRelics.isEmpty()) {
+                return new Circlet();
+            }
+
+        } while (!r.canSpawn());
+
+
+        return r;
 
     }
 

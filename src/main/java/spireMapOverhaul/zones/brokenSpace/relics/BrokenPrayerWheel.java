@@ -28,6 +28,15 @@ public class BrokenPrayerWheel extends BrokenRelic {
 
     }
 
+    @Override
+    public int changeNumberOfCardsInReward(int numberOfCards) {
+        return -99;
+    }
+
+    @Override
+    public String getUpdatedDescription() {
+        return DESCRIPTIONS[0] + AMOUNT + DESCRIPTIONS[1];
+    }
 
     @SpirePatch2(clz = RewardItem.class, method = "applyGoldBonus")
     public static class BrokenPrayerWheelPatch {
@@ -44,16 +53,5 @@ public class BrokenPrayerWheel extends BrokenRelic {
                 __instance.goldAmt *= AMOUNT * numberOfPrayerWheels;
             }
         }
-    }
-
-
-    @Override
-    public int changeNumberOfCardsInReward(int numberOfCards) {
-        return -99;
-    }
-
-    @Override
-    public String getUpdatedDescription() {
-        return DESCRIPTIONS[0] + AMOUNT + DESCRIPTIONS[1];
     }
 }

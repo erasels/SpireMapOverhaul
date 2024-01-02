@@ -27,16 +27,29 @@ import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 import static spireMapOverhaul.SpireAnniversary6Mod.makeShaderPath;
 
 public abstract class BrokenRelic extends AbstractSMORelic {
-    private static ShaderProgram brokenSpaceShader;
     private static final FrameBuffer fbo;
-
     private static final Logger logger = Logger.getLogger(BrokenRelic.class.getName());
+    private static final ShaderProgram brokenSpaceShader;
+    private static String giganticString = "??";
     private static AbstractRelic originalRelic;
-    private String origID;
-    private static ArrayList<String> loadedRelics = new ArrayList<>();
+    private static final ArrayList<String> loadedRelics = new ArrayList<>();
     private static float shaderTimer = 0.0F;
-    private float timerOffset = (float) (Math.random() * 1000f);
 
+    static {
+        brokenSpaceShader = new ShaderProgram(Gdx.files.internal(makeShaderPath("BrokenSpace/Glitch.vs")), Gdx.files.internal(makeShaderPath("BrokenSpace/Glitch.fs")));
+        if (!brokenSpaceShader.isCompiled()) {
+            logger.info("BrokenSpaceShader not compiled.");
+        }
+        brokenSpaceShader.begin();
+        fbo = new FrameBuffer(Pixmap.Format.RGBA8888, Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), false, false);
+
+
+    }
+
+    private float textResetTimer = 0.0F;
+    private final String origID;
+    private final float timerOffset = (float) (Math.random() * 1000f);
+    private boolean flipRotation = false;
 
     public BrokenRelic(String setId, AbstractRelic.RelicTier tier, AbstractRelic.LandingSound sfx, String origID) {
         super(makeID(setId), tier, sfx);
@@ -48,22 +61,71 @@ public abstract class BrokenRelic extends AbstractSMORelic {
             img = originalRelic.img;
             largeImg = originalRelic.largeImg;
             outlineImg = originalRelic.outlineImg;
-            flavorText = getFlavorText();
+            flavorText = updateFlavorText();
         }
         BrokenSpaceZone.addBrokenRelic(makeID(setId));
+    }
+
+    public static void setupStrings() {
+        //logger.info("start time: " + System.currentTimeMillis());
+        ArrayList<String> temp = new ArrayList<>();
+        RelicLibrary.blueList.forEach(r -> temp.add(r.flavorText));
+        RelicLibrary.redList.forEach(r -> temp.add(r.flavorText));
+        RelicLibrary.greenList.forEach(r -> temp.add(r.flavorText));
+        RelicLibrary.shopList.forEach(r -> temp.add(r.flavorText));
+        RelicLibrary.bossList.forEach(r -> temp.add(r.flavorText));
+        RelicLibrary.starterList.forEach(r -> temp.add(r.flavorText));
+        RelicLibrary.commonList.forEach(r -> temp.add(r.flavorText));
+        RelicLibrary.uncommonList.forEach(r -> temp.add(r.flavorText));
+        RelicLibrary.rareList.forEach(r -> temp.add(r.flavorText));
+
+        for (int i = 0; i < 100; i++) {
+            giganticString += temp.get((int) (Math.random() * temp.size()));
+        }
+        //logger.info("end time: " + System.currentTimeMillis());
+    }
+
+    public String generateFlavorText() {
+        // get random text from gigantic string
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < 10; i++) {
+            int start = (int) (Math.random() * giganticString.length());
+            int end = start + (int) (Math.random() * 10) + 1;
+            if (end > giganticString.length()) {
+                end = giganticString.length();
+            }
+            sb.append(giganticString, start, end);
+        }
+
+        if (sb.length() > 100) {
+            sb.setLength(100);
+        }
+        return sb.toString();
 
 
     }
 
+    private String updateFlavorText() {
+        // replace a random chunk of text with random text from the gigantic string of the same length
 
-    private String getFlavorText() {
-        int len = Math.min(originalRelic.flavorText.length(), 50);
-        // fill with random characters
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < len; i++) {
-            sb.append((char) (Math.random() * 26 + 'a'));
+        int start = (int) (Math.random() * flavorText.length());
+        int end = start + (int) (Math.random() * 10) + 5;
+        if (end > flavorText.length()) {
+            end = flavorText.length();
         }
-        return sb.toString();
+        int idx = (int) (Math.random() * giganticString.length() - 1);
+        int len = end - start;
+
+        if (idx + len > giganticString.length()) {
+            idx = giganticString.length() - (len + 1);
+        }
+
+
+        String toInsert = giganticString.substring(idx, idx + (end - start));
+
+        return flavorText.substring(0, start) + toInsert + flavorText.substring(end);
+
 
     }
 
@@ -93,8 +155,6 @@ public abstract class BrokenRelic extends AbstractSMORelic {
         ReflectionHacks.setPrivate(this, AbstractRelic.class, "rotation", rotation);
     }
 
-    private boolean flipRotation = false;
-
     private void GlitchRotation() {
         float rotation = getRotation();
         float glitch = (float) (Math.random() * 1f);
@@ -112,6 +172,21 @@ public abstract class BrokenRelic extends AbstractSMORelic {
 
     }
 
+    @Override
+    public void update() {
+        super.update();
+        textResetTimer += Gdx.graphics.getDeltaTime();
+
+        if (textResetTimer > 1.0F) {
+            flavorText = updateFlavorText();
+            textResetTimer = 0.0F;
+            if (CardCrawlGame.relicPopup.isOpen) {
+                CardCrawlGame.relicPopup.close();
+                CardCrawlGame.relicPopup.open(this);
+            }
+        }
+
+    }
 
     @Override
     public void render(SpriteBatch sb, boolean renderAmount, Color outlineColor) {
@@ -132,16 +207,10 @@ public abstract class BrokenRelic extends AbstractSMORelic {
             img = originalRelic.img;
             largeImg = originalRelic.largeImg;
             outlineImg = originalRelic.outlineImg;
-            flavorText = getFlavorText();
+            flavorText = generateFlavorText();
 
         }
     }
-
-//    @Override
-//    public void update() {
-//        flavorText = getFlavorText();
-//        super.update();
-//    }
 
     public void StartFbo(SpriteBatch sb) {
         sb.end();
@@ -164,13 +233,16 @@ public abstract class BrokenRelic extends AbstractSMORelic {
 
         sb.setShader(brokenSpaceShader);
         sb.setColor(Color.WHITE);
-        brokenSpaceShader.setUniformf("u_time", shaderTimer * 2 + timerOffset);
+        brokenSpaceShader.setUniformf("u_time", shaderTimer * 4 + timerOffset);
         brokenSpaceShader.setUniformf("u_strength", strength);
 
         sb.draw(region, 0, 0);
         sb.flush();
         sb.setShader(null);
-        //renderCounter(sb, renderCounter);
+        if (renderCounter) {
+            renderCounter(sb, true);
+        }
+
 
     }
 
@@ -216,13 +288,37 @@ public abstract class BrokenRelic extends AbstractSMORelic {
         }
     }
 
+    @SpirePatch2(
+            clz = SingleRelicViewPopup.class,
+            method = "update"
+    )
+    public static class UpdateLargeImage {
+        @SpirePostfixPatch
+        public static void updateLargeImage(SingleRelicViewPopup __instance) {
+            AbstractRelic r = ReflectionHacks.getPrivate(__instance, SingleRelicViewPopup.class, "relic");
 
-    static {
-        brokenSpaceShader = new ShaderProgram(Gdx.files.internal(makeShaderPath("BrokenSpace/Glitch.vs")), Gdx.files.internal(makeShaderPath("BrokenSpace/Glitch.fs")));
-        if (!brokenSpaceShader.isCompiled()) {
-            logger.info("BrokenSpaceShader not compiled.");
+            if (r instanceof BrokenRelic) {
+                BrokenRelic relic = (BrokenRelic) r;
+
+                relic.textResetTimer -= Gdx.graphics.getDeltaTime();
+
+                if (relic.textResetTimer <= 0) {
+                    relic.flavorText = relic.updateFlavorText();
+                    relic.textResetTimer = (float) (Math.random() * .2);
+
+                }
+            }
         }
-        brokenSpaceShader.begin();
-        fbo = new FrameBuffer(Pixmap.Format.RGBA8888, Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), false, false);
+    }
+
+    @SpirePatch2(
+            clz = RelicLibrary.class,
+            method = "initialize"
+    )
+    public static class SetupStringsPatch {
+        @SpirePostfixPatch
+        public static void setupStrings() {
+            BrokenRelic.setupStrings();
+        }
     }
 }

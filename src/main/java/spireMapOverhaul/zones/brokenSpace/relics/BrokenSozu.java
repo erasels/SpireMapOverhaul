@@ -29,7 +29,6 @@ public class BrokenSozu extends BrokenRelic {
 
     public BrokenSozu() {
         super(ID, RelicTier.SPECIAL, LandingSound.CLINK, Sozu.ID);
-        counter = 0;
     }
 
     @Override
@@ -51,15 +50,18 @@ public class BrokenSozu extends BrokenRelic {
             p.setAsObtained(i);
         }
         // add new potions
-        for (int i = potions.size(); i < (AMOUNT/2) + potions.size(); i++) {
+        for (int i = potions.size(); i < (AMOUNT / 2) + potions.size(); i++) {
             AbstractPotion p = AbstractDungeon.returnRandomPotion();
             adp().potions.set(i, p);
             p.setAsObtained(i);
         }
 
 
+    }
 
-
+    @Override
+    public String getUpdatedDescription() {
+        return DESCRIPTIONS[0] + AMOUNT + DESCRIPTIONS[1];
     }
 
     @SpirePatch2(clz = TopPanel.class, method = "destroyPotion")
@@ -78,10 +80,5 @@ public class BrokenSozu extends BrokenRelic {
                 }
             }
         }
-    }
-
-    @Override
-    public String getUpdatedDescription() {
-        return DESCRIPTIONS[0] + AMOUNT + DESCRIPTIONS[1];
     }
 }

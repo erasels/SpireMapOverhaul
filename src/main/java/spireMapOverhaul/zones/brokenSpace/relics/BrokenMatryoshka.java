@@ -20,13 +20,13 @@ public class BrokenMatryoshka extends BrokenRelic {
     }
 
     @Override
-    public void obtain() {
+    public void onEquip() {
         for (int i = 0; i < AMOUNT; i++) {
             AbstractRelic r = AbstractDungeon.returnRandomScreenlessRelic(AbstractDungeon.returnRandomRelicTier());
             AbstractDungeon.getCurrRoom().spawnRelicAndObtain(Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F, r);
             counter = EMPTY;
         }
-        super.obtain();
+
     }
 
     public void onChestOpenAfter(boolean bossChest) {

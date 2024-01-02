@@ -52,6 +52,7 @@ import spireMapOverhaul.util.ZoneShapeMaker;
 import spireMapOverhaul.zoneInterfaces.CampfireModifyingZone;
 import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
 import spireMapOverhaul.rewards.HealReward;
+import spireMapOverhaul.zones.brokenSpace.relics.BrokenRelic;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
