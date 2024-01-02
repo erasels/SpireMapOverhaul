@@ -1,6 +1,8 @@
 package spireMapOverhaul.zones.thieveshideout.monsters;
 
 import basemod.abstracts.CustomMonster;
+import com.badlogic.gdx.math.MathUtils;
+import com.esotericsoftware.spine.AnimationState;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.AnimateFastAttackAction;
 import com.megacrit.cardcrawl.actions.animations.AnimateSlowAttackAction;
@@ -30,7 +32,6 @@ public class ThiefKing extends CustomMonster {
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
     public static final String[] DIALOG = monsterStrings.DIALOG;
-    private static final String IMG = SpireAnniversary6Mod.makeImagePath("monsters/WarGolem/WarGolem.png"); //TODO: Replace with appropriate recolor
     private boolean firstMove = true;
     private static final byte STEAL_VITALITY_DEBUFF = 1;
     private static final byte STAB_ATTACK = 2;
@@ -65,7 +66,7 @@ public class ThiefKing extends CustomMonster {
     }
 
     public ThiefKing(final float x, final float y) {
-        super(NAME, ID, HP, -5.0F, 0, 230.0f, 300.0f, IMG, x, y);
+        super(NAME, ID, HP, -5.0F, 0, 230.0f, 300.0f, null, x, y);
         this.type = EnemyType.ELITE;
         if (AbstractDungeon.ascensionLevel >= 8) {
             this.setHp(A8_HP);
@@ -95,6 +96,12 @@ public class ThiefKing extends CustomMonster {
             this.stealExperienceCards = STEAL_EXPERIENCE_CARDS;
             this.theRevealBuffs = THE_REVEAL_BUFFS;
         }
+
+        this.loadAnimation(SpireAnniversary6Mod.makeImagePath("monsters/ThiefKing/skeleton.atlas"), SpireAnniversary6Mod.makeImagePath("monsters/ThiefKing/skeleton.json"), 1.0F);
+        AnimationState.TrackEntry e = this.state.setAnimation(0, "Idle", true);
+        e.setTime(e.getEndTime() * MathUtils.random());
+        this.stateData.setMix("Hit", "Idle", 0.2F);
+        this.state.setTimeScale(0.8F);
     }
 
     @Override
