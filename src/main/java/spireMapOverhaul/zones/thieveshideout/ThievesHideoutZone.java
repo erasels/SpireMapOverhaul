@@ -1,18 +1,20 @@
 package spireMapOverhaul.zones.thieveshideout;
 
 import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.monsters.city.Mugger;
 import com.megacrit.cardcrawl.monsters.exordium.Looter;
 import com.megacrit.cardcrawl.monsters.exordium.SlaverRed;
+import com.megacrit.cardcrawl.random.Random;
+import com.megacrit.cardcrawl.rooms.*;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
 import spireMapOverhaul.zones.thieveshideout.monsters.WeakLooter;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class ThievesHideoutZone extends AbstractZone implements EncounterModifyingZone {
     public static final String ID = "ThievesHideout";
@@ -23,8 +25,8 @@ public class ThievesHideoutZone extends AbstractZone implements EncounterModifyi
 
     public ThievesHideoutZone() {
         super(ID, Icons.MONSTER);
-        this.width = 4;
-        this.height = 3;
+        this.width = 2;
+        this.height = 5;
     }
 
     @Override
@@ -47,6 +49,33 @@ public class ThievesHideoutZone extends AbstractZone implements EncounterModifyi
         //Since this zone always has a dangerous event node (around super-elite difficulty), we don't want it to show up in the rows of the act that never have elites
         //It also has normal fights that are tuned as hard pool fights, so that's another reason to prevent early spawns
         return false;
+    }
+
+    @Override
+    public void manualRoomPlacement(Random rng) {
+        //We put the special node with the Thief King fight in the last row of the zone (that isn't a protected row)
+        List<MapRoomNode> possibleNodes = new ArrayList<>();
+        for (MapRoomNode node : this.nodes) {
+            if (node.getRoom() == null && !this.isProtectedRow(node.y)) {
+                possibleNodes.add(node);
+            }
+        }
+        possibleNodes.stream()
+                .map(n -> n.y).max(Comparator.comparingInt(y -> y))
+                .ifPresent(maxY -> possibleNodes.removeIf(n -> n.y != maxY));
+
+        MapRoomNode node = possibleNodes.get(rng.random(possibleNodes.size() - 1));
+        node.room = new TreasureRoom(); //TODO: Switch to a unique node
+    }
+
+    @Override
+    public void replaceRooms(Random rng) {
+        //No elites in the zone, just the Thief King fight (which awards as much as two elites)
+        for (MapRoomNode node : this.nodes) {
+            if (node.room instanceof MonsterRoomElite) {
+                node.room = new MonsterRoom();
+            }
+        }
     }
 
     @Override
