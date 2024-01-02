@@ -1,6 +1,184 @@
 {
 	"monsters": [
 		{
+			"name": "Bandit Lieutenant",
+			"id": "${ModID}:BanditLieutenant",
+			"ai": [
+				{
+					"min_asc": 0,
+					"desc": "Cycles #wCudgel #wBlow -> #wNoxious #wSmoke -> #wBig #wSwing.",
+					"hp": "(74 - 76 HP)",
+					"notes": "Dazed status cards go into the draw pile.",
+					"moves": [
+						{
+							"name": "Cudgel Blow",
+							"effects": [
+								{
+									"name": "10",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Dazed 1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Noxious Smoke",
+							"effects": [
+								{
+									"name": "Vulnerable 1",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Draw Reduction 1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Big Swing",
+							"effects": [
+								{
+									"name": "13",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 3,
+					"desc": "Cycles #wCudgel #wBlow -> #wNoxious #wSmoke -> #wBig #wSwing.",
+					"hp": "(74 - 76 HP)",
+					"notes": "Dazed status cards go into the draw pile.",
+					"moves": [
+						{
+							"name": "Cudgel Blow",
+							"effects": [
+								{
+									"name": "12",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Dazed 1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Noxious Smoke",
+							"effects": [
+								{
+									"name": "Vulnerable 1",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Draw Reduction 1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Big Swing",
+							"effects": [
+								{
+									"name": "15",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 8,
+					"desc": "Cycles #wCudgel #wBlow -> #wNoxious #wSmoke -> #wBig #wSwing.",
+					"hp": "(77 - 79 HP)",
+					"notes": "Dazed status cards go into the draw pile.",
+					"moves": [
+						{
+							"name": "Cudgel Blow",
+							"effects": [
+								{
+									"name": "12",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Dazed 1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Noxious Smoke",
+							"effects": [
+								{
+									"name": "Vulnerable 1",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Draw Reduction 1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Big Swing",
+							"effects": [
+								{
+									"name": "15",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 18,
+					"desc": "Cycles #wCudgel #wBlow -> #wNoxious #wSmoke -> #wBig #wSwing.",
+					"hp": "(77 - 79 HP)",
+					"notes": "Dazed status cards go into the draw pile.",
+					"moves": [
+						{
+							"name": "Cudgel Blow",
+							"effects": [
+								{
+									"name": "12",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Dazed 1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Noxious Smoke",
+							"effects": [
+								{
+									"name": "Vulnerable 2",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Draw Reduction 1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Big Swing",
+							"effects": [
+								{
+									"name": "15",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
 			"name": "Thief King",
 			"id": "${ModID}:ThiefKing",
 			"ai": [
