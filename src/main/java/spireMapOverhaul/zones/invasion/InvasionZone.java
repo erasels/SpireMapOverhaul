@@ -48,7 +48,7 @@ public class InvasionZone extends AbstractZone implements EncounterModifyingZone
 
     @Override
     public Color getColor() {
-        return Color.BLUE.cpy();
+        return new Color(0.3f,0.5f, 0.35f, 1f);
     }
 
     @Override
