@@ -98,22 +98,22 @@ public class ThievesHideoutZone extends AbstractZone implements EncounterModifyi
                     new Mugger(-200.0F, 15.0F),
                     new Mugger(80.0F, 0.0F)
                 })),
-                new ZoneEncounter(LOOTER_AND_RED_SLAVER, 2, () -> new MonsterGroup(
-                    new AbstractMonster[] {
-                        new Looter(-270.0F, 15.0F),
-                        new SlaverRed(-130.0F, 0.0F)
-                    })),
-                new ZoneEncounter(MUGGER_AND_BLUE_SLAVER, 2, () -> new MonsterGroup(
-                    new AbstractMonster[] {
-                        new Looter(-270.0F, 15.0F),
-                        new SlaverRed(-130.0F, 0.0F)
-                    })),
-                new ZoneEncounter(THREE_LOOTERS_WEAK, 2, () -> new MonsterGroup(
-                    new AbstractMonster[] {
-                        new WeakLooter(-465.0F, -20.0F),
-                        new WeakLooter(-130.0F, 15.0F),
-                        new WeakLooter(200.0F, -5.0F)
-                    }))
+            new ZoneEncounter(LOOTER_AND_RED_SLAVER, 2, () -> new MonsterGroup(
+                new AbstractMonster[] {
+                    new Looter(-270.0F, 15.0F),
+                    new SlaverRed(-130.0F, 0.0F)
+                })),
+            new ZoneEncounter(MUGGER_AND_BLUE_SLAVER, 2, () -> new MonsterGroup(
+                new AbstractMonster[] {
+                    new Looter(-270.0F, 15.0F),
+                    new SlaverRed(-130.0F, 0.0F)
+                })),
+            new ZoneEncounter(THREE_LOOTERS_WEAK, 2, () -> new MonsterGroup(
+                new AbstractMonster[] {
+                    new WeakLooter(-465.0F, -20.0F),
+                    new WeakLooter(-130.0F, 15.0F),
+                    new WeakLooter(200.0F, -5.0F)
+                }))
         );
     }
 
@@ -121,17 +121,17 @@ public class ThievesHideoutZone extends AbstractZone implements EncounterModifyi
     public void registerEncounters() {
         EncounterModifyingZone.super.registerEncounters();
         BaseMod.addMonster(BANDIT_LIEUTENANT_AND_TASKMASTER, () -> new MonsterGroup(
-                new AbstractMonster[] {
-                        new Taskmaster(-270.0f, 15.0f),
-                        new BanditLieutenant(130.0f, 0.0f)
-                }
+            new AbstractMonster[] {
+                new Taskmaster(-270.0f, 15.0f),
+                new BanditLieutenant(130.0f, 0.0f)
+            }
         ));
         BaseMod.addMonster(THIEF_KING, () -> new MonsterGroup(
-                new AbstractMonster[] {
-                        new Looter(-385.0f, -15.0f),
-                        new Mugger(-133.0f, 0.0f),
-                        new ThiefKing(125.0f, -30.0f)
-                }
+            new AbstractMonster[] {
+                new Looter(-385.0f, -15.0f),
+                new Mugger(-133.0f, 0.0f),
+                new ThiefKing(125.0f, -30.0f)
+            }
         ));
     }
 }
