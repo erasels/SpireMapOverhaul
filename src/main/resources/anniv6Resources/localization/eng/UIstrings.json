@@ -14,6 +14,11 @@
       "Tip: Right-click for detailed card view!"
     ]
   },
+  "${ModID}:HealReward": {
+    "TEXT": [
+      "Heal "
+    ]
+  },
   "${ModID}:CombatExplainButton": {
     "TEXT": [
       "Combat Modifier"
@@ -22,6 +27,12 @@
   "${ModID}:RunHistoryScreen": {
     "TEXT": [
       "Zone: {0}"
+    ]
+  },
+  "${ModID}:ZonePotionsPatch": {
+    "TEXT": [
+      "Zone:",
+      "Potions that can only be obtained in their specific zone."
     ]
   },
   "${ModID}:CharacterSelectScreen": {
