@@ -30,8 +30,8 @@ public class BanditLieutenant extends CustomMonster {
     private static final byte BIG_SWING_ATTACK = 3;
     private static final int CUDGEL_BLOW_DAMAGE = 10;
     private static final int A3_CUDGEL_BLOW_DAMAGE = 12;
-    private static final int CUDGEL_BLOW_DAZES = 2;
-    private static final int A18_CUDGEL_BLOW_DAZES = 3;
+    private static final int CUDGEL_BLOW_DAZES = 1;
+    private static final int A18_CUDGEL_BLOW_DAZES = 1;
     private static final int NOXIOUS_SMOKE_VULNERABLE = 1;
     private static final int A18_NOXIOUS_SMOKE_VULNERABLE = 2;
     private static final int NOXIOUS_SMOKE_DRAW_DOWN = 1;
