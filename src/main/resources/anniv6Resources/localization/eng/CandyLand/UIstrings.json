@@ -1,0 +1,9 @@
+{
+  "${ModID}:CandyLand": {
+    "TEXT": [
+      "Candy Land",
+      "All rewards here are edible. It will be hard to improve much while in this zone, as most rewards are healing, max HP or otherwise temporary.",
+      " Also, raise your max HP by 5."
+    ]
+  }
+}
