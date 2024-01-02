@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.powers.*;
@@ -156,9 +157,11 @@ public class ThiefKing extends CustomMonster {
                             }
                             cardsToRemove.add(cards.get(0));
                         }
-                        for (AbstractCard c : cardsToRemove) {
+                        for (int i = 0; i < cardsToRemove.size(); i++) {
+                            AbstractCard c = cardsToRemove.get(i);
                             AbstractDungeon.player.drawPile.removeCard(c);
-                            this.addToBot(new VFXAction(new PurgeCardEffect(c)));
+                            float xOffset = 50.0f * ((cardsToRemove.size() + 1) % 2);
+                            this.addToBot(new VFXAction(new PurgeCardEffect(c, Settings.WIDTH / 2.0f + (xOffset - 100.0f * i) * Settings.scale, Settings.HEIGHT / 2.0f)));
                         }
                         this.isDone = true;
                     }
