@@ -7,11 +7,11 @@ import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.vfx.FlameAnimationEffect;
-import spireMapOverhaul.zones.thieveshideout.rooms.ThiefKingEventRoom;
+import spireMapOverhaul.zones.thieveshideout.rooms.ForcedEventRoom;
 
 import java.util.ArrayList;
 
-public class HighlightSpecialEventNodePatch {
+public class HighlightForcedEventRoomPatch {
     @SpirePatch2(clz = MapRoomNode.class, method = SpirePatch.CLASS)
     public static class EffectsField {
         public static final SpireField<ArrayList<FlameAnimationEffect>> effects = new SpireField<>(ArrayList::new);
@@ -25,7 +25,7 @@ public class HighlightSpecialEventNodePatch {
     public static class RenderPatch {
         @SpirePrefixPatch
         public static void render(MapRoomNode __instance, SpriteBatch sb) {
-            if (__instance.room instanceof ThiefKingEventRoom) {
+            if (__instance.room instanceof ForcedEventRoom) {
                 for (FlameAnimationEffect e : EffectsField.effects.get(__instance)) {
                     e.render(sb, ReflectionHacks.getPrivate(__instance, MapRoomNode.class, "scale"));
                 }
@@ -37,7 +37,7 @@ public class HighlightSpecialEventNodePatch {
     public static class UpdatePatch {
         @SpirePrefixPatch
         public static void update(MapRoomNode __instance) {
-            if (__instance.room instanceof ThiefKingEventRoom) {
+            if (__instance.room instanceof ForcedEventRoom) {
                 TimerField.timer.set(__instance, TimerField.timer.get(__instance) - Gdx.graphics.getDeltaTime());
                 if (TimerField.timer.get(__instance) < 0.0F) {
                     TimerField.timer.set(__instance, MathUtils.random(0.2F, 0.4F));

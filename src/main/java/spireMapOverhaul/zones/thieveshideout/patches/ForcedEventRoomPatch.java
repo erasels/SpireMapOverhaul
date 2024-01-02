@@ -8,25 +8,25 @@ import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import javassist.CannotCompileException;
 import javassist.expr.ExprEditor;
 import javassist.expr.MethodCall;
-import spireMapOverhaul.zones.thieveshideout.rooms.ThiefKingEventRoom;
+import spireMapOverhaul.zones.thieveshideout.rooms.ForcedEventRoom;
 
 @SpirePatch(clz = AbstractDungeon.class, method = "nextRoomTransition", paramtypez = { SaveFile.class })
-public class ThiefKingEventRoomPatch {
-    public static class ThiefKingEventRoomExprEditor extends ExprEditor {
+public class ForcedEventRoomPatch {
+    public static class ForcedEventRoomExprEditor extends ExprEditor {
         @Override
         public void edit(MethodCall methodCall) throws CannotCompileException {
             if (methodCall.getClassName().equals(AbstractDungeon.class.getName()) && methodCall.getMethodName().equals("generateRoom")) {
-                methodCall.replace(String.format("{ if (%1$s.isThiefKingEventRoom(nextRoom.room)) { $_ = nextRoom.room; } else { $_ = $proceed($$); } }", ThiefKingEventRoomPatch.class.getName()));
+                methodCall.replace(String.format("{ if (%1$s.isForcedEventRoom(nextRoom.room)) { $_ = nextRoom.room; } else { $_ = $proceed($$); } }", ForcedEventRoomPatch.class.getName()));
             }
         }
     }
 
     @SpireInstrumentPatch
-    public static ExprEditor thiefKingEventRoomPatch() {
-        return new ThiefKingEventRoomExprEditor();
+    public static ExprEditor forcedEventRoomPatch() {
+        return new ForcedEventRoomExprEditor();
     }
 
-    public static boolean isThiefKingEventRoom(AbstractRoom room) {
-        return room instanceof ThiefKingEventRoom;
+    public static boolean isForcedEventRoom(AbstractRoom room) {
+        return room instanceof ForcedEventRoom;
     }
 }

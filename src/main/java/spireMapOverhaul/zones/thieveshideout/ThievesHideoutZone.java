@@ -15,10 +15,11 @@ import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
+import spireMapOverhaul.zones.thieveshideout.events.ThiefKingEvent;
 import spireMapOverhaul.zones.thieveshideout.monsters.BanditLieutenant;
 import spireMapOverhaul.zones.thieveshideout.monsters.ThiefKing;
 import spireMapOverhaul.zones.thieveshideout.monsters.WeakLooter;
-import spireMapOverhaul.zones.thieveshideout.rooms.ThiefKingEventRoom;
+import spireMapOverhaul.zones.thieveshideout.rooms.ForcedEventRoom;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -76,7 +77,7 @@ public class ThievesHideoutZone extends AbstractZone implements EncounterModifyi
                 .ifPresent(maxY -> possibleNodes.removeIf(n -> n.y != maxY));
 
         MapRoomNode node = possibleNodes.get(rng.random(possibleNodes.size() - 1));
-        node.setRoom(new ThiefKingEventRoom());
+        node.setRoom(new ForcedEventRoom(ThiefKingEvent::new));
     }
 
     @Override
