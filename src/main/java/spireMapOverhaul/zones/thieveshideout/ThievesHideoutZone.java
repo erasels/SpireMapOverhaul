@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
+import spireMapOverhaul.zones.thieveshideout.monsters.BanditLieutenant;
 import spireMapOverhaul.zones.thieveshideout.monsters.WeakLooter;
 import spireMapOverhaul.zones.thieveshideout.rooms.ThiefKingEventRoom;
 
@@ -119,8 +120,8 @@ public class ThievesHideoutZone extends AbstractZone implements EncounterModifyi
         EncounterModifyingZone.super.registerEncounters();
         BaseMod.addMonster(BANDIT_LIEUTENANT_AND_TASKMASTER, () -> new MonsterGroup(
                 new AbstractMonster[] {
-                        new Taskmaster(130.0f, 0.0f),
-                        new SlaverRed(-270.0f, 15.0f) //TODO: Replace with special enemy
+                        new Taskmaster(-270.0f, 15.0f),
+                        new BanditLieutenant(130.0f, 0.0f)
                 }
         ));
         BaseMod.addMonster(THIEF_KING, () -> new MonsterGroup(

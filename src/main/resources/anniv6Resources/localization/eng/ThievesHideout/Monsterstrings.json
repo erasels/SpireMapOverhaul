@@ -1,2 +1,10 @@
 {
+  "${ModID}:BanditLieutenant": {
+    "MOVES": [
+      "Cudgel Blow",
+      "Noxious Smoke",
+      "Big Swing"
+    ],
+    "NAME": "Bandit Lieutenant"
+  }
 }
