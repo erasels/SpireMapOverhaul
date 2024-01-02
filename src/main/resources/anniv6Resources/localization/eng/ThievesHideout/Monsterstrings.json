@@ -6,5 +6,16 @@
       "Big Swing"
     ],
     "NAME": "Bandit Lieutenant"
+  },
+  "${ModID}:ThiefKing": {
+    "MOVES": [
+      "Steal Vitality",
+      "Stab",
+      "Steal Experience",
+      "The Reveal",
+      "Blade Flurry"
+    ],
+    "NAME": "The Thief King",
+    "DIALOG": ["Now see my true power!"]
   }
 }
