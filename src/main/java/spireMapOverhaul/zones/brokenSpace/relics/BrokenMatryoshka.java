@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class BrokenMatryoshka extends BrokenRelic {
     public static final String ID = "BrokenMatryoshka";
-    public static final int AMOUNT = 3;
+    public static final int AMOUNT = 5;
     public static final int EMPTY = 2;
 
     public BrokenMatryoshka() {

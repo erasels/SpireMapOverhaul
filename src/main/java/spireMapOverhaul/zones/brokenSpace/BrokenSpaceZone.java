@@ -36,7 +36,7 @@ public class BrokenSpaceZone extends AbstractZone implements RewardModifyingZone
     private static final float OFFSET_X = Settings.isMobile ? 496.0F * Settings.xScale : 560.0F * Settings.xScale;
     private static final float OFFSET_Y = 180.0F * Settings.scale;
     private static final float SPACING_X = Settings.isMobile ? (int) (Settings.xScale * 64.0F) * 2.2F : (int) (Settings.xScale * 64.0F) * 2.0F;
-    public static ArrayList<String> BadRelics = new ArrayList<>();
+    public static ArrayList<String> BrokenRelics = new ArrayList<>();
     private final int width, height;
     private final Color color;
 
@@ -80,8 +80,6 @@ public class BrokenSpaceZone extends AbstractZone implements RewardModifyingZone
             );
         }
     }
-
-
 
     @Override
     public boolean generateMapArea(BetterMapGenerator.MapPlanner planner) {
@@ -143,8 +141,6 @@ public class BrokenSpaceZone extends AbstractZone implements RewardModifyingZone
 
 
     }
-    // add extra card rewards
-
 
     @Override
     public ArrayList<AbstractCard> getAdditionalCardReward() {
@@ -247,8 +243,6 @@ public class BrokenSpaceZone extends AbstractZone implements RewardModifyingZone
         public static SpireField<Boolean> unnatural = new SpireField<>(() -> false);
     }
 
-
-    public static ArrayList<String> BrokenRelics = new ArrayList<>();
 
     public static void addBrokenRelic(String relicID) {
         if (!BrokenRelics.contains(relicID)) {
