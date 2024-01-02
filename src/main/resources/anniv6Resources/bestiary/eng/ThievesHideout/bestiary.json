@@ -1,0 +1,310 @@
+{
+	"monsters": [
+		{
+			"name": "Thief King",
+			"id": "${ModID}:ThiefKing",
+			"ai": [
+				{
+					"min_asc": 0,
+					"desc": "Uses #wSteal #wVitality, then #wSteal #wExperience twice, then #wThe #wReveal, then repeats #wBlade #wFlurry.",
+					"hp": "(95 HP)",
+					"moves": [
+						{
+							"name": "Steal Vitality",
+							"effects": [
+								{
+									"name": "Strength -1",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Dexterity -1",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Focus -1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Steal Experience",
+							"effects": [
+								{
+									"name": "9",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Steal Card",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "The Reveal",
+							"effects": [
+								{
+									"name": "Cleanse Debuffs",
+									"color": "SPECIAL"
+								},
+								{
+									"name": "Strength 3",
+									"color": "BUFF"
+								},
+								{
+									"name": "Ritual 3",
+									"color": "BUFF"
+								},
+								{
+									"name": "Metallicize 3",
+									"color": "BUFF"
+								},
+								{
+									"name": "Barricade",
+									"color": "BUFF"
+								},
+								{
+									"name": "Block 20",
+									"color": "BLOCK"
+								}
+							]
+						},
+						{
+							"name": "Blade Flurry",
+							"effects": [
+								{
+									"name": "0x5",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 3,
+					"desc": "Uses #wSteal #wVitality, then #wSteal #wExperience twice, then #wThe #wReveal, then repeats #wBlade #wFlurry.",
+					"hp": "(95 HP)",
+					"moves": [
+						{
+							"name": "Steal Vitality",
+							"effects": [
+								{
+									"name": "Strength -1",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Dexterity -1",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Focus -1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Steal Experience",
+							"effects": [
+								{
+									"name": "10",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Steal Card",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "The Reveal",
+							"effects": [
+								{
+									"name": "Cleanse Debuffs",
+									"color": "SPECIAL"
+								},
+								{
+									"name": "Strength 3",
+									"color": "BUFF"
+								},
+								{
+									"name": "Ritual 3",
+									"color": "BUFF"
+								},
+								{
+									"name": "Metallicize 3",
+									"color": "BUFF"
+								},
+								{
+									"name": "Barricade",
+									"color": "BUFF"
+								},
+								{
+									"name": "Block 20",
+									"color": "BLOCK"
+								}
+							]
+						},
+						{
+							"name": "Blade Flurry",
+							"effects": [
+								{
+									"name": "1x5",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 8,
+					"desc": "Uses #wSteal #wVitality, then #wSteal #wExperience twice, then #wThe #wReveal, then repeats #wBlade #wFlurry.",
+					"hp": "(100 HP)",
+					"moves": [
+						{
+							"name": "Steal Vitality",
+							"effects": [
+								{
+									"name": "Strength -1",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Dexterity -1",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Focus -1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Steal Experience",
+							"effects": [
+								{
+									"name": "10",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Steal Card",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "The Reveal",
+							"effects": [
+								{
+									"name": "Cleanse Debuffs",
+									"color": "SPECIAL"
+								},
+								{
+									"name": "Strength 3",
+									"color": "BUFF"
+								},
+								{
+									"name": "Ritual 3",
+									"color": "BUFF"
+								},
+								{
+									"name": "Metallicize 3",
+									"color": "BUFF"
+								},
+								{
+									"name": "Barricade",
+									"color": "BUFF"
+								},
+								{
+									"name": "Block 30",
+									"color": "BLOCK"
+								}
+							]
+						},
+						{
+							"name": "Blade Flurry",
+							"effects": [
+								{
+									"name": "1x5",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 18,
+					"desc": "Uses #wSteal #wVitality, then #wSteal #wExperience twice, then #wThe #wReveal, then repeats #wBlade #wFlurry.",
+					"hp": "(100 HP)",
+					"moves": [
+						{
+							"name": "Steal Vitality",
+							"effects": [
+								{
+									"name": "Strength -1",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Dexterity -1",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Focus -1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Steal Experience",
+							"effects": [
+								{
+									"name": "10",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Steal Card",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "The Reveal",
+							"effects": [
+								{
+									"name": "Cleanse Debuffs",
+									"color": "SPECIAL"
+								},
+								{
+									"name": "Strength 4",
+									"color": "BUFF"
+								},
+								{
+									"name": "Ritual 4",
+									"color": "BUFF"
+								},
+								{
+									"name": "Metallicize 4",
+									"color": "BUFF"
+								},
+								{
+									"name": "Barricade",
+									"color": "BUFF"
+								},
+								{
+									"name": "Block 30",
+									"color": "BLOCK"
+								}
+							]
+						},
+						{
+							"name": "Blade Flurry",
+							"effects": [
+								{
+									"name": "1x5",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}

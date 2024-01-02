@@ -152,8 +152,8 @@ public class ThiefKing extends CustomMonster {
                 this.addToBot(new ApplyPowerAction(this, this, new StrengthPower(this, this.theRevealBuffs)));
                 this.addToBot(new ApplyPowerAction(this, this, new RitualPower(this, this.theRevealBuffs, false)));
                 this.addToBot(new ApplyPowerAction(this, this, new MetallicizePower(this, this.theRevealBuffs)));
-                this.addToBot(new GainBlockAction(this, this.theRevealBlock));
                 this.addToBot(new ApplyPowerAction(this, this, new BarricadePower(this)));
+                this.addToBot(new GainBlockAction(this, this.theRevealBlock));
                 break;
             case BLADE_FLURRY_ATTACK:
                 for (int i = 0; i < BLADE_FLURRY_HITS; i++) {
