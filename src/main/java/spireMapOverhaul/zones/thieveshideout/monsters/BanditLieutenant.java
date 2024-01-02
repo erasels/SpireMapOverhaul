@@ -1,12 +1,14 @@
 package spireMapOverhaul.zones.thieveshideout.monsters;
 
 import basemod.abstracts.CustomMonster;
+import com.badlogic.gdx.math.MathUtils;
+import com.esotericsoftware.spine.AnimationState;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.animations.AnimateShakeAction;
 import com.megacrit.cardcrawl.actions.animations.AnimateSlowAttackAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
-import com.megacrit.cardcrawl.actions.common.RollMoveAction;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
+import com.megacrit.cardcrawl.actions.common.*;
+import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.status.Dazed;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -14,6 +16,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.powers.DrawReductionPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
+import com.megacrit.cardcrawl.vfx.combat.SmokeBombEffect;
 import spireMapOverhaul.SpireAnniversary6Mod;
 
 public class BanditLieutenant extends CustomMonster {
@@ -21,7 +24,6 @@ public class BanditLieutenant extends CustomMonster {
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
-    private static final String IMG = SpireAnniversary6Mod.makeImagePath("monsters/WarGolem/WarGolem.png"); //TODO: Replace with appropriate recolor
     private boolean firstMove = true;
     private static final byte CUDGEL_BLOW_ATTACK = 1;
     private static final byte NOXIOUS_SMOKE_DEBUFF = 2;
@@ -49,7 +51,7 @@ public class BanditLieutenant extends CustomMonster {
     }
 
     public BanditLieutenant(final float x, final float y) {
-        super(NAME, ID, HP_MAX, -5.0F, 0, 230.0f, 300.0f, IMG, x, y);
+        super(NAME, ID, HP_MAX, -5.0F, 0, 230.0f, 300.0f, null, x, y);
         this.type = EnemyType.ELITE;
         if (AbstractDungeon.ascensionLevel >= 8) {
             this.setHp(A8_HP_MIN, A8_HP_MAX);
@@ -74,6 +76,12 @@ public class BanditLieutenant extends CustomMonster {
             this.cudgelBlowDazes = CUDGEL_BLOW_DAZES;
             this.noxiousSmokeVulnerable = NOXIOUS_SMOKE_VULNERABLE;
         }
+
+        this.loadAnimation(SpireAnniversary6Mod.makeImagePath("monsters/BanditLieutenant/skeleton.atlas"), SpireAnniversary6Mod.makeImagePath("monsters/BanditLieutenant/skeleton.json"), 1.0F);
+        AnimationState.TrackEntry e = this.state.setAnimation(0, "Idle", true);
+        e.setTime(e.getEndTime() * MathUtils.random());
+        this.stateData.setMix("Hit", "Idle", 0.2F);
+        this.state.setTimeScale(1.0F);
     }
 
     @Override
@@ -89,14 +97,15 @@ public class BanditLieutenant extends CustomMonster {
                 break;
             }
             case NOXIOUS_SMOKE_DEBUFF: {
-                this.addToBot(new AnimateSlowAttackAction(this));
-                this.addToBot(new DamageAction(AbstractDungeon.player, this.damage.get(1), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                this.addToBot(new AnimateShakeAction(this, 0.5F, 0.1F));
+                this.addToBot(new VFXAction(new SmokeBombEffect(AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY)));
                 this.addToBot(new ApplyPowerAction(AbstractDungeon.player, this, new VulnerablePower(AbstractDungeon.player, this.noxiousSmokeVulnerable, true)));
                 this.addToBot(new ApplyPowerAction(AbstractDungeon.player, this, new DrawReductionPower(AbstractDungeon.player, NOXIOUS_SMOKE_DRAW_DOWN)));
                 break;
             }
             case BIG_SWING_ATTACK: {
-                this.addToBot(new AnimateSlowAttackAction(this));
+                this.addToBot(new ChangeStateAction(this, "MAUL"));
+                this.addToBot(new WaitAction(0.3F));
                 this.addToBot(new DamageAction(AbstractDungeon.player, this.damage.get(1), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
                 break;
             }
@@ -112,6 +121,24 @@ public class BanditLieutenant extends CustomMonster {
             this.setMove(MOVES[1], NOXIOUS_SMOKE_DEBUFF, Intent.DEBUFF);
         } else {
             this.setMove(MOVES[2], CUDGEL_BLOW_ATTACK, Intent.ATTACK, this.bigSwingDamage);
+        }
+    }
+
+    @Override
+    public void changeState(String key) {
+        if (key.equals("MAUL")) {
+            this.state.setAnimation(0, "Attack", false);
+            this.state.addAnimation(0, "Idle", true, 0.0F);
+        }
+    }
+
+    @Override
+    public void damage(DamageInfo info) {
+        super.damage(info);
+        if (info.owner != null && info.type != DamageInfo.DamageType.THORNS && info.output > 0) {
+            this.state.setAnimation(0, "Hit", false);
+            this.state.setTimeScale(1.0F);
+            this.state.addAnimation(0, "Idle", true, 0.0F);
         }
     }
 }
