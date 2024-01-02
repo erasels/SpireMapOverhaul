@@ -1,7 +1,8 @@
 {
   "${ModID}:BrokenSpace": {
     "TEXT": [
-      "Broken Space", "Reward cards and Shop Cards are FULLY random. All relics are FULLY random."
+      "Broken Space",
+      "Reward cards and Shop Cards can be any color (including curses)."
     ]
   }
 }

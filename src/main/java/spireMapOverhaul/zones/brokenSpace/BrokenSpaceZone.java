@@ -1,39 +1,38 @@
 package spireMapOverhaul.zones.brokenSpace;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireField;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.tempCards.Omega;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
-import com.megacrit.cardcrawl.helpers.RelicLibrary;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.shop.ShopScreen;
-import com.megacrit.cardcrawl.shop.StoreRelic;
+import com.megacrit.cardcrawl.screens.DungeonMapScreen;
 import spireMapOverhaul.BetterMapGenerator;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.zoneInterfaces.RewardModifyingZone;
 import spireMapOverhaul.zoneInterfaces.ShopModifyingZone;
+import spireMapOverhaul.zones.brokenSpace.patches.BrokenSpaceRenderPatch;
 
 import java.util.ArrayList;
 
 public class BrokenSpaceZone extends AbstractZone implements RewardModifyingZone, ShopModifyingZone {
     public static final String ID = "BrokenSpace";
+    private static final float OFFSET_X = Settings.isMobile ? 496.0F * Settings.xScale : 560.0F * Settings.xScale;
+    private static final float OFFSET_Y = 180.0F * Settings.scale;
+    private static final float SPACING_X = Settings.isMobile ? (int) (Settings.xScale * 64.0F) * 2.2F : (int) (Settings.xScale * 64.0F) * 2.0F;
+    public static ArrayList<String> BadRelics = new ArrayList<>();
     private final int width, height;
     private final Color color;
-    public static ArrayList<String> BadRelics = new ArrayList<>();
 
     public BrokenSpaceZone() {
-        this("Broken Space 0", 2, 4);
+        this("Broken Space 0", 1, 3);
 
-    }
-
-    @Override
-    public AbstractZone copy() {
-        return new BrokenSpaceZone(name, width, height);
     }
 
     private BrokenSpaceZone(String name, int width, int height) {
@@ -42,9 +41,28 @@ public class BrokenSpaceZone extends AbstractZone implements RewardModifyingZone
         this.width = width;
         this.height = height;
 
-        color = Color.DARK_GRAY.cpy();
+        color = Color.WHITE.cpy();
         this.name = name;
     }
+
+    @Override
+    public AbstractZone copy() {
+        return new BrokenSpaceZone(name, width, height);
+    }
+
+    @Override
+    public void renderOnMap(SpriteBatch sb, float alpha) {
+        BrokenSpaceRenderPatch.StartFbo(sb);
+        super.renderOnMap(sb, alpha);
+        BrokenSpaceRenderPatch.StopFbo(sb);
+        if (alpha > 0) {
+            FontHelper.renderFontCentered(sb, FontHelper.menuBannerFont, name,
+                    labelX * SPACING_X + OFFSET_X, labelY * Settings.MAP_DST_Y + OFFSET_Y + DungeonMapScreen.offsetY,
+                    Color.WHITE.cpy(), 0.8f
+            );
+        }
+    }
+
 
 
     @Override
@@ -77,49 +95,56 @@ public class BrokenSpaceZone extends AbstractZone implements RewardModifyingZone
         return color;
     }
 
-    public AbstractCard GetTrulyRandomCard(Random rng) {
-        AbstractCard c = CardLibrary.getAllCards().get(rng.random(CardLibrary.getAllCards().size() - 1)).makeCopy();
-        // make omega less common
-        if (c.cardID == Omega.ID) {
-            c = CardLibrary.getAllCards().get(rng.random(CardLibrary.getAllCards().size() - 1)).makeCopy();
+    public AbstractCard getTrulyRandomCard(Random rng) {
+        AbstractCard.CardRarity rarity = AbstractCard.CardRarity.COMMON;
+
+        // pick RANDOM rarity
+        int roll = rng.random(7);
+        switch (roll) {
+            case 0:
+            case 1:
+                rarity = AbstractCard.CardRarity.COMMON;
+                break;
+            case 2:
+            case 3:
+                rarity = AbstractCard.CardRarity.UNCOMMON;
+                break;
+            case 4:
+            case 5:
+                rarity = AbstractCard.CardRarity.RARE;
+                break;
+            case 6:
+                return AbstractDungeon.returnRandomCurse().makeCopy();
+
         }
+
+
+        AbstractCard c = CardLibrary.getAnyColorCard(rarity).makeCopy();
+
         return c;
+
+
     }
+    // add extra card rewards
 
-    public static AbstractRelic GetTrulyRandomRelic(Random rng) {
-        ArrayList<AbstractRelic> relics = new ArrayList<>();
-        relics.addAll(RelicLibrary.commonList);
-        relics.addAll(RelicLibrary.uncommonList);
-        relics.addAll(RelicLibrary.rareList);
-        relics.addAll(RelicLibrary.bossList);
-        relics.addAll(RelicLibrary.specialList);
-
-        for (String s : BadRelics) {
-            relics.removeIf(r -> r.relicId.equals(s));
-        }
-
-        AbstractRelic r = relics.get(rng.random(relics.size() - 1)).makeCopy();
-        UnnaturalRelicField.unnatural.set(r, true);
-
-        return r;
-    }
 
     @Override
-    public void postCreateShopRelics(ShopScreen screen, ArrayList<StoreRelic> relics) {
-        int amount = relics.size();
-        relics.clear();
+    public ArrayList<AbstractCard> getAdditionalCardReward() {
+        ArrayList<AbstractCard> cards = new ArrayList<>();
+        int amount = 3;
+
+        for (AbstractRelic r : AbstractDungeon.player.relics) {
+            amount = r.changeNumberOfCardsInReward(amount);
+        }
 
         for (int i = 0; i < amount; i++) {
-            relics.add(new StoreRelic(GetTrulyRandomRelic(AbstractDungeon.relicRng), i, screen));
-        }
-    }
+            AbstractCard c = getTrulyRandomCard(AbstractDungeon.cardRandomRng);
+            cards.add(c);
+            UnnaturalCardField.unnatural.set(c, true);
 
-//    @Override
-//    public void modifyReward(RewardItem rewardItem) {
-//        if (rewardItem.type == RewardItem.RewardType.RELIC) {
-//            rewardItem.relic = GetTrulyRandomRelic(AbstractDungeon.relicRng);
-//        }
-//    }
+        }
+        return cards;
+    }
 
     @Override
     public void modifyRewardCards(ArrayList<AbstractCard> cards) {
@@ -127,25 +152,13 @@ public class BrokenSpaceZone extends AbstractZone implements RewardModifyingZone
         cards.clear();
 
         for (int i = 0; i < amount; i++) {
-            AbstractCard c = GetTrulyRandomCard(AbstractDungeon.cardRandomRng);
+            AbstractCard c = getTrulyRandomCard(AbstractDungeon.cardRandomRng);
             cards.add(c);
             UnnaturalCardField.unnatural.set(c, true);
 
         }
     }
 
-    @Override
-    public void postCreateShopCards(ArrayList<AbstractCard> coloredCards, ArrayList<AbstractCard> colorlessCards) {
-        int amount = coloredCards.size();
-        coloredCards.clear();
-
-        for (int i = 0; i < amount; i++) {
-            AbstractCard c = GetTrulyRandomCard(AbstractDungeon.cardRandomRng);
-            coloredCards.add(c);
-            UnnaturalCardField.unnatural.set(c, true);
-
-        }
-    }
 
     @SpirePatch2(
             clz = AbstractCard.class,
@@ -155,21 +168,5 @@ public class BrokenSpaceZone extends AbstractZone implements RewardModifyingZone
         public static SpireField<Boolean> unnatural = new SpireField<>(() -> false);
     }
 
-    @SpirePatch2(
-            clz = AbstractRelic.class,
-            method = SpirePatch.CLASS
-    )
-    public static class UnnaturalRelicField {
-        public static SpireField<Boolean> unnatural = new SpireField<>(() -> false);
-    }
-
-    static {
-        BadRelics.add("Orrery");
-
-        BadRelics.add("Tiny House");
-        BadRelics.add("Bottled Flame");
-        BadRelics.add("Bottled Lightning");
-        BadRelics.add("Bottled Tornado");
-    }
 
 }

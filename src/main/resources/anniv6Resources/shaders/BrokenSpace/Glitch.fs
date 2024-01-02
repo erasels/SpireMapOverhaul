@@ -70,17 +70,20 @@ varying vec2 pos;
 uniform sampler2D u_texture;
 uniform vec2 u_screenSize;
 uniform float u_time;
+uniform float u_strength;
 
 void main()
 {
 	vec2 uv = pos.xy;
-    float time = u_time*1.0;
+    float time = u_time*0.5;
     
     // Create large, incidental noise waves
     float noise = snoise(vec2(time, uv.y * 0.2) - 0.1) * (0.1);
     
     // Offset by smaller, constant noise waves
-    noise = noise + (snoise(vec2(time*2.0, uv.y * 75.0)) - 0.5) * 0.01;
+    noise = noise + (snoise(vec2(time*1.0, uv.y * 100.0)) - 0.05) * 0.05;
+
+    noise *= u_strength;
     
     // Apply the noise as x displacement for every line
     float xpos = uv.x - noise * noise * 0.25;
@@ -92,19 +95,20 @@ void main()
     // Apply a line pattern every 4 pixels
     if (floor(mod(pos.y * 0.25, 2.0)) == 0.0)
     {
-        acc.rgb *= 1.0 - (1.0 * noise);
+        acc.rgb *= 1.0 - (2.0 * noise);
     }
     
     // Shift green/blue channels (using the red channel)
-    acc.g = mix(acc.r, texture2D(u_texture, vec2(xpos + noise * 0.05, uv.y)).g, 0.5);
-    acc.b = mix(acc.r, texture2D(u_texture, vec2(xpos - noise * 0.05, uv.y)).b, 0.5);
+    acc.g = mix(acc.r, texture2D(u_texture, vec2(xpos + noise * 0.01, uv.y)).g, 1.0);
+    acc.b = mix(acc.r, texture2D(u_texture, vec2(xpos - noise * 0.01, uv.y)).b, 1.0);
 
 
     // recalculate alpha
     acc.a = max(acc.r, max(acc.g, acc.b));
-    acc.a = smoothstep(0.0, 1.0, acc.a*6.0);
+    acc.a = smoothstep(0.1, 1.0, (acc.a*10.0) * (acc.a*10.0));
 
 
     gl_FragColor = acc;
+
 
 }
