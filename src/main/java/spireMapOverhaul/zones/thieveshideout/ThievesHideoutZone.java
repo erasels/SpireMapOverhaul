@@ -1,20 +1,27 @@
 package spireMapOverhaul.zones.thieveshideout;
 
+import basemod.BaseMod;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.monsters.city.Mugger;
+import com.megacrit.cardcrawl.monsters.city.Taskmaster;
 import com.megacrit.cardcrawl.monsters.exordium.Looter;
 import com.megacrit.cardcrawl.monsters.exordium.SlaverRed;
 import com.megacrit.cardcrawl.random.Random;
-import com.megacrit.cardcrawl.rooms.*;
+import com.megacrit.cardcrawl.rooms.MonsterRoom;
+import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
 import spireMapOverhaul.zones.thieveshideout.monsters.WeakLooter;
+import spireMapOverhaul.zones.thieveshideout.rooms.ThiefKingEventRoom;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
 
 public class ThievesHideoutZone extends AbstractZone implements EncounterModifyingZone {
     public static final String ID = "ThievesHideout";
@@ -22,6 +29,8 @@ public class ThievesHideoutZone extends AbstractZone implements EncounterModifyi
     private static final String LOOTER_AND_RED_SLAVER = SpireAnniversary6Mod.makeID("LOOTER_AND_RED_SLAVER");
     private static final String MUGGER_AND_BLUE_SLAVER = SpireAnniversary6Mod.makeID("MUGGER_AND_BLUE_SLAVER");
     private static final String THREE_LOOTERS_WEAK = SpireAnniversary6Mod.makeID("THREE_LOOTERS_WEAK");
+    public static final String BANDIT_LIEUTENANT_AND_TASKMASTER = SpireAnniversary6Mod.makeID("BANDIT_LIEUTENANT_AND_TASKMASTER");
+    public static final String THIEF_KING = SpireAnniversary6Mod.makeID("THIEF_KING");
 
     public ThievesHideoutZone() {
         super(ID, Icons.MONSTER);
@@ -65,7 +74,7 @@ public class ThievesHideoutZone extends AbstractZone implements EncounterModifyi
                 .ifPresent(maxY -> possibleNodes.removeIf(n -> n.y != maxY));
 
         MapRoomNode node = possibleNodes.get(rng.random(possibleNodes.size() - 1));
-        node.room = new TreasureRoom(); //TODO: Switch to a unique node
+        node.setRoom(new ThiefKingEventRoom());
     }
 
     @Override
@@ -103,5 +112,23 @@ public class ThievesHideoutZone extends AbstractZone implements EncounterModifyi
                         new WeakLooter(200.0F, -5.0F)
                     }))
         );
+    }
+
+    @Override
+    public void registerEncounters() {
+        EncounterModifyingZone.super.registerEncounters();
+        BaseMod.addMonster(BANDIT_LIEUTENANT_AND_TASKMASTER, () -> new MonsterGroup(
+                new AbstractMonster[] {
+                        new Taskmaster(130.0f, 0.0f),
+                        new SlaverRed(-270.0f, 15.0f) //TODO: Replace with special enemy
+                }
+        ));
+        BaseMod.addMonster(THIEF_KING, () -> new MonsterGroup(
+                new AbstractMonster[] {
+                        new Looter(-385.0f, -15.0f),
+                        new Mugger(-133.0f, 0.0f),
+                        new SlaverRed(125.0f, -30.0f) //TODO: Replace with special enemy
+                }
+        ));
     }
 }

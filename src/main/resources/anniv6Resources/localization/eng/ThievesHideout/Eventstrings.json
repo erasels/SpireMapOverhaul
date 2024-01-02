@@ -1,0 +1,17 @@
+{
+  "${ModID}:ThiefKing": {
+    "NAME": "The Thief King's Lair",
+    "DESCRIPTIONS": [
+      "TODO INTRO",
+      "TODO FIRST FIGHT",
+      "TODO SECOND FIGHT"
+    ],
+    "OPTIONS": [
+      "[Continue]",
+      "[Fight]",
+      "[Prudence] Leave the lair. #gGain #g{0} #gGold.",
+      "[Greed] Fight the Thief King. #gGreat #grewards #gawait.",
+      "[Leave]"
+    ]
+  }
+}
