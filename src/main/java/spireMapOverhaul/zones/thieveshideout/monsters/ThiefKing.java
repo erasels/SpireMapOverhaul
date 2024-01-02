@@ -208,4 +208,14 @@ public class ThiefKing extends CustomMonster {
             this.state.addAnimation(0, "Idle", true, 0.0F);
         }
     }
+
+    @Override
+    public void damage(DamageInfo info) {
+        super.damage(info);
+        if (info.owner != null && info.type != DamageInfo.DamageType.THORNS && info.output > 0) {
+            this.state.setAnimation(0, "Hit", false);
+            this.state.setTimeScale(0.8F);
+            this.state.addAnimation(0, "Idle", true, 0.0F);
+        }
+    }
 }
