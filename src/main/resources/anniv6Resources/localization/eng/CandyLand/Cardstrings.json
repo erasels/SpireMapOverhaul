@@ -1,0 +1,70 @@
+{
+  "${ModID}:Broccoli": {
+    "NAME": "Broccoli",
+    "DESCRIPTION": "Gain !M! Strength. NL Gain !M! Dexterity. NL Fleeting."
+  },
+  "${ModID}:CandyCane": {
+    "NAME": "Candy Cane",
+    "DESCRIPTION": "Deal !D! damage. NL Fleeting."
+  },
+  "${ModID}:Cookie": {
+    "NAME": "Cookie",
+    "DESCRIPTION": "Gain !B! Block. NL Fleeting."
+  },
+  "${ModID}:EnergyDrink": {
+    "NAME": "Energy Drink",
+    "DESCRIPTION": "Gain{@@}{!M!|1= [E] |2= [E] [E] |3= [E] [E] [E] |@= !M! [E] }. NL Fleeting."
+  },
+  "${ModID}:FastFood": {
+    "NAME": "Fast Food",
+    "DESCRIPTION": "Draw !M! cards. NL Fleeting."
+  },
+  "${ModID}:Banana": {
+    "NAME": "Banana",
+    "DESCRIPTION": "Raise your Max HP by !M!. NL Fleeting."
+  },
+  "${ModID}:ChocolateBar": {
+    "NAME": "Chocolate Bar",
+    "DESCRIPTION": "Gain !M! Regen. NL Fleeting."
+  },
+  "${ModID}:Cocktail": {
+    "NAME": "Cocktail",
+    "DESCRIPTION": "Obtain a random drinkable potion. NL Fleeting."
+  },
+  "${ModID}:GoldCandy": {
+    "NAME": "Gold Candy",
+    "DESCRIPTION": "Gain !M! Gold. NL Fleeting."
+  },
+  "${ModID}:Cake": {
+    "NAME": "Cake",
+    "DESCRIPTION": "Gain !B! Block. NL Block is not removed at the start of your next{@@}{!M!|1= turn|@= !M! turns}. NL Fleeting."
+  },
+  "${ModID}:FrozenYoghurt": {
+    "NAME": "Frozen Yoghurt",
+    "DESCRIPTION": "Gain !M! ${ModID}:Metallicize. NL Gain !${ModID}:m2! Vulnerable. NL Fleeting."
+  },
+  "${ModID}:JawBreaker": {
+    "NAME": "Jaw Breaker",
+    "DESCRIPTION": "Deal !D! damage. NL Fleeting."
+  },
+  "${ModID}:JellyBeans": {
+    "NAME": "Jelly Beans",
+    "DESCRIPTION": "Apply !M! Vulnerable to ALL enemies. NL Gain !${ModID}:m2! Weak. NL Fleeting."
+  },
+  "${ModID}:Milk": {
+    "NAME": "Milk",
+    "DESCRIPTION": "Apply !${ModID}:m2! Artifact. NL Gain !M! Artifact. NL Fleeting."
+  },
+  "${ModID}:Pepper": {
+    "NAME": "Pepper",
+    "DESCRIPTION": "Gain !M! Strength. NL Lose !${ModID}:m2! Dexterity. NL Fleeting."
+  },
+  "${ModID}:PoisonedApple": {
+    "NAME": "Poisoned Apple",
+    "DESCRIPTION": "Apply !M! Poison. NL Take !${ModID}:m2! damage. NL Fleeting."
+  },
+  "${ModID}:ChewingGum": {
+    "NAME": "Chewing Gum",
+    "DESCRIPTION": "Draw !M! cards and gain{@@}{!M!|1= [E] |2= [E] [E] |3= [E] [E] [E] |@= !M! [E] } . NL Add *Slime to the top of your draw pile. NL Fleeting."
+  }
+}

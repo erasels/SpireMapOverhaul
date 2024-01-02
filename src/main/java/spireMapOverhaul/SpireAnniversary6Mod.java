@@ -52,6 +52,7 @@ import spireMapOverhaul.util.ZoneShapeMaker;
 import spireMapOverhaul.zoneInterfaces.CampfireModifyingZone;
 import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
 import spireMapOverhaul.zones.gremlinTown.potions.*;
+import spireMapOverhaul.rewards.HealReward;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -82,6 +83,11 @@ public class SpireAnniversary6Mod implements
             Settings.GameLanguage.ENG,
             Settings.GameLanguage.ZHS
     };
+
+    public static class Enums {
+        @SpireEnum
+        public static AbstractPotion.PotionRarity ZONE;
+    }
 
     public static SpireAnniversary6Mod thismod;
     public static SpireConfig modConfig = null;
@@ -114,11 +120,6 @@ public class SpireAnniversary6Mod implements
 
     public SpireAnniversary6Mod() {
         BaseMod.subscribe(this);
-    }
-
-    public static class Enums {
-        @SpireEnum
-        public static AbstractPotion.PotionRarity ZONE;
     }
 
     public static String makePath(String resourcePath) {
@@ -249,6 +250,7 @@ public class SpireAnniversary6Mod implements
     }
 
     public static void addPotions() {
+
         if (Loader.isModLoaded("widepotions")) {
             Consumer<String> whitelist = getWidePotionsWhitelistMethod();
             whitelist.accept(LouseMilk.POTION_ID);
@@ -521,6 +523,14 @@ public class SpireAnniversary6Mod implements
                             "|" +
                             ((SingleCardReward) reward).card.misc;
                     return new RewardSave(CustomRewardTypes.SMO_SINGLECARDREWARD.toString(), s);
+                }
+        );
+
+        BaseMod.registerCustomReward(CustomRewardTypes.HEALREWARD,
+                rewardSave -> new HealReward(rewardSave.id, rewardSave.amount),
+                reward -> {
+                    int i = ((HealReward) reward).amount;
+                    return new RewardSave(CustomRewardTypes.HEALREWARD.toString(), ((HealReward) reward).iconPath, i, 0);
                 }
         );
     }
