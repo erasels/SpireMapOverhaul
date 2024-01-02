@@ -5,10 +5,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.colorless.Bite;
 import com.megacrit.cardcrawl.cards.red.Feed;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.LocalizedStrings;
-import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.relics.*;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.shop.ShopScreen;
@@ -17,7 +14,6 @@ import com.megacrit.cardcrawl.shop.StoreRelic;
 import com.megacrit.cardcrawl.ui.campfire.AbstractCampfireOption;
 import com.megacrit.cardcrawl.ui.campfire.RestOption;
 import com.megacrit.cardcrawl.ui.campfire.SmithOption;
-import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.rewards.HealReward;
 import spireMapOverhaul.zoneInterfaces.CampfireModifyingZone;
@@ -32,7 +28,6 @@ import spireMapOverhaul.zones.candyland.consumables.rare.GoldCandy;
 import spireMapOverhaul.zones.candyland.consumables.uncommon.*;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class CandyLand extends AbstractZone implements RewardModifyingZone, CampfireModifyingZone, ShopModifyingZone {
     public static final String ID = "CandyLand";
@@ -183,7 +178,7 @@ public class CandyLand extends AbstractZone implements RewardModifyingZone, Camp
         consumables.add(new JellyBeans());
         consumables.add(new Milk());
         consumables.add(new Pepper());
-        consumables.add(new RottenFlesh());
+        consumables.add(new PoisonedApple());
         consumables.add(new ChewingGum());
         consumables.add(new Broccoli());
         consumables.add(new CandyCane());

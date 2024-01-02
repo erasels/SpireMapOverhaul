@@ -12,10 +12,10 @@ import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 import static spireMapOverhaul.util.Wiz.atb;
 
 
-public class RottenFlesh extends AbstractConsumable {
-    public final static String ID = makeID(RottenFlesh.class.getSimpleName());
+public class PoisonedApple extends AbstractConsumable {
+    public final static String ID = makeID(PoisonedApple.class.getSimpleName());
 
-    public RottenFlesh() {
+    public PoisonedApple() {
         super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF_AND_ENEMY);
         baseMagicNumber = magicNumber = 9;
         baseSecondMagic = secondMagic = 3;

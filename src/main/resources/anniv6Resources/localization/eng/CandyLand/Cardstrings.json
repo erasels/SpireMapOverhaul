@@ -59,8 +59,8 @@
     "NAME": "Pepper",
     "DESCRIPTION": "Gain !M! Strength. NL Lose !${ModID}:m2! Dexterity. NL Fleeting."
   },
-  "${ModID}:RottenFlesh": {
-    "NAME": "Rotten Flesh",
+  "${ModID}:PoisonedApple": {
+    "NAME": "Poisoned Apple",
     "DESCRIPTION": "Apply !M! Poison. NL Take !${ModID}:m2! damage. NL Fleeting."
   },
   "${ModID}:ChewingGum": {
