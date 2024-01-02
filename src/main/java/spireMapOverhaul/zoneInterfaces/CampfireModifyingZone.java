@@ -36,6 +36,7 @@ public interface CampfireModifyingZone {
 
     /**
      * This hook allows you to execute code after an option was used.
+     * You can use ReflectionHacks in postAddButtons to change descriptions of options affected.
      * NOTE: Most options execute their actual code in effects, so if you want something to happen after those, use the effectslist
      * @param option The option that was selected
      */
