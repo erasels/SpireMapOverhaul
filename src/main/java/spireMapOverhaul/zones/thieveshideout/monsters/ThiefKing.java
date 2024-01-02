@@ -5,13 +5,14 @@ import com.badlogic.gdx.math.MathUtils;
 import com.esotericsoftware.spine.AnimationState;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.*;
-import com.megacrit.cardcrawl.actions.common.*;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.GainBlockAction;
+import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.unique.RemoveDebuffsAction;
-import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.powers.*;
@@ -32,18 +33,14 @@ public class ThiefKing extends CustomMonster {
     public static final String[] MOVES = monsterStrings.MOVES;
     public static final String[] DIALOG = monsterStrings.DIALOG;
     private boolean firstMove = true;
+    private int stealExperienceCount = 0;
     private static final byte STEAL_VITALITY_DEBUFF = 1;
-    private static final byte STAB_ATTACK = 2;
-    private static final byte STEAL_EXPERIENCE_ATTACK = 3;
-    private static final byte THE_REVEAL_BUFF = 4;
-    private static final byte BLADE_FLURRY_ATTACK = 5;
+    private static final byte STEAL_EXPERIENCE_ATTACK = 2;
+    private static final byte THE_REVEAL_BUFF = 3;
+    private static final byte BLADE_FLURRY_ATTACK = 4;
     private static final int STEAL_VITALITY_STATS = 1;
-    private static final int STAB_DAMAGE = 12;
-    private static final int A3_STAB_DAMAGE = 14;
     private static final int STEAL_EXPERIENCE_DAMAGE = 9;
     private static final int A3_STEAL_EXPERIENCE_DAMAGE = 10;
-    private static final int STEAL_EXPERIENCE_CARDS = 1;
-    private static final int A18_STEAL_EXPERIENCE_CARDS = 2;
     private static final int THE_REVEAL_BUFFS = 3;
     private static final int A18_THE_REVEAL_BUFFS = 4;
     private static final int THE_REVEAL_BLOCK = 20;
@@ -53,9 +50,7 @@ public class ThiefKing extends CustomMonster {
     private static final int BLADE_FLURRY_HITS = 5;
     private static final int HP = 95;
     private static final int A8_HP = 100;
-    private int stabDamage;
     private int stealExperienceDamage;
-    private int stealExperienceCards;
     private int theRevealBuffs;
     private int theRevealBlock;
     private int bladeFlurryDamage;
@@ -76,23 +71,18 @@ public class ThiefKing extends CustomMonster {
         }
 
         if (AbstractDungeon.ascensionLevel >= 3) {
-            this.stabDamage = A3_STAB_DAMAGE;
             this.stealExperienceDamage = A3_STEAL_EXPERIENCE_DAMAGE;
             this.bladeFlurryDamage = A3_BLADE_FLURRY_DAMAGE;
         } else {
-            this.stabDamage = STAB_DAMAGE;
             this.stealExperienceDamage = STEAL_EXPERIENCE_DAMAGE;
             this.bladeFlurryDamage = BLADE_FLURRY_DAMAGE;
         }
-        this.damage.add(new DamageInfo(this, this.stabDamage));
         this.damage.add(new DamageInfo(this, this.stealExperienceDamage));
         this.damage.add(new DamageInfo(this, this.bladeFlurryDamage));
 
         if (AbstractDungeon.ascensionLevel >= 18) {
-            this.stealExperienceCards = A18_STEAL_EXPERIENCE_CARDS;
             this.theRevealBuffs = A18_THE_REVEAL_BUFFS;
         } else {
-            this.stealExperienceCards = STEAL_EXPERIENCE_CARDS;
             this.theRevealBuffs = THE_REVEAL_BUFFS;
         }
 
@@ -119,15 +109,9 @@ public class ThiefKing extends CustomMonster {
                 }
                 break;
             }
-            case STAB_ATTACK: {
-                this.addToBot(new TalkAction(this, DIALOG[1], 0.5F, 2.0F));
-                this.addToBot(new ChangeStateAction(this, "STAB"));
-                this.addToBot(new WaitAction(0.5F));
-                this.addToBot(new DamageAction(AbstractDungeon.player, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
-                break;
-            }
             case STEAL_EXPERIENCE_ATTACK: {
-                this.addToBot(new TalkAction(this, DIALOG[2], 0.5F, 2.0F));
+                this.stealExperienceCount++;
+                this.addToBot(new TalkAction(this, this.stealExperienceCount == 1 ? DIALOG[1] : DIALOG[2], 0.5F, 2.0F));
                 this.addToBot(new AnimateSlowAttackAction(this));
                 this.addToBot(new DamageAction(AbstractDungeon.player, this.damage.get(1), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
                 this.addToBot(new AbstractGameAction() {
@@ -137,31 +121,22 @@ public class ThiefKing extends CustomMonster {
                                 .filter(ThiefKing::isValidToSteal)
                                 .sorted(Comparator.comparingInt(c -> cardRarityToInt(c.rarity)))
                                 .collect(Collectors.toCollection(ArrayList::new));
-                        ArrayList<AbstractCard> cardsToRemove = new ArrayList<>();
-                        if (cards.size() <= ThiefKing.this.stealExperienceCards) {
-                            cardsToRemove.addAll(cards);
+                        AbstractCard cardToRemove;
+                        if (cards.isEmpty()) {
+                            cardToRemove = null;
                         }
-                        else if (cards.get(0).rarity == cards.get(1).rarity) {
+                        else if (cards.size() == 1 || (cards.get(0).rarity != cards.get(1).rarity)) {
+                            cardToRemove = cards.get(0);
+                        }
+                        else {
                             AbstractCard.CardRarity rarity = cards.get(0).rarity;
                             cards.removeIf(c -> c.rarity != rarity);
                             Collections.shuffle(cards);
-                            cardsToRemove.add(cards.get(0));
-                            cardsToRemove.add(cards.get(1));
+                            cardToRemove = cards.get(0);
                         }
-                        else {
-                            cardsToRemove.add(cards.get(0));
-                            AbstractCard.CardRarity rarity = cards.get(1).rarity;
-                            cards.removeIf(c -> c.rarity != rarity);
-                            if (cards.size() > 1) {
-                                Collections.shuffle(cards);
-                            }
-                            cardsToRemove.add(cards.get(0));
-                        }
-                        for (int i = 0; i < cardsToRemove.size(); i++) {
-                            AbstractCard c = cardsToRemove.get(i);
-                            AbstractDungeon.player.drawPile.removeCard(c);
-                            float xOffset = 50.0f * ((cardsToRemove.size() + 1) % 2);
-                            this.addToBot(new VFXAction(new PurgeCardEffect(c, Settings.WIDTH / 2.0f + (xOffset - 100.0f * i) * Settings.scale, Settings.HEIGHT / 2.0f)));
+                        if (cardToRemove != null) {
+                            AbstractDungeon.player.drawPile.removeCard(cardToRemove);
+                            AbstractDungeon.effectsQueue.add(new PurgeCardEffect(cardToRemove));
                         }
                         this.isDone = true;
                     }
@@ -217,14 +192,12 @@ public class ThiefKing extends CustomMonster {
     protected void getMove(final int num) {
         if (this.firstMove) {
             this.setMove(MOVES[0], STEAL_VITALITY_DEBUFF, Intent.DEBUFF);
-        } else if (this.lastMove(STEAL_VITALITY_DEBUFF)) {
-            this.setMove(MOVES[1], STAB_ATTACK, Intent.ATTACK, this.stabDamage);
-        } else if (this.lastMove(STAB_ATTACK)) {
-            this.setMove(MOVES[2], STEAL_EXPERIENCE_ATTACK, Intent.ATTACK_DEBUFF, this.stealExperienceDamage);
+        } else if (this.lastMove(STEAL_VITALITY_DEBUFF) || (this.lastMove(STEAL_EXPERIENCE_ATTACK) && this.lastMoveBefore(STEAL_VITALITY_DEBUFF))) {
+            this.setMove(MOVES[1], STEAL_EXPERIENCE_ATTACK, Intent.ATTACK_DEBUFF, this.stealExperienceDamage);
         } else if (this.lastMove(STEAL_EXPERIENCE_ATTACK)) {
-            this.setMove(MOVES[3], THE_REVEAL_BUFF, Intent.DEFEND_BUFF);
+            this.setMove(MOVES[2], THE_REVEAL_BUFF, Intent.DEFEND_BUFF);
         } else {
-            this.setMove(MOVES[4], BLADE_FLURRY_ATTACK, Intent.ATTACK, this.bladeFlurryDamage, BLADE_FLURRY_HITS, true);
+            this.setMove(MOVES[3], BLADE_FLURRY_ATTACK, Intent.ATTACK, this.bladeFlurryDamage, BLADE_FLURRY_HITS, true);
         }
     }
 

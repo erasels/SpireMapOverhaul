@@ -10,7 +10,6 @@
   "${ModID}:ThiefKing": {
     "MOVES": [
       "Steal Vitality",
-      "Stab",
       "Steal Experience",
       "The Reveal",
       "Blade Flurry"
