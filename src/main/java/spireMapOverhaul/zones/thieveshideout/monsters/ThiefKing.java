@@ -111,6 +111,7 @@ public class ThiefKing extends CustomMonster {
         }
         switch (this.nextMove) {
             case STEAL_VITALITY_DEBUFF: {
+                this.addToBot(new TalkAction(this, DIALOG[0], 0.5F, 2.0F));
                 this.addToBot(new AnimateSlowAttackAction(this));
                 this.addToBot(new ApplyPowerAction(AbstractDungeon.player, this, new StrengthPower(AbstractDungeon.player, -STEAL_VITALITY_STATS)));
                 this.addToBot(new ApplyPowerAction(AbstractDungeon.player, this, new DexterityPower(AbstractDungeon.player, -STEAL_VITALITY_STATS)));
@@ -120,11 +121,13 @@ public class ThiefKing extends CustomMonster {
                 break;
             }
             case STAB_ATTACK: {
+                this.addToBot(new TalkAction(this, DIALOG[1], 0.5F, 2.0F));
                 this.addToBot(new AnimateFastAttackAction(this));
                 this.addToBot(new DamageAction(AbstractDungeon.player, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
                 break;
             }
             case STEAL_EXPERIENCE_ATTACK: {
+                this.addToBot(new TalkAction(this, DIALOG[2], 0.5F, 2.0F));
                 this.addToBot(new AnimateSlowAttackAction(this));
                 this.addToBot(new DamageAction(AbstractDungeon.player, this.damage.get(1), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
                 this.addToBot(new AbstractGameAction() {
@@ -164,7 +167,7 @@ public class ThiefKing extends CustomMonster {
                 break;
             }
             case THE_REVEAL_BUFF:
-                this.addToBot(new TalkAction(this, DIALOG[0], 0.5F, 2.0F));
+                this.addToBot(new TalkAction(this, DIALOG[3], 0.5F, 2.0F));
                 this.addToBot(new ApplyPowerAction(this, this, new StrengthPower(this, this.theRevealBuffs)));
                 this.addToBot(new ApplyPowerAction(this, this, new RitualPower(this, this.theRevealBuffs, false)));
                 this.addToBot(new ApplyPowerAction(this, this, new MetallicizePower(this, this.theRevealBuffs)));

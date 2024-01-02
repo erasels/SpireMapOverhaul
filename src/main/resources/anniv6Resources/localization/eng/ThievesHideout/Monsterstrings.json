@@ -16,6 +16,11 @@
       "Blade Flurry"
     ],
     "NAME": "The Thief King",
-    "DIALOG": ["Now see my true power!"]
+    "DIALOG": [
+      "How dare you intrude on my lair!",
+      "You're dead meat once the other thieves are gone!",
+      "I'll steal everything you have!",
+      "Now see my true power!"
+    ]
   }
 }
