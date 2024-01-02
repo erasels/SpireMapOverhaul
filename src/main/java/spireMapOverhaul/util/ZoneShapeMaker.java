@@ -57,7 +57,7 @@ public class ZoneShapeMaker {
     private static float SMOOTHING_ALPHAMULT = 0.7f;
 
     public static final int FB_OFFSET = (int) (250 * Settings.scale); //Offset of positioning of nodes to fit circles
-    private static final int FB_MARGIN = FB_OFFSET * 2;
+    private static final int FB_MARGIN = (int) (FB_OFFSET * 3f);
 
     private static final ShaderProgram shader = new ShaderProgram(Gdx.files.internal("anniv6Resources/shaders/shapeMaker/vertex.vs"),
                                                             Gdx.files.internal("anniv6Resources/shaders/shapeMaker/fragment.fs"));

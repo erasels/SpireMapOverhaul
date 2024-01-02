@@ -291,7 +291,7 @@ public abstract class AbstractZone {
      * Areas may claim more unusual shapes or manually define their path/multiple paths if they wish.
      */
     public boolean generateMapArea(MapPlanner planner) {
-        return generateNormalArea(planner, 3, 4);
+        return generateNormalArea(planner, width, height);
     }
 
     public final boolean generateNormalArea(MapPlanner planner, int width, int height) {
