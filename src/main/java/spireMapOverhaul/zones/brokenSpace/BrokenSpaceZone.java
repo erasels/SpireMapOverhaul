@@ -10,16 +10,24 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.FontHelper;
+import com.megacrit.cardcrawl.helpers.RelicLibrary;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.rewards.RewardItem;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
 import com.megacrit.cardcrawl.screens.DungeonMapScreen;
 import spireMapOverhaul.BetterMapGenerator;
+import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.zoneInterfaces.RewardModifyingZone;
 import spireMapOverhaul.zoneInterfaces.ShopModifyingZone;
 import spireMapOverhaul.zones.brokenSpace.patches.BrokenSpaceRenderPatch;
 
 import java.util.ArrayList;
+import java.util.logging.Logger;
+
+import static spireMapOverhaul.util.Wiz.adp;
 
 public class BrokenSpaceZone extends AbstractZone implements RewardModifyingZone, ShopModifyingZone {
     public static final String ID = "BrokenSpace";
@@ -36,13 +44,20 @@ public class BrokenSpaceZone extends AbstractZone implements RewardModifyingZone
     }
 
     private BrokenSpaceZone(String name, int width, int height) {
-        super(ID, Icons.REWARD, Icons.SHOP);
+        super(ID, Icons.REWARD);
 
         this.width = width;
         this.height = height;
 
         color = Color.WHITE.cpy();
         this.name = name;
+    }
+
+    @Override
+    public void distributeRooms(Random rng, ArrayList<AbstractRoom> roomList) {
+        //Guarantee at least one elite
+        placeRoomRandomly(rng, roomOrDefault(roomList, (room) -> room instanceof MonsterRoomElite, MonsterRoomElite::new));
+
     }
 
     @Override
@@ -147,6 +162,56 @@ public class BrokenSpaceZone extends AbstractZone implements RewardModifyingZone
     }
 
     @Override
+    public void modifyReward(RewardItem rewardItem) {
+        if (rewardItem.type == RewardItem.RewardType.RELIC) {
+            AbstractRelic origRelic = rewardItem.relic;
+            AbstractRelic newRelic = getValidBrokenRelic();
+
+            if (newRelic != null) {
+                rewardItem.relic = newRelic;
+                rewardItem.text = newRelic.name;
+
+                switch (origRelic.tier) {
+                    case COMMON:
+                        AbstractDungeon.commonRelicPool.add(origRelic.relicId);
+                        break;
+                    case UNCOMMON:
+                        AbstractDungeon.uncommonRelicPool.add(origRelic.relicId);
+                        break;
+                    case RARE:
+                        AbstractDungeon.rareRelicPool.add(origRelic.relicId);
+                        break;
+                    case SHOP:
+                        AbstractDungeon.shopRelicPool.add(origRelic.relicId);
+                        break;
+                    case BOSS:
+                        AbstractDungeon.bossRelicPool.add(origRelic.relicId);
+                        break;
+                    default:
+                        SpireAnniversary6Mod.logger.info("what.");
+                        break;
+
+                }
+            }
+
+        }
+    }
+
+    public AbstractRelic getValidBrokenRelic() {
+        ArrayList<String> validRelics = new ArrayList<>();
+        for (String relicID : BrokenRelics) {
+            if (!adp().hasRelic(relicID)) {
+                validRelics.add(relicID);
+            }
+        }
+        if (validRelics.isEmpty()) {
+            return null;
+        }
+        return RelicLibrary.getRelic(validRelics.get(AbstractDungeon.treasureRng.random(validRelics.size() - 1))).makeCopy();
+
+    }
+
+    @Override
     public void modifyRewardCards(ArrayList<AbstractCard> cards) {
         int amount = cards.size();
         cards.clear();
@@ -166,6 +231,15 @@ public class BrokenSpaceZone extends AbstractZone implements RewardModifyingZone
     )
     public static class UnnaturalCardField {
         public static SpireField<Boolean> unnatural = new SpireField<>(() -> false);
+    }
+
+
+    public static ArrayList<String> BrokenRelics = new ArrayList<>();
+
+    public static void addBrokenRelic(String relicID) {
+        if (!BrokenRelics.contains(relicID)) {
+            BrokenRelics.add(relicID);
+        }
     }
 
 

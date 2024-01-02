@@ -81,25 +81,7 @@ public class BrokenSpaceRenderPatch {
         }
     }
 
-    @SpirePatch(
-            clz = StoreRelic.class,
-            method = "render"
-    )
-    public static class RenderBrokenSpaceRelics {
-        @SpirePrefixPatch
-        public static void addShader(StoreRelic __instance, SpriteBatch sb) {
-            if (shouldRenderBrokenSpaceShader(__instance.relic, true)) {
-                StartFbo(sb);
-            }
-        }
 
-        @SpirePostfixPatch
-        public static void removeShader(StoreRelic __instance, SpriteBatch sb) {
-            if (shouldRenderBrokenSpaceShader(__instance.relic, true)) {
-                StopFbo(sb);
-            }
-        }
-    }
 
     public static void StartFbo(SpriteBatch sb) {
         sb.end();
@@ -138,7 +120,7 @@ public class BrokenSpaceRenderPatch {
 
 
     private static boolean shouldRenderBrokenSpaceShader(RewardItem __instance) {
-        return inBrokenSpace() && (__instance.type == RewardItem.RewardType.CARD || (__instance.type == RewardItem.RewardType.RELIC && isUnnatural(__instance.relic, false)));
+        return inBrokenSpace() && (__instance.type == RewardItem.RewardType.CARD);
 
     }
 
@@ -178,9 +160,9 @@ public class BrokenSpaceRenderPatch {
     public static class UpdateShaderTimer {
         @SpirePostfixPatch
         public static void updateShaderTimer() {
-            if (inBrokenSpace()) {
-                shaderTimer += Gdx.graphics.getDeltaTime();
-            }
+
+            shaderTimer += Gdx.graphics.getDeltaTime();
+
         }
 
     }

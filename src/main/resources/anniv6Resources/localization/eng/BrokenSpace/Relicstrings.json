@@ -1,0 +1,52 @@
+{
+  "${ModID}:BrokenSozu": {
+    "NAME": "Broken Sozu",
+    "FLAVOR": "no",
+    "DESCRIPTIONS": [
+      "On pickup, gain #b",
+      " #yPotion #yslots, and fill them with #yRandom #yPotions."
+    ]
+  },
+  "${ModID}:BrokenSneckoEye": {
+    "NAME": "Broken Snecko Eye",
+    "FLAVOR": "no",
+    "DESCRIPTIONS": [
+      "Draw #b",
+      " cards at the start of each turn, but they are unreadable."
+    ]
+  },
+  "${ModID}:BrokenMawBank": {
+    "NAME": "Broken Maw Bank",
+    "FLAVOR": "no",
+    "DESCRIPTIONS": [
+      "Gain #b",
+      " #yGold next time you enter a shop, but lose #b",
+      " #yGold when you leave."
+    ]
+  },
+  "${ModID}:BrokenPrayerWheel": {
+    "NAME": "Broken Prayer Wheel",
+    "FLAVOR": "no",
+    "DESCRIPTIONS": [
+      "Card rewards contain no cards, but each gold reward is multiplied by #b",
+      "."
+    ]
+  },
+  "${ModID}:BrokenMatryoshka": {
+    "NAME": "Broken Matryoshka",
+    "FLAVOR": "no",
+    "DESCRIPTIONS": [
+      "Gain #b",
+      " Relics, but the next #b",
+      " chests you open are empty."
+    ]
+  },
+  "${ModID}:BrokenSundial": {
+    "NAME": "Broken Sundial",
+    "FLAVOR": "no",
+    "DESCRIPTIONS": [
+      "Every #b",
+      " cards you play, shuffle your discard pile into your draw pile."
+    ]
+  }
+}
