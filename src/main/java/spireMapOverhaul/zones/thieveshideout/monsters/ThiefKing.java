@@ -4,14 +4,9 @@ import basemod.abstracts.CustomMonster;
 import com.badlogic.gdx.math.MathUtils;
 import com.esotericsoftware.spine.AnimationState;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.animations.AnimateFastAttackAction;
-import com.megacrit.cardcrawl.actions.animations.AnimateSlowAttackAction;
-import com.megacrit.cardcrawl.actions.animations.TalkAction;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.actions.common.GainBlockAction;
-import com.megacrit.cardcrawl.actions.common.RollMoveAction;
+import com.megacrit.cardcrawl.actions.animations.*;
+import com.megacrit.cardcrawl.actions.common.*;
+import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -112,7 +107,7 @@ public class ThiefKing extends CustomMonster {
         switch (this.nextMove) {
             case STEAL_VITALITY_DEBUFF: {
                 this.addToBot(new TalkAction(this, DIALOG[0], 0.5F, 2.0F));
-                this.addToBot(new AnimateSlowAttackAction(this));
+                this.addToBot(new AnimateShakeAction(this, 0.5f, 0.1f));
                 this.addToBot(new ApplyPowerAction(AbstractDungeon.player, this, new StrengthPower(AbstractDungeon.player, -STEAL_VITALITY_STATS)));
                 this.addToBot(new ApplyPowerAction(AbstractDungeon.player, this, new DexterityPower(AbstractDungeon.player, -STEAL_VITALITY_STATS)));
                 if (!AbstractDungeon.player.orbs.isEmpty()) {
@@ -122,7 +117,8 @@ public class ThiefKing extends CustomMonster {
             }
             case STAB_ATTACK: {
                 this.addToBot(new TalkAction(this, DIALOG[1], 0.5F, 2.0F));
-                this.addToBot(new AnimateFastAttackAction(this));
+                this.addToBot(new ChangeStateAction(this, "STAB"));
+                this.addToBot(new WaitAction(0.5F));
                 this.addToBot(new DamageAction(AbstractDungeon.player, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
                 break;
             }
@@ -219,6 +215,14 @@ public class ThiefKing extends CustomMonster {
             this.setMove(MOVES[3], THE_REVEAL_BUFF, Intent.DEFEND_BUFF);
         } else {
             this.setMove(MOVES[4], BLADE_FLURRY_ATTACK, Intent.ATTACK, this.bladeFlurryDamage, BLADE_FLURRY_HITS, true);
+        }
+    }
+
+    @Override
+    public void changeState(String key) {
+        if (key != null && key.equals("STAB")) {
+            this.state.setAnimation(0, "Attack", false);
+            this.state.addAnimation(0, "Idle", true, 0.0F);
         }
     }
 }
