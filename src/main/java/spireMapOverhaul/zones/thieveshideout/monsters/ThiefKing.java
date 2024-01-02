@@ -99,7 +99,7 @@ public class ThiefKing extends CustomMonster {
             this.firstMove = false;
         }
         switch (this.nextMove) {
-            case STEAL_VITALITY_DEBUFF: {
+            case STEAL_VITALITY_DEBUFF:
                 this.addToBot(new TalkAction(this, DIALOG[0], 0.5F, 2.0F));
                 this.addToBot(new AnimateShakeAction(this, 0.5f, 0.1f));
                 this.addToBot(new ApplyPowerAction(AbstractDungeon.player, this, new StrengthPower(AbstractDungeon.player, -STEAL_VITALITY_STATS)));
@@ -108,8 +108,7 @@ public class ThiefKing extends CustomMonster {
                     this.addToBot(new ApplyPowerAction(AbstractDungeon.player, this, new FocusPower(AbstractDungeon.player, -STEAL_VITALITY_STATS)));
                 }
                 break;
-            }
-            case STEAL_EXPERIENCE_ATTACK: {
+            case STEAL_EXPERIENCE_ATTACK:
                 this.stealExperienceCount++;
                 this.addToBot(new TalkAction(this, this.stealExperienceCount == 1 ? DIALOG[1] : DIALOG[2], 0.5F, 2.0F));
                 this.addToBot(new AnimateSlowAttackAction(this));
@@ -142,7 +141,6 @@ public class ThiefKing extends CustomMonster {
                     }
                 });
                 break;
-            }
             case THE_REVEAL_BUFF:
                 this.addToBot(new ShoutAction(this, DIALOG[3], 0.5F, 2.0F));
                 this.addToBot(new VFXAction(this, new InflameEffect(this), 0.25F));

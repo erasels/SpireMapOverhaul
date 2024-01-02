@@ -90,25 +90,22 @@ public class BanditLieutenant extends CustomMonster {
             this.firstMove = false;
         }
         switch (this.nextMove) {
-            case CUDGEL_BLOW_ATTACK: {
+            case CUDGEL_BLOW_ATTACK:
                 this.addToBot(new AnimateSlowAttackAction(this));
                 this.addToBot(new DamageAction(AbstractDungeon.player, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
                 this.addToBot(new MakeTempCardInDrawPileAction(new Dazed(), this.cudgelBlowDazes, true, true));
                 break;
-            }
-            case NOXIOUS_SMOKE_DEBUFF: {
+            case NOXIOUS_SMOKE_DEBUFF:
                 this.addToBot(new AnimateShakeAction(this, 0.5F, 0.1F));
                 this.addToBot(new VFXAction(new SmokeBombEffect(AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY)));
                 this.addToBot(new ApplyPowerAction(AbstractDungeon.player, this, new VulnerablePower(AbstractDungeon.player, this.noxiousSmokeVulnerable, true)));
                 this.addToBot(new ApplyPowerAction(AbstractDungeon.player, this, new DrawReductionPower(AbstractDungeon.player, NOXIOUS_SMOKE_DRAW_DOWN)));
                 break;
-            }
-            case BIG_SWING_ATTACK: {
+            case BIG_SWING_ATTACK:
                 this.addToBot(new ChangeStateAction(this, "MAUL"));
                 this.addToBot(new WaitAction(0.3F));
                 this.addToBot(new DamageAction(AbstractDungeon.player, this.damage.get(1), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
                 break;
-            }
         }
         this.addToBot(new RollMoveAction(this));
     }
@@ -126,7 +123,7 @@ public class BanditLieutenant extends CustomMonster {
 
     @Override
     public void changeState(String key) {
-        if (key.equals("MAUL")) {
+        if (key != null && key.equals("MAUL")) {
             this.state.setAnimation(0, "Attack", false);
             this.state.addAnimation(0, "Idle", true, 0.0F);
         }
