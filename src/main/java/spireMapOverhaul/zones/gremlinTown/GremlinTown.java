@@ -1,19 +1,23 @@
 package spireMapOverhaul.zones.gremlinTown;
 
 import basemod.BaseMod;
+import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.ModHelper;
 import com.megacrit.cardcrawl.helpers.MonsterHelper;
 import com.megacrit.cardcrawl.helpers.PotionHelper;
+import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.monsters.exordium.AcidSlime_S;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rewards.RewardItem;
-import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
+import com.megacrit.cardcrawl.shop.ShopScreen;
+import com.megacrit.cardcrawl.shop.StorePotion;
+import com.megacrit.cardcrawl.shop.StoreRelic;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
@@ -42,23 +46,30 @@ public class GremlinTown extends AbstractZone
     public static final String GREMLIN_GANG_TWO = SpireAnniversary6Mod.makeID("Gremlin_Gang_Two");
     public static final String NIB = SpireAnniversary6Mod.makeID("Nib");
     public static final String GREMLIN_ELDER = SpireAnniversary6Mod.makeID("Gremlin_Elder");
+    public static final String GREMLIN_HORDE = SpireAnniversary6Mod.makeID("Gremlin_Horde");
     private static ArrayList<AbstractCard> gremlinCards;
     private static ArrayList<AbstractCard> commonGremlinCards;
     private static ArrayList<AbstractCard> uncommonGremlinCards;
     private static ArrayList<AbstractCard> rareGremlinCards;
     private static ArrayList<String> gremlinCardIds;
+    private static ArrayList<AbstractPotion> gremlinPotions;
     private static ArrayList<AbstractPotion> commonGremlinPotions;
     private static ArrayList<AbstractPotion> uncommonGremlinPotions;
     private static ArrayList<AbstractPotion> rareGremlinPotions;
     private static ArrayList<AbstractRelic> commonGremlinRelics;
     private static ArrayList<AbstractRelic> uncommonGremlinRelics;
     private static ArrayList<AbstractRelic> rareGremlinRelics;
+    private static final String SHOP_STRINGS = SpireAnniversary6Mod.makeID("ShopBanter");
+    public static final String MERCHANT_ATLAS = SpireAnniversary6Mod.makeImagePath(
+            "ui/gremlinTownShop/skeleton.atlas");
+    public static final String MERCHANT_SKELETON = SpireAnniversary6Mod.makeImagePath(
+            "ui/gremlinTownShop/skeleton.json");
 
     private final ZoneEncounter GREMLIN_LEADER_ENCOUNTER = new ZoneEncounter(MonsterHelper.GREMLIN_LEADER_ENC, 2,
             () -> MonsterHelper.getEncounter("Gremlin Leader"));
 
     public GremlinTown() {
-        super(ID, Icons.MONSTER, Icons.ELITE, Icons.EVENT);
+        super(ID, Icons.MONSTER, Icons.ELITE, Icons.EVENT, Icons.SHOP);
         width = 4;
         height = 6;
     }
@@ -150,7 +161,7 @@ public class GremlinTown extends AbstractZone
         // Override that one method so the gremlin leader encounter isn't double registered
         return Arrays.asList(
                 GREMLIN_LEADER_ENCOUNTER,
-                new ZoneEncounter(GREMLIN_ELDER, 2, () -> new MonsterGroup(new GremlinElder(0f, 0f)))
+                new ZoneEncounter(GREMLIN_ELDER, 2, () -> new MonsterGroup(new GremlinElder(-80f, -50f)))
         );
     }
 
@@ -164,59 +175,113 @@ public class GremlinTown extends AbstractZone
         //  Will need to manually add all Elite encounters that aren't leader
         //  Since leader is already registered in base game
         //  encounters.addAll(eliteEncounters);
-        encounters.add(new ZoneEncounter(GREMLIN_ELDER, 2, () -> new MonsterGroup(new GremlinElder(0f, 0f))));
+        encounters.add(new ZoneEncounter(GREMLIN_ELDER, 2, () -> new MonsterGroup(new GremlinElder(-80f, -50f))));
 
         for (ZoneEncounter ze : encounters)
             BaseMod.addMonster(ze.getID(), ze.getName(), () -> ze.getMonsterSupplier().get());
     }
 
-    public ArrayList<AbstractCard> getAdditionalCardReward() {
+    @Override
+    public void postCreateShopCards(ArrayList<AbstractCard> coloredCards, ArrayList<AbstractCard> colorlessCards) {
+        // This should be flexible with mods that modify shop layouts
+        ArrayList<AbstractCard.CardType> cardTypes = new ArrayList<>();
+
+        for (AbstractCard c : coloredCards)
+            cardTypes.add(c.type);
+
+        ArrayList<AbstractCard> copiedCards = new ArrayList<>(coloredCards);
+        coloredCards.clear();
+
+        AbstractCard card;
+        for (int i = 0; i < cardTypes.size(); i++) {
+            AbstractCard.CardRarity rarity = rollRarityAndAdjust();
+            card = null;
+
+            int attempts = 0;
+            boolean containsDupe = true;
+            while (containsDupe) {
+                containsDupe = false;
+                card = getGremlinCardByRarityType(rarity, cardTypes.get(i));
+
+                if (attempts >= 20 || card == null) {
+                    card = copiedCards.get(i);
+                    continue;
+                }
+                for (AbstractCard c : coloredCards) {
+                    if (c.cardID.equals(card.cardID)) {
+                        containsDupe = true;
+                        attempts++;
+                        break;
+                    }
+                }
+            }
+
+            coloredCards.add(card);
+        }
+    }
+
+    @Override
+    public void postCreateShopRelics(ShopScreen screen, ArrayList<StoreRelic> relics) {
+        for (StoreRelic r : relics) {
+            int slot = ReflectionHacks.getPrivate(r, StoreRelic.class, "slot");
+            // Putting a slot limit so Spicy Shops doesn't single-handedly empty my relic pools
+            // Save some for elites/events
+            if (r.relic.tier != AbstractRelic.RelicTier.SHOP && slot < 3)
+                r.relic = getRandomGRelic(r.relic.tier);
+        }
+    }
+
+    @Override
+    public void postCreateShopPotions(ShopScreen screen, ArrayList<StorePotion> potions) {
+        for (StorePotion p : potions)
+            p.potion = getRandomShopGPotion();
+    }
+
+    @Override
+    public void postAddIdleMessages(ArrayList<String> idleMessages) {
+        idleMessages.clear();
+        UIStrings talkyStrings = CardCrawlGame.languagePack.getUIString(SHOP_STRINGS);
+        idleMessages.addAll(Arrays.asList(talkyStrings.TEXT));
+    }
+
+    private static ArrayList<AbstractCard> getGremlinCardReward(ArrayList<AbstractCard> cards) {
         ArrayList<AbstractCard> retVal = new ArrayList<>();
-        int numCards = 3;
-
-        for (AbstractRelic r : adp().relics)
-            numCards = r.changeNumberOfCardsInReward(numCards);
-
-        if (ModHelper.isModEnabled("Binary"))
-            --numCards;
 
         float cardUpgradedChance = 0.25f;
         if (asc() >= 12)
             cardUpgradedChance = 0.125f;
 
         AbstractCard card;
-        for(int i = 0; i < numCards; ++i) {
-            AbstractCard.CardRarity rarity = rollRarity();
+        for(int i = 0; i < cards.size(); ++i) {
+            AbstractCard.CardRarity rarity = cards.get(i).rarity;
             card = null;
-            switch (rarity) {
-                case COMMON:
-                    cardBlizzRandomizer -= cardBlizzGrowth;
-                    if (cardBlizzRandomizer <= cardBlizzMaxOffset) {
-                        cardBlizzRandomizer = cardBlizzMaxOffset;
-                    }
-                case UNCOMMON:
-                    break;
-                case RARE:
-                    cardBlizzRandomizer = cardBlizzStartOffset;
-                    break;
-            }
 
             boolean containsDupe = true;
+            int attempts = 0;
             while(containsDupe) {
                 containsDupe = false;
                 card = getGremlinCardByRarity(rarity);
+                if (attempts == 20 || card == null) {
+                    retVal.add(cards.get(i));
+                    break;
+                }
 
                 for (AbstractCard c : retVal) {
-                    assert card != null;
                     if (c.cardID.equals(card.cardID)) {
                         containsDupe = true;
+                        attempts++;
                         break;
                     }
                 }
+
+                if (card.rarity != AbstractCard.CardRarity.RARE && cardRng.randomBoolean(cardUpgradedChance) && card.canUpgrade())
+                    card.upgrade();
+                else
+                    for (AbstractRelic r : adp().relics)
+                        r.onPreviewObtainCard(card);
             }
 
-            if (card != null)
-                retVal.add(card);
+            retVal.add(card);
         }
 
         for (AbstractCard c : retVal) {
@@ -231,22 +296,61 @@ public class GremlinTown extends AbstractZone
     }
 
     @Override
-    public RewardItem getAdditionalReward() {
-        if (AbstractDungeon.lastCombatMetricKey.equals(NIB)) {
-            int x = AbstractDungeon.potionRng.random(0, 99);
+    public void modifyRewards(ArrayList<RewardItem> rewards) {
+        int potionCount = 0;
+        for (RewardItem item : rewards) {
+            if (item.type == RewardItem.RewardType.POTION) {
+                potionCount++;
+                item.potion = getRandomWeightedPotion();
+                item.text = item.potion.name;
+            }
 
-            if (x < PotionHelper.POTION_COMMON_CHANCE)
-                return new RewardItem(getRandomCommonGPotion());
-            else if (x < PotionHelper.POTION_COMMON_CHANCE + PotionHelper.POTION_UNCOMMON_CHANCE)
-                return new RewardItem(getRandomUncommonGPotion());
-            else
-                return new RewardItem(getRandomRareGPotion());
+            if (item.type == RewardItem.RewardType.RELIC) {
+                item.relic = getRandomGRelic();
+                item.text = item.relic.name;
+            }
+
+            if (item.type == RewardItem.RewardType.CARD)
+                item.cards = getGremlinCardReward(item.cards);
+
+            if (item.type == RewardItem.RewardType.GOLD && lastCombatMetricKey.equals(GREMLIN_HORDE))
+                item.bonusGold = treasureRng.random(100, 150);
         }
 
-        if (AbstractDungeon.currMapNode.room instanceof MonsterRoomElite)
-            return new RewardItem(getRandomGRelic());
+        if (lastCombatMetricKey.equals(GREMLIN_GANG_TWO)) {
+            RewardItem item = new RewardItem();
+            item.cards = getGremlinCardReward(item.cards);
+            rewards.add(item);
+        }
 
-        return null;
+        if (lastCombatMetricKey.equals(NIB))
+            rewards.add(new RewardItem(getRandomGRelic()));
+
+        if (lastCombatMetricKey.equals(GREMLIN_ELDER)) {
+            if (potionCount == 0)
+                rewards.add(new RewardItem(getRandomWeightedPotion()));
+            rewards.add(new RewardItem(getRandomWeightedPotion()));
+        }
+
+        if (lastCombatMetricKey.equals(GREMLIN_HORDE))
+            rewards.add(new RewardItem(getRandomGRelic()));
+    }
+
+    private static AbstractCard.CardRarity rollRarityAndAdjust() {
+        AbstractCard.CardRarity rarity = rollRarity();
+        switch (rarity) {
+            case COMMON:
+                cardBlizzRandomizer -= cardBlizzGrowth;
+                if (cardBlizzRandomizer <= cardBlizzMaxOffset) {
+                    cardBlizzRandomizer = cardBlizzMaxOffset;
+                }
+            case UNCOMMON:
+                break;
+            case RARE:
+                cardBlizzRandomizer = cardBlizzStartOffset;
+                break;
+        }
+        return rarity;
     }
 
     private static AbstractCard getRandomCommonGremlin() {
@@ -257,12 +361,44 @@ public class GremlinTown extends AbstractZone
         return commonGremlinCards.get(0).makeCopy();
     }
 
+    private static AbstractCard getRandomCommonGremlin(AbstractCard.CardType type) {
+        if (type == null)
+            return getRandomCommonGremlin();
+
+        if (gremlinCards == null)
+            initGremlinCards();
+
+        Collections.shuffle(commonGremlinCards);
+
+        for (AbstractCard c : commonGremlinCards)
+            if (c.type == type)
+                return c.makeCopy();
+
+        return null;
+    }
+
     private static AbstractCard getRandomUncommonGremlin() {
         if (gremlinCards == null)
             initGremlinCards();
 
         Collections.shuffle(uncommonGremlinCards);
         return uncommonGremlinCards.get(0).makeCopy();
+    }
+
+    private static AbstractCard getRandomUncommonGremlin(AbstractCard.CardType type) {
+        if (type == null)
+            return getRandomUncommonGremlin();
+
+        if (gremlinCards == null)
+            initGremlinCards();
+
+        Collections.shuffle(uncommonGremlinCards);
+
+        for (AbstractCard c : uncommonGremlinCards)
+            if (c.type == type)
+                return c.makeCopy();
+
+        return null;
     }
 
     private static AbstractCard getRandomRareGremlin() {
@@ -273,6 +409,22 @@ public class GremlinTown extends AbstractZone
         return rareGremlinCards.get(0).makeCopy();
     }
 
+    private static AbstractCard getRandomRareGremlin(AbstractCard.CardType type) {
+        if (type == null)
+            return getRandomRareGremlin();
+
+        if (gremlinCards == null)
+            initGremlinCards();
+
+        Collections.shuffle(rareGremlinCards);
+
+        for (AbstractCard c : rareGremlinCards)
+            if (c.type == type)
+                return c.makeCopy();
+
+        return null;
+    }
+
     private static AbstractCard getGremlinCardByRarity(AbstractCard.CardRarity rarity) {
         if (rarity == AbstractCard.CardRarity.COMMON)
             return getRandomCommonGremlin();
@@ -280,6 +432,18 @@ public class GremlinTown extends AbstractZone
             return getRandomUncommonGremlin();
         else if (rarity == AbstractCard.CardRarity.RARE)
             return getRandomRareGremlin();
+        else return null;
+    }
+
+    private static AbstractCard getGremlinCardByRarityType(AbstractCard.CardRarity rarity, AbstractCard.CardType type) {
+        if (type == null)
+            return getGremlinCardByRarity(rarity);
+        if (rarity == AbstractCard.CardRarity.COMMON)
+            return getRandomCommonGremlin(type);
+        else if (rarity == AbstractCard.CardRarity.UNCOMMON)
+            return getRandomUncommonGremlin(type);
+        else if (rarity == AbstractCard.CardRarity.RARE)
+            return getRandomRareGremlin(type);
         else return null;
     }
 
@@ -315,27 +479,58 @@ public class GremlinTown extends AbstractZone
         return rareGremlinPotions.get(0).makeCopy();
     }
 
+    private static AbstractPotion getRandomWeightedPotion() {
+        int x = AbstractDungeon.potionRng.random(0, 99);
+
+        if (x < PotionHelper.POTION_COMMON_CHANCE)
+            return getRandomCommonGPotion();
+        else if (x < PotionHelper.POTION_COMMON_CHANCE + PotionHelper.POTION_UNCOMMON_CHANCE)
+            return getRandomUncommonGPotion();
+        else
+            return getRandomRareGPotion();
+    }
+
+    private static AbstractPotion getRandomShopGPotion() {
+        if (gremlinPotions == null)
+            initGremlinPotions();
+
+        Collections.shuffle(gremlinPotions);
+        AbstractPotion potion = gremlinPotions.get(0).makeCopy();
+        // This is a hell of a potion.  Shouldn't be quite so easy to get
+        if (potion.ID.equals(RitualBlood.POTION_ID) && potionRng.random(0, 1) == 0)
+            potion = gremlinPotions.get(1).makeCopy();
+
+        return potion;
+    }
+
     private static AbstractRelic getRandomGRelic() {
         if (commonGremlinRelics == null)
             initGremlinRelics();
 
-        AbstractRelic r = null;
         AbstractRelic.RelicTier tier = returnRandomRelicTier();
+        return getRandomGRelic(tier);
+    }
+
+    private static AbstractRelic getRandomGRelic(AbstractRelic.RelicTier tier) {
+        if (commonGremlinRelics == null)
+            initGremlinRelics();
+
+        AbstractRelic r = null;
         if (tier == AbstractRelic.RelicTier.COMMON) {
             if (commonGremlinRelics.size() > 0) {
-                r = commonGremlinRelics.get(0);
+                r = commonGremlinRelics.get(0).makeCopy();
                 commonGremlinRelics.remove(0);
             }
         }
         else if (tier == AbstractRelic.RelicTier.UNCOMMON) {
             if (uncommonGremlinRelics.size() > 0) {
-                r = uncommonGremlinRelics.get(0);
+                r = uncommonGremlinRelics.get(0).makeCopy();
                 uncommonGremlinRelics.remove(0);
             }
         }
         else {
             if (rareGremlinRelics.size() > 0) {
-                r = rareGremlinRelics.get(0);
+                r = rareGremlinRelics.get(0).makeCopy();
                 rareGremlinRelics.remove(0);
             }
         }
@@ -397,6 +592,11 @@ public class GremlinTown extends AbstractZone
 
         rareGremlinPotions = new ArrayList<>();
         rareGremlinPotions.add(new RitualBlood());
+
+        gremlinPotions = new ArrayList<>();
+        gremlinPotions.addAll(commonGremlinPotions);
+        gremlinPotions.addAll(uncommonGremlinPotions);
+        gremlinPotions.addAll(rareGremlinPotions);
     }
 
     private static void initGremlinRelics() {
