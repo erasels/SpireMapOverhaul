@@ -6,6 +6,7 @@ import com.esotericsoftware.spine.AnimationState;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.*;
 import com.megacrit.cardcrawl.actions.common.*;
+import com.megacrit.cardcrawl.actions.unique.RemoveDebuffsAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -14,6 +15,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.vfx.cardManip.PurgeCardEffect;
+import com.megacrit.cardcrawl.vfx.combat.HeartBuffEffect;
+import com.megacrit.cardcrawl.vfx.combat.InflameEffect;
 import spireMapOverhaul.SpireAnniversary6Mod;
 
 import java.util.ArrayList;
@@ -163,7 +166,11 @@ public class ThiefKing extends CustomMonster {
                 break;
             }
             case THE_REVEAL_BUFF:
-                this.addToBot(new TalkAction(this, DIALOG[3], 0.5F, 2.0F));
+                this.addToBot(new ShoutAction(this, DIALOG[3], 0.5F, 2.0F));
+                this.addToBot(new VFXAction(this, new InflameEffect(this), 0.25F));
+                this.addToBot(new VFXAction(new HeartBuffEffect(this.hb.cX, this.hb.cY)));
+                this.addToBot(new VFXAction(this, new InflameEffect(this), 0.25F));
+                this.addToBot(new RemoveDebuffsAction(this));
                 this.addToBot(new ApplyPowerAction(this, this, new StrengthPower(this, this.theRevealBuffs)));
                 this.addToBot(new ApplyPowerAction(this, this, new RitualPower(this, this.theRevealBuffs, false)));
                 this.addToBot(new ApplyPowerAction(this, this, new MetallicizePower(this, this.theRevealBuffs)));
