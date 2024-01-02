@@ -3,8 +3,8 @@
     "NAME": "Broken Sozu",
     "FLAVOR": "no",
     "DESCRIPTIONS": [
-      "On pickup, gain #b",
-      " #yPotion #yslots, and fill them with #yRandom #yPotions."
+      "On pickup, set your Potion Slots to #b",
+      ", then fill half of that number with #yRandom #yPotions. When you use a potion, lose it's slot."
     ]
   },
   "${ModID}:BrokenSneckoEye": {

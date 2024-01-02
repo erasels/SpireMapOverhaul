@@ -10,11 +10,15 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
+import com.megacrit.cardcrawl.potions.PotionSlot;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.Matryoshka;
 import com.megacrit.cardcrawl.relics.Sozu;
 import com.megacrit.cardcrawl.relics.Sundial;
 import com.megacrit.cardcrawl.ui.panels.TopPanel;
+import spireMapOverhaul.zones.brokenSpace.NullPotion;
+
+import java.util.ArrayList;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 import static spireMapOverhaul.util.Wiz.*;
@@ -30,17 +34,31 @@ public class BrokenSozu extends BrokenRelic {
 
     @Override
     public void onEquip() {
-        int prevAmount = adp().potionSlots;
+        ArrayList<AbstractPotion> potions = new ArrayList<>(adp().potions);
 
-        adp().potionSlots = 0;
+        adp().potionSlots = AMOUNT;
         adp().potions.clear();
 
 
         for (int i = 0; i < AMOUNT; i++) {
-            AbstractPotion p = AbstractDungeon.returnRandomPotion();
-            adp().potions.add(i, p);
+            adp().potions.add(new PotionSlot(i));
+        }
+
+        // re-add original potions
+        for (int i = 0; i < potions.size(); i++) {
+            AbstractPotion p = potions.get(i);
+            adp().potions.set(i, p);
             p.setAsObtained(i);
         }
+        // add new potions
+        for (int i = potions.size(); i < (AMOUNT/2) + potions.size(); i++) {
+            AbstractPotion p = AbstractDungeon.returnRandomPotion();
+            adp().potions.set(i, p);
+            p.setAsObtained(i);
+        }
+
+
+
 
     }
 
@@ -49,7 +67,15 @@ public class BrokenSozu extends BrokenRelic {
         @SpirePostfixPatch
         public static void Postfix(TopPanel __instance, int slot) {
             if (adp().hasRelic(makeID(ID))) {
-                adp().potions.remove(slot);
+                adp().potionSlots--;
+                ArrayList<AbstractPotion> potions = new ArrayList<>(adp().potions);
+                adp().potions.clear();
+                potions.remove(slot);
+                for (int i = 0; i < potions.size(); i++) {
+                    AbstractPotion p = potions.get(i);
+                    adp().potions.add(i, p);
+                    p.setAsObtained(i);
+                }
             }
         }
     }
