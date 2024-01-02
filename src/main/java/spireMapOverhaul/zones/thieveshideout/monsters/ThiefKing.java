@@ -61,7 +61,7 @@ public class ThiefKing extends CustomMonster {
     }
 
     public ThiefKing(final float x, final float y) {
-        super(NAME, ID, HP, -5.0F, 0, 230.0f, 300.0f, null, x, y);
+        super(NAME, ID, HP, -10.0F, -7.0F, 180.0F, 285.0F, null, x, y);
         this.type = EnemyType.ELITE;
         if (AbstractDungeon.ascensionLevel >= 8) {
             this.setHp(A8_HP);
