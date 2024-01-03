@@ -51,7 +51,7 @@ public class BanditLieutenant extends CustomMonster {
     }
 
     public BanditLieutenant(final float x, final float y) {
-        super(NAME, ID, HP_MAX, -5.0F, 0, 230.0f, 300.0f, null, x, y);
+        super(NAME, ID, HP_MAX, -5.0F, -4.0F, 180.0F, 280.0F, null, x, y);
         this.type = EnemyType.ELITE;
         if (AbstractDungeon.ascensionLevel >= 8) {
             this.setHp(A8_HP_MIN, A8_HP_MAX);
