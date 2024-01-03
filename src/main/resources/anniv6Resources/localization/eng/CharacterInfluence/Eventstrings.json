@@ -1,0 +1,14 @@
+{
+  "${ModID}:CharacterVisit": {
+    "NAME": "Visit from a Friend(?)",
+    "DESCRIPTIONS": [
+      "A friendly figure approaches. NL It is ",
+      ". NL NL They offer you help in the shape of a ~Relic~.",
+      "You accept their gift."
+    ],
+    "OPTIONS": [
+      "Accept the Relic",
+      "Move on"
+    ]
+  }
+}
