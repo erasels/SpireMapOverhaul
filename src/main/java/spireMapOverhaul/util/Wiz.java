@@ -426,6 +426,12 @@ public class Wiz {
                 .count();
     }
 
+    public static <T> T getRandomEntry(ArrayList<T> list, java.util.Random rng) {
+        if (list.size() == 0)
+            return null;
+        return list.get(rng.nextInt(list.size()));
+    }
+
     /************************************************************
      *              Anniversary 6 specific utility methods
      ************************************************************/

@@ -2,6 +2,7 @@ package spireMapOverhaul.zones.gremlinTown.cards;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractSMOCard;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
@@ -14,9 +15,9 @@ public class Shield extends AbstractSMOCard {
 
     public Shield() {
         super(ID, COST, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF, CardColor.COLORLESS);
-
         baseBlock = BLOCK;
         exhaust = true;
+        tags.add(SpireAnniversary6Mod.Enums.GREMLIN);
     }
 
     @Override

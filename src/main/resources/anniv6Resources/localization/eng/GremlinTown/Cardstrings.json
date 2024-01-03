@@ -61,5 +61,26 @@
   "${ModID}:OmegaCurse": {
     "NAME": "Omega Curse",
     "DESCRIPTION": "At the end of 3 turns, apply !M! Weak and Vulnerable to ALL enemies."
+  },
+  "${ModID}:TheHorde": {
+    "NAME": "The Horde",
+    "DESCRIPTION": "Deal !D! damage for ALL of your Gremlins. NL Add !M! common Gremlins into your hand. NL They cost 0 this turn."
+  },
+  "${ModID}:Scamper": {
+    "NAME": "Scamper",
+    "DESCRIPTION": "Gain !M! Dexterity. NL Lose 1 Strength."
+  },
+  "${ModID}:ThrowRock": {
+    "NAME": "Throw Rock",
+    "DESCRIPTION": "Deal !D! damage. NL Gain !M! Strength. NL At the end of this turn, lose !M! Strength."
+  },
+  "${ModID}:PoisonSpray": {
+    "NAME": "Poison Spray",
+    "DESCRIPTION": "Deal !D! damage. NL Apply Poison equal to unblocked damage dealt."
+  },
+  "${ModID}:Inspire": {
+    "NAME": "Inspire",
+    "DESCRIPTION": "Ethereal. NL At the start of your turn, gain [E] and draw 1 card.",
+    "UPGRADE_DESCRIPTION": "At the start of your turn, gain [E] and draw 1 card."
   }
 }

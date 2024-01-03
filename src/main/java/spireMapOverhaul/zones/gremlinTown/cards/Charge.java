@@ -1,7 +1,9 @@
 package spireMapOverhaul.zones.gremlinTown.cards;
 
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractSMOCard;
 import spireMapOverhaul.zones.gremlinTown.powers.DelayedVigorPower;
 
@@ -9,6 +11,7 @@ import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 import static spireMapOverhaul.util.Wiz.adp;
 import static spireMapOverhaul.util.Wiz.applyToSelf;
 
+@NoPools
 public class Charge extends AbstractSMOCard {
     public final static String ID = makeID(Charge.class.getSimpleName());
     private final static int MAGIC = 12;
@@ -17,8 +20,8 @@ public class Charge extends AbstractSMOCard {
 
     public Charge() {
         super(ID, COST, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF, CardColor.COLORLESS);
-
         baseMagicNumber = magicNumber = MAGIC;
+        tags.add(SpireAnniversary6Mod.Enums.GREMLIN);
     }
 
     @Override

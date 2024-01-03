@@ -1,6 +1,7 @@
 package spireMapOverhaul.zones.gremlinTown.monsters;
 
 import basemod.abstracts.CustomMonster;
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
 import com.badlogic.gdx.math.MathUtils;
 import com.esotericsoftware.spine.AnimationState;
 import com.megacrit.cardcrawl.actions.animations.AnimateSlowAttackAction;

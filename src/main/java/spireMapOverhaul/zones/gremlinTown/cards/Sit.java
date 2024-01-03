@@ -3,6 +3,7 @@ package spireMapOverhaul.zones.gremlinTown.cards;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractSMOCard;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
@@ -18,6 +19,7 @@ public class Sit extends AbstractSMOCard {
         super(ID, COST, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.ENEMY, CardColor.COLORLESS);
         baseMagicNumber = magicNumber = MAGIC;
         exhaust = true;
+        tags.add(SpireAnniversary6Mod.Enums.GREMLIN);
     }
 
     @Override

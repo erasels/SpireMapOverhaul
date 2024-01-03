@@ -52,5 +52,10 @@
   "${ModID}:OmegaCurse": {
     "NAME": "Omega Curse",
     "DESCRIPTIONS": ["At the end of #b{0} turns, deal #b{1} #yWeak and #yVulnerable to ALL enemies."]
+  },
+  "${ModID}:Inspired": {
+    "NAME": "Inspired",
+    "DESCRIPTIONS": ["At the start of your turn, gain #b{0} energy and draw #b{0} card.",
+      "At the start of your turn, gain #b{0} energy and draw #b{0} cards."]
   }
 }

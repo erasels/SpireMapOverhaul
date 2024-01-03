@@ -1,12 +1,15 @@
 package spireMapOverhaul.zones.gremlinTown.cards;
 
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractSMOCard;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 
+@NoPools
 public class Assassinate extends AbstractSMOCard {
     public final static String ID = makeID(Assassinate.class.getSimpleName());
     private final static int COST = 1;
@@ -18,6 +21,7 @@ public class Assassinate extends AbstractSMOCard {
         baseDamage = DAMAGE;
         exhaust = true;
         isInnate = true;
+        tags.add(SpireAnniversary6Mod.Enums.GREMLIN);
     }
 
     @Override

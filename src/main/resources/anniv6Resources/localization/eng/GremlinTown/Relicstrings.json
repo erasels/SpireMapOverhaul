@@ -40,5 +40,26 @@
     "DESCRIPTIONS": [
       "During boss combats, add a random Gremlin card into your hand at the start of your turn.  It costs #b0 that turn."
     ]
+  },
+  "${ModID}:Lockpicks": {
+    "NAME": "Lock Picks",
+    "FLAVOR": "A common Gremlin \"Investment.\"",
+    "DESCRIPTIONS": [
+      "Gain #b{0} #yGold upon entering a rest site."
+    ]
+  },
+  "${ModID}:Bowtie": {
+    "NAME": "Bow Tie",
+    "FLAVOR": "It makes you look twice as professional.",
+    "DESCRIPTIONS": [
+      "Shop cards are #yUpgraded."
+    ]
+  },
+  "${ModID}:LousePlushie": {
+    "NAME": "Louse Plushie",
+    "FLAVOR": "A toy for Gremlin children.",
+    "DESCRIPTIONS": [
+      "The first time you take unblocked Attack damage each combat, gain #b{0} #yBlock next turn."
+    ]
   }
 }

@@ -1,15 +1,18 @@
 package spireMapOverhaul.zones.gremlinTown.cards;
 
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.AttackDamageRandomEnemyAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractSMOCard;
 import spireMapOverhaul.actions.EasyXCostAction;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 import static spireMapOverhaul.util.Wiz.atb;
 
+@NoPools
 public class Flurry extends AbstractSMOCard {
     public final static String ID = makeID(Flurry.class.getSimpleName());
     private final static int COST = -1;
@@ -19,6 +22,7 @@ public class Flurry extends AbstractSMOCard {
     public Flurry() {
         super(ID, COST, CardType.ATTACK, CardRarity.RARE, CardTarget.ALL_ENEMY, CardColor.COLORLESS);
         baseDamage = DAMAGE;
+        tags.add(SpireAnniversary6Mod.Enums.GREMLIN);
     }
 
     @Override

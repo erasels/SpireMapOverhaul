@@ -22,11 +22,11 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.events.AbstractEvent;
 import com.megacrit.cardcrawl.helpers.FontHelper;
-import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.rewards.RewardSave;
@@ -45,6 +45,7 @@ import spireMapOverhaul.patches.ZonePerFloorRunHistoryPatch;
 import spireMapOverhaul.patches.interfacePatches.CampfireModifierPatches;
 import spireMapOverhaul.patches.interfacePatches.EncounterModifierPatches;
 import spireMapOverhaul.patches.interfacePatches.TravelTrackingPatches;
+import spireMapOverhaul.rewards.HealReward;
 import spireMapOverhaul.rewards.SingleCardReward;
 import spireMapOverhaul.ui.*;
 import spireMapOverhaul.util.QueueZoneCommand;
@@ -54,7 +55,6 @@ import spireMapOverhaul.util.ZoneShapeMaker;
 import spireMapOverhaul.zoneInterfaces.CampfireModifyingZone;
 import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
 import spireMapOverhaul.zones.gremlinTown.potions.*;
-import spireMapOverhaul.rewards.HealReward;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -89,6 +89,8 @@ public class SpireAnniversary6Mod implements
     public static class Enums {
         @SpireEnum
         public static AbstractPotion.PotionRarity ZONE;
+        @SpireEnum
+        public static AbstractCard.CardTags GREMLIN;
     }
 
     public static SpireAnniversary6Mod thismod;

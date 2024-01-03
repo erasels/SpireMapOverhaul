@@ -6,8 +6,8 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
+import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractSMORelic;
-import spireMapOverhaul.zones.gremlinTown.GremlinTown;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 import static spireMapOverhaul.util.Wiz.adp;
@@ -22,7 +22,7 @@ public class GremlinHood extends AbstractSMORelic {
     public void onEquip() {
         int effectCount = 0;
         for (AbstractCard c : adp().masterDeck.group) {
-            if (c.canUpgrade() && GremlinTown.getGremlinCardIds().contains(c.cardID)) {
+            if (c.canUpgrade() && c.hasTag(SpireAnniversary6Mod.Enums.GREMLIN)) {
                 if (c.canUpgrade()) {
                     ++effectCount;
                     if (effectCount <= 20) {
@@ -39,7 +39,7 @@ public class GremlinHood extends AbstractSMORelic {
     }
 
     public void onObtainCard(AbstractCard c) {
-        if (GremlinTown.getGremlinCardIds().contains(c.cardID) && c.canUpgrade() && !c.upgraded)
+        if (c.hasTag(SpireAnniversary6Mod.Enums.GREMLIN) && c.canUpgrade() && !c.upgraded)
             c.upgrade();
     }
 }
