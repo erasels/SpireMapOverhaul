@@ -20,11 +20,12 @@ import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.util.ImageHelper;
 import spireMapOverhaul.util.TexLoader;
 import spireMapOverhaul.zoneInterfaces.ModifiedEventRateZone;
+import spireMapOverhaul.zoneInterfaces.RenderableZone;
 
 import java.util.ArrayList;
 
 @AutoAdd.Ignore
-public class PlaceholderZone extends AbstractZone implements ModifiedEventRateZone {
+public class PlaceholderZone extends AbstractZone implements ModifiedEventRateZone, RenderableZone {
     public static final String ID = "Placeholder";
     private final int width, height;
     private final Color color;
@@ -92,5 +93,20 @@ public class PlaceholderZone extends AbstractZone implements ModifiedEventRateZo
     public void replaceRooms(Random rng) {
         //Replace 100% of event rooms with treasure rooms.
         //replaceRoomsRandomly(rng, TreasureRoom::new, (room)->room instanceof EventRoom, 1);
+    }
+
+    @Override
+    public void renderBackground() {
+        // Render things in the background when this zone is active.
+    }
+
+    @Override
+    public void renderForeground() {
+        // Render things in the foreground when this zone is active.
+    }
+
+    @Override
+    public void update() {
+        // Update things when this zone is active.
     }
 }
