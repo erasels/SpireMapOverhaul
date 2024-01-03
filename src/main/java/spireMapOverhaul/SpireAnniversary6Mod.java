@@ -108,6 +108,8 @@ public class SpireAnniversary6Mod implements
 
     public static boolean initializedStrings = false;
 
+    public static final Map<String, Keyword> keywords = new HashMap<>();
+
     public static List<AbstractZone> unfilteredAllZones = new ArrayList<>();
     public static List<AbstractZone> allZones = new ArrayList<>();
     private static Map<String, AbstractZone> zonePackages = new HashMap<>();
@@ -415,6 +417,10 @@ public class SpireAnniversary6Mod implements
 
         for (Keyword keyword : keywords) {
             BaseMod.addKeyword(modID, keyword.PROPER_NAME, keyword.NAMES, keyword.DESCRIPTION);
+            if (!keyword.ID.isEmpty())
+            {
+                SpireAnniversary6Mod.keywords.put(keyword.ID, keyword);
+            }
         }
     }
 
