@@ -179,7 +179,7 @@ public class BrokenSpaceRenderPatch {
 
     static {
         brokenSpaceShader = new ShaderProgram(Gdx.files.internal(makeShaderPath("BrokenSpace/Glitch.vs")), Gdx.files.internal(makeShaderPath( "BrokenSpace/Glitch.fs")));
-        if (true) {
+        if (!brokenSpaceShader.isCompiled()) {
             logger.warning("Broken Space shader: " + brokenSpaceShader.getLog());
         }
         brokenSpaceShader.begin();

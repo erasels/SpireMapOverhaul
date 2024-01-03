@@ -38,7 +38,7 @@ public abstract class BrokenRelic extends AbstractSMORelic {
     static {
         brokenSpaceShader = new ShaderProgram(Gdx.files.internal(makeShaderPath("BrokenSpace/Glitch.vs")), Gdx.files.internal(makeShaderPath("BrokenSpace/Glitch.fs")));
         if (!brokenSpaceShader.isCompiled()) {
-            logger.info("BrokenSpaceShader not compiled.");
+            logger.info("BrokenSpaceShader not compiled: " + brokenSpaceShader.getLog());
         }
         brokenSpaceShader.begin();
         fbo = new FrameBuffer(Pixmap.Format.RGBA8888, Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), false, false);
