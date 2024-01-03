@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
@@ -18,13 +19,14 @@ import com.megacrit.cardcrawl.helpers.RelicLibrary;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.screens.SingleRelicViewPopup;
 import spireMapOverhaul.abstracts.AbstractSMORelic;
+import spireMapOverhaul.util.TexLoader;
 import spireMapOverhaul.zones.brokenSpace.BrokenSpaceZone;
 
+import javax.print.attribute.standard.MediaSize;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
-import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
-import static spireMapOverhaul.SpireAnniversary6Mod.makeShaderPath;
+import static spireMapOverhaul.SpireAnniversary6Mod.*;
 
 public abstract class BrokenRelic extends AbstractSMORelic {
     private static final FrameBuffer fbo;
@@ -34,12 +36,16 @@ public abstract class BrokenRelic extends AbstractSMORelic {
     private static AbstractRelic originalRelic;
     private static final ArrayList<String> loadedRelics = new ArrayList<>();
     private static float shaderTimer = 0.0F;
+    private static Texture missingImg = TexLoader.getTexture(makeImagePath("ui/missing.png"));
+
+
 
     static {
         brokenSpaceShader = new ShaderProgram(Gdx.files.internal(makeShaderPath("BrokenSpace/Glitch.vs")), Gdx.files.internal(makeShaderPath("BrokenSpace/Glitch.fs")));
         if (!brokenSpaceShader.isCompiled()) {
             logger.info("BrokenSpaceShader not compiled: " + brokenSpaceShader.getLog());
         }
+
         brokenSpaceShader.begin();
         fbo = new FrameBuffer(Pixmap.Format.RGBA8888, Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), false, false);
 
@@ -177,12 +183,6 @@ public abstract class BrokenRelic extends AbstractSMORelic {
         super.update();
         textResetTimer += Gdx.graphics.getDeltaTime();
 
-        if (textResetTimer > 1.0F) {
-            flavorText = updateFlavorText();
-            textResetTimer = 0.0F;
-
-        }
-
     }
 
     @Override
@@ -193,11 +193,12 @@ public abstract class BrokenRelic extends AbstractSMORelic {
 
         StartFbo(sb);
         super.render(sb, renderAmount, outlineColor);
-        StopFbo(sb, renderAmount);
+        StopFbo(sb, 2.0f, renderAmount);
 
     }
 
     private void firstRenderCheck() {
+
         if (!loadedRelics.contains(origID)) {
             loadedRelics.add(origID);
             originalRelic = RelicLibrary.getRelic(origID);
@@ -206,6 +207,13 @@ public abstract class BrokenRelic extends AbstractSMORelic {
             outlineImg = originalRelic.outlineImg;
             flavorText = generateFlavorText();
 
+        }
+
+        if (img == missingImg) {
+            img = originalRelic.img;
+            largeImg = originalRelic.largeImg;
+            outlineImg = originalRelic.outlineImg;
+            flavorText = generateFlavorText();
         }
     }
 
@@ -232,6 +240,7 @@ public abstract class BrokenRelic extends AbstractSMORelic {
         sb.setColor(Color.WHITE);
         brokenSpaceShader.setUniformf("u_time", shaderTimer * 4 + timerOffset);
         brokenSpaceShader.setUniformf("u_strength", strength);
+        brokenSpaceShader.setUniformf("u_chrAb", 0.1f);
 
         sb.draw(region, 0, 0);
         sb.flush();
@@ -301,7 +310,7 @@ public abstract class BrokenRelic extends AbstractSMORelic {
 
                 if (relic.textResetTimer <= 0) {
                     relic.flavorText = relic.updateFlavorText();
-                    relic.textResetTimer = (float) (Math.random() * .2);
+                    relic.textResetTimer = (float) (Math.random() * .1);
 
                 }
             }

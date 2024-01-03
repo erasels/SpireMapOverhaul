@@ -71,6 +71,7 @@ uniform sampler2D u_texture;
 uniform vec2 u_screenSize;
 uniform float u_time;
 uniform float u_strength;
+uniform float u_chrAb;
 
 void main()
 {
@@ -99,8 +100,8 @@ void main()
     }
     
     // Shift green/blue channels (using the red channel)
-    acc.g = mix(acc.r, texture2D(u_texture, vec2(xpos + noise * 0.01, uv.y)).g, 1.0);
-    acc.b = mix(acc.r, texture2D(u_texture, vec2(xpos - noise * 0.01, uv.y)).b, 1.0);
+    acc.g = mix(acc.r, texture2D(u_texture, vec2(xpos + noise * u_chrAb, uv.y)).g, 1.0);
+    acc.b = mix(acc.r, texture2D(u_texture, vec2(xpos - noise * u_chrAb, uv.y)).b, 1.0);
 
 
     // recalculate alpha
