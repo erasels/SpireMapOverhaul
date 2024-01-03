@@ -5,6 +5,7 @@ import basemod.helpers.TooltipInfo;
 import com.badlogic.gdx.assets.loaders.TextureLoader;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.AbstractEvent;
@@ -96,12 +97,12 @@ public class PlaceholderZone extends AbstractZone implements ModifiedEventRateZo
     }
 
     @Override
-    public void renderBackground() {
+    public void renderBackground(SpriteBatch sb) {
         // Render things in the background when this zone is active.
     }
 
     @Override
-    public void renderForeground() {
+    public void renderForeground(SpriteBatch sb) {
         // Render things in the foreground when this zone is active.
     }
 

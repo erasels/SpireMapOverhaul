@@ -45,7 +45,7 @@ public class ZonePatches {
         public static void renderBackground(SpriteBatch sb) {
             AbstractZone zone = Fields.zone.get(AbstractDungeon.currMapNode);
             if (zone instanceof RenderableZone) {
-                ((RenderableZone) zone).renderBackground();
+                ((RenderableZone) zone).renderBackground(sb);
             }
         }
 
@@ -53,7 +53,7 @@ public class ZonePatches {
         public static void renderForeground(SpriteBatch sb) {
             AbstractZone zone = Fields.zone.get(AbstractDungeon.currMapNode);
             if (zone instanceof RenderableZone) {
-                ((RenderableZone) zone).renderForeground();
+                ((RenderableZone) zone).renderForeground(sb);
             }
         }
     }

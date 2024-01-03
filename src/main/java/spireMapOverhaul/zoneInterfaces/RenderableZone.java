@@ -1,7 +1,9 @@
 package spireMapOverhaul.zoneInterfaces;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
 public interface RenderableZone {
-    default void renderBackground() {}
-    default void renderForeground() {}
+    default void renderBackground(SpriteBatch sb) {}
+    default void renderForeground(SpriteBatch sb) {}
     default void update() {}
 }
