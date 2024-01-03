@@ -5,6 +5,7 @@ import basemod.helpers.TooltipInfo;
 import com.badlogic.gdx.assets.loaders.TextureLoader;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.AbstractEvent;
@@ -20,11 +21,12 @@ import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.util.ImageHelper;
 import spireMapOverhaul.util.TexLoader;
 import spireMapOverhaul.zoneInterfaces.ModifiedEventRateZone;
+import spireMapOverhaul.zoneInterfaces.RenderableZone;
 
 import java.util.ArrayList;
 
 @AutoAdd.Ignore
-public class PlaceholderZone extends AbstractZone implements ModifiedEventRateZone {
+public class PlaceholderZone extends AbstractZone implements ModifiedEventRateZone, RenderableZone {
     public static final String ID = "Placeholder";
     private final int width, height;
     private final Color color;
@@ -92,5 +94,20 @@ public class PlaceholderZone extends AbstractZone implements ModifiedEventRateZo
     public void replaceRooms(Random rng) {
         //Replace 100% of event rooms with treasure rooms.
         //replaceRoomsRandomly(rng, TreasureRoom::new, (room)->room instanceof EventRoom, 1);
+    }
+
+    @Override
+    public void renderBackground(SpriteBatch sb) {
+        // Render things in the background when this zone is active.
+    }
+
+    @Override
+    public void renderForeground(SpriteBatch sb) {
+        // Render things in the foreground when this zone is active.
+    }
+
+    @Override
+    public void update() {
+        // Update things when this zone is active.
     }
 }

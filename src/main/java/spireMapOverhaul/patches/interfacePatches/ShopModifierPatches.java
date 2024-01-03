@@ -35,10 +35,10 @@ public class ShopModifierPatches {
     }
 
     @SpirePatch2(clz = ShopScreen.class, method = "init")
-    public static class ScreenIdleMessages {
+    public static class ShopScreenIdleMessages {
         @SpirePostfixPatch
         public static void patch(ShopScreen __instance, ArrayList<String> ___idleMessages) {
-            Wiz.forCurZone(ShopModifyingZone.class, z-> z.postAddIdleMessages(___idleMessages));
+            Wiz.forCurZone(ShopModifyingZone.class, z -> z.postAddIdleMessages(___idleMessages));
         }
     }
 
