@@ -101,12 +101,12 @@ public class ThievesHideoutZone extends AbstractZone implements EncounterModifyi
             new ZoneEncounter(LOOTER_AND_RED_SLAVER, 2, () -> new MonsterGroup(
                 new AbstractMonster[] {
                     new Looter(-270.0F, 15.0F),
-                    new SlaverRed(-130.0F, 0.0F)
+                    new SlaverRed(130.0F, 0.0F)
                 })),
             new ZoneEncounter(MUGGER_AND_BLUE_SLAVER, 2, () -> new MonsterGroup(
                 new AbstractMonster[] {
                     new Looter(-270.0F, 15.0F),
-                    new SlaverRed(-130.0F, 0.0F)
+                    new SlaverRed(130.0F, 0.0F)
                 })),
             new ZoneEncounter(THREE_LOOTERS_WEAK, 2, () -> new MonsterGroup(
                 new AbstractMonster[] {
