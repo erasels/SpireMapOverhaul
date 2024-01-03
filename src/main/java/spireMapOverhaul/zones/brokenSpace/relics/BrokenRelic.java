@@ -187,13 +187,12 @@ public abstract class BrokenRelic extends AbstractSMORelic {
 
     @Override
     public void render(SpriteBatch sb, boolean renderAmount, Color outlineColor) {
-
         GlitchRotation();
         firstRenderCheck();
 
         StartFbo(sb);
         super.render(sb, renderAmount, outlineColor);
-        StopFbo(sb, 2.0f, renderAmount);
+        StopFbo(sb, renderAmount);
 
     }
 
