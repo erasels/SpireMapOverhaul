@@ -61,7 +61,6 @@ public class ThiefKingEvent extends Colosseum {
                 switch(buttonPressed) {
                     case 1:
                         logMetric(ID,"Greed");
-                        this.screen = CurScreen.LEAVE;
                         AbstractDungeon.getCurrRoom().monsters = MonsterHelper.getEncounter(ThievesHideoutZone.THIEF_KING);
                         AbstractDungeon.getCurrRoom().rewards.clear();
                         AbstractDungeon.getCurrRoom().addRelicToRewards(RelicTier.RARE);
@@ -72,10 +71,13 @@ public class ThiefKingEvent extends Colosseum {
                         AbstractDungeon.lastCombatMetricKey = ThievesHideoutZone.THIEF_KING;
                         break;
                     default:
+                        this.screen = CurScreen.LEAVE;
                         AbstractDungeon.effectList.add(new RainingGoldEffect(GOLD));
                         AbstractDungeon.player.gainGold(GOLD);
                         logMetricGainGold(ID, "Prudence", GOLD);
-                        this.openMap();
+                        this.imageEventText.updateBodyText(DESCRIPTIONS[3]);
+                        this.imageEventText.clearAllDialogs();
+                        this.imageEventText.setDialogOption(OPTIONS[4]);
                         break;
                 }
                 break;
