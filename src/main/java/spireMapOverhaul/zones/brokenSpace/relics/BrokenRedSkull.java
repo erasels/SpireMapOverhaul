@@ -23,46 +23,46 @@ public class BrokenRedSkull extends BrokenRelic {
     }
 
     public void atBattleStart() {
-        this.isActive = false;// 28
-        this.addToBot(new AbstractGameAction() {// 29
+        this.isActive = false;
+        this.addToBot(new AbstractGameAction() {
             public void update() {
-                if (!isActive && !AbstractDungeon.player.isBloodied) {// DEX_AMT2
-                    flash();// DEX_AMTDEX_AMT
-                    pulse = true;// DEX_AMT4
-                    AbstractDungeon.player.addPower(new DexterityPower(AbstractDungeon.player, DEX_AMT));// DEX_AMT5
-                    this.addToTop(new RelicAboveCreatureAction(AbstractDungeon.player, BrokenRedSkull.this));// DEX_AMT6
-                    isActive = true;// DEX_AMT7
-                    AbstractDungeon.onModifyPower();// DEX_AMT8
+                if (!isActive && !AbstractDungeon.player.isBloodied) {
+                    flash();
+                    pulse = true;
+                    addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new DexterityPower(AbstractDungeon.player, DEX_AMT), DEX_AMT));
+                    addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, BrokenRedSkull.this));
+                    isActive = true;
+
                 }
 
-                this.isDone = true;// 40
-            }// 41
+                this.isDone = true;
+            }
         });
-    }// 44
+    }
 
     public void onBloodied() {
-        if (this.isActive && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT) {// 61
-            AbstractPlayer p = AbstractDungeon.player;// 62
-            this.addToTop(new ApplyPowerAction(p, p, new DexterityPower(p, -DEX_AMT), -DEX_AMT));// 6DEX_AMT
+        if (this.isActive && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT) {
+            AbstractPlayer p = AbstractDungeon.player;
+            addToBot(new ApplyPowerAction(p, p, new DexterityPower(p, -DEX_AMT), -DEX_AMT));
         }
 
-        this.stopPulse();// 65
-        this.isActive = false;// 66
-        AbstractDungeon.player.hand.applyPowers();// 67
+        this.stopPulse();
+        this.isActive = false;
 
-    }// 57
+
+    }
 
     public void onNotBloodied() {
-        this.flash();// 48
-        this.pulse = true;// 49
-        if (!this.isActive && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT) {// 50
-            AbstractPlayer p = AbstractDungeon.player;// 51
-            this.addToTop(new ApplyPowerAction(p, p, new DexterityPower(p, DEX_AMT), DEX_AMT));// 52
-            this.addToTop(new RelicAboveCreatureAction(AbstractDungeon.player, this));// 5DEX_AMT
-            this.isActive = true;// 54
-            AbstractDungeon.player.hand.applyPowers();// 55
+        this.flash();
+        this.pulse = true;
+        if (!this.isActive && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT) {
+            AbstractPlayer p = AbstractDungeon.player;
+            this.addToTop(new ApplyPowerAction(p, p, new DexterityPower(p, DEX_AMT), DEX_AMT));
+            this.addToTop(new RelicAboveCreatureAction(p, this));
+            this.isActive = true;
+            AbstractDungeon.player.hand.applyPowers();
         }
-    }// 68
+    }
 
 
     @Override

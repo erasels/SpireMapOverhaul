@@ -1,74 +1,72 @@
 package spireMapOverhaul.zones.brokenSpace.relics;
 
+import com.evacipated.cardcrawl.mod.stslib.relics.BetterOnUsePotionRelic;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
-import com.megacrit.cardcrawl.potions.PotionSlot;
 import com.megacrit.cardcrawl.relics.Sozu;
-import com.megacrit.cardcrawl.ui.panels.TopPanel;
+import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
+import spireMapOverhaul.SpireAnniversary6Mod;
 
-import java.util.ArrayList;
+import java.lang.reflect.Method;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 import static spireMapOverhaul.util.Wiz.*;
 
-public class BrokenSozu extends BrokenRelic {
+public class BrokenSozu extends BrokenRelic implements BetterOnUsePotionRelic {
     public static final String ID = "BrokenSozu";
-    public static final int AMOUNT = 10;
+    public static final int POTION_COST = 1;
 
     public BrokenSozu() {
         super(ID, RelicTier.SPECIAL, LandingSound.CLINK, Sozu.ID);
     }
 
     @Override
-    public void onEquip() {
-        ArrayList<AbstractPotion> potions = new ArrayList<>(adp().potions);
-
-        adp().potionSlots = AMOUNT;
-        adp().potions.clear();
+    public void betterOnUsePotion(AbstractPotion p) {
 
 
-        for (int i = 0; i < AMOUNT; i++) {
-            adp().potions.add(new PotionSlot(i));
+        if (adp().hasRelic(makeID(ID)) && isInCombat() && !canUseOverridden(p)) {
+            adp().energy.use(POTION_COST);
         }
+    }
 
-        // re-add original potions
-        for (int i = 0; i < potions.size(); i++) {
-            AbstractPotion p = potions.get(i);
-            adp().potions.set(i, p);
-            p.setAsObtained(i);
+    private static boolean canUseOverridden(AbstractPotion p) {
+        try {
+            Method method = p.getClass().getMethod("canUse");
+            if (!method.getDeclaringClass().equals(AbstractPotion.class)) {
+                return true;
+            }
+        } catch (NoSuchMethodException e) {
+            SpireAnniversary6Mod.logger.info("BrokenSozu: Potion " + p.name + " does not have a canUse method.");
+
         }
-        // add new potions
-        for (int i = potions.size(); i < (AMOUNT / 2) + potions.size(); i++) {
-            AbstractPotion p = AbstractDungeon.returnRandomPotion();
-            adp().potions.set(i, p);
-            p.setAsObtained(i);
+        return false;
+    }
+
+    @SpirePatch2(clz = AbstractPotion.class, method = "canUse")
+    public static class SozuPatch {
+        @SpirePrefixPatch
+        public static SpireReturn<Boolean> Prefix(AbstractPotion __instance) {
+            if (AbstractDungeon.player.hasRelic(makeID(ID)) && !canUseOverridden(__instance)) {
+                return SpireReturn.Return(canUsePotion(__instance));
+            }
+            return SpireReturn.Continue();
         }
+    }
+
+    public static boolean canUsePotion(AbstractPotion p) {
 
 
+        if (EnergyPanel.totalCount > POTION_COST) {
+            return true;
+        }
+        return false;
     }
 
     @Override
     public String getUpdatedDescription() {
-        return DESCRIPTIONS[0] + AMOUNT + DESCRIPTIONS[1];
-    }
-
-    @SpirePatch2(clz = TopPanel.class, method = "destroyPotion")
-    public static class DestroyPotionPatch {
-        @SpirePostfixPatch
-        public static void Postfix(TopPanel __instance, int slot) {
-            if (adp().hasRelic(makeID(ID))) {
-                adp().potionSlots--;
-                ArrayList<AbstractPotion> potions = new ArrayList<>(adp().potions);
-                adp().potions.clear();
-                potions.remove(slot);
-                for (int i = 0; i < potions.size(); i++) {
-                    AbstractPotion p = potions.get(i);
-                    adp().potions.add(i, p);
-                    p.setAsObtained(i);
-                }
-            }
-        }
+        return DESCRIPTIONS[0] + POTION_COST + DESCRIPTIONS[1];
     }
 }

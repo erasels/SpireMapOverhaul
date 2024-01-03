@@ -2,6 +2,7 @@ package spireMapOverhaul.zones.brokenSpace.relics;
 
 import com.evacipated.cardcrawl.mod.stslib.relics.OnChannelRelic;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.actions.defect.ChannelAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -15,8 +16,9 @@ import static spireMapOverhaul.util.Wiz.adp;
 
 public class BrokenDataDisk extends BrokenRelic implements OnChannelRelic {
     public static final String ID = "BrokenDataDisk";
-    public static final int AMOUNT = 3;
+    public static final int AMOUNT = 1;
     public boolean shouldTrigger = true;
+    private boolean usedThisTurn = false;
 
     public BrokenDataDisk() {
         super(ID, RelicTier.SPECIAL, LandingSound.CLINK, DataDisk.ID);
@@ -24,7 +26,7 @@ public class BrokenDataDisk extends BrokenRelic implements OnChannelRelic {
 
     @Override
     public void onChannel(AbstractOrb abstractOrb) {
-        if (!shouldTrigger) {
+        if (!shouldTrigger || usedThisTurn) {
             return;
         }
 
@@ -34,21 +36,24 @@ public class BrokenDataDisk extends BrokenRelic implements OnChannelRelic {
                 this.isDone = true;// 40
             }// 41
         });
-        addToTop(new ChannelAction(abstractOrb.makeCopy()));
+        addToBot(new ChannelAction(abstractOrb.makeCopy()));
+        usedThisTurn = true;
         shouldTrigger = false;
+    }
+
+
+    @Override
+    public void atTurnStart() {
+        super.atTurnStart();
+        usedThisTurn = false;
     }
 
     @Override
     public void atBattleStart() {
-        this.addToBot(new AbstractGameAction() {// 29
-            public void update() {
-                flash();
-                AbstractDungeon.player.addPower(new FocusPower(AbstractDungeon.player, -AMOUNT));
-                this.addToTop(new RelicAboveCreatureAction(AbstractDungeon.player, BrokenDataDisk.this));
-                AbstractDungeon.onModifyPower();
-                this.isDone = true;// 40
-            }// 41
-        });
+        flash();
+        addToBot(new ApplyPowerAction(adp(), adp(), new FocusPower(adp(), -AMOUNT), -AMOUNT));
+        addToBot(new RelicAboveCreatureAction(adp(), BrokenDataDisk.this));
+        usedThisTurn = false;
     }
 
     @Override

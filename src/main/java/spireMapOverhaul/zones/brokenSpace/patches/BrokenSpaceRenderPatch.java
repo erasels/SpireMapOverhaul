@@ -28,7 +28,7 @@ public class BrokenSpaceRenderPatch {
 
     private static final FrameBuffer fbo;
 
-    private static float shaderTimer = 0.0F;
+
 
     private static final Logger logger = Logger.getLogger(BrokenSpaceRenderPatch.class.getName());
 
@@ -116,7 +116,7 @@ public class BrokenSpaceRenderPatch {
 
         sb.setShader(brokenSpaceShader);
         sb.setColor(Color.WHITE);
-        brokenSpaceShader.setUniformf("u_time", shaderTimer + timerOffset);
+        brokenSpaceShader.setUniformf("u_time", BrokenSpaceZone.shaderTimer + timerOffset);
         brokenSpaceShader.setUniformf("u_strength", strength);
         brokenSpaceShader.setUniformf("u_chrAb", chrAb);
 
@@ -159,19 +159,8 @@ public class BrokenSpaceRenderPatch {
     }
 
 
-    @SpirePatch(
-            clz = CardCrawlGame.class,
-            method = "render"
-    )
-    public static class UpdateShaderTimer {
-        @SpirePostfixPatch
-        public static void updateShaderTimer() {
 
-            shaderTimer += Gdx.graphics.getDeltaTime();
 
-        }
-
-    }
 
     @SpirePatch2(
             clz = AbstractCard.class,

@@ -1,5 +1,6 @@
 package spireMapOverhaul.zones.brokenSpace;
 
+import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireField;
@@ -27,8 +28,10 @@ import spireMapOverhaul.zones.brokenSpace.patches.BrokenSpaceRenderPatch;
 import spireMapOverhaul.zones.brokenSpace.relics.BrokenRelic;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.logging.Logger;
 
+import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.cardRng;
 import static spireMapOverhaul.util.Wiz.adp;
 
 public class BrokenSpaceZone extends AbstractZone implements RewardModifyingZone, ShopModifyingZone {
@@ -39,6 +42,7 @@ public class BrokenSpaceZone extends AbstractZone implements RewardModifyingZone
     public static ArrayList<String> BrokenRelics = new ArrayList<>();
     private final int width, height;
     private final Color color;
+    public static float shaderTimer = 0.0F;
 
     public BrokenSpaceZone() {
         this("Broken Space 0", 2, 3);
@@ -137,6 +141,17 @@ public class BrokenSpaceZone extends AbstractZone implements RewardModifyingZone
 
         AbstractCard c = CardLibrary.getAnyColorCard(rarity).makeCopy();
 
+        float upgradeChance = ReflectionHacks.getPrivateStatic(AbstractDungeon.class, "cardUpgradedChance");
+
+        if (c.rarity != AbstractCard.CardRarity.RARE && cardRng.randomBoolean(upgradeChance) && c.canUpgrade()) {// 1857
+            c.upgrade();// 1858
+        } else {
+            for (AbstractRelic r : AbstractDungeon.player.relics) {
+                r.onPreviewObtainCard(c);
+            }
+        }
+
+
         return c;
 
 
@@ -197,28 +212,23 @@ public class BrokenSpaceZone extends AbstractZone implements RewardModifyingZone
     }
 
     public AbstractRelic getValidBrokenRelic() {
-        ArrayList<String> validRelics = new ArrayList<>();
+        boolean playerHasAllBrokenRelics = true;
         for (String relicID : BrokenRelics) {
             if (!adp().hasRelic(relicID)) {
-                validRelics.add(relicID);
+                playerHasAllBrokenRelics = false;
+                break;
             }
         }
-        if (validRelics.isEmpty()) {
+        if (playerHasAllBrokenRelics) {
             return new Circlet();
         }
+
         AbstractRelic r;
         do {
-            r = RelicLibrary.getRelic(validRelics.get(AbstractDungeon.relicRng.random(validRelics.size() - 1))).makeCopy();
-            validRelics.remove(r.relicId);
-            if (validRelics.isEmpty()) {
-                return new Circlet();
-            }
-
-        } while (!r.canSpawn());
-
+            r = RelicLibrary.getRelic(BrokenRelics.get(AbstractDungeon.relicRng.random(BrokenRelics.size() - 1))).makeCopy();
+        } while (!r.canSpawn() || adp().hasRelic(r.relicId));
 
         return r;
-
     }
 
     @Override

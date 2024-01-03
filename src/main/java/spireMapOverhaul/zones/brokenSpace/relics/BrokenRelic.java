@@ -35,7 +35,6 @@ public abstract class BrokenRelic extends AbstractSMORelic {
     private static String giganticString = "??";
     private static AbstractRelic originalRelic;
     private static final ArrayList<String> loadedRelics = new ArrayList<>();
-    private static float shaderTimer = 0.0F;
     private static Texture missingImg = TexLoader.getTexture(makeImagePath("ui/missing.png"));
 
 
@@ -70,6 +69,30 @@ public abstract class BrokenRelic extends AbstractSMORelic {
             flavorText = generateFlavorText();
         }
         BrokenSpaceZone.addBrokenRelic(makeID(setId));
+    }
+
+    @Override
+    public void playLandingSFX() {
+        // pick a random sound from the list
+        switch ((int) (Math.random() * 5)) {// 470
+            case 0:
+                CardCrawlGame.sound.play("RELIC_DROP_CLINK");// 471
+                break;// 472
+            case 1:
+                CardCrawlGame.sound.play("RELIC_DROP_FLAT");// 474
+                break;// 475
+            case 2:
+                CardCrawlGame.sound.play("RELIC_DROP_ROCKY");// 477
+                break;// 478
+            case 3:
+                CardCrawlGame.sound.play("RELIC_DROP_HEAVY");// 480
+                break;// 481
+            case 4:
+                CardCrawlGame.sound.play("RELIC_DROP_MAGICAL");// 483
+                break;// 484
+
+        }
+
     }
 
     public static void setupStrings() {
@@ -171,7 +194,7 @@ public abstract class BrokenRelic extends AbstractSMORelic {
         setRotation(rotation + glitch);
 
         //low chance to reset rotation to something random
-        if (Math.random() < 0.03f) {
+        if (Math.random() < 0.01f) {
             flipRotation = Math.random() > 0.5f;
             setRotation((float) (Math.random() * 360f));
         }
@@ -237,9 +260,9 @@ public abstract class BrokenRelic extends AbstractSMORelic {
 
         sb.setShader(brokenSpaceShader);
         sb.setColor(Color.WHITE);
-        brokenSpaceShader.setUniformf("u_time", shaderTimer * 4 + timerOffset);
+        brokenSpaceShader.setUniformf("u_time", BrokenSpaceZone.shaderTimer * 3 + timerOffset);
         brokenSpaceShader.setUniformf("u_strength", strength);
-        brokenSpaceShader.setUniformf("u_chrAb", 0.1f);
+        brokenSpaceShader.setUniformf("u_chrAb", 0.02f);
 
         sb.draw(region, 0, 0);
         sb.flush();
@@ -253,20 +276,6 @@ public abstract class BrokenRelic extends AbstractSMORelic {
 
     public void StopFbo(SpriteBatch sb, boolean renderCounter) {
         StopFbo(sb, 1.0F, renderCounter);
-    }
-
-    @SpirePatch(
-            clz = CardCrawlGame.class,
-            method = "render"
-    )
-    public static class UpdateShaderTimer {
-        @SpirePostfixPatch
-        public static void updateShaderTimer() {
-
-            shaderTimer += Gdx.graphics.getDeltaTime();
-
-        }
-
     }
 
     @SpirePatch2(

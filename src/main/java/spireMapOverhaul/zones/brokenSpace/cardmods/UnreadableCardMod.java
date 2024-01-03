@@ -8,10 +8,21 @@ import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 
 public class UnreadableCardMod extends AbstractCardModifier {
     public static final String ID = makeID("UnreadableCardMod");
+    private String name;
+
+    @Override
+    public void onInitialApplication(AbstractCard card) {
+
+        name = randomText(card.name.length());
+        card.exhaust = true;
+        card.isEthereal = true;
+        card.purgeOnUse = true;
+
+    }
 
     @Override
     public String modifyName(String cardName, AbstractCard card) {
-        return randomText(cardName.length());
+        return name;
     }
 
     @Override
@@ -28,7 +39,6 @@ public class UnreadableCardMod extends AbstractCardModifier {
     public boolean removeAtEndOfTurn(AbstractCard card) {
         return true;
     }
-
 
     public String randomText(int length) {
         String chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_+{}[];':\",./<>?\\|`~-=_+??????????????";
@@ -52,10 +62,6 @@ public class UnreadableCardMod extends AbstractCardModifier {
         }
         return builder.toString();
     }
-
-
-    // remove when it exits hand
-
 
     @Override
     public AbstractCardModifier makeCopy() {

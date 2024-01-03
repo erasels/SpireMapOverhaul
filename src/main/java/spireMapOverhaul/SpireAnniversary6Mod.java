@@ -52,6 +52,8 @@ import spireMapOverhaul.util.ZoneShapeMaker;
 import spireMapOverhaul.zoneInterfaces.CampfireModifyingZone;
 import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
 import spireMapOverhaul.rewards.HealReward;
+import spireMapOverhaul.zones.brokenSpace.BrokenSpaceZone;
+import spireMapOverhaul.zones.brokenSpace.patches.BrokenSpaceRenderPatch;
 import spireMapOverhaul.zones.brokenSpace.relics.BrokenRelic;
 
 import java.io.IOException;
@@ -532,6 +534,7 @@ public class SpireAnniversary6Mod implements
             hoverRewardWorkaround.renderCardOnHover(sb);
             hoverRewardWorkaround = null;
         }
+        BrokenSpaceZone.shaderTimer += Gdx.graphics.getDeltaTime();
     }
     private ModPanel settingsPanel;
     private static final float LARGEICONS_CHECKBOX_X = 400f;

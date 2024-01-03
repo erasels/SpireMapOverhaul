@@ -1,19 +1,17 @@
 package spireMapOverhaul.zones.brokenSpace.relics;
 
 import basemod.helpers.CardModifierManager;
-import basemod.helpers.ScreenPostProcessorManager;
-import com.megacrit.cardcrawl.actions.common.DrawCardAction;
+import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.relics.SneckoEye;
-import spireMapOverhaul.zones.brokenSpace.DrawCardWithCallbackAction;
 import spireMapOverhaul.zones.brokenSpace.cardmods.UnreadableCardMod;
 
 
-import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.player;
+import static spireMapOverhaul.util.Wiz.adp;
 
 public class BrokenSneckoEye extends BrokenRelic {
     public static final String ID = "BrokenSneckoEye";
-    public static final int AMOUNT = 2;
+    public static final int AMOUNT = 1;
 
     public BrokenSneckoEye() {
         super(ID, RelicTier.SPECIAL, LandingSound.CLINK, SneckoEye.ID);
@@ -22,27 +20,13 @@ public class BrokenSneckoEye extends BrokenRelic {
 
     @Override
     public void atTurnStart() {
-        addToBot(new DrawCardWithCallbackAction(AMOUNT, (cards) -> {
-            for (AbstractCard card : cards) {
-                CardModifierManager.addModifier(card, new UnreadableCardMod());
-            }
-        }));
+        for (int i = 0; i < AMOUNT; i++) {
+            AbstractCard c = adp().masterDeck.getRandomCard(true).makeCopy();
+            CardModifierManager.addModifier(c, new UnreadableCardMod());
+            addToBot(new MakeTempCardInHandAction(c, true));
+        }
         super.atTurnStart();
     }
-
-//    @Override
-//    public void onPlayerEndTurn() {
-//        for (AbstractCard card : player.hand.group) {
-//            CardModifierManager.removeModifiersById(card, UnreadableCardMod.ID, true);
-//        }
-//        for (AbstractCard card : player.drawPile.group) {
-//            CardModifierManager.removeModifiersById(card, UnreadableCardMod.ID, true);
-//        }
-//        for (AbstractCard card : player.discardPile.group) {
-//            CardModifierManager.removeModifiersById(card, UnreadableCardMod.ID, true);
-//        }
-//
-//    }
 
     @Override
     public String getUpdatedDescription() {

@@ -20,7 +20,8 @@ import static spireMapOverhaul.util.Wiz.adp;
 
 public class BrokenPrayerWheel extends BrokenRelic {
     public static final String ID = "BrokenPrayerWheel";
-    public static final int AMOUNT = 4;
+    public static final int GOLD = 2;
+    public static final int AMOUNT = 1;
 
 
     public BrokenPrayerWheel() {
@@ -30,12 +31,12 @@ public class BrokenPrayerWheel extends BrokenRelic {
 
     @Override
     public int changeNumberOfCardsInReward(int numberOfCards) {
-        return -99;
+        return numberOfCards - AMOUNT;
     }
 
     @Override
     public String getUpdatedDescription() {
-        return DESCRIPTIONS[0] + AMOUNT + DESCRIPTIONS[1];
+        return DESCRIPTIONS[0] + AMOUNT + DESCRIPTIONS[1] + GOLD + DESCRIPTIONS[2];
     }
 
     @SpirePatch2(clz = RewardItem.class, method = "applyGoldBonus")
@@ -50,7 +51,7 @@ public class BrokenPrayerWheel extends BrokenRelic {
                     }
                 }
 
-                __instance.goldAmt *= AMOUNT * numberOfPrayerWheels;
+                __instance.goldAmt *= GOLD * numberOfPrayerWheels;
             }
         }
     }

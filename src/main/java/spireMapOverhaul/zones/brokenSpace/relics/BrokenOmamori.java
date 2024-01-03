@@ -18,7 +18,7 @@ import static spireMapOverhaul.util.Wiz.adp;
 public class BrokenOmamori extends BrokenRelic {
     public static final String ID = "BrokenOmamori";
 
-    public static final int AMOUNT = 3;
+    public static final int AMOUNT = 2;
     public static final int UPGRADE_AMOUNT = 2;
 
     private boolean triggered = false;
@@ -73,6 +73,6 @@ public class BrokenOmamori extends BrokenRelic {
 
     @Override
     public String getUpdatedDescription() {
-        return DESCRIPTIONS[0] + AMOUNT + DESCRIPTIONS[1];
+        return DESCRIPTIONS[0] + AMOUNT + DESCRIPTIONS[1] + UPGRADE_AMOUNT + DESCRIPTIONS[2];
     }
 }

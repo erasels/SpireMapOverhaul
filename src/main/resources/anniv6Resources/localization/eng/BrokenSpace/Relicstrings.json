@@ -4,7 +4,7 @@
     "FLAVOR": "no",
     "DESCRIPTIONS": [
       "At the start of each combat, lose #b",
-      " #yFocus. When you channel an orb, channel another orb of the same type."
+      " #yFocus. The first time you channel an orb each turn, channel another orb of the same type."
     ]
   },
   "${ModID}:BrokenSneckoSkull": {
@@ -29,14 +29,17 @@
     "FLAVOR": "no",
     "DESCRIPTIONS": [
       "Add #b",
-      " #yCurses to your deck. whenever you rest, upgrade a random card in your deck."
+      " #yCurses to your deck. Whenever you rest, upgrade #b",
+      " random cards in your deck."
     ]
   },
   "${ModID}:BrokenDamaru": {
     "NAME": "Broken Damaru",
     "FLAVOR": "no",
     "DESCRIPTIONS": [
-      "Start each combat in Divinity"
+      "At the end of your turn, you may #yExhaust a card in your hand. Gain #yMantra equal to it's cost.",
+      "Select a card to exhaust for mantra."
+
     ]
   },
   "${ModID}:BrokenWingBoots": {
@@ -58,8 +61,8 @@
     "NAME": "Broken Snecko Eye",
     "FLAVOR": "no",
     "DESCRIPTIONS": [
-      "Draw #b",
-      " cards at the start of each turn, but they are unreadable."
+      "At the start of each turn, add #b",
+      " random card from your deck into your hand. It #yExhausts, is #yEthereal, and is unreadable."
     ]
   },
   "${ModID}:BrokenMawBank": {
@@ -75,7 +78,8 @@
     "NAME": "Broken Prayer Wheel",
     "FLAVOR": "no",
     "DESCRIPTIONS": [
-      "Card rewards contain no cards, but each gold reward is multiplied by #b",
+      "Card rewards contain #b",
+      " less card, but each gold reward is multiplied by #b",
       "."
     ]
   },
