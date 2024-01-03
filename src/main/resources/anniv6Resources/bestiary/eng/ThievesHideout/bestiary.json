@@ -186,6 +186,7 @@
 					"min_asc": 0,
 					"desc": "Uses #wSteal #wVitality, then #wSteal #wExperience twice, then #wThe #wReveal, then repeats #wBlade #wFlurry.",
 					"hp": "(95 HP)",
+					"notes": "#wSteal #wExperience takes the highest-rarity card from the draw pile.",
 					"moves": [
 						{
 							"name": "Steal Vitality",
@@ -261,6 +262,7 @@
 					"min_asc": 3,
 					"desc": "Uses #wSteal #wVitality, then #wSteal #wExperience twice, then #wThe #wReveal, then repeats #wBlade #wFlurry.",
 					"hp": "(95 HP)",
+					"notes": "#wSteal #wExperience takes the highest-rarity card from the draw pile.",
 					"moves": [
 						{
 							"name": "Steal Vitality",
@@ -336,6 +338,7 @@
 					"min_asc": 8,
 					"desc": "Uses #wSteal #wVitality, then #wSteal #wExperience twice, then #wThe #wReveal, then repeats #wBlade #wFlurry.",
 					"hp": "(100 HP)",
+					"notes": "#wSteal #wExperience takes the highest-rarity card from the draw pile.",
 					"moves": [
 						{
 							"name": "Steal Vitality",
@@ -411,6 +414,7 @@
 					"min_asc": 18,
 					"desc": "Uses #wSteal #wVitality, then #wSteal #wExperience twice, then #wThe #wReveal, then repeats #wBlade #wFlurry.",
 					"hp": "(100 HP)",
+					"notes": "#wSteal #wExperience takes the highest-rarity card from the draw pile.",
 					"moves": [
 						{
 							"name": "Steal Vitality",
