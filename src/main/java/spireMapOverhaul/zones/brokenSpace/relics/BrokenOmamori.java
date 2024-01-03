@@ -1,11 +1,14 @@
 package spireMapOverhaul.zones.brokenSpace.relics;
 
+import com.badlogic.gdx.math.MathUtils;
+import com.megacrit.cardcrawl.actions.unique.AddCardToDeckAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.Omamori;
 import com.megacrit.cardcrawl.vfx.UpgradeHammerImprintEffect;
 import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
+import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 
 import java.util.*;
@@ -16,6 +19,8 @@ public class BrokenOmamori extends BrokenRelic {
     public static final String ID = "BrokenOmamori";
 
     public static final int AMOUNT = 3;
+    public static final int UPGRADE_AMOUNT = 2;
+
     private boolean triggered = false;
 
     public BrokenOmamori() {
@@ -27,8 +32,8 @@ public class BrokenOmamori extends BrokenRelic {
         super.onEquip();
         for (int i = 0; i < AMOUNT; i++) {
             AbstractCard c = AbstractDungeon.returnRandomCurse();
-            AbstractDungeon.player.masterDeck.addToTop(c);
-            AbstractDungeon.effectList.add(new ShowCardBrieflyEffect(c.makeStatEquivalentCopy()));
+
+            AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(c, (float) Settings.WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F));
         }
     }
 
@@ -53,12 +58,16 @@ public class BrokenOmamori extends BrokenRelic {
                 }
             }
 
-            Collections.shuffle(upgradableCards, new Random(AbstractDungeon.miscRng.randomLong()));// 109
-            if (!upgradableCards.isEmpty()) {// 111
-                upgradableCards.get(0).upgrade();// 114
-                AbstractDungeon.player.bottledCardUpgradeCheck(upgradableCards.get(0));// 116
-                AbstractDungeon.effectList.add(new ShowCardBrieflyEffect(upgradableCards.get(0).makeStatEquivalentCopy()));// 117
+            for (int i = 0; i < UPGRADE_AMOUNT; i++) {
+                if (!upgradableCards.isEmpty()) {
+                    AbstractCard c = upgradableCards.remove(AbstractDungeon.cardRandomRng.random(upgradableCards.size() - 1));
+                    c.upgrade();
+                    AbstractDungeon.player.bottledCardUpgradeCheck(c);
+                    AbstractDungeon.effectList.add(new ShowCardBrieflyEffect(c.makeStatEquivalentCopy(), MathUtils.random(0.1F, 0.9F) * (float) Settings.WIDTH, MathUtils.random(0.2F, 0.8F) * (float) Settings.HEIGHT));// 105 107 108 109
+
+                }
             }
+
         }
     }
 

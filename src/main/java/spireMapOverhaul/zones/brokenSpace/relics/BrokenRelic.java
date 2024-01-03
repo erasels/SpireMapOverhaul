@@ -61,7 +61,7 @@ public abstract class BrokenRelic extends AbstractSMORelic {
             img = originalRelic.img;
             largeImg = originalRelic.largeImg;
             outlineImg = originalRelic.outlineImg;
-            flavorText = updateFlavorText();
+            flavorText = generateFlavorText();
         }
         BrokenSpaceZone.addBrokenRelic(makeID(setId));
     }
@@ -180,10 +180,7 @@ public abstract class BrokenRelic extends AbstractSMORelic {
         if (textResetTimer > 1.0F) {
             flavorText = updateFlavorText();
             textResetTimer = 0.0F;
-            if (CardCrawlGame.relicPopup.isOpen) {
-                CardCrawlGame.relicPopup.close();
-                CardCrawlGame.relicPopup.open(this);
-            }
+
         }
 
     }
