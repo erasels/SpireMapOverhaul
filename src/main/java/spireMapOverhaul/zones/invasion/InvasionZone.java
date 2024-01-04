@@ -68,7 +68,6 @@ public class InvasionZone extends AbstractZone implements EncounterModifyingZone
     public void distributeRooms(Random rng, ArrayList<AbstractRoom> roomList) {
         //Guarantee at least one elite
         placeRoomRandomly(rng, roomOrDefault(roomList, (room)->room instanceof MonsterRoomElite, MonsterRoomElite::new));
-
     }
 
     @Override
