@@ -1,0 +1,87 @@
+[
+  {
+    "ID": "sharp",
+    "PROPER_NAME": "[#8c9cff]Sharp[]",
+    "NAMES": [
+      "sharp"
+    ],
+    "DESCRIPTION": "When played, deal #b5 damage to the target enemy. Damages a random enemy if this card does not target one enemy."
+  },
+  {
+    "PROPER_NAME": "[#8c9cff]Tough[]",
+    "NAMES": [
+      "tough"
+    ],
+    "DESCRIPTION": "When played, gain #b5 #yBlock."
+  },
+  {
+    "PROPER_NAME": "[#8c9cff]Powerful[]",
+    "NAMES": [
+      "powerful"
+    ],
+    "DESCRIPTION": "When played, gain #b1 #yStrength."
+  },
+  {
+    "PROPER_NAME": "[#8c9cff]Protective[]",
+    "NAMES": [
+      "protective"
+    ],
+    "DESCRIPTION": "When played, gain #b1 #yDexterity."
+  },
+  {
+    "PROPER_NAME": "[#8c9cff]Exposing[]",
+    "NAMES": [
+      "exposing"
+    ],
+    "DESCRIPTION": "When played, apply #b1 #yVulnerable to the target enemy. Applies to a random enemy if this card does not target one enemy."
+  },
+  {
+    "PROPER_NAME": "[#8c9cff]Crippling[]",
+    "NAMES": [
+      "crippling"
+    ],
+    "DESCRIPTION": "When played, apply #b1 #yWeak to the target enemy. Applies to a random enemy if this card does not target one enemy."
+  },
+  {
+    "PROPER_NAME": "[#ff8cd5]Harmful[]",
+    "NAMES": [
+      "harmful"
+    ],
+    "DESCRIPTION": "When played, take #b5 damage."
+  },
+  {
+    "PROPER_NAME": "[#ff8cd5]Fragile[]",
+    "NAMES": [
+      "fragile"
+    ],
+    "DESCRIPTION": "When played, gain #b1 #yVulnerable."
+  },
+  {
+    "PROPER_NAME": "[#ff8cd5]Feeble[]",
+    "NAMES": [
+      "feeble"
+    ],
+    "DESCRIPTION": "When played, gain #b1 #yFrail."
+  },
+  {
+    "PROPER_NAME": "[#ff8cd5]Flawed[]",
+    "NAMES": [
+      "flawed"
+    ],
+    "DESCRIPTION": "When played, gain #b1 #yWeak."
+  },
+  {
+    "PROPER_NAME": "[#ff8cd5]Powerless[]",
+    "NAMES": [
+      "powerless"
+    ],
+    "DESCRIPTION": "When played, lose #b1 #yStrength."
+  },
+  {
+    "PROPER_NAME": "[#ff8cd5]Brittle[]",
+    "NAMES": [
+      "brittle"
+    ],
+    "DESCRIPTION": "When played, lose #b1 #yDexterity."
+  }
+]

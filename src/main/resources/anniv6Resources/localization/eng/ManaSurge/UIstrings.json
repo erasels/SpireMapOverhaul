@@ -1,0 +1,14 @@
+{
+  "${ModID}:ManaSurge": {
+    "TEXT": [
+      "Mana Surge",
+      "The Spire is being flooded with mana."
+    ]
+  },
+  "${ModID}:EnchantOption": {
+    "TEXT": [
+      "Enchant",
+      "Gives a card a permanent enchantment that lasts outside of this zone."
+    ]
+  }
+}

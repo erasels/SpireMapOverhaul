@@ -1,0 +1,9 @@
+{
+
+  "${ModID}:ManaSurgePower": {
+    "NAME": "Mana Surge",
+    "DESCRIPTIONS": [
+      "Cards have a 50% chance to receive a random enchantment when drawn."
+    ]
+  }
+}
