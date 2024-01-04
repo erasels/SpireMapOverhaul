@@ -26,7 +26,7 @@ public class FlawedModifier extends AbstractManaSurgeModifier {
     private static final int WEAK_AMT = 1;
 
     public FlawedModifier(boolean permanent) {
-        super(permanent,MOD_RARITY);;
+        super(permanent,MOD_RARITY);
     }
 
     @Override
