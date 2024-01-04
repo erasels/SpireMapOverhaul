@@ -46,15 +46,18 @@
     "NAME": "Broken Wing Boots",
     "FLAVOR": "no",
     "DESCRIPTIONS": [
-      "Future acts are a LOT denser."
+      "Whenever you enter a Rest Site, start the next combat with #b",
+      " #yStrength."
+
     ]
   },
   "${ModID}:BrokenSozu": {
     "NAME": "Broken Sozu",
     "FLAVOR": "no",
     "DESCRIPTIONS": [
-      "On pickup, set your Potion Slots to #b",
-      ", then fill half of that number with #yRandom #yPotions. When you use a potion, lose it's slot."
+      "In-Combat Potions cost #b",
+      " [E] to use. When you spend energy on a potion, use another random potion.",
+      " Energy"
     ]
   },
   "${ModID}:BrokenSneckoEye": {

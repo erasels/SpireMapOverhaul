@@ -11,7 +11,7 @@ import static spireMapOverhaul.util.Wiz.adp;
 
 public class BrokenMawBank extends BrokenRelic {
     public static final String ID = "BrokenMawBank";
-    public static final int AMOUNT = 500;
+    public static final int AMOUNT = 400;
 
 
     private boolean used = false;

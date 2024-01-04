@@ -1,13 +1,22 @@
 package spireMapOverhaul.zones.brokenSpace.relics;
 
 import com.evacipated.cardcrawl.mod.stslib.relics.BetterOnUsePotionRelic;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
+import com.evacipated.cardcrawl.modthespire.lib.*;
+import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
+import com.megacrit.cardcrawl.actions.utility.TextCenteredAction;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.relics.Sozu;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
+import com.megacrit.cardcrawl.ui.panels.PotionPopUp;
+import com.megacrit.cardcrawl.ui.panels.TopPanel;
+import javassist.CannotCompileException;
+import javassist.CtBehavior;
+import javassist.expr.ExprEditor;
+import javassist.expr.FieldAccess;
+import javassist.expr.MethodCall;
 import spireMapOverhaul.SpireAnniversary6Mod;
 
 import java.lang.reflect.Method;
@@ -17,7 +26,8 @@ import static spireMapOverhaul.util.Wiz.*;
 
 public class BrokenSozu extends BrokenRelic implements BetterOnUsePotionRelic {
     public static final String ID = "BrokenSozu";
-    public static final int POTION_COST = 1;
+    public static final int POTION_COST = 2;
+    public static final String[] DESCRIPTIONS = CardCrawlGame.languagePack.getRelicStrings(makeID(ID)).DESCRIPTIONS;
 
     public BrokenSozu() {
         super(ID, RelicTier.SPECIAL, LandingSound.CLINK, Sozu.ID);
@@ -29,6 +39,10 @@ public class BrokenSozu extends BrokenRelic implements BetterOnUsePotionRelic {
 
         if (adp().hasRelic(makeID(ID)) && isInCombat() && !canUseOverridden(p)) {
             adp().energy.use(POTION_COST);
+            AbstractPotion secondPotion = AbstractDungeon.returnRandomPotion(true);
+            secondPotion.use(AbstractDungeon.getRandomMonster());
+            addToBot(new TextCenteredAction(adp(), secondPotion.name));
+
         }
     }
 
@@ -56,13 +70,37 @@ public class BrokenSozu extends BrokenRelic implements BetterOnUsePotionRelic {
         }
     }
 
-    public static boolean canUsePotion(AbstractPotion p) {
-
-
-        if (EnergyPanel.totalCount > POTION_COST) {
-            return true;
+    @SpirePatch2(clz = PotionPopUp.class, method = "render")
+    public static class SozuEnergyTextPatch {
+        @SpireInsertPatch(locator = Locator.class, localvars = {"label"})
+        public static void Insert(PotionPopUp __instance, @ByRef String[] label) {
+            if (AbstractDungeon.player.hasRelic(makeID(ID))) {
+                label[0] = getEnergyText(__instance, label[0]);
+            }
         }
-        return false;
+
+        private static class Locator extends SpireInsertLocator {
+            @Override
+            public int[] Locate(CtBehavior ctBehavior) throws CannotCompileException, PatchingException {
+                Matcher matcher = new Matcher.MethodCallMatcher(FontHelper.class, "renderFontCenteredWidth");
+                return new int[]{LineFinder.findInOrder(ctBehavior, matcher)[0] - 1};
+            }
+        }
+
+    }
+
+    public static String getEnergyText(PotionPopUp popup, String original) {
+        if (AbstractDungeon.player.hasRelic(makeID(ID))) {
+            return original + ": " + POTION_COST + " " + DESCRIPTIONS[2];
+
+        }
+        return original;
+    }
+
+
+
+    public static boolean canUsePotion(AbstractPotion p) {
+        return EnergyPanel.totalCount >= POTION_COST;
     }
 
     @Override
