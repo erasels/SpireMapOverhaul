@@ -12,16 +12,29 @@ public abstract class AbstractManaSurgeModifier extends AbstractCardModifier {
         UNCOMMON_MOD
     }
 
-    private final ModRarity modRarity;
+    public enum ModEffect {
+        POSITIVE_MOD,
+        NEGATIVE_MOD
+    }
 
-    public AbstractManaSurgeModifier(boolean permanent, ModRarity modRarity) {
+    private final ModRarity modRarity;
+    private final ModEffect modEffect;
+
+
+    public AbstractManaSurgeModifier(boolean permanent, ModRarity modRarity, ModEffect modEffect) {
         isPermanent = permanent;
         this.modRarity = modRarity;
+        this.modEffect = modEffect;
     }
 
     public ModRarity getModRarity() {
         return modRarity;
     }
+
+    public ModEffect getModEffect() {
+        return modEffect;
+    }
+
 
     @Override
     public boolean removeAtEndOfTurn(AbstractCard card) {

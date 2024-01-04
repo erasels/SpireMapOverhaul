@@ -21,11 +21,13 @@ import static spireMapOverhaul.SpireAnniversary6Mod.makeImagePath;
 
 public class PowerfulModifier extends AbstractManaSurgeModifier {
     private static final ModRarity MOD_RARITY = ModRarity.UNCOMMON_MOD;
+    private static final ModEffect MOD_EFFECT = ModEffect.POSITIVE_MOD;
+
     private static final Texture ICON = TexLoader.getTexture(makeImagePath("ui/extraIcons/PositiveEnchantmentIcon.png"));
     private static final int STRENGTH_AMT = 1;
 
     public PowerfulModifier(boolean permanent) {
-        super(permanent,MOD_RARITY);
+        super(permanent,MOD_RARITY,MOD_EFFECT);
     }
 
     @Override

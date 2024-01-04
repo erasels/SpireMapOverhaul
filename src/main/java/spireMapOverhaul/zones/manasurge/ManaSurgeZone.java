@@ -14,10 +14,16 @@ import spireMapOverhaul.zoneInterfaces.CombatModifyingZone;
 import spireMapOverhaul.zoneInterfaces.RewardModifyingZone;
 import spireMapOverhaul.zoneInterfaces.ShopModifyingZone;
 import spireMapOverhaul.zones.manasurge.modifiers.AbstractManaSurgeModifier;
+import spireMapOverhaul.zones.manasurge.modifiers.common.negative.FeebleModifier;
+import spireMapOverhaul.zones.manasurge.modifiers.common.negative.FlawedModifier;
+import spireMapOverhaul.zones.manasurge.modifiers.common.negative.FragileModifier;
+import spireMapOverhaul.zones.manasurge.modifiers.common.negative.HarmfulModifier;
 import spireMapOverhaul.zones.manasurge.modifiers.common.positive.CripplingModifier;
 import spireMapOverhaul.zones.manasurge.modifiers.common.positive.ExposingModifier;
 import spireMapOverhaul.zones.manasurge.modifiers.common.positive.SharpModifier;
 import spireMapOverhaul.zones.manasurge.modifiers.common.positive.ToughModifier;
+import spireMapOverhaul.zones.manasurge.modifiers.uncommon.negative.BrittleModifier;
+import spireMapOverhaul.zones.manasurge.modifiers.uncommon.negative.PowerlessModifier;
 import spireMapOverhaul.zones.manasurge.modifiers.uncommon.positive.PowerfulModifier;
 import spireMapOverhaul.zones.manasurge.modifiers.uncommon.positive.ProtectiveModifier;
 import spireMapOverhaul.zones.manasurge.powers.ManaSurgePower;
@@ -57,6 +63,15 @@ public class ManaSurgeZone extends AbstractZone implements
         return false;
     }
 
+    private boolean isPositiveModifier(AbstractCard card) {
+        for (AbstractCardModifier mod : CardModifierManager.modifiers(card)) {
+            if (mod instanceof AbstractManaSurgeModifier && ((AbstractManaSurgeModifier) mod).getModEffect() == AbstractManaSurgeModifier.ModEffect.POSITIVE_MOD) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     public AbstractZone copy() {
         return new ManaSurgeZone();
@@ -88,7 +103,7 @@ public class ManaSurgeZone extends AbstractZone implements
         for (AbstractCard card : cards) {
             if (card.cost != -2 && card.type != AbstractCard.CardType.CURSE && card.type != AbstractCard.CardType.STATUS) {
                 if (Math.random() < COMMON_CHANCE) {
-                    int numberOfCommonModifiers = 4;
+                    int numberOfCommonModifiers = 8;
                     int selectedModifierIndex = (int) (Math.random() * numberOfCommonModifiers);
                     AbstractCardModifier modifier;
                     switch (selectedModifierIndex) {
@@ -104,6 +119,18 @@ public class ManaSurgeZone extends AbstractZone implements
                         case 3:
                             modifier = new CripplingModifier(true);
                             break;
+                        case 4:
+                            modifier = new FeebleModifier(true);
+                            break;
+                        case 5:
+                            modifier = new FlawedModifier(true);
+                            break;
+                        case 6:
+                            modifier = new FragileModifier(true);
+                            break;
+                        case 7:
+                            modifier = new HarmfulModifier(true);
+                            break;
                         default:
                             modifier = null;
                             break;
@@ -112,7 +139,7 @@ public class ManaSurgeZone extends AbstractZone implements
                         CardModifierManager.addModifier(card, modifier);
                     }
                 } else {
-                    int numberOfUncommonModifiers = 2;
+                    int numberOfUncommonModifiers = 4;
                     int selectedModifierIndex = (int) (Math.random() * numberOfUncommonModifiers);
                     AbstractCardModifier modifier;
                     switch (selectedModifierIndex) {
@@ -121,6 +148,12 @@ public class ManaSurgeZone extends AbstractZone implements
                             break;
                         case 1:
                             modifier = new ProtectiveModifier(true);
+                            break;
+                        case 2:
+                            modifier = new BrittleModifier(true);
+                            break;
+                        case 3:
+                            modifier = new PowerlessModifier(true);
                             break;
                         default:
                             modifier = null;
@@ -144,7 +177,7 @@ public class ManaSurgeZone extends AbstractZone implements
         for (AbstractCard card : coloredCards) {
             if (card.cost != -2 && card.type != AbstractCard.CardType.CURSE && card.type != AbstractCard.CardType.STATUS) {
                 if (Math.random() < COMMON_CHANCE) {
-                    int numberOfCommonModifiers = 4;
+                    int numberOfCommonModifiers = 8;
                     int selectedModifierIndex = (int) (Math.random() * numberOfCommonModifiers);
                     AbstractCardModifier modifier;
                     switch (selectedModifierIndex) {
@@ -160,6 +193,18 @@ public class ManaSurgeZone extends AbstractZone implements
                         case 3:
                             modifier = new CripplingModifier(true);
                             break;
+                        case 4:
+                            modifier = new FeebleModifier(true);
+                            break;
+                        case 5:
+                            modifier = new FlawedModifier(true);
+                            break;
+                        case 6:
+                            modifier = new FragileModifier(true);
+                            break;
+                        case 7:
+                            modifier = new HarmfulModifier(true);
+                            break;
                         default:
                             modifier = null;
                             break;
@@ -168,7 +213,7 @@ public class ManaSurgeZone extends AbstractZone implements
                         CardModifierManager.addModifier(card, modifier);
                     }
                 } else {
-                    int numberOfUncommonModifiers = 2;
+                    int numberOfUncommonModifiers = 4;
                     int selectedModifierIndex = (int) (Math.random() * numberOfUncommonModifiers);
                     AbstractCardModifier modifier;
                     switch (selectedModifierIndex) {
@@ -177,6 +222,12 @@ public class ManaSurgeZone extends AbstractZone implements
                             break;
                         case 1:
                             modifier = new ProtectiveModifier(true);
+                            break;
+                        case 2:
+                            modifier = new BrittleModifier(true);
+                            break;
+                        case 3:
+                            modifier = new PowerlessModifier(true);
                             break;
                         default:
                             modifier = null;
@@ -191,7 +242,7 @@ public class ManaSurgeZone extends AbstractZone implements
         for (AbstractCard card : colorlessCards) {
             if (card.cost != -2 && card.type != AbstractCard.CardType.CURSE && card.type != AbstractCard.CardType.STATUS) {
                 if (Math.random() < COMMON_CHANCE) {
-                    int numberOfCommonModifiers = 4;
+                    int numberOfCommonModifiers = 8;
                     int selectedModifierIndex = (int) (Math.random() * numberOfCommonModifiers);
                     AbstractCardModifier modifier;
                     switch (selectedModifierIndex) {
@@ -207,6 +258,18 @@ public class ManaSurgeZone extends AbstractZone implements
                         case 3:
                             modifier = new CripplingModifier(true);
                             break;
+                        case 4:
+                            modifier = new FeebleModifier(true);
+                            break;
+                        case 5:
+                            modifier = new FlawedModifier(true);
+                            break;
+                        case 6:
+                            modifier = new FragileModifier(true);
+                            break;
+                        case 7:
+                            modifier = new HarmfulModifier(true);
+                            break;
                         default:
                             modifier = null;
                             break;
@@ -215,7 +278,7 @@ public class ManaSurgeZone extends AbstractZone implements
                         CardModifierManager.addModifier(card, modifier);
                     }
                 } else {
-                    int numberOfUncommonModifiers = 2;
+                    int numberOfUncommonModifiers = 4;
                     int selectedModifierIndex = (int) (Math.random() * numberOfUncommonModifiers);
                     AbstractCardModifier modifier;
                     switch (selectedModifierIndex) {
@@ -224,6 +287,12 @@ public class ManaSurgeZone extends AbstractZone implements
                             break;
                         case 1:
                             modifier = new ProtectiveModifier(true);
+                            break;
+                        case 2:
+                            modifier = new BrittleModifier(true);
+                            break;
+                        case 3:
+                            modifier = new PowerlessModifier(true);
                             break;
                         default:
                             modifier = null;
@@ -241,9 +310,17 @@ public class ManaSurgeZone extends AbstractZone implements
     public float modifyCardBaseCost(AbstractCard c, float baseCost) {
         if (hasManaSurgeModifier(c)) {
             if (isCommonModifier(c)) {
-                return baseCost + 30;
+                if (isPositiveModifier(c)) {
+                    return baseCost + 40;
+                } else {
+                    return baseCost - 20;
+                }
             } else {
-                return baseCost + 80;
+                if (isPositiveModifier(c)) {
+                    return baseCost + 80;
+                } else {
+                    return baseCost - 40;
+                }
             }
         }
         return baseCost;
