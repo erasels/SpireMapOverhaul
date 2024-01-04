@@ -14,16 +14,21 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import spireMapOverhaul.util.TexLoader;
 import spireMapOverhaul.zones.manasurge.interfaces.ModifierTags;
-import spireMapOverhaul.zones.manasurge.utils.ManaSurgeTags;
+import spireMapOverhaul.zones.manasurge.modifiers.AbstractManaSurgeModifier;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeImagePath;
 
-public class CripplingModifier extends AbstractCardModifier implements ModifierTags {
+public class CripplingModifier extends AbstractManaSurgeModifier implements ModifierTags {
     private static final Texture ICON = TexLoader.getTexture(makeImagePath("ui/extraIcons/PositiveEnchantmentIcon.png"));
     private static final int WEAK_AMT = 1;
+
+    public CripplingModifier(boolean permanent) {
+        super(permanent);
+    }
+
     @Override
     public boolean isPositiveModifier() {
         return true;
@@ -52,11 +57,6 @@ public class CripplingModifier extends AbstractCardModifier implements ModifierT
     }
 
     @Override
-    public boolean removeAtEndOfTurn(AbstractCard card) {
-        return !card.retain || !card.hasTag(ManaSurgeTags.PERMANENT_MODIFIER);
-    }
-
-    @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
         return "[#8c9cff]Crippling[]." + " NL " + rawDescription;
     }
@@ -68,6 +68,6 @@ public class CripplingModifier extends AbstractCardModifier implements ModifierT
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new CripplingModifier();
+        return new CripplingModifier(isPermanent);
     }
 }

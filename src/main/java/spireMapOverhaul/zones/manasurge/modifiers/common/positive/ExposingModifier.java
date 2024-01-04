@@ -14,16 +14,20 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import spireMapOverhaul.util.TexLoader;
 import spireMapOverhaul.zones.manasurge.interfaces.ModifierTags;
-import spireMapOverhaul.zones.manasurge.utils.ManaSurgeTags;
+import spireMapOverhaul.zones.manasurge.modifiers.AbstractManaSurgeModifier;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeImagePath;
 
-public class ExposingModifier extends AbstractCardModifier implements ModifierTags {
+public class ExposingModifier extends AbstractManaSurgeModifier implements ModifierTags {
     private static final Texture ICON = TexLoader.getTexture(makeImagePath("ui/extraIcons/PositiveEnchantmentIcon.png"));
     private static final int VULN_AMT = 1;
+
+    public ExposingModifier(boolean permanent) {
+        super(permanent);
+    }
 
     @Override
     public boolean isPositiveModifier() {
@@ -53,11 +57,6 @@ public class ExposingModifier extends AbstractCardModifier implements ModifierTa
     }
 
     @Override
-    public boolean removeAtEndOfTurn(AbstractCard card) {
-        return !card.retain || !card.hasTag(ManaSurgeTags.PERMANENT_MODIFIER);
-    }
-
-    @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
         return "[#8c9cff]Exposing[]." + " NL " + rawDescription;
     }
@@ -69,6 +68,6 @@ public class ExposingModifier extends AbstractCardModifier implements ModifierTa
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new ExposingModifier();
+        return new ExposingModifier(isPermanent);
     }
 }

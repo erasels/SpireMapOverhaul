@@ -15,16 +15,20 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import spireMapOverhaul.util.TexLoader;
 import spireMapOverhaul.zones.manasurge.interfaces.ModifierTags;
-import spireMapOverhaul.zones.manasurge.utils.ManaSurgeTags;
+import spireMapOverhaul.zones.manasurge.modifiers.AbstractManaSurgeModifier;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeImagePath;
 
-public class SharpModifier extends AbstractCardModifier implements ModifierTags {
+public class SharpModifier extends AbstractManaSurgeModifier implements ModifierTags {
     private static final Texture ICON = TexLoader.getTexture(makeImagePath("ui/extraIcons/PositiveEnchantmentIcon.png"));
     private static final int DAMAGE = 5;
+
+    public SharpModifier(boolean permanent) {
+        super(permanent);
+    }
 
     @Override
     public boolean isPositiveModifier() {
@@ -55,11 +59,6 @@ public class SharpModifier extends AbstractCardModifier implements ModifierTags 
     }
 
     @Override
-    public boolean removeAtEndOfTurn(AbstractCard card) {
-        return !card.retain || !card.hasTag(ManaSurgeTags.PERMANENT_MODIFIER);
-    }
-
-    @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
         return "[#8c9cff]Sharp[]." + " NL " + rawDescription;
     }
@@ -71,6 +70,6 @@ public class SharpModifier extends AbstractCardModifier implements ModifierTags 
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new SharpModifier();
+        return new SharpModifier(isPermanent);
     }
 }

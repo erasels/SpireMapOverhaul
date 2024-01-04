@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractSMOPower;
+import spireMapOverhaul.zones.manasurge.ManaSurgeZone;
 import spireMapOverhaul.zones.manasurge.modifiers.common.negative.FeebleModifier;
 import spireMapOverhaul.zones.manasurge.modifiers.common.negative.FlawedModifier;
 import spireMapOverhaul.zones.manasurge.modifiers.common.negative.FragileModifier;
@@ -22,7 +23,6 @@ import spireMapOverhaul.zones.manasurge.modifiers.uncommon.negative.BrittleModif
 import spireMapOverhaul.zones.manasurge.modifiers.uncommon.negative.PowerlessModifier;
 import spireMapOverhaul.zones.manasurge.modifiers.uncommon.positive.PowerfulModifier;
 import spireMapOverhaul.zones.manasurge.modifiers.uncommon.positive.ProtectiveModifier;
-import spireMapOverhaul.zones.manasurge.utils.ManaSurgeTags;
 
 public class ManaSurgePower extends AbstractSMOPower implements NonStackablePower {
     public static final String POWER_ID = SpireAnniversary6Mod.makeID("ManaSurgePower");
@@ -40,7 +40,7 @@ public class ManaSurgePower extends AbstractSMOPower implements NonStackablePowe
     @Override
     public void onCardDraw(AbstractCard card) {
         super.onCardDraw(card);
-        if (!card.hasTag(ManaSurgeTags.PERMANENT_MODIFIER) && card.cost != -2 && card.type != AbstractCard.CardType.CURSE && card.type != AbstractCard.CardType.STATUS) {
+        if (!ManaSurgeZone.hasManaSurgeModifier(card) && card.cost != -2 && card.type != AbstractCard.CardType.CURSE && card.type != AbstractCard.CardType.STATUS) {
             if (Math.random() < EFFECT_CHANCE) {
                 if (Math.random() < COMMON_CHANCE) {
                     int numberOfCommonModifiers = 8;
@@ -48,28 +48,28 @@ public class ManaSurgePower extends AbstractSMOPower implements NonStackablePowe
                     AbstractCardModifier modifier;
                     switch (selectedModifierIndex) {
                         case 0:
-                            modifier = new SharpModifier();
+                            modifier = new SharpModifier(false);
                             break;
                         case 1:
-                            modifier = new HarmfulModifier();
+                            modifier = new HarmfulModifier(false);
                             break;
                         case 2:
-                            modifier = new ToughModifier();
+                            modifier = new ToughModifier(false);
                             break;
                         case 3:
-                            modifier = new FragileModifier();
+                            modifier = new FragileModifier(false);
                             break;
                         case 4:
-                            modifier = new ExposingModifier();
+                            modifier = new ExposingModifier(false);
                             break;
                         case 5:
-                            modifier = new FeebleModifier();
+                            modifier = new FeebleModifier(false);
                             break;
                         case 6:
-                            modifier = new CripplingModifier();
+                            modifier = new CripplingModifier(false);
                             break;
                         case 7:
-                            modifier = new FlawedModifier();
+                            modifier = new FlawedModifier(false);
                             break;
                         default:
                             modifier = null;
@@ -84,16 +84,16 @@ public class ManaSurgePower extends AbstractSMOPower implements NonStackablePowe
                     AbstractCardModifier modifier;
                     switch (selectedModifierIndex) {
                         case 0:
-                            modifier = new PowerfulModifier();
+                            modifier = new PowerfulModifier(false);
                             break;
                         case 1:
-                            modifier = new PowerlessModifier();
+                            modifier = new PowerlessModifier(false);
                             break;
                         case 2:
-                            modifier = new ProtectiveModifier();
+                            modifier = new ProtectiveModifier(false);
                             break;
                         case 3:
-                            modifier = new BrittleModifier();
+                            modifier = new BrittleModifier(false);
                             break;
                         default:
                             modifier = null;

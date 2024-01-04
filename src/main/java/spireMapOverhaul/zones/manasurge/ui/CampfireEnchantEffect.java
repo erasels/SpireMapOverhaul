@@ -24,7 +24,6 @@ import spireMapOverhaul.zones.manasurge.modifiers.common.positive.SharpModifier;
 import spireMapOverhaul.zones.manasurge.modifiers.common.positive.ToughModifier;
 import spireMapOverhaul.zones.manasurge.modifiers.uncommon.positive.PowerfulModifier;
 import spireMapOverhaul.zones.manasurge.modifiers.uncommon.positive.ProtectiveModifier;
-import spireMapOverhaul.zones.manasurge.utils.ManaSurgeTags;
 
 import java.util.Iterator;
 
@@ -53,23 +52,22 @@ public class CampfireEnchantEffect extends AbstractGameEffect {
             while (var1.hasNext()) {
                 AbstractCard c = (AbstractCard) var1.next();
                 AbstractDungeon.effectsQueue.add(new UpgradeShineEffect((float) Settings.WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F));
-                c.tags.add(ManaSurgeTags.PERMANENT_MODIFIER);
                 if (Math.random() < ManaSurgeZone.COMMON_CHANCE) {
                     int numberOfCommonModifiers = 4;
                     int selectedModifierIndex = (int) (Math.random() * numberOfCommonModifiers);
                     AbstractCardModifier modifier;
                     switch (selectedModifierIndex) {
                         case 0:
-                            modifier = new SharpModifier();
+                            modifier = new SharpModifier(true);
                             break;
                         case 1:
-                            modifier = new ToughModifier();
+                            modifier = new ToughModifier(true);
                             break;
                         case 2:
-                            modifier = new ExposingModifier();
+                            modifier = new ExposingModifier(true);
                             break;
                         case 3:
-                            modifier = new CripplingModifier();
+                            modifier = new CripplingModifier(true);
                             break;
                         default:
                             modifier = null;
@@ -84,10 +82,10 @@ public class CampfireEnchantEffect extends AbstractGameEffect {
                     AbstractCardModifier modifier;
                     switch (selectedModifierIndex) {
                         case 0:
-                            modifier = new PowerfulModifier();
+                            modifier = new PowerfulModifier(true);
                             break;
                         case 1:
-                            modifier = new ProtectiveModifier();
+                            modifier = new ProtectiveModifier(true);
                             break;
                         default:
                             modifier = null;
@@ -109,7 +107,7 @@ public class CampfireEnchantEffect extends AbstractGameEffect {
             this.openedScreen = true;
             CardGroup selectedCards = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
             AbstractDungeon.player.masterDeck.group.stream()
-                    .filter(card -> !card.hasTag(ManaSurgeTags.PERMANENT_MODIFIER) &&
+                    .filter(card -> !ManaSurgeZone.hasManaSurgeModifier(card) &&
                             card.cost != -2 &&
                             card.type != AbstractCard.CardType.CURSE &&
                             card.type != AbstractCard.CardType.STATUS)

@@ -13,16 +13,20 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.DexterityPower;
 import spireMapOverhaul.util.TexLoader;
 import spireMapOverhaul.zones.manasurge.interfaces.ModifierTags;
-import spireMapOverhaul.zones.manasurge.utils.ManaSurgeTags;
+import spireMapOverhaul.zones.manasurge.modifiers.AbstractManaSurgeModifier;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeImagePath;
 
-public class BrittleModifier extends AbstractCardModifier implements ModifierTags {
+public class BrittleModifier extends AbstractManaSurgeModifier implements ModifierTags {
     private static final Texture ICON = TexLoader.getTexture(makeImagePath("ui/extraIcons/NegativeEnchantmentIcon.png"));
     private static final int DEX_AMT = -1;
+
+    public BrittleModifier(boolean permanent) {
+        super(permanent);
+    }
 
     @Override
     public boolean isPositiveModifier() {
@@ -47,11 +51,6 @@ public class BrittleModifier extends AbstractCardModifier implements ModifierTag
     }
 
     @Override
-    public boolean removeAtEndOfTurn(AbstractCard card) {
-        return !card.retain || !card.hasTag(ManaSurgeTags.PERMANENT_MODIFIER);
-    }
-
-    @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
         return "[#ff8cd5]Brittle[]." + " NL " + rawDescription;
     }
@@ -63,6 +62,6 @@ public class BrittleModifier extends AbstractCardModifier implements ModifierTag
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new BrittleModifier();
+        return new BrittleModifier(isPermanent);
     }
 }

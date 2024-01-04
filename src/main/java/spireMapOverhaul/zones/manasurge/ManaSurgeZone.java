@@ -12,6 +12,7 @@ import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.zoneInterfaces.CampfireModifyingZone;
 import spireMapOverhaul.zoneInterfaces.CombatModifyingZone;
 import spireMapOverhaul.zoneInterfaces.RewardModifyingZone;
+import spireMapOverhaul.zones.manasurge.modifiers.AbstractManaSurgeModifier;
 import spireMapOverhaul.zones.manasurge.modifiers.common.positive.CripplingModifier;
 import spireMapOverhaul.zones.manasurge.modifiers.common.positive.ExposingModifier;
 import spireMapOverhaul.zones.manasurge.modifiers.common.positive.SharpModifier;
@@ -20,7 +21,6 @@ import spireMapOverhaul.zones.manasurge.modifiers.uncommon.positive.PowerfulModi
 import spireMapOverhaul.zones.manasurge.modifiers.uncommon.positive.ProtectiveModifier;
 import spireMapOverhaul.zones.manasurge.powers.ManaSurgePower;
 import spireMapOverhaul.zones.manasurge.ui.EnchantOption;
-import spireMapOverhaul.zones.manasurge.utils.ManaSurgeTags;
 
 import java.util.ArrayList;
 
@@ -34,6 +34,15 @@ public class ManaSurgeZone extends AbstractZone implements CombatModifyingZone, 
         this.height = 4;
     }
 
+    public static boolean hasManaSurgeModifier(AbstractCard card) {
+        for (AbstractCardModifier mod : CardModifierManager.modifiers(card)) {
+            if (mod instanceof AbstractManaSurgeModifier) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     public AbstractZone copy() {
         return new ManaSurgeZone();
@@ -42,17 +51,17 @@ public class ManaSurgeZone extends AbstractZone implements CombatModifyingZone, 
     @Override
     public void atBattleStartPreDraw() {
         for (AbstractCard card : AbstractDungeon.player.drawPile.group) {
-            if (!card.tags.contains(ManaSurgeTags.PERMANENT_MODIFIER)) {
+            if (!hasManaSurgeModifier(card)) {
                 CardModifierManager.removeAllModifiers(card, false);
             }
         }
         for (AbstractCard card : AbstractDungeon.player.discardPile.group) {
-            if (!card.tags.contains(ManaSurgeTags.PERMANENT_MODIFIER)) {
+            if (!hasManaSurgeModifier(card)) {
                 CardModifierManager.removeAllModifiers(card, false);
             }
         }
         for (AbstractCard card : AbstractDungeon.player.hand.group) {
-            if (!card.tags.contains(ManaSurgeTags.PERMANENT_MODIFIER)) {
+            if (!hasManaSurgeModifier(card)) {
                 CardModifierManager.removeAllModifiers(card, false);
             }
         }
@@ -64,23 +73,22 @@ public class ManaSurgeZone extends AbstractZone implements CombatModifyingZone, 
     public void modifyRewardCards(ArrayList<AbstractCard> cards) {
         for (AbstractCard card : cards) {
             if (card.cost != -2 && card.type != AbstractCard.CardType.CURSE && card.type != AbstractCard.CardType.STATUS) {
-                card.tags.add(ManaSurgeTags.PERMANENT_MODIFIER);
                 if (Math.random() < COMMON_CHANCE) {
                     int numberOfCommonModifiers = 4;
                     int selectedModifierIndex = (int) (Math.random() * numberOfCommonModifiers);
                     AbstractCardModifier modifier;
                     switch (selectedModifierIndex) {
                         case 0:
-                            modifier = new SharpModifier();
+                            modifier = new SharpModifier(true);
                             break;
                         case 1:
-                            modifier = new ToughModifier();
+                            modifier = new ToughModifier(true);
                             break;
                         case 2:
-                            modifier = new ExposingModifier();
+                            modifier = new ExposingModifier(true);
                             break;
                         case 3:
-                            modifier = new CripplingModifier();
+                            modifier = new CripplingModifier(true);
                             break;
                         default:
                             modifier = null;
@@ -95,10 +103,10 @@ public class ManaSurgeZone extends AbstractZone implements CombatModifyingZone, 
                     AbstractCardModifier modifier;
                     switch (selectedModifierIndex) {
                         case 0:
-                            modifier = new PowerfulModifier();
+                            modifier = new PowerfulModifier(true);
                             break;
                         case 1:
-                            modifier = new ProtectiveModifier();
+                            modifier = new ProtectiveModifier(true);
                             break;
                         default:
                             modifier = null;

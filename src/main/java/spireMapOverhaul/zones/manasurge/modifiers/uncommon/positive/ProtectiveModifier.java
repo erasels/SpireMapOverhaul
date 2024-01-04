@@ -13,16 +13,20 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.DexterityPower;
 import spireMapOverhaul.util.TexLoader;
 import spireMapOverhaul.zones.manasurge.interfaces.ModifierTags;
-import spireMapOverhaul.zones.manasurge.utils.ManaSurgeTags;
+import spireMapOverhaul.zones.manasurge.modifiers.AbstractManaSurgeModifier;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeImagePath;
 
-public class ProtectiveModifier extends AbstractCardModifier implements ModifierTags {
+public class ProtectiveModifier extends AbstractManaSurgeModifier implements ModifierTags {
     private static final Texture ICON = TexLoader.getTexture(makeImagePath("ui/extraIcons/PositiveEnchantmentIcon.png"));
     private static final int DEX_AMT = 1;
+
+    public ProtectiveModifier(boolean permanent) {
+        super(permanent);
+    }
 
     @Override
     public boolean isPositiveModifier() {
@@ -47,11 +51,6 @@ public class ProtectiveModifier extends AbstractCardModifier implements Modifier
     }
 
     @Override
-    public boolean removeAtEndOfTurn(AbstractCard card) {
-        return !card.retain || !card.hasTag(ManaSurgeTags.PERMANENT_MODIFIER);
-    }
-
-    @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
         return "[#8c9cff]Protective[]." + " NL " + rawDescription;
     }
@@ -63,6 +62,6 @@ public class ProtectiveModifier extends AbstractCardModifier implements Modifier
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new ProtectiveModifier();
+        return new ProtectiveModifier(isPermanent);
     }
 }
