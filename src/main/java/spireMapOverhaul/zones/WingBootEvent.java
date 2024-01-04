@@ -63,10 +63,6 @@ public class WingBootEvent extends AbstractImageEvent {
             abort = true;
         }
 
-
-//        if (!(AbstractDungeon.getCurrRoom() instanceof FakeEventRoom)) {
-//            this.imageEventText.setDialogOption("Something has gone horribly wrong, Leave.");
-//        }
         super.onEnterRoom();
     }
 
@@ -105,6 +101,7 @@ public class WingBootEvent extends AbstractImageEvent {
         } catch (NoSuchMethodException | IllegalAccessException | InstantiationException |
                  InvocationTargetException e) {
             e.printStackTrace();
+            abort();
         }
         node.room.event = event;
 
