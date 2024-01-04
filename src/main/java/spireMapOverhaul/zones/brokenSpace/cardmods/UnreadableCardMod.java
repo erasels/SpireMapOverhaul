@@ -1,7 +1,6 @@
 package spireMapOverhaul.zones.brokenSpace.cardmods;
 
 import basemod.abstracts.AbstractCardModifier;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;

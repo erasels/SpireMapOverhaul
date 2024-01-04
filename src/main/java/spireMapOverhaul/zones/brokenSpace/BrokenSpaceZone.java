@@ -25,11 +25,8 @@ import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.zoneInterfaces.RewardModifyingZone;
 import spireMapOverhaul.zoneInterfaces.ShopModifyingZone;
 import spireMapOverhaul.zones.brokenSpace.patches.BrokenSpaceRenderPatch;
-import spireMapOverhaul.zones.brokenSpace.relics.BrokenRelic;
 
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.logging.Logger;
 
 import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.cardRng;
 import static spireMapOverhaul.util.Wiz.adp;

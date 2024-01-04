@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.relics.SneckoEye;
 import spireMapOverhaul.zones.brokenSpace.cardmods.UnreadableCardMod;
 
-
 import static spireMapOverhaul.util.Wiz.adp;
 
 public class BrokenSneckoEye extends BrokenRelic {

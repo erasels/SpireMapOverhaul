@@ -1,20 +1,14 @@
 package spireMapOverhaul.zones.brokenSpace.relics;
 
 import com.evacipated.cardcrawl.mod.stslib.actions.common.SelectCardsInHandAction;
-import com.megacrit.cardcrawl.actions.common.*;
-
+import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.watcher.MantraPower;
 import com.megacrit.cardcrawl.relics.Damaru;
 
-
-import java.util.ArrayList;
-
-import static spireMapOverhaul.util.Wiz.*;
+import static spireMapOverhaul.util.Wiz.adp;
+import static spireMapOverhaul.util.Wiz.applyToSelf;
 
 public class BrokenDamaru extends BrokenRelic {
     public static final String ID = "BrokenDamaru";

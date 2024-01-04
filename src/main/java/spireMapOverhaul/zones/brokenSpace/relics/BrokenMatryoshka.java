@@ -1,31 +1,44 @@
 package spireMapOverhaul.zones.brokenSpace.relics;
 
-import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.Matryoshka;
 import com.megacrit.cardcrawl.rewards.RewardItem;
-import spireMapOverhaul.zones.brokenSpace.relics.BrokenRelic;
-
-import java.util.ArrayList;
 
 public class BrokenMatryoshka extends BrokenRelic {
     public static final String ID = "BrokenMatryoshka";
-    public static final int AMOUNT = 5;
+    public static final int AMOUNT = 4;
     public static final int EMPTY = 2;
 
     public BrokenMatryoshka() {
         super(ID, RelicTier.SPECIAL, LandingSound.CLINK, Matryoshka.ID);
     }
 
+    private RelicTier getRelicTier() {
+        return AbstractDungeon.relicRng.randomBoolean(0.25F) ? RelicTier.COMMON : RelicTier.UNCOMMON;
+    }
+
     @Override
     public void onEquip() {
-        for (int i = 0; i < AMOUNT; i++) {
-            AbstractRelic r = AbstractDungeon.returnRandomScreenlessRelic(AbstractDungeon.returnRandomRelicTier());
-            AbstractDungeon.getCurrRoom().spawnRelicAndObtain(Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F, r);
-            counter = EMPTY;
+        for (int i = 0; i < AMOUNT-1; i++) {
+            AbstractRelic r = AbstractDungeon.returnRandomScreenlessRelic(getRelicTier());
+            AbstractDungeon.getCurrRoom().rewards.add(new RewardItem(r));
         }
+        AbstractRelic r = AbstractDungeon.returnRandomScreenlessRelic(getRelicTier());
+        RewardItem reward = new RewardItem(r);
+        AbstractDungeon.getCurrRoom().rewards.add(reward);
+        if (!Settings.hasSapphireKey){
+            AbstractDungeon.getCurrRoom().addSapphireKey(reward);
+        }
+
+        AbstractDungeon.getCurrRoom().rewards.forEach(rewardItem -> {
+            if (!AbstractDungeon.combatRewardScreen.rewards.contains(rewardItem)) {
+                AbstractDungeon.combatRewardScreen.rewards.add(rewardItem);
+            }
+        });
+
+        counter = EMPTY;
 
     }
 

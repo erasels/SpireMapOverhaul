@@ -46,8 +46,7 @@
     "NAME": "Broken Wing Boots",
     "FLAVOR": "no",
     "DESCRIPTIONS": [
-      "Whenever you enter a Rest Site, start the next combat with #b",
-      " #yStrength."
+      "When you would enter an event in a ? room, choose between two events."
 
     ]
   },
@@ -90,17 +89,17 @@
     "NAME": "Broken Matryoshka",
     "FLAVOR": "no",
     "DESCRIPTIONS": [
-      "Gain #b",
-      " Relics, but the next #b",
-      " chests you open are empty."
+      "Add #b",
+      " Relics to the rewards, but the next #b",
+      " chests you open are empty. If you don't have the Sapphire Key, it will be linked to a relic."
     ]
   },
-  "${ModID}:BrokenSundial": {
-    "NAME": "Broken Sundial",
+  "${ModID}:BrokenSingingBowl": {
+    "NAME": "Broken Singing Bowl",
     "FLAVOR": "no",
     "DESCRIPTIONS": [
-      "Every #b",
-      " cards you play, shuffle your discard pile into your draw pile."
+      "Whenever you gain Max HP, upgrade #b",
+        " random card in your deck."
     ]
   }
 }

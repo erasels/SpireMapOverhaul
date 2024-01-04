@@ -1,11 +1,8 @@
 package spireMapOverhaul.zones.brokenSpace.relics;
 
-import com.megacrit.cardcrawl.actions.common.GainGoldAction;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.relics.MawBank;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.ShopRoom;
-import spireMapOverhaul.patches.ZonePatches;
 
 import static spireMapOverhaul.util.Wiz.adp;
 

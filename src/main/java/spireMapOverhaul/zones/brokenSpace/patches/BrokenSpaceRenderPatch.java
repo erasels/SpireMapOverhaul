@@ -10,11 +10,8 @@ import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rewards.RewardItem;
-import com.megacrit.cardcrawl.shop.StoreRelic;
-import javassist.CtBehavior;
 import spireMapOverhaul.patches.ZonePatches;
 import spireMapOverhaul.zones.brokenSpace.BrokenSpaceZone;
 
