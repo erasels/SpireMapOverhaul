@@ -36,7 +36,7 @@ public class InvasionZone extends AbstractZone implements EncounterModifyingZone
     private static final int ELITE_EXTRA_GOLD = 100;
 
     public InvasionZone() {
-        super(ID, Icons.MONSTER, Icons.ELITE, Icons.SHOP);
+        super(ID, Icons.MONSTER, Icons.SHOP);
         this.width = 3;
         this.height = 4;
     }
