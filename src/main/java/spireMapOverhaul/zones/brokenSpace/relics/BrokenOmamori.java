@@ -1,19 +1,15 @@
 package spireMapOverhaul.zones.brokenSpace.relics;
 
 import com.badlogic.gdx.math.MathUtils;
-import com.megacrit.cardcrawl.actions.unique.AddCardToDeckAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.Omamori;
-import com.megacrit.cardcrawl.vfx.UpgradeHammerImprintEffect;
 import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 
-import java.util.*;
-
-import static spireMapOverhaul.util.Wiz.adp;
+import java.util.ArrayList;
 
 public class BrokenOmamori extends BrokenRelic {
     public static final String ID = "BrokenOmamori";

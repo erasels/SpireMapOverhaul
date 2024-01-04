@@ -1,22 +1,13 @@
 package spireMapOverhaul.zones.brokenSpace.relics;
 
-import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
-import com.megacrit.cardcrawl.actions.common.GainGoldAction;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.relics.MawBank;
 import com.megacrit.cardcrawl.relics.PrayerWheel;
 import com.megacrit.cardcrawl.rewards.RewardItem;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import com.megacrit.cardcrawl.rooms.ShopRoom;
-import spireMapOverhaul.patches.ZonePatches;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
-import static spireMapOverhaul.util.Wiz.adp;
 
 public class BrokenPrayerWheel extends BrokenRelic {
     public static final String ID = "BrokenPrayerWheel";

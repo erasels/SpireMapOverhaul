@@ -11,18 +11,15 @@ import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.relics.Sozu;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.ui.panels.PotionPopUp;
-import com.megacrit.cardcrawl.ui.panels.TopPanel;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
-import javassist.expr.ExprEditor;
-import javassist.expr.FieldAccess;
-import javassist.expr.MethodCall;
 import spireMapOverhaul.SpireAnniversary6Mod;
 
 import java.lang.reflect.Method;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
-import static spireMapOverhaul.util.Wiz.*;
+import static spireMapOverhaul.util.Wiz.adp;
+import static spireMapOverhaul.util.Wiz.isInCombat;
 
 public class BrokenSozu extends BrokenRelic implements BetterOnUsePotionRelic {
     public static final String ID = "BrokenSozu";

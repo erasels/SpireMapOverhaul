@@ -6,8 +6,6 @@ import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.DexterityPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
-
 import com.megacrit.cardcrawl.relics.RedSkull;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 

@@ -10,7 +10,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
@@ -22,7 +21,6 @@ import spireMapOverhaul.abstracts.AbstractSMORelic;
 import spireMapOverhaul.util.TexLoader;
 import spireMapOverhaul.zones.brokenSpace.BrokenSpaceZone;
 
-import javax.print.attribute.standard.MediaSize;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
@@ -33,8 +31,8 @@ public abstract class BrokenRelic extends AbstractSMORelic {
     private static final Logger logger = Logger.getLogger(BrokenRelic.class.getName());
     private static final ShaderProgram brokenSpaceShader;
     private static String giganticString = "??";
-    private static AbstractRelic originalRelic;
-    private static final ArrayList<String> loadedRelics = new ArrayList<>();
+    private AbstractRelic originalRelic;
+
     private static Texture missingImg = TexLoader.getTexture(makeImagePath("ui/missing.png"));
 
 
@@ -61,12 +59,11 @@ public abstract class BrokenRelic extends AbstractSMORelic {
 
 
         this.origID = origID;
-        if (loadedRelics.contains(origID)) {
-            originalRelic = RelicLibrary.getRelic(origID);
-            img = originalRelic.img;
-            largeImg = originalRelic.largeImg;
-            outlineImg = originalRelic.outlineImg;
+        if (RelicLibrary.getRelic(origID) != null) {
             flavorText = generateFlavorText();
+            img = RelicLibrary.getRelic(origID).img;
+            largeImg = RelicLibrary.getRelic(origID).largeImg;
+            outlineImg = RelicLibrary.getRelic(origID).outlineImg;
         }
         BrokenSpaceZone.addBrokenRelic(makeID(setId));
     }
@@ -206,6 +203,14 @@ public abstract class BrokenRelic extends AbstractSMORelic {
         super.update();
         textResetTimer += Gdx.graphics.getDeltaTime();
 
+        if (originalRelic == null && RelicLibrary.getRelic(origID) != null) {
+            originalRelic = RelicLibrary.getRelic(origID);
+            img = originalRelic.img;
+            largeImg = originalRelic.largeImg;
+            outlineImg = originalRelic.outlineImg;
+            flavorText = generateFlavorText();
+        }
+
     }
 
     @Override
@@ -221,17 +226,8 @@ public abstract class BrokenRelic extends AbstractSMORelic {
 
     private void firstRenderCheck() {
 
-        if (!loadedRelics.contains(origID)) {
-            loadedRelics.add(origID);
-            originalRelic = RelicLibrary.getRelic(origID);
-            img = originalRelic.img;
-            largeImg = originalRelic.largeImg;
-            outlineImg = originalRelic.outlineImg;
-            flavorText = generateFlavorText();
 
-        }
-
-        if (img == missingImg) {
+        if (img == missingImg && originalRelic != null) {
             img = originalRelic.img;
             largeImg = originalRelic.largeImg;
             outlineImg = originalRelic.outlineImg;
