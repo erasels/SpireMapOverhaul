@@ -12,7 +12,6 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.DexterityPower;
 import spireMapOverhaul.util.TexLoader;
-import spireMapOverhaul.zones.manasurge.interfaces.ModifierTags;
 import spireMapOverhaul.zones.manasurge.modifiers.AbstractManaSurgeModifier;
 
 import java.util.ArrayList;
@@ -20,22 +19,13 @@ import java.util.List;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeImagePath;
 
-public class BrittleModifier extends AbstractManaSurgeModifier implements ModifierTags {
+public class BrittleModifier extends AbstractManaSurgeModifier {
+    private static final ModRarity MOD_RARITY = ModRarity.UNCOMMON_MOD;
     private static final Texture ICON = TexLoader.getTexture(makeImagePath("ui/extraIcons/NegativeEnchantmentIcon.png"));
     private static final int DEX_AMT = -1;
 
     public BrittleModifier(boolean permanent) {
-        super(permanent);
-    }
-
-    @Override
-    public boolean isPositiveModifier() {
-        return false;
-    }
-
-    @Override
-    public boolean isCommonModifier() {
-        return false;
+        super(permanent,MOD_RARITY);
     }
 
     @Override

@@ -11,7 +11,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import spireMapOverhaul.util.TexLoader;
-import spireMapOverhaul.zones.manasurge.interfaces.ModifierTags;
 import spireMapOverhaul.zones.manasurge.modifiers.AbstractManaSurgeModifier;
 
 import java.util.ArrayList;
@@ -19,22 +18,13 @@ import java.util.List;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeImagePath;
 
-public class ToughModifier extends AbstractManaSurgeModifier implements ModifierTags {
+public class ToughModifier extends AbstractManaSurgeModifier {
+    private static final ModRarity MOD_RARITY = ModRarity.COMMON_MOD;
     private static final Texture ICON = TexLoader.getTexture(makeImagePath("ui/extraIcons/PositiveEnchantmentIcon.png"));
     private static final int BLOCK = 5;
 
     public ToughModifier(boolean permanent) {
-        super(permanent);
-    }
-
-    @Override
-    public boolean isPositiveModifier() {
-        return true;
-    }
-
-    @Override
-    public boolean isCommonModifier() {
-        return true;
+        super(permanent,MOD_RARITY);
     }
 
     @Override

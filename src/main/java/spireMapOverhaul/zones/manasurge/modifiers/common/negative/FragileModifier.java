@@ -12,7 +12,6 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import spireMapOverhaul.util.TexLoader;
-import spireMapOverhaul.zones.manasurge.interfaces.ModifierTags;
 import spireMapOverhaul.zones.manasurge.modifiers.AbstractManaSurgeModifier;
 
 import java.util.ArrayList;
@@ -20,22 +19,13 @@ import java.util.List;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeImagePath;
 
-public class FragileModifier extends AbstractManaSurgeModifier implements ModifierTags {
+public class FragileModifier extends AbstractManaSurgeModifier {
+    private static final ModRarity MOD_RARITY = ModRarity.COMMON_MOD;
     private static final Texture ICON = TexLoader.getTexture(makeImagePath("ui/extraIcons/NegativeEnchantmentIcon.png"));
     private static final int VULN_AMT = 1;
 
     public FragileModifier(boolean permanent) {
-        super(permanent);
-    }
-
-    @Override
-    public boolean isPositiveModifier() {
-        return false;
-    }
-
-    @Override
-    public boolean isCommonModifier() {
-        return true;
+        super(permanent,MOD_RARITY);
     }
 
     @Override

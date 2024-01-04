@@ -12,6 +12,7 @@ import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.zoneInterfaces.CampfireModifyingZone;
 import spireMapOverhaul.zoneInterfaces.CombatModifyingZone;
 import spireMapOverhaul.zoneInterfaces.RewardModifyingZone;
+import spireMapOverhaul.zoneInterfaces.ShopModifyingZone;
 import spireMapOverhaul.zones.manasurge.modifiers.AbstractManaSurgeModifier;
 import spireMapOverhaul.zones.manasurge.modifiers.common.positive.CripplingModifier;
 import spireMapOverhaul.zones.manasurge.modifiers.common.positive.ExposingModifier;
@@ -24,7 +25,11 @@ import spireMapOverhaul.zones.manasurge.ui.EnchantOption;
 
 import java.util.ArrayList;
 
-public class ManaSurgeZone extends AbstractZone implements CombatModifyingZone, RewardModifyingZone, CampfireModifyingZone {
+public class ManaSurgeZone extends AbstractZone implements
+        CombatModifyingZone,
+        RewardModifyingZone,
+        CampfireModifyingZone,
+        ShopModifyingZone {
     public static final String ID = "ManaSurge";
     public static final float COMMON_CHANCE = 0.8f;
 
@@ -37,6 +42,15 @@ public class ManaSurgeZone extends AbstractZone implements CombatModifyingZone, 
     public static boolean hasManaSurgeModifier(AbstractCard card) {
         for (AbstractCardModifier mod : CardModifierManager.modifiers(card)) {
             if (mod instanceof AbstractManaSurgeModifier) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isCommonModifier(AbstractCard card) {
+        for (AbstractCardModifier mod : CardModifierManager.modifiers(card)) {
+            if (mod instanceof AbstractManaSurgeModifier && ((AbstractManaSurgeModifier) mod).getModRarity() == AbstractManaSurgeModifier.ModRarity.COMMON_MOD) {
                 return true;
             }
         }
@@ -120,12 +134,123 @@ public class ManaSurgeZone extends AbstractZone implements CombatModifyingZone, 
         }
     }
 
+    @Override
     public void postAddButtons(ArrayList<AbstractCampfireOption> buttons) {
         buttons.add(new EnchantOption(!CardGroup.getGroupWithoutBottledCards(AbstractDungeon.player.masterDeck.getPurgeableCards()).isEmpty()));
     }
 
     @Override
-    public Color getColor() { //I considered changing this to a variable, but a method lets you do funky stuff like a rainbow zone that changes colors or something.
+    public void postCreateShopCards(ArrayList<AbstractCard> coloredCards, ArrayList<AbstractCard> colorlessCards) {
+        for (AbstractCard card : coloredCards) {
+            if (card.cost != -2 && card.type != AbstractCard.CardType.CURSE && card.type != AbstractCard.CardType.STATUS) {
+                if (Math.random() < COMMON_CHANCE) {
+                    int numberOfCommonModifiers = 4;
+                    int selectedModifierIndex = (int) (Math.random() * numberOfCommonModifiers);
+                    AbstractCardModifier modifier;
+                    switch (selectedModifierIndex) {
+                        case 0:
+                            modifier = new SharpModifier(true);
+                            break;
+                        case 1:
+                            modifier = new ToughModifier(true);
+                            break;
+                        case 2:
+                            modifier = new ExposingModifier(true);
+                            break;
+                        case 3:
+                            modifier = new CripplingModifier(true);
+                            break;
+                        default:
+                            modifier = null;
+                            break;
+                    }
+                    if (modifier != null) {
+                        CardModifierManager.addModifier(card, modifier);
+                    }
+                } else {
+                    int numberOfUncommonModifiers = 2;
+                    int selectedModifierIndex = (int) (Math.random() * numberOfUncommonModifiers);
+                    AbstractCardModifier modifier;
+                    switch (selectedModifierIndex) {
+                        case 0:
+                            modifier = new PowerfulModifier(true);
+                            break;
+                        case 1:
+                            modifier = new ProtectiveModifier(true);
+                            break;
+                        default:
+                            modifier = null;
+                            break;
+                    }
+                    if (modifier != null) {
+                        CardModifierManager.addModifier(card, modifier);
+                    }
+                }
+            }
+        }
+        for (AbstractCard card : colorlessCards) {
+            if (card.cost != -2 && card.type != AbstractCard.CardType.CURSE && card.type != AbstractCard.CardType.STATUS) {
+                if (Math.random() < COMMON_CHANCE) {
+                    int numberOfCommonModifiers = 4;
+                    int selectedModifierIndex = (int) (Math.random() * numberOfCommonModifiers);
+                    AbstractCardModifier modifier;
+                    switch (selectedModifierIndex) {
+                        case 0:
+                            modifier = new SharpModifier(true);
+                            break;
+                        case 1:
+                            modifier = new ToughModifier(true);
+                            break;
+                        case 2:
+                            modifier = new ExposingModifier(true);
+                            break;
+                        case 3:
+                            modifier = new CripplingModifier(true);
+                            break;
+                        default:
+                            modifier = null;
+                            break;
+                    }
+                    if (modifier != null) {
+                        CardModifierManager.addModifier(card, modifier);
+                    }
+                } else {
+                    int numberOfUncommonModifiers = 2;
+                    int selectedModifierIndex = (int) (Math.random() * numberOfUncommonModifiers);
+                    AbstractCardModifier modifier;
+                    switch (selectedModifierIndex) {
+                        case 0:
+                            modifier = new PowerfulModifier(true);
+                            break;
+                        case 1:
+                            modifier = new ProtectiveModifier(true);
+                            break;
+                        default:
+                            modifier = null;
+                            break;
+                    }
+                    if (modifier != null) {
+                        CardModifierManager.addModifier(card, modifier);
+                    }
+                }
+            }
+        }
+    }
+
+    @Override
+    public float modifyCardBaseCost(AbstractCard c, float baseCost) {
+        if (hasManaSurgeModifier(c)) {
+            if (isCommonModifier(c)) {
+                return baseCost + 30;
+            } else {
+                return baseCost + 80;
+            }
+        }
+        return baseCost;
+    }
+
+    @Override
+    public Color getColor() {
         return new Color(0.45f,0.49f, 0.91f, 1f);
     }
 }
