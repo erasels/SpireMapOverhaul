@@ -17,8 +17,9 @@ import java.lang.reflect.InvocationTargetException;
 import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.currMapNode;
 import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.scene;
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
+import static spireMapOverhaul.SpireAnniversary6Mod.makeImagePath;
 
-@AutoAdd.Ignore
+
 public class WingBootEvent extends AbstractImageEvent {
     public static final String ID = "WingBootEvent";
 
@@ -29,7 +30,7 @@ public class WingBootEvent extends AbstractImageEvent {
     private boolean abort = false;
 
     public WingBootEvent() {
-        super(eventStrings.NAME, eventStrings.DESCRIPTIONS[0], "");
+        super(eventStrings.NAME, eventStrings.DESCRIPTIONS[0], makeImagePath("events/BrokenWingBootEvent.png"));
 
     }
 
@@ -41,7 +42,7 @@ public class WingBootEvent extends AbstractImageEvent {
     public void onEnterRoom() {
         this.body = eventStrings.DESCRIPTIONS[0];
         event1 = AbstractDungeon.generateEvent(AbstractDungeon.eventRng);
-        event2 = new Mushrooms();
+        event2 = AbstractDungeon.generateEvent(AbstractDungeon.eventRng);
 
         String name1 = event1.getClass().getSimpleName();
         String name2 = event2.getClass().getSimpleName();
@@ -69,6 +70,7 @@ public class WingBootEvent extends AbstractImageEvent {
         this.imageEventText.clear();// 21
         this.roomEventText.clear();// 22
         type = EventType.IMAGE;
+        this.imageEventText.loadImage(makeImagePath("events/BrokenWingBootEvent.png"));// 23
 
 
         imageEventText.updateBodyText(eventStrings.DESCRIPTIONS[0]);

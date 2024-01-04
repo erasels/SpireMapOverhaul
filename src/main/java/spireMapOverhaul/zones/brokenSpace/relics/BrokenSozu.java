@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.ui.panels.PotionPopUp;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
 import spireMapOverhaul.SpireAnniversary6Mod;
+import spireMapOverhaul.zones.brokenSpace.actions.BetterTextCenteredAction;
 
 import java.lang.reflect.Method;
 
@@ -23,7 +24,7 @@ import static spireMapOverhaul.util.Wiz.isInCombat;
 
 public class BrokenSozu extends BrokenRelic implements BetterOnUsePotionRelic {
     public static final String ID = "BrokenSozu";
-    public static final int POTION_COST = 2;
+    public static final int POTION_COST = 1;
     public static final String[] DESCRIPTIONS = CardCrawlGame.languagePack.getRelicStrings(makeID(ID)).DESCRIPTIONS;
 
     public BrokenSozu() {
@@ -38,7 +39,7 @@ public class BrokenSozu extends BrokenRelic implements BetterOnUsePotionRelic {
             adp().energy.use(POTION_COST);
             AbstractPotion secondPotion = AbstractDungeon.returnRandomPotion(true);
             secondPotion.use(AbstractDungeon.getRandomMonster());
-            addToBot(new TextCenteredAction(adp(), secondPotion.name));
+            addToBot(new BetterTextCenteredAction(adp(), secondPotion.name, 0.5F));
 
         }
     }

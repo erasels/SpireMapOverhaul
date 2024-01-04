@@ -20,7 +20,7 @@ public class BrokenSneckoEye extends BrokenRelic {
     @Override
     public void atTurnStart() {
         for (int i = 0; i < AMOUNT; i++) {
-            AbstractCard c = adp().masterDeck.getRandomCard(true).makeCopy();
+            AbstractCard c = adp().masterDeck.getRandomCard(true).makeStatEquivalentCopy();
             CardModifierManager.addModifier(c, new UnreadableCardMod());
             addToBot(new MakeTempCardInHandAction(c, true));
         }

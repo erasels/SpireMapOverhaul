@@ -31,6 +31,10 @@ hs_err_pid*
 
 # Art Projects
 *.afphoto
+*.blend
+*.blend1
+*.xcf
+
 
 # =========================
 # Operating System Files

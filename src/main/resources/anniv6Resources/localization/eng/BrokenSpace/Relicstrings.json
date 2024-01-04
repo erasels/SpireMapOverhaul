@@ -64,7 +64,7 @@
     "FLAVOR": "no",
     "DESCRIPTIONS": [
       "At the start of each turn, add #b",
-      " random card from your deck into your hand. It #yExhausts, is #yEthereal, and is unreadable."
+      " copy of a random card from your master deck into your hand. It #yExhausts, is #yEthereal, and is unreadable."
     ]
   },
   "${ModID}:BrokenMawBank": {
