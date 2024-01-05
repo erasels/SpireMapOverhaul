@@ -19,7 +19,7 @@ public class ThiefKingEvent extends Colosseum {
     private static final String NAME = eventStrings.NAME;
     private static final String[] DESCRIPTIONS = eventStrings.DESCRIPTIONS;
     private static final String[] OPTIONS = eventStrings.OPTIONS;
-    public static final String IMG = SpireAnniversary6Mod.makeImagePath("events/ThiefKing.png");
+    public static final String IMG = SpireAnniversary6Mod.makeImagePath("events/Invasion/ThiefKing.png");
 
     private static final int GOLD = 100;
 
