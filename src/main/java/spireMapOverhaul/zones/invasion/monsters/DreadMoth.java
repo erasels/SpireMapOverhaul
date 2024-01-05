@@ -22,7 +22,7 @@ public class DreadMoth extends CustomMonster {
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
-    private static final String IMG = SpireAnniversary6Mod.makeImagePath("monsters/DreadMoth/DreadMoth.png");
+    private static final String IMG = SpireAnniversary6Mod.makeImagePath("monsters/Invasion/DreadMoth/DreadMoth.png");
     private boolean firstMove = true;
     private static final byte WING_WARD_MOVE = 1;
     private static final byte DREAD_WAVE_ATTACK = 2;

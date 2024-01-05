@@ -19,7 +19,7 @@ public class CroakingPelter extends AbstractCroaking {
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
     public static final String[] DIALOG = monsterStrings.DIALOG;
-    private static final String IMG = SpireAnniversary6Mod.makeImagePath("monsters/CroakingPelter/CroakingPelter.png");
+    private static final String IMG = SpireAnniversary6Mod.makeImagePath("monsters/Invasion/CroakingPelter/CroakingPelter.png");
     private static final byte ROCK_TOSS_ATTACK = 2;
     private static final int ROCK_TOSS_DAMAGE = 3;
     private static final int A2_ROCK_TOSS_DAMAGE = 4;

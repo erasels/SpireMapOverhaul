@@ -6,9 +6,8 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DexterityPower;
 import spireMapOverhaul.SpireAnniversary6Mod;
-import spireMapOverhaul.abstracts.AbstractSMOCard;
 
-public class GildedDefend extends AbstractSMOCard {
+public class GildedDefend extends AbstractInvasionZoneCard {
     public static final String ID = SpireAnniversary6Mod.makeID("GildedDefend");
     private static final int COST = 1;
     private static final int BASE_BLOCK = 7;

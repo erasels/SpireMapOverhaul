@@ -14,7 +14,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.*;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractSMOCard;
-import spireMapOverhaul.abstracts.AbstractSMOPower;
 import spireMapOverhaul.zones.invasion.actions.ChangeMaxHpAction;
 import spireMapOverhaul.zones.invasion.actions.CustomTextChooseOneAction;
 
@@ -25,7 +24,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.BiConsumer;
 
-public class EvolvingPower extends AbstractSMOPower {
+public class EvolvingPower extends AbstractInvasionPower {
     public static final String POWER_ID = SpireAnniversary6Mod.makeID("Evolving");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;

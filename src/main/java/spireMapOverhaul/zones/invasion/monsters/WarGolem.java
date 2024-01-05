@@ -19,7 +19,7 @@ public class WarGolem extends CustomMonster {
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
-    private static final String IMG = SpireAnniversary6Mod.makeImagePath("monsters/WarGolem/WarGolem.png");
+    private static final String IMG = SpireAnniversary6Mod.makeImagePath("monsters/Invasion/WarGolem/WarGolem.png");
     private boolean firstMove = true;
     private static final byte VULNERABLE_ATTACK = 1;
     private static final byte FRAIL_ATTACK = 2;

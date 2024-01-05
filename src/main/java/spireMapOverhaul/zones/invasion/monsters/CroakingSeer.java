@@ -17,7 +17,7 @@ public class CroakingSeer extends AbstractCroaking {
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
     public static final String[] DIALOG = monsterStrings.DIALOG;
-    private static final String IMG = SpireAnniversary6Mod.makeImagePath("monsters/CroakingSeer/CroakingSeer.png");
+    private static final String IMG = SpireAnniversary6Mod.makeImagePath("monsters/Invasion/CroakingSeer/CroakingSeer.png");
     private static final byte PROTECTIVE_WARD_BUFF = 2;
     private static final int PROTECTIVE_WARD_BLOCK = 3;
     private static final int A7_PROTECTIVE_WARD_BLOCK = 5;

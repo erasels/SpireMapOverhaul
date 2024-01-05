@@ -86,7 +86,7 @@ public class ThiefKing extends CustomMonster {
             this.theRevealBuffs = THE_REVEAL_BUFFS;
         }
 
-        this.loadAnimation(SpireAnniversary6Mod.makeImagePath("monsters/ThiefKing/skeleton.atlas"), SpireAnniversary6Mod.makeImagePath("monsters/ThiefKing/skeleton.json"), 1.0F);
+        this.loadAnimation(SpireAnniversary6Mod.makeImagePath("monsters/ThievesHideout/ThiefKing/skeleton.atlas"), SpireAnniversary6Mod.makeImagePath("monsters/ThievesHideout/ThiefKing/skeleton.json"), 1.0F);
         AnimationState.TrackEntry e = this.state.setAnimation(0, "Idle", true);
         e.setTime(e.getEndTime() * MathUtils.random());
         this.stateData.setMix("Hit", "Idle", 0.2F);

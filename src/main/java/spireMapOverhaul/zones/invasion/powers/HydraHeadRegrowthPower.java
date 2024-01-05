@@ -7,9 +7,8 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.GainStrengthPower;
 import spireMapOverhaul.SpireAnniversary6Mod;
-import spireMapOverhaul.abstracts.AbstractSMOPower;
 
-public class HydraHeadRegrowthPower extends AbstractSMOPower {
+public class HydraHeadRegrowthPower extends AbstractInvasionPower {
     public static final String POWER_ID = SpireAnniversary6Mod.makeID("HydraHeadRegrowth");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
