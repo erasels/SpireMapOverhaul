@@ -1,11 +1,9 @@
 package spireMapOverhaul.zones.brokenSpace.events;
 
-import basemod.AutoAdd;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.AbstractEvent;
 import com.megacrit.cardcrawl.events.AbstractImageEvent;
-import com.megacrit.cardcrawl.events.exordium.Mushrooms;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
@@ -70,7 +68,7 @@ public class WingBootEvent extends AbstractImageEvent {
         this.imageEventText.clear();// 21
         this.roomEventText.clear();// 22
         type = EventType.IMAGE;
-        this.imageEventText.loadImage(makeImagePath("events/BrokenWingBootEvent.png"));// 23
+        this.imageEventText.loadImage(makeImagePath("events/BrokenSpace/BrokenWingBootEvent.png"));// 23
 
 
         imageEventText.updateBodyText(eventStrings.DESCRIPTIONS[0]);

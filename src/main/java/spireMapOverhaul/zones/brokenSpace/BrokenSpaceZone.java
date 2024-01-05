@@ -47,7 +47,7 @@ public class BrokenSpaceZone extends AbstractZone implements RewardModifyingZone
     }
 
     private BrokenSpaceZone(String name, int width, int height) {
-        super(ID, Icons.REWARD);
+        super(ID);
 
         this.width = width;
         this.height = height;

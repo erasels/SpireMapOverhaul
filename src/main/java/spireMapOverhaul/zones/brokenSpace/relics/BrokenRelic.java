@@ -207,7 +207,6 @@ public abstract class BrokenRelic extends AbstractSMORelic {
     @Override
     public void update() {
         super.update();
-        textResetTimer += Gdx.graphics.getDeltaTime();
 
         if (originalRelic == null && RelicLibrary.getRelic(origID) != null) {
             originalRelic = RelicLibrary.getRelic(origID);

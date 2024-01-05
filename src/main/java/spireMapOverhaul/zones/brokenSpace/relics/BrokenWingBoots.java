@@ -39,10 +39,6 @@ public class BrokenWingBoots extends BrokenRelic {
             clz = AbstractDungeon.class,
             method = "generateRoom"
     )
-    @SpirePatch2(
-            clz = AbstractDungeon.class,
-            method = "generateRoomTypes"
-    )
     public static class WingBootEventPatch {
         @SpireInstrumentPatch
         public static ExprEditor patch() {
