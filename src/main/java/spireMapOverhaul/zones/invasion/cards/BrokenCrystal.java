@@ -5,10 +5,9 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import spireMapOverhaul.SpireAnniversary6Mod;
-import spireMapOverhaul.abstracts.AbstractSMOCard;
 import spireMapOverhaul.zones.invasion.actions.ReduceAllEnemyRegenAction;
 
-public class BrokenCrystal extends AbstractSMOCard {
+public class BrokenCrystal extends AbstractInvasionZoneCard {
     public static final String ID = SpireAnniversary6Mod.makeID("BrokenCrystal");
     private static final int COST = 1;
     private static final int MAX_COST = 2;
