@@ -21,7 +21,7 @@ public class RoyalProtector extends CustomMonster {
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
-    private static final String IMG = SpireAnniversary6Mod.makeImagePath("monsters/RoyalProtector/RoyalProtector.png");
+    private static final String IMG = SpireAnniversary6Mod.makeImagePath("monsters/Invasion/RoyalProtector/RoyalProtector.png");
     private boolean firstMove = true;
     private static final byte CARAPACE_MOVE = 1;
     private static final byte BURNING_SPIT_ATTACK = 2;

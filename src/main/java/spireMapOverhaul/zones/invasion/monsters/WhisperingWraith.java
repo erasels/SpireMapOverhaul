@@ -25,7 +25,7 @@ public class WhisperingWraith extends AbstractSMOMonster
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
-    private static final String IMG = SpireAnniversary6Mod.makeImagePath("monsters/WhisperingWraith/WhisperingWraith.png");
+    private static final String IMG = SpireAnniversary6Mod.makeImagePath("monsters/Invasion/WhisperingWraith/WhisperingWraith.png");
     private boolean firstMove = true;
     private static final byte FADE_AWAY_ATTACK = 1;
     private static final byte GHOSTLY_TOUCH_ATTACK = 2;
