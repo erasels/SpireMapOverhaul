@@ -71,10 +71,9 @@ public class GremlinTown extends AbstractZone
             "ui/gremlinTownShop/skeleton.json");
     private final ZoneEncounter GREMLIN_LEADER_ENCOUNTER = new ZoneEncounter(MonsterHelper.GREMLIN_LEADER_ENC, 2,
             () -> MonsterHelper.getEncounter("Gremlin Leader"));
-    public static final String SAVABLE_KEY = "GREMLIN_RELICS";
 
     public GremlinTown() {
-        super(ID, Icons.MONSTER, Icons.ELITE, Icons.EVENT, Icons.SHOP);
+        super(ID, Icons.MONSTER, Icons.EVENT, Icons.SHOP);
         width = 6;
         height = 8;
     }

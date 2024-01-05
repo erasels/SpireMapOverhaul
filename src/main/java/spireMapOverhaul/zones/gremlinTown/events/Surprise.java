@@ -13,7 +13,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.vfx.ChestShineEffect;
-import com.megacrit.cardcrawl.vfx.combat.SmokeBombEffect;
 import com.megacrit.cardcrawl.vfx.scene.SpookyChestEffect;
 import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.zones.gremlinTown.GremlinTown;
@@ -29,38 +28,52 @@ import static spireMapOverhaul.util.Wiz.adp;
 public class Surprise extends AbstractEvent {
     public static final String ID = makeID(Surprise.class.getSimpleName());
     private static final EventStrings eventStrings;
+    private static final String NAME;
+    private static final String[] DESCRIPTIONS;
+    private static final String[] OPTIONS;
 
     private CUR_SCREEN screen;
     private Chest chest;
     private float animTimer;
     private float shinyTimer;
     private static final float RIDER_A_START_X;
-    private static final float RIDER_A_TARGET_X;
     private static final float RIDER_B_START_X;
-    private static final float RIDER_B_TARGET_X;
-    private static final float SHELL_START_X;
-    private static final float SHELL_START_Y;
+    private static final float RIDER_A_MID_X;
+    private static final float RIDER_B_MID_X;
+    private static final float RIDER_A_END_X;
+    private static final float RIDER_B_END_X;
+    private static final float RIDER_A_START_Y;
+    private static final float RIDER_B_START_Y;
+    private static final float RIDER_A_END_Y;
+    private static final float RIDER_B_END_Y;
     private static final int GOLD_BASE = 40;
     private static final int GOLD_VARIANCE = 10;
+    private static final float AMBUSH_TIME = 2.5F;
+    private static final float STARE_TIME = 0.25F;
+    public static final float SHELL_FLIGHT_TIME = 1.0F;
+
 
     private GremlinRiderRed riderA;
     private GremlinRiderRed riderB;
     private Shell shell;
-    private float shellTargetX;
-    private float shellTargetY;
-    private boolean burst;
     public boolean mimic;
+    private boolean fired;
 
     static {
         eventStrings = CardCrawlGame.languagePack.getEventString(ID);
         NAME = eventStrings.NAME;
+        DESCRIPTIONS = eventStrings.DESCRIPTIONS;
         OPTIONS = eventStrings.OPTIONS;
         RIDER_A_START_X = Settings.WIDTH + 200.0F;
         RIDER_B_START_X = Settings.WIDTH + 600.0F;
-        RIDER_A_TARGET_X = Settings.WIDTH*0.75F - 320.0F;
-        RIDER_B_TARGET_X = Settings.WIDTH*0.75F - 100.0F;
-        SHELL_START_X = Chest.CHEST_LOC_X;
-        SHELL_START_Y = Chest.CHEST_LOC_Y;
+        RIDER_A_MID_X = Settings.WIDTH * 0.56F;
+        RIDER_B_MID_X = Settings.WIDTH * 0.58F;
+        RIDER_A_END_X = Settings.WIDTH * 0.53F;
+        RIDER_B_END_X = Settings.WIDTH * 0.43F;
+        RIDER_A_START_Y = AbstractDungeon.floorY - 80f;
+        RIDER_B_START_Y = AbstractDungeon.floorY - 95f;
+        RIDER_A_END_Y = AbstractDungeon.floorY + 60f;
+        RIDER_B_END_Y = AbstractDungeon.floorY - 50f;
     }
 
     public static boolean bonusCondition() {
@@ -72,11 +85,11 @@ public class Surprise extends AbstractEvent {
         chest = new Chest();
         screen = CUR_SCREEN.INTRO;
         shinyTimer = 0f;
-        burst = false;
         hasFocus = true;
         hasDialog = false;
         roomEventText.hide();
         mimic = true;
+        fired = false;
         adRoom().phase = AbstractRoom.RoomPhase.COMPLETE;
         AbstractDungeon.overlayMenu.proceedButton.show();
         String proceedLabel = CardCrawlGame.languagePack.getUIString("TreasureRoom").TEXT[0];
@@ -86,51 +99,85 @@ public class Surprise extends AbstractEvent {
     public void update() {
         super.update();
         chest.update();
+        if (shell != null)
+            shell.update();
         updateShiny();
         if (chest.isOpen && screen == CUR_SCREEN.INTRO) {
             mimic = false;
             screen = CUR_SCREEN.AMBUSH;
             adRoom().phase = AbstractRoom.RoomPhase.EVENT;
-            animTimer = 6.0F;
-            riderA = new GremlinRiderRed(RIDER_A_START_X - Settings.WIDTH*0.75F, -50.0F);
-            riderB = new GremlinRiderRed(RIDER_B_START_X - Settings.WIDTH*0.75F, -50.0F);
+            animTimer = AMBUSH_TIME;
+            riderA = new GremlinRiderRed(RIDER_A_START_X - Settings.WIDTH*0.75F, RIDER_A_START_Y - AbstractDungeon.floorY);
+            riderB = new GremlinRiderRed(RIDER_B_START_X - Settings.WIDTH*0.75F, RIDER_B_START_Y - AbstractDungeon.floorY);
             Wiz.adRoom().monsters = new MonsterGroup(new AbstractMonster[]{
-                    new GremlinCannon(Chest.CHEST_LOC_X - Settings.WIDTH*0.75F, Chest.CHEST_LOC_Y - AbstractDungeon.floorY - 256.0F),
+                    new GremlinCannon(Chest.CHEST_LOC_X - Settings.WIDTH*0.75F,
+                            Chest.CHEST_LOC_Y - AbstractDungeon.floorY - 256.0F),
                     riderA, riderB
             });
-            shell = new Shell(chest.hb.cX, chest.hb.cY, 0F);
-            shellTargetX = adp().hb.cX;
-            shellTargetY = adp().hb.y;
-            // CardCrawlGame.sound.play("BLUNT_HEAVY");
+            chest.hide = true;
+            CardCrawlGame.sound.play("BLUNT_HEAVY");
         } else if (screen == CUR_SCREEN.AMBUSH) {
-            if (animTimer > 0.0F) {
-                animTimer -= Gdx.graphics.getDeltaTime();
-                if (animTimer >= 3.0F) {
-                    float x = Interpolation.linear.apply(shellTargetX, SHELL_START_X, (animTimer - 3.0F)/3.0F);
-                    float y = Interpolation.linear.apply(shellTargetY, SHELL_START_Y, (animTimer - 3.0F)/3.0F);
-                    shell.hb.move(x, y);
-                    shell.rotation = Interpolation.linear.apply(0F, 360.0F * 3, (animTimer - 3.0F)/3.0F);
-                } else if (animTimer < 3.0f) {
-                    if (!burst) {
-                        burst = true;
-                        shell.hide = true;
-                        chest.hide = true;
-                        CardCrawlGame.sound.play("ATTACK_FIRE");
-                        AbstractDungeon.effectsQueue.add(new SmokeBombEffect(shellTargetX, shellTargetY));
-                    }
-                    float xa = Interpolation.linear.apply(RIDER_A_TARGET_X, RIDER_A_START_X, animTimer/3.0F);
-                    float xb = Interpolation.linear.apply(RIDER_B_TARGET_X, RIDER_B_START_X, animTimer/3.0F);
-                    riderA.drawX = xa;
-                    riderB.drawX = xb;
-                }
-                if (animTimer < 0.0F) {
-                    screen = CUR_SCREEN.COMBAT;
-                    adRoom().addGoldToRewards(GOLD_BASE + AbstractDungeon.miscRng.random(0, GOLD_VARIANCE));
-                    adRoom().addRelicToRewards(GremlinTown.getRandomGRelic());
-                    enterCombat();
+            animTimer -= Gdx.graphics.getDeltaTime();
+            updateRiderA();
+            updateRiderB();
+            if (animTimer <= AMBUSH_TIME - STARE_TIME) {
+                if (!fired) {
+                    fired = true;
+                    float shellTargetX = adp().hb.cX;
+                    float shellTargetY = adp().hb.y;
+                    shell = new Shell(chest.hb.x + 60f, chest.hb.cY + 52f,
+                            shellTargetX, shellTargetY, SHELL_FLIGHT_TIME);
                 }
             }
+            if (animTimer < 0.0F) {
+                screen = CUR_SCREEN.COMBAT;
+                adRoom().addGoldToRewards(GOLD_BASE + AbstractDungeon.miscRng.random(0, GOLD_VARIANCE));
+                adRoom().addRelicToRewards(GremlinTown.getRandomGRelic());
+                enterCombat();
+            }
         }
+    }
+
+    public void updateRiderA() {
+        float t = AMBUSH_TIME - STARE_TIME - animTimer;
+        float x, y;
+        if (t < 0) {
+            x = RIDER_A_START_X;
+            y = RIDER_A_START_Y;
+        } else if (t < 1.5F) {
+            x = Interpolation.linear.apply(RIDER_A_START_X, RIDER_A_MID_X, t / 1.5F);
+            y = RIDER_A_START_Y;
+        }
+        else if (t < 1.82F) {
+            x = Interpolation.linear.apply(RIDER_A_MID_X, RIDER_A_END_X, (t - 1.5F)/0.32F);
+            y = Interpolation.linear.apply(RIDER_A_START_Y, RIDER_A_END_Y, (t - 1.5F)/0.32F);
+        } else {
+            x = RIDER_A_END_X;
+            y = RIDER_A_END_Y;
+        }
+        riderA.drawX = x;
+        riderA.drawY = y;
+    }
+
+    public void updateRiderB() {
+        float t = AMBUSH_TIME - STARE_TIME - animTimer;
+        float x, y;
+        if (t < 0) {
+            x = RIDER_B_START_X;
+            y = RIDER_B_START_Y;
+        } else if (t < 1.75F) {
+            x = Interpolation.linear.apply(RIDER_B_START_X, RIDER_B_MID_X, t / 1.75F);
+            y = RIDER_B_START_Y;
+        }
+        else if (t < 2.15F) {
+            x = Interpolation.linear.apply(RIDER_B_MID_X, RIDER_B_END_X, (t - 1.75F)/0.4F);
+            y = Interpolation.linear.apply(RIDER_B_START_Y, RIDER_B_END_Y, (t - 1.75F)/0.4F);
+        } else {
+            x = RIDER_B_END_X;
+            y = RIDER_B_END_Y;
+        }
+        riderB.drawX = x;
+        riderB.drawY = y;
     }
 
     private void updateShiny() {

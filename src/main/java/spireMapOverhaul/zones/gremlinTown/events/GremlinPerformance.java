@@ -20,8 +20,10 @@ import static spireMapOverhaul.util.Wiz.asc;
 public class GremlinPerformance extends AbstractImageEvent {
     public static final String ID = makeID(GremlinPerformance.class.getSimpleName());
     private static final EventStrings eventStrings;
-    private static final String[] descriptions;
+    private static final String[] DESCRIPTIONS;
+    private static final String NAME;
     private static final String IMAGE_PATH;
+    private static final String[] OPTIONS;
 
     private static final int REMOVAL_PRICE = 50;
     private static final int REMOVAL_PRICE_A15 = 75;
@@ -37,7 +39,7 @@ public class GremlinPerformance extends AbstractImageEvent {
     static {
         eventStrings = CardCrawlGame.languagePack.getEventString(ID);
         NAME = eventStrings.NAME;
-        descriptions = eventStrings.DESCRIPTIONS;
+        DESCRIPTIONS = eventStrings.DESCRIPTIONS;
         OPTIONS = eventStrings.OPTIONS;
         IMAGE_PATH = makeImagePath("events/GremlinTown/" + GremlinPerformance.class.getSimpleName() + ".jpg");
     }
@@ -49,9 +51,9 @@ public class GremlinPerformance extends AbstractImageEvent {
     }
 
     public GremlinPerformance() {
-        super(NAME, descriptions[0], IMAGE_PATH);
+        super(NAME, DESCRIPTIONS[0], IMAGE_PATH);
         screen = CUR_SCREEN.INTRO1;
-        imageEventText.updateBodyText(descriptions[0]);
+        imageEventText.updateBodyText(DESCRIPTIONS[0]);
         imageEventText.setDialogOption(OPTIONS[0]);
     }
 
@@ -75,7 +77,7 @@ public class GremlinPerformance extends AbstractImageEvent {
             screen = CUR_SCREEN.INTRO2;
             imageEventText.clearAllDialogs();
             imageEventText.setDialogOption(OPTIONS[0]);
-            imageEventText.updateBodyText(descriptions[1]);
+            imageEventText.updateBodyText(DESCRIPTIONS[1]);
             CardCrawlGame.music.unsilenceBGM();
             AbstractDungeon.scene.fadeOutAmbiance();
             CardCrawlGame.music.playPrecachedTempBgm();
@@ -89,7 +91,7 @@ public class GremlinPerformance extends AbstractImageEvent {
             else
                 imageEventText.setDialogOption(OPTIONS[4].replace("{0}", String.valueOf(getUpgradePrice())), true);
             imageEventText.setDialogOption(OPTIONS[5]);
-            imageEventText.updateBodyText(descriptions[2]);
+            imageEventText.updateBodyText(DESCRIPTIONS[2]);
         } else if (screen == CUR_SCREEN.DECISION) {
             screen = CUR_SCREEN.COMPLETE;
             switch (buttonPressed) {
@@ -100,12 +102,12 @@ public class GremlinPerformance extends AbstractImageEvent {
                                 adp().masterDeck.getPurgeableCards()), 1, OPTIONS[7], false,
                                 false, false, true);
                     }
-                    imageEventText.updateBodyText(descriptions[3]);
+                    imageEventText.updateBodyText(DESCRIPTIONS[3]);
                     break;
                 case 1:
                     adp().loseGold(getMaxHpPrice());
                     adp().increaseMaxHp(MAX_HP_GAIN, true);
-                    imageEventText.updateBodyText(descriptions[4]);
+                    imageEventText.updateBodyText(DESCRIPTIONS[4]);
                     break;
                 case 2:
                     adp().loseGold(getUpgradePrice());
@@ -125,10 +127,10 @@ public class GremlinPerformance extends AbstractImageEvent {
                             AbstractDungeon.player.bottledCardUpgradeCheck(c);
                         }
                     }
-                    imageEventText.updateBodyText(descriptions[5]);
+                    imageEventText.updateBodyText(DESCRIPTIONS[5]);
                     break;
                 case 3:
-                    imageEventText.updateBodyText(descriptions[6]);
+                    imageEventText.updateBodyText(DESCRIPTIONS[6]);
                     break;
             }
             imageEventText.clearAllDialogs();

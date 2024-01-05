@@ -33,7 +33,9 @@ import static spireMapOverhaul.util.Wiz.*;
 public class GremlinWheel extends AbstractImageEvent {
     public static final String ID = makeID(GremlinWheel.class.getSimpleName());
     private static final EventStrings eventStrings;
-    private static final String[] descriptions;
+    private static final String NAME;
+    private static final String[] DESCRIPTIONS;
+    private static final String[] OPTIONS;
     private static final String IMAGE_PATH;
     private CUR_SCREEN screen;
     private boolean startSpinFake;
@@ -80,7 +82,7 @@ public class GremlinWheel extends AbstractImageEvent {
     static {
         eventStrings = CardCrawlGame.languagePack.getEventString(ID);
         NAME = eventStrings.NAME;
-        descriptions = eventStrings.DESCRIPTIONS;
+        DESCRIPTIONS = eventStrings.DESCRIPTIONS;
         OPTIONS = eventStrings.OPTIONS;
         IMAGE_PATH = "images/events/spinTheWheel.jpg";
         START_Y = Settings.OPTION_Y + 1000.0F * Settings.scale;
@@ -97,7 +99,7 @@ public class GremlinWheel extends AbstractImageEvent {
     }
 
     public GremlinWheel() {
-        super(NAME, descriptions[0], IMAGE_PATH);
+        super(NAME, DESCRIPTIONS[0], IMAGE_PATH);
         goldAmount = GOLD_BASE + AbstractDungeon.miscRng.random(0, GOLD_VARIANCE);
         screen = CUR_SCREEN.INTRO;
         startSpinFake = false;
@@ -201,7 +203,7 @@ public class GremlinWheel extends AbstractImageEvent {
                 if (decisionTimer <= 0.0f) {
                     deciding = false;
                     screen = CUR_SCREEN.STABBED;
-                    imageEventText.updateBodyText(descriptions[5]);
+                    imageEventText.updateBodyText(DESCRIPTIONS[5]);
                     imageEventText.clearAllDialogs();
                     imageEventText.setDialogOption(OPTIONS[5].replace("{0}", String.valueOf(getHpLoss())));
                 }
@@ -230,7 +232,7 @@ public class GremlinWheel extends AbstractImageEvent {
 
     private void preApplyDialog() {
         imageEventText.clearAllDialogs();
-        imageEventText.updateBodyText(descriptions[1]);
+        imageEventText.updateBodyText(DESCRIPTIONS[1]);
         ArrayList<Integer> ops = new ArrayList<>();
         ops.add(1);
         ops.add(2);
@@ -272,21 +274,21 @@ public class GremlinWheel extends AbstractImageEvent {
             imageEventText.clearAllDialogs();
             deciding = false;
             if (buttonPressed == buttonPanic) {
-                imageEventText.updateBodyText(descriptions[2]);
+                imageEventText.updateBodyText(DESCRIPTIONS[2]);
                 imageEventText.setDialogOption(OPTIONS[5].replace("{0}", String.valueOf(getHpLoss())));
                 screen = CUR_SCREEN.STABBED;
             }
             else if (buttonPressed == buttonSubmit) {
-                imageEventText.updateBodyText(descriptions[3]);
+                imageEventText.updateBodyText(DESCRIPTIONS[3]);
                 imageEventText.setDialogOption(OPTIONS[5].replace("{0}", String.valueOf(getHpLoss())));
                 screen = CUR_SCREEN.STABBED;
             }
             else if (buttonPressed == buttonWhat) {
-                imageEventText.updateBodyText(descriptions[4]);
+                imageEventText.updateBodyText(DESCRIPTIONS[4]);
                 imageEventText.setDialogOption(OPTIONS[5].replace("{0}", String.valueOf(getHpLoss())));
                 screen = CUR_SCREEN.STABBED;
             } else {
-                imageEventText.updateBodyText(descriptions[6]);
+                imageEventText.updateBodyText(DESCRIPTIONS[6]);
                 imageEventText.setDialogOption(OPTIONS[4]);
                 screen = CUR_SCREEN.PRE_FIGHT;
             }
@@ -319,7 +321,7 @@ public class GremlinWheel extends AbstractImageEvent {
         adp().drawX = (float)Settings.WIDTH * 0.25F;
         adp().preBattlePrep();
         enterImageFromCombat();
-        imageEventText.updateBodyText(descriptions[7]);
+        imageEventText.updateBodyText(DESCRIPTIONS[7]);
         imageEventText.clearAllDialogs();
         imageEventText.setDialogOption(OPTIONS[7].replace("{0}", String.valueOf(goldAmount)));
     }

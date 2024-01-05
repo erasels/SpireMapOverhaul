@@ -86,8 +86,12 @@
   },
   "${ModID}:GremlinCannon": {
     "MOVES": [
-      "Pew Pew",
-      "Bang Bang"
+      "Loading",
+      "Fire!",
+      "Fire!"
+    ],
+    "DIALOG": [
+      "Loading..."
     ],
     "NAME": "Gremlin Cannon"
   }

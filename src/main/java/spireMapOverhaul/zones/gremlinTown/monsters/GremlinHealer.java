@@ -20,6 +20,7 @@ public class GremlinHealer extends CustomMonster
 {
     public static final String ID = SpireAnniversary6Mod.makeID(GremlinHealer.class.getSimpleName());
     public static final String NAME;
+    private static final String[] MOVES;
     private static final String SKELETON_ATLAS = SpireAnniversary6Mod.makeImagePath(
             "monsters/GremlinTown/GremlinHealer/skeleton.atlas");
     private static final String SKELETON_JSON = SpireAnniversary6Mod.makeImagePath(
@@ -97,6 +98,5 @@ public class GremlinHealer extends CustomMonster
         MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
         NAME = monsterStrings.NAME;
         MOVES = monsterStrings.MOVES;
-        DIALOG = monsterStrings.DIALOG;
     }
 }

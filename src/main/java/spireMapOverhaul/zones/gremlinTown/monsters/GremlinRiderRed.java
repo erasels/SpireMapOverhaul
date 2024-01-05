@@ -20,6 +20,7 @@ public class GremlinRiderRed extends CustomMonster
 {
     public static final String ID = SpireAnniversary6Mod.makeID(GremlinRiderRed.class.getSimpleName());
     public static final String NAME;
+    private static final String[] MOVES;
     private static final String SKELETON_ATLAS = SpireAnniversary6Mod.makeImagePath(
             "monsters/GremlinTown/GremlinRiderRed/GremlinRider.atlas");
     private static final String SKELETON_JSON = SpireAnniversary6Mod.makeImagePath(
@@ -30,7 +31,7 @@ public class GremlinRiderRed extends CustomMonster
     private static final int CHARGE_DAMAGE = 9;
     private static final int CHARGE_DAMAGE_A2 = 10;
     private static final int TACTICAL_DAMAGE = 6;
-    private static final int TACTICAL_DAMAGE_A2 = 8;
+    private static final int TACTICAL_DAMAGE_A2 = 7;
     private static final int TACTICAL_STRENGTH = 3;
     private static final int MIN_HP = 45;
     private static final int MAX_HP = 50;
@@ -112,6 +113,5 @@ public class GremlinRiderRed extends CustomMonster
         MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
         NAME = monsterStrings.NAME;
         MOVES = monsterStrings.MOVES;
-        DIALOG = monsterStrings.DIALOG;
     }
 }

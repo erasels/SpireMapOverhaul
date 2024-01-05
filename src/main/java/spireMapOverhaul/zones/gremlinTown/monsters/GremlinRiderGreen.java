@@ -21,6 +21,7 @@ public class GremlinRiderGreen extends CustomMonster
 {
     public static final String ID = SpireAnniversary6Mod.makeID(GremlinRiderGreen.class.getSimpleName());
     public static final String NAME;
+    private static final String[] MOVES;
     private static final String SKELETON_ATLAS = SpireAnniversary6Mod.makeImagePath(
             "monsters/GremlinTown/GremlinRiderGreen/GremlinRider.atlas");
     private static final String SKELETON_JSON = SpireAnniversary6Mod.makeImagePath(
@@ -116,6 +117,5 @@ public class GremlinRiderGreen extends CustomMonster
         MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
         NAME = monsterStrings.NAME;
         MOVES = monsterStrings.MOVES;
-        DIALOG = monsterStrings.DIALOG;
     }
 }
