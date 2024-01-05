@@ -8,14 +8,13 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import spireMapOverhaul.SpireAnniversary6Mod;
-import spireMapOverhaul.abstracts.AbstractSMOPower;
 import spireMapOverhaul.zones.invasion.cards.GildedDefend;
 import spireMapOverhaul.zones.invasion.cards.GildedEssence;
 import spireMapOverhaul.zones.invasion.cards.GildedStrike;
 
 import java.util.Arrays;
 
-public class MidasAuraPower extends AbstractSMOPower {
+public class MidasAuraPower extends AbstractInvasionPower {
     public static final String POWER_ID = SpireAnniversary6Mod.makeID("MidasAura");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;

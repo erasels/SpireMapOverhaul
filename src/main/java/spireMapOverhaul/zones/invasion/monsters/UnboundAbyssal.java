@@ -24,7 +24,7 @@ public class UnboundAbyssal extends CustomMonster {
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
     public static final String[] DIALOG = monsterStrings.DIALOG;
-    private static final String IMG = SpireAnniversary6Mod.makeImagePath("monsters/UnboundAbyssal/UnboundAbyssal.png");
+    private static final String IMG = SpireAnniversary6Mod.makeImagePath("monsters/Invasion/UnboundAbyssal/UnboundAbyssal.png");
     private boolean firstMove = true;
     private static final byte SLUDGE_ATTACK = 1;
     private static final byte WONT_GO_BACK_MOVE = 2;

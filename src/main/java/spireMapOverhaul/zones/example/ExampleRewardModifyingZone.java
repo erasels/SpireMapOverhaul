@@ -20,7 +20,7 @@ public class ExampleRewardModifyingZone extends AbstractZone implements RewardMo
     public static final String ID = "ExampleRewardModifying";
 
     public ExampleRewardModifyingZone() {
-        super(ID, Icons.REWARD);
+        super(ID);
         this.width = 3;
         this.height = 3;
     }

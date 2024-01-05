@@ -8,6 +8,7 @@ import basemod.eventUtil.util.Condition;
 import basemod.helpers.RelicType;
 import basemod.helpers.TextCodeInterpreter;
 import basemod.interfaces.*;
+import basemod.patches.com.megacrit.cardcrawl.helpers.TipHelper.HeaderlessTip;
 import basemod.patches.com.megacrit.cardcrawl.screens.options.DropdownMenu.DropdownColoring;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
@@ -111,6 +112,8 @@ public class SpireAnniversary6Mod implements
     private static final String POWER_L_ART = modID + "Resources/images/1024/power.png";
 
     public static boolean initializedStrings = false;
+
+    public static final Map<String, Keyword> keywords = new HashMap<>();
 
     public static List<AbstractZone> unfilteredAllZones = new ArrayList<>();
     public static List<AbstractZone> allZones = new ArrayList<>();
@@ -219,9 +222,8 @@ public class SpireAnniversary6Mod implements
                 .cards();
 
         CustomIconHelper.addCustomIcon(MonsterIcon.get());
-        CustomIconHelper.addCustomIcon(EliteIcon.get());
         CustomIconHelper.addCustomIcon(EventIcon.get());
-        CustomIconHelper.addCustomIcon(RewardIcon.get());
+        CustomIconHelper.addCustomIcon(ChestIcon.get());
         CustomIconHelper.addCustomIcon(ShopIcon.get());
         CustomIconHelper.addCustomIcon(RestIcon.get());
 
@@ -419,6 +421,10 @@ public class SpireAnniversary6Mod implements
 
         for (Keyword keyword : keywords) {
             BaseMod.addKeyword(modID, keyword.PROPER_NAME, keyword.NAMES, keyword.DESCRIPTION);
+            if (!keyword.ID.isEmpty())
+            {
+                SpireAnniversary6Mod.keywords.put(keyword.ID, keyword);
+            }
         }
     }
 
@@ -557,12 +563,11 @@ public class SpireAnniversary6Mod implements
     private static final float DROPDOWN_X = 400f;
     private static final float DROPDOWN_Y = 600f;
     private ModLabeledToggleButton filterCheckbox;
-    private static final float CHECKBOX_X = 800f;
-    private static final float CHECKBOX_Y = 575f;
+    private static final float CHECKBOX_X = 400f;
+    private static final float CHECKBOX_Y = 520f;
     private AbstractZone filterViewedZone;
-    private ModLabel viewedZoneDescription;
-    private static final float DESC_X = 400f;
-    private static final float DESC_Y = 540f;
+    private static final float DESC_X = 760f;
+    private static final float DESC_Y = 575f;
 
     private void initializeConfig() {
         UIStrings configStrings = CardCrawlGame.languagePack.getUIString(makeID("ConfigMenuText"));
@@ -587,6 +592,7 @@ public class SpireAnniversary6Mod implements
         IUIElement wrapperDropdown = new IUIElement() {
             public void render(SpriteBatch sb) {
                 filterDropdown.render(sb, DROPDOWN_X * Settings.xScale,DROPDOWN_Y * Settings.yScale);
+                HeaderlessTip.renderHeaderlessTip(DESC_X * Settings.xScale,DESC_Y * Settings.yScale, filterViewedZone.tooltipBody);
             }
             public void update() {
                 filterDropdown.update();
@@ -599,10 +605,6 @@ public class SpireAnniversary6Mod implements
                 (label) -> {},
                 (button) -> setFilterConfig(filterViewedZone.id, button.enabled));
         settingsPanel.addUIElement(filterCheckbox);
-
-        viewedZoneDescription = new ModLabel("Unassigned",DESC_X,DESC_Y,FontHelper.tipBodyFont,settingsPanel,
-                (label) -> {});
-        settingsPanel.addUIElement(viewedZoneDescription);
         filterSetViewedZone(0);
 
         BaseMod.registerModBadge(badge, configStrings.TEXT[0], configStrings.TEXT[1], configStrings.TEXT[2], settingsPanel);
@@ -611,7 +613,6 @@ public class SpireAnniversary6Mod implements
     private void filterSetViewedZone(int index) {
         filterViewedZone = unfilteredAllZones.get(index);
         filterCheckbox.toggle.enabled = getFilterConfig(filterViewedZone.id);
-        viewedZoneDescription.text = filterViewedZone.tooltipBody;
     }
 
     private void initializeSavedData() {

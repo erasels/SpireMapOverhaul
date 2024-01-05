@@ -19,7 +19,7 @@ public class VoidReaper extends CustomMonster {
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
-    private static final String IMG = SpireAnniversary6Mod.makeImagePath("monsters/VoidReaper/VoidReaper.png");
+    private static final String IMG = SpireAnniversary6Mod.makeImagePath("monsters/Invasion/VoidReaper/VoidReaper.png");
     private boolean firstMove = true;
     private static final byte CUT_THE_FUTURE_ATTACK = 1;
     private static final byte REAP_ATTACK = 2;

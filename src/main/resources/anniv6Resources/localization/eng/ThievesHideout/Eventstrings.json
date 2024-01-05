@@ -1,0 +1,18 @@
+{
+  "${ModID}:ThiefKing": {
+    "NAME": "The Thief King's Lair",
+    "DESCRIPTIONS": [
+      "Drawing close to the heart of the thieves' territory, you spot a structure much larger than anything else you've seen. Could this be the rumored #blair of the #yThief #yKing? NL NL Unable to resist the lure of #gtreasure, you sneak inside. With any luck, you can grab a bit of the thieves' loot and be gone with none the wiser.",
+      "You try to avoid the guards as you make your way through the building.... NL NL #r@\"HEY!@ #r@Intruder!@ #r@Unauthorized@ #r@thief!\"@ NL NL A big, imposing bandit that you took for a dumb brute turns out to have been more observant than you thought. Time to fight!",
+      "After defeating the enforcers, you take stock. You're deep enough in that there's #gtreasure and #ygold just lying around. You could take some of it and get out with your skin intact. NL NL But the rumors of the #yThief #yKing's #gtreasure tempt you to go deeper. It must be in there... but getting it will take a #r~dangerous~ fight against the #yThief #yKing and his lackeys.",
+      "You grab what you can and escape from the hideout. With the enforcers defeated, nobody stops you. NL NL It may not be the #yThief #yKing's #gtreasure, but at least you have something to show for your trouble."
+    ],
+    "OPTIONS": [
+      "[Continue]",
+      "[Fight]",
+      "[Prudence] Leave the lair. #gGain #g{0} #gGold.",
+      "[Greed] Fight the Thief King. #rDangerous but #grewarding.",
+      "[Leave]"
+    ]
+  }
+}

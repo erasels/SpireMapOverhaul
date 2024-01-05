@@ -39,11 +39,19 @@ public abstract class AbstractSMOCard extends CustomCard {
     private boolean needsArtRefresh = false;
 
     public AbstractSMOCard(final String cardID, final int cost, final CardType type, final CardRarity rarity, final CardTarget target) {
-        this(cardID, cost, type, rarity, target, CardColor.COLORLESS);
+        this(cardID, null, cost, type, rarity, target, CardColor.COLORLESS);
     }
 
     public AbstractSMOCard(final String cardID, final int cost, final CardType type, final CardRarity rarity, final CardTarget target, final CardColor color) {
-        this(cardID, cost, type, rarity, target, color, getCardTextureString(cardID.replace(modID + ":", ""), type));
+        this(cardID, null, cost, type, rarity, target, color);
+    }
+
+    public AbstractSMOCard(final String cardID, final String zoneID,final int cost, final CardType type, final CardRarity rarity, final CardTarget target) {
+        this(cardID, zoneID, cost, type, rarity, target, CardColor.COLORLESS);
+    }
+
+    public AbstractSMOCard(final String cardID, final String zoneID, final int cost, final CardType type, final CardRarity rarity, final CardTarget target, final CardColor color) {
+        this(cardID, cost, type, rarity, target, color, getCardTextureString((zoneID != null ? zoneID + "/" : "") + cardID.replace(modID + ":", ""), type));
     }
 
     public AbstractSMOCard(final String cardID, final int cost, final CardType type, final CardRarity rarity, final CardTarget target, final CardColor color, final String textureString) {
