@@ -26,7 +26,7 @@ public class VoidCorruption extends CustomMonster {
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
-    private static final String IMG = SpireAnniversary6Mod.makeImagePath("monsters/VoidCorruption/VoidCorruption.png");
+    private static final String IMG = SpireAnniversary6Mod.makeImagePath("monsters/Invasion/VoidCorruption/VoidCorruption.png");
     private boolean firstMove = true;
     private static final byte ENERGY_DRAIN_DEBUFF = 1;
     private static final byte VOIDS_ATTACK = 2;
