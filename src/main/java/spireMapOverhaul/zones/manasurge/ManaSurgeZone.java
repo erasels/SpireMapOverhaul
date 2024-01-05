@@ -40,7 +40,7 @@ public class ManaSurgeZone extends AbstractZone implements
     public static final float COMMON_CHANCE = 0.8f;
 
     public ManaSurgeZone() {
-        super(ID,Icons.MONSTER,Icons.ELITE,Icons.SHOP,Icons.EVENT,Icons.REST,Icons.REWARD);
+        super(ID,Icons.MONSTER,Icons.SHOP,Icons.EVENT,Icons.REST);
         this.width = 3;
         this.height = 4;
     }

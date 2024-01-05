@@ -5,83 +5,94 @@
     "NAMES": [
       "sharp"
     ],
-    "DESCRIPTION": "When played, deal #b5 damage to the target enemy. Damages a random enemy if this card does not target one enemy."
+    "DESCRIPTION": "Deal #b5 damage to the target enemy, or a random enemy if not a single target."
   },
   {
+    "ID": "tough",
     "PROPER_NAME": "[#8c9cff]Tough[]",
     "NAMES": [
       "tough"
     ],
-    "DESCRIPTION": "When played, gain #b5 #yBlock."
+    "DESCRIPTION": "Gain #b5 #yBlock."
   },
   {
+    "ID": "powerful",
     "PROPER_NAME": "[#8c9cff]Powerful[]",
     "NAMES": [
       "powerful"
     ],
-    "DESCRIPTION": "When played, gain #b1 #yStrength."
+    "DESCRIPTION": "Gain #b1 #yStrength."
   },
   {
+    "ID": "protective",
     "PROPER_NAME": "[#8c9cff]Protective[]",
     "NAMES": [
       "protective"
     ],
-    "DESCRIPTION": "When played, gain #b1 #yDexterity."
+    "DESCRIPTION": "Gain #b1 #yDexterity."
   },
   {
+    "ID": "exposing",
     "PROPER_NAME": "[#8c9cff]Exposing[]",
     "NAMES": [
       "exposing"
     ],
-    "DESCRIPTION": "When played, apply #b1 #yVulnerable to the target enemy. Applies to a random enemy if this card does not target one enemy."
+    "DESCRIPTION": "Apply #b1 #yVulnerable to the target enemy, or a random enemy if not a single target."
   },
   {
+    "ID": "crippling",
     "PROPER_NAME": "[#8c9cff]Crippling[]",
     "NAMES": [
       "crippling"
     ],
-    "DESCRIPTION": "When played, apply #b1 #yWeak to the target enemy. Applies to a random enemy if this card does not target one enemy."
+    "DESCRIPTION": "Apply #b1 #yWeak to the target enemy, or a random enemy if not a single target."
   },
   {
+    "ID": "harmful",
     "PROPER_NAME": "[#ff8cd5]Harmful[]",
     "NAMES": [
       "harmful"
     ],
-    "DESCRIPTION": "When played, take #b5 damage."
+    "DESCRIPTION": "Take #b5 damage."
   },
   {
+    "ID": "fragile",
     "PROPER_NAME": "[#ff8cd5]Fragile[]",
     "NAMES": [
       "fragile"
     ],
-    "DESCRIPTION": "When played, gain #b1 #yVulnerable."
+    "DESCRIPTION": "Gain #b1 #yVulnerable."
   },
   {
+    "ID": "feeble",
     "PROPER_NAME": "[#ff8cd5]Feeble[]",
     "NAMES": [
       "feeble"
     ],
-    "DESCRIPTION": "When played, gain #b1 #yFrail."
+    "DESCRIPTION": "Gain #b1 #yFrail."
   },
   {
+    "ID": "flawed",
     "PROPER_NAME": "[#ff8cd5]Flawed[]",
     "NAMES": [
       "flawed"
     ],
-    "DESCRIPTION": "When played, gain #b1 #yWeak."
+    "DESCRIPTION": "Gain #b1 #yWeak."
   },
   {
+    "ID": "powerless",
     "PROPER_NAME": "[#ff8cd5]Powerless[]",
     "NAMES": [
       "powerless"
     ],
-    "DESCRIPTION": "When played, lose #b1 #yStrength."
+    "DESCRIPTION": "Lose #b1 #yStrength."
   },
   {
+    "ID": "brittle",
     "PROPER_NAME": "[#ff8cd5]Brittle[]",
     "NAMES": [
       "brittle"
     ],
-    "DESCRIPTION": "When played, lose #b1 #yDexterity."
+    "DESCRIPTION": "Lose #b1 #yDexterity."
   }
 ]
