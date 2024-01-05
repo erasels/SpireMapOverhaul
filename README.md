@@ -15,7 +15,7 @@ Create a package within the zones package; this is where you will put all your c
 
 You will need a Zone class which extends AbstractZone and implements the various interfaces for modifying aspects of the game (found in the zoneInterfaces package). Within it you will have most of the code which controls what your zone does, from adding new encouters to deciding what nodes spawn in your zone. It's okay to do things those interfaces don't support yet by writing patches, though if there's something that multiple people want to do, it may be worth adding to one of the interfaces.
 
-AbstractZone's constructor requires an unprefixed ID (so do not call makeID on your ID when creating it) and any of the Icons enums which will used to signify what type of content your zone modifies in its tooltip. Available icons are: MONSTER, ELITE, REWARD, EVENT, REST and SHOP.  
+AbstractZone's constructor requires an unprefixed ID (so do not call makeID on your ID when creating it) and any of the Icons enums which will used to signify what type of content your zone modifies in its tooltip. Available icons are: MONSTER, CHEST, EVENT, REST and SHOP.  
 
 Strings will be handled in the same way as they were for Packmaster: create a directory with the same ID as your zone under `resources/anniv6Resources/localization/eng` and put all your localization jsons into that.  
   

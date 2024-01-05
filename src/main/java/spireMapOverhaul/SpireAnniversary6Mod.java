@@ -75,7 +75,8 @@ public class SpireAnniversary6Mod implements
         PostRenderSubscriber,
         PostCampfireSubscriber,
         StartGameSubscriber,
-        ImGuiSubscriber {
+        ImGuiSubscriber,
+        PostUpdateSubscriber {
 
     public static final Logger logger = LogManager.getLogger("Zonemaster");
 
@@ -104,6 +105,11 @@ public class SpireAnniversary6Mod implements
     private static final String ATTACK_L_ART = modID + "Resources/images/1024/attack.png";
     private static final String SKILL_L_ART = modID + "Resources/images/1024/skill.png";
     private static final String POWER_L_ART = modID + "Resources/images/1024/power.png";
+
+    public static final String THUNDER_KEY = makeID("Storm_Thunder");
+    private static final String THUNDER_MP3 = makePath("audio/storm/thunder.mp3");
+    public static final String RAIN_KEY = makeID("Storm_Rain");
+    private static final String RAIN_MP3 = makePath("audio/storm/rain.mp3");
 
     public static boolean initializedStrings = false;
 
@@ -504,7 +510,8 @@ public class SpireAnniversary6Mod implements
 
     @Override
     public void receiveAddAudio() {
-
+        BaseMod.addAudio(THUNDER_KEY, THUNDER_MP3);
+        BaseMod.addAudio(RAIN_KEY, RAIN_MP3);
     }
 
     private void registerCustomRewards() {
@@ -652,6 +659,12 @@ public class SpireAnniversary6Mod implements
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static float time = 0f;
+    @Override
+    public void receivePostUpdate() {
+        time += Gdx.graphics.getDeltaTime();
     }
 
     public static class SavableCurrentRunActive implements CustomSavable<Boolean> {
