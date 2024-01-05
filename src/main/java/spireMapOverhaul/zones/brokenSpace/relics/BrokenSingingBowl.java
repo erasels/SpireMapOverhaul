@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.SingingBowl;
+import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import spireMapOverhaul.interfaces.relics.MaxHPChangeRelic;
 
@@ -20,6 +21,7 @@ public class BrokenSingingBowl extends BrokenRelic implements MaxHPChangeRelic {
     @Override
     public int onMaxHPChange(int amount) {
         ArrayList<AbstractCard> upgradableCards = new ArrayList<>();
+        flash();
 
         for (AbstractCard c : AbstractDungeon.player.masterDeck.group) {
             if (c.canUpgrade()) {// 102
@@ -32,8 +34,8 @@ public class BrokenSingingBowl extends BrokenRelic implements MaxHPChangeRelic {
                 AbstractCard c = upgradableCards.remove(AbstractDungeon.cardRandomRng.random(upgradableCards.size() - 1));
                 c.upgrade();
                 AbstractDungeon.player.bottledCardUpgradeCheck(c);
-                AbstractDungeon.effectList.add(new ShowCardBrieflyEffect(c.makeStatEquivalentCopy(), (float) Settings.WIDTH/2, (float) Settings.HEIGHT/2));// 105 107 108 109
-
+                AbstractDungeon.topLevelEffectsQueue.add(new ShowCardBrieflyEffect(c.makeStatEquivalentCopy()));
+                AbstractDungeon.topLevelEffectsQueue.add(new UpgradeShineEffect((float) Settings.WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F));
             }
         }
         return amount;

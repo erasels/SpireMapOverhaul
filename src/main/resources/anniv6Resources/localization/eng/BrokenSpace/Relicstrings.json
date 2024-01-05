@@ -54,8 +54,7 @@
     "NAME": "Broken Sozu",
     "FLAVOR": "no",
     "DESCRIPTIONS": [
-      "In-Combat Potions cost #b",
-      " [E] to use. When you spend energy on a potion, use another random potion.",
+      "In-Combat Potions cost [E] to use. When you spend energy on a potion, use another random potion.",
       " Energy"
     ]
   },
@@ -64,7 +63,7 @@
     "FLAVOR": "no",
     "DESCRIPTIONS": [
       "At the start of each turn, add #b",
-      " copy of a random card from your master deck into your hand. It #yExhausts, is #yEthereal, and is unreadable."
+      " copy of a random card from your deck into your hand. It #yPurges, is #yEthereal, and is unreadable."
     ]
   },
   "${ModID}:BrokenMawBank": {

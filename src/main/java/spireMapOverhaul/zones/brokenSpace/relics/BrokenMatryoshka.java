@@ -28,7 +28,7 @@ public class BrokenMatryoshka extends BrokenRelic {
         AbstractRelic r = AbstractDungeon.returnRandomScreenlessRelic(getRelicTier());
         RewardItem reward = new RewardItem(r);
         AbstractDungeon.getCurrRoom().rewards.add(reward);
-        if (!Settings.hasSapphireKey){
+        if (!Settings.hasSapphireKey && Settings.isFinalActAvailable) {
             AbstractDungeon.getCurrRoom().addSapphireKey(reward);
         }
 

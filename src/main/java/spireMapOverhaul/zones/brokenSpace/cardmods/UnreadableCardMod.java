@@ -1,6 +1,7 @@
 package spireMapOverhaul.zones.brokenSpace.cardmods;
 
 import basemod.abstracts.AbstractCardModifier;
+import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.PurgeField;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
@@ -13,9 +14,9 @@ public class UnreadableCardMod extends AbstractCardModifier {
     public void onInitialApplication(AbstractCard card) {
 
         name = randomText(card.name.length());
-        card.exhaust = true;
+        PurgeField.purge.set(card, true);
         card.isEthereal = true;
-        card.purgeOnUse = true;
+
 
     }
 

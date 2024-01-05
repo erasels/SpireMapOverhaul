@@ -15,7 +15,6 @@ import static spireMapOverhaul.util.Wiz.adp;
 public class BrokenDataDisk extends BrokenRelic implements OnChannelRelic {
     public static final String ID = "BrokenDataDisk";
     public static final int AMOUNT = 1;
-    public boolean shouldTrigger = true;
     private boolean usedThisTurn = false;
 
     public BrokenDataDisk() {
@@ -24,19 +23,18 @@ public class BrokenDataDisk extends BrokenRelic implements OnChannelRelic {
 
     @Override
     public void onChannel(AbstractOrb abstractOrb) {
-        if (!shouldTrigger || usedThisTurn) {
+        if (usedThisTurn) {
             return;
         }
-
         addToTop(new AbstractGameAction() {// 29
             public void update() {
-                shouldTrigger = true;
                 this.isDone = true;// 40
             }// 41
         });
         addToBot(new ChannelAction(abstractOrb.makeCopy()));
+        this.flash();
         usedThisTurn = true;
-        shouldTrigger = false;
+
     }
 
 

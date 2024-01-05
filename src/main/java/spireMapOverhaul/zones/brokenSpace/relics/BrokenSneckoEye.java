@@ -19,8 +19,14 @@ public class BrokenSneckoEye extends BrokenRelic {
 
     @Override
     public void atTurnStart() {
+        flash();
         for (int i = 0; i < AMOUNT; i++) {
-            AbstractCard c = adp().masterDeck.getRandomCard(true).makeStatEquivalentCopy();
+            AbstractCard c;
+            do {
+                c = adp().masterDeck.getRandomCard(true);
+            } while (c.hasTag(AbstractCard.CardTags.HEALING));
+            c = c.makeStatEquivalentCopy();
+
             CardModifierManager.addModifier(c, new UnreadableCardMod());
             addToBot(new MakeTempCardInHandAction(c, true));
         }

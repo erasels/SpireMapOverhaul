@@ -36,6 +36,7 @@ public class BrokenSozu extends BrokenRelic implements BetterOnUsePotionRelic {
 
 
         if (adp().hasRelic(makeID(ID)) && isInCombat() && !canUseOverridden(p)) {
+            flash();
             adp().energy.use(POTION_COST);
             AbstractPotion secondPotion = AbstractDungeon.returnRandomPotion(true);
             secondPotion.use(AbstractDungeon.getRandomMonster());
@@ -89,7 +90,7 @@ public class BrokenSozu extends BrokenRelic implements BetterOnUsePotionRelic {
 
     public static String getEnergyText(PotionPopUp popup, String original) {
         if (AbstractDungeon.player.hasRelic(makeID(ID))) {
-            return original + ": " + POTION_COST + " " + DESCRIPTIONS[2];
+            return original + ": " + POTION_COST + " " + DESCRIPTIONS[1];
 
         }
         return original;
@@ -103,6 +104,6 @@ public class BrokenSozu extends BrokenRelic implements BetterOnUsePotionRelic {
 
     @Override
     public String getUpdatedDescription() {
-        return DESCRIPTIONS[0] + POTION_COST + DESCRIPTIONS[1];
+        return DESCRIPTIONS[0];
     }
 }

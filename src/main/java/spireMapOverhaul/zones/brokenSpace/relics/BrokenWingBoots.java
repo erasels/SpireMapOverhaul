@@ -5,6 +5,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.WingBoots;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.EventRoom;
 import javassist.CannotCompileException;
 import javassist.expr.ExprEditor;
@@ -24,6 +25,14 @@ public class BrokenWingBoots extends BrokenRelic {
     @Override
     public boolean canSpawn() {
         return AbstractDungeon.actNum < 3 || Settings.isEndless;
+    }
+
+    @Override
+    public void onEnterRoom(AbstractRoom room) {
+        if (room.event instanceof WingBootEvent) {
+            this.flash();
+        }
+        super.onEnterRoom(room);
     }
 
     @SpirePatch2(

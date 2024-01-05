@@ -28,9 +28,9 @@ public class BrokenOmamori extends BrokenRelic {
         super.onEquip();
         for (int i = 0; i < AMOUNT; i++) {
             AbstractCard c = AbstractDungeon.returnRandomCurse();
-
             AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(c, (float) Settings.WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F));
         }
+        flash();
     }
 
     @Override
@@ -44,6 +44,7 @@ public class BrokenOmamori extends BrokenRelic {
         super.update();
         if (triggered) {
             triggered = false;
+            flash();
             AbstractDungeon.topLevelEffects.add(new UpgradeShineEffect((float) Settings.WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F));// 99
             ArrayList<AbstractCard> upgradableCards = new ArrayList<>();
 
@@ -56,6 +57,7 @@ public class BrokenOmamori extends BrokenRelic {
 
             for (int i = 0; i < UPGRADE_AMOUNT; i++) {
                 if (!upgradableCards.isEmpty()) {
+
                     AbstractCard c = upgradableCards.remove(AbstractDungeon.cardRandomRng.random(upgradableCards.size() - 1));
                     c.upgrade();
                     AbstractDungeon.player.bottledCardUpgradeCheck(c);

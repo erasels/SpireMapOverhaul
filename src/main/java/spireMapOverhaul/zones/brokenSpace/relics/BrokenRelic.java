@@ -35,6 +35,8 @@ public abstract class BrokenRelic extends AbstractSMORelic {
 
     private static Texture missingImg = TexLoader.getTexture(makeImagePath("ui/missing.png"));
 
+    private static final boolean DO_ANIMATIONS = false; // :(
+
 
 
     static {
@@ -66,6 +68,7 @@ public abstract class BrokenRelic extends AbstractSMORelic {
             outlineImg = RelicLibrary.getRelic(origID).outlineImg;
         }
         BrokenSpaceZone.addBrokenRelic(makeID(setId));
+        setRotation((float) (Math.random() * 360f));
     }
 
     @Override
@@ -182,6 +185,9 @@ public abstract class BrokenRelic extends AbstractSMORelic {
     }
 
     private void GlitchRotation() {
+        if (!DO_ANIMATIONS) {
+            return;
+        }
         float rotation = getRotation();
         float glitch = (float) (Math.random() * 1f);
 
@@ -256,9 +262,12 @@ public abstract class BrokenRelic extends AbstractSMORelic {
 
         sb.setShader(brokenSpaceShader);
         sb.setColor(Color.WHITE);
-        brokenSpaceShader.setUniformf("u_time", BrokenSpaceZone.shaderTimer * 3 + timerOffset);
+
+        float time = DO_ANIMATIONS ? BrokenSpaceZone.shaderTimer * 3 : 0;
+
+        brokenSpaceShader.setUniformf("u_time", time + timerOffset);
         brokenSpaceShader.setUniformf("u_strength", strength);
-        brokenSpaceShader.setUniformf("u_chrAb", 0.02f);
+        brokenSpaceShader.setUniformf("u_chrAb", 0.05f);
 
         sb.draw(region, 0, 0);
         sb.flush();

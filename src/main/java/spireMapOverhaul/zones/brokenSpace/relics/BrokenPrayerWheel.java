@@ -1,5 +1,7 @@
 package spireMapOverhaul.zones.brokenSpace.relics;
 
+import com.evacipated.cardcrawl.modthespire.lib.ByRef;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -30,10 +32,11 @@ public class BrokenPrayerWheel extends BrokenRelic {
         return DESCRIPTIONS[0] + AMOUNT + DESCRIPTIONS[1] + GOLD + DESCRIPTIONS[2];
     }
 
-    @SpirePatch2(clz = RewardItem.class, method = "applyGoldBonus")
+    @SpirePatch2(clz = RewardItem.class, method = SpirePatch.CONSTRUCTOR, paramtypez = {int.class, boolean.class})
+    @SpirePatch2(clz = RewardItem.class, method = SpirePatch.CONSTRUCTOR, paramtypez = {int.class})
     public static class BrokenPrayerWheelPatch {
         @SpirePrefixPatch
-        public static void patch(RewardItem __instance) {
+        public static void patch(RewardItem __instance, @ByRef int[] gold) {
             if (AbstractDungeon.player.hasRelic(makeID(ID))) {
                 int numberOfPrayerWheels = 0;
                 for (AbstractRelic r : AbstractDungeon.player.relics) {
@@ -42,7 +45,7 @@ public class BrokenPrayerWheel extends BrokenRelic {
                     }
                 }
 
-                __instance.goldAmt *= GOLD * numberOfPrayerWheels;
+                gold[0] *= GOLD * numberOfPrayerWheels;
             }
         }
     }
