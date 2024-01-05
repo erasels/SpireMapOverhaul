@@ -46,15 +46,14 @@ public abstract class AbstractZone {
     static {
         iconsMap = new HashMap<>();
         iconsMap.put(Icons.MONSTER, "[" +SpireAnniversary6Mod.modID+":MonsterIcon]");
-        iconsMap.put(Icons.ELITE, "[" +SpireAnniversary6Mod.modID+":EliteIcon]");
-        iconsMap.put(Icons.REWARD, "[" +SpireAnniversary6Mod.modID+":RewardIcon]");
+        iconsMap.put(Icons.CHEST, "[" +SpireAnniversary6Mod.modID+":ChestIcon]");
         iconsMap.put(Icons.EVENT, "[" +SpireAnniversary6Mod.modID+":EventIcon]");
         iconsMap.put(Icons.SHOP, "[" +SpireAnniversary6Mod.modID+":ShopIcon]");
         iconsMap.put(Icons.REST, "[" +SpireAnniversary6Mod.modID+":RestIcon]");
     }
 
     public enum Icons {
-        MONSTER, ELITE, REWARD, EVENT, REST, SHOP
+        MONSTER, CHEST, EVENT, REST, SHOP
     }
 
     public final String id;
@@ -232,7 +231,7 @@ public abstract class AbstractZone {
     //By default, the rows for treasure nodes and the final campfire before the boss are protected, meaning that random
     //(re)placement with the built-in AbstractZone methods won't affect them. Zones with manual placement logic should
     //either replicate these checks or override canIncludeTreasureRow/canIncludeFinalCampfireRow to return false.
-    private boolean isProtectedRow(int row) {
+    protected final boolean isProtectedRow(int row) {
         return row == TREASURE_ROW || row == FINAL_CAMPFIRE_ROW;
     }
 
@@ -389,7 +388,7 @@ public abstract class AbstractZone {
     }
 
     /**
-     * Replace rooms that match a filter with rooms from a supplier.
+     * Replace rooms that match a filter (and aren't in protected rows) with rooms from a supplier.
      * @param percentage The percentage of valid rooms to replace, from 0-1
      */
     protected final void replaceRoomsRandomly(Random rng, Supplier<AbstractRoom> roomSupplier, Predicate<AbstractRoom> roomFilter, float percentage) {
