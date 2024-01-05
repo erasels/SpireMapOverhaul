@@ -92,7 +92,7 @@ public class CandyLand extends AbstractZone implements RewardModifyingZone, Camp
         for (int i = 0; i < rewards.size(); i++) {
             RewardItem r = rewards.get(i);
             if(r.type == RewardItem.RewardType.GOLD){
-                rewards.set(i, new HealReward("ChocolateCoins.png", (int) (0.5*r.goldAmt)));
+                rewards.set(i, new HealReward("CandyLand/ChocolateCoins.png", (int) (0.5*r.goldAmt)));
             }
         }
     }
