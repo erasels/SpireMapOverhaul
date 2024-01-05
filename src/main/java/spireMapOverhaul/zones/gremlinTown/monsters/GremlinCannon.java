@@ -1,8 +1,6 @@
 package spireMapOverhaul.zones.gremlinTown.monsters;
 
 import basemod.abstracts.CustomMonster;
-import com.badlogic.gdx.math.MathUtils;
-import com.esotericsoftware.spine.AnimationState;
 import com.megacrit.cardcrawl.actions.animations.AnimateSlowAttackAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
@@ -16,42 +14,36 @@ import spireMapOverhaul.zones.invasion.powers.DrawReductionSingleTurnPower;
 
 import static spireMapOverhaul.util.Wiz.*;
 
-public class GremlinAssassin extends CustomMonster
+public class GremlinCannon extends CustomMonster
 {
-    public static final String ID = SpireAnniversary6Mod.makeID(GremlinAssassin.class.getSimpleName());
+    public static final String ID = SpireAnniversary6Mod.makeID(GremlinCannon.class.getSimpleName());
     public static final String NAME;
-    private static final String SKELETON_ATLAS = SpireAnniversary6Mod.makeImagePath(
-            "monsters/GremlinTown/GremlinAssassin/skeleton.atlas");
-    private static final String SKELETON_JSON = SpireAnniversary6Mod.makeImagePath(
-            "monsters/GremlinTown/GremlinAssassin/skeleton.json");
+    private static final String IMAGE_PATH = SpireAnniversary6Mod.makeImagePath("events/GremlinTown/EventChestOpened.png");
     private boolean firstMove = true;
     private static final byte HAMSTRING = 1;
     private static final byte SAP = 2;
-    private static final int DAMAGE_HAMSTRING = 10;
-    private static final int DAMAGE_HAMSTRING_A2 = 11;
-    private static final int DAMAGE_SAP = 7;
-    private static final int DAMAGE_SAP_A2 = 8;
-    private static final int MIN_HP = 29;
-    private static final int MAX_HP = 32;
-    private static final int MIN_HP_A7 = 32;
-    private static final int MAX_HP_A7 = 35;
+    private static final int DAMAGE_HAMSTRING = 14;
+    private static final int DAMAGE_HAMSTRING_A2 = 15;
+    private static final int DAMAGE_SAP = 10;
+    private static final int DAMAGE_SAP_A2 = 11;
+    private static final int MIN_HP = 48;
+    private static final int MAX_HP = 53;
+    private static final int MIN_HP_A7 = 52;
+    private static final int MAX_HP_A7 = 58;
     private static final int HAMSTRING_AMOUNT = 1;
     private static final int SAP_AMOUNT = 1;
 
     private final int hamstringDamage;
     private final int sapDamage;
 
-    public GremlinAssassin() {
+    public GremlinCannon() {
         this(0.0f, 0.0f);
     }
 
-    public GremlinAssassin(final float x, final float y) {
-        super(GremlinAssassin.NAME, ID, MAX_HP, 0, 0, 120.0f/0.7f, 160.0f/0.7f, null, x, y);
+    public GremlinCannon(final float x, final float y) {
+        super(GremlinCannon.NAME, ID, MAX_HP, 0, 0, 512.0F, 512.0F, IMAGE_PATH, x, y);
 
         type = EnemyType.NORMAL;
-        loadAnimation(SKELETON_ATLAS, SKELETON_JSON, 0.7F);
-        AnimationState.TrackEntry e = this.state.setAnimation(0, "animation", true);
-        e.setTime(e.getEndTime() * MathUtils.random());
 
         if (asc() >= 2) {
             hamstringDamage = DAMAGE_HAMSTRING_A2;

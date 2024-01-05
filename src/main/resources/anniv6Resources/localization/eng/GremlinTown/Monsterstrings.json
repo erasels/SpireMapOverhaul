@@ -52,6 +52,13 @@
     ],
     "NAME": "Gremlin Assassin"
   },
+  "${ModID}:GremlinJerk": {
+    "MOVES": [
+      "Hamstring",
+      "Sap"
+    ],
+    "NAME": "Gremlin Jerk"
+  },
   "${ModID}:GremlinNib": {
     "MOVES": [
       "Bellow",
@@ -76,5 +83,12 @@
       "You shall never again be whole!"
     ],
     "NAME": "Gremlin Elder"
+  },
+  "${ModID}:GremlinCannon": {
+    "MOVES": [
+      "Pew Pew",
+      "Bang Bang"
+    ],
+    "NAME": "Gremlin Cannon"
   }
 }

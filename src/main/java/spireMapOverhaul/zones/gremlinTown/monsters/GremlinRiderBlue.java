@@ -56,7 +56,6 @@ public class GremlinRiderBlue extends CustomMonster
         stateData.setMix("Hit", "Idle", 0.1F);
         e.setTimeScale(0.8F);
 
-        this.type = EnemyType.NORMAL;
         if (asc() >= 7)
             setHp(MIN_HP_A7, MAX_HP_A7);
         else

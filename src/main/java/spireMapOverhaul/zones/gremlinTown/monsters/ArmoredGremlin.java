@@ -49,8 +49,6 @@ public class ArmoredGremlin extends CustomMonster
         loadAnimation(SKELETON_ATLAS, SKELETON_JSON, 0.7F);
         AnimationState.TrackEntry e = this.state.setAnimation(0, "idle", true);
         e.setTime(e.getEndTime() * MathUtils.random());
-
-        this.type = EnemyType.NORMAL;
         setHp(MIN_HP, MAX_HP);
 
         if (asc() >= 2)

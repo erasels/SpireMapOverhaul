@@ -1,7 +1,6 @@
 package spireMapOverhaul.zones.gremlinTown.monsters;
 
 import basemod.abstracts.CustomMonster;
-import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
 import com.badlogic.gdx.math.MathUtils;
 import com.esotericsoftware.spine.AnimationState;
 import com.megacrit.cardcrawl.actions.animations.AnimateSlowAttackAction;
@@ -48,8 +47,6 @@ public class GremlinBarbarian extends CustomMonster
         loadAnimation(SKELETON_ATLAS, SKELETON_JSON, 0.7F);
         AnimationState.TrackEntry e = this.state.setAnimation(0, "idle", true);
         e.setTime(e.getEndTime() * MathUtils.random());
-
-        this.type = EnemyType.NORMAL;
 
         if (asc() >= 2)
             attackDamage = DAMAGE_A2;

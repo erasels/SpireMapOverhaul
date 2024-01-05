@@ -432,6 +432,10 @@ public class Wiz {
         return list.get(rng.nextInt(list.size()));
     }
 
+    public static AbstractRoom adRoom() {
+        return AbstractDungeon.getCurrRoom();
+    }
+
     /************************************************************
      *              Anniversary 6 specific utility methods
      ************************************************************/

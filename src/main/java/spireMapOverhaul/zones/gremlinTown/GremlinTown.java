@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.helpers.PotionHelper;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
-import com.megacrit.cardcrawl.monsters.exordium.AcidSlime_S;
+import com.megacrit.cardcrawl.monsters.exordium.GremlinWarrior;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rewards.RewardItem;
@@ -22,9 +22,11 @@ import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
+import spireMapOverhaul.zoneInterfaces.ModifiedEventRateZone;
 import spireMapOverhaul.zoneInterfaces.RewardModifyingZone;
 import spireMapOverhaul.zoneInterfaces.ShopModifyingZone;
 import spireMapOverhaul.zones.gremlinTown.cards.*;
+import spireMapOverhaul.zones.gremlinTown.events.misc.Chest;
 import spireMapOverhaul.zones.gremlinTown.monsters.*;
 import spireMapOverhaul.zones.gremlinTown.potions.*;
 import spireMapOverhaul.zones.gremlinTown.relics.*;
@@ -41,13 +43,16 @@ import static spireMapOverhaul.util.Wiz.asc;
 public class GremlinTown extends AbstractZone
         implements EncounterModifyingZone,
         RewardModifyingZone,
-        ShopModifyingZone {
+        ShopModifyingZone,
+        ModifiedEventRateZone {
     public static final String ID = GremlinTown.class.getSimpleName();
     public static final String GREMLIN_RIDERS = SpireAnniversary6Mod.makeID("Gremlin_Riders");
     public static final String GREMLIN_GANG_TWO = SpireAnniversary6Mod.makeID("Gremlin_Gang_Two");
     public static final String NIB = SpireAnniversary6Mod.makeID("Nib");
     public static final String GREMLIN_ELDER = SpireAnniversary6Mod.makeID("Gremlin_Elder");
     public static final String GREMLIN_HORDE = SpireAnniversary6Mod.makeID("Gremlin_Horde");
+    public static final String GREMLIN_JERK = SpireAnniversary6Mod.makeID("Wheel_Gremlin");
+    public static final String SURPRISE = SpireAnniversary6Mod.makeID("Surprise");
     private static ArrayList<AbstractCard> gremlinCards;
     private static ArrayList<AbstractCard> commonGremlinCards;
     private static ArrayList<AbstractCard> uncommonGremlinCards;
@@ -92,6 +97,11 @@ public class GremlinTown extends AbstractZone
     @Override
     protected boolean canIncludeEarlyRows() {
         return false;
+    }
+
+    @Override
+    public float zoneSpecificEventRate() {
+        return 1.0f;
     }
 
     @Override
@@ -152,7 +162,7 @@ public class GremlinTown extends AbstractZone
             case "ArmoredGremlin":
                 return new ArmoredGremlin(xPos, yPos);
             default:
-                return new AcidSlime_S(xPos, yPos, 0);
+                return new GremlinWarrior(xPos, yPos);
         }
     }
 
@@ -175,7 +185,17 @@ public class GremlinTown extends AbstractZone
         //  Will need to manually add all Elite encounters that aren't leader
         //  Since leader is already registered in base game
         //  encounters.addAll(eliteEncounters);
+        //  Also add event fights
         encounters.add(new ZoneEncounter(GREMLIN_ELDER, 2, () -> new MonsterGroup(new GremlinElder(-80f, -50f))));
+        encounters.add(new ZoneEncounter(GREMLIN_JERK, 2, () -> new MonsterGroup(new GremlinJerk(-120f, -80f))));
+        // This isn't quite the same as the monster group loaded by the event fight
+        // These start in their combat positions instead of spawning off the screen and being animated
+        encounters.add(new ZoneEncounter(SURPRISE, 2, () -> new MonsterGroup(
+                new AbstractMonster[]{
+                    new GremlinCannon(Chest.CHEST_LOC_X, Chest.CHEST_LOC_Y),
+                    new GremlinRiderRed(-320.0F, -50.0F),
+                    new GremlinRiderRed(-100.0F, -50.0F)
+                })));
 
         for (ZoneEncounter ze : encounters)
             BaseMod.addMonster(ze.getID(), ze.getName(), () -> ze.getMonsterSupplier().get());
@@ -480,7 +500,7 @@ public class GremlinTown extends AbstractZone
         return potion;
     }
 
-    private AbstractRelic getRandomGRelic() {
+    public static AbstractRelic getRandomGRelic() {
         if (commonGremlinRelics == null)
             initGremlinRelics();
 
@@ -488,7 +508,7 @@ public class GremlinTown extends AbstractZone
         return getRandomGRelic(tier);
     }
 
-    private AbstractRelic getRandomGRelic(AbstractRelic.RelicTier tier) {
+    private static AbstractRelic getRandomGRelic(AbstractRelic.RelicTier tier) {
         if (commonGremlinRelics == null)
             initGremlinRelics();
 

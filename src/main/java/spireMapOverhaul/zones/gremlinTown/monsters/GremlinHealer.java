@@ -51,7 +51,6 @@ public class GremlinHealer extends CustomMonster
         AnimationState.TrackEntry e = this.state.setAnimation(0, "animation", true);
         e.setTime(e.getEndTime() * MathUtils.random());
 
-        this.type = EnemyType.NORMAL;
         if (asc() >= 7)
             setHp(MIN_HP_A7, MAX_HP_A7);
         else

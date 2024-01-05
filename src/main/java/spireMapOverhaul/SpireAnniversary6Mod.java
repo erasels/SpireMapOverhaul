@@ -54,6 +54,7 @@ import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.util.ZoneShapeMaker;
 import spireMapOverhaul.zoneInterfaces.CampfireModifyingZone;
 import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
+import spireMapOverhaul.zones.gremlinTown.events.Surprise;
 import spireMapOverhaul.zones.gremlinTown.potions.*;
 
 import java.io.IOException;
@@ -506,6 +507,9 @@ public class SpireAnniversary6Mod implements
 
                     if (eventCondition != null)
                         eventBuilder.bonusCondition(eventCondition);
+
+                    if (eventID.equals(Surprise.ID))
+                        eventBuilder.endsWithRewardsUI(true);
 
                     BaseMod.addEvent(eventBuilder.create());
                 }
