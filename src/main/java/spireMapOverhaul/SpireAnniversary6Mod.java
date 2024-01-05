@@ -216,7 +216,6 @@ public class SpireAnniversary6Mod implements
                 .cards();
 
         CustomIconHelper.addCustomIcon(MonsterIcon.get());
-        CustomIconHelper.addCustomIcon(EliteIcon.get());
         CustomIconHelper.addCustomIcon(EventIcon.get());
         CustomIconHelper.addCustomIcon(ChestIcon.get());
         CustomIconHelper.addCustomIcon(ShopIcon.get());
