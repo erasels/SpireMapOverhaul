@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.RelicLibrary;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
@@ -32,9 +33,7 @@ public abstract class BrokenRelic extends AbstractSMORelic {
     private static final ShaderProgram brokenSpaceShader;
     private static String giganticString = "??";
     private AbstractRelic originalRelic;
-
     private static Texture missingImg = TexLoader.getTexture(makeImagePath("ui/missing.png"));
-
     private static final boolean DO_ANIMATIONS = false; // :(
 
 
@@ -55,6 +54,7 @@ public abstract class BrokenRelic extends AbstractSMORelic {
     private final String origID;
     private final float timerOffset = (float) (Math.random() * 1000f);
     private boolean flipRotation = false;
+    private float frozenRotation = 0f;
 
     public BrokenRelic(String setId, AbstractRelic.RelicTier tier, AbstractRelic.LandingSound sfx, String origID) {
         super(makeID(setId), tier, sfx);
@@ -68,7 +68,8 @@ public abstract class BrokenRelic extends AbstractSMORelic {
             outlineImg = RelicLibrary.getRelic(origID).outlineImg;
         }
         BrokenSpaceZone.addBrokenRelic(makeID(setId));
-        setRotation((float) (Math.random() * 360f));
+        frozenRotation = (float) (Math.random() * 360f);
+        setRotation(frozenRotation);
     }
 
     @Override
@@ -133,6 +134,12 @@ public abstract class BrokenRelic extends AbstractSMORelic {
         return sb.toString();
 
 
+    }
+
+    @Override
+    public void reorganizeObtain(AbstractPlayer p, int slot, boolean callOnEquip, int relicAmount) {
+
+        super.reorganizeObtain(p, slot, callOnEquip, relicAmount);
     }
 
     private String updateFlavorText() {
@@ -214,6 +221,10 @@ public abstract class BrokenRelic extends AbstractSMORelic {
             largeImg = originalRelic.largeImg;
             outlineImg = originalRelic.outlineImg;
             flavorText = generateFlavorText();
+        }
+        if (!DO_ANIMATIONS && getRotation() != frozenRotation) {
+            setRotation(frozenRotation);
+
         }
 
     }

@@ -1,13 +1,11 @@
 package spireMapOverhaul.zones.brokenSpace.relics;
 
-import com.evacipated.cardcrawl.modthespire.lib.ByRef;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
+import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.PrayerWheel;
 import com.megacrit.cardcrawl.rewards.RewardItem;
+import javassist.CtBehavior;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 
@@ -32,21 +30,30 @@ public class BrokenPrayerWheel extends BrokenRelic {
         return DESCRIPTIONS[0] + AMOUNT + DESCRIPTIONS[1] + GOLD + DESCRIPTIONS[2];
     }
 
-    @SpirePatch2(clz = RewardItem.class, method = SpirePatch.CONSTRUCTOR, paramtypez = {int.class, boolean.class})
-    @SpirePatch2(clz = RewardItem.class, method = SpirePatch.CONSTRUCTOR, paramtypez = {int.class})
+    @SpirePatch2(clz = RewardItem.class, method = "applyGoldBonus")
+
     public static class BrokenPrayerWheelPatch {
-        @SpirePrefixPatch
-        public static void patch(RewardItem __instance, @ByRef int[] gold) {
+        @SpireInsertPatch(locator = Locator.class, localvars = {"tmp"})
+        public static void patch(RewardItem __instance, int tmp) {
             if (AbstractDungeon.player.hasRelic(makeID(ID))) {
-                int numberOfPrayerWheels = 0;
+                int prayerWheelAmt = 0;
                 for (AbstractRelic r : AbstractDungeon.player.relics) {
                     if (r instanceof BrokenPrayerWheel) {
-                        numberOfPrayerWheels++;
+                        prayerWheelAmt++;
                     }
                 }
 
-                gold[0] *= GOLD * numberOfPrayerWheels;
+                __instance.bonusGold += (int) (tmp * Math.pow(GOLD, prayerWheelAmt));
             }
         }
+
+        private static class Locator extends SpireInsertLocator {
+            @Override
+            public int[] Locate(CtBehavior ctBehavior) throws Exception {
+                Matcher matcher = new Matcher.MethodCallMatcher(AbstractDungeon.class, "getCurrRoom");
+                return LineFinder.findInOrder(ctBehavior, matcher);
+            }
+        }
+
     }
 }
