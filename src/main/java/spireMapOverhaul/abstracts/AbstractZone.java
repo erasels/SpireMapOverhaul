@@ -46,15 +46,14 @@ public abstract class AbstractZone {
     static {
         iconsMap = new HashMap<>();
         iconsMap.put(Icons.MONSTER, "[" +SpireAnniversary6Mod.modID+":MonsterIcon]");
-        iconsMap.put(Icons.ELITE, "[" +SpireAnniversary6Mod.modID+":EliteIcon]");
-        iconsMap.put(Icons.REWARD, "[" +SpireAnniversary6Mod.modID+":RewardIcon]");
+        iconsMap.put(Icons.CHEST, "[" +SpireAnniversary6Mod.modID+":ChestIcon]");
         iconsMap.put(Icons.EVENT, "[" +SpireAnniversary6Mod.modID+":EventIcon]");
         iconsMap.put(Icons.SHOP, "[" +SpireAnniversary6Mod.modID+":ShopIcon]");
         iconsMap.put(Icons.REST, "[" +SpireAnniversary6Mod.modID+":RestIcon]");
     }
 
     public enum Icons {
-        MONSTER, ELITE, REWARD, EVENT, REST, SHOP
+        MONSTER, CHEST, EVENT, REST, SHOP
     }
 
     public final String id;
