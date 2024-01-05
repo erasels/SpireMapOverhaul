@@ -1,0 +1,9 @@
+{
+  "${ModID}:Junkbot": {
+    "MOVES": [
+      "Grab",
+      "Reboot"
+    ],
+    "NAME": "Junkbot"
+  }
+}

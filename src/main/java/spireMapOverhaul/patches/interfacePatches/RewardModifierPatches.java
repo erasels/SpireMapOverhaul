@@ -164,7 +164,7 @@ public class RewardModifierPatches {
          public static void Postfix(CombatRewardScreen __Instance) {
              AbstractZone zone = Wiz.getCurZone();
 
-             if (zone instanceof RewardModifyingZone && zone.cannotSkipRewards) {
+             if (zone instanceof RewardModifyingZone && ((RewardModifyingZone) zone).cannotSkipCardRewards()) {
                     if (HIDE_X == -1.0f) {
                         HIDE_X = AbstractDungeon.topPanel.mapHb.cX - 400.0f * Settings.scale;
                         SHOW_X = AbstractDungeon.topPanel.mapHb.cX;

@@ -62,7 +62,6 @@ public abstract class AbstractZone {
     public String name = "";
     public String tooltipBody = "";
     protected Color labelColor = Color.WHITE;
-    public boolean cannotSkipRewards = false;
 
     protected List<MapRoomNode> nodes = new ArrayList<>();
     protected int x = 0, y = 0, width = 1, height = 1;

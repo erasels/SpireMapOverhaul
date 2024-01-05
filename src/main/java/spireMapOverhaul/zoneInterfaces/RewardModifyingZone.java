@@ -116,4 +116,13 @@ public interface RewardModifyingZone {
     default float changeCardUpgradeChance(float curChance) {
         return curChance;
     }
+
+    /**
+     * Allows modifying base game behavior of being able to skip card rewards.
+     * @return When true, player cannot skip card rewards from combat.
+     */
+    default boolean cannotSkipCardRewards() {
+        return false;
+    }
+
 }
