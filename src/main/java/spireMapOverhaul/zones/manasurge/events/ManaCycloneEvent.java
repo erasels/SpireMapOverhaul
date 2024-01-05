@@ -15,14 +15,8 @@ import spireMapOverhaul.zones.manasurge.modifiers.common.negative.FeebleModifier
 import spireMapOverhaul.zones.manasurge.modifiers.common.negative.FlawedModifier;
 import spireMapOverhaul.zones.manasurge.modifiers.common.negative.FragileModifier;
 import spireMapOverhaul.zones.manasurge.modifiers.common.negative.HarmfulModifier;
-import spireMapOverhaul.zones.manasurge.modifiers.common.positive.CripplingModifier;
-import spireMapOverhaul.zones.manasurge.modifiers.common.positive.ExposingModifier;
-import spireMapOverhaul.zones.manasurge.modifiers.common.positive.SharpModifier;
-import spireMapOverhaul.zones.manasurge.modifiers.common.positive.ToughModifier;
 import spireMapOverhaul.zones.manasurge.modifiers.uncommon.negative.BrittleModifier;
 import spireMapOverhaul.zones.manasurge.modifiers.uncommon.negative.PowerlessModifier;
-import spireMapOverhaul.zones.manasurge.modifiers.uncommon.positive.PowerfulModifier;
-import spireMapOverhaul.zones.manasurge.modifiers.uncommon.positive.ProtectiveModifier;
 
 import static spireMapOverhaul.zones.manasurge.ManaSurgeZone.COMMON_CHANCE;
 
