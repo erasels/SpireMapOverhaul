@@ -35,6 +35,9 @@ Cards, relics, monsters, powers, patches, and everything else should go in the p
 
 There are abstract classes that you should extend in the abstracts package: `AbstractSMOCard`, `AbstractSMORelic`, `AbstractSMOMonster`, and `AbstractSMOPower`.
 
+#### Events
+Any event classes within the same package as a zone will automatically be registered with the requirement of being within that zone. If there is a `public static boolean bonusCondition()` method within the class, that will also be used as a condition for the event to spawn. If you require something else, or don't want the event to be registered, use `@AutoAdd.Ignore` on the class and register it manually.
+
 #### Bestiary
 If you add new monsters, consider adding [Bestiary](https://steamcommunity.com/sharedfiles/filedetails/?id=2285965269) entries for them, so that players have an easy way to understand and analyze what the monsters do. This also helps document the logic for your new monsters. See the existing `bestiary.json` files for examples.
 

@@ -26,7 +26,6 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.events.AbstractEvent;
 import com.megacrit.cardcrawl.helpers.FontHelper;
-import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.rewards.RewardSave;
@@ -217,9 +216,8 @@ public class SpireAnniversary6Mod implements
                 .cards();
 
         CustomIconHelper.addCustomIcon(MonsterIcon.get());
-        CustomIconHelper.addCustomIcon(EliteIcon.get());
         CustomIconHelper.addCustomIcon(EventIcon.get());
-        CustomIconHelper.addCustomIcon(RewardIcon.get());
+        CustomIconHelper.addCustomIcon(ChestIcon.get());
         CustomIconHelper.addCustomIcon(ShopIcon.get());
         CustomIconHelper.addCustomIcon(RestIcon.get());
 
