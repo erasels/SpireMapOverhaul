@@ -1,14 +1,13 @@
 {
   "${ModID}:CharacterVisit": {
-    "NAME": "Visit from a Friend(?)",
+    "NAME": "Battle Nearby",
     "DESCRIPTIONS": [
-      "A friendly figure approaches. NL It is ",
-      ". NL NL They offer you help in the shape of a ~Relic~.",
-      "You accept their gift."
+      "There is a fight nearby. One of the combatants has a #ytrustworthy aura - it is ",
+      ". NL NL The fight seems #rparticularly #rtough. They could use your help, and will probably reward you ~in~ ~a~ ~way~ ~only~ ~they~ ~can~ if you do."
     ],
     "OPTIONS": [
-      "Accept the Relic",
-      "Move on"
+      "[Help] Fight a damaged #rElite for a special #gReward.",
+      "[Ignore]"
     ]
   }
 }

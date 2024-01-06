@@ -1,23 +1,9 @@
 {
   "${ModID}:CharacterInfluence": {
     "TEXT": [
-      "Area of ",
-      "Another character influences this zone. NL Card rewards and Shop cards are of that characters color."
-    ]
-  },
-  "${ModID}:CharacterVisit": {
-    "TEXT": [
-      "WIHOO"
-    ],
-    "NAME": "Visit from a Friend(?)",
-    "DESCRIPTIONS": [
-      "A friendly figure approaches. NL It is ",
-      ". NL NL They offer you help in the shape of a ~Relic~.",
-      "You accept their gift."
-    ],
-    "OPTIONS": [
-      "Accept the Relic",
-      "Move on"
+      "Home of Another Character",
+      "Another character inhabits this zone. NL Combats and Shops have cards from that characters color.",
+      "Home of "
     ]
   }
 }

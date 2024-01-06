@@ -31,18 +31,20 @@ import spireMapOverhaul.zones.example.CoolExampleEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
+
 public class CharacterInfluenceZone extends AbstractZone implements RewardModifyingZone, ShopModifyingZone, OnTravelZone, ModifiedEventRateZone {
 
     public static final String ID = "CharacterInfluence";
 
-    public static CardGroup commonPool;
-    public static CardGroup uncommonPool;
-    public static CardGroup rarePool;
+    public CardGroup commonPool;
+    public CardGroup uncommonPool;
+    public CardGroup rarePool;
 
     public AbstractPlayer classInfluence;
 
     public CharacterInfluenceZone() {
-        super(ID, Icons.REWARD, Icons.EVENT, Icons.SHOP);
+        super(ID, Icons.MONSTER, Icons.EVENT, Icons.SHOP);
         this.width = 2;
         this.height = 3;
     }
@@ -55,11 +57,10 @@ public class CharacterInfluenceZone extends AbstractZone implements RewardModify
     @Override
     public void mapGenDone(ArrayList<ArrayList<MapRoomNode>> map) {
         super.mapGenDone(map);
-        // This should set the zones class influence to an available character.
         do {
             this.classInfluence = CardCrawlGame.characterManager.getRandomCharacter(AbstractDungeon.mapRng);
         } while (this.classInfluence.chosenClass == AbstractDungeon.player.chosenClass && CardCrawlGame.characterManager.getAllCharacters().size() != 1);
-        this.name = TEXT[0] + this.classInfluence.title;
+        this.name = TEXT[2] + this.classInfluence.title;
         updateDescription();
     }
 
@@ -75,8 +76,6 @@ public class CharacterInfluenceZone extends AbstractZone implements RewardModify
     }
 
     public void initPools() {
-        //TODO: What happens on Load?
-        //TODO: Create card pools
         commonPool = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
         uncommonPool = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
         rarePool = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
@@ -160,11 +159,6 @@ public class CharacterInfluenceZone extends AbstractZone implements RewardModify
         }
         coloredCards.clear();
         coloredCards.addAll(newCards);
-    }
-
-    @Override
-    public AbstractEvent forceEvent() {
-        return ModifiedEventRateZone.returnIfUnseen(CharacterInfluenceEvent.ID);
     }
 
     @Override
