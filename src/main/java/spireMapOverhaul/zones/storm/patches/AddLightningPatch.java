@@ -36,7 +36,7 @@ public class AddLightningPatch {
         private static float timeScaleStart = 0.1F;
         private static float timeScaleEnd = 0.3F;
         @SpirePrefixPatch()
-        public static void Prefix() {
+        public static void ICanNameMyPatchClassesWhateverIWantGKLOL() {
             if(StormUtil.isInStormZone()) {
                 //Lightning Strikes
                 if (AbstractRoomFields.timeToStrike.get(AbstractDungeon.getCurrRoom()) < 0.0f) {
