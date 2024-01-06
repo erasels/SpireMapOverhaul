@@ -39,6 +39,7 @@ public class ManaSurgeZone extends AbstractZone implements
     public static final String ID = "ManaSurge";
     public static final float COMMON_CHANCE = 0.8f;
 
+
     public ManaSurgeZone() {
         super(ID,Icons.MONSTER,Icons.SHOP,Icons.EVENT,Icons.REST);
         this.width = 3;
@@ -72,6 +73,226 @@ public class ManaSurgeZone extends AbstractZone implements
         return false;
     }
 
+    public static void applyRandomTemporaryModifier(AbstractCard card) {
+        if (Math.random() < COMMON_CHANCE) {
+            int numberOfCommonModifiers = 8;
+            int selectedModifierIndex = (int) (Math.random() * numberOfCommonModifiers);
+            AbstractCardModifier modifier;
+            switch (selectedModifierIndex) {
+                case 0:
+                    modifier = new SharpModifier(false);
+                    break;
+                case 1:
+                    modifier = new HarmfulModifier(false);
+                    break;
+                case 2:
+                    modifier = new ToughModifier(false);
+                    break;
+                case 3:
+                    modifier = new FragileModifier(false);
+                    break;
+                case 4:
+                    modifier = new ExposingModifier(false);
+                    break;
+                case 5:
+                    modifier = new FeebleModifier(false);
+                    break;
+                case 6:
+                    modifier = new CripplingModifier(false);
+                    break;
+                case 7:
+                    modifier = new FlawedModifier(false);
+                    break;
+                default:
+                    modifier = null;
+                    break;
+            }
+            if (modifier != null) {
+                CardModifierManager.addModifier(card, modifier);
+            }
+        } else {
+            int numberOfUncommonModifiers = 4;
+            int selectedModifierIndex = (int) (Math.random() * numberOfUncommonModifiers);
+            AbstractCardModifier modifier;
+            switch (selectedModifierIndex) {
+                case 0:
+                    modifier = new PowerfulModifier(false);
+                    break;
+                case 1:
+                    modifier = new PowerlessModifier(false);
+                    break;
+                case 2:
+                    modifier = new ProtectiveModifier(false);
+                    break;
+                case 3:
+                    modifier = new BrittleModifier(false);
+                    break;
+                default:
+                    modifier = null;
+                    break;
+            }
+            if (modifier != null) {
+                CardModifierManager.addModifier(card, modifier);
+            }
+        }
+    }
+
+    public static void applyRandomPermanentModifier(AbstractCard card) {
+        if (Math.random() < COMMON_CHANCE) {
+            int numberOfCommonModifiers = 8;
+            int selectedModifierIndex = (int) (Math.random() * numberOfCommonModifiers);
+            AbstractCardModifier modifier;
+            switch (selectedModifierIndex) {
+                case 0:
+                    modifier = new SharpModifier(true);
+                    break;
+                case 1:
+                    modifier = new ToughModifier(true);
+                    break;
+                case 2:
+                    modifier = new ExposingModifier(true);
+                    break;
+                case 3:
+                    modifier = new CripplingModifier(true);
+                    break;
+                case 4:
+                    modifier = new FeebleModifier(true);
+                    break;
+                case 5:
+                    modifier = new FlawedModifier(true);
+                    break;
+                case 6:
+                    modifier = new FragileModifier(true);
+                    break;
+                case 7:
+                    modifier = new HarmfulModifier(true);
+                    break;
+                default:
+                    modifier = null;
+                    break;
+            }
+            if (modifier != null) {
+                CardModifierManager.addModifier(card, modifier);
+            }
+        } else {
+            int numberOfUncommonModifiers = 4;
+            int selectedModifierIndex = (int) (Math.random() * numberOfUncommonModifiers);
+            AbstractCardModifier modifier;
+            switch (selectedModifierIndex) {
+                case 0:
+                    modifier = new PowerfulModifier(true);
+                    break;
+                case 1:
+                    modifier = new ProtectiveModifier(true);
+                    break;
+                case 2:
+                    modifier = new BrittleModifier(true);
+                    break;
+                case 3:
+                    modifier = new PowerlessModifier(true);
+                    break;
+                default:
+                    modifier = null;
+                    break;
+            }
+            if (modifier != null) {
+                CardModifierManager.addModifier(card, modifier);
+            }
+        }
+    }
+
+    public static void applyPermanentPositiveModifier(AbstractCard card) {
+        if (Math.random() < COMMON_CHANCE) {
+            int numberOfCommonModifiers = 4;
+            int selectedModifierIndex = (int) (Math.random() * numberOfCommonModifiers);
+            AbstractCardModifier modifier;
+            switch (selectedModifierIndex) {
+                case 0:
+                    modifier = new SharpModifier(true);
+                    break;
+                case 1:
+                    modifier = new ToughModifier(true);
+                    break;
+                case 2:
+                    modifier = new ExposingModifier(true);
+                    break;
+                case 3:
+                    modifier = new CripplingModifier(true);
+                    break;
+                default:
+                    modifier = null;
+                    break;
+            }
+            if (modifier != null) {
+                CardModifierManager.addModifier(card, modifier);
+            }
+        } else {
+            int numberOfUncommonModifiers = 2;
+            int selectedModifierIndex = (int) (Math.random() * numberOfUncommonModifiers);
+            AbstractCardModifier modifier;
+            switch (selectedModifierIndex) {
+                case 0:
+                    modifier = new PowerfulModifier(true);
+                    break;
+                case 1:
+                    modifier = new ProtectiveModifier(true);
+                    break;
+                default:
+                    modifier = null;
+                    break;
+            }
+            if (modifier != null) {
+                CardModifierManager.addModifier(card, modifier);
+            }
+        }
+    }
+
+    public static void applyPermanentNegativeModifier(AbstractCard card) {
+        if (Math.random() < COMMON_CHANCE) {
+            int numberOfCommonModifiers = 4;
+            int selectedModifierIndex = (int) (Math.random() * numberOfCommonModifiers);
+            AbstractCardModifier modifier;
+            switch (selectedModifierIndex) {
+                case 0:
+                    modifier = new FeebleModifier(true);
+                    break;
+                case 1:
+                    modifier = new FlawedModifier(true);
+                    break;
+                case 2:
+                    modifier = new FragileModifier(true);
+                    break;
+                case 3:
+                    modifier = new HarmfulModifier(true);
+                    break;
+                default:
+                    modifier = null;
+                    break;
+            }
+            if (modifier != null) {
+                CardModifierManager.addModifier(card, modifier);
+            }
+        } else {
+            int numberOfUncommonModifiers = 2;
+            int selectedModifierIndex = (int) (Math.random() * numberOfUncommonModifiers);
+            AbstractCardModifier modifier;
+            switch (selectedModifierIndex) {
+                case 0:
+                    modifier = new BrittleModifier(true);
+                    break;
+                case 1:
+                    modifier = new PowerlessModifier(true);
+                    break;
+                default:
+                    modifier = null;
+                    break;
+            }
+            if (modifier != null) {
+                CardModifierManager.addModifier(card, modifier);
+            }
+        }
+    }
+
     @Override
     public AbstractZone copy() {
         return new ManaSurgeZone();
@@ -102,67 +323,7 @@ public class ManaSurgeZone extends AbstractZone implements
     public void modifyRewardCards(ArrayList<AbstractCard> cards) {
         for (AbstractCard card : cards) {
             if (card.cost != -2 && card.type != AbstractCard.CardType.CURSE && card.type != AbstractCard.CardType.STATUS) {
-                if (Math.random() < COMMON_CHANCE) {
-                    int numberOfCommonModifiers = 8;
-                    int selectedModifierIndex = (int) (Math.random() * numberOfCommonModifiers);
-                    AbstractCardModifier modifier;
-                    switch (selectedModifierIndex) {
-                        case 0:
-                            modifier = new SharpModifier(true);
-                            break;
-                        case 1:
-                            modifier = new ToughModifier(true);
-                            break;
-                        case 2:
-                            modifier = new ExposingModifier(true);
-                            break;
-                        case 3:
-                            modifier = new CripplingModifier(true);
-                            break;
-                        case 4:
-                            modifier = new FeebleModifier(true);
-                            break;
-                        case 5:
-                            modifier = new FlawedModifier(true);
-                            break;
-                        case 6:
-                            modifier = new FragileModifier(true);
-                            break;
-                        case 7:
-                            modifier = new HarmfulModifier(true);
-                            break;
-                        default:
-                            modifier = null;
-                            break;
-                    }
-                    if (modifier != null) {
-                        CardModifierManager.addModifier(card, modifier);
-                    }
-                } else {
-                    int numberOfUncommonModifiers = 4;
-                    int selectedModifierIndex = (int) (Math.random() * numberOfUncommonModifiers);
-                    AbstractCardModifier modifier;
-                    switch (selectedModifierIndex) {
-                        case 0:
-                            modifier = new PowerfulModifier(true);
-                            break;
-                        case 1:
-                            modifier = new ProtectiveModifier(true);
-                            break;
-                        case 2:
-                            modifier = new BrittleModifier(true);
-                            break;
-                        case 3:
-                            modifier = new PowerlessModifier(true);
-                            break;
-                        default:
-                            modifier = null;
-                            break;
-                    }
-                    if (modifier != null) {
-                        CardModifierManager.addModifier(card, modifier);
-                    }
-                }
+                applyRandomPermanentModifier(card);
             }
         }
     }
@@ -176,132 +337,12 @@ public class ManaSurgeZone extends AbstractZone implements
     public void postCreateShopCards(ArrayList<AbstractCard> coloredCards, ArrayList<AbstractCard> colorlessCards) {
         for (AbstractCard card : coloredCards) {
             if (card.cost != -2 && card.type != AbstractCard.CardType.CURSE && card.type != AbstractCard.CardType.STATUS) {
-                if (Math.random() < COMMON_CHANCE) {
-                    int numberOfCommonModifiers = 8;
-                    int selectedModifierIndex = (int) (Math.random() * numberOfCommonModifiers);
-                    AbstractCardModifier modifier;
-                    switch (selectedModifierIndex) {
-                        case 0:
-                            modifier = new SharpModifier(true);
-                            break;
-                        case 1:
-                            modifier = new ToughModifier(true);
-                            break;
-                        case 2:
-                            modifier = new ExposingModifier(true);
-                            break;
-                        case 3:
-                            modifier = new CripplingModifier(true);
-                            break;
-                        case 4:
-                            modifier = new FeebleModifier(true);
-                            break;
-                        case 5:
-                            modifier = new FlawedModifier(true);
-                            break;
-                        case 6:
-                            modifier = new FragileModifier(true);
-                            break;
-                        case 7:
-                            modifier = new HarmfulModifier(true);
-                            break;
-                        default:
-                            modifier = null;
-                            break;
-                    }
-                    if (modifier != null) {
-                        CardModifierManager.addModifier(card, modifier);
-                    }
-                } else {
-                    int numberOfUncommonModifiers = 4;
-                    int selectedModifierIndex = (int) (Math.random() * numberOfUncommonModifiers);
-                    AbstractCardModifier modifier;
-                    switch (selectedModifierIndex) {
-                        case 0:
-                            modifier = new PowerfulModifier(true);
-                            break;
-                        case 1:
-                            modifier = new ProtectiveModifier(true);
-                            break;
-                        case 2:
-                            modifier = new BrittleModifier(true);
-                            break;
-                        case 3:
-                            modifier = new PowerlessModifier(true);
-                            break;
-                        default:
-                            modifier = null;
-                            break;
-                    }
-                    if (modifier != null) {
-                        CardModifierManager.addModifier(card, modifier);
-                    }
-                }
+                applyRandomPermanentModifier(card);
             }
         }
         for (AbstractCard card : colorlessCards) {
             if (card.cost != -2 && card.type != AbstractCard.CardType.CURSE && card.type != AbstractCard.CardType.STATUS) {
-                if (Math.random() < COMMON_CHANCE) {
-                    int numberOfCommonModifiers = 8;
-                    int selectedModifierIndex = (int) (Math.random() * numberOfCommonModifiers);
-                    AbstractCardModifier modifier;
-                    switch (selectedModifierIndex) {
-                        case 0:
-                            modifier = new SharpModifier(true);
-                            break;
-                        case 1:
-                            modifier = new ToughModifier(true);
-                            break;
-                        case 2:
-                            modifier = new ExposingModifier(true);
-                            break;
-                        case 3:
-                            modifier = new CripplingModifier(true);
-                            break;
-                        case 4:
-                            modifier = new FeebleModifier(true);
-                            break;
-                        case 5:
-                            modifier = new FlawedModifier(true);
-                            break;
-                        case 6:
-                            modifier = new FragileModifier(true);
-                            break;
-                        case 7:
-                            modifier = new HarmfulModifier(true);
-                            break;
-                        default:
-                            modifier = null;
-                            break;
-                    }
-                    if (modifier != null) {
-                        CardModifierManager.addModifier(card, modifier);
-                    }
-                } else {
-                    int numberOfUncommonModifiers = 4;
-                    int selectedModifierIndex = (int) (Math.random() * numberOfUncommonModifiers);
-                    AbstractCardModifier modifier;
-                    switch (selectedModifierIndex) {
-                        case 0:
-                            modifier = new PowerfulModifier(true);
-                            break;
-                        case 1:
-                            modifier = new ProtectiveModifier(true);
-                            break;
-                        case 2:
-                            modifier = new BrittleModifier(true);
-                            break;
-                        case 3:
-                            modifier = new PowerlessModifier(true);
-                            break;
-                        default:
-                            modifier = null;
-                            break;
-                    }
-                    if (modifier != null) {
-                        CardModifierManager.addModifier(card, modifier);
-                    }
-                }
+                applyRandomPermanentModifier(card);
             }
         }
     }

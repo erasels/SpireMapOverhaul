@@ -1,7 +1,6 @@
 package spireMapOverhaul.zones.manasurge.ui;
 
-import basemod.abstracts.AbstractCardModifier;
-import basemod.helpers.CardModifierManager;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -18,12 +17,6 @@ import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import spireMapOverhaul.zones.manasurge.ManaSurgeZone;
-import spireMapOverhaul.zones.manasurge.modifiers.common.positive.CripplingModifier;
-import spireMapOverhaul.zones.manasurge.modifiers.common.positive.ExposingModifier;
-import spireMapOverhaul.zones.manasurge.modifiers.common.positive.SharpModifier;
-import spireMapOverhaul.zones.manasurge.modifiers.common.positive.ToughModifier;
-import spireMapOverhaul.zones.manasurge.modifiers.uncommon.positive.PowerfulModifier;
-import spireMapOverhaul.zones.manasurge.modifiers.uncommon.positive.ProtectiveModifier;
 
 import java.util.Iterator;
 
@@ -52,49 +45,7 @@ public class CampfireEnchantEffect extends AbstractGameEffect {
             while (var1.hasNext()) {
                 AbstractCard c = (AbstractCard) var1.next();
                 AbstractDungeon.effectsQueue.add(new UpgradeShineEffect((float) Settings.WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F));
-                if (Math.random() < ManaSurgeZone.COMMON_CHANCE) {
-                    int numberOfCommonModifiers = 4;
-                    int selectedModifierIndex = (int) (Math.random() * numberOfCommonModifiers);
-                    AbstractCardModifier modifier;
-                    switch (selectedModifierIndex) {
-                        case 0:
-                            modifier = new SharpModifier(true);
-                            break;
-                        case 1:
-                            modifier = new ToughModifier(true);
-                            break;
-                        case 2:
-                            modifier = new ExposingModifier(true);
-                            break;
-                        case 3:
-                            modifier = new CripplingModifier(true);
-                            break;
-                        default:
-                            modifier = null;
-                            break;
-                    }
-                    if (modifier != null) {
-                        CardModifierManager.addModifier(c, modifier);
-                    }
-                } else {
-                    int numberOfUncommonModifiers = 2;
-                    int selectedModifierIndex = (int) (Math.random() * numberOfUncommonModifiers);
-                    AbstractCardModifier modifier;
-                    switch (selectedModifierIndex) {
-                        case 0:
-                            modifier = new PowerfulModifier(true);
-                            break;
-                        case 1:
-                            modifier = new ProtectiveModifier(true);
-                            break;
-                        default:
-                            modifier = null;
-                            break;
-                    }
-                    if (modifier != null) {
-                        CardModifierManager.addModifier(c, modifier);
-                    }
-                }
+                ManaSurgeZone.applyPermanentPositiveModifier(c);
                 AbstractDungeon.player.bottledCardUpgradeCheck(c);
                 AbstractDungeon.effectsQueue.add(new ShowCardBrieflyEffect(c.makeStatEquivalentCopy()));
             }

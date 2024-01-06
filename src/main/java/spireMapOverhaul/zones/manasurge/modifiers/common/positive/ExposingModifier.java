@@ -44,7 +44,7 @@ public class ExposingModifier extends AbstractManaSurgeModifier {
     @Override
     public List<TooltipInfo> additionalTooltips(AbstractCard card) {
         List<TooltipInfo> tooltips = new ArrayList<>();
-        tooltips.add(new TooltipInfo("[#8c9cff]Exposing[]", "Apply #b1 #yVulnerable to the target enemy, or a random enemy if not a single target."));
+        tooltips.add(new TooltipInfo("[#8c9cff]Exposing | Enchantment[]", "Apply #b1 #yVulnerable to the target enemy, or a random enemy if not a single target."));
         return tooltips;
     }
 

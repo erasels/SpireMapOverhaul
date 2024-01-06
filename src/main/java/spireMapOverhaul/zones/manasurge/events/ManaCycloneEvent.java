@@ -1,31 +1,18 @@
 package spireMapOverhaul.zones.manasurge.events;
 
-import basemod.abstracts.AbstractCardModifier;
 import basemod.abstracts.events.PhasedEvent;
 import basemod.abstracts.events.phases.TextPhase;
-import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.RelicLibrary;
 import com.megacrit.cardcrawl.localization.EventStrings;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.zones.manasurge.ManaSurgeZone;
-import spireMapOverhaul.zones.manasurge.modifiers.common.negative.FeebleModifier;
-import spireMapOverhaul.zones.manasurge.modifiers.common.negative.FlawedModifier;
-import spireMapOverhaul.zones.manasurge.modifiers.common.negative.FragileModifier;
-import spireMapOverhaul.zones.manasurge.modifiers.common.negative.HarmfulModifier;
-import spireMapOverhaul.zones.manasurge.modifiers.common.positive.CripplingModifier;
-import spireMapOverhaul.zones.manasurge.modifiers.common.positive.ExposingModifier;
-import spireMapOverhaul.zones.manasurge.modifiers.common.positive.SharpModifier;
-import spireMapOverhaul.zones.manasurge.modifiers.common.positive.ToughModifier;
-import spireMapOverhaul.zones.manasurge.modifiers.uncommon.negative.BrittleModifier;
-import spireMapOverhaul.zones.manasurge.modifiers.uncommon.negative.PowerlessModifier;
-import spireMapOverhaul.zones.manasurge.modifiers.uncommon.positive.PowerfulModifier;
-import spireMapOverhaul.zones.manasurge.modifiers.uncommon.positive.ProtectiveModifier;
-
-import static spireMapOverhaul.zones.manasurge.ManaSurgeZone.COMMON_CHANCE;
 
 public class ManaCycloneEvent extends PhasedEvent {
     public static final String ID = SpireAnniversary6Mod.makeID("ManaCycloneEvent");
@@ -34,12 +21,103 @@ public class ManaCycloneEvent extends PhasedEvent {
     private static final String[] OPTIONS = eventStrings.OPTIONS;
     private static final String title = eventStrings.NAME;
     public static final String IMG = SpireAnniversary6Mod.makeImagePath("events/ManaSurge/ManaCycloneEvent.png");
+    private AbstractRelic relicMetric = null;
+
 
     public ManaCycloneEvent() {
         super(ID, title, IMG);
 
         registerPhase("Start", new TextPhase(DESCRIPTIONS[0])
-                .addOption(OPTIONS[0], (i) -> {
+                .addOption(new TextPhase.OptionInfo(OPTIONS[0])
+                        .cardSelectOption("Reached Inside",
+                                ()->{
+                                    CardGroup filteredCards = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+                                    AbstractDungeon.player.masterDeck.group.stream()
+                                            .filter(card -> !ManaSurgeZone.hasManaSurgeModifier(card) &&
+                                                    card.cost != -2 &&
+                                                    card.type != AbstractCard.CardType.CURSE &&
+                                                    card.type != AbstractCard.CardType.STATUS)
+                                            .forEach(filteredCards::addToTop);
+                                    return filteredCards;
+                                },
+                                "Select a card to enchant.",
+                                1, false, false, true, false,
+                                (cards)->{
+                                    for (AbstractCard c : cards) {
+                                        ManaSurgeZone.applyPermanentPositiveModifier(c);
+                                        AbstractDungeon.effectList.add(new ShowCardBrieflyEffect(c.makeStatEquivalentCopy()));
+                                    }
+
+                                    CardGroup filteredCards = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+                                    AbstractDungeon.player.masterDeck.group.stream()
+                                            .filter(card -> !ManaSurgeZone.hasManaSurgeModifier(card) &&
+                                                    card.cost != -2 &&
+                                                    card.type != AbstractCard.CardType.CURSE &&
+                                                    card.type != AbstractCard.CardType.STATUS)
+                                            .forEach(filteredCards::addToTop);
+
+                                    AbstractCard randomCard = filteredCards.getRandomCard(true);
+                                    if (randomCard != null) {
+                                        ManaSurgeZone.applyPermanentNegativeModifier(randomCard);
+                                        AbstractDungeon.effectList.add(new ShowCardBrieflyEffect(randomCard.makeStatEquivalentCopy()));
+                                        filteredCards.group.remove(randomCard);
+                                    }
+                                }
+                        )
+                )
+                .addOption(OPTIONS[1],(i) -> {
+                    int numberOfRelics = 6;
+                    int selectedRelicIndex = (int) (Math.random() * numberOfRelics);
+                    switch (selectedRelicIndex) {
+                        case 0:
+                            if (AbstractDungeon.player.hasRelic("Bottled Flame")) {
+                                this.relicMetric = RelicLibrary.getRelic("Circlet").makeCopy();
+                            } else {
+                                this.relicMetric = RelicLibrary.getRelic("Bottled Flame").makeCopy();
+                            }
+                            AbstractDungeon.getCurrRoom().spawnRelicAndObtain((float)(Settings.WIDTH / 2), (float)(Settings.HEIGHT / 2), this.relicMetric);
+                            break;
+                        case 1:
+                            if (AbstractDungeon.player.hasRelic("Bottled Tornado")) {
+                                this.relicMetric = RelicLibrary.getRelic("Circlet").makeCopy();
+                            } else {
+                                this.relicMetric = RelicLibrary.getRelic("Bottled Tornado").makeCopy();
+                            }
+                            AbstractDungeon.getCurrRoom().spawnRelicAndObtain((float)(Settings.WIDTH / 2), (float)(Settings.HEIGHT / 2), this.relicMetric);
+                            break;
+                        case 2:
+                            if (AbstractDungeon.player.hasRelic("Bottled Lightning")) {
+                                this.relicMetric = RelicLibrary.getRelic("Circlet").makeCopy();
+                            } else {
+                                this.relicMetric = RelicLibrary.getRelic("Bottled Lightning").makeCopy();
+                            }
+                            AbstractDungeon.getCurrRoom().spawnRelicAndObtain((float)(Settings.WIDTH / 2), (float)(Settings.HEIGHT / 2), this.relicMetric);
+                            break;
+                        case 3:
+                            if (AbstractDungeon.player.hasRelic("Frozen Egg 2")) {
+                                this.relicMetric = RelicLibrary.getRelic("Circlet").makeCopy();
+                            } else {
+                                this.relicMetric = RelicLibrary.getRelic("Frozen Egg 2").makeCopy();
+                            }
+                            AbstractDungeon.getCurrRoom().spawnRelicAndObtain((float)(Settings.WIDTH / 2), (float)(Settings.HEIGHT / 2), this.relicMetric);
+                            break;
+                        case 4:
+                            if (AbstractDungeon.player.hasRelic("Molten Egg 2")) {
+                                this.relicMetric = RelicLibrary.getRelic("Circlet").makeCopy();
+                            } else {
+                                this.relicMetric = RelicLibrary.getRelic("Molten Egg 2").makeCopy();
+                            }
+                            AbstractDungeon.getCurrRoom().spawnRelicAndObtain((float)(Settings.WIDTH / 2), (float)(Settings.HEIGHT / 2), this.relicMetric);
+                            break;
+                        case 5:
+                            if (AbstractDungeon.player.hasRelic("Toxic Egg 2")) {
+                                this.relicMetric = RelicLibrary.getRelic("Circlet").makeCopy();
+                            } else {
+                                this.relicMetric = RelicLibrary.getRelic("Toxic Egg 2").makeCopy();
+                            }
+                            AbstractDungeon.getCurrRoom().spawnRelicAndObtain((float)(Settings.WIDTH / 2), (float)(Settings.HEIGHT / 2), this.relicMetric);
+                            break;
+                    }
                     CardGroup filteredCards = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
                     AbstractDungeon.player.masterDeck.group.stream()
                             .filter(card -> !ManaSurgeZone.hasManaSurgeModifier(card) &&
@@ -47,115 +125,20 @@ public class ManaCycloneEvent extends PhasedEvent {
                                     card.type != AbstractCard.CardType.CURSE &&
                                     card.type != AbstractCard.CardType.STATUS)
                             .forEach(filteredCards::addToTop);
-                    AbstractDungeon.gridSelectScreen.open(
-                            filteredCards,
-                            1,
-                            "Select a card to enchant.",
-                            false,
-                            false,
-                            true,
-                            false
-                    );
-                    if (!AbstractDungeon.isScreenUp && !AbstractDungeon.gridSelectScreen.selectedCards.isEmpty()) {
-                        AbstractCard selectedCard = AbstractDungeon.gridSelectScreen.selectedCards.get(0);
-                        if (selectedCard != null) {
-                            if (Math.random() < COMMON_CHANCE) {
-                                int numberOfCommonModifiers = 4;
-                                int selectedModifierIndex = (int) (Math.random() * numberOfCommonModifiers);
-                                AbstractCardModifier modifier;
-                                switch (selectedModifierIndex) {
-                                    case 0:
-                                        modifier = new SharpModifier(true);
-                                        break;
-                                    case 1:
-                                        modifier = new ToughModifier(true);
-                                        break;
-                                    case 2:
-                                        modifier = new ExposingModifier(true);
-                                        break;
-                                    case 3:
-                                        modifier = new CripplingModifier(true);
-                                        break;
-                                    default:
-                                        modifier = null;
-                                        break;
-                                }
-                                if (modifier != null) {
-                                    CardModifierManager.addModifier(selectedCard, modifier);
-                                }
-                            } else {
-                                int numberOfUncommonModifiers = 2;
-                                int selectedModifierIndex = (int) (Math.random() * numberOfUncommonModifiers);
-                                AbstractCardModifier modifier;
-                                switch (selectedModifierIndex) {
-                                    case 0:
-                                        modifier = new PowerfulModifier(true);
-                                        break;
-                                    case 1:
-                                        modifier = new ProtectiveModifier(true);
-                                        break;
-                                    default:
-                                        modifier = null;
-                                        break;
-                                }
-                                if (modifier != null) {
-                                    CardModifierManager.addModifier(selectedCard, modifier);
-                                    AbstractDungeon.effectList.add(new ShowCardBrieflyEffect(selectedCard.makeStatEquivalentCopy()));
-                                }
-                            }
-                            filteredCards.group.remove(selectedCard);
-                        }
+                    AbstractCard randomCard1 = filteredCards.getRandomCard(true);
+                    filteredCards.removeCard(randomCard1);
+                    AbstractCard randomCard2 = filteredCards.getRandomCard(true);
+                    if (randomCard1 != null) {
+                        ManaSurgeZone.applyPermanentNegativeModifier(randomCard1);
+                        AbstractDungeon.effectList.add(new ShowCardBrieflyEffect(randomCard1.makeStatEquivalentCopy()));
                     }
-                    AbstractCard randomCard = filteredCards.getRandomCard(true);
-                    if (randomCard != null) {
-                        if (Math.random() < COMMON_CHANCE) {
-                            int numberOfCommonModifiers = 4;
-                            int selectedModifierIndex = (int) (Math.random() * numberOfCommonModifiers);
-                            AbstractCardModifier modifier;
-                            switch (selectedModifierIndex) {
-                                case 0:
-                                    modifier = new FeebleModifier(true);
-                                    break;
-                                case 1:
-                                    modifier = new FlawedModifier(true);
-                                    break;
-                                case 2:
-                                    modifier = new FragileModifier(true);
-                                    break;
-                                case 3:
-                                    modifier = new HarmfulModifier(true);
-                                    break;
-                                default:
-                                    modifier = null;
-                                    break;
-                            }
-                            if (modifier != null) {
-                                CardModifierManager.addModifier(randomCard, modifier);
-                            }
-                        } else {
-                            int numberOfUncommonModifiers = 2;
-                            int selectedModifierIndex = (int) (Math.random() * numberOfUncommonModifiers);
-                            AbstractCardModifier modifier;
-                            switch (selectedModifierIndex) {
-                                case 0:
-                                    modifier = new BrittleModifier(true);
-                                    break;
-                                case 1:
-                                    modifier = new PowerlessModifier(true);
-                                    break;
-                                default:
-                                    modifier = null;
-                                    break;
-                            }
-                            if (modifier != null) {
-                                CardModifierManager.addModifier(randomCard, modifier);
-                            }
-                        }
-                        AbstractDungeon.effectList.add(new ShowCardBrieflyEffect(randomCard.makeStatEquivalentCopy()));
-                        filteredCards.group.remove(randomCard);
+                    if (randomCard2 != null) {
+                        ManaSurgeZone.applyPermanentNegativeModifier(randomCard2);
+                        AbstractDungeon.effectList.add(new ShowCardBrieflyEffect(randomCard2.makeStatEquivalentCopy()));
                     }
-                    transitionKey("Reached Inside");
+                    transitionKey("Walked Through");
                 })
+                .addOption(OPTIONS[2],(i)->openMap())
         );
 
 

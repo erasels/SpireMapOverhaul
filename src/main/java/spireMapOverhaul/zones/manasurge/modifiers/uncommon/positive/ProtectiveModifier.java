@@ -38,7 +38,7 @@ public class ProtectiveModifier extends AbstractManaSurgeModifier {
     @Override
     public List<TooltipInfo> additionalTooltips(AbstractCard card) {
         List<TooltipInfo> tooltips = new ArrayList<>();
-        tooltips.add(new TooltipInfo("[#8c9cff]Protective[]", "Gain #b1 #yDexterity."));
+        tooltips.add(new TooltipInfo("[#8c9cff]Protective | Enchantment[]", "Gain #b1 #yDexterity."));
         return tooltips;
     }
 

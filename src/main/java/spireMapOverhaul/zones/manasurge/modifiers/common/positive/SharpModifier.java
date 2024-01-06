@@ -46,7 +46,7 @@ public class SharpModifier extends AbstractManaSurgeModifier {
     @Override
     public List<TooltipInfo> additionalTooltips(AbstractCard card) {
         List<TooltipInfo> tooltips = new ArrayList<>();
-        tooltips.add(new TooltipInfo("[#8c9cff]Sharp[]", "Deal #b5 damage to the target enemy, or a random enemy if not a single target."));
+        tooltips.add(new TooltipInfo("[#8c9cff]Sharp | Enchantment[]", "Deal #b5 damage to the target enemy, or a random enemy if not a single target."));
         return tooltips;
     }
 

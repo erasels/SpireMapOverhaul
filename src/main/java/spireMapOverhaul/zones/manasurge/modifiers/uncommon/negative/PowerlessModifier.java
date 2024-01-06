@@ -38,7 +38,7 @@ public class PowerlessModifier extends AbstractManaSurgeModifier {
     @Override
     public List<TooltipInfo> additionalTooltips(AbstractCard card) {
         List<TooltipInfo> tooltips = new ArrayList<>();
-        tooltips.add(new TooltipInfo("[#ff8cd5]Powerless[]", "Lose #b1 #yStrength."));
+        tooltips.add(new TooltipInfo("[#ff8cd5]Powerless | Blight[]", "Lose #b1 #yStrength."));
         return tooltips;
     }
 
