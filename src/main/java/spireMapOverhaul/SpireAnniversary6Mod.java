@@ -63,6 +63,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.function.Consumer;
 
+import static spireMapOverhaul.zones.storm.StormZone.*;
+
 @SuppressWarnings({"unused"})
 @SpireInitializer
 public class SpireAnniversary6Mod implements
@@ -75,7 +77,8 @@ public class SpireAnniversary6Mod implements
         PostRenderSubscriber,
         PostCampfireSubscriber,
         StartGameSubscriber,
-        ImGuiSubscriber {
+        ImGuiSubscriber,
+        PostUpdateSubscriber {
 
     public static final Logger logger = LogManager.getLogger("Zonemaster");
 
@@ -104,6 +107,8 @@ public class SpireAnniversary6Mod implements
     private static final String ATTACK_L_ART = modID + "Resources/images/1024/attack.png";
     private static final String SKILL_L_ART = modID + "Resources/images/1024/skill.png";
     private static final String POWER_L_ART = modID + "Resources/images/1024/power.png";
+
+
 
     public static boolean initializedStrings = false;
 
@@ -504,7 +509,8 @@ public class SpireAnniversary6Mod implements
 
     @Override
     public void receiveAddAudio() {
-
+        BaseMod.addAudio(THUNDER_KEY, THUNDER_MP3);
+        BaseMod.addAudio(RAIN_KEY, RAIN_MP3);
     }
 
     private void registerCustomRewards() {
@@ -652,6 +658,12 @@ public class SpireAnniversary6Mod implements
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static float time = 0f;
+    @Override
+    public void receivePostUpdate() {
+        time += Gdx.graphics.getRawDeltaTime();
     }
 
     public static class SavableCurrentRunActive implements CustomSavable<Boolean> {
