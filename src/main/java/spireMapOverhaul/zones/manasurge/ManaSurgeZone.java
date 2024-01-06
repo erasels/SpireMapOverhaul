@@ -11,7 +11,6 @@ import com.megacrit.cardcrawl.events.AbstractEvent;
 import com.megacrit.cardcrawl.ui.campfire.AbstractCampfireOption;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.zoneInterfaces.*;
-import spireMapOverhaul.zones.example.CoolExampleEvent;
 import spireMapOverhaul.zones.manasurge.events.ManaCycloneEvent;
 import spireMapOverhaul.zones.manasurge.modifiers.AbstractManaSurgeModifier;
 import spireMapOverhaul.zones.manasurge.modifiers.common.negative.FeebleModifier;
