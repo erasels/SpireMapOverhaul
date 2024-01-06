@@ -100,25 +100,25 @@ public class CharacterInfluenceZone extends AbstractZone implements RewardModify
         AbstractCard cardToReturn;
         switch (rarity) {
             case UNCOMMON:
-                cardToReturn = uncommonPool.getRandomCard(type, true);
+                cardToReturn = type == null ? null : uncommonPool.getRandomCard(type, true);
                 return (cardToReturn != null) ? cardToReturn : uncommonPool.getRandomCard(true);
             case RARE:
-                cardToReturn = rarePool.getRandomCard(type, true);
+                cardToReturn = type == null ? null : rarePool.getRandomCard(type, true);
                 return (cardToReturn != null) ? cardToReturn : rarePool.getRandomCard(true);
             case COMMON:
             default:
-                cardToReturn = commonPool.getRandomCard(type, true);
+                cardToReturn = type == null ? null : commonPool.getRandomCard(type, true);
                 return (cardToReturn != null) ? cardToReturn : commonPool.getRandomCard(true);
         }
     }
 
-    public void replaceCards(ArrayList<AbstractCard> cardList) {
+    public void replaceCards(ArrayList<AbstractCard> cardList, boolean keepType) {
         ArrayList<AbstractCard> newCards = new ArrayList<>();
         for (AbstractCard card : cardList) {
             boolean dupe;
             do {
                 dupe = false;
-                AbstractCard cardToAdd = getCard(card.rarity, card.type);
+                AbstractCard cardToAdd = getCard(card.rarity, keepType ? card.type : null);
                 for (AbstractCard newCard : newCards) {
                     if (cardToAdd.cardID.equals(newCard.cardID)) {
                         dupe = true;
@@ -126,23 +126,23 @@ public class CharacterInfluenceZone extends AbstractZone implements RewardModify
                     }
                 }
                 if (!dupe) {
-                    if (card.upgraded) cardToAdd.upgrade();
                     newCards.add(cardToAdd);
                 }
             } while (dupe);
         }
         cardList.clear();
+        applyStandardUpgradeLogic(newCards);
         cardList.addAll(newCards);
     }
 
     @Override
     public void modifyRewardCards(ArrayList<AbstractCard> rewardCards) {
-        replaceCards(rewardCards);
+        replaceCards(rewardCards, false);
     }
 
     @Override
     public void postCreateShopCards(ArrayList<AbstractCard> coloredCards, ArrayList<AbstractCard> colorlessCards) {
-        replaceCards(coloredCards);
+        replaceCards(coloredCards, true);
     }
 
     @Override
