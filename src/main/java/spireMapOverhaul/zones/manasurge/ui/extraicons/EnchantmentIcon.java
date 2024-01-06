@@ -5,7 +5,6 @@ import com.evacipated.cardcrawl.mod.stslib.icons.AbstractCustomIcon;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.util.TexLoader;
 
-import static spireMapOverhaul.SpireAnniversary6Mod.makeImagePath;
 import static spireMapOverhaul.SpireAnniversary6Mod.makeUIPath;
 
 public class EnchantmentIcon extends AbstractCustomIcon {

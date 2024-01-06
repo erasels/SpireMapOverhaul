@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.ui.campfire.AbstractCampfireOption;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.util.TexLoader;
 
-import static spireMapOverhaul.SpireAnniversary6Mod.makeImagePath;
 import static spireMapOverhaul.SpireAnniversary6Mod.makeUIPath;
 
 public class EnchantOption extends AbstractCampfireOption {
