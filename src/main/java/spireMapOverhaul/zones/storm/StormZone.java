@@ -78,7 +78,7 @@ public class StormZone extends AbstractZone implements CombatModifyingZone, Rewa
                             card = AbstractDungeon.player.hand.getRandomCard(AbstractDungeon.cardRandomRng);
                         }
                         CardModifierManager.addModifier(card, new DampModifier());
-                        card.flash();
+                        card.superFlash();
                     }
                     isDone = true;
                 }
