@@ -73,9 +73,9 @@ public class StormZone extends AbstractZone implements CombatModifyingZone, Rewa
                 public void update() {
                     int validCards = countValidCardsInHandToMakeDamp();
                     if(validCards > 0) {
-                        AbstractCard card = AbstractDungeon.player.hand.getRandomCard(AbstractDungeon.miscRng);
+                        AbstractCard card = AbstractDungeon.player.hand.getRandomCard(AbstractDungeon.cardRandomRng);
                         while (!cardValidToMakeDamp(card)) { //Get random cards until you get one you can make damp
-                            card = AbstractDungeon.player.hand.getRandomCard(AbstractDungeon.miscRng);
+                            card = AbstractDungeon.player.hand.getRandomCard(AbstractDungeon.cardRandomRng);
                         }
                         CardModifierManager.addModifier(card, new DampModifier());
                         card.flash();
