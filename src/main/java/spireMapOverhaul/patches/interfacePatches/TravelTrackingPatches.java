@@ -48,6 +48,10 @@ public class TravelTrackingPatches {
                 return;
             }
 
+            if (nextZone instanceof OnTravelZone) {
+                ((OnTravelZone) nextZone).onEnterRoom();
+            }
+
             //Next room has a zone, check if it's a new one.
             String lastZoneID = Field.lastZoneID();
             if (!nextZone.id.equals(lastZoneID)) {

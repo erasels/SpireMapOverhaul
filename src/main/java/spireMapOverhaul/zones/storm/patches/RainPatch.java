@@ -136,6 +136,18 @@ public class RainPatch {
         public static void Postfix() {
             if (StormUtil.isInStormZone()) {
                 CardCrawlGame.sound.adjustVolume(RAIN_KEY, StormUtil.rainSoundId, 0.0f);
+                StormUtil.rainSoundId = 0L;
+            }
+        }
+    }
+
+    @SpirePatch(clz = AbstractScene.class, method = "muteAmbienceVolume")
+    public static class MuteAmbiencePatch {
+
+        @SpirePostfixPatch
+        public static void Postfix() {
+            if (StormUtil.isInStormZone()) {
+                CardCrawlGame.sound.adjustVolume(RAIN_KEY, StormUtil.rainSoundId, 0.0f);
             }
         }
     }
