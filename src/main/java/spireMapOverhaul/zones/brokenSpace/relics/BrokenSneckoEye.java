@@ -19,6 +19,9 @@ public class BrokenSneckoEye extends BrokenRelic {
 
     @Override
     public void atTurnStart() {
+        if (adp().masterDeck.group.stream().allMatch(c -> c.hasTag(AbstractCard.CardTags.HEALING))) {
+            return;
+        }
         flash();
         for (int i = 0; i < AMOUNT; i++) {
             AbstractCard c;

@@ -1,7 +1,6 @@
 package spireMapOverhaul.zones.brokenSpace.relics;
 
 import com.evacipated.cardcrawl.mod.stslib.relics.OnChannelRelic;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.actions.defect.ChannelAction;
@@ -26,11 +25,6 @@ public class BrokenDataDisk extends BrokenRelic implements OnChannelRelic {
         if (usedThisTurn) {
             return;
         }
-        addToTop(new AbstractGameAction() {// 29
-            public void update() {
-                this.isDone = true;// 40
-            }// 41
-        });
         addToBot(new ChannelAction(abstractOrb.makeCopy()));
         this.flash();
         usedThisTurn = true;

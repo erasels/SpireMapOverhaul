@@ -157,18 +157,18 @@ public class BrokenSpaceZone extends AbstractZone implements RewardModifyingZone
     @Override
     public ArrayList<AbstractCard> getAdditionalCardReward() {
         ArrayList<AbstractCard> cards = new ArrayList<>();
-        int amount = 3;
+        int amount = getNumberOfCardsInReward();
 
-        for (AbstractRelic r : AbstractDungeon.player.relics) {
-            amount = r.changeNumberOfCardsInReward(amount);
-        }
 
         for (int i = 0; i < amount; i++) {
             AbstractCard c = getTrulyRandomCard(AbstractDungeon.cardRandomRng);
             cards.add(c);
             UnnaturalCardField.unnatural.set(c, true);
 
+
         }
+
+        applyStandardUpgradeLogic(cards);
         return cards;
     }
 
@@ -239,6 +239,8 @@ public class BrokenSpaceZone extends AbstractZone implements RewardModifyingZone
             UnnaturalCardField.unnatural.set(c, true);
 
         }
+        applyStandardUpgradeLogic(cards);
+
     }
 
 
