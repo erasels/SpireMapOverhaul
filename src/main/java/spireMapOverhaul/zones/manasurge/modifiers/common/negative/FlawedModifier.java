@@ -24,7 +24,7 @@ public class FlawedModifier extends AbstractManaSurgeModifier {
     private static final ModEffect MOD_EFFECT = ModEffect.NEGATIVE_MOD;
 
 
-    private static final Texture ICON = TexLoader.getTexture(makeImagePath("ui/ManaSurge/extraIcons/NegativeEnchantmentIcon.png"));
+    private static final Texture ICON = TexLoader.getTexture(makeUIPath("ManaSurge/extraIcons/NegativeEnchantmentIcon.png"));
     private static final int WEAK_AMT = 1;
 
     public FlawedModifier(boolean permanent) {
