@@ -2,6 +2,7 @@ package spireMapOverhaul.zones.storm.cardmods;
 
 import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
@@ -50,5 +51,12 @@ public class ElectricModifier extends AbstractCardModifier {
         atb(new VFXAction(new DispelPlayerElectricEffect(AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY)));
         atb(new SFXAction("ORB_PLASMA_CHANNEL", 0.1f));
         atb(new GainEnergyAction(1));
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                CardModifierManager.removeModifiersById(card, ID, false);
+                isDone = true;
+            }
+        });
     }
 }
