@@ -43,7 +43,7 @@ public class BrokenPrayerWheel extends BrokenRelic {
                     }
                 }
 
-                __instance.bonusGold += (int) (tmp * Math.pow(GOLD, prayerWheelAmt));
+                __instance.bonusGold += (int) (tmp * prayerWheelAmount * (GOLD - 1)));
             }
         }
 
