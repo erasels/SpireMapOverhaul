@@ -23,7 +23,7 @@ public class FeebleModifier extends AbstractManaSurgeModifier {
     private static final ModRarity MOD_RARITY = ModRarity.COMMON_MOD;
     private static final ModEffect MOD_EFFECT = ModEffect.NEGATIVE_MOD;
 
-    private static final Texture ICON = TexLoader.getTexture(makeImagePath("ui/ManaSurge/extraIcons/NegativeEnchantmentIcon.png"));
+    private static final Texture ICON = TexLoader.getTexture(makeUIPath("ManaSurge/extraIcons/NegativeEnchantmentIcon.png"));
     private static final int FRAIL_AMT = 1;
 
     public FeebleModifier(boolean permanent) {
