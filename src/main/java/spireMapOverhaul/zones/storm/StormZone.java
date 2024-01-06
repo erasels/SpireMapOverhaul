@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.cards.blue.Storm;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.zoneInterfaces.CombatModifyingZone;
@@ -20,13 +21,18 @@ import spireMapOverhaul.zones.storm.powers.ConduitPower;
 
 import java.util.ArrayList;
 
-import static spireMapOverhaul.SpireAnniversary6Mod.RAIN_KEY;
+import static spireMapOverhaul.SpireAnniversary6Mod.*;
 import static spireMapOverhaul.util.Wiz.*;
 import static spireMapOverhaul.zones.storm.StormUtil.cardValidToMakeDamp;
 import static spireMapOverhaul.zones.storm.StormUtil.countValidCardsInHandToMakeDamp;
 
 public class StormZone extends AbstractZone implements CombatModifyingZone, RewardModifyingZone, OnTravelZone {
     public static final String ID = "Storm";
+
+    public static final String THUNDER_KEY = makeID("Storm_Thunder");
+    public static final String THUNDER_MP3 = makePath("audio/storm/thunder.mp3");
+    public static final String RAIN_KEY = makeID("Storm_Rain");
+    public static final String RAIN_MP3 = makePath("audio/storm/rain.mp3");
 
     public StormZone() {
         super(ID, Icons.MONSTER);

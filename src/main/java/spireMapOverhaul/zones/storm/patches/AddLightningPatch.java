@@ -17,6 +17,7 @@ import spireMapOverhaul.zones.storm.StormUtil;
 import spireMapOverhaul.zones.storm.vfx.AlwaysBehindLightningEffect;
 
 import static spireMapOverhaul.util.Wiz.atb;
+import static spireMapOverhaul.zones.storm.StormZone.THUNDER_KEY;
 
 
 public class AddLightningPatch {
@@ -43,7 +44,7 @@ public class AddLightningPatch {
                     boolean renderBehind = rand_y > (float) Settings.HEIGHT / 2 - 250.0f;
                     atb(new VFXAction(new AlwaysBehindLightningEffect(MathUtils.random(Settings.WIDTH), rand_y, renderBehind)));
                     if(Settings.AMBIANCE_ON) {
-                        atb(new SFXAction(SpireAnniversary6Mod.THUNDER_KEY, 0.2f));
+                        atb(new SFXAction(THUNDER_KEY, 0.2f));
                     }
                     AbstractRoomFields.timeToStrike.set(AbstractDungeon.getCurrRoom(), MathUtils.random(3.5f, 10.0f));
                     AbstractRoomFields.timeSinceStrike.set(AbstractDungeon.getCurrRoom(), 0.0f);

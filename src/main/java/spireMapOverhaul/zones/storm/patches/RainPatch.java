@@ -21,6 +21,7 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.*;
+import static spireMapOverhaul.zones.storm.StormZone.RAIN_KEY;
 
 public class RainPatch {
     @SpirePatch(clz = AbstractScene.class, method = SpirePatch.CLASS)
