@@ -155,4 +155,9 @@ public interface RewardModifyingZone {
             }
         }
     }
+
+    default void applyStandardUpgradeLogic(ArrayList<AbstractCard> cards) {
+        for(AbstractCard c : cards)
+            applyStandardUpgradeLogic(c);
+    }
 }
