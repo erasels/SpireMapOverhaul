@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.shop.StorePotion;
 import com.megacrit.cardcrawl.shop.StoreRelic;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
+import org.apache.commons.lang3.math.NumberUtils;
 import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.zoneInterfaces.ShopModifyingZone;
 
@@ -46,7 +47,7 @@ public class ShopModifierPatches {
     public static class BaseCostModificationHook {
         @SpireInsertPatch(locator = Locator.class, localvars = {"c", "tmpPrice"})
         public static void patch(AbstractCard c, @ByRef float[] tmpPrice) {
-            Wiz.forCurZone(ShopModifyingZone.class, z -> tmpPrice[0] = z.modifyCardBaseCost(c, tmpPrice[0]));
+            Wiz.forCurZone(ShopModifyingZone.class, z -> tmpPrice[0] = NumberUtils.max(0, z.modifyCardBaseCost(c, tmpPrice[0])));
         }
 
         private static class Locator extends SpireInsertLocator {
