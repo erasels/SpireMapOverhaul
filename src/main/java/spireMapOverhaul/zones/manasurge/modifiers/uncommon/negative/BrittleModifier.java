@@ -38,7 +38,7 @@ public class BrittleModifier extends AbstractManaSurgeModifier {
     @Override
     public List<TooltipInfo> additionalTooltips(AbstractCard card) {
         List<TooltipInfo> tooltips = new ArrayList<>();
-        tooltips.add(new TooltipInfo("[#ff8cd5]Brittle | Blight[]", "Lose #b1 #yDexterity."));
+        tooltips.add(new TooltipInfo("[#ff8cd5]Brittle[] [#ff8cd5]|[] [#ff8cd5]Blight[]", "Lose #b1 #yDexterity."));
         return tooltips;
     }
 

@@ -1,4 +1,4 @@
-package spireMapOverhaul.zones.manasurge.ui;
+package spireMapOverhaul.zones.manasurge.ui.campfire;
 
 
 import com.badlogic.gdx.Gdx;
@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Interpolation;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
@@ -14,8 +15,8 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.CampfireUI;
 import com.megacrit.cardcrawl.rooms.RestRoom;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
-import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
+import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.zones.manasurge.ManaSurgeZone;
 
 import java.util.Iterator;
@@ -44,10 +45,10 @@ public class CampfireEnchantEffect extends AbstractGameEffect {
 
             while (var1.hasNext()) {
                 AbstractCard c = (AbstractCard) var1.next();
-                AbstractDungeon.effectsQueue.add(new UpgradeShineEffect((float) Settings.WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F));
                 ManaSurgeZone.applyPermanentPositiveModifier(c);
                 AbstractDungeon.player.bottledCardUpgradeCheck(c);
-                AbstractDungeon.effectsQueue.add(new ShowCardBrieflyEffect(c.makeStatEquivalentCopy()));
+                CardCrawlGame.sound.play(ManaSurgeZone.ENCHANTBLIGHT_KEY);
+                AbstractDungeon.effectsQueue.add(new ShowCardBrieflyEffect(c.makeStatEquivalentCopy(),(float) Settings.WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F));
             }
 
             AbstractDungeon.gridSelectScreen.selectedCards.clear();

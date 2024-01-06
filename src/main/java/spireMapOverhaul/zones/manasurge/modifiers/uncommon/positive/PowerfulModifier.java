@@ -38,7 +38,7 @@ public class PowerfulModifier extends AbstractManaSurgeModifier {
     @Override
     public List<TooltipInfo> additionalTooltips(AbstractCard card) {
         List<TooltipInfo> tooltips = new ArrayList<>();
-        tooltips.add(new TooltipInfo("[#8c9cff]Powerful | Enchantment[]", "Gain #b1 #yStrength."));
+        tooltips.add(new TooltipInfo("[#8c9cff]Powerful[] [#8c9cff]|[] [#8c9cff]Enchantment[]", "Gain #b1 #yStrength."));
         return tooltips;
     }
 

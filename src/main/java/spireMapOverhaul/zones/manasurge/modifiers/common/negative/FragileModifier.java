@@ -38,7 +38,7 @@ public class FragileModifier extends AbstractManaSurgeModifier {
     @Override
     public List<TooltipInfo> additionalTooltips(AbstractCard card) {
         List<TooltipInfo> tooltips = new ArrayList<>();
-        tooltips.add(new TooltipInfo("[#ff8cd5]Fragile | Blight[]", "Gain #b1 #yVulnerable."));
+        tooltips.add(new TooltipInfo("[#ff8cd5]Fragile[] [#ff8cd5]|[] [#ff8cd5]Blight[]", "Gain #b1 #yVulnerable."));
         return tooltips;
     }
 

@@ -53,6 +53,8 @@ import spireMapOverhaul.util.ZoneShapeMaker;
 import spireMapOverhaul.zoneInterfaces.CampfireModifyingZone;
 import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
 import spireMapOverhaul.rewards.HealReward;
+import spireMapOverhaul.zones.manasurge.ui.extraicons.BlightIcon;
+import spireMapOverhaul.zones.manasurge.ui.extraicons.EnchantmentIcon;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -63,6 +65,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.function.Consumer;
 
+import static spireMapOverhaul.zones.manasurge.ManaSurgeZone.ENCHANTBLIGHT_KEY;
+import static spireMapOverhaul.zones.manasurge.ManaSurgeZone.ENCHANTBLIGHT_OGG;
 import static spireMapOverhaul.zones.storm.StormZone.*;
 
 @SuppressWarnings({"unused"})
@@ -225,6 +229,10 @@ public class SpireAnniversary6Mod implements
         CustomIconHelper.addCustomIcon(ChestIcon.get());
         CustomIconHelper.addCustomIcon(ShopIcon.get());
         CustomIconHelper.addCustomIcon(RestIcon.get());
+
+        // Mana Surge Icons
+        CustomIconHelper.addCustomIcon(EnchantmentIcon.get());
+        CustomIconHelper.addCustomIcon(BlightIcon.get());
 
         BaseMod.addDynamicVariable(new SecondMagicNumber());
         BaseMod.addDynamicVariable(new SecondDamage());
@@ -511,6 +519,9 @@ public class SpireAnniversary6Mod implements
     public void receiveAddAudio() {
         BaseMod.addAudio(THUNDER_KEY, THUNDER_MP3);
         BaseMod.addAudio(RAIN_KEY, RAIN_MP3);
+
+        // Mana Surge Audio
+        BaseMod.addAudio(ENCHANTBLIGHT_KEY,ENCHANTBLIGHT_OGG);
     }
 
     private void registerCustomRewards() {

@@ -1,4 +1,4 @@
-package spireMapOverhaul.zones.manasurge.ui;
+package spireMapOverhaul.zones.manasurge.ui.campfire;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -13,7 +13,7 @@ public class EnchantOption extends AbstractCampfireOption {
     public EnchantOption(boolean active) {
         this.label = "Enchant";
         this.usable = active;
-        this.description = "Gives a card a permanent enchantment that lasts outside of this zone.";
+        this.description = "Give a card a permanent Enchantment that lasts outside of this zone.";
         this.img = IMG;
     }
 

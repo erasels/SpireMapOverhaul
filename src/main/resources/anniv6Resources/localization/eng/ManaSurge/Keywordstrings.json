@@ -94,5 +94,37 @@
       "brittle"
     ],
     "DESCRIPTION": "Lose #b1 #yDexterity."
+  },
+  {
+    "ID": "enchant",
+    "PROPER_NAME": "[#8c9cff]Enchant[]",
+    "NAMES": [
+      "enchant"
+    ],
+    "DESCRIPTION": "Apply a positive modifier to a card."
+  },
+  {
+    "ID": "Blight",
+    "PROPER_NAME": "[#ff8cd5]Blight[]",
+    "NAMES": [
+      "enchant"
+    ],
+    "DESCRIPTION": "Apply a negative modifier to a card."
+  },
+  {
+    "ID": "enchantment",
+    "PROPER_NAME": "[#8c9cff]Enchantment[]",
+    "NAMES": [
+      "enchantment"
+    ],
+    "DESCRIPTION": "A positive modifier."
+  },
+  {
+    "ID": "blighted",
+    "PROPER_NAME": "[#ff8cd5]Blighted[]",
+    "NAMES": [
+      "blighted"
+    ],
+    "DESCRIPTION": "A negative modifier."
   }
 ]

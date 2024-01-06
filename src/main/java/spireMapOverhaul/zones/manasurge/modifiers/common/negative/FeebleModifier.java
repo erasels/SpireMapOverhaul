@@ -38,7 +38,7 @@ public class FeebleModifier extends AbstractManaSurgeModifier {
     @Override
     public List<TooltipInfo> additionalTooltips(AbstractCard card) {
         List<TooltipInfo> tooltips = new ArrayList<>();
-        tooltips.add(new TooltipInfo("[#ff8cd5]Feeble | Blight[]", "Gain #b1 #yFrail."));
+        tooltips.add(new TooltipInfo("[#ff8cd5]Feeble[] [#ff8cd5]|[] [#ff8cd5]Blight[]", "Gain #b1 #yFrail."));
         return tooltips;
     }
 

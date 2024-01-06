@@ -38,7 +38,7 @@ public class ToughModifier extends AbstractManaSurgeModifier {
     @Override
     public List<TooltipInfo> additionalTooltips(AbstractCard card) {
         List<TooltipInfo> tooltips = new ArrayList<>();
-        tooltips.add(new TooltipInfo("[#8c9cff]Tough | Enchantment[]", "Gain #b5 #yBlock."));
+        tooltips.add(new TooltipInfo("[#8c9cff]Tough[] [#8c9cff]|[] [#8c9cff]Enchantment[]", "Gain #b5 #yBlock."));
         return tooltips;
     }
 

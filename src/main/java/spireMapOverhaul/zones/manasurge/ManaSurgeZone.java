@@ -26,9 +26,12 @@ import spireMapOverhaul.zones.manasurge.modifiers.uncommon.negative.PowerlessMod
 import spireMapOverhaul.zones.manasurge.modifiers.uncommon.positive.PowerfulModifier;
 import spireMapOverhaul.zones.manasurge.modifiers.uncommon.positive.ProtectiveModifier;
 import spireMapOverhaul.zones.manasurge.powers.ManaSurgePower;
-import spireMapOverhaul.zones.manasurge.ui.EnchantOption;
+import spireMapOverhaul.zones.manasurge.ui.campfire.EnchantOption;
 
 import java.util.ArrayList;
+
+import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
+import static spireMapOverhaul.SpireAnniversary6Mod.makePath;
 
 public class ManaSurgeZone extends AbstractZone implements
         CombatModifyingZone,
@@ -37,8 +40,9 @@ public class ManaSurgeZone extends AbstractZone implements
         ShopModifyingZone,
         ModifiedEventRateZone {
     public static final String ID = "ManaSurge";
+    public static final String ENCHANTBLIGHT_KEY = makeID("ManaSurge:EnchantBlight");
+    public static final String ENCHANTBLIGHT_OGG = makePath("audio/ManaSurge/enchantblight.ogg");
     public static final float COMMON_CHANCE = 0.8f;
-
 
     public ManaSurgeZone() {
         super(ID,Icons.MONSTER,Icons.SHOP,Icons.EVENT,Icons.REST);

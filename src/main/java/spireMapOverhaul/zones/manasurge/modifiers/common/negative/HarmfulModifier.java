@@ -40,7 +40,7 @@ public class HarmfulModifier extends AbstractManaSurgeModifier {
     @Override
     public List<TooltipInfo> additionalTooltips(AbstractCard card) {
         List<TooltipInfo> tooltips = new ArrayList<>();
-        tooltips.add(new TooltipInfo("[#ff8cd5]Harmful | Blight[]", "Take #b5 damage."));
+        tooltips.add(new TooltipInfo("[#ff8cd5]Harmful[] [#ff8cd5]|[] [#ff8cd5]Blight[]", "Take #b5 damage."));
         return tooltips;
     }
 

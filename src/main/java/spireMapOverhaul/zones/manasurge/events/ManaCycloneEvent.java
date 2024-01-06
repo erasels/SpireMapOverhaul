@@ -45,9 +45,9 @@ public class ManaCycloneEvent extends PhasedEvent {
                                 (cards)->{
                                     for (AbstractCard c : cards) {
                                         ManaSurgeZone.applyPermanentPositiveModifier(c);
+                                        CardCrawlGame.sound.play(ManaSurgeZone.ENCHANTBLIGHT_KEY);
                                         AbstractDungeon.effectList.add(new ShowCardBrieflyEffect(c.makeStatEquivalentCopy()));
                                     }
-
                                     CardGroup filteredCards = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
                                     AbstractDungeon.player.masterDeck.group.stream()
                                             .filter(card -> !ManaSurgeZone.hasManaSurgeModifier(card) &&
@@ -128,6 +128,7 @@ public class ManaCycloneEvent extends PhasedEvent {
                     AbstractCard randomCard1 = filteredCards.getRandomCard(true);
                     filteredCards.removeCard(randomCard1);
                     AbstractCard randomCard2 = filteredCards.getRandomCard(true);
+                    CardCrawlGame.sound.play(ManaSurgeZone.ENCHANTBLIGHT_KEY);
                     if (randomCard1 != null) {
                         ManaSurgeZone.applyPermanentNegativeModifier(randomCard1);
                         AbstractDungeon.effectList.add(new ShowCardBrieflyEffect(randomCard1.makeStatEquivalentCopy()));
