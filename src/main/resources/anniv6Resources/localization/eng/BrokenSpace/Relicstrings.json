@@ -4,7 +4,7 @@
     "FLAVOR": "no",
     "DESCRIPTIONS": [
       "At the start of each combat, lose #b",
-      " #yFocus. The first time you channel an orb each turn, channel another orb of the same type."
+      " #yFocus. The first time you #yChannel an Orb each turn, #yChannel another Orb of the same type."
     ]
   },
   "${ModID}:BrokenSneckoSkull": {
@@ -29,7 +29,7 @@
     "FLAVOR": "no",
     "DESCRIPTIONS": [
       "Add #b",
-      " #yCurses to your deck. Whenever you rest, upgrade #b",
+      " #rCurses to your deck. Whenever you rest, #yUpgrade #b",
       " random cards in your deck."
     ]
   },
@@ -37,8 +37,8 @@
     "NAME": "Broken Damaru",
     "FLAVOR": "no",
     "DESCRIPTIONS": [
-      "At the end of your turn, you may #yExhaust a card in your hand. Gain #yMantra equal to it's cost.",
-      "Select a card to exhaust for mantra."
+      "At the end of your turn, you may #yExhaust a card in your hand. Gain #yMantra equal to its cost.",
+      "Select a card to exhaust for Mantra."
 
     ]
   },
@@ -46,7 +46,7 @@
     "NAME": "Broken Wing Boots",
     "FLAVOR": "no",
     "DESCRIPTIONS": [
-      "When you would enter an event in a ? room, choose between two events."
+      "When you would enter an event in a #y? room, choose between two events."
 
     ]
   },
@@ -54,7 +54,7 @@
     "NAME": "Broken Sozu",
     "FLAVOR": "no",
     "DESCRIPTIONS": [
-      "In-Combat Potions cost [E] to use. When you spend energy on a potion, use another random potion.",
+      "In-combat potions cost [E] to use. When you spend energy on a potion, use another random potion.",
       " Energy"
     ]
   },
@@ -80,7 +80,7 @@
     "FLAVOR": "no",
     "DESCRIPTIONS": [
       "Card rewards contain #b",
-      " less card, but each gold reward is multiplied by #b",
+      " less card, but each #yGold reward is multiplied by #b",
       "."
     ]
   },
@@ -89,15 +89,15 @@
     "FLAVOR": "no",
     "DESCRIPTIONS": [
       "Add #b",
-      " Relics to the rewards, but the next #b",
-      " chests you open are empty. If you don't have the Sapphire Key, it will be linked to a relic."
+      " #yRelics to the rewards, but the next #b",
+      " chests you open are empty. If you don't have the Sapphire Key, it will be linked to a #yRelic."
     ]
   },
   "${ModID}:BrokenSingingBowl": {
     "NAME": "Broken Singing Bowl",
     "FLAVOR": "no",
     "DESCRIPTIONS": [
-      "Whenever you gain Max HP, upgrade #b",
+      "Whenever you gain Max HP, #yUpgrade #b",
         " random card in your deck."
     ]
   }
