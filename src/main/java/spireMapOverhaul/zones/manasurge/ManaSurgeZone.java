@@ -7,12 +7,12 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.events.AbstractEvent;
 import com.megacrit.cardcrawl.ui.campfire.AbstractCampfireOption;
 import spireMapOverhaul.abstracts.AbstractZone;
-import spireMapOverhaul.zoneInterfaces.CampfireModifyingZone;
-import spireMapOverhaul.zoneInterfaces.CombatModifyingZone;
-import spireMapOverhaul.zoneInterfaces.RewardModifyingZone;
-import spireMapOverhaul.zoneInterfaces.ShopModifyingZone;
+import spireMapOverhaul.zoneInterfaces.*;
+import spireMapOverhaul.zones.example.CoolExampleEvent;
+import spireMapOverhaul.zones.manasurge.events.ManaCycloneEvent;
 import spireMapOverhaul.zones.manasurge.modifiers.AbstractManaSurgeModifier;
 import spireMapOverhaul.zones.manasurge.modifiers.common.negative.FeebleModifier;
 import spireMapOverhaul.zones.manasurge.modifiers.common.negative.FlawedModifier;
@@ -35,7 +35,8 @@ public class ManaSurgeZone extends AbstractZone implements
         CombatModifyingZone,
         RewardModifyingZone,
         CampfireModifyingZone,
-        ShopModifyingZone {
+        ShopModifyingZone,
+        ModifiedEventRateZone {
     public static final String ID = "ManaSurge";
     public static final float COMMON_CHANCE = 0.8f;
 
@@ -324,6 +325,16 @@ public class ManaSurgeZone extends AbstractZone implements
             }
         }
         return baseCost;
+    }
+
+    @Override
+    public AbstractEvent forceEvent() {
+        return ModifiedEventRateZone.returnIfUnseen(ManaCycloneEvent.ID);
+    }
+
+    @Override
+    public float zoneSpecificEventRate() {
+        return 1;
     }
 
     @Override

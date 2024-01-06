@@ -25,7 +25,7 @@ public class SharpModifier extends AbstractManaSurgeModifier {
     private static final ModRarity MOD_RARITY = ModRarity.COMMON_MOD;
     private static final ModEffect MOD_EFFECT = ModEffect.POSITIVE_MOD;
 
-    private static final Texture ICON = TexLoader.getTexture(makeImagePath("ui/extraIcons/PositiveEnchantmentIcon.png"));
+    private static final Texture ICON = TexLoader.getTexture(makeImagePath("ui/ManaSurge/extraIcons/PositiveEnchantmentIcon.png"));
     private static final int DAMAGE = 5;
 
     public SharpModifier(boolean permanent) {

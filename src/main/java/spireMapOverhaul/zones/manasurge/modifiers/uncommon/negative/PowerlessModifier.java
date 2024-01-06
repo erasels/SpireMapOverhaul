@@ -23,7 +23,7 @@ public class PowerlessModifier extends AbstractManaSurgeModifier {
     private static final ModRarity MOD_RARITY = ModRarity.UNCOMMON_MOD;
     private static final ModEffect MOD_EFFECT = ModEffect.NEGATIVE_MOD;
 
-    private static final Texture ICON = TexLoader.getTexture(makeImagePath("ui/extraIcons/NegativeEnchantmentIcon.png"));
+    private static final Texture ICON = TexLoader.getTexture(makeImagePath("ui/ManaSurge/extraIcons/NegativeEnchantmentIcon.png"));
     private static final int STRENGTH_AMT = -1;
 
     public PowerlessModifier(boolean permanent) {
