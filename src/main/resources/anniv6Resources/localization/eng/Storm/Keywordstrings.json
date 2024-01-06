@@ -5,5 +5,12 @@
       "damp"
     ],
     "DESCRIPTION": "Damp cards #yRetain and #yExhaust."
+  },
+  {
+    "PROPER_NAME": "Electric",
+    "NAMES": [
+      "electric"
+    ],
+    "DESCRIPTION": "When played, gain [E] [REMOVE_SPACE] and remove #yElectric."
   }
 ]

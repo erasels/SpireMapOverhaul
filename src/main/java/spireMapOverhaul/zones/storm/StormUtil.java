@@ -9,8 +9,10 @@ import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import spireMapOverhaul.zones.storm.cardmods.DampModifier;
+import spireMapOverhaul.zones.storm.cardmods.ElectricModifier;
 
 import java.util.stream.Collectors;
 
@@ -22,6 +24,9 @@ public class StormUtil {
     public static long rainSoundId;
     public static boolean activePlayerLightning;
     public static float brightTime;
+    public static AbstractCreature conduitTarget;
+    public static float timeToStrike;
+    public static float timeSinceStrike;
 
     public static FrameBuffer createBuffer() {
         return createBuffer(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -45,7 +50,7 @@ public class StormUtil {
     }
 
     public static boolean cardValidToMakeDamp(AbstractCard c) {
-        return !CardModifierManager.hasModifier(c, DampModifier.ID);
+        return !CardModifierManager.hasModifier(c, DampModifier.ID) && !CardModifierManager.hasModifier(c, ElectricModifier.ID);
     }
 
     public static int countValidCardsInHandToMakeDamp() {

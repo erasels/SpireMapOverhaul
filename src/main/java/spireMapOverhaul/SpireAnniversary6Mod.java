@@ -63,6 +63,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.function.Consumer;
 
+import static spireMapOverhaul.zones.storm.StormZone.*;
+
 @SuppressWarnings({"unused"})
 @SpireInitializer
 public class SpireAnniversary6Mod implements
@@ -106,10 +108,7 @@ public class SpireAnniversary6Mod implements
     private static final String SKILL_L_ART = modID + "Resources/images/1024/skill.png";
     private static final String POWER_L_ART = modID + "Resources/images/1024/power.png";
 
-    public static final String THUNDER_KEY = makeID("Storm_Thunder");
-    private static final String THUNDER_MP3 = makePath("audio/storm/thunder.mp3");
-    public static final String RAIN_KEY = makeID("Storm_Rain");
-    private static final String RAIN_MP3 = makePath("audio/storm/rain.mp3");
+
 
     public static boolean initializedStrings = false;
 
@@ -664,7 +663,7 @@ public class SpireAnniversary6Mod implements
     public static float time = 0f;
     @Override
     public void receivePostUpdate() {
-        time += Gdx.graphics.getDeltaTime();
+        time += Gdx.graphics.getRawDeltaTime();
     }
 
     public static class SavableCurrentRunActive implements CustomSavable<Boolean> {

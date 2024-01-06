@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.cards.blue.Storm;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.zoneInterfaces.CombatModifyingZone;
@@ -20,13 +21,17 @@ import spireMapOverhaul.zones.storm.powers.ConduitPower;
 
 import java.util.ArrayList;
 
-import static spireMapOverhaul.SpireAnniversary6Mod.RAIN_KEY;
+import static spireMapOverhaul.SpireAnniversary6Mod.*;
 import static spireMapOverhaul.util.Wiz.*;
-import static spireMapOverhaul.zones.storm.StormUtil.cardValidToMakeDamp;
-import static spireMapOverhaul.zones.storm.StormUtil.countValidCardsInHandToMakeDamp;
+import static spireMapOverhaul.zones.storm.StormUtil.*;
 
 public class StormZone extends AbstractZone implements CombatModifyingZone, RewardModifyingZone, OnTravelZone {
     public static final String ID = "Storm";
+
+    public static final String THUNDER_KEY = makeID("Storm_Thunder");
+    public static final String THUNDER_MP3 = makePath("audio/storm/thunder.mp3");
+    public static final String RAIN_KEY = makeID("Storm_Rain");
+    public static final String RAIN_MP3 = makePath("audio/storm/rain.mp3");
 
     public StormZone() {
         super(ID, Icons.MONSTER);
@@ -44,17 +49,20 @@ public class StormZone extends AbstractZone implements CombatModifyingZone, Rewa
         return Color.DARK_GRAY.cpy();
     }
 
-    public void onEnter() {
-        StormUtil.rainSoundId = CardCrawlGame.sound.playAndLoop(RAIN_KEY, 0.5f);
+    public void onEnterRoom() {
+        if(StormUtil.rainSoundId == 0L) {
+            StormUtil.rainSoundId = CardCrawlGame.sound.playAndLoop(RAIN_KEY);
+        }
     }
     public void onExit() {
         CardCrawlGame.sound.stop(RAIN_KEY, StormUtil.rainSoundId);
+        StormUtil.rainSoundId = 0L;
     }
 
     @Override
     public void modifyRewardCards(ArrayList<AbstractCard> cards) {
-        if(AbstractDungeon.cardRandomRng.randomBoolean()) {
-            AbstractCard card = cards.get(AbstractDungeon.cardRandomRng.random(cards.size() - 1));
+        if(AbstractDungeon.getCurrRoom() instanceof  MonsterRoomElite || AbstractDungeon.cardRng.randomBoolean()) {
+            AbstractCard card = cards.get(AbstractDungeon.cardRng.random(cards.size() - 1));
             CardModifierManager.addModifier(card, new ElectricModifier());
         }
     }
@@ -67,12 +75,12 @@ public class StormZone extends AbstractZone implements CombatModifyingZone, Rewa
                 public void update() {
                     int validCards = countValidCardsInHandToMakeDamp();
                     if(validCards > 0) {
-                        AbstractCard card = AbstractDungeon.player.hand.getRandomCard(AbstractDungeon.miscRng);
+                        AbstractCard card = AbstractDungeon.player.hand.getRandomCard(AbstractDungeon.cardRandomRng);
                         while (!cardValidToMakeDamp(card)) { //Get random cards until you get one you can make damp
-                            card = AbstractDungeon.player.hand.getRandomCard(AbstractDungeon.miscRng);
+                            card = AbstractDungeon.player.hand.getRandomCard(AbstractDungeon.cardRandomRng);
                         }
                         CardModifierManager.addModifier(card, new DampModifier());
-                        card.flash();
+                        card.superFlash();
                     }
                     isDone = true;
                 }
@@ -83,11 +91,11 @@ public class StormZone extends AbstractZone implements CombatModifyingZone, Rewa
         int totalActors = mons.size() + 1;
 
         if (AbstractDungeon.cardRandomRng.random(1, totalActors) == 1) {
-            AddLightningPatch.AbstractRoomFields.conduitTarget.set(AbstractDungeon.getCurrRoom(), AbstractDungeon.player);
+            conduitTarget = AbstractDungeon.player;
             applyToSelf(new ConduitPower(AbstractDungeon.player));
         } else {
             AbstractMonster m = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
-            AddLightningPatch.AbstractRoomFields.conduitTarget.set(AbstractDungeon.getCurrRoom(), m);
+            conduitTarget = m;
             applyToEnemy(m, new ConduitPower(m));
         }
 

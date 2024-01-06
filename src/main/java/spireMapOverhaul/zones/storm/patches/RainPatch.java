@@ -21,6 +21,7 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.*;
+import static spireMapOverhaul.zones.storm.StormZone.RAIN_KEY;
 
 public class RainPatch {
     @SpirePatch(clz = AbstractScene.class, method = SpirePatch.CLASS)
@@ -130,6 +131,18 @@ public class RainPatch {
 
     @SpirePatch(clz = AbstractScene.class, method = "fadeOutAmbiance")
     public static class FadeOutAmbiencePatch {
+
+        @SpirePostfixPatch
+        public static void Postfix() {
+            if (StormUtil.isInStormZone()) {
+                CardCrawlGame.sound.adjustVolume(RAIN_KEY, StormUtil.rainSoundId, 0.0f);
+                StormUtil.rainSoundId = 0L;
+            }
+        }
+    }
+
+    @SpirePatch(clz = AbstractScene.class, method = "muteAmbienceVolume")
+    public static class MuteAmbiencePatch {
 
         @SpirePostfixPatch
         public static void Postfix() {
