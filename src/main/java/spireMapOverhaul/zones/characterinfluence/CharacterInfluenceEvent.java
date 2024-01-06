@@ -36,7 +36,7 @@ public class CharacterInfluenceEvent extends PhasedEvent {
 
         setImage(); // If it can find a mod image, it uses that instead.
 
-        registerPhase("EventStart", new TextPhase(DESCRIPTIONS[0] + "a Stranger" + DESCRIPTIONS[1]) {
+        registerPhase("EventStart", new TextPhase(DESCRIPTIONS[0] + DESCRIPTIONS[2] + DESCRIPTIONS[1]) {
             @Override
             public String getBody() {
                 if (getCurrentZoneCharacter() != null) {

@@ -41,8 +41,7 @@ public class CharacterInfluenceZone extends AbstractZone implements RewardModify
     public static AbstractPlayer getCurrentZoneCharacter() {
         AbstractZone currentZone = ZonePatches.currentZone();
 
-        if (!(currentZone instanceof CharacterInfluenceZone) ||
-                ((CharacterInfluenceZone) currentZone).classInfluence == null)
+        if (!(currentZone instanceof CharacterInfluenceZone))
             return null;
 
         return ((CharacterInfluenceZone) currentZone).classInfluence;
@@ -98,14 +97,18 @@ public class CharacterInfluenceZone extends AbstractZone implements RewardModify
 
     public AbstractCard getCard(AbstractCard.CardRarity rarity, AbstractCard.CardType type) {
         if (commonPool == null || uncommonPool == null || rarePool == null) initPools();
+        AbstractCard cardToReturn;
         switch (rarity) {
             case UNCOMMON:
-                return type != null ? uncommonPool.getRandomCard(type, true) : uncommonPool.getRandomCard(true);
+                cardToReturn = uncommonPool.getRandomCard(type, true);
+                return (cardToReturn != null) ? cardToReturn : uncommonPool.getRandomCard(true);
             case RARE:
-                return type != null ? rarePool.getRandomCard(type, true) : rarePool.getRandomCard(true);
+                cardToReturn = rarePool.getRandomCard(type, true);
+                return (cardToReturn != null) ? cardToReturn : rarePool.getRandomCard(true);
             case COMMON:
             default:
-                return type != null ? commonPool.getRandomCard(type, true) : commonPool.getRandomCard(true);
+                cardToReturn = commonPool.getRandomCard(type, true);
+                return (cardToReturn != null) ? cardToReturn : commonPool.getRandomCard(true);
         }
     }
 
