@@ -20,7 +20,7 @@ public class ManaSurgePower extends AbstractSMOPower implements NonStackablePowe
     private static final float EFFECT_CHANCE = 0.5f;
 
     public ManaSurgePower(AbstractCreature owner, int amount) {
-        super(POWER_ID,NAME,ZONE_ID, PowerType.BUFF, false, owner, amount);
+        super(POWER_ID,NAME,ZONE_ID, NeutralPowertypePatch.NEUTRAL, false, owner, amount);
     }
 
     @Override
