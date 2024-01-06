@@ -8,7 +8,7 @@
   "${ModID}:EnchantOption": {
     "TEXT": [
       "Enchant",
-      "Gives a card a permanent enchantment that lasts outside of this zone."
+      "Gives a card a permanent enchantment."
     ]
   }
 }
