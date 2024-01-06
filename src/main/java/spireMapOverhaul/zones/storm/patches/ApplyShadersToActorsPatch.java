@@ -21,8 +21,7 @@ import spireMapOverhaul.zones.storm.StormUtil;
 import java.util.ArrayList;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.time;
-import static spireMapOverhaul.zones.storm.StormUtil.initDarkShader;
-import static spireMapOverhaul.zones.storm.StormUtil.initElectricShader;
+import static spireMapOverhaul.zones.storm.StormUtil.*;
 
 public class ApplyShadersToActorsPatch {
     private static ShaderProgram darkShader = null;
@@ -82,7 +81,7 @@ public class ApplyShadersToActorsPatch {
                     darkShader = initDarkShader(darkShader);
                     sb.begin();
                     sb.setShader(darkShader);
-                    darkShader.setUniformf("u_time", AddLightningPatch.AbstractRoomFields.timeSinceStrike.get(AbstractDungeon.getCurrRoom()));
+                    darkShader.setUniformf("u_time", timeSinceStrike);
                 }
                 sb.draw(playerTexture, -Settings.VERT_LETTERBOX_AMT, -Settings.HORIZ_LETTERBOX_AMT);
                 sb.setShader(null);

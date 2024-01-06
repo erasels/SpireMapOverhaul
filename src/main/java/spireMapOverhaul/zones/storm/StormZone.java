@@ -23,8 +23,7 @@ import java.util.ArrayList;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.*;
 import static spireMapOverhaul.util.Wiz.*;
-import static spireMapOverhaul.zones.storm.StormUtil.cardValidToMakeDamp;
-import static spireMapOverhaul.zones.storm.StormUtil.countValidCardsInHandToMakeDamp;
+import static spireMapOverhaul.zones.storm.StormUtil.*;
 
 public class StormZone extends AbstractZone implements CombatModifyingZone, RewardModifyingZone, OnTravelZone {
     public static final String ID = "Storm";
@@ -92,11 +91,11 @@ public class StormZone extends AbstractZone implements CombatModifyingZone, Rewa
         int totalActors = mons.size() + 1;
 
         if (AbstractDungeon.cardRandomRng.random(1, totalActors) == 1) {
-            AddLightningPatch.AbstractRoomFields.conduitTarget.set(AbstractDungeon.getCurrRoom(), AbstractDungeon.player);
+            conduitTarget = AbstractDungeon.player;
             applyToSelf(new ConduitPower(AbstractDungeon.player));
         } else {
             AbstractMonster m = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
-            AddLightningPatch.AbstractRoomFields.conduitTarget.set(AbstractDungeon.getCurrRoom(), m);
+            conduitTarget = m;
             applyToEnemy(m, new ConduitPower(m));
         }
 
