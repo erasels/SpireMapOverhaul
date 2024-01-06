@@ -28,7 +28,7 @@ public class CharacterInfluenceZone extends AbstractZone implements RewardModify
     public AbstractPlayer classInfluence;
 
     public CharacterInfluenceZone() {
-        super(ID, Icons.MONSTER, Icons.EVENT, Icons.SHOP);
+        super(ID, Icons.EVENT, Icons.SHOP);
         this.width = 2;
         this.height = 3;
     }
