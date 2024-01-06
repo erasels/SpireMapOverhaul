@@ -6,10 +6,11 @@ import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.util.TexLoader;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeImagePath;
+import static spireMapOverhaul.SpireAnniversary6Mod.makeUIPath;
 
 public class EnchantmentIcon extends AbstractCustomIcon {
     public static final String ID = SpireAnniversary6Mod.makeID("ManaSurge:Enchantment");
-    private static final Texture ICON = TexLoader.getTexture(makeImagePath("ui/ManaSurge/extraIcons/PositiveEnchantmentIcon.png"));
+    private static final Texture ICON = TexLoader.getTexture(makeUIPath("ManaSurge/extraIcons/PositiveEnchantmentIcon.png"));
 
     private static EnchantmentIcon singleton;
 

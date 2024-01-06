@@ -10,20 +10,23 @@ import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.util.TexLoader;
+import spireMapOverhaul.zones.manasurge.ManaSurgeZone;
 import spireMapOverhaul.zones.manasurge.modifiers.AbstractManaSurgeModifier;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static spireMapOverhaul.SpireAnniversary6Mod.makeImagePath;
+import static spireMapOverhaul.SpireAnniversary6Mod.makeUIPath;
 
 public class ToughModifier extends AbstractManaSurgeModifier {
+    public static final String ID = SpireAnniversary6Mod.makeID("ManaSurge:Tough");
     private static final ModRarity MOD_RARITY = ModRarity.COMMON_MOD;
     private static final ModEffect MOD_EFFECT = ModEffect.POSITIVE_MOD;
 
-    private static final Texture ICON = TexLoader.getTexture(makeImagePath("ui/ManaSurge/extraIcons/PositiveEnchantmentIcon.png"));
-    private static final int BLOCK = 5;
+    private static final Texture ICON = TexLoader.getTexture(makeUIPath("ManaSurge/extraIcons/PositiveEnchantmentIcon.png"));
+    private static final int BLOCK = 4;
 
     public ToughModifier(boolean permanent) {
         super(permanent,MOD_RARITY,MOD_EFFECT);
@@ -38,13 +41,13 @@ public class ToughModifier extends AbstractManaSurgeModifier {
     @Override
     public List<TooltipInfo> additionalTooltips(AbstractCard card) {
         List<TooltipInfo> tooltips = new ArrayList<>();
-        tooltips.add(new TooltipInfo("[#8c9cff]Tough[] [#8c9cff]|[] [#8c9cff]Enchantment[]", "Gain #b5 #yBlock."));
+        tooltips.add(new TooltipInfo(ManaSurgeZone.getKeywordProper(ID) + " [#ff8cd5]|[] " + ManaSurgeZone.getKeywordProper(ManaSurgeZone.POSITIVE_MOD), ManaSurgeZone.getKeywordDescription(ID)));
         return tooltips;
     }
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        return "[#8c9cff]Tough[]." + " NL " + rawDescription;
+        return ManaSurgeZone.getKeywordProper(ID) + ". NL " + rawDescription;
     }
 
     @Override

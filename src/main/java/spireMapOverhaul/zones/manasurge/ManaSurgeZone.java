@@ -3,13 +3,16 @@ package spireMapOverhaul.zones.manasurge;
 import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
 import com.badlogic.gdx.graphics.Color;
+import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.AbstractEvent;
 import com.megacrit.cardcrawl.ui.campfire.AbstractCampfireOption;
+import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
+import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.zoneInterfaces.*;
 import spireMapOverhaul.zones.manasurge.events.ManaCycloneEvent;
 import spireMapOverhaul.zones.manasurge.modifiers.AbstractManaSurgeModifier;
@@ -40,6 +43,8 @@ public class ManaSurgeZone extends AbstractZone implements
         ShopModifyingZone,
         ModifiedEventRateZone {
     public static final String ID = "ManaSurge";
+    public static final String NEGATIVE_MOD = SpireAnniversary6Mod.makeID("ManaSurge:Blight");
+    public static final String POSITIVE_MOD = SpireAnniversary6Mod.makeID("ManaSurge:Enchantment");
     public static final String ENCHANTBLIGHT_KEY = makeID("ManaSurge:EnchantBlight");
     public static final String ENCHANTBLIGHT_OGG = makePath("audio/ManaSurge/enchantblight.ogg");
     public static final float COMMON_CHANCE = 0.8f;
@@ -48,6 +53,16 @@ public class ManaSurgeZone extends AbstractZone implements
         super(ID,Icons.MONSTER,Icons.SHOP,Icons.EVENT,Icons.REST);
         this.width = 3;
         this.height = 4;
+    }
+
+    public static String getKeywordProper(String keywordId) {
+        Keyword keywordStrings = SpireAnniversary6Mod.keywords.get(keywordId);
+        return (keywordStrings != null) ? keywordStrings.PROPER_NAME : null;
+    }
+
+    public static String getKeywordDescription(String keywordId) {
+        Keyword keywordStrings = SpireAnniversary6Mod.keywords.get(keywordId);
+        return (keywordStrings != null) ? keywordStrings.DESCRIPTION : null;
     }
 
     public static boolean hasManaSurgeModifier(AbstractCard card) {
@@ -78,11 +93,9 @@ public class ManaSurgeZone extends AbstractZone implements
     }
 
     public static void applyRandomTemporaryModifier(AbstractCard card) {
-        if (Math.random() < COMMON_CHANCE) {
-            int numberOfCommonModifiers = 8;
-            int selectedModifierIndex = (int) (Math.random() * numberOfCommonModifiers);
+        if (AbstractDungeon.cardRandomRng.randomBoolean(COMMON_CHANCE)) {
             AbstractCardModifier modifier;
-            switch (selectedModifierIndex) {
+            switch (AbstractDungeon.cardRandomRng.random(8)) {
                 case 0:
                     modifier = new SharpModifier(false);
                     break;
@@ -115,10 +128,8 @@ public class ManaSurgeZone extends AbstractZone implements
                 CardModifierManager.addModifier(card, modifier);
             }
         } else {
-            int numberOfUncommonModifiers = 4;
-            int selectedModifierIndex = (int) (Math.random() * numberOfUncommonModifiers);
             AbstractCardModifier modifier;
-            switch (selectedModifierIndex) {
+            switch (AbstractDungeon.cardRandomRng.random(4)) {
                 case 0:
                     modifier = new PowerfulModifier(false);
                     break;
@@ -142,11 +153,9 @@ public class ManaSurgeZone extends AbstractZone implements
     }
 
     public static void applyRandomPermanentModifier(AbstractCard card) {
-        if (Math.random() < COMMON_CHANCE) {
-            int numberOfCommonModifiers = 8;
-            int selectedModifierIndex = (int) (Math.random() * numberOfCommonModifiers);
+        if (AbstractDungeon.cardRng.randomBoolean(COMMON_CHANCE)) {
             AbstractCardModifier modifier;
-            switch (selectedModifierIndex) {
+            switch (AbstractDungeon.cardRng.random(8)) {
                 case 0:
                     modifier = new SharpModifier(true);
                     break;
@@ -179,10 +188,8 @@ public class ManaSurgeZone extends AbstractZone implements
                 CardModifierManager.addModifier(card, modifier);
             }
         } else {
-            int numberOfUncommonModifiers = 4;
-            int selectedModifierIndex = (int) (Math.random() * numberOfUncommonModifiers);
             AbstractCardModifier modifier;
-            switch (selectedModifierIndex) {
+            switch (AbstractDungeon.cardRng.random(4)) {
                 case 0:
                     modifier = new PowerfulModifier(true);
                     break;
@@ -206,11 +213,9 @@ public class ManaSurgeZone extends AbstractZone implements
     }
 
     public static void applyPermanentPositiveModifier(AbstractCard card) {
-        if (Math.random() < COMMON_CHANCE) {
-            int numberOfCommonModifiers = 4;
-            int selectedModifierIndex = (int) (Math.random() * numberOfCommonModifiers);
+        if (AbstractDungeon.cardRng.randomBoolean(COMMON_CHANCE)) {
             AbstractCardModifier modifier;
-            switch (selectedModifierIndex) {
+            switch (AbstractDungeon.cardRng.random(4)) {
                 case 0:
                     modifier = new SharpModifier(true);
                     break;
@@ -231,10 +236,8 @@ public class ManaSurgeZone extends AbstractZone implements
                 CardModifierManager.addModifier(card, modifier);
             }
         } else {
-            int numberOfUncommonModifiers = 2;
-            int selectedModifierIndex = (int) (Math.random() * numberOfUncommonModifiers);
             AbstractCardModifier modifier;
-            switch (selectedModifierIndex) {
+            switch (AbstractDungeon.cardRng.random(2)) {
                 case 0:
                     modifier = new PowerfulModifier(true);
                     break;
@@ -252,11 +255,9 @@ public class ManaSurgeZone extends AbstractZone implements
     }
 
     public static void applyPermanentNegativeModifier(AbstractCard card) {
-        if (Math.random() < COMMON_CHANCE) {
-            int numberOfCommonModifiers = 4;
-            int selectedModifierIndex = (int) (Math.random() * numberOfCommonModifiers);
+        if (AbstractDungeon.cardRng.randomBoolean(COMMON_CHANCE)) {
             AbstractCardModifier modifier;
-            switch (selectedModifierIndex) {
+            switch (AbstractDungeon.cardRng.random(4)) {
                 case 0:
                     modifier = new FeebleModifier(true);
                     break;
@@ -277,10 +278,8 @@ public class ManaSurgeZone extends AbstractZone implements
                 CardModifierManager.addModifier(card, modifier);
             }
         } else {
-            int numberOfUncommonModifiers = 2;
-            int selectedModifierIndex = (int) (Math.random() * numberOfUncommonModifiers);
             AbstractCardModifier modifier;
-            switch (selectedModifierIndex) {
+            switch (AbstractDungeon.cardRng.random(2)) {
                 case 0:
                     modifier = new BrittleModifier(true);
                     break;
@@ -304,23 +303,7 @@ public class ManaSurgeZone extends AbstractZone implements
 
     @Override
     public void atBattleStartPreDraw() {
-        for (AbstractCard card : AbstractDungeon.player.drawPile.group) {
-            if (!hasManaSurgeModifier(card)) {
-                CardModifierManager.removeAllModifiers(card, false);
-            }
-        }
-        for (AbstractCard card : AbstractDungeon.player.discardPile.group) {
-            if (!hasManaSurgeModifier(card)) {
-                CardModifierManager.removeAllModifiers(card, false);
-            }
-        }
-        for (AbstractCard card : AbstractDungeon.player.hand.group) {
-            if (!hasManaSurgeModifier(card)) {
-                CardModifierManager.removeAllModifiers(card, false);
-            }
-        }
-        AbstractDungeon.player.hand.applyPowers();
-        AbstractDungeon.actionManager.addToBottom((new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new ManaSurgePower(AbstractDungeon.player, 0), 0)));
+        Wiz.applyToSelf(new ManaSurgePower(AbstractDungeon.player,0));
     }
 
     @Override
@@ -374,11 +357,6 @@ public class ManaSurgeZone extends AbstractZone implements
     @Override
     public AbstractEvent forceEvent() {
         return ModifiedEventRateZone.returnIfUnseen(ManaCycloneEvent.ID);
-    }
-
-    @Override
-    public float zoneSpecificEventRate() {
-        return 1;
     }
 
     @Override

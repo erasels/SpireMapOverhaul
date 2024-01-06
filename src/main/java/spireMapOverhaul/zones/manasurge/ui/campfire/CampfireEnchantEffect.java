@@ -18,8 +18,6 @@ import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import spireMapOverhaul.zones.manasurge.ManaSurgeZone;
 
-import java.util.Iterator;
-
 public class CampfireEnchantEffect extends AbstractGameEffect {
     private static final float DUR = 1.5F;
     private boolean openedScreen = false;
@@ -38,16 +36,12 @@ public class CampfireEnchantEffect extends AbstractGameEffect {
             this.updateBlackScreenColor();
         }
 
-        Iterator var1;
         if (!AbstractDungeon.isScreenUp && !AbstractDungeon.gridSelectScreen.selectedCards.isEmpty()) {
-            var1 = AbstractDungeon.gridSelectScreen.selectedCards.iterator();
-
-            while (var1.hasNext()) {
-                AbstractCard c = (AbstractCard) var1.next();
+            for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards) {
                 ManaSurgeZone.applyPermanentPositiveModifier(c);
                 AbstractDungeon.player.bottledCardUpgradeCheck(c);
                 CardCrawlGame.sound.play(ManaSurgeZone.ENCHANTBLIGHT_KEY);
-                AbstractDungeon.effectsQueue.add(new ShowCardBrieflyEffect(c.makeStatEquivalentCopy(),(float) Settings.WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F));
+                AbstractDungeon.effectsQueue.add(new ShowCardBrieflyEffect(c.makeStatEquivalentCopy(), (float) Settings.WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F));
             }
 
             AbstractDungeon.gridSelectScreen.selectedCards.clear();
@@ -67,7 +61,7 @@ public class CampfireEnchantEffect extends AbstractGameEffect {
             AbstractDungeon.gridSelectScreen.open(
                     selectedCards,
                     1,
-                    "Select a card to enchant.",
+                    EnchantOption.TEXT[2],
                     false,
                     false,
                     true,

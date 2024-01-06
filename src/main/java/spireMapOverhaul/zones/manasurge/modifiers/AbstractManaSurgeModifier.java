@@ -38,6 +38,6 @@ public abstract class AbstractManaSurgeModifier extends AbstractCardModifier {
 
     @Override
     public boolean removeAtEndOfTurn(AbstractCard card) {
-        return !card.retain && !isPermanent;
+        return !card.selfRetain && !card.retain && !isPermanent;
     }
 }

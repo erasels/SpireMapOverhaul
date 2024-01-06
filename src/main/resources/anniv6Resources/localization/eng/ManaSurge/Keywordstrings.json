@@ -1,6 +1,6 @@
 [
   {
-    "ID": "sharp",
+    "ID": "ManaSurge:Sharp",
     "PROPER_NAME": "[#8c9cff]Sharp[]",
     "NAMES": [
       "sharp"
@@ -8,7 +8,7 @@
     "DESCRIPTION": "Deal #b5 damage to the target enemy, or a random enemy if not a single target."
   },
   {
-    "ID": "tough",
+    "ID": "ManaSurge:Tough",
     "PROPER_NAME": "[#8c9cff]Tough[]",
     "NAMES": [
       "tough"
@@ -16,7 +16,7 @@
     "DESCRIPTION": "Gain #b5 #yBlock."
   },
   {
-    "ID": "powerful",
+    "ID": "ManaSurge:Powerful",
     "PROPER_NAME": "[#8c9cff]Powerful[]",
     "NAMES": [
       "powerful"
@@ -24,7 +24,7 @@
     "DESCRIPTION": "Gain #b1 #yStrength."
   },
   {
-    "ID": "protective",
+    "ID": "ManaSurge:Protective",
     "PROPER_NAME": "[#8c9cff]Protective[]",
     "NAMES": [
       "protective"
@@ -32,7 +32,7 @@
     "DESCRIPTION": "Gain #b1 #yDexterity."
   },
   {
-    "ID": "exposing",
+    "ID": "ManaSurge:Exposing",
     "PROPER_NAME": "[#8c9cff]Exposing[]",
     "NAMES": [
       "exposing"
@@ -40,7 +40,7 @@
     "DESCRIPTION": "Apply #b1 #yVulnerable to the target enemy, or a random enemy if not a single target."
   },
   {
-    "ID": "crippling",
+    "ID": "ManaSurge:Crippling",
     "PROPER_NAME": "[#8c9cff]Crippling[]",
     "NAMES": [
       "crippling"
@@ -48,7 +48,7 @@
     "DESCRIPTION": "Apply #b1 #yWeak to the target enemy, or a random enemy if not a single target."
   },
   {
-    "ID": "harmful",
+    "ID": "ManaSurge:Harmful",
     "PROPER_NAME": "[#ff8cd5]Harmful[]",
     "NAMES": [
       "harmful"
@@ -56,7 +56,7 @@
     "DESCRIPTION": "Take #b5 damage."
   },
   {
-    "ID": "fragile",
+    "ID": "ManaSurge:Fragile",
     "PROPER_NAME": "[#ff8cd5]Fragile[]",
     "NAMES": [
       "fragile"
@@ -64,7 +64,7 @@
     "DESCRIPTION": "Gain #b1 #yVulnerable."
   },
   {
-    "ID": "feeble",
+    "ID": "ManaSurge:Feeble",
     "PROPER_NAME": "[#ff8cd5]Feeble[]",
     "NAMES": [
       "feeble"
@@ -72,7 +72,7 @@
     "DESCRIPTION": "Gain #b1 #yFrail."
   },
   {
-    "ID": "flawed",
+    "ID": "ManaSurge:Flawed",
     "PROPER_NAME": "[#ff8cd5]Flawed[]",
     "NAMES": [
       "flawed"
@@ -80,7 +80,7 @@
     "DESCRIPTION": "Gain #b1 #yWeak."
   },
   {
-    "ID": "powerless",
+    "ID": "ManaSurge:Powerless",
     "PROPER_NAME": "[#ff8cd5]Powerless[]",
     "NAMES": [
       "powerless"
@@ -88,7 +88,7 @@
     "DESCRIPTION": "Lose #b1 #yStrength."
   },
   {
-    "ID": "brittle",
+    "ID": "ManaSurge:Brittle",
     "PROPER_NAME": "[#ff8cd5]Brittle[]",
     "NAMES": [
       "brittle"
@@ -96,35 +96,19 @@
     "DESCRIPTION": "Lose #b1 #yDexterity."
   },
   {
-    "ID": "enchant",
-    "PROPER_NAME": "[#8c9cff]Enchant[]",
-    "NAMES": [
-      "enchant"
-    ],
-    "DESCRIPTION": "Apply a positive modifier to a card."
-  },
-  {
-    "ID": "Blight",
+    "ID": "ManaSurge:Blight",
     "PROPER_NAME": "[#ff8cd5]Blight[]",
     "NAMES": [
       "enchant"
     ],
-    "DESCRIPTION": "Apply a negative modifier to a card."
+    "DESCRIPTION": "A negative modifier."
   },
   {
-    "ID": "enchantment",
+    "ID": "ManaSurge:Enchantment",
     "PROPER_NAME": "[#8c9cff]Enchantment[]",
     "NAMES": [
       "enchantment"
     ],
     "DESCRIPTION": "A positive modifier."
-  },
-  {
-    "ID": "blighted",
-    "PROPER_NAME": "[#ff8cd5]Blighted[]",
-    "NAMES": [
-      "blighted"
-    ],
-    "DESCRIPTION": "A negative modifier."
   }
 ]

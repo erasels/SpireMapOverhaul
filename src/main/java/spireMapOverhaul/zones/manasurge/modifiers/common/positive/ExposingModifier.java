@@ -12,19 +12,22 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
+import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.util.TexLoader;
+import spireMapOverhaul.zones.manasurge.ManaSurgeZone;
 import spireMapOverhaul.zones.manasurge.modifiers.AbstractManaSurgeModifier;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static spireMapOverhaul.SpireAnniversary6Mod.makeImagePath;
+import static spireMapOverhaul.SpireAnniversary6Mod.makeUIPath;
 
 public class ExposingModifier extends AbstractManaSurgeModifier {
+    public static final String ID = SpireAnniversary6Mod.makeID("ManaSurge:Exposing");
     private static final ModRarity MOD_RARITY = ModRarity.COMMON_MOD;
     private static final ModEffect MOD_EFFECT = ModEffect.POSITIVE_MOD;
 
-    private static final Texture ICON = TexLoader.getTexture(makeImagePath("ui/ManaSurge/extraIcons/PositiveEnchantmentIcon.png"));
+    private static final Texture ICON = TexLoader.getTexture(makeUIPath("ManaSurge/extraIcons/PositiveEnchantmentIcon.png"));
     private static final int VULN_AMT = 1;
 
     public ExposingModifier(boolean permanent) {
@@ -44,13 +47,13 @@ public class ExposingModifier extends AbstractManaSurgeModifier {
     @Override
     public List<TooltipInfo> additionalTooltips(AbstractCard card) {
         List<TooltipInfo> tooltips = new ArrayList<>();
-        tooltips.add(new TooltipInfo("[#8c9cff]Exposing[] [#8c9cff]|[] [#8c9cff]Enchantment[]", "Apply #b1 #yVulnerable to the target enemy, or a random enemy if not a single target."));
+        tooltips.add(new TooltipInfo(ManaSurgeZone.getKeywordProper(ID) + " [#ff8cd5]|[] " + ManaSurgeZone.getKeywordProper(ManaSurgeZone.POSITIVE_MOD), ManaSurgeZone.getKeywordDescription(ID)));
         return tooltips;
     }
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        return "[#8c9cff]Exposing[]." + " NL " + rawDescription;
+        return ManaSurgeZone.getKeywordProper(ID) + ". NL " + rawDescription;
     }
 
     @Override

@@ -9,10 +9,14 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.RelicLibrary;
 import com.megacrit.cardcrawl.localization.EventStrings;
-import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.*;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.zones.manasurge.ManaSurgeZone;
+import spireMapOverhaul.zones.manasurge.ui.campfire.EnchantOption;
+
+import java.util.ArrayList;
+import java.util.Random;
 
 public class ManaCycloneEvent extends PhasedEvent {
     public static final String ID = SpireAnniversary6Mod.makeID("ManaCycloneEvent");
@@ -21,8 +25,6 @@ public class ManaCycloneEvent extends PhasedEvent {
     private static final String[] OPTIONS = eventStrings.OPTIONS;
     private static final String title = eventStrings.NAME;
     public static final String IMG = SpireAnniversary6Mod.makeImagePath("events/ManaSurge/ManaCycloneEvent.png");
-    private AbstractRelic relicMetric = null;
-
 
     public ManaCycloneEvent() {
         super(ID, title, IMG);
@@ -40,7 +42,7 @@ public class ManaCycloneEvent extends PhasedEvent {
                                             .forEach(filteredCards::addToTop);
                                     return filteredCards;
                                 },
-                                "Select a card to enchant.",
+                                EnchantOption.TEXT[2],
                                 1, false, false, true, false,
                                 (cards)->{
                                     for (AbstractCard c : cards) {
@@ -66,58 +68,32 @@ public class ManaCycloneEvent extends PhasedEvent {
                         )
                 )
                 .addOption(OPTIONS[1],(i) -> {
-                    int numberOfRelics = 6;
-                    int selectedRelicIndex = (int) (Math.random() * numberOfRelics);
-                    switch (selectedRelicIndex) {
-                        case 0:
-                            if (AbstractDungeon.player.hasRelic("Bottled Flame")) {
-                                this.relicMetric = RelicLibrary.getRelic("Circlet").makeCopy();
-                            } else {
-                                this.relicMetric = RelicLibrary.getRelic("Bottled Flame").makeCopy();
-                            }
-                            AbstractDungeon.getCurrRoom().spawnRelicAndObtain((float)(Settings.WIDTH / 2), (float)(Settings.HEIGHT / 2), this.relicMetric);
-                            break;
-                        case 1:
-                            if (AbstractDungeon.player.hasRelic("Bottled Tornado")) {
-                                this.relicMetric = RelicLibrary.getRelic("Circlet").makeCopy();
-                            } else {
-                                this.relicMetric = RelicLibrary.getRelic("Bottled Tornado").makeCopy();
-                            }
-                            AbstractDungeon.getCurrRoom().spawnRelicAndObtain((float)(Settings.WIDTH / 2), (float)(Settings.HEIGHT / 2), this.relicMetric);
-                            break;
-                        case 2:
-                            if (AbstractDungeon.player.hasRelic("Bottled Lightning")) {
-                                this.relicMetric = RelicLibrary.getRelic("Circlet").makeCopy();
-                            } else {
-                                this.relicMetric = RelicLibrary.getRelic("Bottled Lightning").makeCopy();
-                            }
-                            AbstractDungeon.getCurrRoom().spawnRelicAndObtain((float)(Settings.WIDTH / 2), (float)(Settings.HEIGHT / 2), this.relicMetric);
-                            break;
-                        case 3:
-                            if (AbstractDungeon.player.hasRelic("Frozen Egg 2")) {
-                                this.relicMetric = RelicLibrary.getRelic("Circlet").makeCopy();
-                            } else {
-                                this.relicMetric = RelicLibrary.getRelic("Frozen Egg 2").makeCopy();
-                            }
-                            AbstractDungeon.getCurrRoom().spawnRelicAndObtain((float)(Settings.WIDTH / 2), (float)(Settings.HEIGHT / 2), this.relicMetric);
-                            break;
-                        case 4:
-                            if (AbstractDungeon.player.hasRelic("Molten Egg 2")) {
-                                this.relicMetric = RelicLibrary.getRelic("Circlet").makeCopy();
-                            } else {
-                                this.relicMetric = RelicLibrary.getRelic("Molten Egg 2").makeCopy();
-                            }
-                            AbstractDungeon.getCurrRoom().spawnRelicAndObtain((float)(Settings.WIDTH / 2), (float)(Settings.HEIGHT / 2), this.relicMetric);
-                            break;
-                        case 5:
-                            if (AbstractDungeon.player.hasRelic("Toxic Egg 2")) {
-                                this.relicMetric = RelicLibrary.getRelic("Circlet").makeCopy();
-                            } else {
-                                this.relicMetric = RelicLibrary.getRelic("Toxic Egg 2").makeCopy();
-                            }
-                            AbstractDungeon.getCurrRoom().spawnRelicAndObtain((float)(Settings.WIDTH / 2), (float)(Settings.HEIGHT / 2), this.relicMetric);
-                            break;
+                    ArrayList<String> relicIds = new ArrayList<>();
+                    relicIds.add(BottledFlame.ID);
+                    relicIds.add(BottledTornado.ID);
+                    relicIds.add(BottledLightning.ID);
+                    relicIds.add(FrozenEgg2.ID);
+                    relicIds.add(MoltenEgg2.ID);
+                    relicIds.add(ToxicEgg2.ID);
+
+                    ArrayList<String> availableRelics = new ArrayList<>();
+                    for (String relicId : relicIds) {
+                        if (!AbstractDungeon.player.hasRelic(relicId)) {
+                            availableRelics.add(relicId);
+                        }
                     }
+
+                    String chosenRelicId;
+                    if (!availableRelics.isEmpty()) {
+                        int randomIndex = new Random().nextInt(availableRelics.size());
+                        chosenRelicId = availableRelics.get(randomIndex);
+                    } else {
+                        chosenRelicId = Circlet.ID;
+                    }
+
+                    AbstractRelic chosenRelic = RelicLibrary.getRelic(chosenRelicId).makeCopy();
+                    AbstractDungeon.getCurrRoom().spawnRelicAndObtain((float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2), chosenRelic);
+
                     CardGroup filteredCards = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
                     AbstractDungeon.player.masterDeck.group.stream()
                             .filter(card -> !ManaSurgeZone.hasManaSurgeModifier(card) &&
