@@ -8,7 +8,7 @@ import spireMapOverhaul.util.TexLoader;
 import static spireMapOverhaul.SpireAnniversary6Mod.makeImagePath;
 
 public class EnchantOption extends AbstractCampfireOption {
-    private static final Texture IMG = TexLoader.getTexture(makeImagePath("ui/ManaSurge/enchant.png"));
+    private static final Texture IMG = TexLoader.getTexture(makeUIPath("ManaSurge/enchant.png"));
 
     public EnchantOption(boolean active) {
         this.label = "Enchant";
