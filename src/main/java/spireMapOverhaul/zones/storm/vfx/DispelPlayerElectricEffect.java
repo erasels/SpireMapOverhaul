@@ -20,7 +20,7 @@ public class DispelPlayerElectricEffect extends AbstractGameEffect {
     }
 
     public void update() {
-        duration -= Gdx.graphics.getDeltaTime();
+        duration -= Gdx.graphics.getRawDeltaTime();
         if (duration < 0.0F) {
             AbstractDungeon.effectsQueue.add(new EmptyStanceParticleEffect(x, y));
             AbstractDungeon.effectsQueue.add(new EmptyStanceParticleEffect(x, y));

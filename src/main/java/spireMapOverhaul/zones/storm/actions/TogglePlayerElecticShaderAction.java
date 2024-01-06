@@ -21,6 +21,6 @@ public class TogglePlayerElecticShaderAction extends AbstractGameAction {
             StormUtil.activePlayerLightning = false;
             isDone = true;
         }
-        duration -= Gdx.graphics.getDeltaTime();
+        duration -= Gdx.graphics.getRawDeltaTime();
     }
 }

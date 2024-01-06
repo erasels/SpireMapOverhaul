@@ -663,7 +663,7 @@ public class SpireAnniversary6Mod implements
     public static float time = 0f;
     @Override
     public void receivePostUpdate() {
-        time += Gdx.graphics.getDeltaTime();
+        time += Gdx.graphics.getRawDeltaTime();
     }
 
     public static class SavableCurrentRunActive implements CustomSavable<Boolean> {

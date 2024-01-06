@@ -39,7 +39,7 @@ public class AlwaysBehindLightningEffect extends AbstractGameEffect {
                         MathUtils.random(-20.0F, 20.0F) * Settings.scale + 150.0F * Settings.scale, y +
                         MathUtils.random(-20.0F, 20.0F) * Settings.scale));
         }
-        duration -= Gdx.graphics.getDeltaTime();
+        duration -= Gdx.graphics.getRawDeltaTime();
         if (duration < 0.0F)
             isDone = true;
         color.a = Interpolation.bounceIn.apply(duration * 2.0F);

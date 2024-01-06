@@ -49,14 +49,14 @@ public class AddLightningPatch {
                     AbstractRoomFields.timeToStrike.set(AbstractDungeon.getCurrRoom(), MathUtils.random(3.5f, 10.0f));
                     AbstractRoomFields.timeSinceStrike.set(AbstractDungeon.getCurrRoom(), 0.0f);
                 }
-                AbstractRoomFields.timeToStrike.set(AbstractDungeon.getCurrRoom(), AbstractRoomFields.timeToStrike.get(AbstractDungeon.getCurrRoom()) - Gdx.graphics.getDeltaTime());
-                AbstractRoomFields.timeSinceStrike.set(AbstractDungeon.getCurrRoom(), AbstractRoomFields.timeSinceStrike.get(AbstractDungeon.getCurrRoom()) + Gdx.graphics.getDeltaTime());
+                AbstractRoomFields.timeToStrike.set(AbstractDungeon.getCurrRoom(), AbstractRoomFields.timeToStrike.get(AbstractDungeon.getCurrRoom()) - Gdx.graphics.getRawDeltaTime());
+                AbstractRoomFields.timeSinceStrike.set(AbstractDungeon.getCurrRoom(), AbstractRoomFields.timeSinceStrike.get(AbstractDungeon.getCurrRoom()) + Gdx.graphics.getRawDeltaTime());
 
 
                 //Conduit power vfx that happens during turn
                 AbstractCreature conduitTarget = AbstractRoomFields.conduitTarget.get(AbstractDungeon.getCurrRoom());
                 if(conduitTarget != null) {
-                    vfxTimer -= Gdx.graphics.getDeltaTime();
+                    vfxTimer -= Gdx.graphics.getRawDeltaTime();
                     if (vfxTimer < 0.0f) {
                         AbstractDungeon.topLevelEffectsQueue.add(new ImpactSparkEffect(conduitTarget.drawX +
                                 MathUtils.random(-20.0F, 20.0f) * Settings.scale, conduitTarget.drawY +
