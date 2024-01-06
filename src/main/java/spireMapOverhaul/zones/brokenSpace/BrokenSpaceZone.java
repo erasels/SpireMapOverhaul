@@ -159,10 +159,6 @@ public class BrokenSpaceZone extends AbstractZone implements RewardModifyingZone
         ArrayList<AbstractCard> cards = new ArrayList<>();
         int amount = 3;
 
-        for (AbstractRelic r : AbstractDungeon.player.relics) {
-            amount = r.changeNumberOfCardsInReward(amount);
-        }
-
         for (int i = 0; i < amount; i++) {
             AbstractCard c = getTrulyRandomCard(AbstractDungeon.cardRandomRng);
             cards.add(c);
@@ -197,6 +193,8 @@ public class BrokenSpaceZone extends AbstractZone implements RewardModifyingZone
                         break;
                     case BOSS:
                         AbstractDungeon.bossRelicPool.add(origRelic.relicId);
+                        break;
+                    case SPECIAL:
                         break;
                     default:
                         SpireAnniversary6Mod.logger.info("what.");

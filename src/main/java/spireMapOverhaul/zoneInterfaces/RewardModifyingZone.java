@@ -1,6 +1,11 @@
 package spireMapOverhaul.zoneInterfaces;
 
+import basemod.ReflectionHacks;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.daily.mods.Binary;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.ModHelper;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 
 import java.util.ArrayList;
@@ -115,5 +120,44 @@ public interface RewardModifyingZone {
      */
     default float changeCardUpgradeChance(float curChance) {
         return curChance;
+    }
+
+    /**
+     * Helper method for getting the number of cards that should be in a standard reward.
+     * You don't need to override this.
+     * @return The number of cards that should be in the reward.
+     */
+    default int getNumberOfCardsInReward() {
+        int numCards = 3;
+        for (AbstractRelic r : AbstractDungeon.player.relics) {
+            numCards = r.changeNumberOfCardsInReward(numCards);
+        }
+
+        if (ModHelper.isModEnabled(Binary.ID)) {
+            numCards--;
+        }
+        return numCards;
+    }
+
+    /**
+     * Helper method for applying the standard upgrade logic to a card in a reward.
+     * You don't need to override this.
+     * @param card The card to apply the standard upgrade logic to.
+     */
+    default void applyStandardUpgradeLogic(AbstractCard card) {
+        float upgradeChance = ReflectionHacks.getPrivateStatic(AbstractDungeon.class, "cardUpgradedChance");
+        upgradeChance = this.changeCardUpgradeChance(upgradeChance);
+        if ((card.rarity != AbstractCard.CardRarity.RARE || this.allowUpgradingRareCards()) && AbstractDungeon.cardRng.randomBoolean(upgradeChance) && card.canUpgrade()) {
+            card.upgrade();
+        } else {
+            for (AbstractRelic r : AbstractDungeon.player.relics) {
+                r.onPreviewObtainCard(card);
+            }
+        }
+    }
+
+    default void applyStandardUpgradeLogic(ArrayList<AbstractCard> cards) {
+        for(AbstractCard c : cards)
+            applyStandardUpgradeLogic(c);
     }
 }

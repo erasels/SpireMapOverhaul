@@ -1,0 +1,6 @@
+{
+  "${ModID}:ConduitPower": {
+    "NAME": "Conduit",
+    "DESCRIPTIONS": ["Target will receive #b", " blockable damage at the end of the enemy turn."]
+  }
+}
