@@ -13,7 +13,8 @@
     "Tetraminus",
     "lempface",
     "kiooeht",
-    "Kobting"
+    "Kobting",
+    "Smear"
   ],
   "description": "${project.description}",
   "version": "${project.version}",
