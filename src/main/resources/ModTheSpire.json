@@ -5,16 +5,7 @@
     "modargo",
     "(Gk) erasels",
     "Alchyr",
-    "pandemonium",
-    "Blank",
-    "EricB",
-    "Bryan",
-    "Dayvig",
-    "Tetraminus",
-    "lempface",
-    "kiooeht",
-    "Kobting",
-    "(Flowers) HugYouTwenty"
+    "pandemonium"
   ],
   "description": "${project.description}",
   "version": "${project.version}",

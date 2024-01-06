@@ -5,6 +5,7 @@ import basemod.helpers.CardModifierManager;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.colorless.MindBlast;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.Circlet;
 import com.megacrit.cardcrawl.rewards.RewardItem;
@@ -13,6 +14,7 @@ import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.zoneInterfaces.RewardModifyingZone;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class ExampleRewardModifyingZone extends AbstractZone implements RewardModifyingZone {
     public static final String ID = "ExampleRewardModifying";
@@ -35,15 +37,11 @@ public class ExampleRewardModifyingZone extends AbstractZone implements RewardMo
 
     @Override
     public ArrayList<AbstractCard> getAdditionalCardReward() {
-        // This creates a reward of all uncommons, following the normal logic for how many cards are in the reward and whether any of them are upgraded
-        ArrayList<AbstractCard> cards = new ArrayList<>();
-        int numCards = this.getNumberOfCardsInReward();
-        for (int i = 0; i < numCards; i++) {
-            AbstractCard card = AbstractDungeon.getCard(AbstractCard.CardRarity.UNCOMMON);
-            this.applyStandardUpgradeLogic(card);
-            cards.add(card);
-        }
-        return cards;
+        // Note: This is a custom card reward and thus does not follow the normal upgrade logic, etc
+        AbstractCard c1 = AbstractDungeon.getCard(AbstractCard.CardRarity.UNCOMMON);
+        AbstractCard c2 = AbstractDungeon.getCard(AbstractCard.CardRarity.UNCOMMON);
+        AbstractCard c3 = AbstractDungeon.getCard(AbstractCard.CardRarity.UNCOMMON);
+        return new ArrayList<>(Arrays.asList(c1, c2, c3));
     }
 
     @Override
@@ -56,9 +54,7 @@ public class ExampleRewardModifyingZone extends AbstractZone implements RewardMo
 
     @Override
     public void modifyRewardCards(ArrayList<AbstractCard> cards) {
-        AbstractCard extraCard = new MindBlast();
-        this.applyStandardUpgradeLogic(extraCard);
-        cards.add(extraCard);
+        cards.add(new MindBlast());
         for (AbstractCard card : cards) {
             CardModifierManager.addModifier(card, new EtherealMod());
         }
@@ -98,6 +94,6 @@ public class ExampleRewardModifyingZone extends AbstractZone implements RewardMo
 
     @Override
     public float changeCardUpgradeChance(float curChance) {
-        return 0.5f;
+        return 1f;
     }
 }

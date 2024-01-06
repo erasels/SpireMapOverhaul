@@ -22,7 +22,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class InvasionUtil {
-    public static ArrayList<AbstractCard> getRewardCards(int numCards) {
+    public static ArrayList<AbstractCard> getRewardCards() {
         List<AbstractCard> spells = getSpells();
         List<AbstractCard> blades = getBlades();
         ArrayList<AbstractCard> cards = new ArrayList<>();
@@ -42,6 +42,11 @@ public class InvasionUtil {
                 cards.add(spells.get(AbstractDungeon.cardRng.random(spells.size() - 1)));
                 cards.add(blades.get(AbstractDungeon.cardRng.random(blades.size() - 1)));
                 break;
+        }
+
+        int numCards = 3;
+        for (AbstractRelic r : AbstractDungeon.player.relics) {
+            numCards = r.changeNumberOfCardsInReward(numCards);
         }
         numCards = Math.min(numCards, cards.size());
 
