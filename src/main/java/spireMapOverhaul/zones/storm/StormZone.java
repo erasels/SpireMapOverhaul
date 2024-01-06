@@ -59,8 +59,8 @@ public class StormZone extends AbstractZone implements CombatModifyingZone, Rewa
 
     @Override
     public void modifyRewardCards(ArrayList<AbstractCard> cards) {
-        if(AbstractDungeon.cardRandomRng.randomBoolean()) {
-            AbstractCard card = cards.get(AbstractDungeon.cardRandomRng.random(cards.size() - 1));
+        if(AbstractDungeon.getCurrRoom() instanceof  MonsterRoomElite || AbstractDungeon.cardRng.randomBoolean()) {
+            AbstractCard card = cards.get(AbstractDungeon.cardRng.random(cards.size() - 1));
             CardModifierManager.addModifier(card, new ElectricModifier());
         }
     }
