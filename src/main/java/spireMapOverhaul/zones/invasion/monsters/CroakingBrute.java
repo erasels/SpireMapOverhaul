@@ -18,7 +18,7 @@ public class CroakingBrute extends AbstractCroaking {
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
     public static final String[] DIALOG = monsterStrings.DIALOG;
-    private static final String IMG = SpireAnniversary6Mod.makeImagePath("monsters/CroakingBrute/CroakingBrute.png");
+    private static final String IMG = SpireAnniversary6Mod.makeImagePath("monsters/Invasion/CroakingBrute/CroakingBrute.png");
     private static final byte BULL_RUSH_ATTACK = 2;
     private static final int BULL_RUSH_DAMAGE = 7;
     private static final int A2_BULL_RUSH_DAMAGE = 8;

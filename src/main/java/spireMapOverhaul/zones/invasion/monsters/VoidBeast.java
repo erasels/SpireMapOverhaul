@@ -20,7 +20,7 @@ public class VoidBeast extends CustomMonster {
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
-    private static final String IMG = SpireAnniversary6Mod.makeImagePath("monsters/VoidBeast/VoidBeast.png");
+    private static final String IMG = SpireAnniversary6Mod.makeImagePath("monsters/Invasion/VoidBeast/VoidBeast.png");
     private boolean firstMove = true;
     private boolean usedVoidGaze = false;
     private static final byte CORRUPTING_BITE_ATTACK = 1;

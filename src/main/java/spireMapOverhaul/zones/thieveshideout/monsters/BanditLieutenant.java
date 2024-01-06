@@ -77,7 +77,7 @@ public class BanditLieutenant extends CustomMonster {
             this.noxiousSmokeVulnerable = NOXIOUS_SMOKE_VULNERABLE;
         }
 
-        this.loadAnimation(SpireAnniversary6Mod.makeImagePath("monsters/BanditLieutenant/skeleton.atlas"), SpireAnniversary6Mod.makeImagePath("monsters/BanditLieutenant/skeleton.json"), 1.0F);
+        this.loadAnimation(SpireAnniversary6Mod.makeImagePath("monsters/ThievesHideout/BanditLieutenant/skeleton.atlas"), SpireAnniversary6Mod.makeImagePath("monsters/ThievesHideout/BanditLieutenant/skeleton.json"), 1.0F);
         AnimationState.TrackEntry e = this.state.setAnimation(0, "Idle", true);
         e.setTime(e.getEndTime() * MathUtils.random());
         this.stateData.setMix("Hit", "Idle", 0.2F);

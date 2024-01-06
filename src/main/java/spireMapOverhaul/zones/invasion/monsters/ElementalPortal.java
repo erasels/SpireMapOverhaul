@@ -32,7 +32,7 @@ public class ElementalPortal extends CustomMonster {
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
-    private static final String IMG = SpireAnniversary6Mod.makeImagePath("monsters/ElementalPortal/ElementalPortal.png");
+    private static final String IMG = SpireAnniversary6Mod.makeImagePath("monsters/Invasion/ElementalPortal/ElementalPortal.png");
     public static final int MAX_ELEMENTALS_ON_FIELD = 3;
     private static final byte PORTAL_MOVE = 1;
     private static final byte STRENGTHENING_RESTORATION_BUFF = 2;

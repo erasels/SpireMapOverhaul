@@ -8,9 +8,8 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.FrailPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import spireMapOverhaul.SpireAnniversary6Mod;
-import spireMapOverhaul.abstracts.AbstractSMOPower;
 
-public class LeafSporesPower extends AbstractSMOPower {
+public class LeafSporesPower extends AbstractInvasionPower {
     public static final String POWER_ID = SpireAnniversary6Mod.makeID("LeafSpores");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;

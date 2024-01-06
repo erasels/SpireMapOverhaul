@@ -25,7 +25,7 @@ public class ShimmeringMirage extends CustomMonster
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
-    private static final String IMG = SpireAnniversary6Mod.makeImagePath("monsters/ShimmeringMirage/ShimmeringMirage.png");
+    private static final String IMG = SpireAnniversary6Mod.makeImagePath("monsters/Invasion/ShimmeringMirage/ShimmeringMirage.png");
     private boolean firstMove = true;
     private static final byte SHINE_ATTACK = 1;
     private static final byte GLOW_BUFF = 2;

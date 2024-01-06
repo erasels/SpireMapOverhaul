@@ -21,7 +21,7 @@ public class Behemoth extends CustomMonster {
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
-    private static final String IMG = SpireAnniversary6Mod.makeImagePath("monsters/Behemoth/Behemoth.png");
+    private static final String IMG = SpireAnniversary6Mod.makeImagePath("monsters/Invasion/Behemoth/Behemoth.png");
     private boolean firstMove = true;
     private static final byte BIDE_MOVE = 1;
     private static final byte EVOLVE_MOVE = 2;
