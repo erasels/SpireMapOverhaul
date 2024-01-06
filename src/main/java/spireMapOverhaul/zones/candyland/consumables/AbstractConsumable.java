@@ -11,7 +11,7 @@ import spireMapOverhaul.abstracts.AbstractSMOCard;
 abstract public class AbstractConsumable extends AbstractSMOCard {
 
     public AbstractConsumable(String cardID, int cost, CardType type, CardRarity rarity, CardTarget target) {
-        super(cardID, cost, type, rarity, target);
+        super(cardID, "CandyLand", cost, type, rarity, target);
         FleetingField.fleeting.set(this, true);
     }
 }

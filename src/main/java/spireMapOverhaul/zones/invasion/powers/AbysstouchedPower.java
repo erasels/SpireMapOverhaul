@@ -13,12 +13,11 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.BarricadePower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import spireMapOverhaul.SpireAnniversary6Mod;
-import spireMapOverhaul.abstracts.AbstractSMOPower;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
-public class AbysstouchedPower extends AbstractSMOPower implements HealthBarRenderPower {
+public class AbysstouchedPower extends AbstractInvasionPower implements HealthBarRenderPower {
     public static final String POWER_ID = SpireAnniversary6Mod.makeID("Abysstouched");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;

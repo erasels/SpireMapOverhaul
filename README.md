@@ -17,7 +17,9 @@ You will need a Zone class which extends AbstractZone and implements the various
 
 AbstractZone's constructor requires an unprefixed ID (so do not call makeID on your ID when creating it) and any of the Icons enums which will used to signify what type of content your zone modifies in its tooltip. Available icons are: MONSTER, ELITE, REWARD, EVENT, REST and SHOP.  
 
-Strings will be handled in the same way as they were for Packmaster: create a directory with the same ID as your zone under `resources/anniv6Resources/localization/eng` and put all your localization jsons into that.  
+Strings will be handled in the same way as they were for Packmaster: create a directory with the same ID as your zone under `resources/anniv6Resources/localization/eng` and put all your localization jsons into that.
+
+Images (for cards, powers, monsters, etc.) should go in `resources/anniv6Resources/images`, then the appropriate directory for the type of image (e.g. `cards`), then create a directory with the same ID as your zone. There are constructors for `AbstractSMOCard` and `AbstractSMOPower` that take in a zoneID, which you will need to use to load the correct image. If you're making a number of cards/powers for your zone, you may want to create your own abstract class to make things a bit easier (see `AbstractInvasionCard`/`AbstractInvasionPower` for an example of this).
   
 In case your zone replaces or changes nodes, be sure to look at the following methods within AbstractZone:  
 - canIncludeEarlyRows()
