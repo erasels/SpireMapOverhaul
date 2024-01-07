@@ -220,13 +220,13 @@ public class ManaSurgeZone extends AbstractZone implements
                 if (isPositiveModifier(c)) {
                     return baseCost + 40;
                 } else {
-                    return baseCost - 20;
+                    return baseCost - 40;
                 }
             } else {
                 if (isPositiveModifier(c)) {
                     return baseCost + 80;
                 } else {
-                    return baseCost - 40;
+                    return baseCost - 80;
                 }
             }
         }
