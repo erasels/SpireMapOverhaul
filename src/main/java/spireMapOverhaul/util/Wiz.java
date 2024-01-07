@@ -1,6 +1,5 @@
 package spireMapOverhaul.util;
 
-import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.*;
@@ -23,14 +22,11 @@ import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.actions.TimedVFXAction;
 import spireMapOverhaul.patches.ZonePatches;
-import spireMapOverhaul.zoneInterfaces.CampfireModifyingZone;
-import spireMapOverhaul.zoneInterfaces.CombatModifyingZone;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 public class Wiz {
     //The wonderful Wizard of Oz allows access to most easy compilations of data, or functions.

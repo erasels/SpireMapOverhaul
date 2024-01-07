@@ -38,7 +38,6 @@ public class BrokenSpaceZone extends AbstractZone implements RewardModifyingZone
     private static final float OFFSET_Y = 180.0F * Settings.scale;
     private static final float SPACING_X = Settings.isMobile ? (int) (Settings.xScale * 64.0F) * 2.2F : (int) (Settings.xScale * 64.0F) * 2.0F;
     public static ArrayList<String> BrokenRelics = new ArrayList<>();
-    private final int width, height;
     private final Color color;
     public static float shaderTimer = 0.0F;
 
@@ -81,11 +80,6 @@ public class BrokenSpaceZone extends AbstractZone implements RewardModifyingZone
                     Color.WHITE.cpy(), 0.8f
             );
         }
-    }
-
-    @Override
-    public boolean generateMapArea(BetterMapGenerator.MapPlanner planner) {
-        return generateNormalArea(planner, width, height);
     }
 
     @Override
