@@ -1,0 +1,14 @@
+{
+  "${ModID}:HeavenlyClouds": {
+    "TEXT": [
+      "Heavenly Clouds",
+      "The clouds are closer here. The monsters here seemed to have gained the ability of #yFlight. But if you manage to overcome them, perhaps you can gain some of their speed for your cards."
+    ]
+  },
+  "${ModID}:FlightMod": {
+    "TEXT": [
+      " NL Draw 1 card.",
+      "Flighty "
+    ]
+  }
+}
