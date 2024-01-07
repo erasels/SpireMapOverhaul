@@ -84,7 +84,7 @@ public class ManaCycloneEvent extends PhasedEvent {
 
                     String chosenRelicId;
                     if (!availableRelics.isEmpty()) {
-                        chosenRelicId = availableRelics.get(AbstractDungeon.cardRng.random(availableRelics.size() - 1));
+                        chosenRelicId = availableRelics.get(AbstractDungeon.miscRng.random(availableRelics.size() - 1));
                     } else {
                         chosenRelicId = Circlet.ID;
                     }
