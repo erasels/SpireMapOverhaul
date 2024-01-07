@@ -359,5 +359,15 @@ public class BackgroundMonsterEffect extends AbstractGameEffect {
         }
         return new SpineAnimationEntity(data.get(clz));
     }
+
+    //Lights out custom lights support - BEGIN
+    public float[] _lightsOutGetXYRI() {
+        return new float[] {ac.hb.cX, ac.hb.cY, 100f* Settings.scale, 0.8f};
+    }
+
+    public Color[] _lightsOutGetColor() {
+        return new Color[] {Color.LIGHT_GRAY};
+    }
+    //Lights out custom lights support - END
 }
 
