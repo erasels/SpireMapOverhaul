@@ -99,7 +99,7 @@ public class ManaCycloneEvent extends PhasedEvent {
                                     card.type != AbstractCard.CardType.CURSE &&
                                     card.type != AbstractCard.CardType.STATUS)
                             .forEach(filteredCards::addToTop);
-                    AbstractCard randomCard1 = filteredCards.getRandomCard(true);
+                    AbstractCard randomCard1 = filteredCards.getRandomCard(AbstractDungeon.miscRng);
                     filteredCards.removeCard(randomCard1);
                     AbstractCard randomCard2 = filteredCards.getRandomCard(true);
                     CardCrawlGame.sound.play(ManaSurgeZone.ENCHANTBLIGHT_KEY);
