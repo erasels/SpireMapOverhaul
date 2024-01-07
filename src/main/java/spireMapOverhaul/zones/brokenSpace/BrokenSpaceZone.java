@@ -74,7 +74,7 @@ public class BrokenSpaceZone extends AbstractZone implements RewardModifyingZone
     public void renderOnMap(SpriteBatch sb, float alpha) {
         BrokenSpaceRenderPatch.StartFbo(sb);
         super.renderOnMap(sb, alpha);
-        BrokenSpaceRenderPatch.StopFbo(sb);
+        BrokenSpaceRenderPatch.StopFbo(sb, 1.0f, 0.0f, 0.03f, 0.2f, 0.5f);
         if (alpha > 0) {
             FontHelper.renderFontCentered(sb, FontHelper.menuBannerFont, name,
                     labelX * SPACING_X + OFFSET_X, labelY * Settings.MAP_DST_Y + OFFSET_Y + DungeonMapScreen.offsetY,
@@ -260,7 +260,7 @@ public class BrokenSpaceZone extends AbstractZone implements RewardModifyingZone
 
     @Override
     public void postRenderBackground(SpriteBatch sb) {
-        BrokenSpaceRenderPatch.StopFbo(sb, 0.25F, 0.0f, 1f, 0.2f);
+        BrokenSpaceRenderPatch.StopFbo(sb, 0.05F, 0.0f, 4f, 0.1f);
     }
 
     public static void addBrokenRelic(String relicID) {

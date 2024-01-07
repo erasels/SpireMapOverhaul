@@ -72,17 +72,19 @@ uniform vec2 u_screenSize;
 uniform float u_time;
 uniform float u_strength;
 uniform float u_chrAb;
+uniform float u_UVScl;
+
 
 void main()
 {
-	vec2 uv = pos.xy;
+	vec2 uv = pos.xy ;
     float time = u_time*0.5;
     
     // Create large, incidental noise waves
-    float noise = snoise(vec2(time, uv.y * 0.2) - 0.1) * (0.1);
+    float noise = snoise(vec2(time, uv.y * u_UVScl * 0.2) - 0.1) * (0.1);
     
     // Offset by smaller, constant noise waves
-    noise = noise + (snoise(vec2(time*1.0, uv.y * 100.0)) - 0.05) * 0.05;
+    noise = noise + (snoise(vec2(time*1.0, uv.y * u_UVScl * 100.0)) - 0.05) * 0.05;
 
     noise *= u_strength;
     
@@ -91,7 +93,7 @@ void main()
 	vec4 acc = texture2D(u_texture, vec2(xpos, uv.y));
     
     // Mix in some random interference for lines
-     acc.rgb = mix(acc.rgb, vec3(rand(vec2(uv.y * time))), noise * 0.1).rgb;
+     acc.rgb = mix(acc.rgb, vec3(rand(vec2(uv.y * u_UVScl * time))), noise * 0.1).rgb;
     
     // Apply a line pattern every 4 pixels
     if (floor(mod(pos.y * 0.25, 2.0)) == 0.0)
@@ -100,8 +102,8 @@ void main()
     }
     
     // Shift green/blue channels (using the red channel)
-    acc.g = mix(acc.r, texture2D(u_texture, vec2(xpos + noise * u_chrAb, uv.y)).g, 1.0);
-    acc.b = mix(acc.r, texture2D(u_texture, vec2(xpos - noise * u_chrAb, uv.y)).b, 1.0);
+    acc.g = mix(acc.r, texture2D(u_texture, vec2(xpos + noise * u_chrAb , uv.y)).g, 1.0);
+    acc.b = mix(acc.r, texture2D(u_texture, vec2(xpos  - noise * u_chrAb , uv.y)).b, 1.0);
 
 
     // recalculate alpha

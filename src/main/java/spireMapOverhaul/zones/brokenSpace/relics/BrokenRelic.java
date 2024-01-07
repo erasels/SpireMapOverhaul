@@ -278,6 +278,7 @@ public abstract class BrokenRelic extends AbstractSMORelic {
         brokenSpaceShader.setUniformf("u_time", time + timerOffset);
         brokenSpaceShader.setUniformf("u_strength", strength);
         brokenSpaceShader.setUniformf("u_chrAb", 0.05f);
+        brokenSpaceShader.setUniformf("u_UVScl", 1.0f);
 
         sb.draw(region, 0, 0);
         sb.flush();
