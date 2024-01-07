@@ -129,7 +129,7 @@ public class ManaSurgeZone extends AbstractZone implements
            List<AbstractManaSurgeModifier> commonModifierList = new ArrayList<>();
            commonModifierList.addAll(getPositiveCommonModifierList(false));
            commonModifierList.addAll(getNegativeCommonModifierList(false));
-           AbstractManaSurgeModifier selectedModifier = commonModifierList.get(AbstractDungeon.cardRandomRng.random(commonModifierList.size()));
+           AbstractManaSurgeModifier selectedModifier = commonModifierList.get(AbstractDungeon.cardRandomRng.random(commonModifierList.size()) - 1);
             if (selectedModifier != null) {
                 CardModifierManager.addModifier(card, selectedModifier);
             }
@@ -137,7 +137,7 @@ public class ManaSurgeZone extends AbstractZone implements
             List<AbstractManaSurgeModifier> uncommonModifierList = new ArrayList<>();
             uncommonModifierList.addAll(getPositiveUncommonModifierList(false));
             uncommonModifierList.addAll(getNegativeUncommonModifierList(false));
-            AbstractManaSurgeModifier selectedModifier = uncommonModifierList.get(AbstractDungeon.cardRandomRng.random(uncommonModifierList.size()));
+            AbstractManaSurgeModifier selectedModifier = uncommonModifierList.get(AbstractDungeon.cardRandomRng.random(uncommonModifierList.size()) - 1);
             if (selectedModifier != null) {
                 CardModifierManager.addModifier(card, selectedModifier);
             }
@@ -149,7 +149,7 @@ public class ManaSurgeZone extends AbstractZone implements
             List<AbstractManaSurgeModifier> commonModifierList = new ArrayList<>();
             commonModifierList.addAll(getPositiveCommonModifierList(true));
             commonModifierList.addAll(getNegativeCommonModifierList(true));
-            AbstractManaSurgeModifier selectedModifier = commonModifierList.get(AbstractDungeon.cardRng.random(commonModifierList.size()));
+            AbstractManaSurgeModifier selectedModifier = commonModifierList.get(AbstractDungeon.cardRng.random(commonModifierList.size()) - 1);
             if (selectedModifier != null) {
                 CardModifierManager.addModifier(card, selectedModifier);
             }
@@ -157,7 +157,7 @@ public class ManaSurgeZone extends AbstractZone implements
             List<AbstractManaSurgeModifier> uncommonModifierList = new ArrayList<>();
             uncommonModifierList.addAll(getPositiveUncommonModifierList(true));
             uncommonModifierList.addAll(getNegativeUncommonModifierList(true));
-            AbstractManaSurgeModifier selectedModifier = uncommonModifierList.get(AbstractDungeon.cardRng.random(uncommonModifierList.size()));
+            AbstractManaSurgeModifier selectedModifier = uncommonModifierList.get(AbstractDungeon.cardRng.random(uncommonModifierList.size()) - 1);
             if (selectedModifier != null) {
                 CardModifierManager.addModifier(card, selectedModifier);
             }
@@ -167,13 +167,13 @@ public class ManaSurgeZone extends AbstractZone implements
     public static void applyPermanentPositiveModifier(AbstractCard card) {
         if (AbstractDungeon.cardRng.randomBoolean(COMMON_CHANCE)) {
             List<AbstractManaSurgeModifier> commonModifierList = new ArrayList<>(getPositiveCommonModifierList(true));
-            AbstractManaSurgeModifier selectedModifier = commonModifierList.get(AbstractDungeon.cardRng.random(commonModifierList.size()));
+            AbstractManaSurgeModifier selectedModifier = commonModifierList.get(AbstractDungeon.cardRng.random(commonModifierList.size()) - 1);
             if (selectedModifier != null) {
                 CardModifierManager.addModifier(card, selectedModifier);
             }
         } else {
             List<AbstractManaSurgeModifier> uncommonModifierList = new ArrayList<>(getPositiveUncommonModifierList(true));
-            AbstractManaSurgeModifier selectedModifier = uncommonModifierList.get(AbstractDungeon.cardRng.random(uncommonModifierList.size()));
+            AbstractManaSurgeModifier selectedModifier = uncommonModifierList.get(AbstractDungeon.cardRng.random(uncommonModifierList.size()) - 1);
             if (selectedModifier != null) {
                 CardModifierManager.addModifier(card, selectedModifier);
             }
@@ -183,13 +183,13 @@ public class ManaSurgeZone extends AbstractZone implements
     public static void applyPermanentNegativeModifier(AbstractCard card) {
         if (AbstractDungeon.cardRng.randomBoolean(COMMON_CHANCE)) {
             List<AbstractManaSurgeModifier> commonModifierList = new ArrayList<>(getNegativeCommonModifierList(true));
-            AbstractManaSurgeModifier selectedModifier = commonModifierList.get(AbstractDungeon.cardRng.random(commonModifierList.size()));
+            AbstractManaSurgeModifier selectedModifier = commonModifierList.get(AbstractDungeon.cardRng.random(commonModifierList.size()) - 1);
             if (selectedModifier != null) {
                 CardModifierManager.addModifier(card, selectedModifier);
             }
         } else {
             List<AbstractManaSurgeModifier> uncommonModifierList = new ArrayList<>(getNegativeUncommonModifierList(true));
-            AbstractManaSurgeModifier selectedModifier = uncommonModifierList.get(AbstractDungeon.cardRng.random(uncommonModifierList.size()));
+            AbstractManaSurgeModifier selectedModifier = uncommonModifierList.get(AbstractDungeon.cardRng.random(uncommonModifierList.size()) - 1);
             if (selectedModifier != null) {
                 CardModifierManager.addModifier(card, selectedModifier);
             }
