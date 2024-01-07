@@ -1,4 +1,4 @@
-package spireMapOverhaul.zones.brokenSpace.relics;
+package spireMapOverhaul.zones.brokenspace.relics;
 
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;

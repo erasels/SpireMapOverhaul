@@ -1,4 +1,4 @@
-package spireMapOverhaul.zones.brokenSpace.relics;
+package spireMapOverhaul.zones.brokenspace.relics;
 
 import com.evacipated.cardcrawl.mod.stslib.relics.OnReceivePowerRelic;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;

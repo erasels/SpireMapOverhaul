@@ -1,0 +1,8 @@
+{
+  "${ModID}:VoidSeed": {
+    "TEXT": [
+      "Void Seed",
+      "this area has been corrupted by the void. It is not safe to stay here for long. You will lose HP at the start of each turn. Enemies will be #yVoidtouched."
+    ]
+  }
+}

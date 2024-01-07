@@ -1,4 +1,4 @@
-package spireMapOverhaul.zones.brokenSpace.patches;
+package spireMapOverhaul.zones.brokenspace.patches;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import spireMapOverhaul.patches.ZonePatches;
-import spireMapOverhaul.zones.brokenSpace.BrokenSpaceZone;
+import spireMapOverhaul.zones.brokenspace.BrokenSpaceZone;
 
 import java.util.logging.Logger;
 

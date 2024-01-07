@@ -1,4 +1,4 @@
-package spireMapOverhaul.zones.brokenSpace.actions;
+package spireMapOverhaul.zones.brokenspace.actions;
 
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
