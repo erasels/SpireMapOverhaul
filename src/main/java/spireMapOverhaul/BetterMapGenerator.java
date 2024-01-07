@@ -11,6 +11,7 @@ import spireMapOverhaul.patches.ZonePatches;
 
 import java.util.*;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class BetterMapGenerator {
     public static final Logger mapGenLogger = LogManager.getLogger("BetterMapGen");
@@ -36,12 +37,16 @@ public class BetterMapGenerator {
     }
 
     public ArrayList<ArrayList<MapRoomNode>> generate(Random rng, int width, int height, int pathDensity) {
+        SpireAnniversary6Mod.currentRunSeenZones.addAll(activeZones.stream().map(z -> z.id).collect(Collectors.toList()));
+        mapGenLogger.info("Already seen zones: " + String.join(",", SpireAnniversary6Mod.currentRunSeenZones));
         MapPlanner planner;
         do {
             List<AbstractZone> possibleZones = new ArrayList<>();
-            for (AbstractZone zone : SpireAnniversary6Mod.allZones)
-                if (zone.canSpawn())
+            for (AbstractZone zone : SpireAnniversary6Mod.unfilteredAllZones) {
+                if (SpireAnniversary6Mod.currentRunAllZones.contains(zone.id) && !SpireAnniversary6Mod.currentRunSeenZones.contains(zone.id) && zone.canSpawn()) {
                     possibleZones.add(zone);
+                }
+            }
 
             planner = new MapPlanner(width, height);
 

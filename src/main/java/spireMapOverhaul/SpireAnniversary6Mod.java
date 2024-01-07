@@ -105,8 +105,9 @@ public class SpireAnniversary6Mod implements
 
     public static SpireAnniversary6Mod thismod;
     public static SpireConfig modConfig = null;
-    public static SpireConfig currentRunConfig = null;
     public static boolean currentRunActive = false;
+    public static HashSet<String> currentRunAllZones = null;
+    public static HashSet<String> currentRunSeenZones = null;
 
     public static final String modID = "anniv6";
 
@@ -126,7 +127,6 @@ public class SpireAnniversary6Mod implements
     public static final Map<String, Keyword> keywords = new HashMap<>();
 
     public static List<AbstractZone> unfilteredAllZones = new ArrayList<>();
-    public static List<AbstractZone> allZones = new ArrayList<>();
     private static Map<String, AbstractZone> zonePackages = new HashMap<>();
     public static Map<String, Set<String>> zoneEvents = new HashMap<>();
 
@@ -183,11 +183,6 @@ public class SpireAnniversary6Mod implements
         } catch (Exception e) {
             e.printStackTrace();
         }
-        try {
-            currentRunConfig = new SpireConfig(modID, "anniv6ConfigCurrentRun");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     private void loadZones() {
@@ -199,9 +194,6 @@ public class SpireAnniversary6Mod implements
                         int lastSeparator = pkg.lastIndexOf('.');
                         if (lastSeparator >= 0) pkg = pkg.substring(0, lastSeparator);
                         unfilteredAllZones.add(zone);
-                        if (getCurrentRunFilterConfig(zone.id)) {
-                            allZones.add(zone);
-                        }
                         zonePackages.put(pkg, zone);
                     }
                 });
@@ -280,6 +272,8 @@ public class SpireAnniversary6Mod implements
 
     public static void addSaveFields() {
         BaseMod.addSaveField(SavableCurrentRunActive.SaveKey, new SavableCurrentRunActive());
+        BaseMod.addSaveField(SavableCurrentRunAllZones.SaveKey, new SavableCurrentRunAllZones());
+        BaseMod.addSaveField(SavableCurrentRunSeenZones.SaveKey, new SavableCurrentRunSeenZones());
         BaseMod.addSaveField(ZonePerFloorRunHistoryPatch.ZonePerFloorLog.SaveKey, new ZonePerFloorRunHistoryPatch.ZonePerFloorLog());
         BaseMod.addSaveField(EncounterModifierPatches.LastZoneNormalEncounter.SaveKey, new EncounterModifierPatches.LastZoneNormalEncounter());
         BaseMod.addSaveField(EncounterModifierPatches.LastZoneEliteEncounter.SaveKey, new EncounterModifierPatches.LastZoneEliteEncounter());
@@ -670,26 +664,7 @@ public class SpireAnniversary6Mod implements
     @Override
     public void receiveStartGame() {
         if (!CardCrawlGame.loadingSave) {
-            updateZoneList(); //only updated on new games to not mess anything up if settings are changed and a game is loaded
             BeastsLairZone.clearBossList();
-        }
-    }
-
-    private void updateZoneList() {
-        allZones.clear();
-        currentRunConfig.clear();
-        for (AbstractZone z : unfilteredAllZones) {
-            if (getFilterConfig(z.id)) {
-                allZones.add(z);
-                setCurrentRunFilterConfig(z.id, true);
-            } else {
-                setCurrentRunFilterConfig(z.id, false);
-            }
-        }
-        try {
-            currentRunConfig.save();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
@@ -710,6 +685,34 @@ public class SpireAnniversary6Mod implements
         @Override
         public void onLoad(Boolean b) {
             currentRunActive = b == null || b;
+        }
+    }
+
+    public static class SavableCurrentRunAllZones implements CustomSavable<HashSet<String>> {
+        public final static String SaveKey = "CurrentRunAllZones";
+
+        @Override
+        public HashSet<String> onSave() {
+            return currentRunAllZones;
+        }
+
+        @Override
+        public void onLoad(HashSet<String> s) {
+            currentRunAllZones = s == null ? new HashSet<>() : s;
+        }
+    }
+
+    public static class SavableCurrentRunSeenZones implements CustomSavable<HashSet<String>> {
+        public final static String SaveKey = "CurrentRunSeenZones";
+
+        @Override
+        public HashSet<String> onSave() {
+            return currentRunSeenZones;
+        }
+
+        @Override
+        public void onLoad(HashSet<String> s) {
+            currentRunSeenZones = s == null ? new HashSet<>() : s;
         }
     }
 
@@ -743,7 +746,7 @@ public class SpireAnniversary6Mod implements
         }
     }
 
-    private boolean getFilterConfig(String zoneId) {
+    public static boolean getFilterConfig(String zoneId) {
         if (modConfig != null && modConfig.has( zoneId +"_ENABLED")) {
             return modConfig.getBool(zoneId +"_ENABLED");
         } else {
@@ -751,7 +754,7 @@ public class SpireAnniversary6Mod implements
         }
     }
 
-    private void setFilterConfig(String zoneId, boolean enable) {
+    private static void setFilterConfig(String zoneId, boolean enable) {
         if (modConfig != null) {
             modConfig.setBool(zoneId + "_ENABLED", enable);
             try {
@@ -759,20 +762,6 @@ public class SpireAnniversary6Mod implements
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
-    }
-
-    private boolean getCurrentRunFilterConfig(String zoneId) {
-        if (currentRunConfig != null && currentRunConfig.has( zoneId +"_ONCURRENTRUN")) {
-            return currentRunConfig.getBool(zoneId +"_ONCURRENTRUN");
-        } else {
-            return false;
-        }
-    }
-
-    private void setCurrentRunFilterConfig(String zoneId, boolean enable) {
-        if (currentRunConfig != null) {
-            currentRunConfig.setBool(zoneId + "_ONCURRENTRUN", enable);
         }
     }
 

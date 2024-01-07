@@ -101,12 +101,4 @@ public class CharacterSelectScreenPatch {
             }
         }
     }
-
-    @SpirePatch2(clz = AbstractDungeon.class, method = "generateSeeds")
-    public static class InitializeCurrentRunActivePatch {
-        @SpirePostfixPatch
-        public static void initializeCurrentRunActivePatch() {
-            SpireAnniversary6Mod.currentRunActive = SpireAnniversary6Mod.getActiveConfig();
-        }
-    }
 }
