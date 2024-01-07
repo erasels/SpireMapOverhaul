@@ -24,7 +24,6 @@ public class MonsterZooZone extends AbstractZone implements RewardModifyingZone,
         this.width = 3;
         this.maxWidth = 4;
         this.height = 3;
-        this.maxHeight = 4;
     }
 
     @Override
@@ -39,7 +38,7 @@ public class MonsterZooZone extends AbstractZone implements RewardModifyingZone,
 
     @Override
     public void replaceRooms(Random rng) {
-        //Replace all non monster rooms with monster rooms (as long as they're not treasure or final campfire
+        //Replace all non monster rooms with monster rooms
         for (MapRoomNode node : this.nodes) {
             if(node.room != null && !(MonsterRoom.class.equals(node.room.getClass()))) {
                 node.setRoom(new MonsterRoom());
