@@ -114,10 +114,10 @@ public abstract class AbstractZone {
     public int getHeight() {
         return height;
     }
-    public int getMaxWidth() {
+    public Integer getMaxWidth() {
         return maxWidth;
     }
-    public int getMaxHeight() {
+    public Integer getMaxHeight() {
         return maxHeight;
     }
 
