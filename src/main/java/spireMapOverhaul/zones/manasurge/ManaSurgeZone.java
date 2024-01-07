@@ -31,6 +31,7 @@ import spireMapOverhaul.zones.manasurge.powers.ManaSurgePower;
 import spireMapOverhaul.zones.manasurge.ui.campfire.EnchantOption;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 import static spireMapOverhaul.SpireAnniversary6Mod.makePath;
@@ -91,206 +92,106 @@ public class ManaSurgeZone extends AbstractZone implements
         return false;
     }
 
+    public static List<AbstractManaSurgeModifier> getPositiveCommonModifierList(boolean permanent) {
+        List<AbstractManaSurgeModifier> positiveCommonModifierList = new ArrayList<>();
+        positiveCommonModifierList.add(new SharpModifier(permanent));
+        positiveCommonModifierList.add(new ToughModifier(permanent));
+        positiveCommonModifierList.add(new ExposingModifier(permanent));
+        positiveCommonModifierList.add(new CripplingModifier(permanent));
+        return positiveCommonModifierList;
+    }
+
+    public static List<AbstractManaSurgeModifier> getNegativeCommonModifierList(boolean permanent) {
+        List<AbstractManaSurgeModifier> negativeCommonModifierList = new ArrayList<>();
+        negativeCommonModifierList.add(new FeebleModifier(permanent));
+        negativeCommonModifierList.add(new FlawedModifier(permanent));
+        negativeCommonModifierList.add(new FragileModifier(permanent));
+        negativeCommonModifierList.add(new HarmfulModifier(permanent));
+        return negativeCommonModifierList;
+    }
+
+    public static List<AbstractManaSurgeModifier> getPositiveUncommonModifierList(boolean permanent) {
+        List<AbstractManaSurgeModifier> positiveUncommonModifierList = new ArrayList<>();
+        positiveUncommonModifierList.add(new PowerfulModifier(permanent));
+        positiveUncommonModifierList.add(new ProtectiveModifier(permanent));
+        return positiveUncommonModifierList;
+    }
+
+    public static List<AbstractManaSurgeModifier> getNegativeUncommonModifierList(boolean permanent) {
+        List<AbstractManaSurgeModifier> negativeUncommonModifierList = new ArrayList<>();
+        negativeUncommonModifierList.add(new BrittleModifier(permanent));
+        negativeUncommonModifierList.add(new PowerlessModifier(permanent));
+        return negativeUncommonModifierList;
+    }
+
     public static void applyRandomTemporaryModifier(AbstractCard card) {
         if (AbstractDungeon.cardRandomRng.randomBoolean(COMMON_CHANCE)) {
-            AbstractCardModifier modifier;
-            switch (AbstractDungeon.cardRandomRng.random(8)) {
-                case 0:
-                    modifier = new SharpModifier(false);
-                    break;
-                case 1:
-                    modifier = new HarmfulModifier(false);
-                    break;
-                case 2:
-                    modifier = new ToughModifier(false);
-                    break;
-                case 3:
-                    modifier = new FragileModifier(false);
-                    break;
-                case 4:
-                    modifier = new ExposingModifier(false);
-                    break;
-                case 5:
-                    modifier = new FeebleModifier(false);
-                    break;
-                case 6:
-                    modifier = new CripplingModifier(false);
-                    break;
-                case 7:
-                    modifier = new FlawedModifier(false);
-                    break;
-                default:
-                    modifier = null;
-                    break;
-            }
-            if (modifier != null) {
-                CardModifierManager.addModifier(card, modifier);
+           List<AbstractManaSurgeModifier> commonModifierList = new ArrayList<>();
+           commonModifierList.addAll(getPositiveCommonModifierList(false));
+           commonModifierList.addAll(getNegativeCommonModifierList(false));
+           AbstractManaSurgeModifier selectedModifier = commonModifierList.get(AbstractDungeon.cardRandomRng.random(commonModifierList.size()));
+            if (selectedModifier != null) {
+                CardModifierManager.addModifier(card, selectedModifier);
             }
         } else {
-            AbstractCardModifier modifier;
-            switch (AbstractDungeon.cardRandomRng.random(4)) {
-                case 0:
-                    modifier = new PowerfulModifier(false);
-                    break;
-                case 1:
-                    modifier = new PowerlessModifier(false);
-                    break;
-                case 2:
-                    modifier = new ProtectiveModifier(false);
-                    break;
-                case 3:
-                    modifier = new BrittleModifier(false);
-                    break;
-                default:
-                    modifier = null;
-                    break;
-            }
-            if (modifier != null) {
-                CardModifierManager.addModifier(card, modifier);
+            List<AbstractManaSurgeModifier> uncommonModifierList = new ArrayList<>();
+            uncommonModifierList.addAll(getPositiveUncommonModifierList(false));
+            uncommonModifierList.addAll(getNegativeUncommonModifierList(false));
+            AbstractManaSurgeModifier selectedModifier = uncommonModifierList.get(AbstractDungeon.cardRandomRng.random(uncommonModifierList.size()));
+            if (selectedModifier != null) {
+                CardModifierManager.addModifier(card, selectedModifier);
             }
         }
     }
 
     public static void applyRandomPermanentModifier(AbstractCard card) {
         if (AbstractDungeon.cardRng.randomBoolean(COMMON_CHANCE)) {
-            AbstractCardModifier modifier;
-            switch (AbstractDungeon.cardRng.random(8)) {
-                case 0:
-                    modifier = new SharpModifier(true);
-                    break;
-                case 1:
-                    modifier = new ToughModifier(true);
-                    break;
-                case 2:
-                    modifier = new ExposingModifier(true);
-                    break;
-                case 3:
-                    modifier = new CripplingModifier(true);
-                    break;
-                case 4:
-                    modifier = new FeebleModifier(true);
-                    break;
-                case 5:
-                    modifier = new FlawedModifier(true);
-                    break;
-                case 6:
-                    modifier = new FragileModifier(true);
-                    break;
-                case 7:
-                    modifier = new HarmfulModifier(true);
-                    break;
-                default:
-                    modifier = null;
-                    break;
-            }
-            if (modifier != null) {
-                CardModifierManager.addModifier(card, modifier);
+            List<AbstractManaSurgeModifier> commonModifierList = new ArrayList<>();
+            commonModifierList.addAll(getPositiveCommonModifierList(true));
+            commonModifierList.addAll(getNegativeCommonModifierList(true));
+            AbstractManaSurgeModifier selectedModifier = commonModifierList.get(AbstractDungeon.cardRng.random(commonModifierList.size()));
+            if (selectedModifier != null) {
+                CardModifierManager.addModifier(card, selectedModifier);
             }
         } else {
-            AbstractCardModifier modifier;
-            switch (AbstractDungeon.cardRng.random(4)) {
-                case 0:
-                    modifier = new PowerfulModifier(true);
-                    break;
-                case 1:
-                    modifier = new ProtectiveModifier(true);
-                    break;
-                case 2:
-                    modifier = new BrittleModifier(true);
-                    break;
-                case 3:
-                    modifier = new PowerlessModifier(true);
-                    break;
-                default:
-                    modifier = null;
-                    break;
-            }
-            if (modifier != null) {
-                CardModifierManager.addModifier(card, modifier);
+            List<AbstractManaSurgeModifier> uncommonModifierList = new ArrayList<>();
+            uncommonModifierList.addAll(getPositiveUncommonModifierList(true));
+            uncommonModifierList.addAll(getNegativeUncommonModifierList(true));
+            AbstractManaSurgeModifier selectedModifier = uncommonModifierList.get(AbstractDungeon.cardRng.random(uncommonModifierList.size()));
+            if (selectedModifier != null) {
+                CardModifierManager.addModifier(card, selectedModifier);
             }
         }
     }
 
     public static void applyPermanentPositiveModifier(AbstractCard card) {
         if (AbstractDungeon.cardRng.randomBoolean(COMMON_CHANCE)) {
-            AbstractCardModifier modifier;
-            switch (AbstractDungeon.cardRng.random(4)) {
-                case 0:
-                    modifier = new SharpModifier(true);
-                    break;
-                case 1:
-                    modifier = new ToughModifier(true);
-                    break;
-                case 2:
-                    modifier = new ExposingModifier(true);
-                    break;
-                case 3:
-                    modifier = new CripplingModifier(true);
-                    break;
-                default:
-                    modifier = null;
-                    break;
-            }
-            if (modifier != null) {
-                CardModifierManager.addModifier(card, modifier);
+            List<AbstractManaSurgeModifier> commonModifierList = new ArrayList<>(getPositiveCommonModifierList(true));
+            AbstractManaSurgeModifier selectedModifier = commonModifierList.get(AbstractDungeon.cardRng.random(commonModifierList.size()));
+            if (selectedModifier != null) {
+                CardModifierManager.addModifier(card, selectedModifier);
             }
         } else {
-            AbstractCardModifier modifier;
-            switch (AbstractDungeon.cardRng.random(2)) {
-                case 0:
-                    modifier = new PowerfulModifier(true);
-                    break;
-                case 1:
-                    modifier = new ProtectiveModifier(true);
-                    break;
-                default:
-                    modifier = null;
-                    break;
-            }
-            if (modifier != null) {
-                CardModifierManager.addModifier(card, modifier);
+            List<AbstractManaSurgeModifier> uncommonModifierList = new ArrayList<>(getPositiveUncommonModifierList(true));
+            AbstractManaSurgeModifier selectedModifier = uncommonModifierList.get(AbstractDungeon.cardRng.random(uncommonModifierList.size()));
+            if (selectedModifier != null) {
+                CardModifierManager.addModifier(card, selectedModifier);
             }
         }
     }
 
     public static void applyPermanentNegativeModifier(AbstractCard card) {
         if (AbstractDungeon.cardRng.randomBoolean(COMMON_CHANCE)) {
-            AbstractCardModifier modifier;
-            switch (AbstractDungeon.cardRng.random(4)) {
-                case 0:
-                    modifier = new FeebleModifier(true);
-                    break;
-                case 1:
-                    modifier = new FlawedModifier(true);
-                    break;
-                case 2:
-                    modifier = new FragileModifier(true);
-                    break;
-                case 3:
-                    modifier = new HarmfulModifier(true);
-                    break;
-                default:
-                    modifier = null;
-                    break;
-            }
-            if (modifier != null) {
-                CardModifierManager.addModifier(card, modifier);
+            List<AbstractManaSurgeModifier> commonModifierList = new ArrayList<>(getNegativeCommonModifierList(true));
+            AbstractManaSurgeModifier selectedModifier = commonModifierList.get(AbstractDungeon.cardRng.random(commonModifierList.size()));
+            if (selectedModifier != null) {
+                CardModifierManager.addModifier(card, selectedModifier);
             }
         } else {
-            AbstractCardModifier modifier;
-            switch (AbstractDungeon.cardRng.random(2)) {
-                case 0:
-                    modifier = new BrittleModifier(true);
-                    break;
-                case 1:
-                    modifier = new PowerlessModifier(true);
-                    break;
-                default:
-                    modifier = null;
-                    break;
-            }
-            if (modifier != null) {
-                CardModifierManager.addModifier(card, modifier);
+            List<AbstractManaSurgeModifier> uncommonModifierList = new ArrayList<>(getNegativeUncommonModifierList(true));
+            AbstractManaSurgeModifier selectedModifier = uncommonModifierList.get(AbstractDungeon.cardRng.random(uncommonModifierList.size()));
+            if (selectedModifier != null) {
+                CardModifierManager.addModifier(card, selectedModifier);
             }
         }
     }

@@ -16,7 +16,6 @@ import spireMapOverhaul.zones.manasurge.ManaSurgeZone;
 import spireMapOverhaul.zones.manasurge.ui.campfire.EnchantOption;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class ManaCycloneEvent extends PhasedEvent {
     public static final String ID = SpireAnniversary6Mod.makeID("ManaCycloneEvent");
@@ -85,8 +84,7 @@ public class ManaCycloneEvent extends PhasedEvent {
 
                     String chosenRelicId;
                     if (!availableRelics.isEmpty()) {
-                        int randomIndex = new Random().nextInt(availableRelics.size());
-                        chosenRelicId = availableRelics.get(randomIndex);
+                        chosenRelicId = availableRelics.get(AbstractDungeon.cardRng.random(availableRelics.size()));
                     } else {
                         chosenRelicId = Circlet.ID;
                     }

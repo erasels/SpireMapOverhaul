@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.localization.LocalizedStrings;
 import com.megacrit.cardcrawl.powers.DexterityPower;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.util.TexLoader;
@@ -47,7 +48,7 @@ public class BrittleModifier extends AbstractManaSurgeModifier {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        return ManaSurgeZone.getKeywordProper(ID) + ". NL " + rawDescription;
+        return ManaSurgeZone.getKeywordProper(ID) + LocalizedStrings.PERIOD + " NL " + rawDescription;
     }
 
     @Override
