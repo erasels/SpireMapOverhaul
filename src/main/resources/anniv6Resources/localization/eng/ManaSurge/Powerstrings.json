@@ -1,0 +1,9 @@
+{
+
+  "${ModID}:ManaSurgePower": {
+    "NAME": "Mana Surge",
+    "DESCRIPTIONS": [
+      "Cards have a 50% chance to receive a random NL [#8c9cff]Enchantment[] [${ModID}:ManaSurge:EnchantmentIcon] or [#ff8cd5]Blight[] [${ModID}:ManaSurge:BlightIcon] when drawn."
+    ]
+  }
+}

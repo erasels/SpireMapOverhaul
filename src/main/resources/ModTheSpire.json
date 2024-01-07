@@ -14,7 +14,8 @@
     "lempface",
     "kiooeht",
     "Kobting",
-    "(Flowers) HugYouTwenty"
+    "(Flowers) HugYouTwenty",
+    "Smear"
   ],
   "description": "${project.description}",
   "version": "${project.version}",

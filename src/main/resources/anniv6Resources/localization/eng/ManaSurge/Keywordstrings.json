@@ -1,0 +1,114 @@
+[
+  {
+    "ID": "${ModID}:ManaSurge:Sharp",
+    "PROPER_NAME": "[#8c9cff]Sharp[]",
+    "NAMES": [
+      "sharp"
+    ],
+    "DESCRIPTION": "Deal #b5 damage to the target enemy, or a random enemy if not a single target."
+  },
+  {
+    "ID": "${ModID}:ManaSurge:Tough",
+    "PROPER_NAME": "[#8c9cff]Tough[]",
+    "NAMES": [
+      "tough"
+    ],
+    "DESCRIPTION": "Gain #b5 #yBlock."
+  },
+  {
+    "ID": "${ModID}:ManaSurge:Powerful",
+    "PROPER_NAME": "[#8c9cff]Powerful[]",
+    "NAMES": [
+      "powerful"
+    ],
+    "DESCRIPTION": "Gain #b1 #yStrength."
+  },
+  {
+    "ID": "${ModID}:ManaSurge:Protective",
+    "PROPER_NAME": "[#8c9cff]Protective[]",
+    "NAMES": [
+      "protective"
+    ],
+    "DESCRIPTION": "Gain #b1 #yDexterity."
+  },
+  {
+    "ID": "${ModID}:ManaSurge:Exposing",
+    "PROPER_NAME": "[#8c9cff]Exposing[]",
+    "NAMES": [
+      "exposing"
+    ],
+    "DESCRIPTION": "Apply #b1 #yVulnerable to the target enemy, or a random enemy if not a single target."
+  },
+  {
+    "ID": "${ModID}:ManaSurge:Crippling",
+    "PROPER_NAME": "[#8c9cff]Crippling[]",
+    "NAMES": [
+      "crippling"
+    ],
+    "DESCRIPTION": "Apply #b1 #yWeak to the target enemy, or a random enemy if not a single target."
+  },
+  {
+    "ID": "${ModID}:ManaSurge:Harmful",
+    "PROPER_NAME": "[#ff8cd5]Harmful[]",
+    "NAMES": [
+      "harmful"
+    ],
+    "DESCRIPTION": "Take #b5 damage."
+  },
+  {
+    "ID": "${ModID}:ManaSurge:Fragile",
+    "PROPER_NAME": "[#ff8cd5]Fragile[]",
+    "NAMES": [
+      "fragile"
+    ],
+    "DESCRIPTION": "Gain #b1 #yVulnerable."
+  },
+  {
+    "ID": "${ModID}:ManaSurge:Feeble",
+    "PROPER_NAME": "[#ff8cd5]Feeble[]",
+    "NAMES": [
+      "feeble"
+    ],
+    "DESCRIPTION": "Gain #b1 #yFrail."
+  },
+  {
+    "ID": "${ModID}:ManaSurge:Flawed",
+    "PROPER_NAME": "[#ff8cd5]Flawed[]",
+    "NAMES": [
+      "flawed"
+    ],
+    "DESCRIPTION": "Gain #b1 #yWeak."
+  },
+  {
+    "ID": "${ModID}:ManaSurge:Powerless",
+    "PROPER_NAME": "[#ff8cd5]Powerless[]",
+    "NAMES": [
+      "powerless"
+    ],
+    "DESCRIPTION": "Lose #b1 #yStrength."
+  },
+  {
+    "ID": "${ModID}:ManaSurge:Brittle",
+    "PROPER_NAME": "[#ff8cd5]Brittle[]",
+    "NAMES": [
+      "brittle"
+    ],
+    "DESCRIPTION": "Lose #b1 #yDexterity."
+  },
+  {
+    "ID": "${ModID}:ManaSurge:Blight",
+    "PROPER_NAME": "[#ff8cd5]Blight[]",
+    "NAMES": [
+      "enchant"
+    ],
+    "DESCRIPTION": "A negative modifier."
+  },
+  {
+    "ID": "${ModID}:ManaSurge:Enchantment",
+    "PROPER_NAME": "[#8c9cff]Enchantment[]",
+    "NAMES": [
+      "enchantment"
+    ],
+    "DESCRIPTION": "A positive modifier."
+  }
+]
