@@ -115,9 +115,6 @@ public abstract class AbstractZone {
     }
 
     public boolean canSpawn() {
-        System.out.println("ActNum: " + AbstractDungeon.actNum);
-        for (int i = 1; i <= 3; ++i)
-            System.out.println("IsAct" + i + ": " + isAct(i));
         return true;
     }
 
