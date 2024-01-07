@@ -67,7 +67,7 @@ public class MonsterZooZone extends AbstractZone implements RewardModifyingZone,
     @Override
     public void modifyReward(RewardItem rewardItem) {
         if(rewardItem.type == RewardItem.RewardType.GOLD) {
-            rewardItem.goldAmt *= 1.5f;
+            rewardItem.incrementGold(rewardItem.goldAmt);
         }
     }
 
