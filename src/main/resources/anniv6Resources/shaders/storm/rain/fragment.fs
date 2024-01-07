@@ -5,8 +5,6 @@
 // https://www.shadertoy.com/view/Xtf3zn
 // @EricBartusch just simplified it to be rain over a background
 
-#version 330
-
 #ifdef GL_ES
 #define LOWP lowp
 precision mediump float;
@@ -14,10 +12,8 @@ precision mediump float;
 #define LOWP
 #endif
 
-out vec4 fragColor;
-
-in LOWP vec4 v_color;
-in vec2 v_texCoord;
+varying LOWP vec4 v_color;
+varying vec2 v_texCoord;
 
 uniform vec2 u_screenSize;
 uniform sampler2D u_texture;
@@ -45,7 +41,7 @@ float noise( in vec2 x ) {
 
 void main() {
     vec2 q = gl_FragCoord.xy / u_screenSize.xy;
-    vec4 backgroundColor = texture(u_texture, v_texCoord);
+    vec4 backgroundColor = texture2D(u_texture, v_texCoord);
     backgroundColor.rgb *= 0.5;
 	vec2 p = -1.0 + 2.0*q;
     p.x *= u_screenSize.x / u_screenSize.y;
@@ -59,5 +55,5 @@ void main() {
 
     col += 0.25*f*(0.5+backgroundColor);
 
-    fragColor = v_color * col;
+    gl_FragColor = v_color * col;
 }

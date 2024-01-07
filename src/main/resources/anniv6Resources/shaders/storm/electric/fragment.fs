@@ -1,10 +1,6 @@
 // https://www.shadertoy.com/view/MdyGzR
 
-#version 330
-
-out vec4 fragColor;
-
-in vec2 v_texCoord;
+varying vec2 v_texCoord;
 
 uniform vec2 u_screenSize;
 uniform float u_time;
@@ -123,19 +119,19 @@ float clouds(vec2 uv) {
     float scale5 = 48.0;
     float scale6 = 96.0;
     return normnoise(snoise(vec3((uv+off1)*scale1,u_time*0.))*0.8 +
-                     snoise(vec3((uv+off2)*scale2,u_time*0.1))*0.4 +
-                     snoise(vec3((uv+off3)*scale3,u_time*2.1))*0.2 +
-                     snoise(vec3((uv+off4)*scale4,u_time*8.7))*0.1 +
-                     snoise(vec3((uv+off5)*scale5,u_time*0.))*0.05 +
-                     snoise(vec3((uv+off6)*scale6,u_time*0.))*0.025
-                     );
+                           snoise(vec3((uv+off2)*scale2,u_time*0.1))*0.4 +
+                           snoise(vec3((uv+off3)*scale3,u_time*2.1))*0.2 +
+                           snoise(vec3((uv+off4)*scale4,u_time*8.7))*0.1 +
+                           snoise(vec3((uv+off5)*scale5,u_time*0.))*0.05 +
+                           snoise(vec3((uv+off6)*scale6,u_time*0.))*0.025
+                           );
 }
 
 void main()
 {
-    vec4 col = texture(u_texture, v_texCoord);
+       vec4 col = texture2D(u_texture, v_texCoord);
 
-        if (col.r > 0.0 || col.g > 0.0 || col.b > 0.0) {
+     if (col.r > 0.0 || col.g > 0.0 || col.b > 0.0) {
         vec2 uv = gl_FragCoord.xy/u_screenSize.x;
 
         float _cl = clouds(uv);
@@ -143,6 +139,8 @@ void main()
 
         vec4 electricEffectColor = vec4(vec3(cl*cl*cl, cl*cl, cl), 0.25 + (0.5 - u_bright_time));
 
-        fragColor = col + electricEffectColor * electricEffectColor.a;
-	}
+        gl_FragColor = col + electricEffectColor * electricEffectColor.a;
+	} else {
+	        gl_FragColor = col;
+    }
 }
