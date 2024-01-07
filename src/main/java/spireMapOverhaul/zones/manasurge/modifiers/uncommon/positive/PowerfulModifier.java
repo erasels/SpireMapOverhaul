@@ -42,7 +42,7 @@ public class PowerfulModifier extends AbstractManaSurgeModifier {
     @Override
     public List<TooltipInfo> additionalTooltips(AbstractCard card) {
         List<TooltipInfo> tooltips = new ArrayList<>();
-        tooltips.add(new TooltipInfo(ManaSurgeZone.getKeywordProper(ID) + " [#ff8cd5]|[] " + ManaSurgeZone.getKeywordProper(ManaSurgeZone.POSITIVE_MOD), ManaSurgeZone.getKeywordDescription(ID)));
+        tooltips.add(new TooltipInfo(ManaSurgeZone.getKeywordProper(ID) + " [#8c9cff]|[] " + ManaSurgeZone.getKeywordProper(ManaSurgeZone.POSITIVE_MOD), ManaSurgeZone.getKeywordDescription(ID)));
         return tooltips;
     }
 
