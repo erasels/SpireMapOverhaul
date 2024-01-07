@@ -91,11 +91,13 @@ public class MonsterZooZone extends AbstractZone implements RewardModifyingZone,
     private float bgMonsterTimer = 4f;
     @Override
     public void update() {
-        bgMonsterTimer -= Gdx.graphics.getRawDeltaTime();
+        if(AbstractDungeon.getCurrRoom() instanceof MonsterRoom) {
+            bgMonsterTimer -= Gdx.graphics.getRawDeltaTime();
 
-        if(bgMonsterTimer <= 0) {
-            bgMonsterTimer = BG_MONSTER_MAX * MathUtils.random(0.5f, 1f);
-            AbstractDungeon.effectList.add(new BackgroundMonsterEffect(true));
+            if (bgMonsterTimer <= 0) {
+                bgMonsterTimer = BG_MONSTER_MAX * MathUtils.random(0.5f, 1f);
+                AbstractDungeon.effectList.add(new BackgroundMonsterEffect(true));
+            }
         }
     }
 
