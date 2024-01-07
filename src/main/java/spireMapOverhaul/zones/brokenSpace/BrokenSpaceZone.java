@@ -22,6 +22,7 @@ import com.megacrit.cardcrawl.screens.DungeonMapScreen;
 import spireMapOverhaul.BetterMapGenerator;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
+import spireMapOverhaul.zoneInterfaces.RenderableZone;
 import spireMapOverhaul.zoneInterfaces.RewardModifyingZone;
 import spireMapOverhaul.zoneInterfaces.ShopModifyingZone;
 import spireMapOverhaul.zones.brokenSpace.patches.BrokenSpaceRenderPatch;
@@ -31,7 +32,7 @@ import java.util.ArrayList;
 import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.cardRng;
 import static spireMapOverhaul.util.Wiz.adp;
 
-public class BrokenSpaceZone extends AbstractZone implements RewardModifyingZone, ShopModifyingZone {
+public class BrokenSpaceZone extends AbstractZone implements RewardModifyingZone, ShopModifyingZone, RenderableZone {
     public static final String ID = "BrokenSpace";
     private static final float OFFSET_X = Settings.isMobile ? 496.0F * Settings.xScale : 560.0F * Settings.xScale;
     private static final float OFFSET_Y = 180.0F * Settings.scale;
@@ -252,12 +253,19 @@ public class BrokenSpaceZone extends AbstractZone implements RewardModifyingZone
         public static SpireField<Boolean> unnatural = new SpireField<>(() -> false);
     }
 
+    @Override
+    public void renderBackground(SpriteBatch sb) {
+        BrokenSpaceRenderPatch.StartFbo(sb);
+    }
+
+    @Override
+    public void postRenderBackground(SpriteBatch sb) {
+        BrokenSpaceRenderPatch.StopFbo(sb, 0.25F, 0.0f, 1f, 0.2f);
+    }
 
     public static void addBrokenRelic(String relicID) {
         if (!BrokenRelics.contains(relicID)) {
             BrokenRelics.add(relicID);
         }
     }
-
-
 }

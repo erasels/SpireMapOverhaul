@@ -102,8 +102,11 @@ public class BrokenSpaceRenderPatch {
         StopFbo(sb, strength, timerOffset, 0.03F);
     }
 
+    private static void StopFbo(SpriteBatch sb, float strength, float timerOffset, float chrAb) {
+        StopFbo(sb, strength, timerOffset, chrAb, 1.0F);
+    }
 
-    public static void StopFbo(SpriteBatch sb, float strength, float timerOffset, float chrAb) {
+    public static void StopFbo(SpriteBatch sb, float strength, float timerOffset, float chrAb, float timeScale) {
         sb.flush();
         fbo.end();
 
@@ -113,7 +116,7 @@ public class BrokenSpaceRenderPatch {
 
         sb.setShader(brokenSpaceShader);
         sb.setColor(Color.WHITE);
-        brokenSpaceShader.setUniformf("u_time", BrokenSpaceZone.shaderTimer + timerOffset);
+        brokenSpaceShader.setUniformf("u_time", BrokenSpaceZone.shaderTimer * timeScale + timerOffset);
         brokenSpaceShader.setUniformf("u_strength", strength);
         brokenSpaceShader.setUniformf("u_chrAb", chrAb);
 
