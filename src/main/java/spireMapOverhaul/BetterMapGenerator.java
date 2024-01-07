@@ -1,6 +1,7 @@
 package spireMapOverhaul;
 
 import com.badlogic.gdx.math.MathUtils;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.map.MapEdge;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.random.Random;
@@ -8,6 +9,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.patches.ZonePatches;
+import spireMapOverhaul.util.ActUtil;
 
 import java.util.*;
 import java.util.function.Predicate;
@@ -37,7 +39,13 @@ public class BetterMapGenerator {
     }
 
     public ArrayList<ArrayList<MapRoomNode>> generate(Random rng, int width, int height, int pathDensity) {
-        SpireAnniversary6Mod.currentRunSeenZones.addAll(activeZones.stream().map(z -> z.id).collect(Collectors.toList()));
+        if (Settings.isEndless && ActUtil.getRealActNum() == 1) {
+            //In endless mode, we let you encounter zones again each endless cycle
+            SpireAnniversary6Mod.currentRunSeenZones.clear();
+        }
+        else {
+            SpireAnniversary6Mod.currentRunSeenZones.addAll(activeZones.stream().map(z -> z.id).collect(Collectors.toList()));
+        }
         mapGenLogger.info("Already seen zones: " + String.join(",", SpireAnniversary6Mod.currentRunSeenZones));
         MapPlanner planner;
         do {
