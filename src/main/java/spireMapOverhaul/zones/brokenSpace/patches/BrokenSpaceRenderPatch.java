@@ -81,13 +81,11 @@ public class BrokenSpaceRenderPatch {
 
 
     public static void StartFbo(SpriteBatch sb) {
-        sb.end();
-
+        sb.flush();
         fbo.begin();
+
         Gdx.gl.glClearColor(0.0F, 0.0F, 0.0F, 0.0F);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
-        sb.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
-        sb.begin();
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
     }
 
     public static void StopFbo(SpriteBatch sb) {
@@ -95,17 +93,25 @@ public class BrokenSpaceRenderPatch {
     }
 
     public static void StopFbo(SpriteBatch sb, float strength) {
-        StopFbo(sb, strength, 0.0F, 0.0F);
+        StopFbo(sb, strength, 0.0F);
     }
 
     private static void StopFbo(SpriteBatch sb, float strength, float timerOffset) {
         StopFbo(sb, strength, timerOffset, 0.03F);
     }
 
+    private static void StopFbo(SpriteBatch sb, float strength, float timerOffset, float chrAb) {
+        StopFbo(sb, strength, timerOffset, chrAb, 1.0F);
+    }
+    public static void StopFbo(SpriteBatch sb, float strength, float timerOffset, float chrAb, float timeScale) {
+        StopFbo(sb, strength, timerOffset, chrAb, timeScale, 1f);
+    }
 
-    public static void StopFbo(SpriteBatch sb, float strength, float timerOffset, float chrAb) {
+    public static void StopFbo(SpriteBatch sb, float strength, float timerOffset, float chrAb, float timeScale, float UVScl) {
+
         sb.flush();
         fbo.end();
+
 
         TextureRegion region = new TextureRegion(fbo.getColorBufferTexture());
         region.flip(false, true);
@@ -113,12 +119,14 @@ public class BrokenSpaceRenderPatch {
 
         sb.setShader(brokenSpaceShader);
         sb.setColor(Color.WHITE);
-        brokenSpaceShader.setUniformf("u_time", BrokenSpaceZone.shaderTimer + timerOffset);
+        brokenSpaceShader.setUniformf("u_time", BrokenSpaceZone.shaderTimer * timeScale + timerOffset);
         brokenSpaceShader.setUniformf("u_strength", strength);
         brokenSpaceShader.setUniformf("u_chrAb", chrAb);
+        brokenSpaceShader.setUniformf("u_UVScl", UVScl);
 
         sb.draw(region, 0, 0);
         sb.setShader(null);
+        sb.flush();
     }
 
 
