@@ -38,7 +38,9 @@ public class InvasionZone extends AbstractZone implements EncounterModifyingZone
     public InvasionZone() {
         super(ID, Icons.MONSTER, Icons.SHOP);
         this.width = 3;
+        this.maxHeight = 4;
         this.height = 4;
+        this.maxHeight = 5;
     }
 
     @Override

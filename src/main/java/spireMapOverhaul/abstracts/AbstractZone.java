@@ -64,6 +64,7 @@ public abstract class AbstractZone {
 
     protected List<MapRoomNode> nodes = new ArrayList<>();
     protected int x = 0, y = 0, width = 1, height = 1;
+    protected Integer maxWidth = null, maxHeight = null;
 
     //These two should be set during initial generation in generateMapArea
     //They will then be adjusted to their final values in mapGenDone
@@ -112,6 +113,12 @@ public abstract class AbstractZone {
     }
     public int getHeight() {
         return height;
+    }
+    public int getMaxWidth() {
+        return maxWidth;
+    }
+    public int getMaxHeight() {
+        return maxHeight;
     }
 
     public boolean canSpawn() {
@@ -287,7 +294,9 @@ public abstract class AbstractZone {
      * Areas may claim more unusual shapes or manually define their path/multiple paths if they wish.
      */
     public boolean generateMapArea(MapPlanner planner) {
-        return generateNormalArea(planner, width, height);
+        int calculatedWidth = this.maxWidth == null || this.width == this.maxWidth ? this.width : AbstractDungeon.mapRng.random(this.width, this.maxWidth);
+        int calculatedHeight = this.maxHeight == null || this.height == this.maxHeight ? this.height : AbstractDungeon.mapRng.random(this.height, this.maxHeight);
+        return generateNormalArea(planner, calculatedWidth, calculatedHeight);
     }
 
     public final boolean generateNormalArea(MapPlanner planner, int width, int height) {
