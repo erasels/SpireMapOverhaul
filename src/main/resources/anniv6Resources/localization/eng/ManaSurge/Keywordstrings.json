@@ -1,6 +1,6 @@
 [
   {
-    "ID": "ManaSurge:Sharp",
+    "ID": "${ModID}:ManaSurge:Sharp",
     "PROPER_NAME": "[#8c9cff]Sharp[]",
     "NAMES": [
       "sharp"
