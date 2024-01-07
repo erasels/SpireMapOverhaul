@@ -1,13 +1,12 @@
-#version 330
+
 // Heartfelt - by Martijn Steinrucken aka BigWings - 2017
 // Email:countfrolic@gmail.com Twitter:@The_ArtOfCode
 // License Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License.
 
 // Eric Bartusch modified to only include the droplets falling
 
-out vec4 fragColor;
 
-in vec2 v_texCoord;
+varying vec2 v_texCoord;
 
 uniform vec2 u_screenSize;
 uniform float u_time;
@@ -97,7 +96,7 @@ void main()
 	vec2 uv = (gl_FragCoord.xy-.5*u_screenSize.xy) / u_screenSize.y;
     vec2 UV = gl_FragCoord.xy/u_screenSize.xy;
 
-    vec4 col = texture(u_texture, v_texCoord);
+    vec4 col = texture2D(u_texture, v_texCoord);
 
     if (col.r > 0.0 || col.g > 0.0 || col.b > 0.0) {
         float t = u_time*u_dripSpeed;
@@ -108,14 +107,14 @@ void main()
         float layer2 = S(.0, .5, u_dripAmount2);
 
 
-        vec2 c = Drops(uv, t, 0.0f, layer1, layer2);
+        vec2 c = Drops(uv, t, 0.0, layer1, layer2);
         vec2 e = vec2(.001, 0.);
-        float cx = Drops(uv+e, t, 0.0f, layer1, layer2).x;
-        float cy = Drops(uv+e.yx, t, 0.0f, layer1, layer2).x;
+        float cx = Drops(uv+e, t, 0.0, layer1, layer2).x;
+        float cy = Drops(uv+e.yx, t, 0.0, layer1, layer2).x;
         vec2 n = vec2(cx-c.x, cy-c.x);
 
-        col.rgb = texture(u_texture, UV+n * u_dripStrength, 1.0).rgb;
+        col.rgb = texture2D(u_texture, UV+n * u_dripStrength, 1.0).rgb;
     }
 
-    fragColor = col;
+    gl_FragColor = col;
 }
