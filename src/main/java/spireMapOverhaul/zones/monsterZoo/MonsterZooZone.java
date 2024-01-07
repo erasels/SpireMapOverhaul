@@ -10,7 +10,6 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.MonsterRoom;
-import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.zoneInterfaces.CombatModifyingZone;
@@ -23,8 +22,8 @@ public class MonsterZooZone extends AbstractZone implements RewardModifyingZone,
     public MonsterZooZone() {
         super(ID, Icons.MONSTER, Icons.MONSTER, Icons.MONSTER, Icons.MONSTER, Icons.MONSTER); //Just having a bit of fun
         this.width = 3;
-        this.maxWidth = 5;
-        this.height = 2;
+        this.maxWidth = 4;
+        this.height = 3;
         this.maxHeight = 4;
     }
 
@@ -42,10 +41,26 @@ public class MonsterZooZone extends AbstractZone implements RewardModifyingZone,
     public void replaceRooms(Random rng) {
         //Replace all non monster rooms with monster rooms (as long as they're not treasure or final campfire
         for (MapRoomNode node : this.nodes) {
-            if(!isProtectedRow(node.y) && node.room != null && !(MonsterRoom.class.equals(node.room.getClass()))) {
+            if(node.room != null && !(MonsterRoom.class.equals(node.room.getClass()))) {
                 node.setRoom(new MonsterRoom());
             }
         }
+    }
+
+    @Override
+    protected boolean canIncludeTreasureRow() {
+        return false;
+    }
+
+    @Override
+    protected boolean canIncludeFinalCampfireRow() {
+        return false;
+    }
+
+    // Don't spawn strong monsters at the start of the first act
+    @Override
+    protected boolean canIncludeEarlyRows() {
+        return !(AbstractDungeon.actNum == 1);
     }
 
     // Increase number of cards in reward, upgrade chance and amount of gold.
