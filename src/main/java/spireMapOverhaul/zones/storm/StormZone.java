@@ -35,8 +35,11 @@ public class StormZone extends AbstractZone implements CombatModifyingZone, Rewa
 
     public StormZone() {
         super(ID, Icons.MONSTER);
-        this.width = 3;
-        this.height = 4;
+        this.width = 2;
+        this.maxWidth = 5;
+        this.height = 3;
+        this.maxHeight = 4;
+
     }
 
     @Override

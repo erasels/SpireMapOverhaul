@@ -52,7 +52,9 @@ public class ManaSurgeZone extends AbstractZone implements
     public ManaSurgeZone() {
         super(ID,Icons.MONSTER,Icons.SHOP,Icons.EVENT,Icons.REST);
         this.width = 3;
-        this.height = 4;
+        this.maxWidth = 4;
+        this.height = 3;
+        this.maxHeight = 4;
     }
 
     public static String getKeywordProper(String keywordId) {

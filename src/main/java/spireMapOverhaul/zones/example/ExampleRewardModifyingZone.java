@@ -20,7 +20,9 @@ public class ExampleRewardModifyingZone extends AbstractZone implements RewardMo
     public ExampleRewardModifyingZone() {
         super(ID);
         this.width = 3;
+        this.maxWidth = 4;
         this.height = 3;
+        this.maxHeight = 4;
     }
 
     @Override
