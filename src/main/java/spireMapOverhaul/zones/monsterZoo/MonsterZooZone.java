@@ -1,0 +1,89 @@
+package spireMapOverhaul.zones.monsterZoo;
+
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.map.MapRoomNode;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.random.Random;
+import com.megacrit.cardcrawl.rewards.RewardItem;
+import com.megacrit.cardcrawl.rooms.MonsterRoom;
+import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
+import spireMapOverhaul.abstracts.AbstractZone;
+import spireMapOverhaul.util.Wiz;
+import spireMapOverhaul.zoneInterfaces.CombatModifyingZone;
+import spireMapOverhaul.zoneInterfaces.RenderableZone;
+import spireMapOverhaul.zoneInterfaces.RewardModifyingZone;
+
+public class MonsterZooZone extends AbstractZone implements RewardModifyingZone, CombatModifyingZone, RenderableZone {
+    public static final String ID = "MonsterZoo";
+
+    public MonsterZooZone() {
+        super(ID, Icons.MONSTER, Icons.MONSTER, Icons.MONSTER, Icons.MONSTER, Icons.MONSTER); //Just having a bit of fun
+        this.width = 3;
+        this.maxWidth = 5;
+        this.height = 2;
+        this.maxHeight = 4;
+    }
+
+    @Override
+    public AbstractZone copy() {
+        return new MonsterZooZone();
+    }
+
+    @Override
+    public Color getColor() {
+        return Color.SALMON.cpy();
+    }
+
+    @Override
+    public void replaceRooms(Random rng) {
+        //Replace all non monster rooms with monster rooms (as long as they're not treasure or final campfire
+        for (MapRoomNode node : this.nodes) {
+            if(!isProtectedRow(node.y) && node.room != null && !(MonsterRoom.class.equals(node.room.getClass()))) {
+                node.setRoom(new MonsterRoom());
+            }
+        }
+    }
+
+    // Increase number of cards in reward, upgrade chance and amount of gold.
+    @Override
+    public int changeNumberOfCardsInReward(int curNumCards) {
+        return curNumCards + 1;
+    }
+
+    @Override
+    public boolean allowUpgradingRareCards() { //Somebody has to use the fancy hook I made :p
+        return true;
+    }
+
+    @Override
+    public float changeCardUpgradeChance(float curChance) {
+        return curChance + 0.2f;
+    }
+
+    @Override
+    public void modifyReward(RewardItem rewardItem) {
+        if(rewardItem.type == RewardItem.RewardType.GOLD) {
+            rewardItem.goldAmt *= 1.5f;
+        }
+    }
+
+    @Override
+    public void renderBackground(SpriteBatch sb) {
+        //TODO: Render monster running
+    }
+
+    // All monsters gain an amount of strength
+    @Override
+    public void atPreBattle() {
+        Wiz.forAllMonstersLiving(m -> Wiz.atb(new ApplyPowerAction(m, null, new StrengthPower(m, getStrAmt(m)))));
+    }
+
+    private int getStrAmt(AbstractMonster m) {
+        //Might make this dynamic as in 1 + actNum
+        return 2;
+    }
+}
