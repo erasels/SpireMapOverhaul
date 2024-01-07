@@ -1,7 +1,9 @@
 package spireMapOverhaul.zones.monsterZoo;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.map.MapRoomNode;
@@ -85,9 +87,21 @@ public class MonsterZooZone extends AbstractZone implements RewardModifyingZone,
         }
     }
 
+    private static final float BG_MONSTER_MAX = 10f;
+    private float bgMonsterTimer = 4f;
     @Override
-    public void renderBackground(SpriteBatch sb) {
-        //TODO: Render monster running
+    public void update() {
+        bgMonsterTimer -= Gdx.graphics.getRawDeltaTime();
+
+        if(bgMonsterTimer <= 0) {
+            bgMonsterTimer = BG_MONSTER_MAX * MathUtils.random(0.5f, 1f);
+            AbstractDungeon.effectList.add(new BackgroundMonsterEffect(true));
+        }
+    }
+
+    @Override
+    public void onVictory() {
+        BackgroundMonsterEffect.masterDispose();
     }
 
     // All monsters gain an amount of strength
