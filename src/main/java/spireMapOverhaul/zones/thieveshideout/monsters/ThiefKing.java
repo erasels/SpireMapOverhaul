@@ -112,7 +112,7 @@ public class ThiefKing extends CustomMonster {
                 this.stealExperienceCount++;
                 this.addToBot(new TalkAction(this, this.stealExperienceCount == 1 ? DIALOG[1] : DIALOG[2], 0.5F, 2.0F));
                 this.addToBot(new AnimateSlowAttackAction(this));
-                this.addToBot(new DamageAction(AbstractDungeon.player, this.damage.get(1), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
+                this.addToBot(new DamageAction(AbstractDungeon.player, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
                 this.addToBot(new AbstractGameAction() {
                     @Override
                     public void update() {
@@ -156,7 +156,7 @@ public class ThiefKing extends CustomMonster {
             case BLADE_FLURRY_ATTACK:
                 for (int i = 0; i < BLADE_FLURRY_HITS; i++) {
                     this.addToBot(new AnimateFastAttackAction(this));
-                    this.addToBot(new DamageAction(AbstractDungeon.player, this.damage.get(2), AbstractGameAction.AttackEffect.SLASH_HEAVY));
+                    this.addToBot(new DamageAction(AbstractDungeon.player, this.damage.get(1), AbstractGameAction.AttackEffect.SLASH_HEAVY));
                 }
                 break;
         }

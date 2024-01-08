@@ -29,6 +29,13 @@ hs_err_pid*
 # vim
 *.swp
 
+# Art Projects
+*.afphoto
+*.blend
+*.blend1
+*.xcf
+
+
 # =========================
 # Operating System Files
 # =========================

@@ -1,0 +1,8 @@
+{
+  "${ModID}:BrokenSpace": {
+    "TEXT": [
+      "Broken Space",
+      "Reward cards and can be any color (including curses). Add #b1 extra card reward to combats. Relic drops are twisted into new forms."
+    ]
+  }
+}

@@ -69,4 +69,15 @@ public class GlowParticle extends AbstractGameEffect {
     @Override
     public void dispose() {
     }
+
+    //Lights out custom lights support - BEGIN
+    public float[] _lightsOutGetXYRI() {
+        float imageWidth = img.getWidth() * Settings.scale, imageHeight = img.getHeight() * Settings.scale;
+        return new float[] {x - imageWidth / 2f, y - imageHeight / 2f, scale * 1000f* Settings.scale, color.a};
+    }
+
+    public Color[] _lightsOutGetColor() {
+        return new Color[] {color};
+    }
+    //Lights out custom lights support - END
 }

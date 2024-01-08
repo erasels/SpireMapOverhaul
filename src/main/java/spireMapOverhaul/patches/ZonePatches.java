@@ -4,6 +4,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.map.MapRoomNode;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import javassist.CtBehavior;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.zoneInterfaces.RenderableZone;
 
@@ -56,6 +58,25 @@ public class ZonePatches {
                 ((RenderableZone) zone).renderForeground(sb);
             }
         }
+
+        @SpireInsertPatch(
+                locator = PostRenderBackgroundLocator.class
+        )
+        public static void PostRenderBackground(SpriteBatch sb) {
+            AbstractZone zone = Fields.zone.get(AbstractDungeon.currMapNode);
+            if (zone instanceof RenderableZone) {
+                ((RenderableZone) zone).postRenderBackground(sb);
+            }
+        }
+
+        private static class PostRenderBackgroundLocator extends SpireInsertLocator {
+            @Override
+            public int[] Locate(CtBehavior ctBehavior) throws Exception {
+                Matcher finalMatcher = new Matcher.MethodCallMatcher(AbstractRoom.class, "render");
+                return new int[]{LineFinder.findInOrder(ctBehavior, finalMatcher)[0] - 1};
+            }
+        }
+
     }
 
     @SuppressWarnings("unused")

@@ -1,5 +1,6 @@
 package spireMapOverhaul.zones.example;
 
+import basemod.AutoAdd;
 import basemod.cardmods.EtherealMod;
 import basemod.helpers.CardModifierManager;
 import com.badlogic.gdx.graphics.Color;
@@ -14,13 +15,16 @@ import spireMapOverhaul.zoneInterfaces.RewardModifyingZone;
 
 import java.util.ArrayList;
 
+@AutoAdd.Ignore
 public class ExampleRewardModifyingZone extends AbstractZone implements RewardModifyingZone {
     public static final String ID = "ExampleRewardModifying";
 
     public ExampleRewardModifyingZone() {
         super(ID);
         this.width = 3;
+        this.maxWidth = 4;
         this.height = 3;
+        this.maxHeight = 4;
     }
 
     @Override

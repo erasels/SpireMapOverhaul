@@ -1,7 +1,9 @@
 package spireMapOverhaul.zones.storm.vfx;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.combat.EmptyStanceParticleEffect;
@@ -34,4 +36,12 @@ public class DispelPlayerElectricEffect extends AbstractGameEffect {
     public void render(SpriteBatch sb) {}
 
     public void dispose() {}
+
+    public float[] _lightsOutGetXYRI() {
+        return new float[] {x, y, 150f* Settings.scale, 1.0f};
+    }
+
+    public Color[] _lightsOutGetColor() {
+        return new Color[] {Color.CYAN};
+    }
 }
