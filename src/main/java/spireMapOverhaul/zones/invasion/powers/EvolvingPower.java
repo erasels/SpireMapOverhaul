@@ -18,6 +18,7 @@ import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractSMOCard;
 import spireMapOverhaul.zones.invasion.actions.ChangeMaxHpAction;
 import spireMapOverhaul.zones.invasion.actions.CustomTextChooseOneAction;
+import spireMapOverhaul.zones.invasion.cards.AbstractInvasionZoneCard;
 
 import java.text.MessageFormat;
 import java.util.*;
@@ -134,7 +135,7 @@ public class EvolvingPower extends AbstractInvasionPower {
     }
 
     @AutoAdd.Ignore
-    public static class EvolutionChoice extends AbstractSMOCard {
+    public static class EvolutionChoice extends AbstractInvasionZoneCard {
         public static final String ID = SpireAnniversary6Mod.makeID("EvolutionChoice");
         private static final int COST = -2;
         public List<String> extraKeywords;
