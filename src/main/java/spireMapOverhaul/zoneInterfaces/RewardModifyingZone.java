@@ -123,6 +123,15 @@ public interface RewardModifyingZone {
     }
 
     /**
+     * Hook for modifying the number of cards in the reward, this happens after BustedCrown and Binary apply their modifications
+     * @param curNumCards the current amount of cards that would be in the reward
+     * @return the new amount of cards in the reward, generally the final amount
+     */
+    default int changeNumberOfCardsInReward(int curNumCards) {
+        return curNumCards;
+    }
+
+    /**
      * Helper method for getting the number of cards that should be in a standard reward.
      * You don't need to override this.
      * @return The number of cards that should be in the reward.
@@ -136,6 +145,9 @@ public interface RewardModifyingZone {
         if (ModHelper.isModEnabled(Binary.ID)) {
             numCards--;
         }
+
+        numCards = changeNumberOfCardsInReward(numCards);
+
         return numCards;
     }
 
