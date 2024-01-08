@@ -1,5 +1,6 @@
 package spireMapOverhaul.zones.candyland.consumables.rare;
 
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
 import com.megacrit.cardcrawl.actions.common.GainGoldAction;
 import com.megacrit.cardcrawl.actions.common.ObtainPotionAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -12,6 +13,7 @@ import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 import static spireMapOverhaul.util.Wiz.atb;
 
 
+@NoPools
 public class GoldCandy extends AbstractConsumable {
     public final static String ID = makeID(GoldCandy.class.getSimpleName());
 

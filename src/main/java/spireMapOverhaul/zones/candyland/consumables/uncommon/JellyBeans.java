@@ -1,5 +1,6 @@
 package spireMapOverhaul.zones.candyland.consumables.uncommon;
 
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
@@ -19,6 +20,7 @@ import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 import static spireMapOverhaul.util.Wiz.atb;
 
 
+@NoPools
 public class JellyBeans extends AbstractConsumable {
     public final static String ID = makeID(JellyBeans.class.getSimpleName());
 
