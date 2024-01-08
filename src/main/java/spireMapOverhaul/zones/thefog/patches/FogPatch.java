@@ -8,33 +8,33 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
-import com.evacipated.cardcrawl.modthespire.lib.*;
+import com.evacipated.cardcrawl.modthespire.lib.SpireInsertPatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.scenes.TheBottomScene;
-import spireMapOverhaul.zones.brokenSpace.patches.BrokenSpaceRenderPatch;
+import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.zones.thefog.TheFogZone;
 import spireMapOverhaul.zones.thefog.util.MouseInfo;
 
 import java.util.LinkedList;
-import java.util.logging.Logger;
 
 import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.rs;
 import static spireMapOverhaul.SpireAnniversary6Mod.makeShaderPath;
 import static spireMapOverhaul.SpireAnniversary6Mod.time;
 import static spireMapOverhaul.util.Wiz.getCurZone;
 
+@SuppressWarnings("unused")
 public class FogPatch {
     private static final float ZOOM = 2.0f;      // scale from 1 to 10
     private static final float INTENSITY = 3.0f; // scale from 1 to 5
 
     public static ShaderProgram fogShader;
-    private static LinkedList<MouseInfo> infos = new LinkedList<>();
+    private static final LinkedList<MouseInfo> infos = new LinkedList<>();
 
     private static final FrameBuffer fbo;
-
-
-    private static final Logger logger = Logger.getLogger(BrokenSpaceRenderPatch.class.getName());
 
     @SpirePatch(
             clz = AbstractDungeon.class,
@@ -87,7 +87,10 @@ public class FogPatch {
         fogShader.setUniformf("u_zoom", ZOOM);
         fogShader.setUniformf("u_intensity", INTENSITY);
 
+        sb.setBlendFunction(GL20.GL_ONE, GL20.GL_ZERO);
         sb.draw(region, 0f, 0f);
+        sb.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+
         sb.setShader(null);
         sb.flush();
     }
@@ -108,7 +111,7 @@ public class FogPatch {
                 Gdx.files.internal(makeShaderPath("fog/fragment.fs")).readString()
         );
         if (!fogShader.isCompiled()) {
-            logger.warning("Fog shader: " + fogShader.getLog());
+            SpireAnniversary6Mod.logger.warn("Fog shader: " + fogShader.getLog());
         }
         fogShader.begin();
 

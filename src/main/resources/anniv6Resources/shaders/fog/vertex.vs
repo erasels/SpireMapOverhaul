@@ -1,3 +1,5 @@
+// Credit to EricB who graciously donated this shader code to me
+
 uniform mat4 u_projTrans;
 
 attribute vec4 a_position;

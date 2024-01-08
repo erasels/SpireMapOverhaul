@@ -1,3 +1,5 @@
+// Credit to EricB who graciously donated this shader code to me
+
 #ifdef GL_ES
 precision lowp float;
 #endif
@@ -67,6 +69,6 @@ void main()
 	    finalFog = min(finalFog, fog);
     }
 
-	vec3 BG = texture(u_texture, v_texCoord).rgb;
-    fragColor = vec4(mix(BG, COLOR, finalFog), 0.25);
+	vec3 BG = texture2D(u_texture, v_texCoord).rgb;
+    gl_FragColor = vec4(mix(BG, COLOR, finalFog), 0.25);
 }
