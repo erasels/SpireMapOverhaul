@@ -55,10 +55,10 @@ public class AddLightningPatch {
 
                         vfxTimer = MathUtils.random(timeScaleStart, timeScaleEnd);
                         if(!AbstractDungeon.actionManager.turnHasEnded) {
-                            timeScaleStart = 0.1f;
-                            timeScaleEnd = 0.3f;
+                            timeScaleStart = 0.7f;
+                            timeScaleEnd = 1.0f;
                         } else {
-                            vfxTimer = 0.01f;
+                            vfxTimer = 0.1f;
                         }
                     }
                 }
