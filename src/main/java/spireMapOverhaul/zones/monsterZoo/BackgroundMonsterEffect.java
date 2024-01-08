@@ -53,7 +53,7 @@ public class BackgroundMonsterEffect extends AbstractGameEffect {
         this.ac.drawX = Settings.WIDTH / 2F - direction.x * multiplier;
         this.ac.drawY =  MathUtils.random(Settings.HEIGHT * 0.25f, Settings.HEIGHT * 0.75f);
 
-        this.rotation = 0;
+        this.rotation = MathUtils.random(-30, 30);
 
         this.skeleton = ReflectionHacks.getPrivate(ac, AbstractCreature.class, "skeleton");
         if (this.skeleton != null) {
