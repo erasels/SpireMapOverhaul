@@ -14,6 +14,7 @@ uniform float WIDTH;
 uniform float SPEED;
 uniform vec4 u_color;
 uniform vec4 u_tint;
+uniform float u_usetex;
 
 
 
@@ -25,7 +26,18 @@ void main()
     vec2 uv = u_screenSize.xy + vec2(1.,u_screenSize.y/u_screenSize.x)*gl_FragCoord.xy / u_screenSize.xy;
     //get the color from the texture and add it to the accumulator
     vec3 acc = vec3(0.);
-    acc += texture2D(u_tex0,gl_FragCoord.xy / u_screenSize.xy).rgb;
+
+    acc = texture2D(u_tex0,gl_FragCoord.xy / u_screenSize.xy).rgb;
+    acc = acc * u_usetex;
+
+    float alpha = max(texture2D(u_tex0,gl_FragCoord.xy / u_screenSize.xy).a, 0.0);
+
+        if (u_usetex == 0.0) {
+            alpha = texture2D(u_tex0,gl_FragCoord.xy / u_screenSize.xy).a > 0.01 ? 1.0 : 0.0;
+            alpha -= texture2D(u_tex0,gl_FragCoord.xy / u_screenSize.xy).a*3.0;
+            acc += u_color.rgb;
+        }
+
     acc *= u_tint.rgb;
 
 
@@ -44,6 +56,7 @@ void main()
         float edge = .005+.05*min(.5*abs(fi-5.-dof),1.);
         acc += vec3(smoothstep(edge,-edge,d)*(r.x/(1.+.02*fi*DEPTH))) * u_color.rgb;
     }
-    
-    gl_FragColor = vec4(acc,1.0);
+
+
+    gl_FragColor = vec4(acc,alpha);
 }

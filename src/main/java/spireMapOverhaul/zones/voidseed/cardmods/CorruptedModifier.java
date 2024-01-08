@@ -1,21 +1,36 @@
-package spireMapOverhaul.zones.voidseed.powers.cardmods;
+package spireMapOverhaul.zones.voidseed.cardmods;
 
 import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
+import basemod.helpers.TooltipInfo;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatches2;
+import com.megacrit.cardcrawl.actions.common.LoseHPAction;
+import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import spireMapOverhaul.zones.voidseed.VoidSeedShaderManager;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
+import static spireMapOverhaul.util.Wiz.adp;
+import static spireMapOverhaul.util.Wiz.atb;
 
 public class CorruptedModifier extends AbstractCardModifier {
 
     public static String ID = makeID("CorruptedModifier");
+    public static int AMOUNT = 4;
+
+
+    public static boolean valid(AbstractCard card) {
+        return card.baseMagicNumber > 0 || card.baseBlock > 0 || card.baseDamage > 0;
+    }
 
     @Override
     public AbstractCardModifier makeCopy() {
@@ -48,7 +63,7 @@ public class CorruptedModifier extends AbstractCardModifier {
     }
 
     public String modifyName(String cardName, AbstractCard card) {
-        return CardCrawlGame.languagePack.getUIString(makeID("CorruptedModifier")).TEXT[0] + cardName;
+        return "?" + CardCrawlGame.languagePack.getUIString(makeID("CorruptedModifier")).TEXT[0] + cardName + "?";
     }
 
     public void onPreRender(AbstractCard card, SpriteBatch sb) {
@@ -57,8 +72,24 @@ public class CorruptedModifier extends AbstractCardModifier {
     }
 
     @Override
+    public List<TooltipInfo> additionalTooltips(AbstractCard card) {
+        TooltipInfo tooltip = new TooltipInfo(CardCrawlGame.languagePack.getUIString(makeID("CorruptedModifier")).TEXT[1],
+                CardCrawlGame.languagePack.getUIString(makeID("CorruptedModifier")).TEXT[2] + AMOUNT + CardCrawlGame.languagePack.getUIString(makeID("CorruptedModifier")).TEXT[3]);
+        return new ArrayList<TooltipInfo>() {{
+            add(tooltip);
+        }};
+    }
+
+    @Override
+    public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
+
+        atb(new LoseHPAction(adp(), adp(), AMOUNT));
+        super.onUse(card, target, action);
+    }
+
+    @Override
     public void onRender(AbstractCard card, SpriteBatch sb) {
-        VoidSeedShaderManager.StopFbo(sb, 0.0f, 1.0f);
+        VoidSeedShaderManager.StopFbo(sb, 0.0f, 1.0f, true);
         super.onRender(card, sb);
     }
 

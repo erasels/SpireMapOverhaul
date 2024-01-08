@@ -30,16 +30,16 @@ public class VoidSeedShaderManager {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
     }
 
+    public static void StopFbo(SpriteBatch sb, float timerOffset, float timeScale, boolean useTex) {
+        StopFbo(sb, timerOffset, timeScale, useTex, new Color(0.5f, 0.0f, 0.5f, 0.2f));
+    }
 
-    public static void StopFbo(SpriteBatch sb, float timerOffset, float timeScale) {
-
+    public static void StopFbo(SpriteBatch sb, float timerOffset, float timeScale, boolean useTex, Color color) {
         sb.flush();
         fbo.end();
 
-
         TextureRegion region = new TextureRegion(fbo.getColorBufferTexture());
         region.flip(false, true);
-
 
         sb.setShader(voidSeedShader);
         sb.setColor(Color.WHITE);
@@ -48,8 +48,9 @@ public class VoidSeedShaderManager {
         voidSeedShader.setUniformf("DEPTH", 1f);
         voidSeedShader.setUniformf("WIDTH", 0.3f);
         voidSeedShader.setUniformf("SPEED", -1.5f);
-        voidSeedShader.setUniformf("u_color", new Color(0.5f, 0.0f, 0.5f, 1f));
+        voidSeedShader.setUniformf("u_color", color);
         voidSeedShader.setUniformf("u_tint", new Color(.9f, 0.5f, 0.9f, 1f));
+        voidSeedShader.setUniformf("u_usetex", useTex ? 1f : 0f);
 
         sb.draw(region, 0, 0);
         sb.setShader(null);
