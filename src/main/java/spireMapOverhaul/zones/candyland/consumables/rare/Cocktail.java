@@ -1,5 +1,6 @@
 package spireMapOverhaul.zones.candyland.consumables.rare;
 
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
 import com.megacrit.cardcrawl.actions.common.ObtainPotionAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -11,6 +12,7 @@ import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 import static spireMapOverhaul.util.Wiz.atb;
 
 
+@NoPools
 public class Cocktail extends AbstractConsumable {
     public final static String ID = makeID(Cocktail.class.getSimpleName());
 

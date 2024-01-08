@@ -1,5 +1,6 @@
 package spireMapOverhaul.zones.candyland.consumables.uncommon;
 
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
@@ -12,6 +13,7 @@ import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 import static spireMapOverhaul.util.Wiz.atb;
 
 
+@NoPools
 public class ChewingGum extends AbstractConsumable {
     public final static String ID = makeID(ChewingGum.class.getSimpleName());
 
