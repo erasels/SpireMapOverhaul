@@ -8,21 +8,29 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.utils.GdxRuntimeException;
-import com.evacipated.cardcrawl.modthespire.lib.*;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.scenes.TheBottomScene;
 import spireMapOverhaul.zones.thefog.TheFogZone;
-import weather.Weather;
-import weather.util.MouseInfo;
+import spireMapOverhaul.zones.thefog.util.MouseInfo;
+
 import java.util.LinkedList;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeShaderPath;
+import static spireMapOverhaul.SpireAnniversary6Mod.time;
 import static spireMapOverhaul.util.Wiz.getCurZone;
 
+// Credit to EricB who graciously donated this shader code to me
 public class FogPatch {
+    private static final float ZOOM = 2.0f;      // scale from 1 to 10
+    private static final float INTENSITY = 3.0f; // scale from 1 to 5
+
     private static ShaderProgram shader = null;
+    private static ScreenPostProcessor currentPostProcessor = null;
+    private static LinkedList<MouseInfo> infos = new LinkedList<>();
 
     private static void initShader() {
         if (shader == null) {
@@ -49,14 +57,14 @@ public class FogPatch {
 
         @SpirePrefixPatch
         public static void Prefix(TheBottomScene __instance, SpriteBatch sb) {
-            if (AbstractDungeonPostProcessorFields.currentPostProcessor.get(CardCrawlGame.dungeon) != null) {
-                ScreenPostProcessorManager.removePostProcessor(AbstractDungeonPostProcessorFields.currentPostProcessor.get(CardCrawlGame.dungeon));
+            if (currentPostProcessor != null) {
+                ScreenPostProcessorManager.removePostProcessor(currentPostProcessor);
             }
 
             if (getCurZone() instanceof TheFogZone) {
                 ScreenPostProcessor fog = createNewFogPostProcessor();
                 ScreenPostProcessorManager.addPostProcessor(fog);
-                AbstractDungeonPostProcessorFields.currentPostProcessor.set(CardCrawlGame.dungeon, fog);
+                currentPostProcessor = fog;
             }
         }
 
@@ -71,27 +79,11 @@ public class FogPatch {
     @SpirePatch2(clz = TheBottomScene.class, method = "update")
     public static class Timer {
         public static void Prefix(TheBottomScene __instance) {
-            TheBottomSceneFields.time.set(__instance, TheBottomSceneFields.time.get(__instance) + Gdx.graphics.getDeltaTime());
-            AbstractDungeonPostProcessorFields.time.set(CardCrawlGame.dungeon, AbstractDungeonPostProcessorFields.time.get(CardCrawlGame.dungeon) + Gdx.graphics.getDeltaTime());
-            LinkedList<MouseInfo> infos = AbstractDungeonPostProcessorFields.infos.get(CardCrawlGame.dungeon);
-            if(infos.size() > Settings.MAX_FPS) {
+            if (infos.size() > Settings.MAX_FPS) {
                 infos.removeFirst();
             }
-            infos.add(new MouseInfo(Gdx.input.getX(), Settings.HEIGHT - Gdx.input.getY(), AbstractDungeonPostProcessorFields.time.get(CardCrawlGame.dungeon)));
+            infos.add(new MouseInfo(Gdx.input.getX(), Settings.HEIGHT - Gdx.input.getY(), time));
         }
-    }
-
-    @SpirePatch(clz = TheBottomScene.class, method = SpirePatch.CLASS)
-    public static class TheBottomSceneFields {
-        public static SpireField<Float> time = new SpireField(() -> 0f);
-    }
-
-
-    @SpirePatch(clz = AbstractDungeon.class, method = SpirePatch.CLASS)
-    public static class AbstractDungeonPostProcessorFields {
-        public static SpireField<ScreenPostProcessor> currentPostProcessor = new SpireField(() -> null);
-        public static SpireField<Float> time = new SpireField(() -> 0f);
-        public static SpireField<LinkedList<MouseInfo>> infos = new SpireField(() -> new LinkedList<MouseInfo>());
     }
 
 
@@ -114,19 +106,19 @@ public class FogPatch {
                     System.out.println(shaderEffect.getLog());
                 }
                 sb.setShader(shaderEffect);
-                int size = AbstractDungeonPostProcessorFields.infos.get(CardCrawlGame.dungeon).size();
+                int size = infos.size();
                 float[] positions = new float[size * 3];
                 for(int i = 0; i < size; i++) {
-                    MouseInfo info = AbstractDungeonPostProcessorFields.infos.get(CardCrawlGame.dungeon).get(i);
+                    MouseInfo info = infos.get(i);
                     positions[3 * i] = info.x;
                     positions[3 * i + 1] = info.y;
-                    positions[3 * i + 2] = TheBottomSceneFields.time.get(AbstractDungeon.scene) - info.time;
+                    positions[3 * i + 2] = time - info.time;
                 }
-                shaderEffect.setUniformf("u_time", AbstractDungeonPostProcessorFields.time.get(CardCrawlGame.dungeon));
+                shaderEffect.setUniformf("u_time", time);
                 shaderEffect.setUniform3fv("u_positions", positions, 0, size * 3);
                 shaderEffect.setUniformi("u_size", size);
-                shaderEffect.setUniformf("u_zoom", Weather.iDataZoom.get());
-                shaderEffect.setUniformf("u_intensity", Weather.iDataIntensity.get());
+                shaderEffect.setUniformf("u_zoom", ZOOM);
+                shaderEffect.setUniformf("u_intensity", INTENSITY);
                 sb.draw(tex, 0f, 0f);
                 sb.flush();
                 sb.setShader(oldShader);
