@@ -53,6 +53,7 @@ public class StormZone extends AbstractZone implements CombatModifyingZone, Rewa
     }
 
     public void onEnterRoom() {
+        conduitTarget = null;
         if(StormUtil.rainSoundId == 0L) {
             StormUtil.rainSoundId = CardCrawlGame.sound.playAndLoop(RAIN_KEY);
         }
@@ -60,6 +61,7 @@ public class StormZone extends AbstractZone implements CombatModifyingZone, Rewa
     public void onExit() {
         CardCrawlGame.sound.stop(RAIN_KEY, StormUtil.rainSoundId);
         StormUtil.rainSoundId = 0L;
+        conduitTarget = null;
     }
 
     @Override

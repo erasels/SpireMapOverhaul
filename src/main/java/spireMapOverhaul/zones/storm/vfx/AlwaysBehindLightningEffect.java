@@ -53,4 +53,12 @@ public class AlwaysBehindLightningEffect extends AbstractGameEffect {
     }
 
     public void dispose() {}
+
+    public float[] _lightsOutGetXYRI() {
+        return new float[] {x, y, 400f*Settings.scale, 0.8f};
+    }
+
+    public Color[] _lightsOutGetColor() {
+        return new Color[] {Color.WHITE};
+    }
 }
