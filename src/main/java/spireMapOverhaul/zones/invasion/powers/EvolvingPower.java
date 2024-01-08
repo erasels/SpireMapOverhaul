@@ -1,6 +1,8 @@
 package spireMapOverhaul.zones.invasion.powers;
 
 import basemod.AutoAdd;
+import basemod.helpers.TooltipInfo;
+import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -18,10 +20,7 @@ import spireMapOverhaul.zones.invasion.actions.ChangeMaxHpAction;
 import spireMapOverhaul.zones.invasion.actions.CustomTextChooseOneAction;
 
 import java.text.MessageFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.BiConsumer;
 
 public class EvolvingPower extends AbstractInvasionPower {
@@ -56,7 +55,7 @@ public class EvolvingPower extends AbstractInvasionPower {
         List<Evolution> evolutionChoice = this.getNextEvolutionChoice();
         ArrayList<AbstractCard> options = new ArrayList<>();
         for (Evolution evolution : evolutionChoice) {
-            options.add(new EvolutionChoice(evolution.name, evolution.getDescription(), () -> evolution.apply.accept(this.owner, evolution.amount)));
+            options.add(new EvolutionChoice(evolution.name, evolution.getDescription(), evolution.extraKeywords, () -> evolution.apply.accept(this.owner, evolution.amount)));
         }
         AbstractDungeon.actionManager.addToTop(new CustomTextChooseOneAction(options, evolutionText));
     }
@@ -96,7 +95,7 @@ public class EvolvingPower extends AbstractInvasionPower {
         Evolution[] o4 = new Evolution [] {
                 new Evolution(FrailPulsePower.NAME, evolutionStrings.get(FrailPulsePower.POWER_ID), 1, (AbstractCreature m, Integer n) -> AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(m, m, new FrailPulsePower(m)))),
                 new Evolution(DazedPulsePower.NAME, evolutionStrings.get(DazedPulsePower.POWER_ID), 1, (AbstractCreature m, Integer n) -> AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(m, m, new DazedPulsePower(m)))),
-                new Evolution(AbysstouchedPulsePower.NAME, evolutionStrings.get(AbysstouchedPulsePower.POWER_ID), 2, (AbstractCreature m, Integer n) -> AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(m, m, new AbysstouchedPulsePower(m, n), n)))
+                new Evolution(AbysstouchedPulsePower.NAME, evolutionStrings.get(AbysstouchedPulsePower.POWER_ID), Collections.singletonList("Abysstouched"), 2, (AbstractCreature m, Integer n) -> AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(m, m, new AbysstouchedPulsePower(m, n), n)))
         };
         Evolution[] o5 = new Evolution [] {
                 new Evolution(ArtifactPower.NAME, 5, (AbstractCreature m, Integer n) -> AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(m, m, new ArtifactPower(m, n), n))),
@@ -109,6 +108,7 @@ public class EvolvingPower extends AbstractInvasionPower {
     private static class Evolution {
         public final String name;
         public final String text;
+        public final List<String> extraKeywords;
         public final Integer amount;
         public final BiConsumer<AbstractCreature, Integer> apply;
 
@@ -117,8 +117,13 @@ public class EvolvingPower extends AbstractInvasionPower {
         }
 
         public Evolution(String name, String text, Integer amount, BiConsumer<AbstractCreature, Integer> apply) {
+            this(name, text, new ArrayList<>(), amount, apply);
+        }
+
+        public Evolution(String name, String text, List<String> extraKeywords, Integer amount, BiConsumer<AbstractCreature, Integer> apply) {
             this.name = name;
             this.text = text;
+            this.extraKeywords = extraKeywords;
             this.amount = amount;
             this.apply = apply;
         }
@@ -132,13 +137,15 @@ public class EvolvingPower extends AbstractInvasionPower {
     public static class EvolutionChoice extends AbstractSMOCard {
         public static final String ID = SpireAnniversary6Mod.makeID("EvolutionChoice");
         private static final int COST = -2;
+        public List<String> extraKeywords;
         private Runnable action;
 
-        public EvolutionChoice(String name, String description, Runnable action) {
+        public EvolutionChoice(String name, String description, List<String> extraKeywords, Runnable action) {
             super(ID, COST, CardType.STATUS, CardRarity.SPECIAL, CardTarget.SELF, CardColor.COLORLESS);
             this.name = name;
             this.rawDescription = description;
             this.initializeDescription();
+            this.extraKeywords = extraKeywords;
             this.action = action;
         }
 
@@ -149,12 +156,22 @@ public class EvolvingPower extends AbstractInvasionPower {
         }
 
         @Override
+        public List<TooltipInfo> getCustomTooltips() {
+            List<TooltipInfo> tooltips = new ArrayList<>();
+            for (String id : this.extraKeywords) {
+                Keyword keyword = SpireAnniversary6Mod.keywords.get(id);
+                tooltips.add(new TooltipInfo(keyword.PROPER_NAME, keyword.DESCRIPTION));
+            }
+            return tooltips;
+        }
+
+        @Override
         public void onChoseThisOption() {
             this.action.run();
         }
 
         public AbstractCard makeCopy() {
-            return new EvolutionChoice(this.name, this.rawDescription, action);
+            return new EvolutionChoice(this.name, this.rawDescription, this.extraKeywords, action);
         }
     }
 }
