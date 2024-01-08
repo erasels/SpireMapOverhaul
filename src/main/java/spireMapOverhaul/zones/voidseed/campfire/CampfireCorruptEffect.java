@@ -62,7 +62,7 @@ public class CampfireCorruptEffect extends AbstractGameEffect {
             CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);// 68
             group.group.addAll(AbstractDungeon.player.masterDeck.group);// 69
             group.group.removeIf((c) -> {
-                return !CorruptedModifier.valid(c);
+                return !CorruptedModifier.valid(c) || CardModifierManager.hasModifier(c, CorruptedModifier.ID);
             });
             AbstractDungeon.gridSelectScreen.open(group, 1, TEXT[0], true, false, true, false);// 69 70
             CorruptScreenPatch.active = true;// 71
@@ -76,6 +76,7 @@ public class CampfireCorruptEffect extends AbstractGameEffect {
                 ((RestRoom) AbstractDungeon.getCurrRoom()).cutFireSound();// 89
             }
         }
+
 
     }// 92
 

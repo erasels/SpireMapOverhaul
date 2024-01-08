@@ -2,7 +2,7 @@
   "${ModID}:VoidSeed": {
     "TEXT": [
       "Void Seed",
-      "This area has been corrupted by the void. It is not safe to stay here for long. NL NL You will lose HP at the start of each turn. Enemies will be #yVoidtouched."
+      "This area has been corrupted by the void. It is not safe to rest here for long. NL NL You will lose HP at the start of each turn. Enemies will be #yVoidtouched. Cards have a high chance of being #yCorrupted. The rest option is #yCorrupted."
     ]
   },
   "${ModID}:CorruptedModifier": {
@@ -11,6 +11,18 @@
       "Corrupted",
       "Most numbers are doubled, but you will lose #b",
       " HP whenever you play this card."
+    ]
+  },
+  "${ModID}:CampfireCorruptEffect": {
+    "TEXT": [
+      "?CO?RUPT??"
+    ]
+  },
+  "${ModID}:CorruptOption": {
+    "TEXT": [
+      "??CORRU?T?",
+      "Corrupt a card",
+      "Unavailable"
     ]
   }
 }

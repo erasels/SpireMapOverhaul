@@ -12,11 +12,11 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.screens.DungeonMapScreen;
 import com.megacrit.cardcrawl.ui.campfire.AbstractCampfireOption;
 import com.megacrit.cardcrawl.ui.campfire.RestOption;
-import com.megacrit.cardcrawl.ui.campfire.SmithOption;
 import spireMapOverhaul.BetterMapGenerator;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.zoneInterfaces.*;
 import spireMapOverhaul.zones.voidseed.campfire.CorruptOption;
+import spireMapOverhaul.zones.voidseed.campfire.CorruptScreenPatch;
 import spireMapOverhaul.zones.voidseed.cardmods.CorruptedModifier;
 import spireMapOverhaul.zones.voidseed.powers.VoidFogPower;
 import spireMapOverhaul.zones.voidseed.powers.VoidtouchedPower;
@@ -25,7 +25,7 @@ import java.util.ArrayList;
 
 import static spireMapOverhaul.util.Wiz.*;
 
-public class VoidSeedZone extends AbstractZone implements ModifiedEventRateZone, RenderableZone, CombatModifyingZone, RewardModifyingZone, CampfireModifyingZone {
+public class VoidSeedZone extends AbstractZone implements OnTravelZone, ModifiedEventRateZone, RenderableZone, CombatModifyingZone, RewardModifyingZone, CampfireModifyingZone {
     public static final String ID = "VoidSeed";
     private static final float OFFSET_X = Settings.isMobile ? 496.0F * Settings.xScale : 560.0F * Settings.xScale;
     private static final float OFFSET_Y = 180.0F * Settings.scale;
@@ -46,7 +46,7 @@ public class VoidSeedZone extends AbstractZone implements ModifiedEventRateZone,
     }
 
     private VoidSeedZone(String name) {
-        super(ID, Icons.MONSTER);
+        super(ID, Icons.MONSTER, Icons.REST);
 
         this.width = 3;
         this.maxWidth = 3;
@@ -118,17 +118,26 @@ public class VoidSeedZone extends AbstractZone implements ModifiedEventRateZone,
         });
 
     }
+
+    // travel stuff
+
+    @Override
+    public void onEnterRoom() {
+        CorruptScreenPatch.active = false;
+    }
+
+    @Override
+    public void onExit() {
+        CorruptScreenPatch.active = false;
+    }
+
     //Campfire stuff
 
     @Override
     public void postAddButtons(ArrayList<AbstractCampfireOption> buttons) {
-        for (AbstractCampfireOption o : buttons) {
-            if (o instanceof RestOption) {
-                o.usable = false;
-            }
-        }
+
         buttons.replaceAll(o -> {
-            if (o instanceof SmithOption) {
+            if (o instanceof RestOption) {
                 return new CorruptOption(true);
             }
             return o;
