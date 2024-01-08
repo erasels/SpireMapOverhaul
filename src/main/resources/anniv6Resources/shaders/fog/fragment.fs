@@ -1,12 +1,8 @@
-#version 330
-
 #ifdef GL_ES
 precision lowp float;
 #endif
 
-out vec4 fragColor;
-
-in vec2 v_texCoord;
+varying vec2 v_texCoord;
 
 uniform vec2 u_screenSize;
 uniform sampler2D u_texture;
