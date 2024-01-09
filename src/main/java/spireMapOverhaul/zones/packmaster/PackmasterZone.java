@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.rooms.EventRoom;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.zoneInterfaces.CombatModifyingZone;
+import spireMapOverhaul.zoneInterfaces.ModifiedEventRateZone;
 import spireMapOverhaul.zoneInterfaces.RewardModifyingZone;
 import spireMapOverhaul.zoneInterfaces.ShopModifyingZone;
 
@@ -23,11 +24,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class PackmasterZone extends AbstractZone implements CombatModifyingZone, RewardModifyingZone, ShopModifyingZone {
+public class PackmasterZone extends AbstractZone implements CombatModifyingZone, RewardModifyingZone, ShopModifyingZone, ModifiedEventRateZone {
     public static final String ID = "Packmaster";
 
-    private static Class<?> anniv5;
-    private static Class<?> abstractCardPack;
+    public static Class<?> anniv5;
+    public static Class<?> abstractCardPack;
 
     private ArrayList<AbstractCard> cards;
     private ArrayList<AbstractCard> commonPool;
@@ -107,6 +108,11 @@ public class PackmasterZone extends AbstractZone implements CombatModifyingZone,
         this.uncommonPool = this.cards.stream().filter(c -> c.rarity == AbstractCard.CardRarity.UNCOMMON).collect(Collectors.toCollection(ArrayList::new));
         this.rarePool = this.cards.stream().filter(c -> c.rarity == AbstractCard.CardRarity.RARE).collect(Collectors.toCollection(ArrayList::new));
         this.updateDescription();
+    }
+
+    @Override
+    public float zoneSpecificEventRate() {
+        return 1;
     }
 
     @Override
