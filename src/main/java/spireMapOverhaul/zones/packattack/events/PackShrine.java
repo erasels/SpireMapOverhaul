@@ -1,4 +1,4 @@
-package spireMapOverhaul.zones.packmaster.events;
+package spireMapOverhaul.zones.packattack.events;
 
 import basemod.ReflectionHacks;
 import com.badlogic.gdx.math.MathUtils;
@@ -14,7 +14,7 @@ import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import com.megacrit.cardcrawl.vfx.cardManip.PurgeCardEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import spireMapOverhaul.SpireAnniversary6Mod;
-import spireMapOverhaul.zones.packmaster.PackmasterZone;
+import spireMapOverhaul.zones.packattack.PackAttackZone;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -25,8 +25,8 @@ public class PackShrine extends AbstractImageEvent {
     private static final String NAME = eventStrings.NAME;
     private static final String[] DESCRIPTIONS = eventStrings.DESCRIPTIONS;
     private static final String[] OPTIONS = eventStrings.OPTIONS;
-    public static final String IMG_1 = SpireAnniversary6Mod.makeImagePath("events/Packmaster/PackShrine1.png");
-    public static final String IMG_2 = SpireAnniversary6Mod.makeImagePath("events/Packmaster/PackShrine2.png");
+    public static final String IMG_1 = SpireAnniversary6Mod.makeImagePath("events/PackAttack/PackShrine1.png");
+    public static final String IMG_2 = SpireAnniversary6Mod.makeImagePath("events/PackAttack/PackShrine2.png");
     private static final int CARDS = 20;
     private static final int COMMON_GOLD = 30;
     private static final int A15_COMMON_GOLD = 20;
@@ -171,12 +171,12 @@ public class PackShrine extends AbstractImageEvent {
     @SuppressWarnings("unchecked")
     private ArrayList<AbstractCard> getAllPackmasterCards() {
         List<AbstractCard.CardRarity> validRarities = Arrays.asList(AbstractCard.CardRarity.COMMON, AbstractCard.CardRarity.UNCOMMON, AbstractCard.CardRarity.RARE);
-        ArrayList<Object> allPacks = new ArrayList<>(ReflectionHacks.getPrivateStatic(PackmasterZone.anniv5, "allPacks"));
+        ArrayList<Object> allPacks = new ArrayList<>(ReflectionHacks.getPrivateStatic(PackAttackZone.anniv5, "allPacks"));
         return allPacks
                 .stream()
                 .map(pack -> {
                     try {
-                        return (ArrayList<AbstractCard>)ReflectionHacks.getCachedField(PackmasterZone.abstractCardPack, "cards").get(pack);
+                        return (ArrayList<AbstractCard>)ReflectionHacks.getCachedField(PackAttackZone.abstractCardPack, "cards").get(pack);
                     } catch (IllegalAccessException e) {
                         e.printStackTrace();
                         throw new RuntimeException("Error getting cards for Pack Shrine event");

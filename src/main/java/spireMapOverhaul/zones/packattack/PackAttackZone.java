@@ -1,4 +1,4 @@
-package spireMapOverhaul.zones.packmaster;
+package spireMapOverhaul.zones.packattack;
 
 import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.Color;
@@ -24,8 +24,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class PackmasterZone extends AbstractZone implements CombatModifyingZone, RewardModifyingZone, ShopModifyingZone, ModifiedEventRateZone {
-    public static final String ID = "Packmaster";
+public class PackAttackZone extends AbstractZone implements CombatModifyingZone, RewardModifyingZone, ShopModifyingZone, ModifiedEventRateZone {
+    public static final String ID = "PackAttack";
 
     public static Class<?> anniv5;
     public static Class<?> abstractCardPack;
@@ -37,7 +37,7 @@ public class PackmasterZone extends AbstractZone implements CombatModifyingZone,
 
     private ArrayList<String> packNames;
 
-    public PackmasterZone() {
+    public PackAttackZone() {
         super(ID, Icons.MONSTER, Icons.EVENT, Icons.SHOP);
         this.width = 3;
         this.maxHeight = 4;
@@ -61,7 +61,7 @@ public class PackmasterZone extends AbstractZone implements CombatModifyingZone,
 
     @Override
     public AbstractZone copy() {
-        return new PackmasterZone();
+        return new PackAttackZone();
     }
 
     @Override

@@ -1,4 +1,4 @@
-package spireMapOverhaul.zones.packmaster.events;
+package spireMapOverhaul.zones.packattack.events;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -14,7 +14,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.util.Wiz;
-import spireMapOverhaul.zones.packmaster.PackmasterZone;
+import spireMapOverhaul.zones.packattack.PackAttackZone;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -26,7 +26,7 @@ public class BlackMarketTwo extends AbstractImageEvent {
     private static final String NAME = eventStrings.NAME;
     private static final String[] DESCRIPTIONS = eventStrings.DESCRIPTIONS;
     private static final String[] OPTIONS = eventStrings.OPTIONS;
-    public static final String IMG = SpireAnniversary6Mod.makeImagePath("events/Packmaster/BlackMarketTwo.png");
+    public static final String IMG = SpireAnniversary6Mod.makeImagePath("events/PackAttack/BlackMarketTwo.png");
     private static final int CARDS = 3;
     private static final int HP_LOSS = 10;
     private static final int A15_HP_LOSS = 12;
@@ -86,7 +86,7 @@ public class BlackMarketTwo extends AbstractImageEvent {
                         this.imageEventText.updateDialogOption(0, OPTIONS[5]);
                         this.imageEventText.clearRemainingOptions();
                         ArrayList<AbstractCard> cards = new ArrayList<>();
-                        PackmasterZone zone = (PackmasterZone)Wiz.getCurZone();
+                        PackAttackZone zone = (PackAttackZone)Wiz.getCurZone();
                         ArrayList<AbstractCard> packCards = new ArrayList<>(zone.getCards());
                         Collections.shuffle(packCards, new java.util.Random(AbstractDungeon.miscRng.randomLong()));
                         for (int i = 0; i < CARDS; i++) {
