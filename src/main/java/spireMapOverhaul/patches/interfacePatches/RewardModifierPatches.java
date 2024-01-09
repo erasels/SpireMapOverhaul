@@ -2,14 +2,18 @@ package spireMapOverhaul.patches.interfacePatches;
 
 import basemod.ReflectionHacks;
 import com.evacipated.cardcrawl.modthespire.lib.*;
+import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.FontHelper;
+import com.megacrit.cardcrawl.helpers.ModHelper;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.saveAndContinue.SaveAndContinue;
 import com.megacrit.cardcrawl.screens.CombatRewardScreen;
 import com.megacrit.cardcrawl.vfx.FastCardObtainEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
+import javassist.CannotCompileException;
 import javassist.CtBehavior;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.util.Wiz;
@@ -126,7 +130,7 @@ public class RewardModifierPatches {
     }
 
     @SpirePatch2(clz = AbstractDungeon.class, method = "getRewardCards")
-    public static class UpgradeModification {
+    public static class UpgradeAndCardNumModification {
         private static float baseChance;
 
         @SpireInsertPatch(rloc = 64) // 1856: for (AbstractCard c : retVal2) {
@@ -150,6 +154,11 @@ public class RewardModifierPatches {
 
                 ___cardUpgradedChance[0] = baseChance;
             });
+        }
+
+        @SpireInsertPatch(rloc = 13, localvars = {"numCards"}) // 1805: for (int i = 0; i < numCards; i++) {
+        public static void changeNumberOfCardsInReward(@ByRef int[] numCards) {
+            Wiz.forCurZone(RewardModifyingZone.class, z -> numCards[0] = z.changeNumberOfCardsInReward(numCards[0]));
         }
     }
 }

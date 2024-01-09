@@ -1,0 +1,18 @@
+{
+  "${ModID}:Storm": {
+    "TEXT": [
+      "Storm",
+      "A thunderstorm is forecasted in this area of the Spire. Lightning will strike either the player or a monster, and you may be rewarded with special electric cards. Make sure to keep your hand out of the rain..."
+    ]
+  },
+  "${ModID}:Damp": {
+    "TEXT": [
+      "Damp "
+    ]
+  },
+  "${ModID}:Electric": {
+    "TEXT": [
+      "Electric "
+    ]
+  }
+}

@@ -29,6 +29,7 @@ import com.megacrit.cardcrawl.events.AbstractEvent;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rewards.RewardSave;
 import com.megacrit.cardcrawl.screens.options.DropdownMenu;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
@@ -39,8 +40,6 @@ import spireMapOverhaul.abstracts.AbstractSMORelic;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.cardvars.SecondDamage;
 import spireMapOverhaul.cardvars.SecondMagicNumber;
-import spireMapOverhaul.patches.CustomRewardTypes;
-import spireMapOverhaul.patches.ZonePatches;
 import spireMapOverhaul.patches.ZonePerFloorRunHistoryPatch;
 import spireMapOverhaul.patches.interfacePatches.CampfireModifierPatches;
 import spireMapOverhaul.patches.interfacePatches.EncounterModifierPatches;
@@ -54,8 +53,7 @@ import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.util.ZoneShapeMaker;
 import spireMapOverhaul.zoneInterfaces.CampfireModifyingZone;
 import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
-import spireMapOverhaul.zones.gremlinTown.events.Surprise;
-import spireMapOverhaul.zones.gremlinTown.potions.*;
+import spireMapOverhaul.rewards.HealReward;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -65,6 +63,11 @@ import java.lang.reflect.Modifier;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.function.Consumer;
+
+import static spireMapOverhaul.zones.manasurge.ManaSurgeZone.ENCHANTBLIGHT_KEY;
+import static spireMapOverhaul.zones.manasurge.ManaSurgeZone.ENCHANTBLIGHT_OGG;
+import static spireMapOverhaul.util.Wiz.adp;
+import static spireMapOverhaul.zones.storm.StormZone.*;
 
 @SuppressWarnings({"unused"})
 @SpireInitializer
@@ -77,8 +80,10 @@ public class SpireAnniversary6Mod implements
         AddAudioSubscriber,
         PostRenderSubscriber,
         PostCampfireSubscriber,
+        MaxHPChangeSubscriber,
         StartGameSubscriber,
-        ImGuiSubscriber {
+        ImGuiSubscriber,
+        PostUpdateSubscriber {
 
     public static final Logger logger = LogManager.getLogger("Zonemaster");
 
@@ -225,6 +230,10 @@ public class SpireAnniversary6Mod implements
         CustomIconHelper.addCustomIcon(ChestIcon.get());
         CustomIconHelper.addCustomIcon(ShopIcon.get());
         CustomIconHelper.addCustomIcon(RestIcon.get());
+
+        // Mana Surge Icons
+        CustomIconHelper.addCustomIcon(EnchantmentIcon.get());
+        CustomIconHelper.addCustomIcon(BlightIcon.get());
 
         BaseMod.addDynamicVariable(new SecondMagicNumber());
         BaseMod.addDynamicVariable(new SecondDamage());
@@ -523,7 +532,11 @@ public class SpireAnniversary6Mod implements
 
     @Override
     public void receiveAddAudio() {
+        BaseMod.addAudio(THUNDER_KEY, THUNDER_MP3);
+        BaseMod.addAudio(RAIN_KEY, RAIN_MP3);
 
+        // Mana Surge Audio
+        BaseMod.addAudio(ENCHANTBLIGHT_KEY,ENCHANTBLIGHT_OGG);
     }
 
     private void registerCustomRewards() {
@@ -556,7 +569,19 @@ public class SpireAnniversary6Mod implements
             hoverRewardWorkaround.renderCardOnHover(sb);
             hoverRewardWorkaround = null;
         }
+        BrokenSpaceZone.shaderTimer += Gdx.graphics.getDeltaTime();
     }
+
+    @Override
+    public int receiveMaxHPChange(int amount) {
+        for (AbstractRelic r : adp().relics) {
+            if (r instanceof MaxHPChangeRelic) {
+                amount = ((MaxHPChangeRelic) r).onMaxHPChange(amount);
+            }
+        }
+        return amount;
+    }
+
     private ModPanel settingsPanel;
     private static final float LARGEICONS_CHECKBOX_X = 400f;
     private static final float LARGEICONS_CHECKBOX_Y = 650f;
@@ -671,6 +696,12 @@ public class SpireAnniversary6Mod implements
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static float time = 0f;
+    @Override
+    public void receivePostUpdate() {
+        time += Gdx.graphics.getRawDeltaTime();
     }
 
     public static class SavableCurrentRunActive implements CustomSavable<Boolean> {

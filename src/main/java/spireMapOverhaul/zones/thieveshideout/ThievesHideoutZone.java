@@ -37,7 +37,8 @@ public class ThievesHideoutZone extends AbstractZone implements EncounterModifyi
 
     public ThievesHideoutZone() {
         super(ID, Icons.MONSTER);
-        this.width = 2;
+        this.width = 1;
+        this.maxWidth = 3;
         this.height = 5;
     }
 
