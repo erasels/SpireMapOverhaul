@@ -1,0 +1,6 @@
+{
+  "${ModID}:volEruptPower": {
+    "NAME": "Erupt",
+    "DESCRIPTIONS": ["After you play #b{0}% more cards, this enemy explodes, dealing #r{0} damage."]
+  }
+}

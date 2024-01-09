@@ -83,5 +83,8 @@ $RECYCLE.BIN/
 # Spriter files
 *.autosave.scml
 
+# Alpha fixer
+fixalpha.exe
+
 pom.xml
 example-pom.xml

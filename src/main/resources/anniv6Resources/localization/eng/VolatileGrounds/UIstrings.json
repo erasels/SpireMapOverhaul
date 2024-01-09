@@ -1,0 +1,8 @@
+{
+  "${ModID}:VolatileGrounds": {
+    "TEXT": [
+      "Volatile Grounds",
+      "Houses various creatures that have low health, but explode if not handled carefully. Keep combats short and avoid playing too many cards or endure the explosions."
+    ]
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "${ModID}:Eruptor": {
+    "MOVES": [
+      "Bruise",
+      "Boil"
+    ],
+    "NAME": "Eruptor"
+  }
+}
