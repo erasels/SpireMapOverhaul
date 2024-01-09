@@ -27,9 +27,14 @@ public class EruptPower extends AbstractSMOPower {
     public EruptPower(AbstractCreature owner, int amount, int amount2) {
         super(ID, NAME, PowerType.BUFF, true, owner, amount);
         isTwoAmount = true;
-        this.description = DESCRIPTIONS[0];
         this.amount2 = amount2;
     }
+    @Override
+    public void updateDescription() {
+        this.description = DESCRIPTIONS[0].replace("{0}", this.amount2 + "")
+                .replace("{1}", this.amount + "");
+    }
+    
     
     @Override
     public void onPlayCard(AbstractCard card, AbstractMonster m) {

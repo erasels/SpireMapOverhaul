@@ -43,7 +43,7 @@ public class Eruptor extends CustomMonster {
     private boolean firstMove = true;
     
     public Eruptor(final float x, final float y) {
-        super(NAME, ID, HP_MAX, -5.0F, 0, 70.0f, 70.0f, IMG, x, y);
+        super(NAME, ID, HP_MAX, -5.0F, 0, 180.0f, 100.0f, IMG, x, y);
         if (AbstractDungeon.ascensionLevel >= 8) {
             this.setHp(A8_HP_MIN, A8_HP_MAX);
         } else {
