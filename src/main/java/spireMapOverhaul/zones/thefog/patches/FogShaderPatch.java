@@ -27,7 +27,7 @@ import static spireMapOverhaul.SpireAnniversary6Mod.time;
 import static spireMapOverhaul.util.Wiz.getCurZone;
 
 @SuppressWarnings("unused")
-public class FogPatch {
+public class FogShaderPatch {
     private static final float ZOOM = 2.0f;      // scale from 1 to 10
     private static final float INTENSITY = 3.0f; // scale from 1 to 5
 
