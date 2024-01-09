@@ -1,0 +1,16 @@
+{
+  "${ModID}:VoidtouchedPower": {
+    "NAME": "Voidtouched",
+    "DESCRIPTIONS": [
+      "Will gain #b",
+      " #yBuffer at the start of its turn if it has none."
+    ]
+  },
+  "${ModID}:VoidFogPower": {
+    "NAME": "Void Fog",
+    "DESCRIPTIONS": [
+      "Lose #b",
+      " #yHP at the start of your turn."
+    ]
+  }
+}
