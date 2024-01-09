@@ -45,7 +45,6 @@ public class CorruptScreenPatch {
             return new ExprEditor() {
                 @Override
                 public void edit(MethodCall m) throws CannotCompileException {
-
                     if (m.getClassName().equals(AbstractCard.class.getName())) {
                         String method = m.getMethodName();
 

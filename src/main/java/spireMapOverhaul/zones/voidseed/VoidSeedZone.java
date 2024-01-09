@@ -3,6 +3,7 @@ package spireMapOverhaul.zones.voidseed;
 import basemod.helpers.CardModifierManager;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -143,5 +144,21 @@ public class VoidSeedZone extends AbstractZone implements OnTravelZone, Modified
             return o;
         });
 
+    }
+
+    @Override
+    public void postAddCampfireMessages(ArrayList<String> messages) {
+        ArrayList<String> newMessages = new ArrayList<>();
+        for (String s : messages) {
+            //replace 3 random characters with a ?
+            for (int i = 0; i < 3; i++) {
+                int j = MathUtils.random(s.length() - 1);
+                s = s.substring(0, j) + "?" + s.substring(j + 1);
+            }
+            newMessages.add(s);
+
+        }
+        messages.clear();
+        messages.addAll(newMessages);
     }
 }

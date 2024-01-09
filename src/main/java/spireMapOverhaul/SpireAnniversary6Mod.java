@@ -24,6 +24,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.AbstractEvent;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.*;
@@ -40,6 +41,7 @@ import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.cardvars.SecondDamage;
 import spireMapOverhaul.cardvars.SecondMagicNumber;
 import spireMapOverhaul.interfaces.relics.MaxHPChangeRelic;
+import spireMapOverhaul.interfaces.relics.PostUpdateRelic;
 import spireMapOverhaul.patches.CustomRewardTypes;
 import spireMapOverhaul.patches.ZonePatches;
 import spireMapOverhaul.patches.ZonePerFloorRunHistoryPatch;
@@ -694,6 +696,13 @@ public class SpireAnniversary6Mod implements
     @Override
     public void receivePostUpdate() {
         time += Gdx.graphics.getRawDeltaTime();
+        if (AbstractDungeon.player != null) {
+            for (AbstractRelic r : adp().relics) {
+                if (r instanceof PostUpdateRelic) {
+                    ((PostUpdateRelic) r).postUpdate();
+                }
+            }
+        }
     }
 
     public static class SavableCurrentRunActive implements CustomSavable<Boolean> {

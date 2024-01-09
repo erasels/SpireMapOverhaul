@@ -5,11 +5,15 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.Matryoshka;
 import com.megacrit.cardcrawl.rewards.RewardItem;
+import spireMapOverhaul.interfaces.relics.PostUpdateRelic;
 
-public class BrokenMatryoshka extends BrokenRelic {
+import java.util.ArrayList;
+
+public class BrokenMatryoshka extends BrokenRelic implements PostUpdateRelic {
     public static final String ID = "BrokenMatryoshka";
     public static final int AMOUNT = 4;
     public static final int EMPTY = 2;
+    private static boolean triggered = false;
 
     public BrokenMatryoshka() {
         super(ID, RelicTier.SPECIAL, LandingSound.CLINK, Matryoshka.ID);
@@ -21,25 +25,37 @@ public class BrokenMatryoshka extends BrokenRelic {
 
     @Override
     public void onEquip() {
-        for (int i = 0; i < AMOUNT-1; i++) {
-            AbstractRelic r = AbstractDungeon.returnRandomScreenlessRelic(getRelicTier());
-            AbstractDungeon.getCurrRoom().rewards.add(new RewardItem(r));
-        }
-        AbstractRelic r = AbstractDungeon.returnRandomScreenlessRelic(getRelicTier());
-        RewardItem reward = new RewardItem(r);
-        AbstractDungeon.getCurrRoom().rewards.add(reward);
-        if (!Settings.hasSapphireKey && Settings.isFinalActAvailable) {
-            AbstractDungeon.getCurrRoom().addSapphireKey(reward);
-        }
-
-        AbstractDungeon.getCurrRoom().rewards.forEach(rewardItem -> {
-            if (!AbstractDungeon.combatRewardScreen.rewards.contains(rewardItem)) {
-                AbstractDungeon.combatRewardScreen.rewards.add(rewardItem);
-            }
-        });
-
+        triggered = true;
         counter = EMPTY;
+    }
 
+    @Override
+    public void postUpdate() {
+        if (triggered) {
+            triggered = false;
+            ArrayList<RewardItem> newRelics = new ArrayList<>();
+            for (int i = 0; i < AMOUNT - 1; i++) {
+                AbstractRelic r = AbstractDungeon.returnRandomScreenlessRelic(getRelicTier());
+                RewardItem reward = new RewardItem(r);
+                AbstractDungeon.getCurrRoom().rewards.add(reward);
+                newRelics.add(reward);
+
+            }
+            AbstractRelic r = AbstractDungeon.returnRandomScreenlessRelic(getRelicTier());
+            RewardItem reward = new RewardItem(r);
+            AbstractDungeon.getCurrRoom().rewards.add(reward);
+            newRelics.add(reward);
+            if (!Settings.hasSapphireKey && Settings.isFinalActAvailable) {
+                RewardItem key = new RewardItem(reward, RewardItem.RewardType.SAPPHIRE_KEY);
+                AbstractDungeon.getCurrRoom().rewards.add(key);
+                newRelics.add(key);
+
+            }
+            AbstractDungeon.getCurrRoom().rewards.removeIf(rewardItem -> rewardItem.relic == this);
+            AbstractDungeon.combatRewardScreen.rewards.removeIf(rewardItem -> rewardItem.relic == this);
+
+            AbstractDungeon.combatRewardScreen.rewards.addAll(newRelics);
+        }
     }
 
     public void onChestOpenAfter(boolean bossChest) {
