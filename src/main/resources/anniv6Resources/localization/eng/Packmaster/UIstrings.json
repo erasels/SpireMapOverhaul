@@ -1,0 +1,9 @@
+{
+  "${ModID}:Packmaster": {
+    "TEXT": [
+      "Packmaster",
+      "Cards from Packmaster packs can be found here. Each turn, you draw one less card, but add a random card from the packs to your hand. NL NL Card rewards and shops contain cards from the packs.",
+      "Cards from the Packmaster packs {0}, {1}, and {2} can be found here. Each turn, you draw one less card, but add a random card from those packs to your hand. NL NL Card rewards and shops contain cards from those packs."
+    ]
+  }
+}
