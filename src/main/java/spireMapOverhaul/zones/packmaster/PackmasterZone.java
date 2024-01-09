@@ -55,6 +55,10 @@ public class PackmasterZone extends AbstractZone implements CombatModifyingZone,
         }
     }
 
+    public ArrayList<AbstractCard> getCards() {
+        return cards;
+    }
+
     @Override
     public AbstractZone copy() {
         return new PackmasterZone();
