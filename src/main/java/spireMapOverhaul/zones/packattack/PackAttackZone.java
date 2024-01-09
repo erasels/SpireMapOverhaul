@@ -39,7 +39,7 @@ public class PackAttackZone extends AbstractZone implements CombatModifyingZone,
 
     public PackAttackZone() {
         super(ID, Icons.MONSTER, Icons.EVENT, Icons.SHOP);
-        this.width = 3;
+        this.width = 2;
         this.maxHeight = 4;
         this.height = 3;
         this.maxHeight = 4;
