@@ -2,6 +2,7 @@ package spireMapOverhaul.zones.packattack.events;
 
 import basemod.ReflectionHacks;
 import com.badlogic.gdx.math.MathUtils;
+import com.evacipated.cardcrawl.modthespire.Loader;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -47,6 +48,10 @@ public class PackShrine extends AbstractImageEvent {
         super(NAME, DESCRIPTIONS[0], IMG_1);
         if (MathUtils.randomBoolean()) {
             this.imageEventText.loadImage(IMG_2);
+        }
+
+        if (!Loader.isModLoaded("anniv5")) {
+            throw new RuntimeException("This event requires Packmaster to be loaded");
         }
 
         this.commonGold = AbstractDungeon.ascensionLevel >= 15 ? A15_COMMON_GOLD : COMMON_GOLD;

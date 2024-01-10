@@ -1,5 +1,6 @@
 package spireMapOverhaul.zones.packattack.events;
 
+import com.evacipated.cardcrawl.modthespire.Loader;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -43,6 +44,10 @@ public class BlackMarketTwo extends AbstractImageEvent {
 
     public BlackMarketTwo() {
         super(NAME, DESCRIPTIONS[0], IMG);
+
+        if (!Loader.isModLoaded("anniv5")) {
+            throw new RuntimeException("This event requires Packmaster to be loaded");
+        }
 
         this.gold = AbstractDungeon.ascensionLevel >= 15 ? A15_GOLD : GOLD;
         this.hpLoss = AbstractDungeon.ascensionLevel >= 15 ? A15_HP_LOSS : HP_LOSS;
