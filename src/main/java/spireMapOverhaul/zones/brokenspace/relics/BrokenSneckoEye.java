@@ -1,10 +1,10 @@
-package spireMapOverhaul.zones.brokenSpace.relics;
+package spireMapOverhaul.zones.brokenspace.relics;
 
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.relics.SneckoEye;
-import spireMapOverhaul.zones.brokenSpace.cardmods.UnreadableCardMod;
+import spireMapOverhaul.zones.brokenspace.cardmods.UnreadableCardMod;
 
 import static spireMapOverhaul.util.Wiz.adp;
 

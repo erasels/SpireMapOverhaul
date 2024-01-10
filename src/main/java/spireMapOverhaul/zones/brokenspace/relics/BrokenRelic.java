@@ -1,4 +1,4 @@
-package spireMapOverhaul.zones.brokenSpace.relics;
+package spireMapOverhaul.zones.brokenspace.relics;
 
 import basemod.ReflectionHacks;
 import com.badlogic.gdx.Gdx;
@@ -20,7 +20,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.screens.SingleRelicViewPopup;
 import spireMapOverhaul.abstracts.AbstractSMORelic;
 import spireMapOverhaul.util.TexLoader;
-import spireMapOverhaul.zones.brokenSpace.BrokenSpaceZone;
+import spireMapOverhaul.zones.brokenspace.BrokenSpaceZone;
 
 import java.util.ArrayList;
 import java.util.logging.Logger;
