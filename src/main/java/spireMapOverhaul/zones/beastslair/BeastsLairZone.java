@@ -8,13 +8,10 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.MonsterHelper;
 import com.megacrit.cardcrawl.map.MapRoomNode;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.rewards.RewardItem;
-import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
-import spireMapOverhaul.BetterMapGenerator;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
 import spireMapOverhaul.zoneInterfaces.RewardModifyingZone;
@@ -93,12 +90,12 @@ public class BeastsLairZone extends AbstractZone implements EncounterModifyingZo
 
     @Override
     public int changeRareCardRewardChance(int rareCardRewardChance) {
-        return 75;
+        return 50;
     }
 
     @Override
     public int changeUncommonCardRewardChance(int uncommonCardRewardChance) {
-        return 25;
+        return 50;
     }
 
     @Override
