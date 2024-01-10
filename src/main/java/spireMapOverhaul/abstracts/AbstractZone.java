@@ -148,8 +148,12 @@ public abstract class AbstractZone {
         }
         if (icons.length > 0)
             sb.append(" NL ");
-        sb.append(TEXT[1]);
+        sb.append(getDescriptionText());
         tooltipBody = sb.toString();
+    }
+
+    public String getDescriptionText() {
+        return TEXT[1];
     }
 
     public void renderOnMap(SpriteBatch sb, float alpha) {
