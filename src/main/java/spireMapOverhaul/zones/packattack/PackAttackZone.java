@@ -109,6 +109,8 @@ public class PackAttackZone extends AbstractZone implements CombatModifyingZone,
                 throw new RuntimeException("Error determining packs for Pack zone", e);
             }
         }
+        List<AbstractCard.CardRarity> validRarities = Arrays.asList(AbstractCard.CardRarity.COMMON, AbstractCard.CardRarity.UNCOMMON, AbstractCard.CardRarity.RARE);
+        this.cards.removeIf(c -> !validRarities.contains(c.rarity));
         this.commonPool = this.cards.stream().filter(c -> c.rarity == AbstractCard.CardRarity.COMMON).collect(Collectors.toCollection(ArrayList::new));
         this.uncommonPool = this.cards.stream().filter(c -> c.rarity == AbstractCard.CardRarity.UNCOMMON).collect(Collectors.toCollection(ArrayList::new));
         this.rarePool = this.cards.stream().filter(c -> c.rarity == AbstractCard.CardRarity.RARE).collect(Collectors.toCollection(ArrayList::new));
@@ -127,7 +129,8 @@ public class PackAttackZone extends AbstractZone implements CombatModifyingZone,
 
     @Override
     public void atTurnStart() {
-        AbstractCard c = this.cards.get(AbstractDungeon.cardRandomRng.random(this.cards.size() - 1)).makeCopy();
+        List<AbstractCard> validCards = this.cards.stream().filter(card -> !card.hasTag(AbstractCard.CardTags.HEALING)).collect(Collectors.toList());
+        AbstractCard c = validCards.get(AbstractDungeon.cardRandomRng.random(validCards.size() - 1)).makeCopy();
         Wiz.atb(new MakeTempCardInHandAction(c, 1));
     }
 
