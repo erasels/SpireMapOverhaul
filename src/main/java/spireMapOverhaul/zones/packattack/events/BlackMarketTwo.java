@@ -51,7 +51,7 @@ public class BlackMarketTwo extends AbstractImageEvent {
 
         this.gold = AbstractDungeon.ascensionLevel >= 15 ? A15_GOLD : GOLD;
         this.hpLoss = AbstractDungeon.ascensionLevel >= 15 ? A15_HP_LOSS : HP_LOSS;
-        this.boosterBox = RelicLibrary.getRelic("anniv5:PMBoosterBox");
+        this.boosterBox = RelicLibrary.getRelic("anniv5:PMBoosterBox").makeCopy();
         this.vexed = CardLibrary.getCard("anniv5:Vexed").makeCopy();
         this.cardistry = CardLibrary.getCard("anniv5:Cardistry").makeCopy();
 
