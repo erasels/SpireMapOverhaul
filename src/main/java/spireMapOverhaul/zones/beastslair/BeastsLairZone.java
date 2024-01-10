@@ -5,6 +5,8 @@ import basemod.abstracts.CustomSavable;
 import com.badlogic.gdx.graphics.Color;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.events.AbstractEvent;
+import com.megacrit.cardcrawl.events.city.Colosseum;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.MonsterHelper;
 import com.megacrit.cardcrawl.map.MapRoomNode;
@@ -15,9 +17,11 @@ import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
 import spireMapOverhaul.zoneInterfaces.RewardModifyingZone;
+import spireMapOverhaul.zones.thieveshideout.rooms.ForcedEventRoom;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Supplier;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 
@@ -75,17 +79,8 @@ public class BeastsLairZone extends AbstractZone implements EncounterModifyingZo
     @Override
     public void manualRoomPlacement(Random rng) {
         for (MapRoomNode node : nodes) {
-            node.setRoom(new MonsterRoomElite());
+            node.setRoom(new ForcedEventRoom(() -> new BeastsLairEvent(bossList.get(AbstractDungeon.mapRng.random(bossList.size() - 1)))));
         }
-    }
-
-    @Override
-    public MonsterGroup changeEncounter(MonsterGroup monsterGroup) {
-        if (bossList.isEmpty()) {
-            return monsterGroup;
-        }
-
-        return MonsterHelper.getEncounter(bossList.get(AbstractDungeon.monsterRng.random(bossList.size() - 1)));
     }
 
     @Override
@@ -104,15 +99,6 @@ public class BeastsLairZone extends AbstractZone implements EncounterModifyingZo
         rewards.add(new RewardItem(AbstractDungeon.returnRandomRelic(AbstractDungeon.returnRandomRelicTier())));
 
         return rewards;
-    }
-
-    @Override
-    public List<ZoneEncounter> getEliteEncounters() {
-        ArrayList<ZoneEncounter> encounters = new ArrayList<>();
-        encounters.add(new ZoneEncounter("Act1FakeElite", 1, (BaseMod.GetMonster) () -> null));
-        encounters.add(new ZoneEncounter("Act2FakeElite", 2, (BaseMod.GetMonster) () -> null));
-        encounters.add(new ZoneEncounter("Act3FakeElite", 3, (BaseMod.GetMonster) () -> null));
-        return encounters;
     }
 
     @Override
