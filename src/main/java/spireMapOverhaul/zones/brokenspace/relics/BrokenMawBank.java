@@ -1,4 +1,4 @@
-package spireMapOverhaul.zones.brokenSpace.relics;
+package spireMapOverhaul.zones.brokenspace.relics;
 
 import com.megacrit.cardcrawl.relics.MawBank;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
