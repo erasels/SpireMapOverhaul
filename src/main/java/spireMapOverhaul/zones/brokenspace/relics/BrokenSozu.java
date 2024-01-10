@@ -1,9 +1,8 @@
-package spireMapOverhaul.zones.brokenSpace.relics;
+package spireMapOverhaul.zones.brokenspace.relics;
 
 import com.evacipated.cardcrawl.mod.stslib.relics.BetterOnUsePotionRelic;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
-import com.megacrit.cardcrawl.actions.utility.TextCenteredAction;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
@@ -14,7 +13,7 @@ import com.megacrit.cardcrawl.ui.panels.PotionPopUp;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
 import spireMapOverhaul.SpireAnniversary6Mod;
-import spireMapOverhaul.zones.brokenSpace.actions.BetterTextCenteredAction;
+import spireMapOverhaul.zones.brokenspace.actions.BetterTextCenteredAction;
 
 import java.lang.reflect.Method;
 

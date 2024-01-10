@@ -1,4 +1,4 @@
-package spireMapOverhaul.zones.brokenSpace;
+package spireMapOverhaul.zones.brokenspace;
 
 import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.Color;
@@ -19,13 +19,12 @@ import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
 import com.megacrit.cardcrawl.screens.DungeonMapScreen;
-import spireMapOverhaul.BetterMapGenerator;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.zoneInterfaces.RenderableZone;
 import spireMapOverhaul.zoneInterfaces.RewardModifyingZone;
 import spireMapOverhaul.zoneInterfaces.ShopModifyingZone;
-import spireMapOverhaul.zones.brokenSpace.patches.BrokenSpaceRenderPatch;
+import spireMapOverhaul.zones.brokenspace.patches.BrokenSpaceRenderPatch;
 
 import java.util.ArrayList;
 

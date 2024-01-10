@@ -1,4 +1,4 @@
-package spireMapOverhaul.zones.brokenSpace.events;
+package spireMapOverhaul.zones.brokenspace.events;
 
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;

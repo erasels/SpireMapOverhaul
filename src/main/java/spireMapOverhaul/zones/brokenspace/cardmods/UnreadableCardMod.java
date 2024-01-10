@@ -1,4 +1,4 @@
-package spireMapOverhaul.zones.brokenSpace.cardmods;
+package spireMapOverhaul.zones.brokenspace.cardmods;
 
 import basemod.abstracts.AbstractCardModifier;
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.PurgeField;

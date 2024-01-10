@@ -1,4 +1,4 @@
-package spireMapOverhaul.zones.brokenSpace.relics;
+package spireMapOverhaul.zones.brokenspace.relics;
 
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;

@@ -1,4 +1,4 @@
-package spireMapOverhaul.zones.brokenSpace.relics;
+package spireMapOverhaul.zones.brokenspace.relics;
 
 import com.evacipated.cardcrawl.modthespire.lib.SpireInstrumentPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
@@ -11,8 +11,8 @@ import javassist.CannotCompileException;
 import javassist.expr.ExprEditor;
 import javassist.expr.NewExpr;
 import spireMapOverhaul.SpireAnniversary6Mod;
-import spireMapOverhaul.zones.brokenSpace.events.FakeEventRoom;
-import spireMapOverhaul.zones.brokenSpace.events.WingBootEvent;
+import spireMapOverhaul.zones.brokenspace.events.FakeEventRoom;
+import spireMapOverhaul.zones.brokenspace.events.WingBootEvent;
 
 public class BrokenWingBoots extends BrokenRelic {
     public static final String ID = "BrokenWingBoots";
