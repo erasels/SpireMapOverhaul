@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.random.Random;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.EventRoom;
 import spireMapOverhaul.abstracts.AbstractZone;
@@ -132,12 +133,18 @@ public class PackAttackZone extends AbstractZone implements CombatModifyingZone,
 
     @Override
     public void modifyRewardCards(ArrayList<AbstractCard> cards) {
-        replaceWithPackCards(cards, AbstractDungeon.cardRng);
+        this.replaceWithPackCards(cards, AbstractDungeon.cardRng);
+        this.applyStandardUpgradeLogic(cards);
     }
 
     @Override
     public void postCreateShopCards(ArrayList<AbstractCard> coloredCards, ArrayList<AbstractCard> colorlessCards) {
-        replaceWithPackCards(coloredCards, AbstractDungeon.merchantRng);
+        this.replaceWithPackCards(coloredCards, AbstractDungeon.merchantRng);
+        for (AbstractCard c : coloredCards) {
+            for (AbstractRelic relic : AbstractDungeon.player.relics) {
+                relic.onPreviewObtainCard(c);
+            }
+        }
     }
 
     private void replaceWithPackCards(ArrayList<AbstractCard> cards, Random rng) {
