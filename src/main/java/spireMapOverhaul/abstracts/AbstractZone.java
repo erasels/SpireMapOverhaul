@@ -40,7 +40,7 @@ public abstract class AbstractZone {
     private static final String[] NO_TEXT = new String[] { };
     private static final int NO_ELITES_BOUNDARY_ROW = 4;
     private static final int TREASURE_ROW = 8;
-    private static final int FINAL_CAMPFIRE_ROW = 15;
+    private static final int FINAL_CAMPFIRE_ROW = 14;
 
     private static final HashMap<Icons, String> iconsMap;
     static {
