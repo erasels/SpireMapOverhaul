@@ -19,10 +19,10 @@
   "${ModID}:BlackMarketTwo": {
     "NAME": "Black Market 2: Electric Boogaloo",
     "DESCRIPTIONS": [
-      "\"YOU THERE! Come in and browse! We're a fully legitimate business providing the best of the Pack, in your hands, for a very reasonable price! NL NL The main offering seem to be an ornate box of cards, a grab bag of random prizes, and a big bin of what mostly looks like junk.",
-      "\"Ah, it's good to meet someone who ~truly~ appreciates the #gpower of the Pack. Now, hold still for just a moment, this won't hurt a bit. NL NL When you return to your senses, the box is in front of you, but the market is gone, and you feel a bit... #pvexed.",
-      "You reach into the bag to pull out a few prizes.... NL NL #r@Ouch!!@ You pull your hand back from the bag as quickly as you can, but that really hurt. NL NL Still, you got a few prizes for your trouble, even if some of them look to be of dubious value. NL NL The dealer chuckles as you leave.",
-      "Rummaging through the bin, almost all of it is #rjunk. However, just as you're about to give up hope, you find something basic but #ghigh #gquality. NL NL The dealer smiles when you ask to purchase it. NL NL \"That's a good deal right there. Many adventurers use something like that their entire career. There's always some value from it.\" NL NL The price is very reasonable, and the dealer wishes you well as you leave.",
+      "\"YOU THERE! Come in and browse! We're a fully legitimate business providing the best of the Pack, in your hands, for a very reasonable price!\" NL NL The main offerings seem to be an ornate box of cards, a grab bag of random prizes, and a big bin of what mostly looks like junk.",
+      "\"Ah, it's good to meet someone who ~truly~ appreciates the #gpower of the Pack. Now, hold still for just a moment, this won't hurt a bit.\" NL NL When you return to your senses, the box is in front of you, but the market is gone, and you feel a bit... #pvexed.",
+      "You reach into the bag to pull out a few prizes.... NL NL #r@Ouch!!@ You pull your hand back from the bag as quickly as you can, but that really hurt. It felt like teeth, but you don't see anything other than the bag and the prizes. Strange. NL NL Still, you got a few prizes for your trouble, even if some of them look to be of dubious value. NL NL The dealer chuckles as you leave.",
+      "Rummaging through the bin, almost all of it is #rjunk. However, just as you're about to give up hope, you find something basic but #ghigh #gquality. NL NL The dealer smiles when you ask to purchase it. NL NL \"That's a good deal right there. Many adventurers use something like that their entire career. There's always some value from it.\" NL NL The price is very reasonable, and the dealer wishes you the best of luck with your new acquisition.",
       "You don't trust this place. Best to keep moving."
     ],
     "OPTIONS": [
