@@ -46,7 +46,9 @@ public class BlackMarketTwo extends AbstractImageEvent {
         super(NAME, DESCRIPTIONS[0], IMG);
 
         if (!Loader.isModLoaded("anniv5")) {
-            throw new RuntimeException("This event requires Packmaster to be loaded");
+            SpireAnniversary6Mod.logger.error("This event requires Packmaster to be loaded");
+            this.imageEventText.setDialogOption(OPTIONS[5]);
+            return;
         }
 
         this.gold = AbstractDungeon.ascensionLevel >= 15 ? A15_GOLD : GOLD;
@@ -72,6 +74,10 @@ public class BlackMarketTwo extends AbstractImageEvent {
 
     @Override
     protected void buttonEffect(int buttonPressed) {
+        if (!Loader.isModLoaded("anniv5")) {
+            this.openMap();
+            return;
+        }
         switch (screenNum) {
             case 0:
                 switch (buttonPressed) {

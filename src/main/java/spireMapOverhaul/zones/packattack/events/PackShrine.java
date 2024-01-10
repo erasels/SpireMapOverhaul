@@ -51,7 +51,9 @@ public class PackShrine extends AbstractImageEvent {
         }
 
         if (!Loader.isModLoaded("anniv5")) {
-            throw new RuntimeException("This event requires Packmaster to be loaded");
+            SpireAnniversary6Mod.logger.error("This event requires Packmaster to be loaded");
+            this.imageEventText.setDialogOption(OPTIONS[2]);
+            return;
         }
 
         this.commonGold = AbstractDungeon.ascensionLevel >= 15 ? A15_COMMON_GOLD : COMMON_GOLD;
@@ -98,6 +100,10 @@ public class PackShrine extends AbstractImageEvent {
 
     @Override
     protected void buttonEffect(int buttonPressed) {
+        if (!Loader.isModLoaded("anniv5")) {
+            this.openMap();
+            return;
+        }
         switch (screenNum) {
             case 0:
                 switch (buttonPressed) {

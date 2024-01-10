@@ -148,22 +148,14 @@ public class PackAttackZone extends AbstractZone implements CombatModifyingZone,
     }
 
     private void replaceWithPackCards(ArrayList<AbstractCard> cards, Random rng) {
-        List<AbstractCard.CardRarity> validRarities = Arrays.asList(AbstractCard.CardRarity.COMMON, AbstractCard.CardRarity.UNCOMMON, AbstractCard.CardRarity.RARE);
         for (int i = 0; i < cards.size(); i++) {
-            AbstractCard.CardRarity rarity = cards.get(i).rarity;
-            if (!validRarities.contains(rarity)) {
-                rarity = AbstractCard.CardRarity.COMMON;
-            }
-            cards.set(i, this.getPackCard(rarity, rng));
+            cards.set(i, this.getPackCard(cards.get(i).rarity, rng));
         }
     }
 
     private AbstractCard getPackCard(AbstractCard.CardRarity rarity, Random rng) {
         ArrayList<AbstractCard> options;
         switch(rarity) {
-            case COMMON:
-                options = this.commonPool;
-                break;
             case UNCOMMON:
                 options = this.uncommonPool;
                 break;
@@ -171,7 +163,8 @@ public class PackAttackZone extends AbstractZone implements CombatModifyingZone,
                 options = this.rarePool;
                 break;
             default:
-                throw new RuntimeException("Invalid card rarity for rewards: " + rarity);
+                options = this.commonPool;
+                break;
         }
 
         return options.get(rng.random(options.size() - 1)).makeCopy();
