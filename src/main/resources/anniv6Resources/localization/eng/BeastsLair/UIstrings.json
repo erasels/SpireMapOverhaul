@@ -1,7 +1,8 @@
 {
   "${ModID}:BeastsLair": {
     "TEXT": [
-      "Beast's Lair", "A powerful beast has made its home here, and it's not happy to see you. NL NL This node contains a boss from last  It drops better rewards. a"
+      "Beast's Lair",
+      "A powerful beast has made its home here, and it's not happy to see you. NL NL This node contains a boss from last act. It drops better rewards."
     ]
   }
 }
