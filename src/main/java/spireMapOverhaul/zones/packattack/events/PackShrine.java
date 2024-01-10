@@ -106,6 +106,7 @@ public class PackShrine extends AbstractImageEvent {
                         this.screenNum = 1;
                         this.imageEventText.updateDialogOption(0, OPTIONS[2]);
                         this.imageEventText.clearRemainingOptions();
+                        this.pickCard = true;
                         this.getCardsAndOpenSelectScreen();
                         break;
                     case 1: // Offer
