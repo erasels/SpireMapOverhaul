@@ -1,4 +1,4 @@
-package spireMapOverhaul.zones.brokenSpace.events;
+package spireMapOverhaul.zones.brokenspace.events;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;

@@ -1,4 +1,4 @@
-package spireMapOverhaul.zones.brokenSpace.patches;
+package spireMapOverhaul.zones.brokenspace.patches;
 
 import basemod.helpers.CardModifierManager;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
