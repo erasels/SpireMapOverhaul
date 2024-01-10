@@ -28,8 +28,8 @@ public class BlackMarketTwo extends AbstractImageEvent {
     private static final String[] OPTIONS = eventStrings.OPTIONS;
     public static final String IMG = SpireAnniversary6Mod.makeImagePath("events/PackAttack/BlackMarketTwo.png");
     private static final int CARDS = 3;
-    private static final int HP_LOSS = 10;
-    private static final int A15_HP_LOSS = 12;
+    private static final int HP_LOSS = 4;
+    private static final int A15_HP_LOSS = 5;
     private static final int GOLD = 20;
     private static final int A15_GOLD = 25;
 
