@@ -2,7 +2,9 @@ package spireMapOverhaul.zones.hailstorm.cards;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
+import com.megacrit.cardcrawl.actions.common.MakeTempCardInDiscardAction;
 import com.megacrit.cardcrawl.cards.CardQueueItem;
+import com.megacrit.cardcrawl.cards.status.Slimed;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -22,7 +24,9 @@ public class Freeze extends AbstractSMOCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         if (this.dontTriggerOnUseCard) {
-            this.addToTop(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new FrailPower(AbstractDungeon.player, 1, true), 1));
+
+            this.addToTop((new MakeTempCardInDiscardAction(new IceBurn(upgraded), 2)));
+
         }
 
     }
@@ -32,6 +36,7 @@ public class Freeze extends AbstractSMOCard {
         AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(this, true));
     }
     public void upp() {
-
+        this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
+        this.initializeDescription();
     }
 }
