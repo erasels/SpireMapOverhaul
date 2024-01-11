@@ -12,17 +12,21 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.monsters.exordium.*;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
 import javassist.CtBehavior;
 import spireMapOverhaul.actions.AllEnemyApplyPowerAction;
 import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.zones.beastslair.powers.FuryPower;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
-@AutoAdd.Ignore
 public class BeastsLairEvent extends PhasedEvent {
         public static final String ID = makeID("BeastsLairEvent");
-        //These eventStrings should be defined in a json file and loaded in your main mod file. See https://github.com/daviscook477/BaseMod/wiki/Custom-Strings
         private static final EventStrings eventStrings = CardCrawlGame.languagePack.getEventString(ID);
         private static final String[] DESCRIPTIONS = eventStrings.DESCRIPTIONS;
         private static final String[] OPTIONS = eventStrings.OPTIONS;
@@ -60,12 +64,23 @@ public class BeastsLairEvent extends PhasedEvent {
             boolean used = ReflectionHacks.getPrivate(__instance, SpawnMonsterAction.class, "used");
             if (!used && AbstractDungeon.getCurrRoom().event instanceof BeastsLairEvent) {
                 AbstractMonster m = ReflectionHacks.getPrivate(__instance, SpawnMonsterAction.class, "m");
-                m.maxHealth = (int) (m.maxHealth * 1.75f);
-                m.currentHealth = (int) (m.currentHealth * 1.75f);
+                if (!isSlimebossSpawn(m)) {
+                    m.maxHealth = (int) (m.maxHealth * 1.75f);
+                    m.currentHealth = (int) (m.currentHealth * 1.75f);
+                }
+
                 AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(m, null, new ArtifactPower(m, 2), 2));
                 AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(m, null, new FuryPower(m, 10), 10));
             }
         }
+
+        private static boolean isSlimebossSpawn(AbstractMonster m) {
+            return (AbstractDungeon.lastCombatMetricKey.equals("Slime Boss") && slimes.contains(m.id));
+        }
+
+        private static final ArrayList<String> slimes = new ArrayList<>(Arrays.asList(SpikeSlime_L.ID, SpikeSlime_M.ID,
+                SpikeSlime_S.ID, AcidSlime_L.ID, AcidSlime_M.ID, AcidSlime_S.ID));
+
 
         private static class Locator extends SpireInsertLocator {
             @Override
@@ -75,4 +90,5 @@ public class BeastsLairEvent extends PhasedEvent {
             }
         }
     }
+
 }
