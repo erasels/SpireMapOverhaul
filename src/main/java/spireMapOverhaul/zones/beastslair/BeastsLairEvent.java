@@ -7,9 +7,7 @@ import basemod.abstracts.events.phases.TextPhase;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.EventStrings;
-import com.megacrit.cardcrawl.powers.AngerPower;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
 import spireMapOverhaul.actions.AllEnemyApplyPowerAction;
 import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.zones.beastslair.powers.FuryPower;
@@ -30,8 +28,9 @@ public class BeastsLairEvent extends PhasedEvent {
             registerPhase("Start", new TextPhase(DESCRIPTIONS[0]).addOption(OPTIONS[0], (i)->transitionKey("Phase 2")));
 
             registerPhase("Phase 2", new CombatPhase(bossID)
-                    .addRewards(true, (room)->room.addRelicToRewards(AbstractDungeon.returnRandomRelicTier()))
-                    .setNextKey("Phase 2"));
+                    .addRewards(true, (room) -> room.addRelicToRewards(AbstractDungeon.returnRandomRelicTier())));
+
+
 
             transitionKey("Start");
         }
