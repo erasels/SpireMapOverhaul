@@ -243,7 +243,7 @@ public class AmbushedZone extends AbstractZone implements CombatModifyingZone, E
                     break;
                 case RARE:
                     // Randomly select between Smoke Bomb and Snecko Oil for Rare potions
-                    if (AbstractDungeon.cardRandomRng.randomBoolean()) {
+                    if (AbstractDungeon.potionRng.randomBoolean()) {
                         replacementPotion = PotionHelper.getPotion(SmokeBomb.POTION_ID);
                     } else {
                         replacementPotion = PotionHelper.getPotion(SneckoOil.POTION_ID);
