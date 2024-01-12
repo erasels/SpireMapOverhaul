@@ -50,6 +50,6 @@ public class IceBurn extends AbstractSMOCard {
 //        }
 //    }
     public void upp() {
-        this.selfRetain = true;
+        upgradeMagicNumber(2);
     }
 }

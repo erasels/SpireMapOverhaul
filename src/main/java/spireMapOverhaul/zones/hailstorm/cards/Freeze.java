@@ -24,20 +24,17 @@ public class Freeze extends AbstractSMOCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if (this.dontTriggerOnUseCard) {
-
-            this.addToTop((new MakeTempCardInDiscardAction(new IceBurn(upgraded), 2)));
-
-        }
-
+//        if (this.dontTriggerOnUseCard) {
+//            this.addToTop((new MakeTempCardInDiscardAction(new IceBurn(upgraded), 1)));
+//        }
     }
 
     public void triggerOnEndOfTurnForPlayingCard() {
-        this.dontTriggerOnUseCard = true;
-        AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(this, true));
+//        this.dontTriggerOnUseCard = true;
+//        AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(this, true));
+        this.addToTop((new MakeTempCardInDiscardAction(new IceBurn(upgraded), 1)));
     }
     public void upp() {
-        this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
-        this.initializeDescription();
+        cardsToPreview.upgrade();
     }
 }

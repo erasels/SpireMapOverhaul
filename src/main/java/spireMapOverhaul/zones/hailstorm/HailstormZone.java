@@ -1,17 +1,12 @@
 package spireMapOverhaul.zones.hailstorm;
 
 import basemod.AutoAdd;
-import basemod.BaseMod;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.events.AbstractEvent;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
-import com.megacrit.cardcrawl.monsters.city.Mugger;
-import com.megacrit.cardcrawl.monsters.city.Taskmaster;
-import com.megacrit.cardcrawl.monsters.exordium.Looter;
-import com.megacrit.cardcrawl.orbs.Frost;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import spireMapOverhaul.BetterMapGenerator;
@@ -24,11 +19,9 @@ import spireMapOverhaul.zones.example.CoolExampleEvent;
 import spireMapOverhaul.zones.hailstorm.monsters.FrostSlime;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-@AutoAdd.Ignore
 public class HailstormZone extends AbstractZone implements ModifiedEventRateZone, RenderableZone, EncounterModifyingZone {
     public static final String ID = "Hailstorm";
     private final int width, height;

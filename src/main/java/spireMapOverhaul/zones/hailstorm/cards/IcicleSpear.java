@@ -23,7 +23,5 @@ public class IcicleSpear extends AbstractSMOCard {
 
     public void upp() {
         upgradeDamage(20);
-        this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
-        this.initializeDescription();
     }
 }

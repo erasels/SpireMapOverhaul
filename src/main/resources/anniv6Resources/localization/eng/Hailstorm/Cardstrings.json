@@ -1,7 +1,8 @@
 {
   "${ModID}:Freeze": {
     "NAME": "Freeze",
-    "DESCRIPTION": "Retain. NL At the end of your turn add an *Ice *Burn into your discard pile."
+    "DESCRIPTION": "Retain. NL At the end of your turn add an *Ice *Burn into your discard pile.",
+    "UPGRADE_DESCRIPTION": "Retain. NL At the end of your turn add an *Ice *Burn+ into your discard pile."
   },
   "${ModID}:IceBurn": {
     "NAME": "Ice Burn",
