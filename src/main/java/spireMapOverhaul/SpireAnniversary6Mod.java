@@ -55,6 +55,8 @@ import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.util.ZoneShapeMaker;
 import spireMapOverhaul.zoneInterfaces.CampfireModifyingZone;
 import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
+import spireMapOverhaul.rewards.HealReward;
+import spireMapOverhaul.zones.beastslair.BeastsLairZone;
 import spireMapOverhaul.zones.brokenspace.BrokenSpaceZone;
 import spireMapOverhaul.zones.manasurge.ui.extraicons.BlightIcon;
 import spireMapOverhaul.zones.manasurge.ui.extraicons.EnchantmentIcon;
@@ -645,6 +647,8 @@ public class SpireAnniversary6Mod implements
                 }
             }
         });
+
+        BeastsLairZone.initializeSaveFields();
     }
 
     @Override
@@ -667,6 +671,7 @@ public class SpireAnniversary6Mod implements
     public void receiveStartGame() {
         if (!CardCrawlGame.loadingSave) {
             updateZoneList(); //only updated on new games to not mess anything up if settings are changed and a game is loaded
+            BeastsLairZone.clearBossList();
         }
     }
 
