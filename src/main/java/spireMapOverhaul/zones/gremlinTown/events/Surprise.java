@@ -33,7 +33,6 @@ public class Surprise extends AbstractEvent {
     private static final String[] OPTIONS;
 
     private CUR_SCREEN screen;
-    private Chest chest;
     private float animTimer;
     private float shinyTimer;
     private static final float RIDER_A_START_X;
@@ -52,9 +51,9 @@ public class Surprise extends AbstractEvent {
     private static final float STARE_TIME = 0.25F;
     public static final float SHELL_FLIGHT_TIME = 1.0F;
 
-
     private GremlinRiderRed riderA;
     private GremlinRiderRed riderB;
+    private Chest chest;
     private Shell shell;
     public boolean mimic;
     private boolean fired;

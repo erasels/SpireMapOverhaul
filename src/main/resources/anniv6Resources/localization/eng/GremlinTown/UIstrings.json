@@ -20,5 +20,12 @@
       "Buy somethin'",
       "I like gold."
     ]
+  },
+  "${ModID}:Horde": {
+    "TEXT": [
+      "Any time now!",
+      "Scram!",
+      "You're surrounded now!"
+    ]
   }
 }

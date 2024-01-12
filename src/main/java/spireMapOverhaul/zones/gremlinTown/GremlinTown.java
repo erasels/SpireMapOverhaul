@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.helpers.PotionHelper;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
-import com.megacrit.cardcrawl.monsters.exordium.GremlinWarrior;
+import com.megacrit.cardcrawl.monsters.exordium.*;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rewards.RewardItem;
@@ -37,6 +37,8 @@ import java.util.Collections;
 import java.util.List;
 
 import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.*;
+import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
+import static spireMapOverhaul.SpireAnniversary6Mod.makePath;
 import static spireMapOverhaul.util.Wiz.adp;
 import static spireMapOverhaul.util.Wiz.asc;
 
@@ -71,6 +73,8 @@ public class GremlinTown extends AbstractZone
             "ui/gremlinTownShop/skeleton.json");
     private final ZoneEncounter GREMLIN_LEADER_ENCOUNTER = new ZoneEncounter(MonsterHelper.GREMLIN_LEADER_ENC, 2,
             () -> MonsterHelper.getEncounter("Gremlin Leader"));
+    public static final String PLATFORM_KEY = makeID("GremlinTown:Platform");
+    public static final String PLATFORM_OGG = makePath("audio/GremlinTown/Platform.ogg");
 
     public GremlinTown() {
         super(ID, Icons.MONSTER, Icons.EVENT, Icons.SHOP);
@@ -170,8 +174,52 @@ public class GremlinTown extends AbstractZone
         // Override that one method so the gremlin leader encounter isn't double registered
         return Arrays.asList(
                 GREMLIN_LEADER_ENCOUNTER,
-                new ZoneEncounter(GREMLIN_ELDER, 2, () -> new MonsterGroup(new GremlinElder(-80f, -50f)))
+                new ZoneEncounter(GREMLIN_ELDER, 2, () -> new MonsterGroup(new GremlinElder(-80f, -50f))),
+                new ZoneEncounter(GREMLIN_HORDE, 2, GremlinTown::getHordeStartGroup)
         );
+    }
+
+    private static MonsterGroup getHordeStartGroup() {
+        ArrayList<String> gremlinPool = new ArrayList<>();
+        gremlinPool.add("GremlinWarrior");
+        gremlinPool.add("GremlinThief");
+        gremlinPool.add("GremlinFat");
+        gremlinPool.add("GremlinTsundere");
+
+        AbstractMonster[] retVal = new AbstractMonster[4];
+        int index = AbstractDungeon.miscRng.random(gremlinPool.size() - 1);
+        String key = gremlinPool.get(index);
+        gremlinPool.remove(index);
+        retVal[0] = getHordeGremlin(key, -320.0F, 25.0F);
+        index = AbstractDungeon.miscRng.random(gremlinPool.size() - 1);
+        key = gremlinPool.get(index);
+        gremlinPool.remove(index);
+        retVal[1] = getHordeGremlin(key, -160.0F, -12.0F);
+        index = AbstractDungeon.miscRng.random(gremlinPool.size() - 1);
+        key = gremlinPool.get(index);
+        gremlinPool.remove(index);
+        retVal[2] = getHordeGremlin(key, 25.0F, -35.0F);
+        index = AbstractDungeon.miscRng.random(gremlinPool.size() - 1);
+        key = gremlinPool.get(index);
+        gremlinPool.remove(index);
+        retVal[3] = getHordeGremlin(key, 205.0F, 40.0F);
+
+        return new MonsterGroup(retVal);
+    }
+
+    public static AbstractMonster getHordeGremlin(String key, float xPos, float yPos) {
+        switch (key) {
+            case "GremlinWarrior":
+                return new GremlinWarrior(xPos, yPos);
+            case "GremlinThief":
+                return new GremlinThief(xPos, yPos);
+            case "GremlinFat":
+                return new GremlinFat(xPos, yPos);
+            case "GremlinTsundere":
+                return new GremlinTsundere(xPos, yPos);
+            default:
+                return new GremlinWizard(xPos, yPos);
+        }
     }
 
     @Override
@@ -184,8 +232,10 @@ public class GremlinTown extends AbstractZone
         //  Will need to manually add all Elite encounters that aren't leader
         //  Since leader is already registered in base game
         //  encounters.addAll(eliteEncounters);
-        //  Also add event fights
         encounters.add(new ZoneEncounter(GREMLIN_ELDER, 2, () -> new MonsterGroup(new GremlinElder(-80f, -50f))));
+        encounters.add(new ZoneEncounter(GREMLIN_HORDE, 2, GremlinTown::getHordeStartGroup));
+
+        //  Also add event fights
         encounters.add(new ZoneEncounter(GREMLIN_JERK, 2, () -> new MonsterGroup(new GremlinJerk(-120f, -80f))));
         // This isn't quite the same as the monster group loaded by the event fight
         // These start in their combat positions instead of spawning off the screen and being animated

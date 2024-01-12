@@ -20,8 +20,8 @@ public class Chest {
     public static final float CHEST_LOC_Y;
     private static final int RAW_W = 512;
     public Hitbox hb;
-    private static Texture img;
-    private static Texture openedImg;
+    private static final Texture img;
+    private static final Texture openedImg;
     public boolean isOpen;
     public boolean hide;
 

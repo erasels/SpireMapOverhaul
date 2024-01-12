@@ -433,7 +433,9 @@ public class Wiz {
     }
 
     public static AbstractRoom adRoom() {
-        return AbstractDungeon.getCurrRoom();
+        if (AbstractDungeon.currMapNode != null)
+            return AbstractDungeon.getCurrRoom();
+        return null;
     }
 
     /************************************************************

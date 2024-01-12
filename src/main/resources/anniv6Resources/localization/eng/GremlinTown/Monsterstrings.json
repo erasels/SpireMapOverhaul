@@ -20,6 +20,12 @@
     ],
     "NAME": "Gremlin Rider"
   },
+  "${ModID}:GremlinRockTosser": {
+    "MOVES": [
+      "Throw"
+    ],
+    "NAME": "Gremlin Rocker"
+  },
   "${ModID}:GremlinHealer": {
     "MOVES": [
       "Cure",

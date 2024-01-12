@@ -25,12 +25,14 @@ import com.google.gson.Gson;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.AbstractEvent;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rewards.RewardSave;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.screens.options.DropdownMenu;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import javassist.CtClass;
@@ -40,6 +42,9 @@ import spireMapOverhaul.abstracts.AbstractSMORelic;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.cardvars.SecondDamage;
 import spireMapOverhaul.cardvars.SecondMagicNumber;
+import spireMapOverhaul.interfaces.relics.MaxHPChangeRelic;
+import spireMapOverhaul.patches.CustomRewardTypes;
+import spireMapOverhaul.patches.ZonePatches;
 import spireMapOverhaul.patches.ZonePerFloorRunHistoryPatch;
 import spireMapOverhaul.patches.interfacePatches.CampfireModifierPatches;
 import spireMapOverhaul.patches.interfacePatches.EncounterModifierPatches;
@@ -53,7 +58,13 @@ import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.util.ZoneShapeMaker;
 import spireMapOverhaul.zoneInterfaces.CampfireModifyingZone;
 import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
-import spireMapOverhaul.rewards.HealReward;
+import spireMapOverhaul.zones.brokenSpace.BrokenSpaceZone;
+import spireMapOverhaul.zones.gremlinTown.GremlinTown;
+import spireMapOverhaul.zones.gremlinTown.HordeHelper;
+import spireMapOverhaul.zones.gremlinTown.events.Surprise;
+import spireMapOverhaul.zones.gremlinTown.potions.*;
+import spireMapOverhaul.zones.manasurge.ui.extraicons.BlightIcon;
+import spireMapOverhaul.zones.manasurge.ui.extraicons.EnchantmentIcon;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -64,9 +75,11 @@ import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.function.Consumer;
 
+import static spireMapOverhaul.util.Wiz.adp;
+import static spireMapOverhaul.zones.gremlinTown.GremlinTown.PLATFORM_KEY;
+import static spireMapOverhaul.zones.gremlinTown.GremlinTown.PLATFORM_OGG;
 import static spireMapOverhaul.zones.manasurge.ManaSurgeZone.ENCHANTBLIGHT_KEY;
 import static spireMapOverhaul.zones.manasurge.ManaSurgeZone.ENCHANTBLIGHT_OGG;
-import static spireMapOverhaul.util.Wiz.adp;
 import static spireMapOverhaul.zones.storm.StormZone.*;
 
 @SuppressWarnings({"unused"})
@@ -80,6 +93,7 @@ public class SpireAnniversary6Mod implements
         AddAudioSubscriber,
         PostRenderSubscriber,
         PostCampfireSubscriber,
+        OnStartBattleSubscriber,
         MaxHPChangeSubscriber,
         StartGameSubscriber,
         ImGuiSubscriber,
@@ -537,6 +551,7 @@ public class SpireAnniversary6Mod implements
 
         // Mana Surge Audio
         BaseMod.addAudio(ENCHANTBLIGHT_KEY,ENCHANTBLIGHT_OGG);
+        BaseMod.addAudio(PLATFORM_KEY, PLATFORM_OGG);
     }
 
     private void registerCustomRewards() {
@@ -702,6 +717,12 @@ public class SpireAnniversary6Mod implements
     @Override
     public void receivePostUpdate() {
         time += Gdx.graphics.getRawDeltaTime();
+    }
+
+    @Override
+    public void receiveOnBattleStart(AbstractRoom abstractRoom) {
+        if (AbstractDungeon.lastCombatMetricKey.equals(GremlinTown.GREMLIN_HORDE))
+            HordeHelper.initFight();
     }
 
     public static class SavableCurrentRunActive implements CustomSavable<Boolean> {
