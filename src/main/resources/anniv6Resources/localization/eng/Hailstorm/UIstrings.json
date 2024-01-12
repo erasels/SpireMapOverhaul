@@ -1,8 +1,8 @@
 {
-  "${ModID}:Invasion": {
+  "${ModID}:Hailstorm": {
     "TEXT": [
-      "Invasion",
-      "The Spire is being invaded by monsters from alternate acts! Fight new monsters and elites. NL NL Elites give extra gold and special powerful card rewards instead of relics. Shops have special cards for sale."
+      "Hailstorm",
+      "A never ending Hail is taking over the spire."
     ]
   },
   "${ModID}:Evolving": {

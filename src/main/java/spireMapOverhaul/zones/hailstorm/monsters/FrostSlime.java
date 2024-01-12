@@ -6,7 +6,6 @@ import com.esotericsoftware.spine.AnimationState;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.AnimateShakeAction;
 import com.megacrit.cardcrawl.actions.animations.AnimateSlowAttackAction;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.actions.unique.CanLoseAction;
 import com.megacrit.cardcrawl.actions.unique.CannotLoseAction;
@@ -15,14 +14,12 @@ import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.actions.utility.TextAboveCreatureAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.cards.status.Dazed;
 import com.megacrit.cardcrawl.cards.status.Slimed;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.exordium.AcidSlime_M;
 import com.megacrit.cardcrawl.powers.*;
-import com.megacrit.cardcrawl.vfx.combat.SmokeBombEffect;
 import spireMapOverhaul.SpireAnniversary6Mod;
 
 public class FrostSlime extends CustomMonster {
@@ -30,6 +27,10 @@ public class FrostSlime extends CustomMonster {
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
+
+    private static final String WOUND_NAME;
+    private static final String SPLIT_NAME;
+    private static final String BP_NAME;
     private boolean firstMove = true;
     public static final int HP_MIN = 65;
     public static final int HP_MAX = 69;
@@ -143,7 +144,7 @@ public class FrostSlime extends CustomMonster {
                     if (AbstractDungeon.aiRng.randomBoolean(0.6F)) {
                         this.setMove((byte)2, Intent.ATTACK, ((DamageInfo)this.damage.get(1)).base);
                     } else {
-                        this.setMove(WEAK_NAME, (byte)4, Intent.DEBUFF);
+                        this.setMove(BP_NAME, (byte)4, Intent.DEBUFF);
                     }
                 } else {
                     this.setMove(WOUND_NAME, (byte)1, Intent.ATTACK_DEBUFF, ((DamageInfo)this.damage.get(0)).base);
@@ -153,7 +154,7 @@ public class FrostSlime extends CustomMonster {
                     if (AbstractDungeon.aiRng.randomBoolean(0.6F)) {
                         this.setMove(WOUND_NAME, (byte)1, Intent.ATTACK_DEBUFF, ((DamageInfo)this.damage.get(0)).base);
                     } else {
-                        this.setMove(WEAK_NAME, (byte)4, Intent.DEBUFF);
+                        this.setMove(BP_NAME, (byte)4, Intent.DEBUFF);
                     }
                 } else {
                     this.setMove((byte)2, Intent.ATTACK, ((DamageInfo)this.damage.get(1)).base);
@@ -165,14 +166,14 @@ public class FrostSlime extends CustomMonster {
                     this.setMove((byte)2, Intent.ATTACK, ((DamageInfo)this.damage.get(1)).base);
                 }
             } else {
-                this.setMove(WEAK_NAME, (byte)4, Intent.DEBUFF);
+                this.setMove(BP_NAME, (byte)4, Intent.DEBUFF);
             }
         } else if (num < 30) {
             if (this.lastTwoMoves((byte)1)) {
                 if (AbstractDungeon.aiRng.randomBoolean()) {
                     this.setMove((byte)2, Intent.ATTACK, ((DamageInfo)this.damage.get(1)).base);
                 } else {
-                    this.setMove(WEAK_NAME, (byte)4, Intent.DEBUFF);
+                    this.setMove(BP_NAME, (byte)4, Intent.DEBUFF);
                 }
             } else {
                 this.setMove(WOUND_NAME, (byte)1, Intent.ATTACK_DEBUFF, ((DamageInfo)this.damage.get(0)).base);
@@ -182,7 +183,7 @@ public class FrostSlime extends CustomMonster {
                 if (AbstractDungeon.aiRng.randomBoolean(0.4F)) {
                     this.setMove(WOUND_NAME, (byte)1, Intent.ATTACK_DEBUFF, ((DamageInfo)this.damage.get(0)).base);
                 } else {
-                    this.setMove(WEAK_NAME, (byte)4, Intent.DEBUFF);
+                    this.setMove(BP_NAME, (byte)4, Intent.DEBUFF);
                 }
             } else {
                 this.setMove((byte)2, Intent.ATTACK, ((DamageInfo)this.damage.get(1)).base);
@@ -194,7 +195,7 @@ public class FrostSlime extends CustomMonster {
                 this.setMove((byte)2, Intent.ATTACK, ((DamageInfo)this.damage.get(1)).base);
             }
         } else {
-            this.setMove(WEAK_NAME, (byte)4, Intent.DEBUFF);
+            this.setMove(BP_NAME, (byte)4, Intent.DEBUFF);
         }
 
     }
@@ -207,5 +208,10 @@ public class FrostSlime extends CustomMonster {
         }
     }
 
+    static {
+        WOUND_NAME = MOVES[0];
+        SPLIT_NAME = MOVES[1];
+        BP_NAME = MOVES[2];
+    }
 
 }

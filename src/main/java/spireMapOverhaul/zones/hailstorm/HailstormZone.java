@@ -1,25 +1,40 @@
 package spireMapOverhaul.zones.hailstorm;
 
 import basemod.AutoAdd;
+import basemod.BaseMod;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.events.AbstractEvent;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.monsters.MonsterGroup;
+import com.megacrit.cardcrawl.monsters.city.Mugger;
+import com.megacrit.cardcrawl.monsters.city.Taskmaster;
+import com.megacrit.cardcrawl.monsters.exordium.Looter;
+import com.megacrit.cardcrawl.orbs.Frost;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import spireMapOverhaul.BetterMapGenerator;
+import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
+import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
 import spireMapOverhaul.zoneInterfaces.ModifiedEventRateZone;
 import spireMapOverhaul.zoneInterfaces.RenderableZone;
 import spireMapOverhaul.zones.example.CoolExampleEvent;
+import spireMapOverhaul.zones.hailstorm.monsters.FrostSlime;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 @AutoAdd.Ignore
-public class HailstormZone extends AbstractZone implements ModifiedEventRateZone, RenderableZone {
+public class HailstormZone extends AbstractZone implements ModifiedEventRateZone, RenderableZone, EncounterModifyingZone {
     public static final String ID = "Hailstorm";
     private final int width, height;
     private final Color color;
+
+    public static final String Frost_Slime = SpireAnniversary6Mod.makeID("Frost_Slime");
 
     @Override
     public AbstractEvent forceEvent() {
@@ -32,7 +47,7 @@ public class HailstormZone extends AbstractZone implements ModifiedEventRateZone
     }
 
     public HailstormZone() {
-        this("Placeholder 0", 2, 4);
+        this("Hailstorm", 2, 4);
         System.out.println("Placeholder Zone " + name + " " + width + "x" + height);
     }
 
@@ -99,5 +114,35 @@ public class HailstormZone extends AbstractZone implements ModifiedEventRateZone
     @Override
     public void update() {
         // Update things when this zone is active.
+    }
+
+    @Override
+    public boolean canSpawn() {
+        return this.isAct(1);
+    }
+
+    @Override
+    protected boolean canIncludeEarlyRows() {
+        return false;
+    }
+
+//    @Override
+//    public void registerEncounters() {
+//        EncounterModifyingZone.super.registerEncounters();
+//        BaseMod.addMonster(Frost_Slime, () -> new MonsterGroup(
+//                new AbstractMonster[] {
+//                        new FrostSlime(0.0f, 0.0f),
+//                }
+//        ));
+//    }
+
+    @Override
+    public List<ZoneEncounter> getNormalEncounters() {
+        return Collections.singletonList(
+                new ZoneEncounter(Frost_Slime, 1, () -> new MonsterGroup(
+                        new AbstractMonster[]{
+                                new FrostSlime(0.0f, 0.0f),
+                        }))
+        );
     }
 }

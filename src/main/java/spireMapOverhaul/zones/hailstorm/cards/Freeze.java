@@ -20,6 +20,7 @@ public class Freeze extends AbstractSMOCard {
     public Freeze() {
         super(ID, COST, CardType.CURSE, CardRarity.CURSE, CardTarget.NONE, CardColor.CURSE);
         this.selfRetain = true;
+        cardsToPreview = new IceBurn();
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
