@@ -51,7 +51,7 @@ public class BetterMapGenerator {
         do {
             List<AbstractZone> possibleZones = new ArrayList<>();
             for (AbstractZone zone : SpireAnniversary6Mod.unfilteredAllZones) {
-                if (SpireAnniversary6Mod.currentRunAllZones.contains(zone.id) && !SpireAnniversary6Mod.currentRunSeenZones.contains(zone.id) && zone.canSpawn()) {
+                if (SpireAnniversary6Mod.currentRunAllZones.contains(zone.id) && !(SpireAnniversary6Mod.currentRunNoRepeatZones && SpireAnniversary6Mod.currentRunSeenZones.contains(zone.id)) && zone.canSpawn()) {
                     possibleZones.add(zone);
                 }
             }

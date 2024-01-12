@@ -14,6 +14,7 @@ public class InitializeCurrentRunPatch {
     @SpirePostfixPatch
     public static void initializeCurrentRun() {
         SpireAnniversary6Mod.currentRunActive = SpireAnniversary6Mod.getActiveConfig();
+        SpireAnniversary6Mod.currentRunNoRepeatZones = SpireAnniversary6Mod.getNoRepeatZonesConfig();
         SpireAnniversary6Mod.currentRunAllZones = SpireAnniversary6Mod.unfilteredAllZones.stream()
                 .map(z -> z.id)
                 .filter(SpireAnniversary6Mod::getFilterConfig)

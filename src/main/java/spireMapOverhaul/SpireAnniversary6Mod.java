@@ -106,6 +106,7 @@ public class SpireAnniversary6Mod implements
     public static SpireAnniversary6Mod thismod;
     public static SpireConfig modConfig = null;
     public static boolean currentRunActive = false;
+    public static boolean currentRunNoRepeatZones = false;
     public static HashSet<String> currentRunAllZones = null;
     public static HashSet<String> currentRunSeenZones = null;
 
@@ -178,6 +179,7 @@ public class SpireAnniversary6Mod implements
         try {
             Properties defaults = new Properties();
             defaults.put("active", "TRUE");
+            defaults.put("noRepeatZones", "TRUE");
             defaults.put("largeIconsMode", "FALSE");
             modConfig = new SpireConfig(modID, "anniv6Config", defaults);
         } catch (Exception e) {
@@ -272,6 +274,7 @@ public class SpireAnniversary6Mod implements
 
     public static void addSaveFields() {
         BaseMod.addSaveField(SavableCurrentRunActive.SaveKey, new SavableCurrentRunActive());
+        BaseMod.addSaveField(SavableCurrentRunNoRepeatZones.SaveKey, new SavableCurrentRunNoRepeatZones());
         BaseMod.addSaveField(SavableCurrentRunAllZones.SaveKey, new SavableCurrentRunAllZones());
         BaseMod.addSaveField(SavableCurrentRunSeenZones.SaveKey, new SavableCurrentRunSeenZones());
         BaseMod.addSaveField(ZonePerFloorRunHistoryPatch.ZonePerFloorLog.SaveKey, new ZonePerFloorRunHistoryPatch.ZonePerFloorLog());
@@ -569,6 +572,8 @@ public class SpireAnniversary6Mod implements
     }
 
     private ModPanel settingsPanel;
+    private static final float NOREPEATZONES_CHECKBOX_X = 400f;
+    private static final float NOREPEATZONES_CHECKBOX_Y = 685f;
     private static final float LARGEICONS_CHECKBOX_X = 400f;
     private static final float LARGEICONS_CHECKBOX_Y = 650f;
     private DropdownMenu filterDropdown;
@@ -587,6 +592,11 @@ public class SpireAnniversary6Mod implements
         Texture badge = TexLoader.getTexture(makeImagePath("ui/badge.png"));
 
         settingsPanel = new ModPanel();
+
+        ModLabeledToggleButton noRepeatZonesToggle = new ModLabeledToggleButton(configStrings.TEXT[5], NOREPEATZONES_CHECKBOX_X, NOREPEATZONES_CHECKBOX_Y, Color.WHITE, FontHelper.tipBodyFont, getNoRepeatZonesConfig(), null,
+                (label) -> {},
+                (button) -> setNoRepeatZonesConfig(button.enabled));
+        settingsPanel.addUIElement(noRepeatZonesToggle);
 
         ModLabeledToggleButton largeIconsModeToggle = new ModLabeledToggleButton(configStrings.TEXT[4], LARGEICONS_CHECKBOX_X, LARGEICONS_CHECKBOX_Y, Color.WHITE, FontHelper.tipBodyFont, getLargeIconsModeConfig(), null,
                 (label) -> {},
@@ -688,6 +698,20 @@ public class SpireAnniversary6Mod implements
         }
     }
 
+    public static class SavableCurrentRunNoRepeatZones implements CustomSavable<Boolean> {
+        public final static String SaveKey = "CurrentRunNoRepeatZones";
+
+        @Override
+        public Boolean onSave() {
+            return currentRunNoRepeatZones;
+        }
+
+        @Override
+        public void onLoad(Boolean b) {
+            currentRunNoRepeatZones = b == null || b;
+        }
+    }
+
     public static class SavableCurrentRunAllZones implements CustomSavable<HashSet<String>> {
         public final static String SaveKey = "CurrentRunAllZones";
 
@@ -723,6 +747,21 @@ public class SpireAnniversary6Mod implements
     public static void setActiveConfig(boolean active) {
         if (modConfig != null) {
             modConfig.setBool("active", active);
+            try {
+                modConfig.save();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static boolean getNoRepeatZonesConfig() {
+        return modConfig != null && modConfig.getBool("noRepeatZones");
+    }
+
+    public static void setNoRepeatZonesConfig(boolean bool) {
+        if (modConfig != null) {
+            modConfig.setBool("noRepeatZones", bool);
             try {
                 modConfig.save();
             } catch (IOException e) {
