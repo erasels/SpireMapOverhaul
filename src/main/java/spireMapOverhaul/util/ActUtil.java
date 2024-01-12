@@ -31,9 +31,10 @@ public class ActUtil {
                 case TheBeyond.ID:
                     return 3;
                 case TheEnding.ID:
+                case "EYB:TheUnnamedReign":
                     return 4;
                 default:
-                    throw new RuntimeException("Unrecognized act ID: " + AbstractDungeon.id + ". When ActLikeIt isn't loaded, the only possible acts should be the vanilla four and The Jungle.");
+                    throw new RuntimeException("Unrecognized act ID: " + AbstractDungeon.id + ". When ActLikeIt isn't loaded, the only possible acts should be the vanilla four and a few special cases.");
             }
         }
     }
