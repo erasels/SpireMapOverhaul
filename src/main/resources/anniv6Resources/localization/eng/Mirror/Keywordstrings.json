@@ -1,0 +1,12 @@
+[
+  {
+    "PROPER_NAME": "Reflective",
+    "NAMES": ["reflective"],
+    "DESCRIPTION": "Increases the damage and #yBlock amount of Mirror Move."
+  },
+  {
+    "PROPER_NAME": "Shattered",
+    "NAMES": ["shattered"],
+    "DESCRIPTION": "After you play a Mirror Move, Shattered creatures lose #b10% of their current HP per stack, rounded up."
+  }
+]
