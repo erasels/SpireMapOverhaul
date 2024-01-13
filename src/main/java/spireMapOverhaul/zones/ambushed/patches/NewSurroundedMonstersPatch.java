@@ -6,6 +6,8 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.BackAttackPower;
+import com.megacrit.cardcrawl.powers.SurroundedPower;
 import javassist.CtBehavior;
 import javassist.NotFoundException;
 import spireMapOverhaul.zones.ambushed.AmbushedUtil;
@@ -19,14 +21,14 @@ public class NewSurroundedMonstersPatch {
 
     @SpireInsertPatch(locator = Locator.class)
     public static void Insert(AbstractMonster __instance) {
-        if (AmbushedUtil.isInAmbushedZone() && AbstractDungeon.player.hasPower("Surrounded")) {
+        if (AmbushedUtil.isInAmbushedZone() && AbstractDungeon.player.hasPower(SurroundedPower.POWER_ID)) {
             AbstractMonster otherMonster = null;
             for (AbstractMonster m : AbstractDungeon.getCurrRoom().monsters.monsters) {
                 if (m != __instance && !m.isDead && !m.isDying) {
                     otherMonster = m;
                     // Remove BackAttack Power from the other monster
-                    if (m.hasPower("BackAttack")) {
-                        AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(m, m, "BackAttack"));
+                    if (m.hasPower(BackAttackPower.POWER_ID)) {
+                        AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(m, m, BackAttackPower.POWER_ID));
                     }
                 }
             }
@@ -37,7 +39,7 @@ public class NewSurroundedMonstersPatch {
             }
 
             // Remove the Surrounded power from the player
-            AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(AbstractDungeon.player, AbstractDungeon.player, "Surrounded"));
+            AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(AbstractDungeon.player, AbstractDungeon.player, SurroundedPower.POWER_ID));
         }
     }
 

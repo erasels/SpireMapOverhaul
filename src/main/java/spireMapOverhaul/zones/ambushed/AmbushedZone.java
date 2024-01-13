@@ -2,10 +2,16 @@ package spireMapOverhaul.zones.ambushed;
 
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.blue.*;
+import com.megacrit.cardcrawl.cards.colorless.*;
+import com.megacrit.cardcrawl.cards.green.*;
+import com.megacrit.cardcrawl.cards.purple.*;
+import com.megacrit.cardcrawl.cards.red.*;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.PotionHelper;
+import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.monsters.city.*;
@@ -40,10 +46,10 @@ public class AmbushedZone extends AbstractZone implements CombatModifyingZone, E
     private static final String AMBUSHED_BY_POWER_COUPLE = makeID("AMBUSHED_BY_POWER_COUPLE");
     private static final String AMBUSHED_BY_BYRD_CHOSEN = makeID("AMBUSHED_BY_BYRD_CHOSEN");
     private static final String AMBUSHED_BY_CULTIST_CHOSEN = makeID("AMBUSHED_BY_CULTIST_CHOSEN");
-    private static final String AMBUSHED_BY_SENTRIES = makeID("AMBUSHED_BY_SENTRIES");
+    private static final String AMBUSHED_BY_SNOOZE_RAT = makeID("AMBUSHED_BY_SNOOZE_RAT");
     private static final String AMBUSHED_BY_LOUSE_NOB = makeID("AMBUSHED_BY_LOUSE_NOB");
     private static final String AMBUSHED_BY_TASKMASTER_NOB = makeID("AMBUSHED_BY_TASKMASTER_NOB");
-    private static final String AMBUSHED_BY_SLAVERS = makeID("AMBUSHED_BY_SLAVERS");
+    private static final String AMBUSHED_BY_PHILO_BOYS = makeID("AMBUSHED_BY_PHILO_BOYS");
     private static final String AMBUSHED_BY_CULTIST_SLIME = makeID("AMBUSHED_BY_CULTIST_SLIME");
 
     private ArrayList<String> cardDrawCardIDs; // List of card IDs that offer immediate card draw
@@ -72,45 +78,43 @@ public class AmbushedZone extends AbstractZone implements CombatModifyingZone, E
 
     @Override
     protected boolean canIncludeEarlyRows() {
-        //Since this zone always has an elite, we don't want it to show up in the rows of the act that never have elites
-        //It also has normal fights that are tuned as hard pool fights, so that's another reason to prevent early spawns
         return false;
     }
 
     private void initCardDrawCardIDs() {
         cardDrawCardIDs = new ArrayList<>();
-        cardDrawCardIDs.add("Pommel Strike");
-        cardDrawCardIDs.add("Shrug It Off");
-        cardDrawCardIDs.add("Battle Trance");
-        cardDrawCardIDs.add("Burning Pact");
-        cardDrawCardIDs.add("Offering");
-        cardDrawCardIDs.add("Acrobatics");
-        cardDrawCardIDs.add("Backflip");
-        cardDrawCardIDs.add("Dagger Throw");
-        cardDrawCardIDs.add("Prepared");
-        cardDrawCardIDs.add("Quick Slash");
-        cardDrawCardIDs.add("Calculated Gamble");
-        cardDrawCardIDs.add("Escape Plan");
-        cardDrawCardIDs.add("Expertise");
-        cardDrawCardIDs.add("Adrenaline");
-        cardDrawCardIDs.add("Coolheaded");
-        cardDrawCardIDs.add("Sweeping Beam");
-        cardDrawCardIDs.add("Steam Power");
-        cardDrawCardIDs.add("Skim");
-        cardDrawCardIDs.add("Reboot");
-        cardDrawCardIDs.add("CutThroughFate");
-        cardDrawCardIDs.add("EmptyMind");
-        cardDrawCardIDs.add("InnerPeace");
-        cardDrawCardIDs.add("Sanctity");
-        cardDrawCardIDs.add("WheelKick");
-        cardDrawCardIDs.add("Scrawl");
-        cardDrawCardIDs.add("Deep Breath");
-        cardDrawCardIDs.add("Finesse");
-        cardDrawCardIDs.add("Flash of Steel");
-        cardDrawCardIDs.add("Impatience");
-        cardDrawCardIDs.add("Master of Strategy");
-        cardDrawCardIDs.add("Thinking Ahead");
-        cardDrawCardIDs.add("Violence");
+        cardDrawCardIDs.add(PommelStrike.ID);
+        cardDrawCardIDs.add(ShrugItOff.ID);
+        cardDrawCardIDs.add(BattleTrance.ID);
+        cardDrawCardIDs.add(BurningPact.ID);
+        cardDrawCardIDs.add(Offering.ID);
+        cardDrawCardIDs.add(Acrobatics.ID);
+        cardDrawCardIDs.add(Backflip.ID);
+        cardDrawCardIDs.add(DaggerThrow.ID);
+        cardDrawCardIDs.add(Prepared.ID);
+        cardDrawCardIDs.add(QuickSlash.ID);
+        cardDrawCardIDs.add(CalculatedGamble.ID);
+        cardDrawCardIDs.add(EscapePlan.ID);
+        cardDrawCardIDs.add(Expertise.ID);
+        cardDrawCardIDs.add(Adrenaline.ID);
+        cardDrawCardIDs.add(Coolheaded.ID);
+        cardDrawCardIDs.add(SweepingBeam.ID);
+        cardDrawCardIDs.add(Overclock.ID);
+        cardDrawCardIDs.add(Skim.ID);
+        cardDrawCardIDs.add(Reboot.ID);
+        cardDrawCardIDs.add(CutThroughFate.ID);
+        cardDrawCardIDs.add(EmptyMind.ID);
+        cardDrawCardIDs.add(InnerPeace.ID);
+        cardDrawCardIDs.add(Sanctity.ID);
+        cardDrawCardIDs.add(WheelKick.ID);
+        cardDrawCardIDs.add(Scrawl.ID);
+        cardDrawCardIDs.add(DeepBreath.ID);
+        cardDrawCardIDs.add(Finesse.ID);
+        cardDrawCardIDs.add(FlashOfSteel.ID);
+        cardDrawCardIDs.add(Impatience.ID);
+        cardDrawCardIDs.add(MasterOfStrategy.ID);
+        cardDrawCardIDs.add(ThinkingAhead.ID);
+        cardDrawCardIDs.add(Violence.ID);
     }
 
     @Override
@@ -231,29 +235,20 @@ public class AmbushedZone extends AbstractZone implements CombatModifyingZone, E
 
     @Override
     public void postCreateShopPotions(ShopScreen screen, ArrayList<StorePotion> potions) {
-        for (StorePotion storePotion : potions) {
-            AbstractPotion replacementPotion;
-            switch (storePotion.potion.rarity) {
-                case COMMON:
-                    replacementPotion = PotionHelper.getPotion(SwiftPotion.POTION_ID);
-                    break;
-                case UNCOMMON:
-                    replacementPotion = PotionHelper.getPotion(GamblersBrew.POTION_ID);
-                    break;
-                case RARE:
-                    // Randomly select between Smoke Bomb and Snecko Oil for Rare potions
-                    if (AbstractDungeon.cardRandomRng.randomBoolean()) {
-                        replacementPotion = PotionHelper.getPotion(SmokeBomb.POTION_ID);
-                    } else {
-                        replacementPotion = PotionHelper.getPotion(SneckoOil.POTION_ID);
-                    }
-                    break;
-                default:
-                    continue; // Skip if the potion has an unexpected rarity
-            }
-            storePotion.potion = replacementPotion;
+        if (potions.size() >= 3) {
+            potions.clear();
+
+            // Add Swift Potion with its appropriate price
+            potions.add(new StorePotion(PotionHelper.getPotion(SwiftPotion.POTION_ID), 0, screen));
+
+            // Add Gambler's Brew with its appropriate price
+            potions.add(new StorePotion(PotionHelper.getPotion(GamblersBrew.POTION_ID), 1, screen));
+
+            // Add Snecko Oil with its appropriate price
+            potions.add(new StorePotion(PotionHelper.getPotion(SneckoOil.POTION_ID), 2, screen));
         }
     }
+
 
     @Override
     public void modifyReward(RewardItem rewardItem) {
@@ -273,12 +268,7 @@ public class AmbushedZone extends AbstractZone implements CombatModifyingZone, E
                     replacementPotion = PotionHelper.getPotion(GamblersBrew.POTION_ID);
                     break;
                 case RARE:
-                    // Randomly select between Smoke Bomb and Snecko Oil for Rare potions
-                    if (AbstractDungeon.cardRandomRng.randomBoolean()) {
-                        replacementPotion = PotionHelper.getPotion(SmokeBomb.POTION_ID);
-                    } else {
-                        replacementPotion = PotionHelper.getPotion(SneckoOil.POTION_ID);
-                    }
+                    replacementPotion = PotionHelper.getPotion(SneckoOil.POTION_ID);
                     break;
                 default:
                     return; // Do nothing if the potion has an unexpected rarity
@@ -292,7 +282,12 @@ public class AmbushedZone extends AbstractZone implements CombatModifyingZone, E
 
     @Override
     public void replaceRooms(Random rng) {
-        replaceRoomsRandomly(rng, MonsterRoom::new, (room)->room instanceof EventRoom, 100);
+        //Replace all event rooms with monster rooms
+        for (MapRoomNode node : this.nodes) {
+            if(node.room != null && EventRoom.class.equals(node.room.getClass())) {
+                node.setRoom(new MonsterRoom());
+            }
+        }
     }
 
     @Override
@@ -359,9 +354,9 @@ public class AmbushedZone extends AbstractZone implements CombatModifyingZone, E
     @Override
     public List<ZoneEncounter> getEliteEncounters() {
         return Arrays.asList(
-                new ZoneEncounter(AMBUSHED_BY_SENTRIES, 1, () -> new MonsterGroup(
+                new ZoneEncounter(AMBUSHED_BY_SNOOZE_RAT, 1, () -> new MonsterGroup(
                         new AbstractMonster[] {
-                                new Sentry(-1000.0F, 0),
+                                new FungiBeast(-1000.0F, 0),
                                 new Lagavulin(true)
                         })),
                 new ZoneEncounter(AMBUSHED_BY_LOUSE_NOB, 1, () -> new MonsterGroup(
@@ -374,10 +369,10 @@ public class AmbushedZone extends AbstractZone implements CombatModifyingZone, E
                                 new Taskmaster(-1000.0F, 0),
                                 new GremlinNob(32.0F, 0)
                         })),
-                new ZoneEncounter(AMBUSHED_BY_SLAVERS, 2, () -> new MonsterGroup(
+                new ZoneEncounter(AMBUSHED_BY_PHILO_BOYS, 2, () -> new MonsterGroup(
                         new AbstractMonster[] {
-                                new SlaverBlue(-1000.0F, 0),
-                                new SlaverRed(32.0F, 0)
+                                new Byrd(-1000.0F, 0),
+                                new BookOfStabbing()
                         }))
         );
     }
