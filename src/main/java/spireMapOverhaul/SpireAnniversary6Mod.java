@@ -105,8 +105,10 @@ public class SpireAnniversary6Mod implements
 
     public static SpireAnniversary6Mod thismod;
     public static SpireConfig modConfig = null;
-    public static SpireConfig currentRunConfig = null;
     public static boolean currentRunActive = false;
+    public static boolean currentRunNoRepeatZones = false;
+    public static HashSet<String> currentRunAllZones = null;
+    public static HashSet<String> currentRunSeenZones = null;
 
     public static final String modID = "anniv6";
 
@@ -126,7 +128,6 @@ public class SpireAnniversary6Mod implements
     public static final Map<String, Keyword> keywords = new HashMap<>();
 
     public static List<AbstractZone> unfilteredAllZones = new ArrayList<>();
-    public static List<AbstractZone> allZones = new ArrayList<>();
     private static Map<String, AbstractZone> zonePackages = new HashMap<>();
     public static Map<String, Set<String>> zoneEvents = new HashMap<>();
 
@@ -178,13 +179,9 @@ public class SpireAnniversary6Mod implements
         try {
             Properties defaults = new Properties();
             defaults.put("active", "TRUE");
+            defaults.put("noRepeatZones", "TRUE");
             defaults.put("largeIconsMode", "FALSE");
             modConfig = new SpireConfig(modID, "anniv6Config", defaults);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        try {
-            currentRunConfig = new SpireConfig(modID, "anniv6ConfigCurrentRun");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -199,9 +196,6 @@ public class SpireAnniversary6Mod implements
                         int lastSeparator = pkg.lastIndexOf('.');
                         if (lastSeparator >= 0) pkg = pkg.substring(0, lastSeparator);
                         unfilteredAllZones.add(zone);
-                        if (getCurrentRunFilterConfig(zone.id)) {
-                            allZones.add(zone);
-                        }
                         zonePackages.put(pkg, zone);
                     }
                 });
@@ -280,6 +274,9 @@ public class SpireAnniversary6Mod implements
 
     public static void addSaveFields() {
         BaseMod.addSaveField(SavableCurrentRunActive.SaveKey, new SavableCurrentRunActive());
+        BaseMod.addSaveField(SavableCurrentRunNoRepeatZones.SaveKey, new SavableCurrentRunNoRepeatZones());
+        BaseMod.addSaveField(SavableCurrentRunAllZones.SaveKey, new SavableCurrentRunAllZones());
+        BaseMod.addSaveField(SavableCurrentRunSeenZones.SaveKey, new SavableCurrentRunSeenZones());
         BaseMod.addSaveField(ZonePerFloorRunHistoryPatch.ZonePerFloorLog.SaveKey, new ZonePerFloorRunHistoryPatch.ZonePerFloorLog());
         BaseMod.addSaveField(EncounterModifierPatches.LastZoneNormalEncounter.SaveKey, new EncounterModifierPatches.LastZoneNormalEncounter());
         BaseMod.addSaveField(EncounterModifierPatches.LastZoneEliteEncounter.SaveKey, new EncounterModifierPatches.LastZoneEliteEncounter());
@@ -575,6 +572,8 @@ public class SpireAnniversary6Mod implements
     }
 
     private ModPanel settingsPanel;
+    private static final float NOREPEATZONES_CHECKBOX_X = 400f;
+    private static final float NOREPEATZONES_CHECKBOX_Y = 685f;
     private static final float LARGEICONS_CHECKBOX_X = 400f;
     private static final float LARGEICONS_CHECKBOX_Y = 650f;
     private DropdownMenu filterDropdown;
@@ -593,6 +592,11 @@ public class SpireAnniversary6Mod implements
         Texture badge = TexLoader.getTexture(makeImagePath("ui/badge.png"));
 
         settingsPanel = new ModPanel();
+
+        ModLabeledToggleButton noRepeatZonesToggle = new ModLabeledToggleButton(configStrings.TEXT[5], NOREPEATZONES_CHECKBOX_X, NOREPEATZONES_CHECKBOX_Y, Color.WHITE, FontHelper.tipBodyFont, getNoRepeatZonesConfig(), null,
+                (label) -> {},
+                (button) -> setNoRepeatZonesConfig(button.enabled));
+        settingsPanel.addUIElement(noRepeatZonesToggle);
 
         ModLabeledToggleButton largeIconsModeToggle = new ModLabeledToggleButton(configStrings.TEXT[4], LARGEICONS_CHECKBOX_X, LARGEICONS_CHECKBOX_Y, Color.WHITE, FontHelper.tipBodyFont, getLargeIconsModeConfig(), null,
                 (label) -> {},
@@ -669,27 +673,11 @@ public class SpireAnniversary6Mod implements
 
     @Override
     public void receiveStartGame() {
-        if (!CardCrawlGame.loadingSave) {
-            updateZoneList(); //only updated on new games to not mess anything up if settings are changed and a game is loaded
+        if (CardCrawlGame.loadingSave) {
+            // Clean up any zones from before the save and load
+            BetterMapGenerator.clearActiveZones();
+        } else {
             BeastsLairZone.clearBossList();
-        }
-    }
-
-    private void updateZoneList() {
-        allZones.clear();
-        currentRunConfig.clear();
-        for (AbstractZone z : unfilteredAllZones) {
-            if (getFilterConfig(z.id)) {
-                allZones.add(z);
-                setCurrentRunFilterConfig(z.id, true);
-            } else {
-                setCurrentRunFilterConfig(z.id, false);
-            }
-        }
-        try {
-            currentRunConfig.save();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
@@ -713,6 +701,48 @@ public class SpireAnniversary6Mod implements
         }
     }
 
+    public static class SavableCurrentRunNoRepeatZones implements CustomSavable<Boolean> {
+        public final static String SaveKey = "CurrentRunNoRepeatZones";
+
+        @Override
+        public Boolean onSave() {
+            return currentRunNoRepeatZones;
+        }
+
+        @Override
+        public void onLoad(Boolean b) {
+            currentRunNoRepeatZones = b == null || b;
+        }
+    }
+
+    public static class SavableCurrentRunAllZones implements CustomSavable<HashSet<String>> {
+        public final static String SaveKey = "CurrentRunAllZones";
+
+        @Override
+        public HashSet<String> onSave() {
+            return currentRunAllZones;
+        }
+
+        @Override
+        public void onLoad(HashSet<String> s) {
+            currentRunAllZones = s == null ? new HashSet<>() : s;
+        }
+    }
+
+    public static class SavableCurrentRunSeenZones implements CustomSavable<HashSet<String>> {
+        public final static String SaveKey = "CurrentRunSeenZones";
+
+        @Override
+        public HashSet<String> onSave() {
+            return currentRunSeenZones;
+        }
+
+        @Override
+        public void onLoad(HashSet<String> s) {
+            currentRunSeenZones = s == null ? new HashSet<>() : s;
+        }
+    }
+
     public static boolean getActiveConfig() {
         return modConfig == null || modConfig.getBool("active");
     }
@@ -720,6 +750,21 @@ public class SpireAnniversary6Mod implements
     public static void setActiveConfig(boolean active) {
         if (modConfig != null) {
             modConfig.setBool("active", active);
+            try {
+                modConfig.save();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static boolean getNoRepeatZonesConfig() {
+        return modConfig != null && modConfig.getBool("noRepeatZones");
+    }
+
+    public static void setNoRepeatZonesConfig(boolean bool) {
+        if (modConfig != null) {
+            modConfig.setBool("noRepeatZones", bool);
             try {
                 modConfig.save();
             } catch (IOException e) {
@@ -743,7 +788,7 @@ public class SpireAnniversary6Mod implements
         }
     }
 
-    private boolean getFilterConfig(String zoneId) {
+    public static boolean getFilterConfig(String zoneId) {
         if (modConfig != null && modConfig.has( zoneId +"_ENABLED")) {
             return modConfig.getBool(zoneId +"_ENABLED");
         } else {
@@ -751,7 +796,7 @@ public class SpireAnniversary6Mod implements
         }
     }
 
-    private void setFilterConfig(String zoneId, boolean enable) {
+    private static void setFilterConfig(String zoneId, boolean enable) {
         if (modConfig != null) {
             modConfig.setBool(zoneId + "_ENABLED", enable);
             try {
@@ -759,20 +804,6 @@ public class SpireAnniversary6Mod implements
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
-    }
-
-    private boolean getCurrentRunFilterConfig(String zoneId) {
-        if (currentRunConfig != null && currentRunConfig.has( zoneId +"_ONCURRENTRUN")) {
-            return currentRunConfig.getBool(zoneId +"_ONCURRENTRUN");
-        } else {
-            return false;
-        }
-    }
-
-    private void setCurrentRunFilterConfig(String zoneId, boolean enable) {
-        if (currentRunConfig != null) {
-            currentRunConfig.setBool(zoneId + "_ONCURRENTRUN", enable);
         }
     }
 
