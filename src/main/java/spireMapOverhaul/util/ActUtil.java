@@ -3,6 +3,7 @@ package spireMapOverhaul.util;
 import com.evacipated.cardcrawl.modthespire.Loader;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.*;
+import spireMapOverhaul.SpireAnniversary6Mod;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -34,7 +35,11 @@ public class ActUtil {
                 case "EYB:TheUnnamedReign":
                     return 4;
                 default:
-                    throw new RuntimeException("Unrecognized act ID: " + AbstractDungeon.id + ". When ActLikeIt isn't loaded, the only possible acts should be the vanilla four and a few special cases.");
+                    SpireAnniversary6Mod.logger.error("Unrecognized act ID: " + AbstractDungeon.id + ". When ActLikeIt isn't loaded, the only possible acts should be the vanilla four and a few special cases.");
+                    // We could throw an exception here, but to be a bit more robust just in case there's some other
+                    // strange act out there, we instead arbitrarily treat them as act 4s. The worst this will do is
+                    // make some zones not spawn or fall back to non-zone monster encounters
+                    return 4;
             }
         }
     }
