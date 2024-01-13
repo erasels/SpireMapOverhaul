@@ -86,6 +86,7 @@ public class BetterMapGenerator {
 
                     if (zone.generateMapArea(planner)) {
                         activeZones.add(zone);
+                        zoneRate = activeZones.size() < 3 ? 1.0f : activeZones.size() == 3 ? 0.5f : 0.0f;
                         continue outer;
                     }
                     else {
