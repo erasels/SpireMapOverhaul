@@ -128,6 +128,7 @@ public class AmbushedZone extends AbstractZone implements CombatModifyingZone, E
             }
         }
         rewardCards.clear();
+        applyStandardUpgradeLogic(newCards);
         rewardCards.addAll(newCards);
     }
 
