@@ -2,10 +2,17 @@ package spireMapOverhaul.zones.heavenlyClouds;
 
 import basemod.helpers.CardModifierManager;
 import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.monsters.city.Byrd;
+import com.megacrit.cardcrawl.powers.MinionPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
+import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.zoneInterfaces.CombatModifyingZone;
@@ -37,16 +44,38 @@ public class HeavenlyCloudsZone extends AbstractZone implements CombatModifyingZ
     }
 
     @Override
+    public boolean canSpawn() {
+        // Don't spawn in Act 3
+        return AbstractDungeon.actNum < 3;
+    }
+
+    @Override
     public void atBattleStart() {
+        UIStrings uistrings = CardCrawlGame.languagePack.getUIString(SpireAnniversary6Mod.makeID("ByrdTalk"));
+        String[] TEXT = uistrings.TEXT;
         int flightAmount = 3;
         if (AbstractDungeon.ascensionLevel >= 19) {
             flightAmount = 4;
         }
+        int numNonMinionEnemies = 0;
         for (AbstractMonster mo : Wiz.getEnemies()) {
-            atb(new ApplyPowerAction(mo, mo, new HeavenlyFlightPower(mo, flightAmount), flightAmount));
-            mo.currentHealth = (int)((float)mo.maxHealth * HEALTH_MODIFIER);
-            mo.maxHealth = (int)((float)mo.maxHealth * HEALTH_MODIFIER);
-            mo.healthBarUpdatedEvent();
+            if (!mo.hasPower(MinionPower.POWER_ID)) {
+                numNonMinionEnemies++;
+            }
+        }
+        if (numNonMinionEnemies == 1) {
+            flightAmount++;
+        }
+        for (AbstractMonster mo : Wiz.getEnemies()) {
+            if (mo.id.equals(Byrd.ID)) {
+                atb(new ApplyPowerAction(mo, mo, new StrengthPower(mo, 1), 1));
+                atb(new TalkAction(mo, TEXT[AbstractDungeon.monsterRng.random(TEXT.length - 1)]));
+            } else if (!mo.hasPower(MinionPower.POWER_ID)) {
+                atb(new ApplyPowerAction(mo, mo, new HeavenlyFlightPower(mo, flightAmount), flightAmount));
+                mo.currentHealth = (int)((float)mo.currentHealth * HEALTH_MODIFIER);
+                mo.maxHealth = (int)((float)mo.maxHealth * HEALTH_MODIFIER);
+                mo.healthBarUpdatedEvent();
+            }
         }
     }
 

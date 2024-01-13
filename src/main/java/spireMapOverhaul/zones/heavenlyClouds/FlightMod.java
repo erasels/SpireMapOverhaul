@@ -2,9 +2,7 @@ package spireMapOverhaul.zones.heavenlyClouds;
 
 import basemod.abstracts.AbstractCardModifier;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
-import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
@@ -16,14 +14,20 @@ public class FlightMod extends AbstractCardModifier {
     public static final UIStrings uistrings = CardCrawlGame.languagePack.getUIString(ID);
     public static final String[] TEXT = uistrings.TEXT;
 
+    private boolean used = false;
+
     @Override
     public AbstractCardModifier makeCopy() {
         return new FlightMod();
     }
 
     @Override
-    public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        AbstractDungeon.actionManager.addToBottom(new DrawCardAction(1));
+    public void onDrawn(AbstractCard card) {
+        if (!used) {
+            used = true;
+            card.flash();
+            AbstractDungeon.actionManager.addToBottom(new DrawCardAction(1));
+        }
     }
 
     @Override

@@ -7,8 +7,16 @@
   },
   "${ModID}:FlightMod": {
     "TEXT": [
-      " NL Draw 1 card.",
+      " NL The first time this card is drawn each combat, draw 1 card.",
       "Flighty "
+    ]
+  },
+  "${ModID}:ByrdTalk": {
+    "TEXT": [
+      "The clouds watch over us!",
+      "The skies embrace us!",
+      "Tremble below us, fool!",
+      "Grovel in the dirt, mortal!"
     ]
   }
 }
