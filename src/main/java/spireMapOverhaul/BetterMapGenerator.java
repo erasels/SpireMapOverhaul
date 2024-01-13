@@ -1,6 +1,7 @@
 package spireMapOverhaul;
 
 import com.badlogic.gdx.math.MathUtils;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.map.MapEdge;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.random.Random;
@@ -8,9 +9,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.patches.ZonePatches;
+import spireMapOverhaul.util.ActUtil;
 
 import java.util.*;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class BetterMapGenerator {
     public static final Logger mapGenLogger = LogManager.getLogger("BetterMapGen");
@@ -32,24 +35,38 @@ public class BetterMapGenerator {
         return activeZones;
     }
 
+    public static void clearActiveZones() {
+        for (AbstractZone z : activeZones) {
+            z.dispose();
+        }
+        activeZones.clear();
+    }
+
     private BetterMapGenerator() {
     }
 
     public ArrayList<ArrayList<MapRoomNode>> generate(Random rng, int width, int height, int pathDensity) {
+        if (Settings.isEndless && ActUtil.getRealActNum() == 1) {
+            //In endless mode, we let you encounter zones again each endless cycle
+            SpireAnniversary6Mod.currentRunSeenZones.clear();
+        }
+        else {
+            SpireAnniversary6Mod.currentRunSeenZones.addAll(activeZones.stream().map(z -> z.id).collect(Collectors.toList()));
+        }
+        mapGenLogger.info("Already seen zones: " + String.join(",", SpireAnniversary6Mod.currentRunSeenZones));
         MapPlanner planner;
         do {
             List<AbstractZone> possibleZones = new ArrayList<>();
-            for (AbstractZone zone : SpireAnniversary6Mod.allZones)
-                if (zone.canSpawn())
+            for (AbstractZone zone : SpireAnniversary6Mod.unfilteredAllZones) {
+                if (SpireAnniversary6Mod.currentRunAllZones.contains(zone.id) && !(SpireAnniversary6Mod.currentRunNoRepeatZones && SpireAnniversary6Mod.currentRunSeenZones.contains(zone.id)) && zone.canSpawn()) {
                     possibleZones.add(zone);
+                }
+            }
 
             planner = new MapPlanner(width, height);
 
             AbstractZone zone;
-            for (AbstractZone z : activeZones) {
-                z.dispose();
-            }
-            activeZones.clear();
+            clearActiveZones();
             float zoneRate = 1;
 
             for (AbstractZone queuedZone : queueCommandZones) {
@@ -69,6 +86,7 @@ public class BetterMapGenerator {
 
                     if (zone.generateMapArea(planner)) {
                         activeZones.add(zone);
+                        zoneRate = activeZones.size() < 3 ? 1.0f : activeZones.size() == 3 ? 0.5f : 0.0f;
                         continue outer;
                     }
                     else {

@@ -1,0 +1,11 @@
+{
+  "${ModID}:BeastsLairEvent": {
+    "NAME": "Beast's Lair",
+    "DESCRIPTIONS": [
+      "The cave looms before you, filled with a stench of rotting flesh. You hear a low growl from within. NL It calls you to fight, you have no choice."
+    ],
+    "OPTIONS": [
+      "[Enter]"
+    ]
+  }
+}
