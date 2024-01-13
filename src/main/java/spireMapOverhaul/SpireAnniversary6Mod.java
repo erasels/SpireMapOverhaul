@@ -673,7 +673,10 @@ public class SpireAnniversary6Mod implements
 
     @Override
     public void receiveStartGame() {
-        if (!CardCrawlGame.loadingSave) {
+        if (CardCrawlGame.loadingSave) {
+            // Clean up any zones from before the save and load
+            BetterMapGenerator.clearActiveZones();
+        } else {
             BeastsLairZone.clearBossList();
         }
     }

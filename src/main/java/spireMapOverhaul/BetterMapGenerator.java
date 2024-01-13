@@ -35,6 +35,13 @@ public class BetterMapGenerator {
         return activeZones;
     }
 
+    public static void clearActiveZones() {
+        for (AbstractZone z : activeZones) {
+            z.dispose();
+        }
+        activeZones.clear();
+    }
+
     private BetterMapGenerator() {
     }
 
@@ -59,10 +66,7 @@ public class BetterMapGenerator {
             planner = new MapPlanner(width, height);
 
             AbstractZone zone;
-            for (AbstractZone z : activeZones) {
-                z.dispose();
-            }
-            activeZones.clear();
+            clearActiveZones();
             float zoneRate = 1;
 
             for (AbstractZone queuedZone : queueCommandZones) {
