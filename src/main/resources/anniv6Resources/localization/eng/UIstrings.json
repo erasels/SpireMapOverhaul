@@ -19,6 +19,12 @@
       "Heal "
     ]
   },
+  "${ModID}:AnyColorCardReward": {
+    "TEXT": [
+      "Add a card of any color to deck",
+      "Choose a Card"
+    ]
+  },
   "${ModID}:CombatExplainButton": {
     "TEXT": [
       "Combat Modifier"

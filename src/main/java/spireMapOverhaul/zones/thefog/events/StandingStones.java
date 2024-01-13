@@ -1,14 +1,14 @@
 package spireMapOverhaul.zones.thefog.events;
 
 import com.badlogic.gdx.math.MathUtils;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.AbstractImageEvent;
 import com.megacrit.cardcrawl.localization.EventStrings;
-import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import spireMapOverhaul.rewards.AnyColorCardReward;
+import spireMapOverhaul.zones.thefog.relics.StoneFragment;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 import static spireMapOverhaul.SpireAnniversary6Mod.makeImagePath;
@@ -25,63 +25,61 @@ public class StandingStones extends AbstractImageEvent {
 
     private int screenNum = 0;
 
-    private boolean pickCard = false;
-
     private static final float HP_HEAL_PERCENT = 0.33F;
     private static final float A15_HP_HEAL_PERCENT = 0.2F;
+    private static final float HP_DAMAGE_PERCENT = 0.15F;
+    private static final float A15_HP_DAMAGE_PERCENT = 0.2F;
 
     private final int healAmt;
     private final int damageAmt;
 
     public StandingStones() {
-        // TODO: add this art
         super(NAME, DESCRIPTIONS[0], makeImagePath("events/TheFog/StandingStones.png"));
+        this.noCardsInRewards = true;
+
         if (AbstractDungeon.ascensionLevel >= 15) {
             this.healAmt = MathUtils.round(adp().maxHealth * A15_HP_HEAL_PERCENT);
-            this.damageAmt = 10;
+            this.damageAmt = MathUtils.round(adp().maxHealth * A15_HP_DAMAGE_PERCENT);
         } else {
             this.healAmt = MathUtils.round(adp().maxHealth * HP_HEAL_PERCENT);
-            this.damageAmt = 7;
+            this.damageAmt = MathUtils.round(adp().maxHealth * HP_DAMAGE_PERCENT);
         }
+
         this.imageEventText.setDialogOption(OPTIONS[0] + this.healAmt + OPTIONS[1]);
         this.imageEventText.setDialogOption(OPTIONS[2]);
         this.imageEventText.setDialogOption(OPTIONS[3] + this.damageAmt + OPTIONS[4]);
     }
 
-    public void update() {
-        super.update();
-        if (this.pickCard &&
-                !AbstractDungeon.isScreenUp && !AbstractDungeon.gridSelectScreen.selectedCards.isEmpty()) {
-            // TODO: change/delete this code cus the reward should do everything
-            AbstractCard c = (AbstractDungeon.gridSelectScreen.selectedCards.get(0)).makeCopy();
-            logMetricObtainCard("Standing Stones", "Stargaze", c);
-            AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(c, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
-            AbstractDungeon.gridSelectScreen.selectedCards.clear();
-        }
-    }
-
     protected void buttonEffect(int buttonPressed) {
         if (this.screenNum == 0) {
-            this.screenNum++;
             switch (buttonPressed) {
                 case 0:
                     this.imageEventText.updateBodyText(DESCRIPTIONS[1]);
                     AbstractDungeon.player.heal(healAmt, true);
-                    logMetricHeal("Standing Stones", "Sleep", healAmt);
-                    this.imageEventText.updateDialogOption(0, OPTIONS[3]);
+                    this.imageEventText.updateDialogOption(0, OPTIONS[5]);
                     this.imageEventText.clearRemainingOptions();
+                    this.screenNum++;
                     return;
                 case 1:
+                    AbstractDungeon.getCurrRoom().rewards.clear();
+                    AbstractDungeon.getCurrRoom().addCardReward(new AnyColorCardReward());
+                    AbstractDungeon.getCurrRoom().phase = AbstractRoom.RoomPhase.COMPLETE;
+                    AbstractDungeon.combatRewardScreen.open();
                     this.imageEventText.updateBodyText(DESCRIPTIONS[2]);
-                    this.imageEventText.updateDialogOption(0, OPTIONS[3]);
+                    this.imageEventText.updateDialogOption(0, OPTIONS[5]);
                     this.imageEventText.clearRemainingOptions();
-                    this.pickCard = true;
-                    // TODO: 1 of 5 cards of any color, as a reward
+                    this.screenNum++;
                     return;
                 case 2:
-                    // TODO: make the relic
+                    AbstractDungeon.getCurrRoom().rewards.clear();
+                    AbstractDungeon.getCurrRoom().addRelicToRewards(new StoneFragment());
+                    AbstractDungeon.getCurrRoom().phase = AbstractRoom.RoomPhase.COMPLETE;
+                    AbstractDungeon.combatRewardScreen.open();
+                    this.imageEventText.updateBodyText(DESCRIPTIONS[3]);
                     adp().damage(new DamageInfo(null, damageAmt, DamageInfo.DamageType.HP_LOSS));
-                    logMetricTakeDamage("Standing Stones", "Smashed a Stone", damageAmt);
+                    this.imageEventText.updateDialogOption(0, OPTIONS[5]);
+                    this.imageEventText.clearRemainingOptions();
+                    this.screenNum++;
                     return;
             }
         }

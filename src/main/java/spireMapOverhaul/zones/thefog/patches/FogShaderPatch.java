@@ -95,6 +95,7 @@ public class FogShaderPatch {
         sb.flush();
     }
 
+    // TODO: check if this works in other acts
     @SpirePatch2(clz = TheBottomScene.class, method = "update")
     public static class Timer {
         public static void Prefix(TheBottomScene __instance) {
