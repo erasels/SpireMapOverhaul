@@ -459,6 +459,7 @@ public class SpireAnniversary6Mod implements
                     AddEventParams.Builder eventBuilder = new AddEventParams.Builder(eventID, eventClass);
 
                     Condition eventCondition = null;
+                    boolean endsWithRewardsUI = false;
                     Method[] methods = eventClass.getDeclaredMethods();
                     for (Method m : methods) {
                         if (Modifier.isStatic(m.getModifiers()) && m.getName().equals("bonusCondition")
@@ -472,6 +473,15 @@ public class SpireAnniversary6Mod implements
                                 }
                             };
                             break;
+                        }
+                        else if (Modifier.isStatic(m.getModifiers()) && m.getName().equals("endsWithRewardsUI")
+                                && m.getReturnType().equals(boolean.class) && m.getParameterCount() == 0) {
+                            m.setAccessible(true);
+                            try {
+                                endsWithRewardsUI = (boolean)m.invoke(null);
+                            } catch (IllegalAccessException | InvocationTargetException e) {
+                                throw new RuntimeException(e);
+                            }
                         }
                     }
 
@@ -505,8 +515,10 @@ public class SpireAnniversary6Mod implements
                         logger.info("Event " + eventClass.getSimpleName() + " has no linked zone.");
                     }
 
-                    if (eventCondition != null)
+                    if (eventCondition != null) {
                         eventBuilder.bonusCondition(eventCondition);
+                    }
+                    eventBuilder.endsWithRewardsUI(endsWithRewardsUI);
 
                     BaseMod.addEvent(eventBuilder.create());
                 }
