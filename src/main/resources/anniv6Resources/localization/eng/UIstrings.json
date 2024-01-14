@@ -22,7 +22,7 @@
   },
   "${ModID}:AnyColorCardReward": {
     "TEXT": [
-      "Add a card of any color to deck",
+      "Add a card of any color",
       "Choose a Card"
     ]
   },
