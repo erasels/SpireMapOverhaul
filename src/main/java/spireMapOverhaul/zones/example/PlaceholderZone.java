@@ -32,7 +32,7 @@ public class PlaceholderZone extends AbstractZone implements ModifiedEventRateZo
     private final Color color;
 
     @Override
-    public AbstractEvent forceEvent() {
+    public String forceEvent() {
         return ModifiedEventRateZone.returnIfUnseen(CoolExampleEvent.ID);
     }
 

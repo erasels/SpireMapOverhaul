@@ -39,8 +39,8 @@ public abstract class AbstractZone {
     private static final float SPACING_X = Settings.isMobile ? (int)(Settings.xScale * 64.0F) * 2.2F : (int)(Settings.xScale * 64.0F) * 2.0F;
     private static final String[] NO_TEXT = new String[] { };
     private static final int NO_ELITES_BOUNDARY_ROW = 4;
-    private static final int TREASURE_ROW = 9;
-    private static final int FINAL_CAMPFIRE_ROW = 15;
+    private static final int TREASURE_ROW = 8;
+    private static final int FINAL_CAMPFIRE_ROW = 14;
 
     private static final HashMap<Icons, String> iconsMap;
     static {
@@ -148,8 +148,12 @@ public abstract class AbstractZone {
         }
         if (icons.length > 0)
             sb.append(" NL ");
-        sb.append(TEXT[1]);
+        sb.append(getDescriptionText());
         tooltipBody = sb.toString();
+    }
+
+    public String getDescriptionText() {
+        return TEXT[1];
     }
 
     public void renderOnMap(SpriteBatch sb, float alpha) {
@@ -203,7 +207,7 @@ public abstract class AbstractZone {
     protected boolean canIncludeEarlyRows() {
         return true;
     }
-    //Whether the zone can include the row that always has treasure nodes (row 9).
+    //Whether the zone can include the row that always has treasure nodes (row 8).
     //This should be overridden to return false for zones that might replace the treasure node with something else.
     //(We consider it important for play experience, game balance, and compatibility that the treasure nodes stay).
     protected boolean canIncludeTreasureRow() {
