@@ -49,6 +49,10 @@ public class BeastsLairEvent extends PhasedEvent {
             transitionKey("Start");
         }
 
+        public static boolean endsWithRewardsUI() {
+            return true;
+        }
+
     @Override
     public void enterCombat() {
         super.enterCombat();
