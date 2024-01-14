@@ -1,6 +1,10 @@
 {
   "${ModID}:volEruptPower": {
     "NAME": "Erupt",
-    "DESCRIPTIONS": ["After you play #b{0}% more cards, this enemy explodes, dealing #r{0} damage."]
+    "DESCRIPTIONS": ["After you play #b{0} more cards, this enemy explodes, dealing #r{0} damage."]
+  },
+  "${ModID}:volUnstablePower": {
+    "NAME": "Unstable",
+    "DESCRIPTIONS": ["On its turn, deals #b{0} damage to EVERYONE."]
   }
 }

@@ -38,14 +38,14 @@ public class Eruptor extends CustomMonster {
     private static final int A17_TRIGGER = 10;
     private static final int HP_MIN = 18;
     private static final int HP_MAX = 21;
-    private static final int A8_HP_MIN = 23;
-    private static final int A8_HP_MAX = 25;
+    private static final int A7_HP_MIN = 23;
+    private static final int A7_HP_MAX = 25;
     private boolean firstMove = true;
     
     public Eruptor(final float x, final float y) {
         super(NAME, ID, HP_MAX, -5.0F, 0, 180.0f, 100.0f, IMG, x, y);
-        if (AbstractDungeon.ascensionLevel >= 8) {
-            this.setHp(A8_HP_MIN, A8_HP_MAX);
+        if (AbstractDungeon.ascensionLevel >= 7) {
+            this.setHp(A7_HP_MIN, A7_HP_MAX);
         } else {
             this.setHp(HP_MIN, HP_MAX);
         }
@@ -83,14 +83,13 @@ public class Eruptor extends CustomMonster {
     @Override
     protected void getMove(final int num) {
         if (this.firstMove) {
-            this.setMove(BRUISE, Intent.ATTACK);
+            this.setMove(BRUISE, Intent.ATTACK, this.damage.get(0).base);
             this.firstMove = false;
         } else {
             if (this.lastMove(BRUISE)) {
                 this.setMove(BOIL, Intent.DEBUFF);
             } else {
-                this.setMove(BRUISE, Intent.ATTACK);
-                this.setMove((byte) 4, Intent.ATTACK, this.damage.get(0).base);
+                this.setMove(BRUISE, Intent.ATTACK, this.damage.get(0).base);
             }
         }
     }

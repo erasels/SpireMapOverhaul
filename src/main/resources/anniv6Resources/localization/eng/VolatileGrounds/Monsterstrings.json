@@ -5,5 +5,13 @@
       "Boil"
     ],
     "NAME": "Eruptor"
+  },
+  "${ModID}:UnstableSunstone": {
+    "MOVES": [
+      "Charge",
+      "Sear",
+      "Hot Potato"
+    ],
+    "NAME": "Unstable Sun Stone"
   }
 }
