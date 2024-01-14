@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.events.AbstractEvent;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
@@ -142,7 +141,7 @@ public class MirrorZone extends AbstractZone implements CombatModifyingZone, Mod
     }
 
     @Override
-    public AbstractEvent forceEvent() {
+    public String forceEvent() {
         return ModifiedEventRateZone.returnIfUnseen(WeirdMirrorsEvent.ID);
     }
 }
