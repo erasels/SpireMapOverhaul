@@ -3,22 +3,21 @@ package spireMapOverhaul.zones.volatileGrounds;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
+import com.megacrit.cardcrawl.monsters.beyond.Exploder;
 import com.megacrit.cardcrawl.monsters.exordium.LouseNormal;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
-import spireMapOverhaul.zoneInterfaces.*;
-import spireMapOverhaul.zones.invasion.monsters.Hexasnake;
-import spireMapOverhaul.zones.invasion.monsters.StygianBoar;
-import spireMapOverhaul.zones.invasion.monsters.WhisperingWraith;
+import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
 import spireMapOverhaul.zones.volatileGrounds.monsters.Eruptor;
+import spireMapOverhaul.zones.volatileGrounds.monsters.SunStoneShard;
 import spireMapOverhaul.zones.volatileGrounds.monsters.UnstableSunstone;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class VolatileGrounds extends AbstractZone implements EncounterModifyingZone {
-    private static final String VOL_TEST = SpireAnniversary6Mod.makeID("ERUPTOR_TEST");
-    private static final String VOL_TEST2 = SpireAnniversary6Mod.makeID("SUNSTONE_TEST");
+    private static final String SUNSTONE_ELITE = SpireAnniversary6Mod.makeID("SUNSTONE_ELITE");
+    private static final String EXPLOSIVE_SHAPES = SpireAnniversary6Mod.makeID("EXPLOSIVE_SHAPES");
     
     public VolatileGrounds() {
         super("VolatileGrounds", Icons.ELITE, Icons.MONSTER);
@@ -44,17 +43,27 @@ public class VolatileGrounds extends AbstractZone implements EncounterModifyingZ
     
     @Override
     public List<ZoneEncounter> getNormalEncounters() {
-            return Arrays.asList(
-                    new ZoneEncounter(VOL_TEST, 1, () -> new MonsterGroup(
-                            new AbstractMonster[] {
-                                    new Eruptor(0.0F, 0.0F)
-                            })),
-                    new ZoneEncounter(VOL_TEST2, 1, () -> new MonsterGroup(
-                            new AbstractMonster[] {
-                                    new UnstableSunstone(0.0F, 0.0F),
-                                    new LouseNormal(300.0F, 0.0f)
-                            }))
-            );
+        return Arrays.asList(
+                new ZoneEncounter(EXPLOSIVE_SHAPES, 3, () -> new MonsterGroup(
+                        new AbstractMonster[]{
+                                new Eruptor(0.0F, 0.0F),
+                                new Eruptor(-320.0F, 0.0F),
+                                new Exploder(-160.0F, 0.0F),
+                                new Exploder(160.0F, 0.0F)
+                        }))
+        );
+    }
+    
+    @Override
+    public List<ZoneEncounter> getEliteEncounters() {
+        return Arrays.asList(
+                new ZoneEncounter(SUNSTONE_ELITE, 3, () -> new MonsterGroup(
+                        new AbstractMonster[]{
+                                new SunStoneShard(-300.0F, 0.0f),
+                                new UnstableSunstone(0.0F, 0.0F),
+                                new SunStoneShard(300.0F, 0.0f),
+                        }))
+        );
     }
     
     protected boolean canIncludeEarlyRows() {

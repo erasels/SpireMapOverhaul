@@ -13,5 +13,13 @@
       "Hot Potato"
     ],
     "NAME": "Unstable Sun Stone"
+  },
+  "${ModID}:SunStoneShard": {
+    "MOVES": [
+      "Buff",
+      "Attack",
+      "Barrier"
+    ],
+    "NAME": "Sun Stone Shard"
   }
 }

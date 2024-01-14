@@ -6,5 +6,9 @@
   "${ModID}:volUnstablePower": {
     "NAME": "Unstable",
     "DESCRIPTIONS": ["On its turn, deals #b{0} damage to EVERYONE."]
+  },
+  "${ModID}:volChargedPower": {
+    "NAME": "Charged",
+    "DESCRIPTIONS": ["On its death, deals #b{0} damage to EVERYONE."]
   }
 }

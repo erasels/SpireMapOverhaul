@@ -38,7 +38,7 @@ public class UnstableSunstone extends CustomMonster {
     private boolean firstMove = true;
     
     public UnstableSunstone(final float x, final float y) {
-        super(NAME, ID, HP_MAX, -5.0F, 0, 340.0f, 370f, IMG, x, y);
+        super(NAME, ID, HP_MAX, -5.0F, 0, 340.0f, 340f, IMG, x, y);
         if (AbstractDungeon.ascensionLevel >= 8) {
             this.setHp(A8_HP_MIN, A8_HP_MAX);
         } else {
@@ -48,9 +48,7 @@ public class UnstableSunstone extends CustomMonster {
         this.damage.add(new DamageInfo(this, ATTACK2_DAMAGE));
         this.loadAnimation(ATLAS, SKELETON, 1.00f);
         AnimationState.TrackEntry e = this.state.setAnimation(0, "animation0", true);
-        e.setEndTime(10.0f);
-        e.setTimeScale(1.0f);
-        //e.setTime(e.getEndTime() * MathUtils.random());
+        e.setTime(e.getEndTime() * MathUtils.random());
     }
     
     @Override

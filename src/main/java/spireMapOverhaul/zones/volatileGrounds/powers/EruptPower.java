@@ -25,15 +25,15 @@ public class EruptPower extends AbstractSMOPower {
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
     
     public EruptPower(AbstractCreature owner, int amount, int amount2) {
-        super(ID, NAME, PowerType.BUFF, true, owner, amount);
+        super(ID, NAME, PowerType.BUFF, false, owner, amount);
         isTwoAmount = true;
         this.amount2 = amount2;
         updateDescription();
     }
     @Override
     public void updateDescription() {
-        this.description = DESCRIPTIONS[0].replace("{0}", this.amount2 + "")
-                .replace("{1}", this.amount + "");
+        this.description = DESCRIPTIONS[0].replace("{0}", this.amount + "")
+                .replace("{1}", this.amount2 + "");
     }
     
     
@@ -42,7 +42,7 @@ public class EruptPower extends AbstractSMOPower {
         if (this.amount == 1 && !this.owner.isDying) {
             this.addToBot(new VFXAction(new ExplosionSmallEffect(this.owner.hb.cX, this.owner.hb.cY), 0.1F));
             this.addToBot(new SuicideAction((AbstractMonster) this.owner));
-            DamageInfo damageInfo = new DamageInfo(this.owner, amount, DamageInfo.DamageType.THORNS);
+            DamageInfo damageInfo = new DamageInfo(this.owner, amount2, DamageInfo.DamageType.THORNS);
             this.addToBot(new DamageAction(AbstractDungeon.player, damageInfo, AbstractGameAction.AttackEffect.FIRE, true));
         }
         else
@@ -50,4 +50,6 @@ public class EruptPower extends AbstractSMOPower {
             AbstractDungeon.actionManager.addToBottom(new ReducePowerAction(owner, owner, this, 1));
         }
     }
+    
+
 }

@@ -36,10 +36,10 @@ public class Eruptor extends CustomMonster {
     private static final int A2_EXPLOSION_DAMAGE = 20;
     private static final int TRIGGER = 15;
     private static final int A17_TRIGGER = 10;
-    private static final int HP_MIN = 18;
-    private static final int HP_MAX = 21;
-    private static final int A7_HP_MIN = 23;
-    private static final int A7_HP_MAX = 25;
+    private static final int HP_MIN = 22;
+    private static final int HP_MAX = 26;
+    private static final int A7_HP_MIN = 25;
+    private static final int A7_HP_MAX = 30;
     private boolean firstMove = true;
     
     public Eruptor(final float x, final float y) {
@@ -52,7 +52,6 @@ public class Eruptor extends CustomMonster {
         this.damage.add(new DamageInfo(this, BRUISE_DAMAGE));
         this.loadAnimation(ATLAS, SKELETON, 0.75f);
         AnimationState.TrackEntry e = this.state.setAnimation(0, "animation0", true);
-        e.setEndTime(1.6f);
         e.setTimeScale(0.5f);
         e.setTime(e.getEndTime() * MathUtils.random());
     }
