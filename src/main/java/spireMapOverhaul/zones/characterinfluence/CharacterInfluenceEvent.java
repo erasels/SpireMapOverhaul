@@ -129,4 +129,8 @@ public class CharacterInfluenceEvent extends PhasedEvent {
         pixmap.dispose();
 
     }
+
+    public static boolean endsWithRewardsUI() {
+        return true;
+    }
 }
