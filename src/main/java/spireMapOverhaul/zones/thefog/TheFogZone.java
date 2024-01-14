@@ -9,11 +9,12 @@ import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.rooms.EventRoom;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.zoneInterfaces.CombatModifyingZone;
+import spireMapOverhaul.zoneInterfaces.ModifiedEventRateZone;
 
 import static spireMapOverhaul.util.Wiz.atb;
 import static spireMapOverhaul.util.Wiz.forAllMonstersLiving;
 
-public class TheFogZone extends AbstractZone implements CombatModifyingZone {
+public class TheFogZone extends AbstractZone implements CombatModifyingZone, ModifiedEventRateZone {
     public static final String ID = "TheFog";
 
     public TheFogZone() {
@@ -54,5 +55,10 @@ public class TheFogZone extends AbstractZone implements CombatModifyingZone {
     @Override
     public boolean canIncludeFinalCampfireRow() {
         return false;
+    }
+
+    @Override
+    public float zoneSpecificEventRate() {
+        return 0.3f;
     }
 }

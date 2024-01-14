@@ -1,6 +1,5 @@
 package spireMapOverhaul.zones.thefog.events;
 
-import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -14,6 +13,7 @@ import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 import static spireMapOverhaul.SpireAnniversary6Mod.makeImagePath;
 import static spireMapOverhaul.util.Wiz.adp;
 
+@SuppressWarnings("unused")
 public class StandingStones extends AbstractImageEvent {
     public static final String ID = makeID("StandingStones");
 
@@ -38,16 +38,16 @@ public class StandingStones extends AbstractImageEvent {
         this.noCardsInRewards = true;
 
         if (AbstractDungeon.ascensionLevel >= 15) {
-            this.healAmt = MathUtils.round(adp().maxHealth * A15_HP_HEAL_PERCENT);
-            this.damageAmt = MathUtils.round(adp().maxHealth * A15_HP_DAMAGE_PERCENT);
+            this.healAmt = (int)(adp().maxHealth * A15_HP_HEAL_PERCENT);
+            this.damageAmt = (int)(adp().maxHealth * A15_HP_DAMAGE_PERCENT);
         } else {
-            this.healAmt = MathUtils.round(adp().maxHealth * HP_HEAL_PERCENT);
-            this.damageAmt = MathUtils.round(adp().maxHealth * HP_DAMAGE_PERCENT);
+            this.healAmt = (int)(adp().maxHealth * HP_HEAL_PERCENT);
+            this.damageAmt = (int)(adp().maxHealth * HP_DAMAGE_PERCENT);
         }
 
         this.imageEventText.setDialogOption(OPTIONS[0] + this.healAmt + OPTIONS[1]);
         this.imageEventText.setDialogOption(OPTIONS[2]);
-        this.imageEventText.setDialogOption(OPTIONS[3] + this.damageAmt + OPTIONS[4]);
+        this.imageEventText.setDialogOption(OPTIONS[3] + this.damageAmt + OPTIONS[4], new StoneFragment());
     }
 
     protected void buttonEffect(int buttonPressed) {

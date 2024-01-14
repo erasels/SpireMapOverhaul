@@ -9,8 +9,8 @@
     ],
     "OPTIONS": [
       "[Sleep] #gHeal #g", " #gHP.",
-      "[Stargaze] #gChoose #g1 #gof #g3 #gcards #gof #gany #gcolor #gto #gobtain.",
-      "[Smash] #gObtain #ga #gspecial #grelic. #rLose #r", " #rHP.",
+      "[Stargaze] #gAdd #g1 #gcard #gof #gany #gcolor #gto #gyour #gdeck.",
+      "[Smash] #gObtain #ga #gspecial #gRelic. #rLose #r", " #rHP.",
       "[Leave]"
     ]
   }
