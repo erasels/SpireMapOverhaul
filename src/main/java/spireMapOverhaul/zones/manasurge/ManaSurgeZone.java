@@ -236,7 +236,7 @@ public class ManaSurgeZone extends AbstractZone implements
     }
 
     @Override
-    public AbstractEvent forceEvent() {
+    public String forceEvent() {
         return ModifiedEventRateZone.returnIfUnseen(ManaCycloneEvent.ID);
     }
 
