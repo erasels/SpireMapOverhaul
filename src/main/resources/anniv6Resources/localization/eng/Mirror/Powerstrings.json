@@ -8,13 +8,13 @@
   "${ModID}:Reflective": {
     "NAME": "Reflective",
     "DESCRIPTIONS": [
-      "Increases the damage and #yBlock amount of Mirror Move card by #b{0}."
+      "Increases the damage and #yBlock amount of #yMirror #yMove card by #b{0}."
     ]
   },
   "${ModID}:Shattered": {
     "NAME": "Shattered",
     "DESCRIPTIONS": [
-      "After you play a Mirror Move, loses #b{0}% of its HP, rounded up."
+      "After you play a #yMirror #yMove, loses #b{0}% of its HP, rounded up."
     ]
   }
 }

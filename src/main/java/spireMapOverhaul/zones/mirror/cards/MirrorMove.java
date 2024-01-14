@@ -402,7 +402,7 @@ public class MirrorMove extends AbstractSMOCard {
             return;
         }
         ArrayList<String> desc = new ArrayList<>();
-        desc.add(TipHelper.capitalize(GameDictionary.ETHEREAL.NAMES[0]) + ".");
+        desc.add(TipHelper.capitalize(GameDictionary.ETHEREAL.NAMES[0]) + LocalizedStrings.PERIOD);
         if (gainEnergy) {
             desc.add(gainEDesc);
         }
