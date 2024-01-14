@@ -2,7 +2,7 @@
   "${ModID}:TheFog": {
     "TEXT": [
       "The Fog",
-      "Thick fog swirls around you, blocking your view in every direction. NL Enemies you encounter will be surprised on the first turn, making them #yWeaker and more #yVulnerable."
+      "There's thick fog in this area, which blocks your view in every direction. NL Enemies you encounter will be surprised on the first turn, making them #yWeaker and more #yVulnerable."
     ]
   }
 }

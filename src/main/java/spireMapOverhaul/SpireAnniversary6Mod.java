@@ -58,6 +58,7 @@ import spireMapOverhaul.util.ZoneShapeMaker;
 import spireMapOverhaul.zoneInterfaces.CampfireModifyingZone;
 import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
 import spireMapOverhaul.zones.beastslair.BeastsLairZone;
+import spireMapOverhaul.zones.brokenspace.BrokenSpaceZone;
 import spireMapOverhaul.zones.manasurge.ui.extraicons.BlightIcon;
 import spireMapOverhaul.zones.manasurge.ui.extraicons.EnchantmentIcon;
 
@@ -569,7 +570,7 @@ public class SpireAnniversary6Mod implements
             hoverRewardWorkaround.renderCardOnHover(sb);
             hoverRewardWorkaround = null;
         }
-        spireMapOverhaul.zones.brokenSpace.BrokenSpaceZone.shaderTimer += Gdx.graphics.getDeltaTime();
+        BrokenSpaceZone.shaderTimer += Gdx.graphics.getDeltaTime();
     }
 
     @Override

@@ -14,7 +14,10 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.scenes.AbstractScene;
+import com.megacrit.cardcrawl.scenes.TheBeyondScene;
 import com.megacrit.cardcrawl.scenes.TheBottomScene;
+import com.megacrit.cardcrawl.scenes.TheCityScene;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.zones.thefog.TheFogZone;
 import spireMapOverhaul.zones.thefog.util.MouseInfo;
@@ -95,10 +98,9 @@ public class FogShaderPatch {
         sb.flush();
     }
 
-    // TODO: check if this works in other acts
-    @SpirePatch2(clz = TheBottomScene.class, method = "update")
+    @SpirePatch2(clz = AbstractScene.class, method = "update")
     public static class Timer {
-        public static void Prefix(TheBottomScene __instance) {
+        public static void Prefix(AbstractScene __instance) {
             if (infos.size() > Settings.MAX_FPS) {
                 infos.removeFirst();
             }
