@@ -3,16 +3,15 @@ package spireMapOverhaul.zones.gremlinTown.monsters;
 import basemod.abstracts.CustomMonster;
 import com.badlogic.gdx.math.MathUtils;
 import com.esotericsoftware.spine.AnimationState;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.animations.AnimateSlowAttackAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import spireMapOverhaul.SpireAnniversary6Mod;
+import spireMapOverhaul.zones.gremlinTown.actions.RockThrowAction;
 
-import static spireMapOverhaul.util.Wiz.*;
+import static spireMapOverhaul.util.Wiz.asc;
+import static spireMapOverhaul.util.Wiz.atb;
 
 public class GremlinRockTosser extends CustomMonster
 {
@@ -20,10 +19,9 @@ public class GremlinRockTosser extends CustomMonster
     public static final String NAME;
     private static final String[] MOVES;
     private static final String SKELETON_ATLAS = SpireAnniversary6Mod.makeImagePath(
-            "images/monsters/theBottom/angryGremlin/skeleton.atlas");
+            "monsters/GremlinTown/GremlinRockTosser/skeleton.atlas");
     private static final String SKELETON_JSON = SpireAnniversary6Mod.makeImagePath(
-            "images/monsters/theBottom/angryGremlin/skeleton.json");
-    private boolean firstMove = true;
+            "monsters/GremlinTown/GremlinRockTosser/skeleton.json");
     private static final byte ATTACK = 1;
     private static final int DAMAGE = 7;
     private static final int DAMAGE_A2 = 8;
@@ -39,11 +37,11 @@ public class GremlinRockTosser extends CustomMonster
     }
 
     public GremlinRockTosser(final float x, final float y) {
-        super(GremlinRockTosser.NAME, ID, MAX_HP, 0, 0, 130.0f, 194, null, x, y);
+        super(GremlinRockTosser.NAME, ID, MAX_HP, -4, 12, 130.0f, 174, null, x, y);
 
         type = EnemyType.NORMAL;
         loadAnimation(SKELETON_ATLAS, SKELETON_JSON, 1F);
-        AnimationState.TrackEntry e = this.state.setAnimation(0, "idle", true);
+        AnimationState.TrackEntry e = state.setAnimation(0, "idle", true);
         e.setTime(e.getEndTime() * MathUtils.random());
 
         if (asc() >= 2)
@@ -61,11 +59,8 @@ public class GremlinRockTosser extends CustomMonster
 
     @Override
     public void takeTurn() {
-        if (firstMove)
-            firstMove = false;
-
-        atb(new AnimateSlowAttackAction(this));
-        atb(new DamageAction(adp(), damage.get(0), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
+        DamageInfo info = new DamageInfo(this, attackDamage, DamageInfo.DamageType.NORMAL);
+        atb(new RockThrowAction(this, info));
 
         atb(new RollMoveAction(this));
     }

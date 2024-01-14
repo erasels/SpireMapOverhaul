@@ -1,5 +1,6 @@
 package spireMapOverhaul.zones.gremlinTown;
 
+import basemod.ReflectionHacks;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -7,25 +8,24 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Interpolation;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.GameActionManager;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
+import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
+import com.megacrit.cardcrawl.actions.utility.WaitAction;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.Hitbox;
-import com.megacrit.cardcrawl.helpers.ModHelper;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.exordium.*;
-import com.megacrit.cardcrawl.powers.BackAttackPower;
-import com.megacrit.cardcrawl.powers.SlowPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.SurroundedPower;
-import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.SpeechBubble;
 import spireMapOverhaul.SpireAnniversary6Mod;
+import spireMapOverhaul.actions.WaitMoreAction;
 import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.zones.gremlinTown.monsters.*;
 
@@ -38,7 +38,6 @@ import static spireMapOverhaul.util.Wiz.*;
 public class HordeHelper {
     private static ArrayList<AbstractMonster> groundQueue;
     private static ArrayList<AbstractMonster> platformQueue;
-    private static float timer;
     private static final String HORDE_STRINGS = SpireAnniversary6Mod.makeID("Horde");
     private static final UIStrings uiStrings;
     private static final String[] TEXT;
@@ -52,23 +51,24 @@ public class HordeHelper {
     private static AbstractMonster monsterRightFour;
     private static boolean platforms;
     private static final Texture PLATFORM_IMG;
-    private static final float PLATFORM_X_LEFT = Settings.WIDTH * 0.3F;
-    private static final float PLATFORM_X_RIGHT = Settings.WIDTH * 0.7F - 600*Settings.scale;
     private static float platform_Y;
     private static Hitbox left_hb;
     private static Hitbox right_hb;
-    private static final float HB_WIDTH = 600F;
-    private static final float HB_HEIGHT = 512F;
-    private static final float LEFT_X_FRONT = Settings.WIDTH * 0.675F;
-    private static final float LEFT_X_BACK = Settings.WIDTH * 0.85F;
-    private static final float RIGHT_X_FRONT = Settings.WIDTH * 0.325F;
-    private static final float RIGHT_X_BACK = Settings.WIDTH * 0.15F;
-    private static final float PLATFORM_END_Y = Settings.HEIGHT - 510F * Settings.scale;
+    private static final float HB_WIDTH = 400F;
+    private static final float HB_HEIGHT = 341F;
+    private static final float PLATFORM_X_LEFT = Settings.WIDTH * 0.3F - HB_WIDTH/2.0F*Settings.scale;
+    private static final float PLATFORM_X_RIGHT = Settings.WIDTH * 0.7F - HB_WIDTH/2.0F*Settings.scale;
+    private static final float RIGHT_X_FRONT = Settings.WIDTH * 0.7F;
+    private static final float RIGHT_X_BACK = Settings.WIDTH * 0.82F;
+    private static final float LEFT_X_FRONT = Settings.WIDTH * 0.3F;
+    private static final float LEFT_X_BACK = Settings.WIDTH * 0.18F;
+    private static final float PLATFORM_END_Y = Settings.HEIGHT - HB_HEIGHT * Settings.scale - 50F * Settings.scale;
+    private static final float PLATFORM_START_Y = Settings.HEIGHT + 10F * Settings.scale;
 
     static {
         uiStrings = CardCrawlGame.languagePack.getUIString(HORDE_STRINGS);
         TEXT = uiStrings.TEXT;
-        PLATFORM_IMG = new Texture(makeImagePath("vfx/GremlinTown/Platform.png"));
+        PLATFORM_IMG = new Texture(makeImagePath("vfx/Platform.png"));
     }
 
     public HordeHelper() {
@@ -76,7 +76,7 @@ public class HordeHelper {
 
     public static void initFight() {
         platforms = false;
-        platform_Y = Settings.HEIGHT*2.0F;
+        platform_Y = PLATFORM_START_Y;
         left_hb = new Hitbox(PLATFORM_X_LEFT, platform_Y, HB_WIDTH, HB_HEIGHT);
         right_hb = new Hitbox(PLATFORM_X_RIGHT, platform_Y, HB_WIDTH, HB_HEIGHT);
 
@@ -88,10 +88,9 @@ public class HordeHelper {
             groundQueue.add(new GremlinTsundere(Settings.WIDTH * 4, 0));
             groundQueue.add(new GremlinFat(Settings.WIDTH * 4, 0));
             platformQueue.add(new GremlinWizard(Settings.WIDTH * 4, 0));
-            if (i < 3)
+            if (i < 4)
                 platformQueue.add(new GremlinRockTosser(Settings.WIDTH * 4, 0));
         }
-        platformQueue.add(new GremlinHealer(Settings.WIDTH * 4, 0));
 
         ArrayList<AbstractMonster> tempQueue = new ArrayList<>();
         tempQueue.add(new GremlinBarbarian(Settings.WIDTH * 4, 0));
@@ -102,6 +101,9 @@ public class HordeHelper {
         Collections.shuffle(tempQueue, AbstractDungeon.monsterRng.random);
         Collections.shuffle(groundQueue, AbstractDungeon.monsterRng.random);
         Collections.shuffle(platformQueue, AbstractDungeon.monsterRng.random);
+
+        int x = AbstractDungeon.monsterRng.random(2, platformQueue.size() - 3);
+        platformQueue.add(x, new GremlinHealer(Settings.WIDTH * 4, 0));
 
         groundQueue.add(5, tempQueue.get(0));
         groundQueue.add(9, tempQueue.get(1));
@@ -126,13 +128,13 @@ public class HordeHelper {
     }
 
     public static boolean areMonstersDead(boolean firstResult) {
-        if (groundQueue.isEmpty() && platformQueue.isEmpty())
+        if (groundQueue == null || platformQueue == null || (groundQueue.isEmpty() && platformQueue.isEmpty()))
             return firstResult;
         return false;
     }
 
     public static boolean areMonstersBasicallyDead(boolean firstResult) {
-        if (groundQueue.isEmpty() && platformQueue.isEmpty())
+        if (groundQueue == null || platformQueue == null || (groundQueue.isEmpty() && platformQueue.isEmpty()))
             return firstResult;
         return false;
     }
@@ -140,14 +142,23 @@ public class HordeHelper {
     public static void onVictory() {
         AbstractDungeon.scene.fadeInAmbiance();
         CardCrawlGame.music.fadeOutTempBGM();
+
+        platforms = false;
+        platform_Y = PLATFORM_START_Y;
+        left_hb = new Hitbox(PLATFORM_X_LEFT, platform_Y, HB_WIDTH, HB_HEIGHT);
+        right_hb = new Hitbox(PLATFORM_X_RIGHT, platform_Y, HB_WIDTH, HB_HEIGHT);
+
+        groundQueue = new ArrayList<>();
+        platformQueue = new ArrayList<>();
     }
 
     public static void update() {
-        if (GameActionManager.turn == 1)
+        calculateBackAttack();
+        if (GameActionManager.turn == 2)
             surround();
-        else if (GameActionManager.turn == 3) {
-            reinforce();
+        else if (GameActionManager.turn == 4) {
             lowerPlatforms();
+            reinforce();
         } else
             reinforce();
     }
@@ -176,49 +187,59 @@ public class HordeHelper {
         else
             monsterRightFour = null;
 
-        atb(new AbstractGameAction() {
-            boolean first = true;
-            boolean movePlayer = false;
-            boolean moveLeft = false;
+        att(new AbstractGameAction() {
             @Override
             public void update() {
-                if (first) {
-                    duration = 2.0F;
-                    first = false;
+                isDone = true;
+                //These are all add to top, so reverse order
+                att(new WaitMoreAction(3.0F));
 
-                    moveCharacterMiddle();
-                    if (monsterRightBack != null)
-                        retreatGremlinBack(monsterRightBack);
-                    if (monsterRightFront != null)
-                        retreatGremlinFront(monsterLeftBack);
+                moveLeftGremlinIn(false, false);
+                moveLeftGremlinIn(true, true);
 
-                    if (monsterRightFour != null)
-                        monsterRightFour.escape();
-                    if (monsterRightThree != null)
-                        monsterRightThree.escape();
-                } else if (!movePlayer && duration < 1.7F) {
-                    movePlayer = true;
-                    moveCharacterMiddle();
-                } else if (!moveLeft && duration < 1.4F) {
-                    moveLeft = true;
-                    moveLeftGremlinIn(true, true);
-                    moveLeftGremlinIn(false, true);
-                    if (monsterRightFront == null)
-                        moveRightGremlinIn(true);
-                    if (monsterRightBack == null)
-                        moveRightGremlinIn(false);
+                // WaitMoreAction not stacking is a pain in the ass
+                att(new WaitAction(0.1F));
+                att(new WaitAction(0.1F));
+                att(new WaitAction(0.1F));
+
+                boolean movedFrontIn = false;
+                boolean movedBackIn = false;
+                if (monsterRightBack == null) {
+                    moveRightGremlinIn(false);
+                    movedBackIn = true;
                 }
-                tickDuration();
-
-                if (isDone) {
-                    applyToEnemyTop(monsterLeftBack, new BackAttackPower(monsterLeftBack));
-                    applyToEnemyTop(monsterLeftFront, new BackAttackPower(monsterLeftFront));
-                    applyToSelfTop(new SurroundedPower(adp()));
-                    calculateBackAttack();
-                    CardCrawlGame.music.unsilenceBGM();
-                    AbstractDungeon.scene.fadeOutAmbiance();
-                    CardCrawlGame.music.playPrecachedTempBgm();
+                if (monsterRightFront == null) {
+                    moveRightGremlinIn(true);
+                    movedFrontIn = true;
                 }
+
+                if (!movedBackIn)
+                    retreatGremlinBack(monsterRightBack);
+                if (!movedFrontIn)
+                    retreatGremlinFront(monsterRightFront);
+
+                if (monsterRightFour != null) {
+                    att(new AbstractGameAction() {
+                        @Override
+                        public void update() {
+                            isDone = true;
+                            monsterRightFour.intent = AbstractMonster.Intent.ESCAPE;
+                            monsterRightFour.escape();
+                        }
+                    });
+                }
+                if (monsterRightThree != null) {
+                    att(new AbstractGameAction() {
+                        @Override
+                        public void update() {
+                            isDone = true;
+                            monsterRightThree.intent = AbstractMonster.Intent.ESCAPE;
+                            monsterRightThree.escape();
+                        }
+                    });
+                }
+
+                moveCharacterMiddle(!movedFrontIn);
             }
         });
     }
@@ -229,34 +250,40 @@ public class HordeHelper {
         platformQueue.remove(0);
         monsterRightPlatform = platformQueue.get(0);
         platformQueue.remove(0);
-        atb(new SpawnMonsterAction(monsterLeftPlatform, false));
-        atb(new SpawnMonsterAction(monsterRightPlatform, false));
-        atb(new AbstractGameAction() {
+
+        monsterLeftPlatform.drawX = PLATFORM_X_LEFT + HB_WIDTH/2.0F*Settings.scale;
+        monsterRightPlatform.drawX = PLATFORM_X_RIGHT + HB_WIDTH/2.0F*Settings.scale;
+        monsterLeftPlatform.drawY = PLATFORM_START_Y + 56*Settings.scale;
+        monsterRightPlatform.drawY = PLATFORM_START_Y + 56*Settings.scale;
+
+        monsterLeftPlatform.flipHorizontal = true;
+        monsterLeftPlatform.hb_x = -monsterLeftPlatform.hb_x;
+        monsterLeftPlatform.intentOffsetX = -monsterLeftPlatform.intentOffsetX;
+        ReflectionHacks.privateMethod(AbstractCreature.class, "refreshHitboxLocation").invoke(monsterLeftPlatform);
+
+        att(new AbstractGameAction() {
             boolean first = true;
             boolean lower = false;
-            final float PLATFORM_START_Y = Settings.HEIGHT + 100F * Settings.scale;
-            final float PLATFORM_X_LEFT = Settings.WIDTH * 0.3F;
-            final float PLATFORM_X_RIGHT = Settings.WIDTH * 0.7F - 600*Settings.scale;
             @Override
             public void update() {
-                isDone = true;
                 if (first) {
-                    CardCrawlGame.music.silenceBGM();
                     first = false;
-                    duration = 3.0F;
+                    duration = 4.0F;
+                    CardCrawlGame.music.silenceBGM();
                 } else if (!lower && duration < 2.0F) {
                     lower = true;
                     CardCrawlGame.sound.play(GremlinTown.PLATFORM_KEY);
-                    monsterLeftPlatform.drawX = PLATFORM_X_LEFT + HB_WIDTH/2.0F*Settings.scale - monsterLeftPlatform.hb.width/2.0F;
-                    monsterRightPlatform.drawX = PLATFORM_X_RIGHT + HB_WIDTH/2.0F*Settings.scale - monsterLeftPlatform.hb.width/2.0F;
                 }
-
                 if (duration < 2.0F) {
                     platform_Y = Interpolation.linear.apply(PLATFORM_START_Y, PLATFORM_END_Y, (2.0F - duration) / 2.0F);
                     left_hb.move(PLATFORM_X_LEFT, platform_Y);
                     right_hb.move(PLATFORM_X_RIGHT, platform_Y);
-                    monsterLeftPlatform.drawY = platform_Y + 80F*Settings.scale;
-                    monsterRightPlatform.drawY = platform_Y + 80F*Settings.scale;
+                    monsterLeftPlatform.drawY = platform_Y + 56F*Settings.scale;
+                    monsterRightPlatform.drawY = platform_Y + 56F*Settings.scale;
+                    if (monsterLeftPlatform instanceof GremlinHealer)
+                        monsterLeftPlatform.drawY -= 15F;
+                    if (monsterRightPlatform instanceof GremlinHealer)
+                        monsterRightPlatform.drawY -= 15F;
                 }
 
                 tickDuration();
@@ -267,6 +294,26 @@ public class HordeHelper {
                 }
             }
         });
+        att(new AbstractGameAction() {
+            @Override
+            public void update() {
+                isDone = true;
+                monsterLeftPlatform.createIntent();
+                monsterLeftPlatform.usePreBattleAction();
+            }
+        });
+        att(new RollMoveAction(monsterLeftPlatform));
+        att(new SpawnMonsterAction(monsterLeftPlatform, false));
+        att(new AbstractGameAction() {
+            @Override
+            public void update() {
+                isDone = true;
+                monsterRightPlatform.createIntent();
+                monsterRightPlatform.usePreBattleAction();
+            }
+        });
+        att(new RollMoveAction(monsterRightPlatform));
+        att(new SpawnMonsterAction(monsterRightPlatform, false));
     }
 
     public static void reinforce() {
@@ -281,8 +328,8 @@ public class HordeHelper {
                 moveRightGremlinIn(false);
             }
             else {
-                moveRightGremlinIn(true);
                 moveRightGremlinIn(false);
+                moveRightGremlinIn(true);
             }
         } else if (monsterRightBack == null || monsterRightBack.isDeadOrEscaped())
             moveRightGremlinIn(false);
@@ -293,45 +340,48 @@ public class HordeHelper {
                 moveLeftGremlinIn(false, false);
             }
             else {
-                moveLeftGremlinIn(true, false);
                 moveLeftGremlinIn(false, false);
+                moveLeftGremlinIn(true, false);
             }
         } else if (monsterLeftBack == null || monsterLeftBack.isDeadOrEscaped())
             moveLeftGremlinIn(false, false);
-
-        calculateBackAttack();
     }
 
     public static void calculateBackAttack() {
-        boolean left = false;
-        boolean right = false;
-        for (AbstractMonster m : Wiz.getEnemies()) {
-            if (m.drawX < adp().drawX)
-                left = true;
-            else if (m.drawX > adp().drawX)
-                right = true;
-        }
-        if (left && right && !adp().hasPower(SurroundedPower.POWER_ID)) {
-            applyToSelf(new SurroundedPower(adp()));
-            adp().hand.refreshHandLayout();
-        }
-        if (!left || !right) {
-            atb(new RemoveSpecificPowerAction(adp(), adp(), SurroundedPower.POWER_ID));
-            for (AbstractMonster m : Wiz.getEnemies()) {
-                m.removeSurroundedPower();
+        att(new AbstractGameAction() {
+            @Override
+            public void update() {
+                isDone = true;
+                boolean left = false;
+                boolean right = false;
+                for (AbstractMonster m : Wiz.getEnemies()) {
+                    if (m.drawX < adp().drawX)
+                        left = true;
+                    else if (m.drawX > adp().drawX)
+                        right = true;
+                }
+                if (left && right && !adp().hasPower(SurroundedPower.POWER_ID))
+                    applyToSelfTop(new SurroundedPower(adp()));
+                if (!left || !right) {
+                    for (AbstractMonster m : Wiz.getEnemies())
+                        m.removeSurroundedPower();
+                    if (adp().hasPower(SurroundedPower.POWER_ID))
+                        att(new RemoveSpecificPowerAction(adp(), adp(), SurroundedPower.POWER_ID));
+                    if (left)
+                        adp().flipHorizontal = true;
+                    else if (right)
+                        adp().flipHorizontal = false;
+                }
             }
-            if (left)
-                adp().flipHorizontal = true;
-            else if (right)
-                adp().flipHorizontal = false;
-        }
+        });
     }
 
-    public static void moveCharacterMiddle() {
-        AbstractDungeon.effectsQueue.add(new AbstractGameEffect() {
+    public static void moveCharacterMiddle(boolean shout) {
+        AbstractGameEffect x = new AbstractGameEffect() {
             private final float start_x = adp().drawX;
             private final float end_x = Settings.WIDTH/2.0F;
             boolean first = true;
+            final float DURATION = 1.0F;
             @Override
             public void update() {
                 duration -= Gdx.graphics.getDeltaTime();
@@ -339,12 +389,15 @@ public class HordeHelper {
                 if (first) {
                     first = false;
                     adp().dialogX = adp().drawX;
-                    duration = 1.0F;
+                    duration = DURATION;
                 }
-                adp().drawX = Interpolation.linear.apply(start_x, end_x, 1.0F - duration);
+                float x = Interpolation.linear.apply(start_x, end_x, (DURATION - duration)/DURATION);
+                adp().movePosition(x, adp().drawY);
 
                 if (duration < 0.0F) {
-                    AbstractDungeon.effectsQueue.add(new SpeechBubble(adp().dialogX, adp().dialogY, 2.5F, TEXT[1], true));
+                    if (shout)
+                        AbstractDungeon.effectsQueue.add(0, new SpeechBubble(adp().dialogX, adp().dialogY,
+                                2.5F, TEXT[1], true));
                     isDone = true;
                 }
             }
@@ -356,23 +409,26 @@ public class HordeHelper {
             @Override
             public void dispose() {
             }
-        });
+        };
+
+        att(new VFXAction(x, 0.8F));
     }
 
     public static void retreatGremlinFront(AbstractMonster m) {
-        AbstractDungeon.effectsQueue.add(new AbstractGameEffect() {
-            private final float start_x = m.drawX;
-            private final float end_x = RIGHT_X_FRONT;
+        final float start_x = m.drawX;
+        AbstractGameEffect x = new AbstractGameEffect() {
             boolean first = true;
+            final float DURATION = 0.6F;
+
             @Override
             public void update() {
-                duration -= Gdx.graphics.getDeltaTime();
-
                 if (first) {
                     first = false;
-                    duration = 1.0F;
-                }
-                m.drawX = Interpolation.linear.apply(start_x, end_x, 1.0F - duration);
+                    duration = DURATION;
+                } else
+                    duration -= Gdx.graphics.getDeltaTime();
+
+                m.drawX = Interpolation.linear.apply(start_x, RIGHT_X_FRONT, (DURATION - duration)/DURATION);
 
                 if (duration < 0.0F)
                     isDone = true;
@@ -385,26 +441,30 @@ public class HordeHelper {
             @Override
             public void dispose() {
             }
-        });
+        };
+
+        att(new VFXAction(x));
     }
 
     public static void retreatGremlinBack(AbstractMonster m) {
-        AbstractDungeon.effectsQueue.add(new AbstractGameEffect() {
-            private final float start_x = m.drawX;
-            private final float end_x = RIGHT_X_BACK;
+        final float start_x = m.drawX;
+        AbstractGameEffect x = new AbstractGameEffect() {
             boolean first = true;
+            final float DURATION = 0.6F;
+
             @Override
             public void update() {
-                duration -= Gdx.graphics.getDeltaTime();
 
                 if (first) {
                     first = false;
-                    duration = 1.0F;
-                }
-                m.drawX = Interpolation.linear.apply(start_x, end_x, 1.0F - duration);
+                    duration = DURATION;
+                } else
+                    duration -= Gdx.graphics.getDeltaTime();
+
+                m.drawX = Interpolation.linear.apply(start_x, RIGHT_X_BACK, (DURATION - duration)/DURATION);
 
                 if (duration < 0.0F) {
-                    AbstractDungeon.effectsQueue.add(new SpeechBubble(m.hb.cX + m.dialogX, m.hb.cY + m.dialogY, 2.5F, TEXT[1], false));
+                    AbstractDungeon.effectsQueue.add(0, new SpeechBubble(m.hb.cX + m.dialogX, m.hb.cY + m.dialogY, 2.5F, TEXT[0], false));
                     isDone = true;
                 }
             }
@@ -416,14 +476,16 @@ public class HordeHelper {
             @Override
             public void dispose() {
             }
-        });
+        };
+
+        att(new VFXAction(x));
     }
 
     public static void moveLeftGremlinUp() {
         monsterLeftFront = monsterLeftBack;
-        AbstractMonster m = monsterLeftFront;
-        AbstractDungeon.effectsQueue.add(new AbstractGameEffect() {
-            private final float start_x = m.drawX;
+        monsterLeftBack = null;
+        AbstractGameEffect x = new AbstractGameEffect() {
+            private final float start_x = monsterLeftFront.drawX;
             private final float end_x = LEFT_X_FRONT;
             boolean first = true;
             @Override
@@ -434,7 +496,7 @@ public class HordeHelper {
                     first = false;
                     duration = 0.4F;
                 }
-                m.drawX = Interpolation.linear.apply(start_x, end_x, (0.4F - duration)/0.4F);
+                monsterLeftFront.drawX = Interpolation.linear.apply(start_x, end_x, (0.4F - duration)/0.4F);
 
                 if (duration < 0.0F)
                     isDone = true;
@@ -447,14 +509,16 @@ public class HordeHelper {
             @Override
             public void dispose() {
             }
-        });
+        };
+
+        att(new VFXAction(x));
     }
 
     public static void moveRightGremlinUp() {
         monsterRightFront = monsterRightBack;
-        AbstractMonster m = monsterRightFront;
-        AbstractDungeon.effectsQueue.add(new AbstractGameEffect() {
-            private final float start_x = m.drawX;
+        monsterRightBack = null;
+        AbstractGameEffect x = new AbstractGameEffect() {
+            private final float start_x = monsterRightFront.drawX;
             private final float end_x = RIGHT_X_FRONT;
             boolean first = true;
             @Override
@@ -465,7 +529,7 @@ public class HordeHelper {
                     first = false;
                     duration = 0.4F;
                 }
-                m.drawX = Interpolation.linear.apply(start_x, end_x, (0.4F - duration)/0.4F);
+                monsterRightFront.drawX = Interpolation.linear.apply(start_x, end_x, (0.4F - duration)/0.4F);
 
                 if (duration < 0.0F)
                     isDone = true;
@@ -478,8 +542,9 @@ public class HordeHelper {
             @Override
             public void dispose() {
             }
-        });
+        };
 
+        att(new VFXAction(x));
     }
 
     public static void moveLeftGremlinIn(boolean far, boolean shout) {
@@ -497,18 +562,20 @@ public class HordeHelper {
             monsterLeftFront = m;
         else
             monsterLeftBack = m;
-        spawnMonsterInstantly(m);
+        m.flipHorizontal = true;
+        m.hb_x = -m.hb_x;
+        m.intentOffsetX = -m.intentOffsetX;
 
         final float end_x;
         if (far)
             end_x = LEFT_X_FRONT;
         else
             end_x = LEFT_X_BACK;
+        float start_x = -200.0F*Settings.scale;
 
         m.drawY = AbstractDungeon.floorY + AbstractDungeon.miscRng.random(-30.0F, 30.0F);
 
-        AbstractDungeon.effectsQueue.add(new AbstractGameEffect() {
-            private final float start_x = m.drawX;
+        AbstractGameEffect x = new AbstractGameEffect() {
             boolean first = true;
             float DURATION;
             @Override
@@ -518,9 +585,9 @@ public class HordeHelper {
                 if (first) {
                     first = false;
                     if (far)
-                        DURATION = 1.2F;
+                        DURATION = 1.6F;
                     else
-                        DURATION = 0.8F;
+                        DURATION = 1.2F;
                     duration = DURATION;
                 }
                 m.drawX = Interpolation.linear.apply(start_x, end_x, (DURATION - duration)/DURATION);
@@ -528,7 +595,7 @@ public class HordeHelper {
                 if (duration < 0.0F) {
                     isDone = true;
                     if (shout)
-                        AbstractDungeon.effectsQueue.add(new SpeechBubble(m.hb.cX + m.dialogX, m.hb.cY + m.dialogY, 2.5F, TEXT[2], false));
+                        AbstractDungeon.effectsQueue.add(0, new SpeechBubble(m.hb.cX + m.dialogX, m.hb.cY + m.dialogY, 2.5F, TEXT[2], false));
                 }
             }
 
@@ -539,7 +606,19 @@ public class HordeHelper {
             @Override
             public void dispose() {
             }
+        };
+
+        att(new VFXAction(x));
+        att(new AbstractGameAction() {
+            @Override
+            public void update() {
+                isDone = true;
+                m.createIntent();
+                m.usePreBattleAction();
+            }
         });
+        att(new RollMoveAction(m));
+        att(new SpawnMonsterAction(m, false));
     }
 
     public static void moveRightGremlinIn(boolean far) {
@@ -557,7 +636,6 @@ public class HordeHelper {
             monsterRightFront = m;
         else
             monsterRightBack = m;
-        spawnMonsterInstantly(m);
 
         final float end_x;
         if (far)
@@ -565,10 +643,11 @@ public class HordeHelper {
         else
             end_x = RIGHT_X_BACK;
 
+        float start_x = Settings.WIDTH + 200.0F*Settings.scale;
+
         m.drawY = AbstractDungeon.floorY + AbstractDungeon.miscRng.random(-30.0F, 30.0F);
 
-        AbstractDungeon.effectsQueue.add(new AbstractGameEffect() {
-            private final float start_x = m.drawX;
+        AbstractGameEffect x = new AbstractGameEffect() {
             boolean first = true;
             float DURATION;
             @Override
@@ -596,24 +675,37 @@ public class HordeHelper {
             @Override
             public void dispose() {
             }
+        };
+
+        att(new VFXAction(x));
+        att(new AbstractGameAction() {
+            @Override
+            public void update() {
+                isDone = true;
+                m.createIntent();
+                m.usePreBattleAction();
+            }
         });
+        att(new RollMoveAction(m));
+        att(new SpawnMonsterAction(m, false));
 
     }
 
     public static void fillLeftPlatform() {
-        AbstractMonster m;
-        if (!platformQueue.isEmpty()) {
-            m = platformQueue.get(0);
-            platformQueue.remove(0);
-        } else
+        final float start_y = Settings.HEIGHT*1.05F;
+        if (platformQueue.isEmpty())
             return;
 
-        monsterLeftPlatform = m;
-        spawnMonsterInstantly(m);
-        m.drawX = PLATFORM_X_LEFT;
+        monsterLeftPlatform = platformQueue.get(0);
+        platformQueue.remove(0);
 
-        AbstractDungeon.effectsQueue.add(new AbstractGameEffect() {
-            private final float start_y = Settings.HEIGHT*1.05F + m.drawY;
+        monsterLeftPlatform.drawX = PLATFORM_X_LEFT + HB_WIDTH/2.0F*Settings.scale;
+        monsterLeftPlatform.drawY = start_y;
+        monsterLeftPlatform.flipHorizontal = true;
+        monsterLeftPlatform.hb_x = -monsterLeftPlatform.hb_x;
+        monsterLeftPlatform.intentOffsetX = -monsterLeftPlatform.intentOffsetX;
+
+        AbstractGameEffect x = new AbstractGameEffect() {
             boolean first = true;
             float DURATION;
             @Override
@@ -625,7 +717,10 @@ public class HordeHelper {
                     DURATION = 1.0F;
                     duration = DURATION;
                 }
-                m.drawY = Interpolation.linear.apply(start_y, PLATFORM_END_Y, (DURATION - duration)/DURATION);
+                monsterLeftPlatform.drawY = Interpolation.linear.apply(start_y, PLATFORM_END_Y + 56F*Settings.scale,
+                        (DURATION - duration)/DURATION);
+                if (monsterLeftPlatform instanceof GremlinHealer)
+                    monsterLeftPlatform.drawY -= 15F;
 
                 if (duration < 0.0F) {
                     CardCrawlGame.sound.play("BLUNT_FAST");
@@ -640,23 +735,33 @@ public class HordeHelper {
             @Override
             public void dispose() {
             }
+        };
+
+        att(new VFXAction(x));
+        att(new AbstractGameAction() {
+            @Override
+            public void update() {
+                isDone = true;
+                monsterLeftPlatform.createIntent();
+                monsterLeftPlatform.usePreBattleAction();
+            }
         });
+        att(new RollMoveAction(monsterLeftPlatform));
+        att(new SpawnMonsterAction(monsterLeftPlatform, false));
     }
 
     public static void fillRightPlatform() {
-        AbstractMonster m;
-        if (!platformQueue.isEmpty()) {
-            m = platformQueue.get(0);
-            platformQueue.remove(0);
-        } else
+        final float start_y = Settings.HEIGHT*1.05F;
+        if (platformQueue.isEmpty())
             return;
 
-        monsterRightPlatform = m;
-        spawnMonsterInstantly(m);
-        m.drawX = PLATFORM_X_RIGHT;
+        monsterRightPlatform = platformQueue.get(0);
+        platformQueue.remove(0);
 
-        AbstractDungeon.effectsQueue.add(new AbstractGameEffect() {
-            private final float start_y = Settings.HEIGHT*1.05F + m.drawY;
+        monsterRightPlatform.drawX = PLATFORM_X_RIGHT + HB_WIDTH/2.0F*Settings.scale;
+        monsterRightPlatform.drawY = start_y;
+
+        AbstractGameEffect x = new AbstractGameEffect() {
             boolean first = true;
             float DURATION;
             @Override
@@ -668,8 +773,12 @@ public class HordeHelper {
                     DURATION = 1.0F;
                     duration = DURATION + 0.15F;
                 }
-                if (duration <= DURATION)
-                    m.drawY = Interpolation.linear.apply(start_y, PLATFORM_END_Y, (DURATION - duration)/DURATION);
+                if (duration <= DURATION) {
+                    monsterRightPlatform.drawY = Interpolation.linear.apply(start_y, PLATFORM_END_Y + 56 * Settings.scale,
+                            (DURATION - duration) / DURATION);
+                    if (monsterRightPlatform instanceof GremlinHealer)
+                        monsterRightPlatform.drawY -= 15F;
+                }
 
                 if (duration < 0.0F) {
                     CardCrawlGame.sound.play("BLUNT_FAST");
@@ -684,23 +793,19 @@ public class HordeHelper {
             @Override
             public void dispose() {
             }
+        };
+
+        att(new VFXAction(x));
+        att(new AbstractGameAction() {
+            @Override
+            public void update() {
+                isDone = true;
+                monsterRightPlatform.createIntent();
+                monsterRightPlatform.usePreBattleAction();
+            }
         });
-    }
-
-    private static void spawnMonsterInstantly(AbstractMonster m) {
-        for (AbstractRelic r : adp().relics)
-            r.onSpawnMonster(m);
-
-        m.init();
-        m.applyPowers();
-        AbstractDungeon.getCurrRoom().monsters.addMonster(Wiz.getEnemies().size(), m);
-        m.showHealthBar();
-
-        if (ModHelper.isModEnabled("Lethality"))
-            atb(new ApplyPowerAction(m, m, new StrengthPower(m, 3), 3));
-
-        if (ModHelper.isModEnabled("Time Dilation"))
-            atb(new ApplyPowerAction(m, m, new SlowPower(m, 0)));
+        att(new RollMoveAction(monsterRightPlatform));
+        att(new SpawnMonsterAction(monsterRightPlatform, false));
     }
 
     public static void render(SpriteBatch sb) {

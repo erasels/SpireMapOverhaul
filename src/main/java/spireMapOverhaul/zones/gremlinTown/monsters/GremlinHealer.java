@@ -45,7 +45,7 @@ public class GremlinHealer extends CustomMonster
     }
 
     public GremlinHealer(final float x, final float y) {
-        super(GremlinHealer.NAME, ID, MAX_HP, 40.0f/0.7f, -5f/0.7f, 130.0f/0.7f, 180.0f/0.7f, null, x - 35.0f/0.7f, y);
+        super(GremlinHealer.NAME, ID, MAX_HP, 40.0f/0.7f, -5f/0.7f, 130.0f/0.7f, 160.0f/0.7f, null, x - 35.0f/0.7f, y);
 
         type = EnemyType.NORMAL;
         loadAnimation(SKELETON_ATLAS, SKELETON_JSON, 0.7F);
