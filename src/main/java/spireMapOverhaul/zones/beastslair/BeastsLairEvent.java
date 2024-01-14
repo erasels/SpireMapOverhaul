@@ -32,6 +32,10 @@ public class BeastsLairEvent extends PhasedEvent {
         private static final String[] OPTIONS = eventStrings.OPTIONS;
         private static final String title = eventStrings.NAME;
 
+        public BeastsLairEvent() {
+            this(null);
+        }
+
         public BeastsLairEvent(String bossID) {
             super(ID, title, "img/events/eventpicture.png");
 
