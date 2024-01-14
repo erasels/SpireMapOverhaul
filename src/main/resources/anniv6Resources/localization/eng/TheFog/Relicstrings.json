@@ -1,0 +1,9 @@
+{
+  "${ModID}:StoneFragment": {
+    "NAME": "Standing Stone Fragment",
+    "FLAVOR": "The fragment exudes a powerful aura, but it seems just out of reach.",
+    "DESCRIPTIONS": [
+      "When you draw your sixth card each turn, gain [E] [REMOVE_SPACE]."
+    ]
+  }
+}
