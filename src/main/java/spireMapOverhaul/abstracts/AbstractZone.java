@@ -25,7 +25,6 @@ import spireMapOverhaul.util.ActUtil;
 import spireMapOverhaul.util.TexLoader;
 import spireMapOverhaul.util.ZoneShapeMaker;
 
-import java.awt.*;
 import java.util.*;
 import java.util.List;
 import java.util.function.Predicate;
