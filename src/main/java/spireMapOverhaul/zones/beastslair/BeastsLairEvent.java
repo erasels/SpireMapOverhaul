@@ -56,7 +56,6 @@ public class BeastsLairEvent extends PhasedEvent {
         super.enterCombat();
         AbstractDungeon.actionManager.addToBottom(new AllEnemyApplyPowerAction(null, 2, (m) -> new ArtifactPower(m, 2)));
         AbstractDungeon.actionManager.addToBottom(new AllEnemyApplyPowerAction(null, 10, (m) -> new FuryPower(m, 10)));
-        AbstractDungeon.actionManager.addToBottom(new AllEnemyApplyPowerAction(null, 10, (m) -> new DamageUpPower(m, 10)));
 
         Wiz.forAllMonstersLiving((m)->{
             m.maxHealth = (int) (m.maxHealth * 1.75f);
@@ -79,7 +78,6 @@ public class BeastsLairEvent extends PhasedEvent {
 
                 AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(m, null, new ArtifactPower(m, 2), 2));
                 AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(m, null, new FuryPower(m, 10), 10));
-                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(m, null, new DamageUpPower(m, 10), 10));
             }
         }
 

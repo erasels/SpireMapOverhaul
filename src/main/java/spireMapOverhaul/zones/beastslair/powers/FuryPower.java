@@ -22,8 +22,11 @@ public class FuryPower extends AbstractSMOPower {
     }
 
     @Override
-    public void atStartOfTurn() {
-        addToBot(new ApplyPowerAction(owner, owner, new DamageUpPower(owner, this.amount)));
+    public void atEndOfTurn(boolean isPlayer) {
+        if (!isPlayer) {
+            this.flash();
+            this.addToBot(new ApplyPowerAction(owner, owner, new DamageUpPower(owner, this.amount)));
+        }
     }
 
     @Override
