@@ -1,5 +1,6 @@
 package spireMapOverhaul.zones.gremlinTown.cards;
 
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import spireMapOverhaul.SpireAnniversary6Mod;
@@ -7,6 +8,7 @@ import spireMapOverhaul.abstracts.AbstractSMOCard;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 
+@NoPools
 public class Shield extends AbstractSMOCard {
     public final static String ID = makeID(Shield.class.getSimpleName());
     private final static int BLOCK = 11;

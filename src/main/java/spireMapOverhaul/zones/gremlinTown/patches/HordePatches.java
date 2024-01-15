@@ -175,6 +175,15 @@ public class HordePatches {
         }
     }
 
+    @SpirePatch(
+            clz= AbstractMonster.class,
+            method=SpirePatch.CLASS
+    )
+    public static class GremlinField
+    {
+        public static SpireField<Boolean> horde = new SpireField<>(() -> false);
+    }
+
     @SpirePatch2(
             clz = AbstractMonster.class,
             method = "applyPowers"
@@ -182,7 +191,7 @@ public class HordePatches {
     public static class StupidFuckingBackstabBullshitImSoMadDontChangeThisPatchNameGK {
         @SpirePrefixPatch
         public static SpireReturn Prefix(AbstractMonster __instance) {
-            if (__instance.isDeadOrEscaped() && !__instance.halfDead)
+            if (__instance.isDeadOrEscaped() && GremlinField.horde.get(__instance))
                 return SpireReturn.Return();
             else
                 return SpireReturn.Continue();

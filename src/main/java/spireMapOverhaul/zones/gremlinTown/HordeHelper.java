@@ -28,6 +28,7 @@ import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.actions.WaitMoreAction;
 import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.zones.gremlinTown.monsters.*;
+import spireMapOverhaul.zones.gremlinTown.patches.HordePatches;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -117,6 +118,13 @@ public class HordeHelper {
         monsterRightBack = tempArray.get(1);
         monsterRightThree = tempArray.get(2);
         monsterRightFour = tempArray.get(3);
+
+        for (AbstractMonster m : platformQueue)
+            HordePatches.GremlinField.horde.set(m, true);
+        for (AbstractMonster m : groundQueue)
+            HordePatches.GremlinField.horde.set(m, true);
+        for (AbstractMonster m : tempArray)
+            HordePatches.GremlinField.horde.set(m, true);
 
         monsterLeftPlatform = null;
         monsterRightPlatform = null;

@@ -78,8 +78,8 @@ public class GremlinTown extends AbstractZone
 
     public GremlinTown() {
         super(ID, Icons.MONSTER, Icons.EVENT, Icons.SHOP);
-        width = 6;
-        height = 8;
+        width = 5;
+        height = 6;
     }
 
     @Override
@@ -131,23 +131,20 @@ public class GremlinTown extends AbstractZone
         gremlinPool.add("GremlinBarbarian");
         gremlinPool.add("GremlinHealer");
 
-        AbstractMonster[] retVal = new AbstractMonster[4];
+        AbstractMonster[] retVal = new AbstractMonster[3];
         int index = AbstractDungeon.miscRng.random(gremlinPool.size() - 1);
         String key = gremlinPool.get(index);
         gremlinPool.remove(index);
-        retVal[0] = getGremlin(key, -530.0F, -25.0F);
+        retVal[0] = getGremlin(key, -430.0F, -25.0F);
         index = AbstractDungeon.miscRng.random(gremlinPool.size() - 1);
         key = gremlinPool.get(index);
         gremlinPool.remove(index);
-        retVal[1] = getGremlin(key, -270.0F, 21.0F);
+        retVal[1] = getGremlin(key, -170.0F, 21.0F);
         index = AbstractDungeon.miscRng.random(gremlinPool.size() - 1);
         key = gremlinPool.get(index);
         gremlinPool.remove(index);
-        retVal[2] = getGremlin(key, 15.0F, -30.0F);
+        retVal[2] = getGremlin(key, 115.0F, -30.0F);
         index = AbstractDungeon.miscRng.random(gremlinPool.size() - 1);
-        key = gremlinPool.get(index);
-        gremlinPool.remove(index);
-        retVal[3] = getGremlin(key, 245.0F, 30.0F);
 
         return new MonsterGroup(retVal);
     }

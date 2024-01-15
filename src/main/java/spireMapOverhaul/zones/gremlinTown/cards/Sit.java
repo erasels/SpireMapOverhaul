@@ -1,5 +1,6 @@
 package spireMapOverhaul.zones.gremlinTown.cards;
 
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
@@ -9,6 +10,7 @@ import spireMapOverhaul.abstracts.AbstractSMOCard;
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 import static spireMapOverhaul.util.Wiz.applyToEnemy;
 
+@NoPools
 public class Sit extends AbstractSMOCard {
     public final static String ID = makeID(Sit.class.getSimpleName());
     private final static int COST = 1;

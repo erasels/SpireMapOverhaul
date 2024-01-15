@@ -40,8 +40,8 @@ public class GremlinNib extends CustomMonster
     public static final byte BELLOW = 1;
     public static final byte RUSH = 2;
     public static final byte CRIT = 3;
-    private static final int HP_MIN = 121;
-    private static final int HP_MAX = 127;
+    private static final int HP_MIN = 161;
+    private static final int HP_MAX = 170;
     private static final int HP_MIN_A7 = 130;
     private static final int HP_MAX_A7 = 136;
     private static final int CRIT_DMG = 40;

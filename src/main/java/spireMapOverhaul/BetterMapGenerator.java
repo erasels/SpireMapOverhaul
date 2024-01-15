@@ -70,13 +70,13 @@ public class BetterMapGenerator {
             float zoneRate = 1;
 
             for (AbstractZone queuedZone : queueCommandZones) {
+                mapGenLogger.info(queuedZone.id);
                 if (queuedZone.generateMapArea(planner)) {
                     activeZones.add(queuedZone);
                 } else {
                     mapGenLogger.info("Failed to place " + queuedZone.id + " zone queued by command.");
                 }
             }
-            queueCommandZones.clear();
 
             outer:
             while (rng.randomBoolean(zoneRate) && activeZones.size() < pathDensity) {
@@ -97,6 +97,8 @@ public class BetterMapGenerator {
             }
             mapGenLogger.info("Generating map with " + activeZones.size() + " zones...");
         } while (!finishMap(rng, planner, pathDensity));
+
+        queueCommandZones.clear();
 
         lastMap = planner.generate();
 
