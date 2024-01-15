@@ -73,6 +73,7 @@ public class BetterMapGenerator {
                 mapGenLogger.info(queuedZone.id);
                 if (queuedZone.generateMapArea(planner)) {
                     activeZones.add(queuedZone);
+                    possibleZones.removeIf(z -> z.id.equals(queuedZone.id));
                 } else {
                     mapGenLogger.info("Failed to place " + queuedZone.id + " zone queued by command.");
                 }
@@ -97,6 +98,7 @@ public class BetterMapGenerator {
             }
             mapGenLogger.info("Generating map with " + activeZones.size() + " zones...");
         } while (!finishMap(rng, planner, pathDensity));
+        queueCommandZones.clear();
 
         queueCommandZones.clear();
 

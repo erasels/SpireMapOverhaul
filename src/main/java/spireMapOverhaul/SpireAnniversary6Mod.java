@@ -22,10 +22,8 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.AbstractEvent;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.*;
@@ -48,6 +46,7 @@ import spireMapOverhaul.patches.ZonePatches;
 import spireMapOverhaul.patches.ZonePerFloorRunHistoryPatch;
 import spireMapOverhaul.patches.interfacePatches.CampfireModifierPatches;
 import spireMapOverhaul.patches.interfacePatches.EncounterModifierPatches;
+import spireMapOverhaul.rewards.AnyColorCardReward;
 import spireMapOverhaul.patches.interfacePatches.TravelTrackingPatches;
 import spireMapOverhaul.rewards.HealReward;
 import spireMapOverhaul.rewards.SingleCardReward;
@@ -582,6 +581,17 @@ public class SpireAnniversary6Mod implements
                 reward -> {
                     int i = ((HealReward) reward).amount;
                     return new RewardSave(CustomRewardTypes.HEALREWARD.toString(), ((HealReward) reward).iconPath, i, 0);
+                }
+        );
+
+        BaseMod.registerCustomReward(CustomRewardTypes.SMO_ANYCOLORCARDREWARD,
+                rewardSave -> new AnyColorCardReward(rewardSave.id),
+                reward -> {
+                    StringBuilder s = new StringBuilder();
+                    for (AbstractCard c : reward.cards) {
+                        s.append(c.cardID).append("|").append(c.timesUpgraded).append("|").append(c.misc).append("#");
+                    }
+                    return new RewardSave(CustomRewardTypes.SMO_ANYCOLORCARDREWARD.toString(), s.toString());
                 }
         );
     }
