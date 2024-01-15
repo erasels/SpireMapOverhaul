@@ -15,7 +15,7 @@ public class StoneFragment extends AbstractSMORelic {
 
     public StoneFragment() {
         super(ID, TheFogZone.ID, RelicTier.SPECIAL, LandingSound.HEAVY);
-        counter = 13;
+        setCounter(13);
     }
 
     @Override
@@ -24,20 +24,25 @@ public class StoneFragment extends AbstractSMORelic {
         flash();
         atb(new RelicAboveCreatureAction(AbstractDungeon.player, this));
         atb(new GainEnergyAction(1));
-        counter--;
-        if (counter < 1) {
-            counter = -1;
-            usedUp();
-        }
+        setCounter(counter - 1);
     }
 
     @Override
-    public void update() {
-        super.update();
-        description = (counter < 1) ? MSG[2] : DESCRIPTIONS[1]; // MSG[2] is the "used up" string
-        tips.clear();
-        tips.add(new PowerTip(name, description));
-        initializeTips();
+    public void onEquip() {
+        setCounter(counter);
+    }
+
+    @Override
+    public void setCounter(int setCounter) {
+        super.setCounter(setCounter);
+        if (setCounter < 1) {
+            usedUp();
+        } else if (isObtained) {
+            description = DESCRIPTIONS[1];
+            tips.clear();
+            tips.add(new PowerTip(name, description));
+            initializeTips();
+        }
     }
 
     @Override
