@@ -37,6 +37,8 @@ public class UnstablePower extends AbstractSMOPower {
     
     
     public void duringTurn() {
+        this.flashWithoutSound();
+        AbstractDungeon.actionManager.addToBottom(new WaitAction(0.5f));
         AbstractDungeon.actionManager.addToBottom(new AbstractGameAction() {
             @Override
             public void update() {

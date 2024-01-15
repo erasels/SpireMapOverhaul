@@ -9,6 +9,7 @@ import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
 import spireMapOverhaul.zones.volatileGrounds.monsters.Eruptor;
+import spireMapOverhaul.zones.volatileGrounds.monsters.HeatBlister;
 import spireMapOverhaul.zones.volatileGrounds.monsters.SunStoneShard;
 import spireMapOverhaul.zones.volatileGrounds.monsters.UnstableSunstone;
 
@@ -18,6 +19,7 @@ import java.util.List;
 public class VolatileGrounds extends AbstractZone implements EncounterModifyingZone {
     private static final String SUNSTONE_ELITE = SpireAnniversary6Mod.makeID("SUNSTONE_ELITE");
     private static final String EXPLOSIVE_SHAPES = SpireAnniversary6Mod.makeID("EXPLOSIVE_SHAPES");
+    private static final String HEAT_BLISTER = SpireAnniversary6Mod.makeID("HEAT_BLISTER");
     
     public VolatileGrounds() {
         super("VolatileGrounds", Icons.ELITE, Icons.MONSTER);
@@ -50,6 +52,11 @@ public class VolatileGrounds extends AbstractZone implements EncounterModifyingZ
                                 new Eruptor(-320.0F, 0.0F),
                                 new Exploder(-160.0F, 0.0F),
                                 new Exploder(160.0F, 0.0F)
+                        })),
+                new ZoneEncounter(HEAT_BLISTER, 3, () -> new MonsterGroup(
+                        new AbstractMonster[]{
+                                new HeatBlister(0.0F, 0.0F),
+                                new Eruptor(-320.0F, 0.0F),
                         }))
         );
     }

@@ -21,5 +21,12 @@
       "Barrier"
     ],
     "NAME": "Sun Stone Shard"
+  },
+  "${ModID}:HeatBlister": {
+    "MOVES": [
+      "Attack",
+      "Attack + Debuff"
+    ],
+    "NAME": "Heat Blister"
   }
 }

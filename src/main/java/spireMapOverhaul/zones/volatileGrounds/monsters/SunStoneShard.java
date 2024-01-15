@@ -16,7 +16,7 @@ import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.zones.volatileGrounds.powers.ChargedPower;
 import spireMapOverhaul.zones.volatileGrounds.powers.UnstablePower;
 
-public class SunStoneShard  extends CustomMonster {
+public class SunStoneShard extends CustomMonster {
     public static final String ID = SpireAnniversary6Mod.makeID("SunStoneShard");
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
     public static final String NAME = monsterStrings.NAME;
@@ -29,16 +29,16 @@ public class SunStoneShard  extends CustomMonster {
     private static final byte BARRIER = 2;
     private static final int BUFF_AMOUNT = 3;
     private static final int A18_BUFF_AMOUNT = 5;
-    private static final int ATTACK_DAMAGE = 5;
+    private static final int ATTACK_DAMAGE = 7;
     private static final int BARRIER_BLOCK = 5;
     private static final int BARRIER_AMOUNT = 5;
     private static final int A18_BARRIER_AMOUNT = 8;
     private static final int EXPLOSION_DAMAGE = 5;
     private static final int A3_EXPLOSION_DAMAGE = 8;
-    private static final int HP_MIN = 50;
-    private static final int HP_MAX = 55;
-    private static final int A8_HP_MIN = 65;
-    private static final int A8_HP_MAX = 75;
+    private static final int HP_MIN = 60;
+    private static final int HP_MAX = 65;
+    private static final int A8_HP_MIN = 75;
+    private static final int A8_HP_MAX = 85;
     private int buffCooldown = 0;
     
     public SunStoneShard(final float x, final float y) {
@@ -67,6 +67,7 @@ public class SunStoneShard  extends CustomMonster {
     
     @Override
     public void takeTurn() {
+        AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(this, this, FlameBarrierPower.POWER_ID));
         switch (this.nextMove) {
             case ATTACK:
                 AbstractDungeon.actionManager.addToBottom(new AnimateFastAttackAction(this));
@@ -76,11 +77,11 @@ public class SunStoneShard  extends CustomMonster {
                 AbstractDungeon.actionManager.addToBottom(new GainBlockAction(this, BARRIER_BLOCK));
                 if(AbstractDungeon.ascensionLevel >= 18)
                 {
-                    AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new FlameBarrierPower(this, BARRIER_AMOUNT)));
+                    AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new FlameBarrierPower(this, A18_BARRIER_AMOUNT)));
                 }
                 else
                 {
-                    AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new FlameBarrierPower(this, A18_BARRIER_AMOUNT)));
+                    AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new FlameBarrierPower(this, BARRIER_AMOUNT)));
                 }
                 break;
             case BUFF:
