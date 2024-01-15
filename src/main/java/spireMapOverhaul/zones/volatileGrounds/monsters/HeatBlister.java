@@ -125,7 +125,7 @@ public class HeatBlister extends CustomMonster {
         else if ((num < 50 && !lastTwoMoves(ATTACK_AND_DEBUFF)) || lastTwoMoves(ATTACK)) {
             this.setMove(ATTACK_AND_DEBUFF, Intent.ATTACK_DEBUFF, damage2);
         } else {
-            this.setMove(ATTACK_AND_DEBUFF, Intent.ATTACK_DEBUFF, damage1);
+            this.setMove(ATTACK, Intent.ATTACK_DEBUFF, damage1);
         }
         turn++;
     }
