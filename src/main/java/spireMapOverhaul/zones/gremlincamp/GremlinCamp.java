@@ -54,17 +54,18 @@ public class GremlinCamp extends AbstractZone implements EncounterModifyingZone,
 
     @Override
     public List<ZoneEncounter> getNormalEncounters() {
-        if(encounter_names == null) encounter_names = CardCrawlGame.languagePack.getUIString(makeID("GCEncounterNames")).TEXT;
+        if (encounter_names == null)
+            encounter_names = CardCrawlGame.languagePack.getUIString(makeID("GCEncounterNames")).TEXT;
         ArrayList<ZoneEncounter> encs = new ArrayList<>();
         encs.add(new ZoneEncounter(GET_DOWN_MR_PRESIDENT, 1, () ->
-                new MonsterGroup(new AbstractMonster[] {
+                new MonsterGroup(new AbstractMonster[]{
                         new GremlinBodyguard(-200f, 10),
                         new GremlinWizard(0, 0),
                         new GremlinBodyguard(200f, -10),
                 }), encounter_names[1])
         );
         encs.add(new ZoneEncounter(BRAWl_BROS, 1, () ->
-                new MonsterGroup(new AbstractMonster[] {
+                new MonsterGroup(new AbstractMonster[]{
                         new GremlinFat(-100f, 10),
                         new GremlinWarrior(100f, -10),
                 }), encounter_names[0])
@@ -79,50 +80,61 @@ public class GremlinCamp extends AbstractZone implements EncounterModifyingZone,
 
     public static final String NOBBERS = makeID("ClassicNob");
     public static final String WHO_LET_EM_COOK = makeID("GremlinCookGang");
+
     @Override
     public List<ZoneEncounter> getEliteEncounters() {
         ArrayList<ZoneEncounter> encs = new ArrayList<>();
-        encs.add(new ZoneEncounter(NOBBERS, 1, () -> new MonsterGroup(new AbstractMonster[] {new GremlinNob(0, 0)}), GremlinNob.NAME));
-        encs.add(new ZoneEncounter(WHO_LET_EM_COOK, 1, () ->
-                new MonsterGroup(new AbstractMonster[] {
-                        getGremlin(200, -7),
-                        getGremlin(10, 8),
-                        new GremlinCook(-200, -1)
-                }), encounter_names[2])
+        //encs.add(new ZoneEncounter(NOBBERS, 1, () -> new MonsterGroup(new AbstractMonster[] {new GremlinNob(0, 0)}), GremlinNob.NAME));
+        encs.add(new ZoneEncounter(WHO_LET_EM_COOK, 1, () -> {
+                    AbstractMonster grem1 = getGremlin(-200, -7, "");
+                    return new MonsterGroup(new AbstractMonster[]{
+                            grem1,
+                            getGremlin(-10, 8, grem1.id),
+                            new GremlinCook(200, -1)
+                    });
+                }, encounter_names[2])
         );
         return encs;
     }
 
-    private AbstractMonster getGremlin(float x, float y) {
-            ArrayList<String> gremlinPool = new ArrayList<>();
-            gremlinPool.add(GremlinWarrior.ID);
-            gremlinPool.add(GremlinThief.ID);
-            gremlinPool.add(GremlinFat.ID);
-            gremlinPool.add(GremlinBodyguard.ID);
-            String id = Wiz.getRandomItem(gremlinPool, AbstractDungeon.miscRng);
-            if(GremlinBodyguard.ID.equals(id)) {
-                return new GremlinBodyguard(x, y);
-            } else {
-                return MonsterHelper.getGremlin(id, x, y);
-            }
+    private AbstractMonster getGremlin(float x, float y, String prev) {
+        ArrayList<String> gremlinPool = new ArrayList<>();
+        gremlinPool.add(GremlinWarrior.ID);
+        gremlinPool.add(GremlinThief.ID);
+        gremlinPool.add(GremlinFat.ID);
+        gremlinPool.add(GremlinBodyguard.ID);
+        gremlinPool.removeIf(id -> id.equals(prev));
+        String id = Wiz.getRandomItem(gremlinPool, AbstractDungeon.miscRng);
+        if (GremlinBodyguard.ID.equals(id)) {
+            return new GremlinBodyguard(x, y);
+        } else {
+            return MonsterHelper.getGremlin(id, x, y);
+        }
     }
 
     @Override
     public void atPreBattle() {
-        if(GET_DOWN_MR_PRESIDENT.equals(AbstractDungeon.lastCombatMetricKey)) {
+        if (GET_DOWN_MR_PRESIDENT.equals(AbstractDungeon.lastCombatMetricKey)) {
             // President starts with 1 Buffer
-            for(AbstractMonster m : AbstractDungeon.getCurrRoom().monsters.monsters) {
-                if(GremlinWizard.ID.equals(m.id)) {
+            for (AbstractMonster m : AbstractDungeon.getCurrRoom().monsters.monsters) {
+                if (GremlinWizard.ID.equals(m.id)) {
                     Wiz.atb(new ApplyPowerAction(m, null, new BufferPower(m, 1), 1, true));
                     break;
                 }
             }
-        } else if(BRAWl_BROS.equals(AbstractDungeon.lastCombatMetricKey)) {
+        } else if (BRAWl_BROS.equals(AbstractDungeon.lastCombatMetricKey)) {
             // Brawlers have 50% more HP and Fat has Nob's Anger
-            for(AbstractMonster m : AbstractDungeon.getCurrRoom().monsters.monsters) {
+            for (AbstractMonster m : AbstractDungeon.getCurrRoom().monsters.monsters) {
                 Wiz.atb(new IncreaseMaxHpAction(m, 0.5f, false));
-                if(GremlinFat.ID.equals(m.id)) {
+                if (GremlinFat.ID.equals(m.id)) {
                     Wiz.atb(new ApplyPowerAction(m, null, new RitualPower(m, 2, false), 2, true));
+                }
+            }
+        } else if (WHO_LET_EM_COOK.equals(AbstractDungeon.lastCombatMetricKey)) {
+            //The bros have more HP
+            for (AbstractMonster m : AbstractDungeon.getCurrRoom().monsters.monsters) {
+                if (!GremlinCook.ID.equals(m.id)) {
+                    Wiz.atb(new IncreaseMaxHpAction(m, 1f, false));
                 }
             }
         }
@@ -130,8 +142,8 @@ public class GremlinCamp extends AbstractZone implements EncounterModifyingZone,
 
     @Override
     public void postAddButtons(ArrayList<AbstractCampfireOption> buttons) {
-        for(AbstractCampfireOption c : buttons) {
-            if(c instanceof RestOption && c.usable) {
+        for (AbstractCampfireOption c : buttons) {
+            if (c instanceof RestOption && c.usable) {
                 c.usable = false;
                 ((RestOption) c).updateUsability(false);
                 break;
@@ -143,7 +155,7 @@ public class GremlinCamp extends AbstractZone implements EncounterModifyingZone,
     public void replaceRooms(Random rng) {
         //Replace all shops with event rooms
         for (MapRoomNode node : this.nodes) {
-            if(node.room instanceof ShopRoom) {
+            if (node.room instanceof ShopRoom) {
                 node.setRoom(new EventRoom());
             }
         }
