@@ -1,0 +1,15 @@
+{
+  "${ModID}:MirrorMove": {
+    "NAME": "Mirror Move",
+    "DESCRIPTION": "Ethereal. NL Exhaust. NL (Becomes a random enemy's previous move)",
+    "EXTENDED_DESCRIPTION": [
+      "Gain !M! {0}.",
+      "Apply !M! {0}.",
+      "Exhaust a card.",
+      "Gain [E].",
+      " Heal HP equal to unblocked damage.",
+      "Gain !M! Temporary_HP.",
+      "Remove all of your Debuffs."
+    ]
+  }
+}

@@ -11,18 +11,15 @@ public interface ModifiedEventRateZone {
     /**
      * @return If not null, forces the event rolled to be this. Recommended to use with y-position based checks,
      */
-    default AbstractEvent forceEvent() { return null; }
+    default String forceEvent() { return null; }
 
-    static AbstractEvent returnIfUnseen(String ID) {
+    static String returnIfUnseen(String ID) {
         if (!SeenEvents.seenEvents.get(AbstractDungeon.player).contains(ID)) {
-            AbstractEvent e = EventUtils.getEvent(ID);
-            if (e == null) {
-                e = EventHelper.getEvent(ID);
-                if (e == null) {
-                    SpireAnniversary6Mod.logger.info("Failed to get event " + ID);
-                }
+            if(!EventUtils.eventIDs.contains(ID)) {
+                SpireAnniversary6Mod.logger.error("Failed to find event " + ID);
+            } else {
+                return ID;
             }
-            return e;
         }
         return null;
     }

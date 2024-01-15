@@ -12,11 +12,10 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import spireMapOverhaul.SpireAnniversary6Mod;
-import spireMapOverhaul.abstracts.AbstractSMOPower;
 
 import java.util.ArrayList;
 
-public class VoidPressurePower extends AbstractSMOPower {
+public class VoidPressurePower extends AbstractInvasionPower {
     public static final String POWER_ID = SpireAnniversary6Mod.makeID("VoidPressure");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;

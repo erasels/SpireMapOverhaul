@@ -20,7 +20,7 @@ public class GraftedWorm extends CustomMonster {
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
-    private static final String IMG = SpireAnniversary6Mod.makeImagePath("monsters/GraftedWorm/GraftedWorm.png");
+    private static final String IMG = SpireAnniversary6Mod.makeImagePath("monsters/Invasion/GraftedWorm/GraftedWorm.png");
     private boolean firstMove = true;
     private static final byte LEAF_BLADE_ATTACK = 1;
     private static final int LEAF_BLADE_DAMAGE = 4;

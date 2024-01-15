@@ -22,7 +22,7 @@ public class Hexasnake extends CustomMonster {
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
-    private static final String IMG = SpireAnniversary6Mod.makeImagePath("monsters/Hexasnake/Hexasnake.png");
+    private static final String IMG = SpireAnniversary6Mod.makeImagePath("monsters/Invasion/Hexasnake/Hexasnake.png");
     private boolean firstMove = true;
     private static final byte SERPENTS_GAZE_DEBUFF = 1;
     private static final byte VENOMOUS_BITE_ATTACK = 2;

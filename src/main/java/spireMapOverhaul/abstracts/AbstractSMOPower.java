@@ -21,6 +21,10 @@ public abstract class AbstractSMOPower extends AbstractPower {
     public boolean canGoNegative2 = false;
 
     public AbstractSMOPower(String ID, String NAME, PowerType powerType, boolean isTurnBased, AbstractCreature owner, int amount) {
+        this(ID, NAME, null, powerType, isTurnBased, owner, amount);
+    }
+
+    public AbstractSMOPower(String ID, String NAME, String zoneID, PowerType powerType, boolean isTurnBased, AbstractCreature owner, int amount) {
         this.ID = ID;
         this.isTurnBased = isTurnBased;
 
@@ -30,8 +34,8 @@ public abstract class AbstractSMOPower extends AbstractPower {
         this.amount = amount;
         this.type = powerType;
 
-        Texture normalTexture = TexLoader.getTexture(SpireAnniversary6Mod.modID + "Resources/images/powers/" + ID.replaceAll(SpireAnniversary6Mod.modID + ":", "") + "32.png");
-        Texture hiDefImage = TexLoader.getTexture(SpireAnniversary6Mod.modID + "Resources/images/powers/" + ID.replaceAll(SpireAnniversary6Mod.modID + ":", "") + "84.png");
+        Texture normalTexture = TexLoader.getTexture(SpireAnniversary6Mod.modID + "Resources/images/powers/" + (zoneID != null ? zoneID + "/" : "") + ID.replaceAll(SpireAnniversary6Mod.modID + ":", "") + "32.png");
+        Texture hiDefImage = TexLoader.getTexture(SpireAnniversary6Mod.modID + "Resources/images/powers/" + (zoneID != null ? zoneID + "/" : "") + ID.replaceAll(SpireAnniversary6Mod.modID + ":", "") + "84.png");
         if (hiDefImage != null) {
             region128 = new TextureAtlas.AtlasRegion(hiDefImage, 0, 0, hiDefImage.getWidth(), hiDefImage.getHeight());
             if (normalTexture != null)

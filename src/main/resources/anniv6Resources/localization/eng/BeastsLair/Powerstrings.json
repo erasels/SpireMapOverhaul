@@ -1,0 +1,15 @@
+{
+
+  "${ModID}:FuryPower": {
+    "NAME": "Fury",
+    "DESCRIPTIONS": [
+      "At the end of its turn, gains #b", "% damage up for the rest of combat."
+    ]
+  },
+  "${ModID}:DamageUpPower": {
+    "NAME": "Damage Up",
+    "DESCRIPTIONS": [
+      "Deals #b", "% more damage."
+    ]
+  }
+}

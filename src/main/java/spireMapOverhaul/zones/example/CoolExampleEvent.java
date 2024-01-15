@@ -1,5 +1,6 @@
 package spireMapOverhaul.zones.example;
 
+import basemod.AutoAdd;
 import basemod.abstracts.events.PhasedEvent;
 import basemod.abstracts.events.phases.CombatPhase;
 import basemod.abstracts.events.phases.TextPhase;
@@ -15,6 +16,7 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 
+@AutoAdd.Ignore
 public class CoolExampleEvent extends PhasedEvent {
     public static final String ID = makeID("Example");
     private static final EventStrings eventStrings = CardCrawlGame.languagePack.getEventString(ID);

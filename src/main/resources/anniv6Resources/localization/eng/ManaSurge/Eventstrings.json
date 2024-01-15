@@ -1,0 +1,15 @@
+{
+  "${ModID}:ManaCycloneEvent": {
+    "NAME": "Mana Cyclone",
+    "DESCRIPTIONS": [
+      "As you delve deeper, #bmagic seems to coat the air more than before. #pArcane #penergy is ~coalescing~ before you, the ~wind~ biting at your neck, almost pulling you towards it. @Sparks@ of #bblue and #ppurple essence spit out of the #p@Mana@ #p@Cyclone@ that has erupted before you. NL NL It looks dangerous, but what could be causing this much #pMana to gather in one area? You might get hurt, but there could be something #yvaluable to help you on your journey...",
+      "You reach inside and feel the energy #p@pulsing@ through your arm. As you pull your arm out, you feel the @rush@ of #bMana, making you stronger while at the same time @overwhelming@ you. NL NL With this newfound source of #ppower, you feel as though it may help you pursue your goal.",
+      "As you enter the #b@storm@ you feel magical energy being @forced@ into you. You feel your skin #r@tearing@ but see an item sitting on a pedestal within your grasp. NL NL As you take this item and leave the #bstorm, your body feels like it is about to #rburst, however, this #p~magical~ #p~Relic~ might be worth every second of pain."
+    ],
+    "OPTIONS": [
+      "[Reach Inside] #gEnchant #ga #gcard. #rA #rrandom #rcard #rbecomes #rBlighted.",
+      "[Walk Through] #gReceive #ga #gmagical #gRelic. #r2 #rrandom #rcards #rbecome #rBlighted.",
+      "[Leave]"
+    ]
+  }
+}

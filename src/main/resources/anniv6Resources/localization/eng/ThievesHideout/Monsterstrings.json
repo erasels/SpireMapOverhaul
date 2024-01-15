@@ -1,0 +1,25 @@
+{
+  "${ModID}:BanditLieutenant": {
+    "MOVES": [
+      "Cudgel Blow",
+      "Noxious Smoke",
+      "Big Swing"
+    ],
+    "NAME": "Bandit Lieutenant"
+  },
+  "${ModID}:ThiefKing": {
+    "MOVES": [
+      "Steal Vitality",
+      "Steal Experience",
+      "The Reveal",
+      "Blade Flurry"
+    ],
+    "NAME": "The Thief King",
+    "DIALOG": [
+      "How dare you intrude on my lair!",
+      "You're dead meat once the other thieves are gone!",
+      "I'll steal everything you have!",
+      "Now see my true power!"
+    ]
+  }
+}
