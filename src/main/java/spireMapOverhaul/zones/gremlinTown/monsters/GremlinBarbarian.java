@@ -26,12 +26,12 @@ public class GremlinBarbarian extends CustomMonster
             "monsters/GremlinTown/GremlinBarbarian/skeleton.json");
     private boolean firstMove = true;
     private static final byte ATTACK = 1;
-    private static final int DAMAGE = 4;
-    private static final int DAMAGE_A2 = 5;
-    private static final int MIN_HP = 55;
-    private static final int MAX_HP = 59;
-    private static final int MIN_HP_A7 = 59;
-    private static final int MAX_HP_A7 = 64;
+    private static final int DAMAGE = 3;
+    private static final int DAMAGE_A2 = 4;
+    private static final int MIN_HP = 50;
+    private static final int MAX_HP = 54;
+    private static final int MIN_HP_A7 = 54;
+    private static final int MAX_HP_A7 = 58;
     private static final int ATTACK_COUNT = 2;
     private static final int RITUAL_AMOUNT = 2;
 

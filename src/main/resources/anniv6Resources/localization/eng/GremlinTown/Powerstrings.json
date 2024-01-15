@@ -8,10 +8,6 @@
     "DESCRIPTIONS": ["Gain #b{0} #yVigor in #b2 turns.",
       "Gain #b{0} #yVigor in #b1 turn."]
   },
-  "${ModID}:HeavyArmor": {
-    "NAME": "Heavy Armor",
-    "DESCRIPTIONS": ["This enemy deals #b2 times as much damage when it has #yBlock."]
-  },
   "${ModID}:Sap": {
     "NAME": "Sapped",
     "DESCRIPTIONS": ["Lose [E] at the start of your next turn.",

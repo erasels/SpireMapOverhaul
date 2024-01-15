@@ -22,8 +22,10 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.AbstractEvent;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.*;
@@ -46,8 +48,8 @@ import spireMapOverhaul.patches.ZonePatches;
 import spireMapOverhaul.patches.ZonePerFloorRunHistoryPatch;
 import spireMapOverhaul.patches.interfacePatches.CampfireModifierPatches;
 import spireMapOverhaul.patches.interfacePatches.EncounterModifierPatches;
-import spireMapOverhaul.rewards.AnyColorCardReward;
 import spireMapOverhaul.patches.interfacePatches.TravelTrackingPatches;
+import spireMapOverhaul.rewards.AnyColorCardReward;
 import spireMapOverhaul.rewards.HealReward;
 import spireMapOverhaul.rewards.SingleCardReward;
 import spireMapOverhaul.ui.*;
@@ -57,12 +59,12 @@ import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.util.ZoneShapeMaker;
 import spireMapOverhaul.zoneInterfaces.CampfireModifyingZone;
 import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
+import spireMapOverhaul.zones.beastslair.BeastsLairZone;
 import spireMapOverhaul.zones.brokenspace.BrokenSpaceZone;
 import spireMapOverhaul.zones.gremlinTown.GremlinTown;
 import spireMapOverhaul.zones.gremlinTown.HordeHelper;
 import spireMapOverhaul.zones.gremlinTown.events.Surprise;
 import spireMapOverhaul.zones.gremlinTown.potions.*;
-import spireMapOverhaul.zones.beastslair.BeastsLairZone;
 import spireMapOverhaul.zones.manasurge.ui.extraicons.BlightIcon;
 import spireMapOverhaul.zones.manasurge.ui.extraicons.EnchantmentIcon;
 
@@ -724,6 +726,7 @@ public class SpireAnniversary6Mod implements
         if (!CardCrawlGame.loadingSave) {
             BeastsLairZone.clearBossList();
         }
+        HordeHelper.hidePlatforms();
     }
 
     public static float time = 0f;

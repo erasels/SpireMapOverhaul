@@ -32,10 +32,10 @@ public class GremlinAssassin extends CustomMonster
     private static final int DAMAGE_HAMSTRING_A2 = 11;
     private static final int DAMAGE_SAP = 7;
     private static final int DAMAGE_SAP_A2 = 8;
-    private static final int MIN_HP = 29;
-    private static final int MAX_HP = 32;
-    private static final int MIN_HP_A7 = 32;
-    private static final int MAX_HP_A7 = 35;
+    private static final int MIN_HP = 35;
+    private static final int MAX_HP = 39;
+    private static final int MIN_HP_A7 = 38;
+    private static final int MAX_HP_A7 = 42;
     private static final int HAMSTRING_AMOUNT = 1;
     private static final int SAP_AMOUNT = 1;
 

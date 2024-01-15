@@ -25,10 +25,10 @@ public class GremlinRockTosser extends CustomMonster
     private static final byte ATTACK = 1;
     private static final int DAMAGE = 7;
     private static final int DAMAGE_A2 = 8;
-    private static final int MIN_HP = 22;
-    private static final int MAX_HP = 25;
-    private static final int MIN_HP_A7 = 24;
-    private static final int MAX_HP_A7 = 27;
+    private static final int MIN_HP = 18;
+    private static final int MAX_HP = 20;
+    private static final int MIN_HP_A7 = 20;
+    private static final int MAX_HP_A7 = 23;
 
     private final int attackDamage;
 

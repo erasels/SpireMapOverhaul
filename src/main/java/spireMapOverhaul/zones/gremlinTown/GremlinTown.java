@@ -376,23 +376,15 @@ public class GremlinTown extends AbstractZone
                 item.cards = getGremlinCardReward(item.cards);
 
             if (item.type == RewardItem.RewardType.GOLD && lastCombatMetricKey.equals(GREMLIN_HORDE))
-                item.bonusGold = treasureRng.random(100, 150);
+                item.bonusGold = treasureRng.random(200, 250);
         }
 
-        if (lastCombatMetricKey.equals(GREMLIN_GANG_TWO)) {
-            RewardItem item = new RewardItem();
-            item.cards = getGremlinCardReward(item.cards);
-            rewards.add(item);
-        }
+        RewardItem item = new RewardItem();
+        item.cards = getGremlinCardReward(item.cards);
+        rewards.add(item);
 
         if (lastCombatMetricKey.equals(NIB))
             rewards.add(new RewardItem(getRandomGRelic()));
-
-        if (lastCombatMetricKey.equals(GREMLIN_ELDER)) {
-            if (potionCount == 0)
-                rewards.add(new RewardItem(getRandomWeightedPotion()));
-            rewards.add(new RewardItem(getRandomWeightedPotion()));
-        }
 
         if (lastCombatMetricKey.equals(GREMLIN_HORDE))
             rewards.add(new RewardItem(getRandomGRelic()));

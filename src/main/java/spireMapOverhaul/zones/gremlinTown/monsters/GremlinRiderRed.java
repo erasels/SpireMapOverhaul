@@ -28,10 +28,10 @@ public class GremlinRiderRed extends CustomMonster
     private boolean firstMove = true;
     private static final byte CHARGE = 1;
     private static final byte TACTICAL_ATTACK = 2;
-    private static final int CHARGE_DAMAGE = 8;
-    private static final int CHARGE_DAMAGE_A2 = 9;
-    private static final int TACTICAL_DAMAGE = 5;
-    private static final int TACTICAL_DAMAGE_A2 = 6;
+    private static final int CHARGE_DAMAGE = 7;
+    private static final int CHARGE_DAMAGE_A2 = 8;
+    private static final int TACTICAL_DAMAGE = 4;
+    private static final int TACTICAL_DAMAGE_A2 = 5;
     private static final int TACTICAL_STRENGTH = 3;
     private static final int MIN_HP = 45;
     private static final int MAX_HP = 50;

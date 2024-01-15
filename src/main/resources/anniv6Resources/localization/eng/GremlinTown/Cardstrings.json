@@ -5,7 +5,7 @@
   },
   "${ModID}:MeatMallet": {
     "NAME": "Meat Mallet",
-    "DESCRIPTION": "Whenever an Attack deals unblocked damage this turn, apply !M! Weak."
+    "DESCRIPTION": "Whenever an Attack deals unblocked damage this turn, apply !M! Weak. NL Exhaust."
   },
   "${ModID}:AngryStrike": {
     "NAME": "Angry Strike",

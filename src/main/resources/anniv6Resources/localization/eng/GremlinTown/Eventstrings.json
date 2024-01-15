@@ -13,7 +13,7 @@
     "OPTIONS": [
       "[Continue]",
       "[A Little] #y{0} #yGold: #gRemove #ga #gcard #gfrom #gyour #gdeck.",
-      "[A Moderate Amount] #y{0} #yGold: #gGain #g{0} #gMax #gHP.",
+      "[A Moderate Amount] #y{0} #yGold: #gGain #g{1} #gMax #gHP.",
       "[A Lot] #y{0} #yGold: #gUpgrade #gall #gAttacks.",
       "[Locked] Requires: {0} Gold.",
       "[None] Leave.",

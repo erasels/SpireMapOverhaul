@@ -86,6 +86,7 @@ public class GremlinPerformance extends AbstractImageEvent {
             imageEventText.clearAllDialogs();
             imageEventText.setDialogOption(OPTIONS[1].replace("{0}", String.valueOf(getRemovalPrice())));
             imageEventText.setDialogOption(OPTIONS[2].replace("{0}", String.valueOf(getMaxHpPrice())));
+            imageEventText.setDialogOption(OPTIONS[2].replace("{1}", String.valueOf(MAX_HP_GAIN)));
             if (adp().gold > getUpgradePrice())
                 imageEventText.setDialogOption(OPTIONS[3].replace("{0}", String.valueOf(getUpgradePrice())));
             else

@@ -160,6 +160,10 @@ public class HordeHelper {
         platformQueue = new ArrayList<>();
     }
 
+    public static void hidePlatforms() {
+        platforms = false;
+    }
+
     public static void update() {
         calculateBackAttack();
         if (GameActionManager.turn == 2)
@@ -408,6 +412,9 @@ public class HordeHelper {
                                 2.5F, TEXT[1], true));
                     isDone = true;
                 }
+
+                for (int i = 0; i < adp().orbs.size(); i++)
+                    adp().orbs.get(i).setSlot(i, adp().maxOrbs);
             }
 
             @Override

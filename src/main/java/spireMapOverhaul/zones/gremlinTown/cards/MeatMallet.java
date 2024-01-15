@@ -22,6 +22,7 @@ public class MeatMallet extends AbstractSMOCard {
         super(ID, COST, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF, CardColor.COLORLESS);
         baseMagicNumber = magicNumber = MAGIC;
         tags.add(SpireAnniversary6Mod.Enums.GREMLIN);
+        exhaust = true;
     }
 
     @Override
