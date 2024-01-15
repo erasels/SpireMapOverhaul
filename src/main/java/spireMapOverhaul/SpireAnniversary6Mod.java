@@ -158,6 +158,10 @@ public class SpireAnniversary6Mod implements
         return modID + "Resources/images/relics/" + resourcePath;
     }
 
+    public static String makeMonsterPath(String resourcePath) {
+        return modID + "Resources/images/monsters/" + resourcePath;
+    }
+
     public static String makePowerPath(String resourcePath) {
         return modID + "Resources/images/powers/" + resourcePath;
     }
