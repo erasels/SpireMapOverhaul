@@ -13,8 +13,8 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.powers.BarricadePower;
-import com.megacrit.cardcrawl.powers.RagePower;
 import spireMapOverhaul.SpireAnniversary6Mod;
+import spireMapOverhaul.zones.gremlinTown.powers.RagingPower;
 
 import static spireMapOverhaul.util.Wiz.*;
 
@@ -75,7 +75,7 @@ public class ArmoredGremlin extends CustomMonster
 
     public void usePreBattleAction() {
         atb(new ApplyPowerAction(this, this, new BarricadePower(this)));
-        atb(new ApplyPowerAction(this, this, new RagePower(this, RAGE_AMOUNT)));
+        atb(new ApplyPowerAction(this, this, new RagingPower(this, RAGE_AMOUNT)));
         SpireAnniversary6Mod.logger.info(name);
         atb(new GainBlockAction(this, blockAmount));
     }

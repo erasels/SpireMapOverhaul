@@ -355,7 +355,7 @@ public class SpireAnniversary6Mod implements
         loadStringsFile(langKey, OrbStrings.class);
         loadStringsFile(langKey, PotionStrings.class);
         loadStringsFile(langKey, EventStrings.class);
-        loadStringsFile(langKey, MonsterIcon.class);
+        loadStringsFile(langKey, MonsterStrings.class);
     }
 
     public void loadZoneStrings(Collection<AbstractZone> zones, String langKey) {
@@ -375,7 +375,7 @@ public class SpireAnniversary6Mod implements
             loadStringsFile(languageAndZone, OrbStrings.class);
             loadStringsFile(languageAndZone, PotionStrings.class);
             loadStringsFile(languageAndZone, EventStrings.class);
-            loadStringsFile(languageAndZone, MonsterIcon.class);
+            loadStringsFile(languageAndZone, MonsterStrings.class);
         }
     }
 
