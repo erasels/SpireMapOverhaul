@@ -67,7 +67,7 @@ public class GremlinCook extends AbstractSMOMonster {
                 useShakeAnimation(Settings.ACTION_DUR_FAST);
                 Wiz.forAllMonstersLiving(m -> {
                     if(!GremlinCook.ID.equals(m.id))
-                        Wiz.atb(new IncreaseMaxHpAction(m, AbstractDungeon.ascensionLevel >= 17 ? 0.25f : 0.15f, true));
+                        Wiz.atb(new IncreaseMaxHpAction(m, AbstractDungeon.ascensionLevel >= 18 ? 0.25f : 0.15f, true));
                 });
                 break;
             case 2:
@@ -105,7 +105,7 @@ public class GremlinCook extends AbstractSMOMonster {
             possibilities.add(ALL_BUFF);
         } else {
             //If alone and late in combat, can buff itself again (helps player)
-            if(GameActionManager.turn > 6 && !lastMove(ALL_BUFF)) {
+            if(GameActionManager.turn > 5 && !lastMove(ALL_BUFF)) {
                 possibilities.add(ALL_BUFF);
             }
         }
