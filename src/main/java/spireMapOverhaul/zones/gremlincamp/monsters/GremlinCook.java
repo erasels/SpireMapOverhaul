@@ -102,6 +102,8 @@ public class GremlinCook extends AbstractSMOMonster {
 
     @Override
     protected void getMove(int i) {
+        int enemies = Wiz.getEnemies().size();
+
         //First turn always buffs
         if(firstMove) {
             firstMove = false;
@@ -111,11 +113,13 @@ public class GremlinCook extends AbstractSMOMonster {
 
         if(!secondMove) {
             secondMove = true;
-            setMoveShortcut(ALL_BULK, MOVES[ALL_BULK]);
+            if(enemies > 1) {
+                setMoveShortcut(ALL_BULK, MOVES[ALL_BULK]);
+                return;
+            }
         }
 
         ArrayList<Byte> possibilities = new ArrayList<>();
-        int enemies = Wiz.getEnemies().size();
         // If not alone, can buff everyone if it wasn't the last move
         if(enemies > 1 && !lastMove(ALL_BUFF)) {
             possibilities.add(ALL_BUFF);
