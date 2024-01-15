@@ -47,18 +47,7 @@ public class CharacterInfluenceEvent extends PhasedEvent {
             }
         }.addOption(OPTIONS[0], (i)->transitionKey("Combat")).addOption(OPTIONS[1], (i)->this.openMap()));
 
-        registerPhase("Combat", new CombatPhase(AbstractDungeon.eliteMonsterList.remove(0)) {
-            boolean didReduceHealth = false;
-            @Override
-            public void update() {
-                super.update();
-                if (didReduceHealth) return;
-                for (AbstractMonster m : AbstractDungeon.getMonsters().monsters) {
-                    AbstractDungeon.actionManager.addToTop(new LoseHPAction(m, AbstractDungeon.player, m.currentHealth/4));
-                }
-                didReduceHealth = false;
-            }
-        }.setType(AbstractMonster.EnemyType.ELITE).addRewards(true, (room)->{
+        registerPhase("Combat", new CombatPhase(AbstractDungeon.eliteMonsterList.remove(0)).setType(AbstractMonster.EnemyType.ELITE).addRewards(true, (room)->{
 
             //Adds all starting relics to the reward screen
             ArrayList<String> relicStrings = new ArrayList<>();
@@ -73,6 +62,14 @@ public class CharacterInfluenceEvent extends PhasedEvent {
         }));
 
         transitionKey("EventStart"); //starting point
+    }
+
+    @Override
+    public void enterCombat() {
+        super.enterCombat();
+        for (AbstractMonster m : AbstractDungeon.getMonsters().monsters) {
+            AbstractDungeon.actionManager.addToTop(new LoseHPAction(m, AbstractDungeon.player, m.currentHealth/4));
+        }
     }
 
     // Sets the Event image to a cropped version of the character portrait.
