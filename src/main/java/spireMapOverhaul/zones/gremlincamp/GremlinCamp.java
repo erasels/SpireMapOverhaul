@@ -77,14 +77,13 @@ public class GremlinCamp extends AbstractZone implements EncounterModifyingZone,
         return encs;
     }
 
-
     public static final String NOBBERS = makeID("ClassicNob");
     public static final String WHO_LET_EM_COOK = makeID("GremlinCookGang");
 
     @Override
     public List<ZoneEncounter> getEliteEncounters() {
         ArrayList<ZoneEncounter> encs = new ArrayList<>();
-        //encs.add(new ZoneEncounter(NOBBERS, 1, () -> new MonsterGroup(new AbstractMonster[] {new GremlinNob(0, 0)}), GremlinNob.NAME));
+        encs.add(new ZoneEncounter(NOBBERS, 1, () -> new MonsterGroup(new AbstractMonster[] {new GremlinNob(0, 0)}), GremlinNob.NAME));
         encs.add(new ZoneEncounter(WHO_LET_EM_COOK, 1, () -> {
                     AbstractMonster grem1 = getGremlin(-200, -7, "");
                     return new MonsterGroup(new AbstractMonster[]{
