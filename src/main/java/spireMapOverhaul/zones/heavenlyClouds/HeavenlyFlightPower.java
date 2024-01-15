@@ -1,12 +1,15 @@
 package spireMapOverhaul.zones.heavenlyClouds;
 
 import com.evacipated.cardcrawl.mod.stslib.actions.common.StunMonsterAction;
+import com.evacipated.cardcrawl.mod.stslib.patches.NeutralPowertypePatch;
+import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -67,7 +70,9 @@ public class HeavenlyFlightPower extends AbstractSMOPower {
     public void onRemove() {
         owner.drawY -= HEIGHT_ADJUSTMENT * Settings.scale;
         if (owner instanceof AbstractMonster) {
-            atb(new StunMonsterAction((AbstractMonster) owner, owner, 1));
+            StunMonsterPower power = new StunMonsterPower((AbstractMonster) owner, this.amount);
+            power.type = NeutralPowertypePatch.NEUTRAL;
+            atb(new ApplyPowerAction(owner, owner, power, 1));
         }
         atb(new ApplyPowerAction(owner, owner, new InvisibleFlightTracker(owner, initialAmount), initialAmount));
     }

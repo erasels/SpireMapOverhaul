@@ -46,7 +46,7 @@ public class HeavenlyCloudsZone extends AbstractZone implements CombatModifyingZ
     @Override
     public boolean canSpawn() {
         // Don't spawn in Act 3
-        return AbstractDungeon.actNum < 3;
+        return this.isAct(1) || this.isAct(2);
     }
 
     @Override
@@ -75,6 +75,7 @@ public class HeavenlyCloudsZone extends AbstractZone implements CombatModifyingZ
                 mo.currentHealth = (int)((float)mo.currentHealth * HEALTH_MODIFIER);
                 mo.maxHealth = (int)((float)mo.maxHealth * HEALTH_MODIFIER);
                 mo.healthBarUpdatedEvent();
+                mo.currentBlock = (int)((float)mo.currentBlock * HEALTH_MODIFIER); // wreck spheric guardian
             }
         }
     }
