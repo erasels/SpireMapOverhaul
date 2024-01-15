@@ -6,6 +6,8 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.unique.IncreaseMaxHpAction;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.events.shrines.GremlinMatchGame;
+import com.megacrit.cardcrawl.events.shrines.GremlinWheelGame;
 import com.megacrit.cardcrawl.helpers.MonsterHelper;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.map.MapRoomNode;
@@ -28,15 +30,19 @@ import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.zoneInterfaces.CampfireModifyingZone;
 import spireMapOverhaul.zoneInterfaces.CombatModifyingZone;
 import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
+import spireMapOverhaul.zoneInterfaces.ModifiedEventRateZone;
 import spireMapOverhaul.zones.gremlincamp.monsters.GremlinBodyguard;
 import spireMapOverhaul.zones.gremlincamp.monsters.GremlinCook;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
+import static spireMapOverhaul.SpireAnniversary6Mod.zoneEvents;
 
-public class GremlinCamp extends AbstractZone implements EncounterModifyingZone, CombatModifyingZone, CampfireModifyingZone {
+public class GremlinCamp extends AbstractZone implements EncounterModifyingZone, CombatModifyingZone, CampfireModifyingZone, ModifiedEventRateZone {
     public static final String ID = "GremlinCamp";
     private static String[] encounter_names = null;
 
@@ -148,6 +154,19 @@ public class GremlinCamp extends AbstractZone implements EncounterModifyingZone,
                 break;
             }
         }
+    }
+
+    @Override
+    public Set<String> addSpecificEvents() {
+        Set<String> events = new HashSet<>();
+        events.add(GremlinMatchGame.ID);
+        events.add(GremlinWheelGame.ID);
+        return events;
+    }
+
+    @Override
+    public float zoneSpecificEventRate() {
+        return 1f;
     }
 
     @Override

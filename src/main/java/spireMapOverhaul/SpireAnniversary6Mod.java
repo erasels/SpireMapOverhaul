@@ -57,6 +57,7 @@ import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.util.ZoneShapeMaker;
 import spireMapOverhaul.zoneInterfaces.CampfireModifyingZone;
 import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
+import spireMapOverhaul.zoneInterfaces.ModifiedEventRateZone;
 import spireMapOverhaul.zones.beastslair.BeastsLairZone;
 import spireMapOverhaul.zones.brokenspace.BrokenSpaceZone;
 import spireMapOverhaul.zones.manasurge.ui.extraicons.BlightIcon;
@@ -496,6 +497,15 @@ public class SpireAnniversary6Mod implements
                 throw new RuntimeException(e);
             }
         }
+        unfilteredAllZones.stream()
+                .filter(z -> z instanceof ModifiedEventRateZone)
+                .forEach(z -> {
+                    Set<String> specEvents =  ((ModifiedEventRateZone) z).addSpecificEvents();
+                    if(specEvents != null) {
+                        Set<String> eventList = zoneEvents.computeIfAbsent(z.id, k -> new HashSet<>());
+                        eventList.addAll(specEvents);
+                    }
+                });
     }
 
     @Override
