@@ -1,6 +1,8 @@
 package spireMapOverhaul.zones.gremlincamp;
 
 import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.actions.unique.IncreaseMaxHpAction;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.MonsterHelper;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -20,13 +22,14 @@ import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.zoneInterfaces.CampfireModifyingZone;
 import spireMapOverhaul.zoneInterfaces.CombatModifyingZone;
 import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
+import spireMapOverhaul.zones.gremlincamp.monsters.GremlinBodyguard;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 
-public class GremlinCamp extends AbstractZone implements EncounterModifyingZone, CampfireModifyingZone {
+public class GremlinCamp extends AbstractZone implements EncounterModifyingZone, CombatModifyingZone, CampfireModifyingZone {
     public static final String ID = "GremlinCamp";
 
     public GremlinCamp() {
@@ -44,9 +47,9 @@ public class GremlinCamp extends AbstractZone implements EncounterModifyingZone,
         ArrayList<ZoneEncounter> encs = new ArrayList<>();
         encs.add(new ZoneEncounter(GET_DOWN_MR_PRESIDENT, 1, () ->
                 new MonsterGroup(new AbstractMonster[] {
-                        new GremlinTsundere(-200f, 10),
+                        new GremlinBodyguard(-200f, 10),
                         new GremlinWizard(0, 0),
-                        new GremlinTsundere(200f, -10),
+                        new GremlinBodyguard(200f, -10),
                 }), GremlinNob.NAME)
         );
         return encs;
@@ -62,13 +65,15 @@ public class GremlinCamp extends AbstractZone implements EncounterModifyingZone,
     }
 
     @Override
-    public MonsterGroup changeEncounter(MonsterGroup monsterGroup, String encounterID) {
-        // President has 1 buffer
-        if(GET_DOWN_MR_PRESIDENT.equals(encounterID)) {
-            AbstractMonster prez = monsterGroup.getMonster(GremlinWizard.ID);
-            Wiz.applyToEnemy(prez, new BufferPower(prez, 1));
+    public void atPreBattle() {
+        if(GET_DOWN_MR_PRESIDENT.equals(AbstractDungeon.lastCombatMetricKey)) {
+            for(AbstractMonster m : AbstractDungeon.getCurrRoom().monsters.monsters) {
+                if(GremlinWizard.ID.equals(m.id)) {
+                    Wiz.applyToEnemy(m, new BufferPower(m, 1));
+                    break;
+                }
+            }
         }
-        return monsterGroup;
     }
 
     @Override
@@ -76,7 +81,7 @@ public class GremlinCamp extends AbstractZone implements EncounterModifyingZone,
         for(AbstractCampfireOption c : buttons) {
             if(c instanceof RestOption && c.usable) {
                 c.usable = false;
-                ((RestOption) c).updateUsability(false); //TODO: Check text
+                ((RestOption) c).updateUsability(false);
                 break;
             }
         }
