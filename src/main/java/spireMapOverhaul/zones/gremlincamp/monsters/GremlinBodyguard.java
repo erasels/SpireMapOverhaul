@@ -1,5 +1,6 @@
 package spireMapOverhaul.zones.gremlincamp.monsters;
 
+import basemod.ReflectionHacks;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.AnimateSlowAttackAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
@@ -37,18 +38,24 @@ public class GremlinBodyguard extends GremlinTsundere {
         switch (nextMove) {
             case PROTECT:
                 // Gives a random monster Block
+                Wiz.atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        ArrayList<AbstractMonster> mons = Wiz.getEnemies();
+                        mons.removeIf(m -> GremlinTsundere.ID.equals(m.id) || ID.equals(m.id));
+                        if(mons.isEmpty()) {
+                            mons = Wiz.getEnemies();
+                        }
+                        AbstractMonster target = Wiz.getRandomItem(mons, AbstractDungeon.aiRng);
+                        AbstractDungeon.effectList.add(new FlashAtkImgEffect(target.hb.cX, target.hb.cY, AttackEffect.SHIELD));
+                        target.addBlock(ReflectionHacks.getPrivate(GremlinBodyguard.this, GremlinTsundere.class, "blockAmt"));
+                        isDone = true;
+                    }
+                });
+
                 ArrayList<AbstractMonster> mons = Wiz.getEnemies();
                 mons.removeIf(m -> GremlinTsundere.ID.equals(m.id) || ID.equals(m.id));
                 if (!mons.isEmpty()) {
-                    Wiz.atb(new AbstractGameAction() {
-                        @Override
-                        public void update() {
-                            AbstractMonster target = Wiz.getRandomItem(mons, AbstractDungeon.aiRng);
-                            AbstractDungeon.effectList.add(new FlashAtkImgEffect(target.hb.cX, target.hb.cY, AttackEffect.SHIELD));
-                            target.addBlock(amount);
-                            isDone = true;
-                        }
-                    });
                     setMove(MOVES[0], PROTECT, Intent.DEFEND);
                 } else {
                     setMove(MOVES[1], BASH, Intent.ATTACK_BUFF, damage.get(0).base);
