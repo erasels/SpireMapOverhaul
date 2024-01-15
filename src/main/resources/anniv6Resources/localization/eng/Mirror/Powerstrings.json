@@ -1,0 +1,20 @@
+{
+  "${ModID}:MirrorZone": {
+    "NAME": "Power of mirrors",
+    "DESCRIPTIONS": [
+      "Each turn, you get a #pMirror #pMove card containing one of the enemy moves used in the previous turn. You draw #b1 less card in exchange."
+    ]
+  },
+  "${ModID}:Reflective": {
+    "NAME": "Reflective",
+    "DESCRIPTIONS": [
+      "Increases the damage and #yBlock amount of #yMirror #yMove card by #b{0}."
+    ]
+  },
+  "${ModID}:Shattered": {
+    "NAME": "Shattered",
+    "DESCRIPTIONS": [
+      "After you play a #yMirror #yMove, loses #b{0}% of its HP, rounded up."
+    ]
+  }
+}

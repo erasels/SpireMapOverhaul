@@ -5,7 +5,8 @@
       "StS Modding Community",
       "Makes the map more interesting.",
       "Enabled",
-      "Make zone icons larger but cut off by the zone's shape."
+      "Make zone icons larger but cut off by the zone's shape.",
+      "Don't repeat zones during a run."
     ]
   },
   "${ModID}:SingleCardReward": {
@@ -17,6 +18,12 @@
   "${ModID}:HealReward": {
     "TEXT": [
       "Heal "
+    ]
+  },
+  "${ModID}:AnyColorCardReward": {
+    "TEXT": [
+      "Add a card of any color",
+      "Choose a Card"
     ]
   },
   "${ModID}:CombatExplainButton": {
