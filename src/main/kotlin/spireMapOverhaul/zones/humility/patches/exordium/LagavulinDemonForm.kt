@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.audio.MusicMaster
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon
 import com.megacrit.cardcrawl.monsters.exordium.Lagavulin
 import javassist.CtBehavior
+import spireMapOverhaul.zones.humility.HumilityZone
 
 class LagavulinDemonForm {
     @SpirePatch(
@@ -18,6 +19,8 @@ class LagavulinDemonForm {
         companion object {
             @JvmStatic
             fun Postfix(__instance: Lagavulin, ___asleep: Boolean) {
+                if (HumilityZone.isNotInZone()) return
+
                 if (___asleep) {
                     AbstractDungeon.actionManager.addToBottom(
                         ApplyPowerAction(
@@ -43,6 +46,8 @@ class LagavulinDemonForm {
                 locator = Locator::class
             )
             fun Insert(__instance: Lagavulin, stateName: String) {
+                if (HumilityZone.isNotInZone()) return
+
                 AbstractDungeon.actionManager.addToBottom(
                     ReducePowerAction(
                         __instance,

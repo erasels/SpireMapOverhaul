@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster
 import com.megacrit.cardcrawl.monsters.exordium.SlaverBlue
 import com.megacrit.cardcrawl.powers.NoBlockPower
 import com.megacrit.cardcrawl.vfx.combat.EntangleEffect
+import spireMapOverhaul.zones.humility.HumilityZone
 
 class BlueSlaverNoBlockMove {
     companion object {
@@ -29,6 +30,8 @@ class BlueSlaverNoBlockMove {
 
             @JvmStatic
             fun Prefix(__instance: SlaverBlue, num: Int): SpireReturn<Unit?> {
+                if (HumilityZone.isNotInZone()) return SpireReturn.Continue()
+
                 if (num >= 75 && !__instance.lastMove(TRIP)) {
                     if (TRIP_NAME == null) {
                         val strings = CardCrawlGame.languagePack.getMonsterStrings(SpireAnniversary6Mod.makeID(SlaverBlue.ID))

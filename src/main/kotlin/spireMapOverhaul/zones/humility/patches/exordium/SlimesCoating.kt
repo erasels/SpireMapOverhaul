@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.monsters.exordium.AcidSlime_S
 import com.megacrit.cardcrawl.monsters.exordium.SpikeSlime_M
 import com.megacrit.cardcrawl.monsters.exordium.SpikeSlime_S
 import javassist.CtBehavior
+import spireMapOverhaul.zones.humility.HumilityZone
 
 class SlimesCoating {
     @SpirePatches(
@@ -41,6 +42,8 @@ class SlimesCoating {
 
             @JvmStatic
             fun doPreBattleAction(__instance: AbstractMonster) {
+                if (HumilityZone.isNotInZone()) return
+
                 val amount = if (__instance is AcidSlime_M || __instance is SpikeSlime_M) {
                     2
                 } else {

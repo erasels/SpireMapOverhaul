@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.monsters.city.BookOfStabbing
 import com.megacrit.cardcrawl.monsters.city.Champ
 import com.megacrit.cardcrawl.monsters.exordium.*
 import javassist.CtBehavior
+import spireMapOverhaul.zones.humility.HumilityZone
 import kotlin.reflect.KClass
 
 class AnimationChanges {
@@ -45,6 +46,8 @@ class AnimationChanges {
                 locator = Locator::class
             )
             fun Insert(__instance: AbstractMonster, ___skeleton: Skeleton) {
+                if (HumilityZone.isNotInZone()) return
+
                 scaleData[__instance.javaClass.kotlin]?.forEach {
                     ___skeleton.findBone(it.first)?.setScale(it.second)
                 }
@@ -72,6 +75,8 @@ class AnimationChanges {
         companion object {
             @JvmStatic
             fun Postfix(__instance: AbstractCreature, ___skeleton: Skeleton) {
+                if (HumilityZone.isNotInZone()) return
+
                 disableData[__instance.javaClass.kotlin]?.forEach {
                     ___skeleton.findSlot(it)?.attachment = null
                 }

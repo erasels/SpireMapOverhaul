@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon
 import com.megacrit.cardcrawl.monsters.beyond.Repulsor
 import javassist.CtBehavior
+import spireMapOverhaul.zones.humility.HumilityZone
 
 @SpirePatch(
     clz = Repulsor::class,
@@ -21,6 +22,8 @@ class RepulsorDazeOnDeath {
 
         @JvmStatic
         fun doPreBattleAction(__instance: Repulsor) {
+            if (HumilityZone.isNotInZone()) return
+
             AbstractDungeon.actionManager.addToBottom(ApplyPowerAction(__instance, __instance, DeathRattlePower(__instance, 2), 2))
         }
     }

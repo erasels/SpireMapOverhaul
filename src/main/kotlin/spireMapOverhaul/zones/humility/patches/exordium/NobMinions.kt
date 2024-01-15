@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.monsters.exordium.*
 import com.megacrit.cardcrawl.powers.AngerPower
 import com.megacrit.cardcrawl.powers.MinionPower
 import javassist.CtBehavior
+import spireMapOverhaul.zones.humility.HumilityZone
 import kotlin.random.asKotlinRandom
 
 class NobMinions {
@@ -27,6 +28,8 @@ class NobMinions {
                 locator = Locator::class
             )
             fun Insert(__instance: GremlinNob) {
+                if (HumilityZone.isNotInZone()) return
+
                 if (AbstractDungeon.getMonsters().monsters.size > 1) {
                     return
                 }
@@ -91,6 +94,8 @@ class NobMinions {
 
             @JvmStatic
             fun die(__instance: GremlinNob) {
+                if (HumilityZone.isNotInZone()) return
+
                 AbstractDungeon.getMonsters().monsters
                     .filterNot { it.isDeadOrEscaped }
                     .filter { it.hasPower(MinionPower.POWER_ID) }

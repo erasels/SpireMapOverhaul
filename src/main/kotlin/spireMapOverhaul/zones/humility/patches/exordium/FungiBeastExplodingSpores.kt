@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.monsters.exordium.FungiBeast
 import com.megacrit.cardcrawl.powers.SporeCloudPower
 import javassist.expr.ExprEditor
 import javassist.expr.NewExpr
+import spireMapOverhaul.zones.humility.HumilityZone
 
 @SpirePatch(
     clz = FungiBeast::class,
@@ -19,7 +20,13 @@ class FungiBeastExplodingSpores {
             object : ExprEditor() {
                 override fun edit(e: NewExpr) {
                     if (e.className == SporeCloudPower::class.qualifiedName) {
-                        e.replace("\$_ = new ${ExplodingSporeCloudPower::class.qualifiedName}($$, ${AbstractDungeon::class.qualifiedName}.monsterHpRng.random(2, 4));")
+                        e.replace(
+                            "if (${HumilityZone::class.qualifiedName}.isInZone()) {" +
+                                    "\$_ = new ${ExplodingSporeCloudPower::class.qualifiedName}($$, ${AbstractDungeon::class.qualifiedName}.monsterHpRng.random(2, 4));" +
+                                    "} else {" +
+                                    "\$_ = \$proceed(\$\$);" +
+                                    "}"
+                        )
                     }
                 }
             }

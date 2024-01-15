@@ -16,6 +16,7 @@ import com.megacrit.cardcrawl.vfx.combat.SmokeBombEffect
 import javassist.CtBehavior
 import javassist.expr.ExprEditor
 import javassist.expr.NewExpr
+import spireMapOverhaul.zones.humility.HumilityZone
 import kotlin.math.min
 
 class GremlinThiefThievery {
@@ -45,6 +46,8 @@ class GremlinThiefThievery {
 
             @JvmStatic
             fun doPreBattleAction(__instance: GremlinThief) {
+                if (HumilityZone.isNotInZone()) return
+
                 AbstractDungeon.actionManager.addToBottom(ApplyPowerAction(__instance, __instance, ThieveryPower(__instance, 10)))
             }
         }
@@ -61,6 +64,8 @@ class GremlinThiefThievery {
                 locator = Locator::class
             )
             fun Insert(__instance: GremlinThief) {
+                if (HumilityZone.isNotInZone()) return
+
                 StolenGoldField.turnsTaken.set(__instance, StolenGoldField.turnsTaken.get(__instance) + 1)
                 AbstractDungeon.actionManager.addToBottom(object : AbstractGameAction() {
                     override fun update() {
@@ -75,8 +80,14 @@ class GremlinThiefThievery {
                 object : ExprEditor() {
                     override fun edit(e: NewExpr) {
                         if (e.className == DamageAction::class.qualifiedName) {
-                            e.replace("\$_ = new ${DamageAction::class.qualifiedName}($1, $2, ${StealGold::class.qualifiedName}.goldToSteal(this));" +
-                                    "\$_.attackEffect = $3;")
+                            e.replace(
+                                "if (${HumilityZone::class.qualifiedName}.isInZone()) {" +
+                                        "\$_ = new ${DamageAction::class.qualifiedName}($1, $2, ${StealGold::class.qualifiedName}.goldToSteal(this));" +
+                                        "\$_.attackEffect = $3;" +
+                                        "} else {" +
+                                        "\$_ = \$proceed(\$\$);" +
+                                        "}"
+                            )
                         }
                     }
                 }
@@ -120,6 +131,8 @@ class GremlinThiefThievery {
         companion object {
             @JvmStatic
             fun Postfix(__instance: GremlinThief) {
+                if (HumilityZone.isNotInZone()) return
+
                 if (StolenGoldField.turnsTaken.get(__instance) >= 3) {
                     AbstractDungeon.actionManager.addToBottom(SetMoveAction(__instance, 98, AbstractMonster.Intent.ESCAPE))
                 }

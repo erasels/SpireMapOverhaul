@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.core.Settings
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon
 import com.megacrit.cardcrawl.monsters.city.Snecko
 import javassist.CtBehavior
+import spireMapOverhaul.zones.humility.HumilityZone
 
 class SneckoBot {
     @SpirePatch(
@@ -24,6 +25,8 @@ class SneckoBot {
 
             @JvmStatic
             fun doPreBattleAction(snecko: Snecko) {
+                if (HumilityZone.isNotInZone()) return
+
                 AbstractDungeon.actionManager.addToBottom(
                     ApplyPowerAction(snecko, snecko, SneckoBotPower(snecko, 1), 1)
                 )
@@ -40,6 +43,8 @@ class SneckoBot {
         companion object {
             @JvmStatic
             fun Postfix(__instance: Snecko, x: Float, y: Float) {
+                if (HumilityZone.isNotInZone()) return
+
                 __instance.dialogX = -70 * Settings.scale
                 __instance.dialogY = 40 * Settings.scale
             }

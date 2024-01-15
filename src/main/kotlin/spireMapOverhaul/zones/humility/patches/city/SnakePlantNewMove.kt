@@ -17,6 +17,7 @@ import com.megacrit.cardcrawl.monsters.city.SnakePlant
 import com.megacrit.cardcrawl.powers.ArtifactPower
 import com.megacrit.cardcrawl.powers.GainStrengthPower
 import com.megacrit.cardcrawl.powers.StrengthPower
+import spireMapOverhaul.zones.humility.HumilityZone
 
 class SnakePlantNewMove {
     companion object {
@@ -33,6 +34,8 @@ class SnakePlantNewMove {
         companion object {
             @JvmStatic
             fun Postfix(__instance: SnakePlant, x: Float, y: Float) {
+                if (HumilityZone.isNotInZone()) return
+
                 __instance.damage.add(DamageInfo(__instance, DAMAGE))
             }
         }
@@ -46,6 +49,8 @@ class SnakePlantNewMove {
         companion object {
             @JvmStatic
             fun Prefix(__instance: SnakePlant, num: Int): SpireReturn<Unit?> {
+                if (HumilityZone.isNotInZone()) return SpireReturn.Continue()
+
                 if (AbstractDungeon.ascensionLevel >= 17) {
                     if (__instance.isFirstMove()) {
                         if (num < 65) {

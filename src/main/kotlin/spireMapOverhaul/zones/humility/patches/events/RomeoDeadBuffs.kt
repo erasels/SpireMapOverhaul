@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.monsters.city.BanditLeader
 import com.megacrit.cardcrawl.powers.AngerPower
 import com.megacrit.cardcrawl.powers.StrengthPower
 import javassist.CtBehavior
+import spireMapOverhaul.zones.humility.HumilityZone
 
 class RomeoDeadBuffs {
     @SpirePatch(
@@ -28,6 +29,8 @@ class RomeoDeadBuffs {
 
             @JvmStatic
             fun die(__instance: BanditLeader) {
+                if (HumilityZone.isNotInZone()) return
+
                 AbstractDungeon.getMonsters().monsters
                     .filterIsInstance<BanditBear>()
                     .forEach { it.deathReact() }
@@ -45,6 +48,8 @@ class RomeoDeadBuffs {
 
             @JvmStatic
             fun Postfix(__instance: BanditBear, x: Float, y: Float) {
+                if (HumilityZone.isNotInZone()) return
+
                 __instance.dialogX = 0f * Settings.scale
                 __instance.dialogY = 50f * Settings.scale
             }
@@ -56,6 +61,8 @@ class RomeoDeadBuffs {
 
             @JvmStatic
             fun deathReact(__instance: BanditBear) {
+                if (HumilityZone.isNotInZone()) return
+
                 if (!__instance.isDeadOrEscaped) {
                     AbstractDungeon.actionManager.addToBottom(TalkAction(__instance, DIALOG[0]))
                     AbstractDungeon.actionManager.addToBottom(ApplyPowerAction(__instance, __instance, AngerPower(__instance, 2), 2))

@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster
 import com.megacrit.cardcrawl.monsters.beyond.Reptomancer
 import com.megacrit.cardcrawl.monsters.beyond.SnakeDagger
 import javassist.CtBehavior
+import spireMapOverhaul.zones.humility.HumilityZone
 
 class ReptomancerVenom {
     companion object {
@@ -24,6 +25,8 @@ class ReptomancerVenom {
         companion object {
             @JvmStatic
             fun Postfix(___m: Reptomancer) {
+                if (HumilityZone.isNotInZone()) return
+
                 AbstractDungeon.actionManager.addToBottom(ApplyPowerAction(___m, ___m, VenomStrikesPower(___m, VENOM_AMT), VENOM_AMT))
             }
         }
@@ -42,6 +45,8 @@ class ReptomancerVenom {
 
             @JvmStatic
             fun doPreBattleAction(___m: SnakeDagger) {
+                if (HumilityZone.isNotInZone()) return
+
                 AbstractDungeon.actionManager.addToBottom(ApplyPowerAction(___m, ___m, VenomStrikesPower(___m, VENOM_AMT), VENOM_AMT))
             }
         }
@@ -58,6 +63,8 @@ class ReptomancerVenom {
                 locator = Locator::class
             )
             fun Insert(___m: AbstractMonster) {
+                if (HumilityZone.isNotInZone()) return
+
                 if (___m is SnakeDagger) {
                     AbstractDungeon.actionManager.addToBottom(ApplyPowerAction(___m, ___m, VenomStrikesPower(___m, VENOM_AMT), VENOM_AMT))
                 }

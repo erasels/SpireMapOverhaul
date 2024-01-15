@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.monsters.exordium.GremlinTsundere
 import com.megacrit.cardcrawl.powers.BufferPower
 import javassist.expr.ExprEditor
 import javassist.expr.NewExpr
+import spireMapOverhaul.zones.humility.HumilityZone
 import spireMapOverhaul.zones.humility.actions.ApplyPowerRandomMonsterAction
 
 @SpirePatch(
@@ -19,7 +20,13 @@ class GremlinTsundereBuffer {
             object : ExprEditor() {
                 override fun edit(e: NewExpr) {
                     if (e.className == GainBlockRandomMonsterAction::class.qualifiedName) {
-                        e.replace("\$_ = new ${ApplyPowerRandomMonsterAction::class.qualifiedName}(this, new ${BufferPower::class.qualifiedName}(null, 1), 1);")
+                        e.replace(
+                            "if (${HumilityZone::class.qualifiedName}.isInZone()) {" +
+                                    "\$_ = new ${ApplyPowerRandomMonsterAction::class.qualifiedName}(this, new ${BufferPower::class.qualifiedName}(null, 1), 1);" +
+                                    "} else {" +
+                                    "\$_ = \$proceed(\$\$);" +
+                                    "}"
+                        )
                     }
                 }
             }

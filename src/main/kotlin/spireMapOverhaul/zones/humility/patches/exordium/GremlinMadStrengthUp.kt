@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.powers.AngryPower
 import com.megacrit.cardcrawl.powers.GenericStrengthUpPower
 import javassist.expr.ExprEditor
 import javassist.expr.NewExpr
+import spireMapOverhaul.zones.humility.HumilityZone
 
 @SpirePatch(
     clz = GremlinWarrior::class,
@@ -19,9 +20,15 @@ class GremlinMadStrengthUp {
             object : ExprEditor() {
                 override fun edit(e: NewExpr) {
                     if (e.className == AngryPower::class.qualifiedName) {
-                        e.replace("\$_ = new ${GenericStrengthUpPower::class.qualifiedName}($1, ${AngryPower::class.qualifiedName}.NAME, $2);" +
-                                "\$_.region48 = ${AbstractPower::class.qualifiedName}.atlas.findRegion(\"48/anger\");" +
-                                "\$_.region128 = ${AbstractPower::class.qualifiedName}.atlas.findRegion(\"128/anger\");")
+                        e.replace(
+                            "if (${HumilityZone::class.qualifiedName}.isInZone()) {" +
+                                    "\$_ = new ${GenericStrengthUpPower::class.qualifiedName}($1, ${AngryPower::class.qualifiedName}.NAME, $2);" +
+                                    "\$_.region48 = ${AbstractPower::class.qualifiedName}.atlas.findRegion(\"48/anger\");" +
+                                    "\$_.region128 = ${AbstractPower::class.qualifiedName}.atlas.findRegion(\"128/anger\");" +
+                                    "} else {" +
+                                    "\$_ = \$proceed(\$\$);" +
+                                    "}"
+                        )
                     }
                 }
             }

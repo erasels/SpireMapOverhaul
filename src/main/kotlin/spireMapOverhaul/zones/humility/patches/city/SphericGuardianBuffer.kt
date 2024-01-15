@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon
 import com.megacrit.cardcrawl.monsters.city.SphericGuardian
 import com.megacrit.cardcrawl.powers.BufferPower
 import javassist.CtBehavior
+import spireMapOverhaul.zones.humility.HumilityZone
 
 class SphericGuardianBuffer {
     @SpirePatch(
@@ -21,6 +22,8 @@ class SphericGuardianBuffer {
         companion object {
             @JvmStatic
             fun Postfix(__instance: SphericGuardian) {
+                if (HumilityZone.isNotInZone()) return
+
                 AbstractDungeon.actionManager.addToBottom(ApplyPowerAction(__instance, __instance, BufferPower(__instance, 3), 3))
             }
         }
@@ -39,6 +42,8 @@ class SphericGuardianBuffer {
                 locator = Locator::class
             )
             fun Insert(__instance: BufferPower, info: DamageInfo, damageAmount: Int) {
+                if (HumilityZone.isNotInZone()) return
+
                 if (__instance.owner is SphericGuardian) {
                     val skeleton = ReflectionHacks.getPrivate(__instance.owner, AbstractCreature::class.java, "skeleton") as Skeleton?
 

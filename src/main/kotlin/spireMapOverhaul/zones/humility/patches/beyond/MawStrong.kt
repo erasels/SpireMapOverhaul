@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon
 import com.megacrit.cardcrawl.monsters.beyond.Maw
 import com.megacrit.cardcrawl.powers.StrengthPower
 import javassist.CtBehavior
+import spireMapOverhaul.zones.humility.HumilityZone
 
 class MawStrong {
     @SpirePatch(
@@ -18,6 +19,8 @@ class MawStrong {
         companion object {
             @JvmStatic
             fun Prefix(__instance: Maw, @ByRef num: Array<Int>) {
+                if (HumilityZone.isNotInZone()) return
+
                 if (lastMove(__instance, 2)) {
                     num[0] = 51
                 }
@@ -41,6 +44,8 @@ class MawStrong {
 
             @JvmStatic
             fun doPreBattleAction(__instance: Maw) {
+                if (HumilityZone.isNotInZone()) return
+
                 AbstractDungeon.actionManager.addToBottom(ApplyPowerAction(__instance, __instance, StrengthPower(__instance, 2), 2))
             }
         }

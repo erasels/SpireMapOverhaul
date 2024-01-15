@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.actions.common.RollMoveAction
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon
 import com.megacrit.cardcrawl.monsters.beyond.Nemesis
 import javassist.CtBehavior
+import spireMapOverhaul.zones.humility.HumilityZone
 
 class NemesisSemiIntangible {
     @SpirePatch(
@@ -23,6 +24,8 @@ class NemesisSemiIntangible {
 
             @JvmStatic
             fun doPreBattleAction(__instance: Nemesis) {
+                if (HumilityZone.isNotInZone()) return
+
                 AbstractDungeon.actionManager.addToBottom(
                     ApplyPowerAction(
                         __instance,
@@ -46,6 +49,8 @@ class NemesisSemiIntangible {
                 locator = Locator::class
             )
             fun Insert(__instance: Nemesis) {
+                if (HumilityZone.isNotInZone()) return
+
                 if (!__instance.hasPower(SemiIntangiblePower.POWER_ID)) {
                     AbstractDungeon.actionManager.addToBottom(
                         ApplyPowerAction(

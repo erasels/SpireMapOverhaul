@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster
 import com.megacrit.cardcrawl.monsters.exordium.AcidSlime_L
 import com.megacrit.cardcrawl.monsters.exordium.SlimeBoss
 import com.megacrit.cardcrawl.monsters.exordium.SpikeSlime_L
+import spireMapOverhaul.zones.humility.HumilityZone
 
 class SlimeSplitThreshold {
     @SpirePatches(
@@ -33,6 +34,8 @@ class SlimeSplitThreshold {
         companion object {
             @JvmStatic
             fun Postfix(__instance: AbstractMonster, info: DamageInfo, ___SPLIT_NAME: String) {
+                if (HumilityZone.isNotInZone()) return
+
                 if (!__instance.isDying && __instance.nextMove != 3.toByte()
                     && __instance.currentHealth > __instance.maxHealth / 2f // don't trigger if less than 50% HP, base game covers that
                     && __instance.currentHealth <= __instance.maxHealth * 0.75f // trigger if less than 75% HP
@@ -74,12 +77,14 @@ class SlimeSplitThreshold {
     @SpirePatch(
         cls = "mintySpire.patches.monsters.HalfwayHealthbarTextPatch\$TextRender",
         method = "getHPTextAddition",
-        optional = true
+        requiredModId = "mintyspire"
     )
     class MintySpireCompat {
         companion object {
             @JvmStatic
             fun Prefix(c: AbstractCreature): SpireReturn<String> {
+                if (HumilityZone.isNotInZone()) return SpireReturn.Continue()
+
                 if (!(c.isDead || c.isDying)) {
                     if (SlimeBoss.ID == c.id) {
                         return SpireReturn.Return(" (${(c.maxHealth * 0.75f).toInt()})")

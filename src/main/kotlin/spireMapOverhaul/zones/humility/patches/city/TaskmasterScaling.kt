@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon
 import com.megacrit.cardcrawl.monsters.AbstractMonster
 import com.megacrit.cardcrawl.monsters.city.Taskmaster
 import javassist.CtBehavior
+import spireMapOverhaul.zones.humility.HumilityZone
 import kotlin.math.ceil
 
 class TaskmasterScaling {
@@ -19,6 +20,8 @@ class TaskmasterScaling {
         companion object {
             @JvmStatic
             fun Prefix(__instance: Taskmaster, num: Int, ___SCOURING_WHIP_DMG: Int): SpireReturn<Unit?> {
+                if (HumilityZone.isNotInZone()) return SpireReturn.Continue()
+
                 val turns = ceil((__instance.moveHistory.size + 1) / 2f).toInt()
                 if (turns <= 1) {
                     __instance.setMove(2, AbstractMonster.Intent.ATTACK_DEBUFF, ___SCOURING_WHIP_DMG)
@@ -41,6 +44,8 @@ class TaskmasterScaling {
                 locator = Locator::class
             )
             fun Insert(__instance: Taskmaster) {
+                if (HumilityZone.isNotInZone()) return
+
                 val intentMultiAmt = ReflectionHacks.getPrivate(__instance, AbstractMonster::class.java, "intentMultiAmt") as Int
                 repeat(intentMultiAmt - 1) {
                     AbstractDungeon.actionManager.addToBottom(

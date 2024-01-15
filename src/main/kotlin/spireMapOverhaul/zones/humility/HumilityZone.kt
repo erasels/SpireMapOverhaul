@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.helpers.input.InputHelper
 import com.megacrit.cardcrawl.relics.AbstractRelic
 import com.megacrit.cardcrawl.relics.ThreadAndNeedle
 import spireMapOverhaul.abstracts.AbstractZone
+import spireMapOverhaul.util.Wiz
 import spireMapOverhaul.zoneInterfaces.OnTravelZone
 
 class HumilityZone : AbstractZone(ID, Icons.MONSTER), OnTravelZone {
@@ -48,5 +49,13 @@ class HumilityZone : AbstractZone(ID, Icons.MONSTER), OnTravelZone {
     companion object {
         const val ID = "Humility"
         private val color = Color.valueOf("3498db")
+
+        @JvmStatic
+        fun isInZone(): Boolean =
+            Wiz.getCurZone() is HumilityZone
+
+        @JvmStatic
+        fun isNotInZone(): Boolean =
+            !isInZone()
     }
 }

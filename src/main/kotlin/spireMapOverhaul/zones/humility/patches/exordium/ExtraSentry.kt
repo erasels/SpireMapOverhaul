@@ -5,6 +5,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireReturn
 import com.megacrit.cardcrawl.helpers.MonsterHelper
 import com.megacrit.cardcrawl.monsters.MonsterGroup
 import com.megacrit.cardcrawl.monsters.exordium.Sentry
+import spireMapOverhaul.zones.humility.HumilityZone
 
 @SpirePatch(
     clz = MonsterHelper::class,
@@ -14,6 +15,8 @@ class ExtraSentry {
     companion object {
         @JvmStatic
         fun Prefix(key: String): SpireReturn<MonsterGroup> {
+            if (HumilityZone.isNotInZone()) return SpireReturn.Continue()
+
             if (key == MonsterHelper.THREE_SENTRY_ENC) {
                 return SpireReturn.Return(
                     MonsterGroup(

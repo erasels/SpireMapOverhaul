@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard
 import com.megacrit.cardcrawl.powers.HexPower
 import javassist.expr.ExprEditor
 import javassist.expr.FieldAccess
+import spireMapOverhaul.zones.humility.HumilityZone
 
 @SpirePatch(
     clz = HexPower::class,
@@ -17,7 +18,11 @@ class ChosenStrongerHex {
             object : ExprEditor() {
                 override fun edit(f: FieldAccess) {
                     if (f.isReader && f.className == AbstractCard::class.qualifiedName && f.fieldName == "type") {
-                        f.replace("\$_ = ${AbstractCard.CardType::class.qualifiedName}.SKILL;")
+                        f.replace(
+                            "if (${HumilityZone::class.qualifiedName}.isInZone()) {" +
+                                    "\$_ = ${AbstractCard.CardType::class.qualifiedName}.SKILL;" +
+                                    "}"
+                        )
                     }
                 }
             }

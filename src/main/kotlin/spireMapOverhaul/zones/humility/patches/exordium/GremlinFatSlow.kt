@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon
 import com.megacrit.cardcrawl.monsters.exordium.GremlinFat
 import com.megacrit.cardcrawl.powers.SlowPower
 import javassist.CtBehavior
+import spireMapOverhaul.zones.humility.HumilityZone
 
 class GremlinFatSlow {
     @SpirePatch(
@@ -17,6 +18,8 @@ class GremlinFatSlow {
         companion object {
             @JvmStatic
             fun Postfix(__instance: GremlinFat, x: Float, y: Float) {
+                if (HumilityZone.isNotInZone()) return
+
                 __instance.currentHealth *= 3
                 __instance.maxHealth = __instance.currentHealth
             }
@@ -28,6 +31,8 @@ class GremlinFatSlow {
 
             @JvmStatic
             fun doPreBattleAction(__instance: GremlinFat) {
+                if (HumilityZone.isNotInZone()) return
+
                 AbstractDungeon.actionManager.addToBottom(ApplyPowerAction(__instance, __instance, SlowPower(__instance, 0)))
             }
         }

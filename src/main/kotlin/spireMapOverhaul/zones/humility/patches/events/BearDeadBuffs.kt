@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster
 import com.megacrit.cardcrawl.monsters.city.BanditLeader
 import com.megacrit.cardcrawl.monsters.city.BanditPointy
 import com.megacrit.cardcrawl.powers.AngerPower
+import spireMapOverhaul.zones.humility.HumilityZone
 
 @SpirePatches(
     SpirePatch(
@@ -23,6 +24,8 @@ class BearDeadBuffs {
     companion object {
         @JvmStatic
         fun Postfix(__instance: AbstractMonster) {
+            if (HumilityZone.isNotInZone()) return
+
             if (!__instance.isDeadOrEscaped) {
                 AbstractDungeon.actionManager.addToBottom(
                     ApplyPowerAction(

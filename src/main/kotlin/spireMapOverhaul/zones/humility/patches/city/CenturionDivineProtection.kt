@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.actions.utility.WaitAction
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon
 import com.megacrit.cardcrawl.monsters.city.Healer
 import javassist.CtBehavior
+import spireMapOverhaul.zones.humility.HumilityZone
 
 class CenturionDivineProtection {
     @SpirePatch(
@@ -28,6 +29,8 @@ class CenturionDivineProtection {
 
             @JvmStatic
             fun doPreBattleAction(healer: Healer) {
+                if (HumilityZone.isNotInZone()) return
+
                 if (AbstractDungeon.getMonsters().monsters.count { it is Healer && !it.isDeadOrEscaped } <= 1) {
                     AbstractDungeon.actionManager.addToBottom(ChangeStateAction(healer, "STAFF_RAISE"))
                     AbstractDungeon.actionManager.addToBottom(WaitAction(0.25f))
@@ -51,6 +54,8 @@ class CenturionDivineProtection {
         companion object {
             @JvmStatic
             fun Prefix(__instance: Healer) {
+                if (HumilityZone.isNotInZone()) return
+
                 AbstractDungeon.getMonsters().monsters
                     .filterNot { it.isDeadOrEscaped }
                     .forEach {

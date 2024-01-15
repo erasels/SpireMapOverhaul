@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.powers.DexterityPower
 import com.megacrit.cardcrawl.powers.FrailPower
 import com.megacrit.cardcrawl.vfx.combat.ViceCrushEffect
 import javassist.CtBehavior
+import spireMapOverhaul.zones.humility.HumilityZone
 
 @SpirePatch(
     clz = BanditBear::class,
@@ -24,6 +25,8 @@ class BearFrail {
             locator = Locator::class
         )
         fun Insert(__instance: BanditBear) {
+            if (HumilityZone.isNotInZone()) return
+
             AbstractDungeon.actionManager.addToBottom(
                 VFXAction(
                     object : ViceCrushEffect(

@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.events.beyond.MysteriousSphere
 import com.megacrit.cardcrawl.helpers.MonsterHelper
 import javassist.expr.ExprEditor
 import javassist.expr.MethodCall
+import spireMapOverhaul.zones.humility.HumilityZone
 
 @SpirePatch(
     clz = MysteriousSphere::class,
@@ -19,7 +20,7 @@ class SphereEventAltFight {
                 override fun edit(m: MethodCall) {
                     if (m.className == MonsterHelper::class.qualifiedName && m.methodName == "getEncounter") {
                         m.replace(
-                            "if (${AbstractDungeon::class.qualifiedName}.miscRng.randomBoolean()) {" +
+                            "if (${HumilityZone::class.qualifiedName}.isInZone() && ${AbstractDungeon::class.qualifiedName}.miscRng.randomBoolean()) {" +
                                     "\$1 = ${MonsterHelper::class.qualifiedName}.SNECKO_WITH_MYSTICS;" +
                                     "}" +
                                     "\$_ = \$proceed(\$\$);"

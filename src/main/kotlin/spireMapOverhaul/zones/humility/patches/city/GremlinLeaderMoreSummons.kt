@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster
 import com.megacrit.cardcrawl.monsters.MonsterGroup
 import com.megacrit.cardcrawl.monsters.city.GremlinLeader
 import javassist.CtBehavior
+import spireMapOverhaul.zones.humility.HumilityZone
 
 class GremlinLeaderMoreSummons {
     @SpirePatch(
@@ -19,6 +20,8 @@ class GremlinLeaderMoreSummons {
         companion object {
             @JvmStatic
             fun Postfix(__instance: GremlinLeader) {
+                if (HumilityZone.isNotInZone()) return
+
                 __instance.gremlins = __instance.gremlins.copyOf(__instance.gremlins.size + 1)
             }
         }
@@ -32,6 +35,8 @@ class GremlinLeaderMoreSummons {
         companion object {
             @JvmStatic
             fun Postfix() {
+                if (HumilityZone.isNotInZone()) return
+
                 ReflectionHacks.setPrivateStaticFinal(
                     GremlinLeader::class.java,
                     "POSX",
@@ -56,6 +61,8 @@ class GremlinLeaderMoreSummons {
         companion object {
             @JvmStatic
             fun Postfix(__result: MonsterGroup, key: String): MonsterGroup {
+                if (HumilityZone.isNotInZone()) return __result
+
                 if (key == MonsterHelper.GREMLIN_LEADER_ENC) {
                     val spawnMonster = MonsterHelper::class.java.getDeclaredMethod("spawnGremlin", Float::class.java, Float::class.java).also { it.isAccessible = true }
                     __result.addMonster(0, spawnMonster.invoke(null, GremlinLeader.POSX[2], GremlinLeader.POSY[2]) as AbstractMonster)
@@ -76,6 +83,8 @@ class GremlinLeaderMoreSummons {
                 rloc = 4
             )
             fun Insert(__instance: GremlinLeader) {
+                if (HumilityZone.isNotInZone()) return
+
                 __instance.gremlins[2] = AbstractDungeon.getMonsters().monsters[2]
                 __instance.gremlins[3] = null
             }
@@ -93,6 +102,8 @@ class GremlinLeaderMoreSummons {
                 locator = Locator::class
             )
             fun Insert(__instance: GremlinLeader) {
+                if (HumilityZone.isNotInZone()) return
+
                 AbstractDungeon.actionManager.addToBottom(SummonGremlinAction(__instance.gremlins))
             }
         }
@@ -116,7 +127,9 @@ class GremlinLeaderMoreSummons {
                 locator = Locator::class,
                 localvars = ["x", "y"]
             )
-            fun aasdf(__instance: SummonGremlinAction, slot: Int, @ByRef(type = "float") x: Array<Float>, @ByRef(type = "float") y: Array<Float>) {
+            fun aasdf(__instance: SummonGremlinAction, slot: Int, @ByRef x: FloatArray, @ByRef y: FloatArray) {
+                if (HumilityZone.isNotInZone()) return
+
                 if (slot == 3) {
                     x[0] = GremlinLeader.POSX[3]
                     y[0] = GremlinLeader.POSY[3]

@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.cards.status.Burn
 import com.megacrit.cardcrawl.monsters.beyond.OrbWalker
 import javassist.expr.ExprEditor
 import javassist.expr.NewExpr
+import spireMapOverhaul.zones.humility.HumilityZone
 
 @SpirePatch(
     clz = OrbWalker::class,
@@ -17,7 +18,12 @@ class OrbWalkerBurnUpgrade {
             object : ExprEditor() {
                 override fun edit(e: NewExpr) {
                     if (e.className == Burn::class.qualifiedName) {
-                        e.replace("\$_ = \$proceed(\$\$); \$_.upgrade();")
+                        e.replace(
+                            "\$_ = \$proceed(\$\$);" +
+                                    "if (${HumilityZone::class.qualifiedName}.isInZone()) {" +
+                                    "\$_.upgrade();" +
+                                    "}"
+                        )
                     }
                 }
             }

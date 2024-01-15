@@ -6,6 +6,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon
 import com.megacrit.cardcrawl.monsters.exordium.JawWorm
+import spireMapOverhaul.zones.humility.HumilityZone
 import spireMapOverhaul.zones.humility.powers.BetterLifeLinkPower
 
 class JawWormAlwaysHardMode {
@@ -17,7 +18,9 @@ class JawWormAlwaysHardMode {
     class SkipFirstMove {
         companion object {
             @JvmStatic
-            fun Postfix(@ByRef(type = "boolean") ___firstMove: Array<Boolean>) {
+            fun Postfix(@ByRef ___firstMove: BooleanArray) {
+                if (HumilityZone.isNotInZone()) return
+
                 ___firstMove[0] = false
             }
         }
@@ -30,7 +33,9 @@ class JawWormAlwaysHardMode {
     class PreBattle {
         companion object {
             @JvmStatic
-            fun Prefix(__instance: JawWorm, @ByRef(type = "boolean") ___hardMode: Array<Boolean>) {
+            fun Prefix(__instance: JawWorm, @ByRef ___hardMode: BooleanArray) {
+                if (HumilityZone.isNotInZone()) return
+
                 if (___hardMode[0]) {
                     AbstractDungeon.actionManager.addToBottom(
                         ApplyPowerAction(

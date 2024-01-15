@@ -12,6 +12,7 @@ import javassist.CtBehavior
 import javassist.expr.ExprEditor
 import javassist.expr.FieldAccess
 import javassist.expr.MethodCall
+import spireMapOverhaul.zones.humility.HumilityZone
 
 class SpireGrowthConstrictAttack {
     @SpirePatch(
@@ -25,6 +26,8 @@ class SpireGrowthConstrictAttack {
                 locator = Locator::class
             )
             fun Insert(__instance: SpireGrowth) {
+                if (HumilityZone.isNotInZone()) return
+
                 AbstractDungeon.actionManager.addToBottom(DamageAction(AbstractDungeon.player, __instance.damage[0], AbstractGameAction.AttackEffect.BLUNT_HEAVY))
             }
         }
@@ -56,7 +59,13 @@ class SpireGrowthConstrictAttack {
 
                     override fun edit(m: MethodCall) {
                         if (constrict && m.methodName == "setMove") {
-                            m.replace("setMove($1, ${AbstractMonster.Intent::class.qualifiedName}.ATTACK_DEBUFF, ((${DamageInfo::class.qualifiedName})damage.get(0)).base);")
+                            m.replace(
+                                "if (${HumilityZone::class.qualifiedName}.isInZone()) {" +
+                                        "setMove($1, ${AbstractMonster.Intent::class.qualifiedName}.ATTACK_DEBUFF, ((${DamageInfo::class.qualifiedName})damage.get(0)).base);" +
+                                        "} else {" +
+                                        "\$_ = \$proceed(\$\$);" +
+                                        "}"
+                            )
                         }
                         constrict = false
                     }

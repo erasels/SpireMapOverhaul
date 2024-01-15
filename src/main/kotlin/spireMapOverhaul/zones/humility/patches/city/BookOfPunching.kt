@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.monsters.city.BookOfStabbing
 import com.megacrit.cardcrawl.powers.PainfulStabsPower
 import javassist.expr.ExprEditor
 import javassist.expr.NewExpr
+import spireMapOverhaul.zones.humility.HumilityZone
 
 class BookOfPunching {
     companion object {
@@ -23,6 +24,8 @@ class BookOfPunching {
         companion object {
             @JvmStatic
             fun Postfix(__instance: BookOfStabbing) {
+                if (HumilityZone.isNotInZone()) return
+
                 __instance.name = strings.NAME
             }
         }
@@ -39,7 +42,13 @@ class BookOfPunching {
                 object : ExprEditor() {
                     override fun edit(e: NewExpr) {
                         if (e.className == PainfulStabsPower::class.qualifiedName) {
-                            e.replace("\$_ = new ${PainfulPunchesPower::class.qualifiedName}(\$\$);")
+                            e.replace(
+                                "if (${HumilityZone::class.qualifiedName}.isInZone()) {" +
+                                        "\$_ = new ${PainfulPunchesPower::class.qualifiedName}(\$\$);" +
+                                        "} else {" +
+                                        "\$_ = \$proceed(\$\$);" +
+                                        "}"
+                            )
                         }
                     }
                 }

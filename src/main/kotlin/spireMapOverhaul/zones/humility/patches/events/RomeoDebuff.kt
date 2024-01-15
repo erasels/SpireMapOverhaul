@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster
 import com.megacrit.cardcrawl.monsters.city.BanditLeader
 import com.megacrit.cardcrawl.powers.WeakPower
 import javassist.CtBehavior
+import spireMapOverhaul.zones.humility.HumilityZone
 
 class RomeoDebuff {
     companion object {
@@ -22,6 +23,8 @@ class RomeoDebuff {
         companion object {
             @JvmStatic
             fun Prefix(__instance: BanditLeader, num: Int, ___MOCK: Byte): SpireReturn<Unit?> {
+                if (HumilityZone.isNotInZone()) return SpireReturn.Continue()
+
                 __instance.setMove(___MOCK, AbstractMonster.Intent.DEBUFF)
                 return SpireReturn.Return(null)
             }
@@ -39,6 +42,8 @@ class RomeoDebuff {
                 locator = Locator::class
             )
             fun Insert(__instance: BanditLeader) {
+                if (HumilityZone.isNotInZone()) return
+
                 AbstractDungeon.actionManager.addToBottom(
                     ApplyPowerAction(
                         AbstractDungeon.player,

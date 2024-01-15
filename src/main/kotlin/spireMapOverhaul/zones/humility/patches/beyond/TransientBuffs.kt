@@ -2,13 +2,13 @@ package spireMapOverhaul.zones.humility.patches.beyond
 
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction
-import com.megacrit.cardcrawl.cards.DamageInfo
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon
 import com.megacrit.cardcrawl.monsters.beyond.Transient
 import com.megacrit.cardcrawl.powers.FadingPower
 import com.megacrit.cardcrawl.powers.RegenerateMonsterPower
 import javassist.expr.ExprEditor
 import javassist.expr.NewExpr
+import spireMapOverhaul.zones.humility.HumilityZone
 
 class TransientBuffs {
     @SpirePatch(
@@ -22,13 +22,21 @@ class TransientBuffs {
                 object : ExprEditor() {
                     override fun edit(e: NewExpr) {
                         if (e.className == FadingPower::class.qualifiedName) {
-                            e.replace("\$_ = \$proceed(\$1, \$2 + 1);")
+                            e.replace(
+                                "if (${HumilityZone::class.qualifiedName}.isInZone()) {" +
+                                        "\$_ = \$proceed(\$1, \$2 + 1);" +
+                                        "} else {" +
+                                        "\$_ = \$proceed(\$\$);" +
+                                        "}"
+                            )
                         }
                     }
                 }
 
             @JvmStatic
             fun Postfix(__instance: Transient) {
+                if (HumilityZone.isNotInZone()) return
+
                 AbstractDungeon.actionManager.addToBottom(
                     ApplyPowerAction(
                         __instance,
@@ -36,25 +44,6 @@ class TransientBuffs {
                         RegenerateMonsterPower(__instance, 999),
                         999
                     )
-                )
-            }
-        }
-    }
-
-    @SpirePatch(
-        clz = Transient::class,
-        method = SpirePatch.CONSTRUCTOR
-    )
-    class FixExtraFadingAttacks {
-        companion object {
-            @JvmStatic
-            fun Postfix(__instance: Transient, ___startingDeathDmg: Int) {
-                __instance.damage.clear()
-                __instance.damage.addAll(
-                    generateSequence(___startingDeathDmg) { it + 10 }
-                        .map { DamageInfo(__instance, it) }
-                        .take(10) // can last 10 turns
-                        .toList()
                 )
             }
         }

@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon
 import com.megacrit.cardcrawl.monsters.city.BanditPointy
 import com.megacrit.cardcrawl.powers.ThornsPower
 import javassist.CtBehavior
+import spireMapOverhaul.zones.humility.HumilityZone
 
 @SpirePatch(
     clz = BanditPointy::class,
@@ -21,6 +22,8 @@ class PointyThorns {
 
         @JvmStatic
         fun doPreBattleAction(__instance: BanditPointy) {
+            if (HumilityZone.isNotInZone()) return
+
             AbstractDungeon.actionManager.addToBottom(ApplyPowerAction(__instance, __instance, ThornsPower(__instance, 2), 2))
         }
     }
