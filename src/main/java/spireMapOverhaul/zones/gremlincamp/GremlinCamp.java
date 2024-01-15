@@ -1,19 +1,28 @@
 package spireMapOverhaul.zones.gremlincamp;
 
 import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.helpers.MonsterHelper;
 import com.megacrit.cardcrawl.map.MapRoomNode;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.monsters.MonsterGroup;
+import com.megacrit.cardcrawl.monsters.exordium.GremlinNob;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.rooms.EventRoom;
 import com.megacrit.cardcrawl.rooms.ShopRoom;
 import com.megacrit.cardcrawl.ui.campfire.AbstractCampfireOption;
 import com.megacrit.cardcrawl.ui.campfire.RestOption;
 import spireMapOverhaul.abstracts.AbstractZone;
+import spireMapOverhaul.util.ActUtil;
 import spireMapOverhaul.zoneInterfaces.CampfireModifyingZone;
 import spireMapOverhaul.zoneInterfaces.CombatModifyingZone;
+import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class GremlinCamp extends AbstractZone implements CombatModifyingZone, CampfireModifyingZone {
+import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
+
+public class GremlinCamp extends AbstractZone implements EncounterModifyingZone, CampfireModifyingZone {
     public static final String ID = "GremlinCamp";
 
     public GremlinCamp() {
@@ -22,6 +31,22 @@ public class GremlinCamp extends AbstractZone implements CombatModifyingZone, Ca
         this.maxWidth = 4;
         this.height = 3;
         this.maxHeight = 4;
+    }
+
+    @Override
+    public List<ZoneEncounter> getNormalEncounters() {
+        ArrayList<ZoneEncounter> encs = new ArrayList<>();
+
+        return encs;
+    }
+
+
+    public static final String NOBBERS = makeID("Nob");
+    @Override
+    public List<ZoneEncounter> getEliteEncounters() {
+        ArrayList<ZoneEncounter> encs = new ArrayList<>();
+        encs.add(new ZoneEncounter(NOBBERS, 1, () -> new MonsterGroup(new AbstractMonster[] {new GremlinNob(0, 0)}), GremlinNob.NAME));
+        return encs;
     }
 
     @Override
