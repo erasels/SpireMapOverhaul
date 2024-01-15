@@ -2,7 +2,6 @@ package spireMapOverhaul.zones.beastslair.powers;
 
 
 import com.evacipated.cardcrawl.mod.stslib.patches.NeutralPowertypePatch;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -10,7 +9,6 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractSMOPower;
 import spireMapOverhaul.zones.beastslair.BeastsLairZone;
-import spireMapOverhaul.zones.manasurge.ManaSurgeZone;
 
 public class DamageUpPower extends AbstractSMOPower {
     public static final String POWER_ID = SpireAnniversary6Mod.makeID("DamageUpPower");
@@ -23,12 +21,6 @@ public class DamageUpPower extends AbstractSMOPower {
         super(POWER_ID,NAME,ZONE_ID, NeutralPowertypePatch.NEUTRAL, false, owner, amount);
     }
 
-    @Override
-    public void atEndOfTurn(boolean isPlayer) {
-        if (!isPlayer) {
-            addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, this));
-        }
-    }
 
     @Override
     public float atDamageGive(float damage, DamageInfo.DamageType type) {
