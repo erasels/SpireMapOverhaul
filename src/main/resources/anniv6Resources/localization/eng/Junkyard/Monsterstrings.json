@@ -5,5 +5,21 @@
       "Reboot"
     ],
     "NAME": "Junkbot"
-  }
+  },"${ModID}:Peddler": {
+  "MOVES": [
+    "Free Samples",
+    "Rummage",
+    "Haggle",
+    "Pay up!",
+    "Escape"
+  ],
+  "DIALOG": [
+  "Have some free samples!",
+  "You have ",
+  " cards, buy something already!",
+  "Pay up!",
+    "Pleasure doing business with you!"
+  ],
+  "NAME": "Peddler"
+}
 }

@@ -22,10 +22,12 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.PurgeCardEffect;
 import com.megacrit.cardcrawl.vfx.combat.PowerBuffEffect;
+import org.lwjgl.opengl.ATIVertexStreams;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.util.TexLoader;
 import spireMapOverhaul.zones.Junkyard.actions.DeactivateAction;
 import spireMapOverhaul.zones.Junkyard.actions.GrabCardAction;
+import spireMapOverhaul.zones.Junkyard.actions.RemoveHeldCardAction;
 import spireMapOverhaul.zones.Junkyard.powers.JunkGrabPower;
 
 import java.util.ArrayList;
@@ -41,8 +43,11 @@ public class Junkbot extends CustomMonster {
     private static final byte REBOOT_MOVE = 2;
     private static final int GRAB_DAMAGE = 5;
     private static final int A2_GRAB_DAMAGE = 6;
-    private static final int HP = 8;
-    private static final int A7_HP = 9;
+    private static final int HP_MIN = 15;
+    private static final int HP_MAX = 19;
+
+    private static final int A7_HP_MIN = 18;
+    private static final int A7_HP_MAX = 22;
     private int grabDamage;
     public boolean isActivated = true;
     private int chanceToDeactivate = 20;
@@ -55,12 +60,12 @@ public class Junkbot extends CustomMonster {
     }
 
     public Junkbot(final float x, final float y) {
-        super(Junkbot.NAME, ID, HP, -5.0F, 0, 155.0f, 150.0f, IMG, x, y);
+        super(Junkbot.NAME, ID, HP_MAX, -5.0F, 0, 155.0f, 150.0f, IMG, x, y);
         this.type = EnemyType.NORMAL;
         if (AbstractDungeon.ascensionLevel >= 7) {
-            this.setHp(A7_HP);
+            this.setHp(A7_HP_MIN, A7_HP_MAX);
         } else {
-            this.setHp(HP);
+            this.setHp(HP_MIN, HP_MAX);
         }
 
         if (AbstractDungeon.ascensionLevel >= 2) {
@@ -73,8 +78,8 @@ public class Junkbot extends CustomMonster {
 
     @Override
     public void usePreBattleAction() {
-        int rand = AbstractDungeon.cardRng.random(0, 4);
-        isActivated = (rand != 0);
+        int rand = AbstractDungeon.cardRng.random(0, 100);
+        isActivated = (rand <= 60);
         if (!isActivated){
             setImage(TexLoader.getTexture(SpireAnniversary6Mod.makeImagePath("monsters/Junkbot/Junkbot_inactive.png")));
             addToBot(new GrabCardAction(this, new Wound()));
@@ -87,7 +92,7 @@ public class Junkbot extends CustomMonster {
         switch (this.nextMove) {
             case GRAB_MOVE:
                 AbstractDungeon.actionManager.addToBottom(new AnimateSlowAttackAction(this));
-                AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player, this.damage.get(0), AbstractGameAction.AttackEffect.NONE));
+                AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player, this.damage.get(0), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
                 AbstractDungeon.actionManager.addToBottom(new GrabCardAction(this));
                 AbstractDungeon.actionManager.addToBottom(new DeactivateAction(this, chanceToDeactivate));
                 break;
@@ -95,13 +100,7 @@ public class Junkbot extends CustomMonster {
                 isActivated = true;
                 this.img = TexLoader.getTexture(SpireAnniversary6Mod.makeImagePath("monsters/Junkbot/Junkbot.png"));
                 AbstractDungeon.actionManager.addToBottom(new VFXAction(new PowerBuffEffect(this.hb.cX, this.hb.cY, "Rebooted")));
-                if (!cardsToPreview.isEmpty()) {
-                    g.clear();
-                    g.addToTop(cardsToPreview.get(0));
-                    AbstractDungeon.actionManager.addToBottom(new ExhaustSpecificCardAction(cardsToPreview.get(0), g));
-                }
-                //play sound
-                //exhaust held card
+                AbstractDungeon.actionManager.addToBottom(new RemoveHeldCardAction(this, cardsToPreview.get(0)));
                 break;
         }
         AbstractDungeon.actionManager.addToBottom(new RollMoveAction(this));
@@ -123,10 +122,11 @@ public class Junkbot extends CustomMonster {
     public void setImage(Texture tex){
         this.img = tex;
     }
+
     @Override
     public void render(SpriteBatch sb) {
         super.render(sb);
-        if (!cardsToPreview.isEmpty() && !isDead && !isDying) {
+        if (cardsToPreview.size() != 0) {
             for (int i = 0; i < cardsToPreview.size(); i++) {
                 AbstractCard c = cardsToPreview.get(i);
                 float widthspacing = AbstractCard.IMG_WIDTH_S + 100.0f * Settings.scale;
@@ -139,17 +139,16 @@ public class Junkbot extends CustomMonster {
         }
     }
 
+    public void removeHeldCard(AbstractCard card){
+        cardsToPreview.remove(card);
+    }
+
     @Override
     public void update() {
         super.update();
-        if ((this.isDying || isDead) && !cardsToPreview.isEmpty()){
-            cardsToPreview.clear();
-        }
-        if (!cardsToPreview.isEmpty()) {
-            for (AbstractCard c : cardsToPreview) {
+        for (AbstractCard c : cardsToPreview) {
                 c.update();
                 c.updateHoverLogic();
-            }
         }
     }
 }

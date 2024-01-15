@@ -28,8 +28,8 @@ public class GrabCardAction extends AbstractGameAction {
 
     public GrabCardAction(AbstractCreature owner) {
         this.owner = owner;
-        this.duration = Settings.ACTION_DUR_LONG;
-        this.startingDuration = Settings.ACTION_DUR_LONG;
+        this.duration = Settings.ACTION_DUR_MED;
+        this.startingDuration = Settings.ACTION_DUR_MED;
         this.actionType = ActionType.WAIT;
         junkOwner = (Junkbot)owner;
         grabSpecificCard = false;
@@ -65,7 +65,6 @@ public class GrabCardAction extends AbstractGameAction {
             }
 
 
-            AbstractDungeon.player.limbo.addToBottom(this.card);
             this.card.setAngle(0.0F);
             this.card.targetDrawScale = 0.75F;
             this.card.target_x = (float) Settings.WIDTH / 2.0F;

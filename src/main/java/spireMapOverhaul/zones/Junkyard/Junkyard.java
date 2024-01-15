@@ -1,25 +1,29 @@
 package spireMapOverhaul.zones.Junkyard;
 
-import basemod.BaseMod;
 import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.events.AbstractEvent;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
+import com.megacrit.cardcrawl.monsters.exordium.*;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
+import spireMapOverhaul.zoneInterfaces.ModifiedEventRateZone;
 import spireMapOverhaul.zoneInterfaces.RewardModifyingZone;
 import spireMapOverhaul.zones.Junkyard.monsters.Junkbot;
-import spireMapOverhaul.zones.invasion.InvasionUtil;
-import spireMapOverhaul.zones.invasion.monsters.*;
+import spireMapOverhaul.zones.Junkyard.monsters.Peddler;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Junkyard extends AbstractZone implements RewardModifyingZone, EncounterModifyingZone {
+public class Junkyard extends AbstractZone implements RewardModifyingZone, EncounterModifyingZone, ModifiedEventRateZone {
     public static final String ID = "Junkyard";
-    private static final String JUNKBOTS = SpireAnniversary6Mod.makeID("JUNKBOTS");
+    private static final String JUNKBOTS = SpireAnniversary6Mod.makeID("Junkbots");
+    private static final String CULTIST_JUNKBOT = SpireAnniversary6Mod.makeID("Cultist_Junkbot");
+    private static final String MUGGER_JUNKBOT = SpireAnniversary6Mod.makeID("Mugger_Junkbot");
+    private static final String PEDDLER = SpireAnniversary6Mod.makeID("Peddler");
 
     public Junkyard() {
         super(ID, Icons.REWARD, Icons.MONSTER, Icons.EVENT);
@@ -56,9 +60,28 @@ public class Junkyard extends AbstractZone implements RewardModifyingZone, Encou
                         new AbstractMonster[] {
                                 new Junkbot(-400.0F, 0.0F),
                                 new Junkbot(-200.0F, 0.0F),
+                        })),
+                new EncounterModifyingZone.ZoneEncounter(CULTIST_JUNKBOT, 1, () -> new MonsterGroup(
+                        new AbstractMonster[] {
+                                new FungiBeast(-300.0F, 0.0F),
                                 new Junkbot(0.0F, 0.0F),
-                        }))
+                        })),
+                new EncounterModifyingZone.ZoneEncounter(MUGGER_JUNKBOT, 1, () -> new MonsterGroup(
+                        new AbstractMonster[] {
+                                new AcidSlime_S(-300.0F, 0.0F, 0),
+                                new SpikeSlime_S(-300.0F, 0.0F, 0),
+                                new Junkbot(0.0F, 0.0F),
+                        })),
+                new EncounterModifyingZone.ZoneEncounter(PEDDLER, 1, () -> new MonsterGroup(
+                new AbstractMonster[] {
+                        new Peddler(0.0f, 0.0F)
+                }))
         );
+    }
+
+    @Override
+    public float zoneSpecificEventRate() {
+        return 0.4f;
     }
 
 

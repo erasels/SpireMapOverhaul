@@ -130,6 +130,43 @@ public class Wiz {
         return returnTrulyRandomPrediCardInCombat(pred, false);
     }
 
+    public static AbstractCard returnTrulyRandomRarityCardInCombat(AbstractCard.CardRarity rarity) {
+        ArrayList<AbstractCard> cardsList = new ArrayList<>();
+        switch (rarity) {
+            case COMMON:
+                for (AbstractCard c : AbstractDungeon.srcCommonCardPool.group) {
+                    if (!c.hasTag(AbstractCard.CardTags.HEALING)) {
+                        cardsList.add(c.makeStatEquivalentCopy());
+                    }
+                }
+                break;
+            case UNCOMMON:
+                for (AbstractCard c : AbstractDungeon.srcUncommonCardPool.group) {
+                    if (!c.hasTag(AbstractCard.CardTags.HEALING)) {
+                        cardsList.add(c.makeStatEquivalentCopy());
+                    }
+                }
+                break;
+            case RARE:
+                for (AbstractCard c : AbstractDungeon.srcRareCardPool.group) {
+                    if (!c.hasTag(AbstractCard.CardTags.HEALING)) {
+                        cardsList.add(c.makeStatEquivalentCopy());
+                    }
+                }
+                break;
+            default:
+                for (AbstractCard c : CardLibrary.getAllCards()) {
+                    if (c.rarity.equals(rarity)) {
+                        if (!c.hasTag(AbstractCard.CardTags.HEALING)) {
+                            cardsList.add(c.makeStatEquivalentCopy());
+                        }
+                    }
+                }
+        }
+        return cardsList.get(AbstractDungeon.cardRandomRng.random(cardsList.size() - 1));
+
+    }
+
     public static <T> T getRandomItem(List<T> list, Random rng) {
         return list.isEmpty() ? null : list.get(rng.random(list.size() - 1));
     }
