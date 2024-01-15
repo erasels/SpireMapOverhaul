@@ -1,8 +1,13 @@
 {
-  "${ModID}:Gremlin Camp": {
+  "${ModID}:GremlinCamp": {
     "TEXT": [
       "Gremlin Camp",
-      "A large group of #rgremlins has taken over this space."
+      "A large group of #rgremlins has taken over this space. Keep your eyes peeled, you won't be able to sleep there."
+    ]
+  },
+  "${ModID}:GCEncounterNames": {
+    "TEXT": [
+      ""
     ]
   }
 }

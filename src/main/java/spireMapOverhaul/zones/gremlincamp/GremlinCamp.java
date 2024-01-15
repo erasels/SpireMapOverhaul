@@ -79,4 +79,9 @@ public class GremlinCamp extends AbstractZone implements EncounterModifyingZone,
     public Color getColor() {
         return Color.MAROON.cpy();
     }
+
+    @Override
+    public boolean canSpawn() {
+        return isAct(1);
+    }
 }
