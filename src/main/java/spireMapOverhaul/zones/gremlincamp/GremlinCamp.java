@@ -29,6 +29,7 @@ import spireMapOverhaul.zoneInterfaces.CampfireModifyingZone;
 import spireMapOverhaul.zoneInterfaces.CombatModifyingZone;
 import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
 import spireMapOverhaul.zones.gremlincamp.monsters.GremlinBodyguard;
+import spireMapOverhaul.zones.gremlincamp.monsters.GremlinCook;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,11 +78,33 @@ public class GremlinCamp extends AbstractZone implements EncounterModifyingZone,
 
 
     public static final String NOBBERS = makeID("ClassicNob");
+    public static final String WHO_LET_EM_COOK = makeID("GremlinCookGang");
     @Override
     public List<ZoneEncounter> getEliteEncounters() {
         ArrayList<ZoneEncounter> encs = new ArrayList<>();
         encs.add(new ZoneEncounter(NOBBERS, 1, () -> new MonsterGroup(new AbstractMonster[] {new GremlinNob(0, 0)}), GremlinNob.NAME));
+        encs.add(new ZoneEncounter(WHO_LET_EM_COOK, 1, () ->
+                new MonsterGroup(new AbstractMonster[] {
+                        getGremlin(200, -7),
+                        getGremlin(10, 8),
+                        new GremlinCook(-200, -1)
+                }), encounter_names[2])
+        );
         return encs;
+    }
+
+    private AbstractMonster getGremlin(float x, float y) {
+            ArrayList<String> gremlinPool = new ArrayList<>();
+            gremlinPool.add(GremlinWarrior.ID);
+            gremlinPool.add(GremlinThief.ID);
+            gremlinPool.add(GremlinFat.ID);
+            gremlinPool.add(GremlinBodyguard.ID);
+            String id = Wiz.getRandomItem(gremlinPool, AbstractDungeon.miscRng);
+            if(GremlinBodyguard.ID.equals(id)) {
+                return new GremlinBodyguard(x, y);
+            } else {
+                return MonsterHelper.getGremlin(id, x, y);
+            }
     }
 
     @Override

@@ -8,7 +8,8 @@
   "${ModID}:GCEncounterNames": {
     "TEXT": [
       "Gremlin Brawlers",
-      "Gremlin President and Guards"
+      "Gremlin President and Guards",
+      "Gremlin Cook and the Boys"
     ]
   }
 }
