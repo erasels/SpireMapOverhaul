@@ -355,7 +355,7 @@ public class SpireAnniversary6Mod implements
             loadStringsFile(languageAndZone, OrbStrings.class);
             loadStringsFile(languageAndZone, PotionStrings.class);
             loadStringsFile(languageAndZone, EventStrings.class);
-            loadStringsFile(languageAndZone, MonsterIcon.class);
+            loadStringsFile(languageAndZone, MonsterStrings.class);
         }
     }
 
