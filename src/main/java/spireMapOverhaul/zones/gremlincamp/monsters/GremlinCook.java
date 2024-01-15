@@ -21,6 +21,7 @@ import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractSMOMonster;
 import spireMapOverhaul.actions.AllEnemyApplyPowerAction;
 import spireMapOverhaul.util.Wiz;
+import spireMapOverhaul.zones.gremlincamp.PlayerPoisonPower;
 
 import java.util.ArrayList;
 
@@ -35,6 +36,7 @@ public class GremlinCook extends AbstractSMOMonster {
     private static final Byte ALL_BUFF = 0, ALL_BULK = 1, POISON = 2, TACKLE = 3;
 
     private int healAmt, strAmt, poisonAmt;
+    private boolean secondMove = false;
 
     public GremlinCook() {
         this(0, 0);
@@ -50,7 +52,7 @@ public class GremlinCook extends AbstractSMOMonster {
 
         healAmt = calcAscensionSpecial(8);
         strAmt = AbstractDungeon.ascensionLevel >= 18? 3: 2;
-        poisonAmt = calcAscensionSpecial(4);
+        poisonAmt = calcAscensionSpecial(6);
     }
 
     @Override
@@ -83,7 +85,7 @@ public class GremlinCook extends AbstractSMOMonster {
                 break;
             case 2:
                 useFastAttackAnimation();
-                Wiz.atb(new ApplyPowerAction(AbstractDungeon.player, this, new PoisonPower(AbstractDungeon.player, this, poisonAmt), poisonAmt, AbstractGameAction.AttackEffect.POISON));
+                Wiz.atb(new ApplyPowerAction(AbstractDungeon.player, this, new PlayerPoisonPower(AbstractDungeon.player, poisonAmt), poisonAmt, AbstractGameAction.AttackEffect.POISON));
                 break;
             case 3:
                 DamageInfo info = new DamageInfo(this, moves.get(nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
@@ -107,14 +109,15 @@ public class GremlinCook extends AbstractSMOMonster {
             return;
         }
 
+        if(!secondMove) {
+            secondMove = true;
+            setMoveShortcut(ALL_BULK, MOVES[ALL_BULK]);
+        }
+
         ArrayList<Byte> possibilities = new ArrayList<>();
         int enemies = Wiz.getEnemies().size();
-        // If not alone, can buff everyone or heal everyone if not done last turn
-        if(enemies > 1) {
-            if (!this.lastMove(ALL_BULK)) {
-                possibilities.add(ALL_BULK);
-            }
-
+        // If not alone, can buff everyone if it wasn't the last move
+        if(enemies > 1 && !lastMove(ALL_BUFF)) {
             possibilities.add(ALL_BUFF);
         } else {
             //If alone and late in combat, can buff itself again (helps player)
@@ -128,8 +131,8 @@ public class GremlinCook extends AbstractSMOMonster {
             possibilities.add(POISON);
         }
 
-        // When alone, start tackling the fucker
-        if(enemies == 1) {
+        // When alone or nothing else, start tackling the fucker
+        if(enemies == 1 || possibilities.isEmpty()) {
             possibilities.add(TACKLE);
         }
 
