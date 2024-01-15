@@ -2,18 +2,13 @@ package spireMapOverhaul.zones.beastslair.powers;
 
 
 import com.evacipated.cardcrawl.mod.stslib.patches.NeutralPowertypePatch;
-import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.NonStackablePower;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractSMOPower;
-import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.zones.beastslair.BeastsLairZone;
-import spireMapOverhaul.zones.manasurge.ManaSurgeZone;
 
 public class FuryPower extends AbstractSMOPower {
     public static final String POWER_ID = SpireAnniversary6Mod.makeID("FuryPower");
@@ -27,8 +22,11 @@ public class FuryPower extends AbstractSMOPower {
     }
 
     @Override
-    public void onPlayCard(AbstractCard card, AbstractMonster m) {
-        addToBot(new ApplyPowerAction(this.owner, this.owner, new DamageUpPower(owner,amount), this.amount));
+    public void atEndOfTurn(boolean isPlayer) {
+        if (!isPlayer) {
+            this.flash();
+            this.addToBot(new ApplyPowerAction(owner, owner, new DamageUpPower(owner, this.amount)));
+        }
     }
 
     @Override
