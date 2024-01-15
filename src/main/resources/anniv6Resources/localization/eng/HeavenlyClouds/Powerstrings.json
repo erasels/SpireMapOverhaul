@@ -1,0 +1,6 @@
+{
+  "${ModID}:HeavenlyFlightPower": {
+    "NAME": "Flight",
+    "DESCRIPTIONS": ["Receives #b", "% less damage from attacks. After being attacked #b", " times in a single turn, remove this effect for 1 turn and #yStun this creature."]
+  }
+}
