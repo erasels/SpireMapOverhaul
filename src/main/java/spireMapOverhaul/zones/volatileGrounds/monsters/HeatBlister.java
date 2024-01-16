@@ -54,7 +54,7 @@ public class HeatBlister extends CustomMonster {
         } else {
             this.setHp(HP_MIN, HP_MAX);
         }
-        if(AbstractDungeon.ascensionLevel <= 3) {
+        if(AbstractDungeon.ascensionLevel <= 2) {
             this.damage.add(new DamageInfo(this, ATTACK_DAMAGE_1));
             damage1 = A2_ATTACK_DAMAGE_1;
             this.damage.add(new DamageInfo(this, ATTACK_DAMAGE_2));
