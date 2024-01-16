@@ -12,9 +12,7 @@ import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.zoneInterfaces.CombatModifyingZone;
 import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
 import spireMapOverhaul.zoneInterfaces.RenderableZone;
-import spireMapOverhaul.zones.grass.vegetables.AbstractVegetable;
-import spireMapOverhaul.zones.grass.vegetables.AbstractVegetableData;
-import spireMapOverhaul.zones.grass.vegetables.Radish;
+import spireMapOverhaul.zones.grass.vegetables.*;
 import spireMapOverhaul.zones.mirror.powers.MirrorZonePower;
 
 import java.util.ArrayList;
@@ -56,7 +54,7 @@ public class GrassZone extends AbstractZone implements CombatModifyingZone, Rend
         if (EnergyPanel.totalCount > 0 && !vegetables.isEmpty()) {
             for (int i = 0; i < EnergyPanel.totalCount; i++) {
                 AbstractVegetable veg = getRandom();
-                if (veg != null) {
+                if (veg != null && veg.canUpgrade()) {
                     veg.upgrade(1);
                 }
             }
@@ -75,7 +73,13 @@ public class GrassZone extends AbstractZone implements CombatModifyingZone, Rend
 
     protected void initializeVegetables() {
         ALL.clear();
+        ALL.add(BellPepper.DATA);
+        ALL.add(Carrot.DATA);
+        ALL.add(Leek.DATA);
+        ALL.add(Onion.DATA);
+        ALL.add(Pumpkin.DATA);
         ALL.add(Radish.DATA);
+        ALL.add(Tomato.DATA);
     }
 
     public void postRenderBackground(SpriteBatch sb) {

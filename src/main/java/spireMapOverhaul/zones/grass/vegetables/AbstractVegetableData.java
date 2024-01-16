@@ -19,7 +19,7 @@ public class AbstractVegetableData {
     public final String ID;
     public String imagePath;
     public OrbStrings strings;
-    public int maxUpgradeLevel = 0;
+    public int maxUpgradeLevel = 5;
     public float bounce = 100f;
     public float gravity = -22f;
 

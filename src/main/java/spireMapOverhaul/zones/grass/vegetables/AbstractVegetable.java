@@ -72,9 +72,13 @@ public abstract class AbstractVegetable {
         return GRASS;
     }
 
+    public boolean canUpgrade() {
+        return level < data.maxUpgradeLevel;
+    }
+
     protected String getBodyText() {
         StringJoiner sj = new StringJoiner(" NL ");
-        sj.add(STRINGS.TEXT[3] + level);
+        sj.add(STRINGS.TEXT[3] + level + "/" + data.maxUpgradeLevel);
         if (level > 0) {
             sj.add(getDescription());
             sj.add(STRINGS.TEXT[4]);
@@ -99,6 +103,10 @@ public abstract class AbstractVegetable {
         return 0.45f + 0.15f * level;
     }
 
+    public AbstractCreature getTarget() {
+        return Wiz.getRandomEnemy();
+    }
+
     public boolean isClickable() {
         return clickable && level > 0;
     }
@@ -108,7 +116,7 @@ public abstract class AbstractVegetable {
     }
 
     public AbstractGameAction launch() {
-        AbstractMonster randomMonster = Wiz.getRandomEnemy();
+        AbstractCreature randomMonster = getTarget();
         ThrowVegetableAction action = new ThrowVegetableAction(this, randomMonster, getHits());
         Wiz.att(action);
         Wiz.att(new VFXAction(new ThrowVegetableEffect(this, hb.cX, hb.cY, randomMonster.hb.cX, randomMonster.hb.cY), 0.4F));
@@ -163,7 +171,7 @@ public abstract class AbstractVegetable {
     }
 
     public void upgrade(int amount) {
-        level += amount;
+        level = Math.min(data.maxUpgradeLevel, level + amount);
         mainTip.body = getBodyText();
         float sc = getScaleMult();
         scale = Settings.scale * sc;

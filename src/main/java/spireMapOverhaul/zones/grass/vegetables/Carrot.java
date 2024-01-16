@@ -6,22 +6,22 @@ import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 
-public class Radish extends AbstractVegetable {
+public class Carrot extends AbstractVegetable {
 
-    public static final AbstractVegetableData DATA = AbstractVegetableData.register(Radish.class);
+    public static final AbstractVegetableData DATA = AbstractVegetableData.register(Carrot.class);
 
-    public Radish() {
+    public Carrot() {
         super(DATA);
     }
 
     @Override
     public int getEffectAmount() {
-        return 5 * level;
+        return 4;
     }
 
     @Override
     public int getHits() {
-        return 2;
+        return level * 2;
     }
 
     @Override

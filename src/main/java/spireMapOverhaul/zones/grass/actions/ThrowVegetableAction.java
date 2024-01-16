@@ -17,10 +17,6 @@ public class ThrowVegetableAction extends AbstractGameAction {
 
     private final AbstractVegetable vegetable;
 
-    public ThrowVegetableAction(AbstractVegetable vegetable) {
-        this(vegetable, Wiz.getRandomEnemy(), vegetable.getHits());
-    }
-
     public ThrowVegetableAction(AbstractVegetable vegetable, AbstractCreature target, int times) {
         this.vegetable = vegetable;
         this.target = target;
@@ -36,7 +32,7 @@ public class ThrowVegetableAction extends AbstractGameAction {
             this.isDone = true;
         } else {
             if (this.amount > 1 && !AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
-                AbstractMonster randomMonster = Wiz.getRandomEnemy();
+                AbstractCreature randomMonster = vegetable.getTarget();
                 this.addToTop(new ThrowVegetableAction(vegetable, randomMonster, this.amount - 1));
                 this.addToTop(new VFXAction(new ThrowVegetableEffect(vegetable, this.target.hb.cX, this.target.hb.cY, randomMonster.hb.cX, randomMonster.hb.cY), 0.4F));
             }
