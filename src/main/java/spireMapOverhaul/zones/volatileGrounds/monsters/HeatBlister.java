@@ -24,9 +24,9 @@ public class HeatBlister extends CustomMonster {
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
-    private static final String IMG = SpireAnniversary6Mod.makeImagePath("monsters/HeatBlister/skeleton.png");
-    private static final String ATLAS = SpireAnniversary6Mod.makeImagePath("monsters/HeatBlister/skeleton.atlas");
-    private static final String SKELETON = SpireAnniversary6Mod.makeImagePath("monsters/HeatBlister/skeleton.json");
+    private static final String IMG = SpireAnniversary6Mod.makeImagePath("monsters/VolatileGrounds/HeatBlister/skeleton.png");
+    private static final String ATLAS = SpireAnniversary6Mod.makeImagePath("monsters/VolatileGrounds/HeatBlister/skeleton.atlas");
+    private static final String SKELETON = SpireAnniversary6Mod.makeImagePath("monsters/VolatileGrounds/HeatBlister/skeleton.json");
     private static final byte BUFF = 0;
     private static final byte ATTACK = 1;
     private static final byte ATTACK_AND_DEBUFF = 2;
@@ -43,7 +43,7 @@ public class HeatBlister extends CustomMonster {
     private static final int A7_HP_MIN = 120;
     private static final int A7_HP_MAX = 130;
     private static final int MALLEABLE = 3;
-    private int turn = 0;
+    private boolean firstTurn = true;
     private int damage1;
     private int damage2;
     
@@ -54,18 +54,18 @@ public class HeatBlister extends CustomMonster {
         } else {
             this.setHp(HP_MIN, HP_MAX);
         }
-        if(AbstractDungeon.ascensionLevel <= 2) {
-            this.damage.add(new DamageInfo(this, ATTACK_DAMAGE_1));
+        if(AbstractDungeon.ascensionLevel >= 2) {
+            this.damage.add(new DamageInfo(this, A2_ATTACK_DAMAGE_1));
             damage1 = A2_ATTACK_DAMAGE_1;
-            this.damage.add(new DamageInfo(this, ATTACK_DAMAGE_2));
+            this.damage.add(new DamageInfo(this, A2_ATTACK_DAMAGE_2));
             damage2 = A2_ATTACK_DAMAGE_2;
         }
         else
         {
-            this.damage.add(new DamageInfo(this, A2_ATTACK_DAMAGE_1));
+            this.damage.add(new DamageInfo(this, ATTACK_DAMAGE_1));
             damage1 = ATTACK_DAMAGE_1;
-            this.damage.add(new DamageInfo(this, A2_ATTACK_DAMAGE_2));
-            damage2 = A2_ATTACK_DAMAGE_2;
+            this.damage.add(new DamageInfo(this, ATTACK_DAMAGE_2));
+            damage2 = ATTACK_DAMAGE_2;
         }
         this.loadAnimation(ATLAS, SKELETON, 1.00f);
         AnimationState.TrackEntry e = this.state.setAnimation(0, "Idle", true);
@@ -117,15 +117,15 @@ public class HeatBlister extends CustomMonster {
     
     @Override
     protected void getMove(final int num) {
-        if(turn == 0)
+        if(firstTurn)
         {
             this.setMove(BUFF, Intent.BUFF);
+            firstTurn = false;
         }
         else if ((num < 50 && !lastTwoMoves(ATTACK_AND_DEBUFF)) || lastTwoMoves(ATTACK)) {
             this.setMove(ATTACK_AND_DEBUFF, Intent.ATTACK_DEBUFF, damage2);
         } else {
             this.setMove(ATTACK, Intent.ATTACK, damage1);
         }
-        turn++;
     }
 }

@@ -17,7 +17,6 @@ public class VolatileGrounds extends AbstractZone implements EncounterModifyingZ
     private static final String SUNSTONE_ELITE = SpireAnniversary6Mod.makeID("SUNSTONE_ELITE");
     private static final String EXPLOSIVE_SHAPES = SpireAnniversary6Mod.makeID("EXPLOSIVE_SHAPES");
     private static final String HEAT_BLISTER = SpireAnniversary6Mod.makeID("HEAT_BLISTER");
-    private static final String GREMLIN_ARCHMAGE = SpireAnniversary6Mod.makeID("GREMLIN_ARCHMAGE");
     public static final String ID = "VolatileGrounds";
     
     public VolatileGrounds() {

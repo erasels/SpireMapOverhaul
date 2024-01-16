@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
 import spireMapOverhaul.abstracts.AbstractSMOPower;
+import spireMapOverhaul.zones.volatileGrounds.VolatileGrounds;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 
@@ -22,9 +23,11 @@ public class ExplodePlusPower extends AbstractSMOPower {
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
+    public static String ZONE_ID = VolatileGrounds.ID;
+    
     
     public ExplodePlusPower(AbstractCreature owner, int amount, int amount2) {
-        super(ID, NAME, PowerType.BUFF, false, owner, amount);
+        super(ID, NAME, ZONE_ID, PowerType.BUFF, false, owner, amount);
         isTwoAmount = true;
         this.amount2 = amount2;
         this.updateDescription();

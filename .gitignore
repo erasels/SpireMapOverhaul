@@ -93,5 +93,8 @@ $RECYCLE.BIN/
 # Alpha fixer
 fixalpha.exe
 
+# Krita files
+*.kra
+
 pom.xml
 example-pom.xml

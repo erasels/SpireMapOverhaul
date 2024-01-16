@@ -8,7 +8,7 @@
   },
   "${ModID}:UnstableSunstone": {
     "MOVES": [
-      "Charge",
+      "Destabilize",
       "Sear",
       "Hot Potato"
     ],
@@ -16,16 +16,16 @@
   },
   "${ModID}:SunStoneShard": {
     "MOVES": [
-      "Buff",
-      "Attack",
+      "Charge",
+      "Sear",
       "Barrier"
     ],
     "NAME": "Sun Stone Shard"
   },
   "${ModID}:HeatBlister": {
     "MOVES": [
-      "Attack",
-      "Attack + Debuff"
+      "Crush",
+      "Phosphoric Bile"
     ],
     "NAME": "Heat Blister"
   }

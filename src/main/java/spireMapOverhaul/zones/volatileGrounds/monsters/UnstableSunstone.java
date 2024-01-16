@@ -12,7 +12,6 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import spireMapOverhaul.SpireAnniversary6Mod;
-import spireMapOverhaul.zones.volatileGrounds.powers.EruptPower;
 import spireMapOverhaul.zones.volatileGrounds.powers.UnstablePower;
 
 public class UnstableSunstone extends CustomMonster {
@@ -20,14 +19,16 @@ public class UnstableSunstone extends CustomMonster {
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
-    private static final String IMG = SpireAnniversary6Mod.makeImagePath("monsters/UnstableSunstone/skeleton.png");
-    private static final String ATLAS = SpireAnniversary6Mod.makeImagePath("monsters/UnstableSunstone/skeleton.atlas");
-    private static final String SKELETON = SpireAnniversary6Mod.makeImagePath("monsters/UnstableSunstone/skeleton.json");
+    private static final String IMG = SpireAnniversary6Mod.makeImagePath("monsters/VolatileGrounds/UnstableSunstone/skeleton.png");
+    private static final String ATLAS = SpireAnniversary6Mod.makeImagePath("monsters/VolatileGrounds/UnstableSunstone/skeleton.atlas");
+    private static final String SKELETON = SpireAnniversary6Mod.makeImagePath("monsters/VolatileGrounds/UnstableSunstone/skeleton.json");
     private static final byte BUFF = 0;
     private static final byte ATTACK1 = 1;
     private static final byte ATTACK2 = 2;
-    private static final int ATTACK1_DAMAGE = 10;
-    private static final int ATTACK2_DAMAGE = 5;
+    private static final int ATTACK_DAMAGE_1 = 10;
+    private static final int ATTACK_DAMAGE_2 = 5;
+    private static final int A3_ATTACK_DAMAGE_1 = 12;
+    private static final int A3_ATTACK_DAMAGE_2 = 6;
     private static final int BURNS = 1;
     private static final int EXPLOSION_DAMAGE = 6;
     private static final int A3_EXPLOSION_DAMAGE = 10;
@@ -36,6 +37,8 @@ public class UnstableSunstone extends CustomMonster {
     private static final int A8_HP_MIN = 140;
     private static final int A8_HP_MAX = 155;
     private boolean firstMove = true;
+    private int damage1;
+    private int damage2;
     
     public UnstableSunstone(final float x, final float y) {
         super(NAME, ID, HP_MAX, -5.0F, 0, 340.0f, 340f, IMG, x, y);
@@ -44,8 +47,19 @@ public class UnstableSunstone extends CustomMonster {
         } else {
             this.setHp(HP_MIN, HP_MAX);
         }
-        this.damage.add(new DamageInfo(this, ATTACK1_DAMAGE));
-        this.damage.add(new DamageInfo(this, ATTACK2_DAMAGE));
+        if(AbstractDungeon.ascensionLevel >= 3) {
+            this.damage.add(new DamageInfo(this, A3_ATTACK_DAMAGE_1));
+            damage1 = A3_ATTACK_DAMAGE_1;
+            this.damage.add(new DamageInfo(this, A3_ATTACK_DAMAGE_2));
+            damage2 = A3_ATTACK_DAMAGE_2;
+        }
+        else
+        {
+            this.damage.add(new DamageInfo(this, ATTACK_DAMAGE_1));
+            damage1 = ATTACK_DAMAGE_1;
+            this.damage.add(new DamageInfo(this, ATTACK_DAMAGE_2));
+            damage2 = ATTACK_DAMAGE_2;
+        }
         this.loadAnimation(ATLAS, SKELETON, 1.00f);
         AnimationState.TrackEntry e = this.state.setAnimation(0, "animation0", true);
         e.setTime(e.getEndTime() * MathUtils.random());
@@ -97,10 +111,10 @@ public class UnstableSunstone extends CustomMonster {
             this.firstMove = false;
         } else {
             if (this.lastMove(ATTACK2) && !firstMove) {
-                this.setMove(ATTACK1, Intent.ATTACK, ATTACK1_DAMAGE);
+                this.setMove(ATTACK1, Intent.ATTACK, damage1);
                 this.firstMove = false;
             } else {
-                this.setMove(ATTACK2, Intent.ATTACK_DEBUFF, ATTACK2_DAMAGE);
+                this.setMove(ATTACK2, Intent.ATTACK_DEBUFF, damage2);
             }
         }
     }

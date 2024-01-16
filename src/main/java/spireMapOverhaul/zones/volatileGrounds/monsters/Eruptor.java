@@ -25,13 +25,14 @@ public class Eruptor extends CustomMonster {
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
-    private static final String IMG = SpireAnniversary6Mod.makeImagePath("monsters/Eruptor/skeleton.png");
-    private static final String ATLAS = SpireAnniversary6Mod.makeImagePath("monsters/Eruptor/skeleton.atlas");
-    private static final String SKELETON = SpireAnniversary6Mod.makeImagePath("monsters/Eruptor/skeleton.json");
-    private static final byte BRUISE = 1;
-    private static final byte BOIL = 2;
+    private static final String IMG = SpireAnniversary6Mod.makeImagePath("monsters/VolatileGrounds/Eruptor/skeleton.png");
+    private static final String ATLAS = SpireAnniversary6Mod.makeImagePath("monsters/VolatileGrounds/Eruptor/skeleton.atlas");
+    private static final String SKELETON = SpireAnniversary6Mod.makeImagePath("monsters/VolatileGrounds/Eruptor/skeleton.json");
+    private static final byte BRUISE = 0;
+    private static final byte BOIL = 1;
     private static final int BOIL_BURNS = 1;
     private static final int BRUISE_DAMAGE = 6;
+    private static final int A2_BRUISE_DAMAGE = 8;
     private static final int EXPLOSION_DAMAGE = 15;
     private static final int A2_EXPLOSION_DAMAGE = 20;
     private static final int TRIGGER = 15;
@@ -41,6 +42,7 @@ public class Eruptor extends CustomMonster {
     private static final int A7_HP_MIN = 25;
     private static final int A7_HP_MAX = 30;
     private boolean firstMove = true;
+    private int attackDamage;
     
     public Eruptor(final float x, final float y) {
         super(NAME, ID, HP_MAX, -5.0F, 0, 180.0f, 100.0f, IMG, x, y);
@@ -49,7 +51,15 @@ public class Eruptor extends CustomMonster {
         } else {
             this.setHp(HP_MIN, HP_MAX);
         }
-        this.damage.add(new DamageInfo(this, BRUISE_DAMAGE));
+        if(AbstractDungeon.ascensionLevel >= 2)
+        {
+            this.damage.add(new DamageInfo(this, A2_BRUISE_DAMAGE));
+            attackDamage = A2_BRUISE_DAMAGE;
+        }
+        else {
+            this.damage.add(new DamageInfo(this, BRUISE_DAMAGE));
+            attackDamage = BRUISE_DAMAGE;
+        }
         this.loadAnimation(ATLAS, SKELETON, 0.75f);
         AnimationState.TrackEntry e = this.state.setAnimation(0, "animation0", true);
         e.setTimeScale(0.5f);
@@ -82,13 +92,13 @@ public class Eruptor extends CustomMonster {
     @Override
     protected void getMove(final int num) {
         if (this.firstMove) {
-            this.setMove(BRUISE, Intent.ATTACK, this.damage.get(0).base);
+            this.setMove(BRUISE, Intent.ATTACK, attackDamage);
             this.firstMove = false;
         } else {
             if (this.lastMove(BRUISE)) {
                 this.setMove(BOIL, Intent.DEBUFF);
             } else {
-                this.setMove(BRUISE, Intent.ATTACK, this.damage.get(0).base);
+                this.setMove(BRUISE, Intent.ATTACK, attackDamage);
             }
         }
     }

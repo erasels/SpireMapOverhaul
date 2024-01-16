@@ -7,29 +7,28 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.AnimateFastAttackAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.cards.status.Burn;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.powers.FlameBarrierPower;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.zones.volatileGrounds.powers.ChargedPower;
-import spireMapOverhaul.zones.volatileGrounds.powers.UnstablePower;
 
 public class SunStoneShard extends CustomMonster {
     public static final String ID = SpireAnniversary6Mod.makeID("SunStoneShard");
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
-    private static final String IMG = SpireAnniversary6Mod.makeImagePath("monsters/SunStoneShard/skeleton.png");
-    private static final String ATLAS = SpireAnniversary6Mod.makeImagePath("monsters/SunStoneShard/skeleton.atlas");
-    private static final String SKELETON = SpireAnniversary6Mod.makeImagePath("monsters/SunStoneShard/skeleton.json");
+    private static final String IMG = SpireAnniversary6Mod.makeImagePath("monsters/VolatileGrounds/SunStoneShard/skeleton.png");
+    private static final String ATLAS = SpireAnniversary6Mod.makeImagePath("monsters/VolatileGrounds/SunStoneShard/skeleton.atlas");
+    private static final String SKELETON = SpireAnniversary6Mod.makeImagePath("monsters/VolatileGrounds/SunStoneShard/skeleton.json");
     private static final byte BUFF = 0;
     private static final byte ATTACK = 1;
     private static final byte BARRIER = 2;
     private static final int BUFF_AMOUNT = 3;
     private static final int A18_BUFF_AMOUNT = 5;
     private static final int ATTACK_DAMAGE = 7;
+    private static final int A3_ATTACK_DAMAGE = 9;
     private static final int BARRIER_BLOCK = 5;
     private static final int BARRIER_AMOUNT = 5;
     private static final int A18_BARRIER_AMOUNT = 8;
@@ -39,7 +38,7 @@ public class SunStoneShard extends CustomMonster {
     private static final int HP_MAX = 65;
     private static final int A8_HP_MIN = 75;
     private static final int A8_HP_MAX = 85;
-    private int buffCooldown = 0;
+    private int attackDamage;
     
     public SunStoneShard(final float x, final float y) {
         super(NAME, ID, HP_MAX, -5.0F, 0, 130.0f, 220f, IMG, x, y);
@@ -48,7 +47,15 @@ public class SunStoneShard extends CustomMonster {
         } else {
             this.setHp(HP_MIN, HP_MAX);
         }
-        this.damage.add(new DamageInfo(this, ATTACK_DAMAGE));
+        if(AbstractDungeon.ascensionLevel >= 3) {
+            this.damage.add(new DamageInfo(this, A3_ATTACK_DAMAGE));
+            attackDamage = A3_ATTACK_DAMAGE;
+        }
+        else
+        {
+            this.damage.add(new DamageInfo(this, ATTACK_DAMAGE));
+            attackDamage = ATTACK_DAMAGE;
+        }
         this.loadAnimation(ATLAS, SKELETON, 1.00f);
         AnimationState.TrackEntry e = this.state.setAnimation(0, "animation0", true);
         e.setTime(e.getEndTime() * MathUtils.random());
@@ -99,16 +106,14 @@ public class SunStoneShard extends CustomMonster {
     
     @Override
     protected void getMove(final int num) {
-        if (buffCooldown == 0) {
+        if (!lastMove(BUFF) && !lastMoveBefore(BUFF)) {
             this.setMove(BUFF, Intent.BUFF);
-            buffCooldown = 2;
         } else {
-            if ((num > 50 && lastMove(BARRIER)) || lastMove(BUFF)) {
-                this.setMove(ATTACK, Intent.ATTACK, ATTACK_DAMAGE);
+            if ((num > 50 && lastMove(BUFF)) || lastMove(BARRIER)) {
+                this.setMove(ATTACK, Intent.ATTACK, attackDamage);
             } else {
                 this.setMove(BARRIER, Intent.DEFEND_BUFF);
             }
-            buffCooldown--;
         }
     }
 }
