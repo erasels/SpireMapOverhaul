@@ -20,8 +20,6 @@ import spireMapOverhaul.zones.manasurge.vfx.EnchantBlightEffect;
 
 import java.util.ArrayList;
 
-import static spireMapOverhaul.SpireAnniversary6Mod.makeUIPath;
-
 public class ManaCycloneEvent extends PhasedEvent {
     public static final String ID = SpireAnniversary6Mod.makeID("ManaCycloneEvent");
     private static final EventStrings eventStrings = CardCrawlGame.languagePack.getEventString(ID);
