@@ -1,0 +1,6 @@
+{
+  "${ModID}:VerdictPower": {
+    "NAME": "Verdict",
+    "DESCRIPTIONS": ["At the start of this creature's turn, if its current HP is less than its #yVerdict stacks, it dies instantly. Otherwise, it gains #b5 #yVerdict stacks."]
+  }
+}

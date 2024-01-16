@@ -1,0 +1,56 @@
+package spireMapOverhaul.zones.divinitiesgaze.divinities.impl;
+
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
+import com.megacrit.cardcrawl.cards.status.Dazed;
+import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
+import spireMapOverhaul.zones.divinitiesgaze.cards.Clairvoyance;
+import spireMapOverhaul.zones.divinitiesgaze.divinities.BaseDivineBeing;
+
+import java.util.HashSet;
+import java.util.Set;
+import java.util.UUID;
+import java.util.function.Consumer;
+
+public class Eclectic extends BaseDivineBeing {
+
+  static {
+    new Eclectic();
+  }
+
+  public Eclectic() {
+    super(Clairvoyance.ID, Dazed.ID);
+  }
+
+  @Override
+  public Consumer<Integer> doEventButtonAction() {
+    // [Learn] Choose 1 of 20 upgraded cards to add to your deck.
+    return x -> {
+      CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+      Set<UUID> cardUUIDs = new HashSet<>();
+      while (group.size() < 20) {
+        AbstractCard card = AbstractDungeon.getCard(AbstractDungeon.rollRarity());
+        if(!cardUUIDs.contains(card.uuid)) {
+          cardUUIDs.add(card.uuid);
+          card.upgrade();
+          group.addToTop(card);
+        }
+      }
+
+      AbstractDungeon.gridSelectScreen.open(group, 1, getDivinityStrings().getMiscText().get(SELECT_TEXT), false);
+    };
+  }
+
+  @Override
+  public boolean doUpdate() {
+    if (!AbstractDungeon.isScreenUp && !AbstractDungeon.gridSelectScreen.selectedCards.isEmpty()) {
+      AbstractCard c = AbstractDungeon.gridSelectScreen.selectedCards.get(0).makeCopy();
+      AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(c, (float) Settings.WIDTH / 2.0F, (float)Settings.HEIGHT / 2.0F));
+      AbstractDungeon.gridSelectScreen.selectedCards.clear();
+      return true;
+    }
+    return false;
+  }
+}
