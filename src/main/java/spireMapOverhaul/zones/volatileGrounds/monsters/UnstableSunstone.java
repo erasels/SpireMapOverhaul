@@ -108,14 +108,13 @@ public class UnstableSunstone extends CustomMonster {
     protected void getMove(final int num) {
         if (this.firstMove && AbstractDungeon.ascensionLevel < 18) {
             this.setMove(BUFF, Intent.BUFF);
-            this.firstMove = false;
         } else {
-            if (this.lastMove(ATTACK2) && !firstMove) {
+            if (this.lastMove(ATTACK2) || firstMove) {
                 this.setMove(ATTACK1, Intent.ATTACK, damage1);
-                this.firstMove = false;
             } else {
                 this.setMove(ATTACK2, Intent.ATTACK_DEBUFF, damage2);
             }
         }
+        this.firstMove = false;
     }
 }
