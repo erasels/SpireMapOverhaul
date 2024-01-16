@@ -6,7 +6,8 @@
       "Makes the map more interesting.",
       "Enabled",
       "Make zone icons larger but cut off by the zone's shape.",
-      "Don't repeat zones during a run."
+      "Don't repeat zones during a run.",
+      "Enable shaders"
     ]
   },
   "${ModID}:SingleCardReward": {

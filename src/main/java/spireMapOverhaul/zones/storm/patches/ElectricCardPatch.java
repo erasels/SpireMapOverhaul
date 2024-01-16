@@ -26,6 +26,7 @@ import spireMapOverhaul.zones.storm.cardmods.ElectricModifier;
 import java.nio.IntBuffer;
 import java.util.ArrayList;
 
+import static spireMapOverhaul.SpireAnniversary6Mod.getShaderConfig;
 import static spireMapOverhaul.SpireAnniversary6Mod.makeShaderPath;
 
 public class ElectricCardPatch {
@@ -40,7 +41,7 @@ public class ElectricCardPatch {
                 initDripShader();
             }
             if (!Settings.hideCards) {
-                if (CardModifierManager.hasModifier(__instance, ElectricModifier.ID)) {
+                if (CardModifierManager.hasModifier(__instance, ElectricModifier.ID) && getShaderConfig()) {
                     TextureRegion t = cardToTextureRegion(__instance, spriteBatch);
                     spriteBatch.setBlendFunction(GL20.GL_ONE, GL20.GL_ONE_MINUS_SRC_ALPHA);
                     ShaderProgram oldShader = spriteBatch.getShader();
@@ -111,7 +112,7 @@ public class ElectricCardPatch {
                 initDripShader();
             }
             AbstractCard card = ReflectionHacks.getPrivate(__instance, SingleCardViewPopup.class, "card");
-            if (CardModifierManager.hasModifier(card, ElectricModifier.ID)) {
+            if (CardModifierManager.hasModifier(card, ElectricModifier.ID) && getShaderConfig()) {
                 oldShader = sb.getShader();
                 sb.setShader(electricShader);
                 electricShader.setUniformf("u_time", SpireAnniversary6Mod.time);
@@ -122,7 +123,7 @@ public class ElectricCardPatch {
         @SpireInsertPatch(locator = ZipZipZipSCV.LocatorTwo.class)
         public static void RemoveShader(SingleCardViewPopup __instance, SpriteBatch sb) {
             AbstractCard card = ReflectionHacks.getPrivate(__instance, SingleCardViewPopup.class, "card");
-            if (CardModifierManager.hasModifier(card, ElectricModifier.ID)) {
+            if (CardModifierManager.hasModifier(card, ElectricModifier.ID)  && getShaderConfig()) {
                 sb.setShader(oldShader);
             }
         }
