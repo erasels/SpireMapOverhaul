@@ -93,7 +93,6 @@ public class HeatBlister extends CustomMonster {
     
     @Override
     public void takeTurn() {
-        AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(this, this, FlameBarrierPower.POWER_ID));
         switch (this.nextMove) {
             case ATTACK:
                 AbstractDungeon.actionManager.addToBottom(new AnimateJumpAction(this));
