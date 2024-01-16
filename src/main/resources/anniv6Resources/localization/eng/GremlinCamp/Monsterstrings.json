@@ -1,0 +1,11 @@
+{
+  "${ModID}:GremlinCook": {
+    "MOVES": [
+      "Let Him Cook",
+      "Field Rations",
+      "Rotten Food",
+      "Tackle"
+    ],
+    "NAME": "Gremlin Cook"
+  }
+}
