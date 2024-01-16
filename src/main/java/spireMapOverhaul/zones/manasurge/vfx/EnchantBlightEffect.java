@@ -1,10 +1,8 @@
 package spireMapOverhaul.zones.manasurge.vfx;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
-import spireMapOverhaul.zones.manasurge.ManaSurgeZone;
 
 public class EnchantBlightEffect extends AbstractGameEffect {
     private final float x;
@@ -16,13 +14,11 @@ public class EnchantBlightEffect extends AbstractGameEffect {
     }
 
     public void update() {
-        CardCrawlGame.sound.play(ManaSurgeZone.ENCHANTBLIGHT_KEY);
         int i;
-        for(i = 0; i < 75; ++i) {
+        for(i = 0; i < 1350; ++i) {
             AbstractDungeon.topLevelEffectsQueue.add(new ManaFlameParticleEffect(this.x, this.y));
         }
-
-        for(i = 0; i < 20; ++i) {
+        for(i = 0; i < 320; ++i) {
             AbstractDungeon.topLevelEffectsQueue.add(new ManaExhaustEmberEffect(this.x, this.y));
         }
         this.isDone = true;

@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Interpolation;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
@@ -40,6 +41,7 @@ public class CampfireEnchantEffect extends AbstractGameEffect {
             for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards) {
                 ManaSurgeZone.applyPermanentPositiveModifier(c);
                 AbstractDungeon.player.bottledCardUpgradeCheck(c);
+                CardCrawlGame.sound.play(ManaSurgeZone.ENCHANTBLIGHT_KEY);
                 AbstractDungeon.topLevelEffectsQueue.add(new EnchantBlightEffect((float) Settings.WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F));
                 AbstractDungeon.effectsQueue.add(new ShowCardBrieflyEffect(c.makeStatEquivalentCopy(), (float) Settings.WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F));
             }

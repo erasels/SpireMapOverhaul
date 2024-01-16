@@ -113,8 +113,8 @@ public class ManaCycloneEvent extends PhasedEvent {
                     AbstractCard randomCard1 = filteredCards.getRandomCard(AbstractDungeon.miscRng);
                     filteredCards.removeCard(randomCard1);
                     AbstractCard randomCard2 = filteredCards.getRandomCard(AbstractDungeon.miscRng);
-                    CardCrawlGame.sound.play(ManaSurgeZone.ENCHANTBLIGHT_KEY);
 
+                    CardCrawlGame.sound.play(ManaSurgeZone.ENCHANTBLIGHT_KEY);
                     if (randomCard1 != null) {
                         ManaSurgeZone.applyPermanentNegativeModifier(randomCard1);
                         AbstractDungeon.topLevelEffectsQueue.add(new EnchantBlightEffect(
