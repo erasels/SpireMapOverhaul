@@ -142,6 +142,7 @@ public class ManaCycloneEvent extends PhasedEvent {
                     AbstractRelic chosenRelic = RelicLibrary.getRelic(chosenRelicId).makeCopy();
                     AbstractDungeon.getCurrRoom().rewards.clear();
                     AbstractDungeon.getCurrRoom().addRelicToRewards(chosenRelic);
+                    AbstractDungeon.uncommonRelicPool.removeIf(s -> s.equals(chosenRelicId));
                     AbstractDungeon.getCurrRoom().phase = AbstractRoom.RoomPhase.COMPLETE;
                     AbstractDungeon.combatRewardScreen.open();
 
