@@ -28,5 +28,13 @@
       "Phosphoric Bile"
     ],
     "NAME": "Heat Blister"
+  },
+  "${ModID}:GremlinArchmage": {
+    "MOVES": [
+      "Summon Shapes",
+      "Fireball",
+      "Mage Armor"
+    ],
+    "NAME": "Gremlin Archmage"
   }
 }

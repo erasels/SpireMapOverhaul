@@ -17,6 +17,7 @@ public class VolatileGrounds extends AbstractZone implements EncounterModifyingZ
     private static final String SUNSTONE_ELITE = SpireAnniversary6Mod.makeID("SUNSTONE_ELITE");
     private static final String EXPLOSIVE_SHAPES = SpireAnniversary6Mod.makeID("EXPLOSIVE_SHAPES");
     private static final String HEAT_BLISTER = SpireAnniversary6Mod.makeID("HEAT_BLISTER");
+    private static final String GREMLIN_ARCHMAGE = SpireAnniversary6Mod.makeID("GREMLIN_ARCHMAGE");
     public static final String ID = "VolatileGrounds";
     
     public VolatileGrounds() {
@@ -54,6 +55,12 @@ public class VolatileGrounds extends AbstractZone implements EncounterModifyingZ
                         new AbstractMonster[]{
                                 new HeatBlister(0.0F, 0.0F),
                                 new Eruptor(-320.0F, 0.0F)
+                        })),
+                new ZoneEncounter(GREMLIN_ARCHMAGE, 3, () -> new MonsterGroup(
+                        new AbstractMonster[]{
+                                new Exploder(-430.0F, 0.0F),
+                                new Exploder(-200.0F, 0.0F),
+                                new GremlinArchmage(0.0F, 0.0F)
                         }))
         );
     }
