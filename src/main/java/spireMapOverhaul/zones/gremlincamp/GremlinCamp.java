@@ -17,6 +17,7 @@ import com.megacrit.cardcrawl.powers.BufferPower;
 import com.megacrit.cardcrawl.powers.RitualPower;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.rooms.EventRoom;
+import com.megacrit.cardcrawl.rooms.RestRoom;
 import com.megacrit.cardcrawl.rooms.ShopRoom;
 import com.megacrit.cardcrawl.ui.campfire.AbstractCampfireOption;
 import com.megacrit.cardcrawl.ui.campfire.RestOption;
@@ -148,6 +149,7 @@ public class GremlinCamp extends AbstractZone implements EncounterModifyingZone,
                 break;
             }
         }
+        buttons.add(new ScavengeOption());
     }
 
     @Override
@@ -167,8 +169,8 @@ public class GremlinCamp extends AbstractZone implements EncounterModifyingZone,
     public void replaceRooms(Random rng) {
         //Replace all shops with event rooms
         for (MapRoomNode node : this.nodes) {
-            if (node.room instanceof ShopRoom) {
-                node.setRoom(new EventRoom());
+            if (true) {
+                node.setRoom(new RestRoom());
             }
         }
     }
