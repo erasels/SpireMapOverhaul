@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.zones.manasurge.ManaSurgeZone;
 import spireMapOverhaul.zones.manasurge.ui.campfire.EnchantOption;
+import spireMapOverhaul.zones.manasurge.vfx.EnchantBlightEffect;
 
 import java.util.ArrayList;
 
@@ -72,7 +73,12 @@ public class ManaCycloneEvent extends PhasedEvent {
                                     for (AbstractCard c : cards) {
                                         ManaSurgeZone.applyPermanentPositiveModifier(c);
                                         CardCrawlGame.sound.play(ManaSurgeZone.ENCHANTBLIGHT_KEY);
-                                        AbstractDungeon.effectList.add(new ShowCardBrieflyEffect(c.makeStatEquivalentCopy(), Settings.WIDTH / 2.0F - horizontalOffset, Settings.HEIGHT / 2.0F));
+                                        AbstractDungeon.topLevelEffectsQueue.add(new EnchantBlightEffect(
+                                                Settings.WIDTH / 2.0F - horizontalOffset,
+                                                Settings.HEIGHT / 2.0F));
+                                        AbstractDungeon.effectList.add(new ShowCardBrieflyEffect(c.makeStatEquivalentCopy(),
+                                                Settings.WIDTH / 2.0F - horizontalOffset,
+                                                Settings.HEIGHT / 2.0F));
                                     }
                                     CardGroup filteredCards = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
                                     AbstractDungeon.player.masterDeck.group.stream()
@@ -85,7 +91,12 @@ public class ManaCycloneEvent extends PhasedEvent {
                                     AbstractCard randomCard = filteredCards.getRandomCard(AbstractDungeon.miscRng);
                                     if (randomCard != null) {
                                         ManaSurgeZone.applyPermanentNegativeModifier(randomCard);
-                                        AbstractDungeon.effectList.add(new ShowCardBrieflyEffect(randomCard.makeStatEquivalentCopy(), Settings.WIDTH / 2.0F + horizontalOffset, Settings.HEIGHT / 2.0F));
+                                        AbstractDungeon.topLevelEffectsQueue.add(new EnchantBlightEffect(
+                                                Settings.WIDTH / 2.0F + horizontalOffset,
+                                                Settings.HEIGHT / 2.0F));
+                                        AbstractDungeon.effectList.add(new ShowCardBrieflyEffect(randomCard.makeStatEquivalentCopy(),
+                                                Settings.WIDTH / 2.0F + horizontalOffset,
+                                                Settings.HEIGHT / 2.0F));
                                         filteredCards.group.remove(randomCard);
                                     }
                                 }
@@ -106,12 +117,18 @@ public class ManaCycloneEvent extends PhasedEvent {
 
                     if (randomCard1 != null) {
                         ManaSurgeZone.applyPermanentNegativeModifier(randomCard1);
+                        AbstractDungeon.topLevelEffectsQueue.add(new EnchantBlightEffect(
+                                Settings.WIDTH / 2.0F - horizontalOffset,
+                                Settings.HEIGHT / 2.0F));
                         AbstractDungeon.effectList.add(new ShowCardBrieflyEffect(randomCard1.makeStatEquivalentCopy(),
                                 Settings.WIDTH / 2.0F - horizontalOffset,
                                 Settings.HEIGHT / 2.0F));
                     }
                     if (randomCard2 != null) {
                         ManaSurgeZone.applyPermanentNegativeModifier(randomCard2);
+                        AbstractDungeon.topLevelEffectsQueue.add(new EnchantBlightEffect(
+                                Settings.WIDTH / 2.0F + horizontalOffset,
+                                Settings.HEIGHT / 2.0F));
                         AbstractDungeon.effectList.add(new ShowCardBrieflyEffect(randomCard2.makeStatEquivalentCopy(),
                                 Settings.WIDTH / 2.0F + horizontalOffset,
                                 Settings.HEIGHT / 2.0F));
