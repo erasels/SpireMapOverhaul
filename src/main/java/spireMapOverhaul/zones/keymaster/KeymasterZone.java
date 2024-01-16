@@ -27,7 +27,7 @@ public class KeymasterZone extends AbstractZone implements CombatModifyingZone, 
     public KeymasterZone() {
         super(ID, Icons.MONSTER, Icons.SHOP);
         this.width = 3;
-        this.height = 4;
+        this.height = 3;
     }
 
     @Override
