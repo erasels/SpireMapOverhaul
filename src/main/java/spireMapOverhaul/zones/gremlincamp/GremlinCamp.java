@@ -9,23 +9,18 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.shrines.GremlinMatchGame;
 import com.megacrit.cardcrawl.events.shrines.GremlinWheelGame;
 import com.megacrit.cardcrawl.helpers.MonsterHelper;
-import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.monsters.exordium.*;
-import com.megacrit.cardcrawl.powers.AngerPower;
 import com.megacrit.cardcrawl.powers.BufferPower;
-import com.megacrit.cardcrawl.powers.RegenerateMonsterPower;
 import com.megacrit.cardcrawl.powers.RitualPower;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.rooms.EventRoom;
 import com.megacrit.cardcrawl.rooms.ShopRoom;
 import com.megacrit.cardcrawl.ui.campfire.AbstractCampfireOption;
 import com.megacrit.cardcrawl.ui.campfire.RestOption;
-import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
-import spireMapOverhaul.util.ActUtil;
 import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.zoneInterfaces.CampfireModifyingZone;
 import spireMapOverhaul.zoneInterfaces.CombatModifyingZone;
@@ -40,7 +35,6 @@ import java.util.List;
 import java.util.Set;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
-import static spireMapOverhaul.SpireAnniversary6Mod.zoneEvents;
 
 public class GremlinCamp extends AbstractZone implements EncounterModifyingZone, CombatModifyingZone, CampfireModifyingZone, ModifiedEventRateZone {
     public static final String ID = "GremlinCamp";
@@ -55,7 +49,7 @@ public class GremlinCamp extends AbstractZone implements EncounterModifyingZone,
     }
 
     public static final String GET_DOWN_MR_PRESIDENT = makeID("GremlinPrez");
-    public static final String BRAWl_BROS = makeID("GremlinBrawlers");
+    public static final String BRAWL_BROS = makeID("GremlinBrawlers");
     public static final String GREMLIN_GANG = makeID("GremlinGang");
 
     @Override
@@ -70,7 +64,7 @@ public class GremlinCamp extends AbstractZone implements EncounterModifyingZone,
                         new GremlinBodyguard(200f, -10),
                 }), encounter_names[1])
         );
-        encs.add(new ZoneEncounter(BRAWl_BROS, 1, () ->
+        encs.add(new ZoneEncounter(BRAWL_BROS, 1, () ->
                 new MonsterGroup(new AbstractMonster[]{
                         new GremlinFat(-100f, 10),
                         new GremlinWarrior(100f, -10),
@@ -127,7 +121,7 @@ public class GremlinCamp extends AbstractZone implements EncounterModifyingZone,
                     break;
                 }
             }
-        } else if (BRAWl_BROS.equals(AbstractDungeon.lastCombatMetricKey)) {
+        } else if (BRAWL_BROS.equals(AbstractDungeon.lastCombatMetricKey)) {
             // Brawlers have 50% more HP and Fat has Nob's Anger
             for (AbstractMonster m : AbstractDungeon.getCurrRoom().monsters.monsters) {
                 Wiz.atb(new IncreaseMaxHpAction(m, 0.5f, false));
