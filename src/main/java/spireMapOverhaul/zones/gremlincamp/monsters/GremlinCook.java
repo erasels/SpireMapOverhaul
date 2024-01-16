@@ -84,9 +84,7 @@ public class GremlinCook extends AbstractSMOMonster {
                 break;
             case 3:
                 DamageInfo info = new DamageInfo(this, moves.get(nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
-                if (info.base > -1) {
-                    info.applyPowers(this, AbstractDungeon.player);
-                }
+                info.applyPowers(this, AbstractDungeon.player);
                 useSlowAttackAnimation();
                 addToBot(new DamageAction(AbstractDungeon.player, info, AbstractGameAction.AttackEffect.BLUNT_HEAVY));
                 Wiz.atb(new MakeTempCardInDiscardAction(new Dazed(), calcAscensionSpecial(2)));
