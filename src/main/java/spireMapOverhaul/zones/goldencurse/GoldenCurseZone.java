@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.rewards.RewardItem;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.patches.CustomRewardTypes;
 import spireMapOverhaul.rewards.SingleCardReward;
+import spireMapOverhaul.util.ActUtil;
 import spireMapOverhaul.zoneInterfaces.RewardModifyingZone;
 
 import java.util.ArrayList;
@@ -100,6 +101,10 @@ public class GoldenCurseZone extends AbstractZone implements RewardModifyingZone
         return false;
     }
 
+    @Override
+    public boolean canSpawn() {
+        return ActUtil.getRealActNum() == 2;
+    }
 
     @Override
     public Color getColor() { //I considered changing this to a variable, but a method lets you do funky stuff like a rainbow zone that changes colors or something.
