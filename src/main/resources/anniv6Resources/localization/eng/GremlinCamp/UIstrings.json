@@ -11,5 +11,11 @@
       "Gremlin President and Guards",
       "Gremlin Cook and the Boys"
     ]
+  },
+  "${ModID}:ScavengeOption": {
+    "TEXT": [
+      "Scavenge",
+      "Gain %s-%s gold."
+    ]
   }
 }
