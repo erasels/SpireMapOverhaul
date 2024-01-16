@@ -1,6 +1,7 @@
 package spireMapOverhaul.zones.ambushed;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.blue.*;
 import com.megacrit.cardcrawl.cards.colorless.*;
@@ -247,6 +248,12 @@ public class AmbushedZone extends AbstractZone implements CombatModifyingZone, E
 
             // Add Snecko Oil with its appropriate price
             potions.add(new StorePotion(PotionHelper.getPotion(SneckoOil.POTION_ID), 2, screen));
+
+            for (StorePotion potion: potions) {
+                if (!Settings.isDailyRun) {
+                    potion.price = MathUtils.round(potion.price * AbstractDungeon.merchantRng.random(0.95F, 1.05F));
+                }
+            }
         }
     }
 

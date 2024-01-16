@@ -2,7 +2,7 @@
   "${ModID}:Keymaster": {
     "TEXT": [
       "Keymaster",
-      "Be rewarded for the sacrifices you've made to acquire the Keys. NL NL At the start of combat, you gain 1 #rStrength and #gDexterity while all enemies lose 2 #rStrength. All card rewards come #yUpgraded."
+      "Be rewarded for the sacrifices you've made to acquire the Keys. NL NL At the start of combat, gain 1 #rStrength, 1 #gDexterity, and 1 #bFocus. All card rewards are #yUpgraded."
     ]
   }
 }
