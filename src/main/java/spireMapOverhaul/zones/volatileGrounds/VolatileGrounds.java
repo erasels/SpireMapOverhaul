@@ -8,10 +8,7 @@ import com.megacrit.cardcrawl.monsters.exordium.LouseNormal;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
-import spireMapOverhaul.zones.volatileGrounds.monsters.Eruptor;
-import spireMapOverhaul.zones.volatileGrounds.monsters.HeatBlister;
-import spireMapOverhaul.zones.volatileGrounds.monsters.SunStoneShard;
-import spireMapOverhaul.zones.volatileGrounds.monsters.UnstableSunstone;
+import spireMapOverhaul.zones.volatileGrounds.monsters.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -20,9 +17,11 @@ public class VolatileGrounds extends AbstractZone implements EncounterModifyingZ
     private static final String SUNSTONE_ELITE = SpireAnniversary6Mod.makeID("SUNSTONE_ELITE");
     private static final String EXPLOSIVE_SHAPES = SpireAnniversary6Mod.makeID("EXPLOSIVE_SHAPES");
     private static final String HEAT_BLISTER = SpireAnniversary6Mod.makeID("HEAT_BLISTER");
+    private static final String GREMLIN_ARCHMAGE = SpireAnniversary6Mod.makeID("GREMLIN_ARCHMAGE");
+    private static final String ID = "VolatileGrounds";
     
     public VolatileGrounds() {
-        super("VolatileGrounds", Icons.MONSTER);
+        super(ID, Icons.MONSTER);
         this.width = 1;
         this.height = 4;
     }
@@ -48,14 +47,14 @@ public class VolatileGrounds extends AbstractZone implements EncounterModifyingZ
                 new ZoneEncounter(EXPLOSIVE_SHAPES, 3, () -> new MonsterGroup(
                         new AbstractMonster[]{
                                 new Eruptor(0.0F, 0.0F),
-                                new Eruptor(-320.0F, 0.0F),
-                                new Exploder(-160.0F, 0.0F),
-                                new Exploder(160.0F, 0.0F)
+                                new Eruptor(-400.0F, 0.0F),
+                                new Exploder(-200.0F, 0.0F),
+                                new Exploder(200.0F, 0.0F)
                         })),
                 new ZoneEncounter(HEAT_BLISTER, 3, () -> new MonsterGroup(
                         new AbstractMonster[]{
                                 new HeatBlister(0.0F, 0.0F),
-                                new Eruptor(-320.0F, 0.0F),
+                                new Eruptor(-320.0F, 0.0F)
                         }))
         );
     }
