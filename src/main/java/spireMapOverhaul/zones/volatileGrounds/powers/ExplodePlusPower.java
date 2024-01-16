@@ -41,7 +41,7 @@ public class ExplodePlusPower extends AbstractSMOPower {
                 .replace("{1}", this.amount + "");
     }
     
-    
+    @Override
     public void duringTurn() {
         this.flash();
         amount--;
