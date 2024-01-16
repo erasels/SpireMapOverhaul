@@ -57,7 +57,7 @@ public class GremlinCook extends AbstractSMOMonster {
     }
 
     @Override
-    public void takeTurn() { //TODO: Add sounds
+    public void takeTurn() {
         switch (nextMove) {
             case 0:
                 useShakeAnimation(Settings.ACTION_DUR_MED);
