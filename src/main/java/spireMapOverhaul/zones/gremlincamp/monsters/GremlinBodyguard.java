@@ -68,11 +68,6 @@ public class GremlinBodyguard extends GremlinTsundere {
                 Wiz.atb(new ApplyPowerAction(this, this, new StrengthPower(this, 5)));
                 Wiz.atb(new SetMoveAction(this, MOVES[1], BASH, Intent.ATTACK_BUFF, damage.get(0).base));
                 break;
-            case ESCAPE:
-                AbstractDungeon.effectList.add(new SpeechBubble(hb.cX + dialogX, hb.cY + dialogY, 2.5f, DIALOG[1], false));
-                Wiz.atb(new EscapeAction(this));
-                Wiz.atb(new SetMoveAction(this, ESCAPE, Intent.ESCAPE));
-                break;
             default:
                 break;
         }
