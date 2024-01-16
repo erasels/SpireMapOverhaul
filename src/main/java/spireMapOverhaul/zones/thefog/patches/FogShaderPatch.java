@@ -25,8 +25,7 @@ import spireMapOverhaul.zones.thefog.util.MouseInfo;
 import java.util.LinkedList;
 
 import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.rs;
-import static spireMapOverhaul.SpireAnniversary6Mod.makeShaderPath;
-import static spireMapOverhaul.SpireAnniversary6Mod.time;
+import static spireMapOverhaul.SpireAnniversary6Mod.*;
 import static spireMapOverhaul.util.Wiz.getCurZone;
 
 @SuppressWarnings("unused")
@@ -46,14 +45,14 @@ public class FogShaderPatch {
     public static class RenderFogInCombat {
         @SpirePrefixPatch
         public static void addShader(AbstractDungeon __instance, SpriteBatch sb) {
-            if (rs == AbstractDungeon.RenderScene.NORMAL && getCurZone() instanceof TheFogZone) {
+            if (rs == AbstractDungeon.RenderScene.NORMAL && getCurZone() instanceof TheFogZone && getShaderConfig()) {
                 StartFbo(sb);
             }
         }
 
         @SpireInsertPatch(rloc=26) // 46 if you want the player's hand to be foggeth
         public static void removeShader(AbstractDungeon __instance, SpriteBatch sb) {
-            if (rs == AbstractDungeon.RenderScene.NORMAL && getCurZone() instanceof TheFogZone) {
+            if (rs == AbstractDungeon.RenderScene.NORMAL && getCurZone() instanceof TheFogZone && getShaderConfig()) {
                 StopFbo(sb);
             }
         }
