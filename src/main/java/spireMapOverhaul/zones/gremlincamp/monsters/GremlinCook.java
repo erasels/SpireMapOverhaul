@@ -123,8 +123,8 @@ public class GremlinCook extends AbstractSMOMonster {
             }
         }
 
-        // Turn 3+ can start poisoning player
-        if(GameActionManager.turn > 2 && !lastMove(POISON)) {
+        // Turn 3+ can start poisoning player if it wasn't done last turn
+        if(!lastMove(POISON)) {
             possibilities.add(POISON);
         }
 
