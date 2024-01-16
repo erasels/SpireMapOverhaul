@@ -1,5 +1,6 @@
 package spireMapOverhaul.zones.candyland.consumables.rare;
 
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import spireMapOverhaul.zones.candyland.actions.ChangeMaxHPAction;
@@ -9,6 +10,7 @@ import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 import static spireMapOverhaul.util.Wiz.atb;
 
 
+@NoPools
 public class Banana extends AbstractConsumable {
     public final static String ID = makeID(Banana.class.getSimpleName());
 

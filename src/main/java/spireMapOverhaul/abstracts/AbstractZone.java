@@ -40,7 +40,7 @@ public abstract class AbstractZone {
     private static final String[] NO_TEXT = new String[] { };
     private static final int NO_ELITES_BOUNDARY_ROW = 4;
     private static final int TREASURE_ROW = 8;
-    private static final int FINAL_CAMPFIRE_ROW = 15;
+    private static final int FINAL_CAMPFIRE_ROW = 14;
 
     private static final HashMap<Icons, String> iconsMap;
     static {
@@ -64,6 +64,7 @@ public abstract class AbstractZone {
 
     protected List<MapRoomNode> nodes = new ArrayList<>();
     protected int x = 0, y = 0, width = 1, height = 1;
+    protected Integer maxWidth = null, maxHeight = null;
 
     //These two should be set during initial generation in generateMapArea
     //They will then be adjusted to their final values in mapGenDone
@@ -113,11 +114,14 @@ public abstract class AbstractZone {
     public int getHeight() {
         return height;
     }
+    public Integer getMaxWidth() {
+        return maxWidth;
+    }
+    public Integer getMaxHeight() {
+        return maxHeight;
+    }
 
     public boolean canSpawn() {
-        System.out.println("ActNum: " + AbstractDungeon.actNum);
-        for (int i = 1; i <= 3; ++i)
-            System.out.println("IsAct" + i + ": " + isAct(i));
         return true;
     }
 
@@ -144,8 +148,12 @@ public abstract class AbstractZone {
         }
         if (icons.length > 0)
             sb.append(" NL ");
-        sb.append(TEXT[1]);
+        sb.append(getDescriptionText());
         tooltipBody = sb.toString();
+    }
+
+    public String getDescriptionText() {
+        return TEXT[1];
     }
 
     public void renderOnMap(SpriteBatch sb, float alpha) {
@@ -290,7 +298,9 @@ public abstract class AbstractZone {
      * Areas may claim more unusual shapes or manually define their path/multiple paths if they wish.
      */
     public boolean generateMapArea(MapPlanner planner) {
-        return generateNormalArea(planner, width, height);
+        int calculatedWidth = this.maxWidth == null || this.width == this.maxWidth ? this.width : AbstractDungeon.mapRng.random(this.width, this.maxWidth);
+        int calculatedHeight = this.maxHeight == null || this.height == this.maxHeight ? this.height : AbstractDungeon.mapRng.random(this.height, this.maxHeight);
+        return generateNormalArea(planner, calculatedWidth, calculatedHeight);
     }
 
     public final boolean generateNormalArea(MapPlanner planner, int width, int height) {

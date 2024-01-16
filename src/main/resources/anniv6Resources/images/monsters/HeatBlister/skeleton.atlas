@@ -1,0 +1,76 @@
+
+skeleton.png
+size: 256,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+reactive_sludge8
+  rotate: false
+  xy: 1, 208
+  size: 104, 147
+  orig: 104, 147
+  offset: 0, 0
+  index: -1
+reactive_sludge10
+  rotate: false
+  xy: 1, 357
+  size: 250, 54
+  orig: 250, 54
+  offset: 0, 0
+  index: -1
+reactive_sludge9
+  rotate: false
+  xy: 107, 208
+  size: 103, 108
+  orig: 103, 108
+  offset: 0, 0
+  index: -1
+reactive_sludge7
+  rotate: false
+  xy: 1, 1
+  size: 247, 205
+  orig: 247, 205
+  offset: 0, 0
+  index: -1
+reactive_sludge6
+  rotate: false
+  xy: 1, 413
+  size: 67, 67
+  orig: 67, 67
+  offset: 0, 0
+  index: -1
+reactive_sludge5
+  rotate: false
+  xy: 200, 318
+  size: 29, 24
+  orig: 29, 24
+  offset: 0, 0
+  index: -1
+reactive_sludge4
+  rotate: false
+  xy: 212, 208
+  size: 29, 21
+  orig: 29, 21
+  offset: 0, 0
+  index: -1
+reactive_sludge3
+  rotate: false
+  xy: 212, 231
+  size: 26, 21
+  orig: 26, 21
+  offset: 0, 0
+  index: -1
+reactive_sludge1
+  rotate: false
+  xy: 107, 318
+  size: 49, 31
+  orig: 49, 31
+  offset: 0, 0
+  index: -1
+reactive_sludge0
+  rotate: false
+  xy: 158, 318
+  size: 40, 24
+  orig: 40, 24
+  offset: 0, 0
+  index: -1

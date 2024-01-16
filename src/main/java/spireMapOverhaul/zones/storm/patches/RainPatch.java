@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.scenes.AbstractScene;
 import javassist.*;
 import org.clapper.util.classutil.*;
+import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.zones.storm.StormUtil;
 
 import java.io.File;
@@ -90,7 +91,7 @@ public class RainPatch {
             return time % 25f; //weird things happen as the timer gets higher for the rain
         }
         public static boolean inStormZone() {
-            return StormUtil.isInStormZone();
+            return StormUtil.isInStormZone() && getShaderConfig();
         }
 
         public static void initShader(AbstractScene scene) {

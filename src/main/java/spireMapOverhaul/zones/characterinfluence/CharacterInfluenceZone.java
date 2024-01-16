@@ -30,6 +30,7 @@ public class CharacterInfluenceZone extends AbstractZone implements RewardModify
     public CharacterInfluenceZone() {
         super(ID, Icons.EVENT, Icons.SHOP);
         this.width = 2;
+        this.maxWidth = 3;
         this.height = 3;
     }
 
@@ -100,16 +101,17 @@ public class CharacterInfluenceZone extends AbstractZone implements RewardModify
         AbstractCard cardToReturn;
         switch (rarity) {
             case UNCOMMON:
-                cardToReturn = type == null ? null : uncommonPool.getRandomCard(type, true);
-                return (cardToReturn != null) ? cardToReturn : uncommonPool.getRandomCard(true);
+                cardToReturn = type == null ? uncommonPool.getRandomCard(true) : uncommonPool.getRandomCard(type, true);
+                break;
             case RARE:
-                cardToReturn = type == null ? null : rarePool.getRandomCard(type, true);
-                return (cardToReturn != null) ? cardToReturn : rarePool.getRandomCard(true);
+                cardToReturn = type == null ? rarePool.getRandomCard(true) : rarePool.getRandomCard(type, true);
+                break;
             case COMMON:
             default:
-                cardToReturn = type == null ? null : commonPool.getRandomCard(type, true);
-                return (cardToReturn != null) ? cardToReturn : commonPool.getRandomCard(true);
+                cardToReturn = type == null ? commonPool.getRandomCard(true) : commonPool.getRandomCard(type, true);
+                break;
         }
+        return cardToReturn.makeCopy();
     }
 
     public void replaceCards(ArrayList<AbstractCard> cardList, boolean keepType) {

@@ -1,5 +1,6 @@
 package spireMapOverhaul.zones.candyland.consumables.common;
 
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import spireMapOverhaul.zones.candyland.consumables.AbstractConsumable;
@@ -7,6 +8,7 @@ import spireMapOverhaul.zones.candyland.consumables.AbstractConsumable;
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 
 
+@NoPools
 public class Cookie extends AbstractConsumable {
     public final static String ID = makeID(Cookie.class.getSimpleName());
 

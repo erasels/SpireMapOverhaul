@@ -5,6 +5,7 @@
     "DESCRIPTION": "Gain #yBlock at the end of you turn. Reduced by receiving unblocked attack damage."
   },
   {
+    "ID": "Abysstouched",
     "PROPER_NAME": "Abysstouched",
     "NAMES": ["abysstouched"],
     "DESCRIPTION": "Increases attack damage taken and deals damage every turn."

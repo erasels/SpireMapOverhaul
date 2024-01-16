@@ -1,0 +1,22 @@
+{
+  "${ModID}:HeavenlyClouds": {
+    "TEXT": [
+      "Heavenly Clouds",
+      "The clouds are closer here. The monsters here seemed to have gained the ability of #yFlight. But if you manage to overcome them, perhaps you can gain some of their speed for your cards."
+    ]
+  },
+  "${ModID}:FlightMod": {
+    "TEXT": [
+      " NL The first time this card is drawn each combat, draw 1 card.",
+      "Flighty "
+    ]
+  },
+  "${ModID}:ByrdTalk": {
+    "TEXT": [
+      "The clouds watch over us!",
+      "The skies embrace us!",
+      "Tremble below us, fool!",
+      "Grovel in the dirt, mortal!"
+    ]
+  }
+}

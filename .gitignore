@@ -29,6 +29,14 @@ hs_err_pid*
 # vim
 *.swp
 
+# Art Projects
+*.afphoto
+*.blend
+*.blend1
+*.xcf
+*.pdn
+
+
 # =========================
 # Operating System Files
 # =========================
@@ -82,6 +90,12 @@ $RECYCLE.BIN/
 
 # Spriter files
 *.autosave.scml
+
+# Alpha fixer
+fixalpha.exe
+
+# Krita files
+*.kra
 
 pom.xml
 example-pom.xml

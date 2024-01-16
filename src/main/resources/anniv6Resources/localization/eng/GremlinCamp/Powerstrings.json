@@ -1,0 +1,7 @@
+{
+  "${ModID}:PlayerPoisonPower": {
+    "DESCRIPTIONS": [
+      "At the end of your turn, take #b%s damage, then reduce #yPoison by #b1."
+    ]
+  }
+}

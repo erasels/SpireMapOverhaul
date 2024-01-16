@@ -1,5 +1,6 @@
 package spireMapOverhaul.zones.candyland.consumables.uncommon;
 
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -12,6 +13,7 @@ import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 import static spireMapOverhaul.util.Wiz.atb;
 
 
+@NoPools
 public class PoisonedApple extends AbstractConsumable {
     public final static String ID = makeID(PoisonedApple.class.getSimpleName());
 

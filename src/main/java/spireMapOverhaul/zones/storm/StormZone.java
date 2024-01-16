@@ -1,10 +1,17 @@
 package spireMapOverhaul.zones.storm;
 
 import basemod.helpers.CardModifierManager;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.glutils.FrameBuffer;
+import com.badlogic.gdx.graphics.glutils.ShaderProgram;
+import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.blue.Storm;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -16,7 +23,6 @@ import spireMapOverhaul.zoneInterfaces.OnTravelZone;
 import spireMapOverhaul.zoneInterfaces.RewardModifyingZone;
 import spireMapOverhaul.zones.storm.cardmods.DampModifier;
 import spireMapOverhaul.zones.storm.cardmods.ElectricModifier;
-import spireMapOverhaul.zones.storm.patches.AddLightningPatch;
 import spireMapOverhaul.zones.storm.powers.ConduitPower;
 
 import java.util.ArrayList;
@@ -33,10 +39,16 @@ public class StormZone extends AbstractZone implements CombatModifyingZone, Rewa
     public static final String RAIN_KEY = makeID("Storm_Rain");
     public static final String RAIN_MP3 = makePath("audio/storm/rain.mp3");
 
+    public static ShaderProgram mapShader;
+    static FrameBuffer fbo = new FrameBuffer(Pixmap.Format.RGBA8888, Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), false, false);
+
     public StormZone() {
         super(ID, Icons.MONSTER);
-        this.width = 3;
-        this.height = 4;
+        this.width = 2;
+        this.maxWidth = 5;
+        this.height = 3;
+        this.maxHeight = 4;
+
     }
 
     @Override
@@ -50,6 +62,7 @@ public class StormZone extends AbstractZone implements CombatModifyingZone, Rewa
     }
 
     public void onEnterRoom() {
+        conduitTarget = null;
         if(StormUtil.rainSoundId == 0L) {
             StormUtil.rainSoundId = CardCrawlGame.sound.playAndLoop(RAIN_KEY);
         }
@@ -57,6 +70,7 @@ public class StormZone extends AbstractZone implements CombatModifyingZone, Rewa
     public void onExit() {
         CardCrawlGame.sound.stop(RAIN_KEY, StormUtil.rainSoundId);
         StormUtil.rainSoundId = 0L;
+        conduitTarget = null;
     }
 
     @Override
@@ -98,6 +112,37 @@ public class StormZone extends AbstractZone implements CombatModifyingZone, Rewa
             conduitTarget = m;
             applyToEnemy(m, new ConduitPower(m));
         }
+    }
 
+    @Override
+    public void renderOnMap(SpriteBatch sb, float alpha) {
+        if(getShaderConfig()) {
+            sb.flush();
+            fbo.begin();
+
+            Gdx.gl.glClearColor(0.0F, 0.0F, 0.0F, 0.0F);
+            Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+            super.renderOnMap(sb, alpha);
+            sb.flush();
+            fbo.end();
+
+
+            TextureRegion region = new TextureRegion(fbo.getColorBufferTexture());
+            region.flip(false, true);
+
+            if (mapShader == null) {
+                mapShader = StormUtil.initElectricShader(mapShader);
+            }
+            sb.setShader(mapShader);
+            sb.setColor(Color.WHITE);
+            mapShader.setUniformf("u_time", time);
+            mapShader.setUniformf("u_bright_time", 0.5f);
+
+            sb.draw(region, 0, 0);
+            sb.setShader(null);
+            sb.flush();
+        } else {
+            super.renderOnMap(sb, alpha);
+        }
     }
 }
