@@ -44,6 +44,7 @@ public class GremlinCook extends AbstractSMOMonster {
 
     public GremlinCook(float x, float y) {
         super(NAME, ID, 50, 0, 0, 120f, 210f, SpireAnniversary6Mod.makeMonsterPath("GremlinCamp/GremlinCook.png"), x, y);
+        this.type = EnemyType.ELITE;
         setHp(calcAscensionTankiness(56), calcAscensionTankiness(62));
         addMove(ALL_BUFF, Intent.BUFF);
         addMove(ALL_BULK, Intent.BUFF);
@@ -53,12 +54,6 @@ public class GremlinCook extends AbstractSMOMonster {
         healAmt = calcAscensionSpecial(8);
         strAmt = AbstractDungeon.ascensionLevel >= 18? 3: 2;
         poisonAmt = calcAscensionSpecial(6);
-    }
-
-    @Override
-    protected void setUpMisc() {
-        super.setUpMisc();
-        this.type = EnemyType.NORMAL;
     }
 
     @Override
