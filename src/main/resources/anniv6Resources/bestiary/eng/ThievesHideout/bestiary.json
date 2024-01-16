@@ -1,0 +1,492 @@
+{
+	"monsters": [
+		{
+			"name": "Bandit Lieutenant",
+			"id": "${ModID}:BanditLieutenant",
+			"ai": [
+				{
+					"min_asc": 0,
+					"desc": "Cycles #wCudgel #wBlow -> #wNoxious #wSmoke -> #wBig #wSwing.",
+					"hp": "(74 - 76 HP)",
+					"notes": "Dazed status cards go into the draw pile.",
+					"moves": [
+						{
+							"name": "Cudgel Blow",
+							"effects": [
+								{
+									"name": "10",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Dazed 1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Noxious Smoke",
+							"effects": [
+								{
+									"name": "Vulnerable 1",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Draw Reduction 1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Big Swing",
+							"effects": [
+								{
+									"name": "13",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 3,
+					"desc": "Cycles #wCudgel #wBlow -> #wNoxious #wSmoke -> #wBig #wSwing.",
+					"hp": "(74 - 76 HP)",
+					"notes": "Dazed status cards go into the draw pile.",
+					"moves": [
+						{
+							"name": "Cudgel Blow",
+							"effects": [
+								{
+									"name": "12",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Dazed 1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Noxious Smoke",
+							"effects": [
+								{
+									"name": "Vulnerable 1",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Draw Reduction 1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Big Swing",
+							"effects": [
+								{
+									"name": "15",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 8,
+					"desc": "Cycles #wCudgel #wBlow -> #wNoxious #wSmoke -> #wBig #wSwing.",
+					"hp": "(77 - 79 HP)",
+					"notes": "Dazed status cards go into the draw pile.",
+					"moves": [
+						{
+							"name": "Cudgel Blow",
+							"effects": [
+								{
+									"name": "12",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Dazed 1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Noxious Smoke",
+							"effects": [
+								{
+									"name": "Vulnerable 1",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Draw Reduction 1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Big Swing",
+							"effects": [
+								{
+									"name": "15",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 18,
+					"desc": "Cycles #wCudgel #wBlow -> #wNoxious #wSmoke -> #wBig #wSwing.",
+					"hp": "(77 - 79 HP)",
+					"notes": "Dazed status cards go into the draw pile.",
+					"moves": [
+						{
+							"name": "Cudgel Blow",
+							"effects": [
+								{
+									"name": "12",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Dazed 1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Noxious Smoke",
+							"effects": [
+								{
+									"name": "Vulnerable 2",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Draw Reduction 1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Big Swing",
+							"effects": [
+								{
+									"name": "15",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Thief King",
+			"id": "${ModID}:ThiefKing",
+			"ai": [
+				{
+					"min_asc": 0,
+					"desc": "Uses #wSteal #wVitality, then #wSteal #wExperience twice, then #wThe #wReveal, then repeats #wBlade #wFlurry.",
+					"hp": "(95 HP)",
+					"notes": "#wSteal #wExperience takes the highest-rarity card from the draw pile.",
+					"moves": [
+						{
+							"name": "Steal Vitality",
+							"effects": [
+								{
+									"name": "Strength -1",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Dexterity -1",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Focus -1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Steal Experience",
+							"effects": [
+								{
+									"name": "9",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Steal Card",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "The Reveal",
+							"effects": [
+								{
+									"name": "Cleanse Debuffs",
+									"color": "SPECIAL"
+								},
+								{
+									"name": "Strength 3",
+									"color": "BUFF"
+								},
+								{
+									"name": "Ritual 3",
+									"color": "BUFF"
+								},
+								{
+									"name": "Metallicize 3",
+									"color": "BUFF"
+								},
+								{
+									"name": "Barricade",
+									"color": "BUFF"
+								},
+								{
+									"name": "Block 20",
+									"color": "BLOCK"
+								}
+							]
+						},
+						{
+							"name": "Blade Flurry",
+							"effects": [
+								{
+									"name": "0x5",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 3,
+					"desc": "Uses #wSteal #wVitality, then #wSteal #wExperience twice, then #wThe #wReveal, then repeats #wBlade #wFlurry.",
+					"hp": "(95 HP)",
+					"notes": "#wSteal #wExperience takes the highest-rarity card from the draw pile.",
+					"moves": [
+						{
+							"name": "Steal Vitality",
+							"effects": [
+								{
+									"name": "Strength -1",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Dexterity -1",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Focus -1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Steal Experience",
+							"effects": [
+								{
+									"name": "10",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Steal Card",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "The Reveal",
+							"effects": [
+								{
+									"name": "Cleanse Debuffs",
+									"color": "SPECIAL"
+								},
+								{
+									"name": "Strength 3",
+									"color": "BUFF"
+								},
+								{
+									"name": "Ritual 3",
+									"color": "BUFF"
+								},
+								{
+									"name": "Metallicize 3",
+									"color": "BUFF"
+								},
+								{
+									"name": "Barricade",
+									"color": "BUFF"
+								},
+								{
+									"name": "Block 20",
+									"color": "BLOCK"
+								}
+							]
+						},
+						{
+							"name": "Blade Flurry",
+							"effects": [
+								{
+									"name": "1x5",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 8,
+					"desc": "Uses #wSteal #wVitality, then #wSteal #wExperience twice, then #wThe #wReveal, then repeats #wBlade #wFlurry.",
+					"hp": "(100 HP)",
+					"notes": "#wSteal #wExperience takes the highest-rarity card from the draw pile.",
+					"moves": [
+						{
+							"name": "Steal Vitality",
+							"effects": [
+								{
+									"name": "Strength -1",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Dexterity -1",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Focus -1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Steal Experience",
+							"effects": [
+								{
+									"name": "10",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Steal Card",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "The Reveal",
+							"effects": [
+								{
+									"name": "Cleanse Debuffs",
+									"color": "SPECIAL"
+								},
+								{
+									"name": "Strength 3",
+									"color": "BUFF"
+								},
+								{
+									"name": "Ritual 3",
+									"color": "BUFF"
+								},
+								{
+									"name": "Metallicize 3",
+									"color": "BUFF"
+								},
+								{
+									"name": "Barricade",
+									"color": "BUFF"
+								},
+								{
+									"name": "Block 30",
+									"color": "BLOCK"
+								}
+							]
+						},
+						{
+							"name": "Blade Flurry",
+							"effects": [
+								{
+									"name": "1x5",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 18,
+					"desc": "Uses #wSteal #wVitality, then #wSteal #wExperience twice, then #wThe #wReveal, then repeats #wBlade #wFlurry.",
+					"hp": "(100 HP)",
+					"notes": "#wSteal #wExperience takes the highest-rarity card from the draw pile.",
+					"moves": [
+						{
+							"name": "Steal Vitality",
+							"effects": [
+								{
+									"name": "Strength -1",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Dexterity -1",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Focus -1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Steal Experience",
+							"effects": [
+								{
+									"name": "10",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Steal Card",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "The Reveal",
+							"effects": [
+								{
+									"name": "Cleanse Debuffs",
+									"color": "SPECIAL"
+								},
+								{
+									"name": "Strength 4",
+									"color": "BUFF"
+								},
+								{
+									"name": "Ritual 4",
+									"color": "BUFF"
+								},
+								{
+									"name": "Metallicize 4",
+									"color": "BUFF"
+								},
+								{
+									"name": "Barricade",
+									"color": "BUFF"
+								},
+								{
+									"name": "Block 30",
+									"color": "BLOCK"
+								}
+							]
+						},
+						{
+							"name": "Blade Flurry",
+							"effects": [
+								{
+									"name": "1x5",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}

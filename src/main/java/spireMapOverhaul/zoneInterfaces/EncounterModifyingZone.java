@@ -94,9 +94,10 @@ public interface EncounterModifyingZone {
      * Lets you change the encounter however you want.
      * You should not need to use this unless you're doing something unusual.
      * @param monsterGroup The encounter.
+     * @param encounterID The id of the encounter
      * @return The changed encounter.
      */
-    default MonsterGroup changeEncounter(MonsterGroup monsterGroup) { return monsterGroup; }
+    default MonsterGroup changeEncounter(MonsterGroup monsterGroup, String encounterID) { return monsterGroup; }
 
     /**
      * Registers the encounters in the zone with BaseMod.

@@ -1,0 +1,17 @@
+{
+  "${ModID}:StandingStones": {
+    "NAME": "Standing Stones",
+    "DESCRIPTIONS": [
+      "An #podd #pformation #pof #pstones appears from within the fog. Whilst standing in the center of the circle they form, you can see the #bnight #bsky above - the ~real~ night sky, from before the #rSpireblight. NL NL Though you don't understand this place in the slightest, you feel #gsafe here. Why not stay for a while to recuperate?",
+      "You take the opportunity to get some #gwell-earned #grest. NL Settling down on the rough ground, you look up at the #pstarry #psky as you drift off. NL NL When you awake, the sky is #bobscured #bby #bthe #bfog. NL Time to get going.",
+      "Looking up at the sky, you can pick out familiar constellations, as well as #b~strange~ #bnew #bones. NL You wonder what #psecrets this place holds. NL NL Eventually, the stars begin to #rdim. NL Perhaps you've learned enough.",
+      "These stones hold #ppower, you're sure of it. NL You try to loosen a section of rock from one of the stones and eventually get it free - at the cost of a #rfew #rbruises. NL NL You pick up the fragment of stone and move on, its #baura a comfort on your journey through this place."
+    ],
+    "OPTIONS": [
+      "[Sleep] #gHeal #g", " #gHP.",
+      "[Stargaze] #gAdd #g1 #gcard #gof #gany #gcolor #gto #gyour #gdeck.",
+      "[Smash] #gObtain #ga #gspecial #gRelic. #rLose #r", " #rHP.",
+      "[Leave]"
+    ]
+  }
+}

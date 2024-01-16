@@ -36,9 +36,11 @@ public class InvasionZone extends AbstractZone implements EncounterModifyingZone
     private static final int ELITE_EXTRA_GOLD = 100;
 
     public InvasionZone() {
-        super(ID, Icons.MONSTER, Icons.ELITE, Icons.SHOP);
+        super(ID, Icons.MONSTER, Icons.SHOP);
         this.width = 3;
+        this.maxHeight = 4;
         this.height = 4;
+        this.maxHeight = 5;
     }
 
     @Override
@@ -68,7 +70,6 @@ public class InvasionZone extends AbstractZone implements EncounterModifyingZone
     public void distributeRooms(Random rng, ArrayList<AbstractRoom> roomList) {
         //Guarantee at least one elite
         placeRoomRandomly(rng, roomOrDefault(roomList, (room)->room instanceof MonsterRoomElite, MonsterRoomElite::new));
-
     }
 
     @Override
@@ -83,8 +84,10 @@ public class InvasionZone extends AbstractZone implements EncounterModifyingZone
         for (int i = 0; i < rewards.size(); i++) {
             if (rewards.get(i).type == RewardItem.RewardType.RELIC) {
                 RewardItem rewardItem = new RewardItem();
+                rewardItem.cards = InvasionUtil.getRewardCards(this.getNumberOfCardsInReward());
                 //Note that this reward does not get the normal act-dependent chance of cards being upgraded
-                rewardItem.cards = InvasionUtil.getRewardCards();
+                //The cards are powerful enough already, so we're essentially treating them they're all rares
+                //(Which are never upgraded by the normal act-dependent upgrade logic)
                 for (AbstractRelic r : AbstractDungeon.player.relics) {
                     for (AbstractCard c : rewardItem.cards) {
                         r.onPreviewObtainCard(c);
