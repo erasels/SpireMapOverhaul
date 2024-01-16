@@ -40,6 +40,7 @@ public class GremlinArchmage extends CustomMonster {
     private static final int A2_ATTACK_DAMAGE_1 = 14;
     private static final int BLOCK_AMOUNT = 8;
     private static final int A17_BLOCK_AMOUNT = 12;
+    private static final int A17_STRENGTH_ADD = 3;
     private static final int HP_MIN = 95;
     private static final int HP_MAX = 98;
     private static final int A7_HP_MIN = 110;
@@ -92,6 +93,11 @@ public class GremlinArchmage extends CustomMonster {
         for (AbstractMonster m:AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (!m.id.equals(this.id)) {
                 AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(m, m, new MinionPower(this)));
+                if(AbstractDungeon.ascensionLevel >= 17)
+                {
+                    AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(m, this,
+                            new StrengthPower(m, A17_STRENGTH_ADD)));
+                }
             }
             if (m instanceof Exploder) {
                 m.currentHealth *= 0.75;
@@ -127,6 +133,10 @@ public class GremlinArchmage extends CustomMonster {
                         exploders[i] = exploderToSpawn;
                         exploderToSpawn.currentHealth *= 0.75;
                         AbstractDungeon.actionManager.addToBottom(new SpawnMonsterAction(exploderToSpawn, true));
+                        if(AbstractDungeon.ascensionLevel >= 17) {
+                            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(exploderToSpawn, this,
+                                    new StrengthPower(exploderToSpawn, A17_STRENGTH_ADD)));
+                        }
                         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(exploderToSpawn, this,
                                 new ExplosivePower(exploderToSpawn, 3)));
                         ++spawns;
