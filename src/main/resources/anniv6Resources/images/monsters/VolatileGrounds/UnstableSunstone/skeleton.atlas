@@ -1,0 +1,41 @@
+
+skeleton.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+UnstableSunstone3
+  rotate: false
+  xy: 1, 1
+  size: 218, 229
+  orig: 218, 229
+  offset: 0, 0
+  index: -1
+UnstableSunstone0
+  rotate: false
+  xy: 221, 1
+  size: 90, 145
+  orig: 90, 145
+  offset: 0, 0
+  index: -1
+UnstableSunstone1
+  rotate: false
+  xy: 313, 1
+  size: 85, 152
+  orig: 85, 152
+  offset: 0, 0
+  index: -1
+UnstableSunstone2
+  rotate: false
+  xy: 400, 1
+  size: 91, 132
+  orig: 91, 132
+  offset: 0, 0
+  index: -1
+UnstableSunstone4
+  rotate: false
+  xy: 221, 155
+  size: 218, 30
+  orig: 218, 30
+  offset: 0, 0
+  index: -1
