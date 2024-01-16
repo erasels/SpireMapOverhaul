@@ -78,7 +78,7 @@ public class GoldenCurseZone extends AbstractZone implements RewardModifyingZone
 
     @Override
     public void modifyRewards(ArrayList<RewardItem> rewards) {
-        rewards.removeIf(r -> r.type == RewardItem.RewardType.GOLD || r.type == RewardItem.RewardType.STOLEN_GOLD);
+        rewards.removeIf(r -> r.type == RewardItem.RewardType.GOLD);
     }
 
     @Override
