@@ -116,29 +116,33 @@ public class StormZone extends AbstractZone implements CombatModifyingZone, Rewa
 
     @Override
     public void renderOnMap(SpriteBatch sb, float alpha) {
-        sb.flush();
-        fbo.begin();
+        if(getShaderConfig()) {
+            sb.flush();
+            fbo.begin();
 
-        Gdx.gl.glClearColor(0.0F, 0.0F, 0.0F, 0.0F);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        super.renderOnMap(sb, alpha);
-        sb.flush();
-        fbo.end();
+            Gdx.gl.glClearColor(0.0F, 0.0F, 0.0F, 0.0F);
+            Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+            super.renderOnMap(sb, alpha);
+            sb.flush();
+            fbo.end();
 
 
-        TextureRegion region = new TextureRegion(fbo.getColorBufferTexture());
-        region.flip(false, true);
+            TextureRegion region = new TextureRegion(fbo.getColorBufferTexture());
+            region.flip(false, true);
 
-        if(mapShader == null) {
-            mapShader = StormUtil.initElectricShader(mapShader);
+            if (mapShader == null) {
+                mapShader = StormUtil.initElectricShader(mapShader);
+            }
+            sb.setShader(mapShader);
+            sb.setColor(Color.WHITE);
+            mapShader.setUniformf("u_time", time);
+            mapShader.setUniformf("u_bright_time", 0.5f);
+
+            sb.draw(region, 0, 0);
+            sb.setShader(null);
+            sb.flush();
+        } else {
+            super.renderOnMap(sb, alpha);
         }
-        sb.setShader(mapShader);
-        sb.setColor(Color.WHITE);
-        mapShader.setUniformf("u_time", time);
-        mapShader.setUniformf("u_bright_time", 0.5f);
-
-        sb.draw(region, 0, 0);
-        sb.setShader(null);
-        sb.flush();
     }
 }

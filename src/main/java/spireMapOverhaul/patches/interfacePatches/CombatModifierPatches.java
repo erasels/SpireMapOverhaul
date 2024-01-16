@@ -32,6 +32,7 @@ public class CombatModifierPatches {
     public static class PreCombat {
         @SpirePostfixPatch
         public static void patch() {
+            hideButton = true;
             Wiz.forCurZone(CombatModifyingZone.class, z -> {
                 String txt = z.getCombatText();
                 if(txt != null) {
@@ -39,8 +40,6 @@ public class CombatModifierPatches {
                     if(uiStrings == null)
                         uiStrings = CardCrawlGame.languagePack.getUIString(SpireAnniversary6Mod.makeID("CombatExplainButton"));
                     combatBtn = combatBtn.setHoverTip(uiStrings.TEXT[0], txt);
-                } else {
-                    hideButton = true;
                 }
                 z.atPreBattle();
             });
