@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractSMOCard;
+import spireMapOverhaul.zones.gremlinTown.GremlinTown;
 
 import java.util.ArrayList;
 
@@ -23,7 +24,7 @@ public class AngryStrike extends AbstractSMOCard {
     private final static int COST = 0;
 
     public AngryStrike() {
-        super(ID, COST, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY, CardColor.COLORLESS);
+        super(ID, GremlinTown.ID, COST, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
         baseDamage = DAMAGE;
         tags.add(SpireAnniversary6Mod.Enums.GREMLIN);
     }

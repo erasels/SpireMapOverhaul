@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.NextTurnBlockPower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import spireMapOverhaul.abstracts.AbstractSMORelic;
+import spireMapOverhaul.zones.gremlinTown.GremlinTown;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 import static spireMapOverhaul.util.Wiz.*;
@@ -16,7 +17,7 @@ public class LousePlushie extends AbstractSMORelic {
     private boolean usedThisCombat = false;
 
     public LousePlushie() {
-        super(ID, RelicTier.SPECIAL, LandingSound.FLAT);
+        super(ID, GremlinTown.ID, RelicTier.SPECIAL, LandingSound.FLAT);
     }
 
     @Override

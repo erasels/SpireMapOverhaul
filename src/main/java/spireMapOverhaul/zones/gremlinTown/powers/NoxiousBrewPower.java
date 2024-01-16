@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.powers.PoisonPower;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractSMOPower;
 import spireMapOverhaul.util.Wiz;
+import spireMapOverhaul.zones.gremlinTown.GremlinTown;
 
 import static spireMapOverhaul.util.Wiz.adp;
 import static spireMapOverhaul.util.Wiz.applyToEnemy;
@@ -19,7 +20,7 @@ public class NoxiousBrewPower extends AbstractSMOPower {
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     public NoxiousBrewPower(AbstractCreature owner, int amount) {
-        super(POWER_ID, NAME, PowerType.BUFF,false, owner, amount);
+        super(POWER_ID, NAME, GremlinTown.ID, PowerType.BUFF,false, owner, amount);
     }
 
     @Override

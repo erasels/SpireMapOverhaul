@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractSMOCard;
+import spireMapOverhaul.zones.gremlinTown.GremlinTown;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 
@@ -17,7 +18,7 @@ public class Assassinate extends AbstractSMOCard {
     private final static int UPG_DAMAGE = 6;
 
     public Assassinate() {
-        super(ID, COST, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY, CardColor.COLORLESS);
+        super(ID, GremlinTown.ID, COST, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY, CardColor.COLORLESS);
         baseDamage = DAMAGE;
         exhaust = true;
         isInnate = true;

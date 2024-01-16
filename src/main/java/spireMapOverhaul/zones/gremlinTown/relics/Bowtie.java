@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import spireMapOverhaul.abstracts.AbstractSMORelic;
+import spireMapOverhaul.zones.gremlinTown.GremlinTown;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 
@@ -11,7 +12,7 @@ public class Bowtie extends AbstractSMORelic {
     public static final String ID = makeID(Bowtie.class.getSimpleName());
 
     public Bowtie() {
-        super(ID, RelicTier.SPECIAL, LandingSound.FLAT);
+        super(ID, GremlinTown.ID, RelicTier.SPECIAL, LandingSound.FLAT);
     }
 
     private boolean isInMerchantStock(AbstractCard c) {

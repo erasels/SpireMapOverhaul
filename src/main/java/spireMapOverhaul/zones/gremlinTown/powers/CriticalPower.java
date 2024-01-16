@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractSMOPower;
+import spireMapOverhaul.zones.gremlinTown.GremlinTown;
 
 import static spireMapOverhaul.util.Wiz.atb;
 
@@ -20,7 +21,7 @@ public class CriticalPower extends AbstractSMOPower {
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     public CriticalPower(AbstractCreature owner, int amount) {
-        super(POWER_ID, NAME, PowerType.BUFF,false, owner, amount);
+        super(POWER_ID, NAME, GremlinTown.ID, PowerType.BUFF,false, owner, amount);
         priority = 7;
     }
 

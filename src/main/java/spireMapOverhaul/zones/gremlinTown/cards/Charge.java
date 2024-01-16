@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractSMOCard;
+import spireMapOverhaul.zones.gremlinTown.GremlinTown;
 import spireMapOverhaul.zones.gremlinTown.powers.DelayedVigorPower;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
@@ -19,7 +20,7 @@ public class Charge extends AbstractSMOCard {
     private final static int COST = 1;
 
     public Charge() {
-        super(ID, COST, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF, CardColor.COLORLESS);
+        super(ID, GremlinTown.ID, COST, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF, CardColor.COLORLESS);
         baseMagicNumber = magicNumber = MAGIC;
         tags.add(SpireAnniversary6Mod.Enums.GREMLIN);
     }

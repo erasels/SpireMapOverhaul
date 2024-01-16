@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.powers.LoseStrengthPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractSMOCard;
+import spireMapOverhaul.zones.gremlinTown.GremlinTown;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 import static spireMapOverhaul.util.Wiz.adp;
@@ -23,7 +24,7 @@ public class ThrowRock extends AbstractSMOCard {
     private final static int COST = 1;
 
     public ThrowRock() {
-        super(ID, COST, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY, CardColor.COLORLESS);
+        super(ID, GremlinTown.ID, COST, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY, CardColor.COLORLESS);
         baseDamage = DAMAGE;
         baseMagicNumber = magicNumber = MAGIC;
         tags.add(SpireAnniversary6Mod.Enums.GREMLIN);

@@ -592,7 +592,7 @@ public class GremlinTown extends AbstractZone
         uncommonGremlinCards.add(new FullPlate());
         uncommonGremlinCards.add(new MountedCombat());
         uncommonGremlinCards.add(new Sit());
-        uncommonGremlinCards.add(new Scamper());
+        uncommonGremlinCards.add(new Rig());
         uncommonGremlinCards.add(new PoisonSpray());
 
         rareGremlinCards = new ArrayList<>();

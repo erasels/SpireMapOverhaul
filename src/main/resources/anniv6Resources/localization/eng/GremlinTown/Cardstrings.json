@@ -26,7 +26,7 @@
   },
   "${ModID}:Sit": {
     "NAME": "Sit",
-    "DESCRIPTION": "Enemy loses !M! Strength. NL Exhaust."
+    "DESCRIPTION": "Enemy loses !M! Strength this turn."
   },
   "${ModID}:FullPlate": {
     "NAME": "Full Plate",
@@ -42,7 +42,7 @@
   },
   "${ModID}:MountedCombat": {
     "NAME": "Mounted Combat",
-    "DESCRIPTION": "Ethereal. NL Apply ${ModID}:Slow to an enemy. NL Exhaust.",
+    "DESCRIPTION": "Ethereal. NL Apply ${ModID}:Slow. NL Exhaust.",
     "UPGRADE_DESCRIPTION": "Apply ${ModID}:Slow to an enemy. NL Exhaust."
   },
   "${ModID}:RRrroohrrRGHHhhh": {
@@ -60,15 +60,16 @@
   },
   "${ModID}:OmegaCurse": {
     "NAME": "Omega Curse",
-    "DESCRIPTION": "At the end of 3 turns, apply !M! Weak and Vulnerable to ALL enemies."
+    "DESCRIPTION": "Enemy takes !M! more damage from Attacks. NL Lose !${ModID}:m2! HP."
   },
   "${ModID}:TheHorde": {
     "NAME": "The Horde",
-    "DESCRIPTION": "Deal !D! damage for ALL of your Gremlins. NL Add !M! common Gremlins into your hand. NL They cost 0 this turn."
+    "DESCRIPTION": "At the start of your turn, add a random Gremlin card into your hand.",
+    "UPGRADE_DESCRIPTION": "Innate. NL At the start of your turn, add a random Gremlin card into your hand."
   },
-  "${ModID}:Scamper": {
-    "NAME": "Scamper",
-    "DESCRIPTION": "Gain !M! Dexterity. NL Lose 1 Strength."
+  "${ModID}:Rig": {
+    "NAME": "Rig",
+    "DESCRIPTION": "At the start of your turn, draw a card and Exhaust a card."
   },
   "${ModID}:ThrowRock": {
     "NAME": "Throw Rock",

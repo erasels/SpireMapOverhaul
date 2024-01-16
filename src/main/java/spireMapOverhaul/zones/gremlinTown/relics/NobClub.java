@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import spireMapOverhaul.abstracts.AbstractSMORelic;
 import spireMapOverhaul.util.Wiz;
+import spireMapOverhaul.zones.gremlinTown.GremlinTown;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 import static spireMapOverhaul.util.Wiz.adp;
@@ -17,7 +18,7 @@ public class NobClub extends AbstractSMORelic {
     private static final int ATTACK_THRESHOLD = 5;
 
     public NobClub() {
-        super(ID, RelicTier.SPECIAL, LandingSound.HEAVY);
+        super(ID, GremlinTown.ID, RelicTier.SPECIAL, LandingSound.HEAVY);
         counter = 0;
     }
 

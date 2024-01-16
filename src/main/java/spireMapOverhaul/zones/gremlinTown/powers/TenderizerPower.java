@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractSMOPower;
+import spireMapOverhaul.zones.gremlinTown.GremlinTown;
 
 import static spireMapOverhaul.util.Wiz.applyToEnemyTop;
 import static spireMapOverhaul.util.Wiz.atb;
@@ -20,7 +21,7 @@ public class TenderizerPower extends AbstractSMOPower {
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     public TenderizerPower(AbstractCreature owner, int amount) {
-        super(POWER_ID, NAME, PowerType.BUFF,false, owner, amount);
+        super(POWER_ID, NAME, GremlinTown.ID, PowerType.BUFF,false, owner, amount);
     }
 
     @Override

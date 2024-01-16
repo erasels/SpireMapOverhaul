@@ -3,6 +3,7 @@ package spireMapOverhaul.zones.gremlinTown.relics;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 import spireMapOverhaul.abstracts.AbstractSMORelic;
+import spireMapOverhaul.zones.gremlinTown.GremlinTown;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 import static spireMapOverhaul.util.Wiz.*;
@@ -12,7 +13,7 @@ public class GremlinStaff extends AbstractSMORelic {
     private static final int VIGOR_AMOUNT = 15;
 
     public GremlinStaff() {
-        super(ID, RelicTier.SPECIAL, LandingSound.MAGICAL);
+        super(ID, GremlinTown.ID, RelicTier.SPECIAL, LandingSound.MAGICAL);
     }
 
     @Override

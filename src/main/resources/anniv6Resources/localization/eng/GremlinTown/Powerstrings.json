@@ -47,7 +47,21 @@
   },
   "${ModID}:OmegaCurse": {
     "NAME": "Omega Curse",
-    "DESCRIPTIONS": ["At the end of #b{0} turns, deal #b{1} #yWeak and #yVulnerable to ALL enemies."]
+    "DESCRIPTIONS": ["Takes {0} more damage from Attacks."]
+  },
+  "${ModID}:Horde": {
+    "NAME": "Horde",
+    "DESCRIPTIONS": [
+      "At the start of your turn, add #b1 random Gremlin card into your hand.",
+      "At the start of your turn, add #b{0} random Gremlin cards into your hand."
+    ]
+  },
+  "${ModID}:Rig": {
+    "NAME": "Rig",
+    "DESCRIPTIONS": [
+      "At the start of your turn, draw #b1 card and #yExhaust #b1 card.",
+      "At the start of your turn, draw #b{0} cards and #yExhaust #b{0} cards."
+    ]
   },
   "${ModID}:Inspired": {
     "NAME": "Inspired",

@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractSMOCard;
+import spireMapOverhaul.zones.gremlinTown.GremlinTown;
 import spireMapOverhaul.zones.gremlinTown.powers.InspiredPower;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
@@ -17,7 +18,7 @@ public class Inspire extends AbstractSMOCard {
     private final static int COST = 2;
 
     public Inspire() {
-        super(ID, COST, CardType.POWER, CardRarity.RARE, CardTarget.SELF, CardColor.COLORLESS);
+        super(ID, GremlinTown.ID, COST, CardType.POWER, CardRarity.RARE, CardTarget.SELF, CardColor.COLORLESS);
         isEthereal = true;
         tags.add(SpireAnniversary6Mod.Enums.GREMLIN);
     }

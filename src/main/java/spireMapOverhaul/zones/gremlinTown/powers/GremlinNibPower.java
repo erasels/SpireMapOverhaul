@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractSMOPower;
+import spireMapOverhaul.zones.gremlinTown.GremlinTown;
 import spireMapOverhaul.zones.gremlinTown.monsters.GremlinNib;
 
 import static spireMapOverhaul.util.Wiz.atb;
@@ -25,7 +26,7 @@ public class GremlinNibPower extends AbstractSMOPower {
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     public GremlinNibPower(AbstractCreature owner, int amount) {
-        super(POWER_ID, NAME, PowerType.BUFF,false, owner, amount);
+        super(POWER_ID, NAME, GremlinTown.ID, PowerType.BUFF,false, owner, amount);
         isTwoAmount = true;
         amount2 = 0;
     }

@@ -2,7 +2,7 @@
   "${ModID}:LouseMilk": {
     "NAME": "Louse Milk",
     "DESCRIPTIONS": [
-      "Gain #b{0} #yStrength, #yDexterity, and #yFocus."
+      "Draw #b{0} cards and gain #b{1} Energy."
     ]
   },
   "${ModID}:PreerelxsBlueRibbon": {

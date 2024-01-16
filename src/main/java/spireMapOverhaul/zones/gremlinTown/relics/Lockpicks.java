@@ -3,6 +3,7 @@ package spireMapOverhaul.zones.gremlinTown.relics;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.RestRoom;
 import spireMapOverhaul.abstracts.AbstractSMORelic;
+import spireMapOverhaul.zones.gremlinTown.GremlinTown;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 import static spireMapOverhaul.util.Wiz.adp;
@@ -12,7 +13,7 @@ public class Lockpicks extends AbstractSMORelic {
     private static final int GOLD_AMOUNT = 30;
 
     public Lockpicks() {
-        super(ID, RelicTier.SPECIAL, LandingSound.CLINK);
+        super(ID, GremlinTown.ID, RelicTier.SPECIAL, LandingSound.CLINK);
     }
 
     @Override

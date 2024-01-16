@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractSMOCard;
 import spireMapOverhaul.actions.EasyXCostAction;
+import spireMapOverhaul.zones.gremlinTown.GremlinTown;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 import static spireMapOverhaul.util.Wiz.atb;
@@ -20,7 +21,7 @@ public class Flurry extends AbstractSMOCard {
     private final static int UPG_DAMAGE =3;
 
     public Flurry() {
-        super(ID, COST, CardType.ATTACK, CardRarity.RARE, CardTarget.ALL_ENEMY, CardColor.COLORLESS);
+        super(ID, GremlinTown.ID, COST, CardType.ATTACK, CardRarity.RARE, CardTarget.ALL_ENEMY, CardColor.COLORLESS);
         baseDamage = DAMAGE;
         tags.add(SpireAnniversary6Mod.Enums.GREMLIN);
     }

@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.BeatOfDeathPower;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractSMOPower;
+import spireMapOverhaul.zones.gremlinTown.GremlinTown;
 
 public class HeartImpairmentPower extends AbstractSMOPower implements BetterOnApplyPowerPower {
     public static final String POWER_ID = SpireAnniversary6Mod.makeID("HeartImpairment");
@@ -17,7 +18,7 @@ public class HeartImpairmentPower extends AbstractSMOPower implements BetterOnAp
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     public HeartImpairmentPower(AbstractCreature owner, int amount) {
-        super(POWER_ID, NAME, PowerType.BUFF,false, owner, -1);
+        super(POWER_ID, NAME, GremlinTown.ID, PowerType.BUFF,false, owner, -1);
         canGoNegative = false;
     }
 

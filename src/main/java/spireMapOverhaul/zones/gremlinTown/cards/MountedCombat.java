@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.SlowPower;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractSMOCard;
+import spireMapOverhaul.zones.gremlinTown.GremlinTown;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 import static spireMapOverhaul.util.Wiz.applyToEnemy;
@@ -16,7 +17,7 @@ public class MountedCombat extends AbstractSMOCard {
     private final static int COST = 2;
 
     public MountedCombat() {
-        super(ID, COST, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.ENEMY, CardColor.COLORLESS);
+        super(ID, GremlinTown.ID, COST, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.ENEMY, CardColor.COLORLESS);
         exhaust = true;
         isEthereal = true;
         tags.add(SpireAnniversary6Mod.Enums.GREMLIN);

@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractSMOPower;
+import spireMapOverhaul.zones.gremlinTown.GremlinTown;
 
 import static spireMapOverhaul.util.Wiz.applyToSelf;
 import static spireMapOverhaul.util.Wiz.atb;
@@ -19,7 +20,7 @@ public class DelayedVigorPower extends AbstractSMOPower {
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     public DelayedVigorPower(AbstractCreature owner, int amount) {
-        super(POWER_ID, NAME, PowerType.BUFF,false, owner, amount);
+        super(POWER_ID, NAME, GremlinTown.ID, PowerType.BUFF,false, owner, amount);
         ID = POWER_ID + GameActionManager.turn;
         isTwoAmount = true;
         amount2 = 2;

@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.powers.LoseStrengthPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import spireMapOverhaul.abstracts.AbstractSMORelic;
+import spireMapOverhaul.zones.gremlinTown.GremlinTown;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 import static spireMapOverhaul.util.Wiz.adp;
@@ -16,7 +17,7 @@ public class Duelity extends AbstractSMORelic {
     public static final String ID = makeID(Duelity.class.getSimpleName());
 
     public Duelity() {
-        super(ID, RelicTier.SPECIAL, LandingSound.MAGICAL);
+        super(ID, GremlinTown.ID, RelicTier.SPECIAL, LandingSound.MAGICAL);
     }
 
     public void onUseCard(AbstractCard card, UseCardAction action) {

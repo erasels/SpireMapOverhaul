@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractSMOCard;
+import spireMapOverhaul.zones.gremlinTown.GremlinTown;
 import spireMapOverhaul.zones.gremlinTown.powers.BellowPower;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
@@ -19,7 +20,7 @@ public class RRrroohrrRGHHhhh extends AbstractSMOCard {
     private final static int UPG_MAGIC = 1;
 
     public RRrroohrrRGHHhhh() {
-        super(ID, COST, CardType.POWER, CardRarity.RARE, CardTarget.SELF, CardColor.COLORLESS);
+        super(ID, GremlinTown.ID, COST, CardType.POWER, CardRarity.RARE, CardTarget.SELF, CardColor.COLORLESS);
         baseMagicNumber = magicNumber = MAGIC;
         tags.add(SpireAnniversary6Mod.Enums.GREMLIN);
     }

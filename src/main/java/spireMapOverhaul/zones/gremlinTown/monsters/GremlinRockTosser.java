@@ -59,6 +59,7 @@ public class GremlinRockTosser extends CustomMonster
 
     @Override
     public void takeTurn() {
+        this.applyPowers();
         DamageInfo info = new DamageInfo(this, attackDamage, DamageInfo.DamageType.NORMAL);
         atb(new RockThrowAction(this, info));
 
@@ -67,6 +68,7 @@ public class GremlinRockTosser extends CustomMonster
 
     @Override
     protected void getMove(final int num) {
+        this.applyPowers();
         setMove(ATTACK, Intent.ATTACK, attackDamage);
     }
 
