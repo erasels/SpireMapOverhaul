@@ -103,7 +103,7 @@ public class GoldenCurseZone extends AbstractZone implements RewardModifyingZone
 
     @Override
     public boolean canSpawn() {
-        return ActUtil.getRealActNum() == 2;
+        return isAct(2) || isAct(3);
     }
 
     @Override
