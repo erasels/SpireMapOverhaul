@@ -70,6 +70,11 @@ public class EventGenPatch {
         public static void insert(Random rng, ArrayList<String> tmp) {
             if (validEvents != null) {
                 tmp.removeIf((e) -> !validEvents.contains(e));
+                for(String eid : validEvents) {
+                    if(!tmp.contains(eid) && !SeenEvents.seenEvents.get(AbstractDungeon.player).contains(eid)) {
+                        tmp.add(eid);
+                    }
+                }
                 if (tmp.isEmpty()) {
                     SpireAnniversary6Mod.logger.info("Tried to force zone event, but no events found");
                 }

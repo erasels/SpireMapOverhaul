@@ -7,6 +7,8 @@ import com.megacrit.cardcrawl.events.AbstractEvent;
 import com.megacrit.cardcrawl.helpers.EventHelper;
 import spireMapOverhaul.SpireAnniversary6Mod;
 
+import java.util.Set;
+
 public interface ModifiedEventRateZone {
     /**
      * @return If not null, forces the event rolled to be this. Recommended to use with y-position based checks,
@@ -30,4 +32,11 @@ public interface ModifiedEventRateZone {
      * @return Chance of guaranteeing a zone-specific event from 0 to 1.
      */
     default float zoneSpecificEventRate() { return 0; }
+
+    /**
+     * Method to add additional events to your zone that can spawn when the zoneSpecificEventRate roll succeeds.
+     * Only use this for adding events that you haven't made yourself/aren't in your Zone package.
+     * @return a set of strings that will be added
+     */
+    default Set<String> addSpecificEvents() {return null;}
 }

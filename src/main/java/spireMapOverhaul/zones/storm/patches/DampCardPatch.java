@@ -26,6 +26,7 @@ import spireMapOverhaul.zones.storm.cardmods.ElectricModifier;
 import java.nio.IntBuffer;
 import java.util.ArrayList;
 
+import static spireMapOverhaul.SpireAnniversary6Mod.getShaderConfig;
 import static spireMapOverhaul.SpireAnniversary6Mod.makeShaderPath;
 import static spireMapOverhaul.zones.storm.StormUtil.initDripShader;
 
@@ -41,7 +42,7 @@ public class DampCardPatch {
                 dripShader = initDripShader(dripShader);
             }
             if (!Settings.hideCards) {
-                if (CardModifierManager.hasModifier(__instance, DampModifier.ID)) {
+                if (CardModifierManager.hasModifier(__instance, DampModifier.ID) && getShaderConfig()) {
                     TextureRegion t = cardToTextureRegion(__instance, spriteBatch);
                     spriteBatch.setBlendFunction(GL20.GL_ONE, GL20.GL_ONE_MINUS_SRC_ALPHA);
                     ShaderProgram oldShader = spriteBatch.getShader();
@@ -94,7 +95,7 @@ public class DampCardPatch {
                 dripShader = initDripShader(dripShader);
             }
             AbstractCard card = ReflectionHacks.getPrivate(__instance, SingleCardViewPopup.class, "card");
-            if (CardModifierManager.hasModifier(card, DampModifier.ID)) {
+            if (CardModifierManager.hasModifier(card, DampModifier.ID) && getShaderConfig()) {
                 oldShader = sb.getShader();
                 sb.setShader(dripShader);
                 dripShader.setUniformf("u_time", SpireAnniversary6Mod.time);
@@ -104,7 +105,7 @@ public class DampCardPatch {
         @SpireInsertPatch(locator = DampCardPatch.DripDripDripSCV.LocatorTwo.class)
         public static void RemoveShader(SingleCardViewPopup __instance, SpriteBatch sb) {
             AbstractCard card = ReflectionHacks.getPrivate(__instance, SingleCardViewPopup.class, "card");
-            if (CardModifierManager.hasModifier(card, DampModifier.ID)) {
+            if (CardModifierManager.hasModifier(card, DampModifier.ID) && getShaderConfig()) {
                 sb.setShader(oldShader);
             }
         }

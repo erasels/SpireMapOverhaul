@@ -57,6 +57,7 @@ import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.util.ZoneShapeMaker;
 import spireMapOverhaul.zoneInterfaces.CampfireModifyingZone;
 import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
+import spireMapOverhaul.zoneInterfaces.ModifiedEventRateZone;
 import spireMapOverhaul.zones.beastslair.BeastsLairZone;
 import spireMapOverhaul.zones.brokenspace.BrokenSpaceZone;
 import spireMapOverhaul.zones.manasurge.ui.extraicons.BlightIcon;
@@ -158,6 +159,10 @@ public class SpireAnniversary6Mod implements
         return modID + "Resources/images/relics/" + resourcePath;
     }
 
+    public static String makeMonsterPath(String resourcePath) {
+        return modID + "Resources/images/monsters/" + resourcePath;
+    }
+
     public static String makePowerPath(String resourcePath) {
         return modID + "Resources/images/powers/" + resourcePath;
     }
@@ -182,6 +187,7 @@ public class SpireAnniversary6Mod implements
             defaults.put("active", "TRUE");
             defaults.put("noRepeatZones", "TRUE");
             defaults.put("largeIconsMode", "FALSE");
+            defaults.put("enableShaders", "TRUE");
             modConfig = new SpireConfig(modID, "anniv6Config", defaults);
         } catch (Exception e) {
             e.printStackTrace();
@@ -492,6 +498,15 @@ public class SpireAnniversary6Mod implements
                 throw new RuntimeException(e);
             }
         }
+        unfilteredAllZones.stream()
+                .filter(z -> z instanceof ModifiedEventRateZone)
+                .forEach(z -> {
+                    Set<String> specEvents =  ((ModifiedEventRateZone) z).addSpecificEvents();
+                    if(specEvents != null) {
+                        Set<String> eventList = zoneEvents.computeIfAbsent(z.id, k -> new HashSet<>());
+                        eventList.addAll(specEvents);
+                    }
+                });
     }
 
     @Override
@@ -571,6 +586,9 @@ public class SpireAnniversary6Mod implements
     private AbstractZone filterViewedZone;
     private static final float DESC_X = 760f;
     private static final float DESC_Y = 575f;
+    private ModLabeledToggleButton shaderCheckbox;
+    private static final float SHADER_CHECKBOX_X = 400f;
+    private static final float SHADER_CHECKBOX_Y = 440f;
 
     private void initializeConfig() {
         UIStrings configStrings = CardCrawlGame.languagePack.getUIString(makeID("ConfigMenuText"));
@@ -614,6 +632,11 @@ public class SpireAnniversary6Mod implements
                 (button) -> setFilterConfig(filterViewedZone.id, button.enabled));
         settingsPanel.addUIElement(filterCheckbox);
         filterSetViewedZone(0);
+
+        shaderCheckbox = new ModLabeledToggleButton(configStrings.TEXT[6], SHADER_CHECKBOX_X, SHADER_CHECKBOX_Y, Color.WHITE, FontHelper.tipBodyFont, getShaderConfig(), null,
+                (label) -> {},
+                (button) -> setShaderConfig(button.enabled));
+        settingsPanel.addUIElement(shaderCheckbox);
 
         BaseMod.registerModBadge(badge, configStrings.TEXT[0], configStrings.TEXT[1], configStrings.TEXT[2], settingsPanel);
     }
@@ -790,6 +813,21 @@ public class SpireAnniversary6Mod implements
                 e.printStackTrace();
             }
         }
+    }
+
+    private static void setShaderConfig(boolean enable) {
+        if (modConfig != null) {
+            modConfig.setBool("enableShaders", enable);
+            try {
+                modConfig.save();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static boolean getShaderConfig() {
+        return modConfig != null && modConfig.getBool("enableShaders");
     }
 
     private static ZoneShapeMaker shapeUi = null;
