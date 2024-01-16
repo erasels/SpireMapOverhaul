@@ -37,7 +37,6 @@ public class ManaCycloneEvent extends PhasedEvent {
     }
 
     public static boolean bonusCondition() {
-        boolean hasAllRelics = relicIds.stream().allMatch(AbstractDungeon.player::hasRelic);
         boolean anyRelicCanSpawn = relicIds.stream().anyMatch(relicId -> !AbstractDungeon.player.hasRelic(relicId) && RelicLibrary.getRelic(relicId).canSpawn());
         long matchingCards = AbstractDungeon.player.masterDeck.group
                 .stream()
@@ -46,7 +45,7 @@ public class ManaCycloneEvent extends PhasedEvent {
                         card.type != AbstractCard.CardType.CURSE &&
                         card.type != AbstractCard.CardType.STATUS)
                 .count();
-        return !hasAllRelics && anyRelicCanSpawn && matchingCards >= 2;
+        return anyRelicCanSpawn && matchingCards >= 2;
     }
 
     public ManaCycloneEvent() {
