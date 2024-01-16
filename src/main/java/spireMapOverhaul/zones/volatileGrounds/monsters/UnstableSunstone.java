@@ -63,6 +63,7 @@ public class UnstableSunstone extends CustomMonster {
         this.loadAnimation(ATLAS, SKELETON, 1.00f);
         AnimationState.TrackEntry e = this.state.setAnimation(0, "animation0", true);
         e.setTime(e.getEndTime() * MathUtils.random());
+        this.type = EnemyType.ELITE;
     }
     
     @Override
