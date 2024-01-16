@@ -52,11 +52,9 @@ public class KeymasterZone extends AbstractZone implements CombatModifyingZone, 
 
     @Override
     public void atBattleStart() {
-        forAllMonstersLiving(m -> {
-            atb(new ApplyPowerAction(m, null, new StrengthPower(m, -2)));
-        });
         atb(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new StrengthPower(AbstractDungeon.player, 1), 1));
         atb(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new DexterityPower(AbstractDungeon.player, 1), 1));
+        atb(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new FocusPower(AbstractDungeon.player, 1), 1));
     }
 
     @Override
