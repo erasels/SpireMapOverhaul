@@ -1,0 +1,8 @@
+
+{
+	"${ModID}:Radish":
+	{
+		"DESCRIPTION": ["Deal {0} damage to a random enemy {1} time(s)."],
+		"NAME": "Radish"
+	}
+}

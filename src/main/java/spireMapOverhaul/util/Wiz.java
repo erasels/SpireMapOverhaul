@@ -1,6 +1,8 @@
 package spireMapOverhaul.util;
 
+import basemod.DevConsole;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -53,6 +55,14 @@ public class Wiz {
 
     public static CardGroup deck() {
         return AbstractDungeon.player.masterDeck;
+    }
+
+    public static boolean isPlayerTurn(boolean beforeEndTurnEvents) {
+        return  !AbstractDungeon.actionManager.turnHasEnded && !AbstractDungeon.player.isEndingTurn;
+    }
+
+    public static boolean canAcceptInput() {
+        return isPlayerTurn(true) && AbstractDungeon.actionManager.phase == GameActionManager.Phase.WAITING_ON_USER && AbstractDungeon.actionManager.cardQueue.isEmpty() && AbstractDungeon.actionManager.actions.isEmpty() && !DevConsole.visible && !AbstractDungeon.isScreenUp && !CardCrawlGame.isPopupOpen;
     }
 
     public static void forAllCardsInList(Consumer<AbstractCard> consumer, ArrayList<AbstractCard> cardsList) {
