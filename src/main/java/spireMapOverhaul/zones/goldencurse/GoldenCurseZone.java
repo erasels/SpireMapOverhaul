@@ -29,7 +29,8 @@ public class GoldenCurseZone extends AbstractZone implements RewardModifyingZone
         this.maxWidth = 3;
         this.height = 2;
         this.maxHeight = 3;
-        iconTexture = ImageMaster.MAP_NODE_ELITE;
+
+
 
     }
 
@@ -79,6 +80,10 @@ public class GoldenCurseZone extends AbstractZone implements RewardModifyingZone
     @Override
     public void modifyRewards(ArrayList<RewardItem> rewards) {
         rewards.removeIf(r -> r.type == RewardItem.RewardType.GOLD);
+        rewards.forEach(r -> {
+            int goldAmt = GoldenCurseZone.getRewardCost(r);
+            RewardPatches.RewardItemFields.cost.set(r, goldAmt);
+        });
     }
 
     @Override
@@ -107,7 +112,7 @@ public class GoldenCurseZone extends AbstractZone implements RewardModifyingZone
     }
 
     @Override
-    public Color getColor() { //I considered changing this to a variable, but a method lets you do funky stuff like a rainbow zone that changes colors or something.
+    public Color getColor() {
         return color;
     }
 
