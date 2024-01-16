@@ -3,6 +3,7 @@ package spireMapOverhaul.zones.gremlincamp.monsters;
 import basemod.ReflectionHacks;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.AnimateSlowAttackAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.EscapeAction;
 import com.megacrit.cardcrawl.actions.common.SetMoveAction;
@@ -64,7 +65,7 @@ public class GremlinBodyguard extends GremlinTsundere {
             case BASH:
                 Wiz.atb(new AnimateSlowAttackAction(this));
                 Wiz.atb(new DamageAction(AbstractDungeon.player, damage.get(0), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
-                Wiz.applyToEnemy(this, new StrengthPower(this, 5));
+                Wiz.atb(new ApplyPowerAction(this, this, new StrengthPower(this, 5)));
                 Wiz.atb(new SetMoveAction(this, MOVES[1], BASH, Intent.ATTACK_BUFF, damage.get(0).base));
                 break;
             case ESCAPE:
