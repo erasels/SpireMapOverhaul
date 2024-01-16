@@ -113,14 +113,9 @@ public class GremlinCook extends AbstractSMOMonster {
         }
 
         ArrayList<Byte> possibilities = new ArrayList<>();
-        // If not alone, can buff everyone if it wasn't the last move
-        if(enemies > 1 && !lastMove(ALL_BUFF)) {
+        // Can buff everyone if not alone or late in combat and last move wasn't buff
+        if((enemies > 1 || GameActionManager.turn > 5) && !lastMove(ALL_BUFF)) {
             possibilities.add(ALL_BUFF);
-        } else {
-            //If alone and late in combat, can buff itself again (helps player)
-            if(GameActionManager.turn > 5 && !lastMove(ALL_BUFF)) {
-                possibilities.add(ALL_BUFF);
-            }
         }
 
         // Turn 3+ can start poisoning player if it wasn't done last turn
