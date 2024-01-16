@@ -22,10 +22,9 @@ public class VolatileGrounds extends AbstractZone implements EncounterModifyingZ
     private static final String HEAT_BLISTER = SpireAnniversary6Mod.makeID("HEAT_BLISTER");
     
     public VolatileGrounds() {
-        super("VolatileGrounds", Icons.ELITE, Icons.MONSTER);
+        super("VolatileGrounds", Icons.MONSTER);
         this.width = 1;
         this.height = 4;
-        System.out.println("Volatile Grounds" + name + " " + width + "x" + height);
     }
     
     @Override
