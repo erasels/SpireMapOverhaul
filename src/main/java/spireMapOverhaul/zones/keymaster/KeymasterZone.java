@@ -3,23 +3,17 @@ package spireMapOverhaul.zones.keymaster;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.PotionHelper;
-import com.megacrit.cardcrawl.potions.*;
 import com.megacrit.cardcrawl.powers.*;
-import com.megacrit.cardcrawl.rewards.RewardItem;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.zoneInterfaces.CombatModifyingZone;
-import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
 import spireMapOverhaul.zoneInterfaces.RewardModifyingZone;
 import spireMapOverhaul.zoneInterfaces.ShopModifyingZone;
 
 import java.util.ArrayList;
 
 import static spireMapOverhaul.util.Wiz.atb;
-import static spireMapOverhaul.util.Wiz.forAllMonstersLiving;
 
 public class KeymasterZone extends AbstractZone implements CombatModifyingZone, RewardModifyingZone, ShopModifyingZone {
     public static final String ID = "Keymaster";
@@ -63,6 +57,11 @@ public class KeymasterZone extends AbstractZone implements CombatModifyingZone, 
     }
 
     @Override
+    public boolean allowUpgradingRareCards() {
+        return true;
+    }
+
+    @Override
     public void postCreateShopCards(ArrayList<AbstractCard> coloredCards, ArrayList<AbstractCard> colorlessCards) {
         // Upgrade colored cards
         for (AbstractCard card : coloredCards) {
@@ -81,8 +80,8 @@ public class KeymasterZone extends AbstractZone implements CombatModifyingZone, 
 
     @Override
     public void postAddIdleMessages(ArrayList<String> idleMessages) {
-        idleMessages.add("See you at the top!");
+        String localizedMessage = TEXT[2];
+        idleMessages.add(localizedMessage);
     }
-
 
 }
