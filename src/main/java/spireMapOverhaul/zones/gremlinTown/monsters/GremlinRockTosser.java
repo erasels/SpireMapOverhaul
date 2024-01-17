@@ -23,12 +23,12 @@ public class GremlinRockTosser extends CustomMonster
     private static final String SKELETON_JSON = SpireAnniversary6Mod.makeImagePath(
             "monsters/GremlinTown/GremlinRockTosser/skeleton.json");
     private static final byte ATTACK = 1;
-    private static final int DAMAGE = 7;
-    private static final int DAMAGE_A2 = 8;
-    private static final int MIN_HP = 13;
-    private static final int MAX_HP = 17;
-    private static final int MIN_HP_A7 = 15;
-    private static final int MAX_HP_A7 = 19;
+    private static final int DAMAGE = 8;
+    private static final int DAMAGE_A2 = 9;
+    private static final int MIN_HP = 17;
+    private static final int MAX_HP = 21;
+    private static final int MIN_HP_A7 = 18;
+    private static final int MAX_HP_A7 = 21;
 
     private final int attackDamage;
 

@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
+import com.megacrit.cardcrawl.actions.utility.TextAboveCreatureAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.curses.Decay;
 import com.megacrit.cardcrawl.cards.curses.Pain;
@@ -37,16 +38,17 @@ public class GremlinElder extends CustomMonster
     public static final byte SLAP = 2;
     public static final byte CHARGE = 3;
     public static final byte DYING_CURSE = 4;
-    private static final int HP_MIN = 243;
-    private static final int HP_MAX = 251;
-    private static final int HP_MIN_A8 = 262;
-    private static final int HP_MAX_A8 = 271;
+    private static final int HP_MIN = 223;
+    private static final int HP_MAX = 231;
+    private static final int HP_MIN_A8 = 242;
+    private static final int HP_MAX_A8 = 251;
     private static final int SLAM_DMG = 22;
     private static final int SLAM_DMG_A3 = 24;
     private static final int SLAP_DMG = 10;
     private static final int SLAP_DMG_A3 = 11;
 
     private boolean firstTurn;
+    private boolean curseTriggered;
 
     public GremlinElder(float x, float y) {
         super(NAME, ID, HP_MAX, 100.0F, -12.5F, 325.0F, 450.0F, null, x -87.5F, y);
@@ -159,6 +161,16 @@ public class GremlinElder extends CustomMonster
                 setMove(DYING_CURSE, Intent.STRONG_DEBUFF);
             else
                 setMove(CHARGE, Intent.UNKNOWN);
+        }
+    }
+
+    public void damage(DamageInfo info) {
+        super.damage(info);
+        if (!isDying && currentHealth <= maxHealth / 2 && nextMove != CHARGE && !curseTriggered) {
+            setMove(CHARGE, Intent.UNKNOWN);
+            createIntent();
+            atb(new TextAboveCreatureAction(this, TextAboveCreatureAction.TextType.INTERRUPTED));
+            curseTriggered = true;
         }
     }
 
