@@ -54,7 +54,7 @@ public class CharacterInfluenceZone extends AbstractZone implements RewardModify
         do {
             this.classInfluence = CardCrawlGame.characterManager.getRandomCharacter(AbstractDungeon.mapRng);
         } while (this.classInfluence.chosenClass == AbstractDungeon.player.chosenClass && CardCrawlGame.characterManager.getAllCharacters().size() != 1);
-        this.name = TEXT[2] + this.classInfluence.title;
+        this.name = TEXT[3] + this.classInfluence.title;
         updateDescription();
     }
 

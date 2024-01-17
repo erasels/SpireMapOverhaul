@@ -48,5 +48,10 @@
       "Enable Spawning Zones",
       "Adds zones to the Spire, which change parts of the map to have new content."
     ]
+  },
+  "${ModID}:ZoneTooltip": {
+    "TEXT": [
+      "Author: {0}"
+    ]
   }
 }
