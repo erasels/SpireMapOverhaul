@@ -14,6 +14,7 @@ import spireMapOverhaul.zones.Junkyard.monsters.Peddler;
 
 import java.util.ArrayList;
 
+@NoPools
 public class Bargain extends AbstractSMOCard {
     public static final String ID = SpireAnniversary6Mod.makeID("Bargain");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
