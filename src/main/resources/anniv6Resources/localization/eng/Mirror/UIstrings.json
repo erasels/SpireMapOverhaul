@@ -2,7 +2,8 @@
   "${ModID}:Mirror": {
     "TEXT": [
       "Mirror",
-      "Weird mirrors let you copy enemy moves! NL NL Each turn, you get a #pMirror #pMove card containing one of the enemy moves used in the previous turn. It might be powerful, but you draw #b1 less card in exchange."
+      "Weird mirrors let you copy enemy moves! NL NL Each turn, you get a #pMirror #pMove card containing one of the enemy moves used in the previous turn. It might be powerful, but you draw #b1 less card in exchange.",
+      "Celicath"
     ]
   }
 }

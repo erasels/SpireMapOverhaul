@@ -2,7 +2,8 @@
   "${ModID}:MonsterZoo": {
     "TEXT": [
       "Monster Zoo",
-      "Monsters have #roverrun this area! They are #rstronger, but beating them will give you a #gbetter #gcard #greward and #gmore #ggold."
+      "Monsters have #roverrun this area! They are #rstronger, but beating them will give you a #gbetter #gcard #greward and #gmore #ggold.",
+      "(Gk) erasels"
     ]
   }
 }
