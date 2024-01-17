@@ -14,7 +14,7 @@ import spireMapOverhaul.zoneInterfaces.OnTravelZone
 class HumilityZone : AbstractZone(ID, Icons.MONSTER), OnTravelZone {
     init {
         width = 2
-        height = 3
+        height = 4
         maxWidth = 4
         maxHeight = 5
     }
