@@ -29,7 +29,7 @@ class HumilityZone : AbstractZone(ID, Icons.MONSTER), OnTravelZone {
         !Loader.isModLoadedOrSideloaded("humility")
 
     override fun canIncludeEarlyRows(): Boolean =
-        false
+        AbstractDungeon.actNum != 1
 
     override fun allowSideConnections(): Boolean =
         false
