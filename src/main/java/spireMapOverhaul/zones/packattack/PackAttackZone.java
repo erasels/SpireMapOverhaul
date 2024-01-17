@@ -77,7 +77,7 @@ public class PackAttackZone extends AbstractZone implements CombatModifyingZone,
         }
 
         List<String> packNameStrings = this.packNames.stream().map(name -> FontHelper.colorString(name, "b")).collect(Collectors.toList());
-        return TEXT[2].replace("{0}", packNameStrings.get(0)).replace("{1}", packNameStrings.get(1)).replace("{2}", packNameStrings.get(2));
+        return TEXT[3].replace("{0}", packNameStrings.get(0)).replace("{1}", packNameStrings.get(1)).replace("{2}", packNameStrings.get(2));
     }
 
     @Override

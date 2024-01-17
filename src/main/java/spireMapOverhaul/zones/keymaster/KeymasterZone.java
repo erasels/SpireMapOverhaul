@@ -80,7 +80,7 @@ public class KeymasterZone extends AbstractZone implements CombatModifyingZone, 
 
     @Override
     public void postAddIdleMessages(ArrayList<String> idleMessages) {
-        String localizedMessage = TEXT[2];
+        String localizedMessage = TEXT[3];
         idleMessages.add(localizedMessage);
     }
 

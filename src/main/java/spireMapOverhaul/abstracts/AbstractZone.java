@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
+import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
@@ -37,6 +38,7 @@ public abstract class AbstractZone {
     private static final float OFFSET_X = Settings.isMobile ? 496.0F * Settings.xScale : 560.0F * Settings.xScale;
     private static final float OFFSET_Y = 180.0F * Settings.scale;
     private static final float SPACING_X = Settings.isMobile ? (int)(Settings.xScale * 64.0F) * 2.2F : (int)(Settings.xScale * 64.0F) * 2.0F;
+    private static String[] GLOBAL_TEXT = null;
     private static final String[] NO_TEXT = new String[] { };
     private static final int NO_ELITES_BOUNDARY_ROW = 4;
     private static final int TREASURE_ROW = 8;
@@ -141,6 +143,13 @@ public abstract class AbstractZone {
         }
     }
 
+    private String[] getGlobalText() {
+        if (GLOBAL_TEXT == null) {
+            GLOBAL_TEXT = CardCrawlGame.languagePack.getUIString(makeID("ZoneTooltip")).TEXT;
+        }
+        return GLOBAL_TEXT;
+    }
+
     public void updateDescription() {
         StringBuilder sb = new StringBuilder();
         for(Icons icon : icons) {
@@ -149,6 +158,8 @@ public abstract class AbstractZone {
         if (icons.length > 0)
             sb.append(" NL ");
         sb.append(getDescriptionText());
+        sb.append(" NL NL ");
+        sb.append(getGlobalText()[0].replace("{0}", TEXT[2]));
         tooltipBody = sb.toString();
     }
 

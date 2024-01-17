@@ -1,5 +1,6 @@
 package spireMapOverhaul.util;
 
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.*;
@@ -22,11 +23,15 @@ import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.actions.TimedVFXAction;
 import spireMapOverhaul.patches.ZonePatches;
+import spireMapOverhaul.zoneInterfaces.CampfireModifyingZone;
+import spireMapOverhaul.zoneInterfaces.CombatModifyingZone;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Wiz {
     //The wonderful Wizard of Oz allows access to most easy compilations of data, or functions.
@@ -124,6 +129,31 @@ public class Wiz {
 
     public static AbstractCard returnTrulyRandomPrediCardInCombat(Predicate<AbstractCard> pred) {
         return returnTrulyRandomPrediCardInCombat(pred, false);
+    }
+
+    public static AbstractCard returnTrulyRandomRarityCardInCombat(AbstractCard.CardRarity rarity) {
+        Stream<AbstractCard> cardStream;
+
+        switch (rarity) {
+            case COMMON:
+                cardStream = AbstractDungeon.srcCommonCardPool.group.stream();
+                break;
+            case UNCOMMON:
+                cardStream = AbstractDungeon.srcUncommonCardPool.group.stream();
+                break;
+            case RARE:
+                cardStream = AbstractDungeon.srcRareCardPool.group.stream();
+                break;
+            default:
+                cardStream = CardLibrary.getAllCards().stream()
+                        .filter(c -> c.rarity.equals(rarity));
+        }
+
+        List<AbstractCard> filteredCards = cardStream
+                .filter(c -> !c.hasTag(AbstractCard.CardTags.HEALING))
+                .collect(Collectors.toList());
+
+        return Wiz.getRandomItem(filteredCards).makeStatEquivalentCopy();
     }
 
     public static <T> T getRandomItem(List<T> list, Random rng) {

@@ -2,7 +2,8 @@
   "${ModID}:ExampleRewardModifying": {
     "TEXT": [
       "Example Reward Modifying",
-      "An example zone that modifies rewards in various ways."
+      "An example zone that modifies rewards in various ways.",
+      "Anniv6 Team"
     ]
   }
 }
