@@ -240,6 +240,6 @@ public class ManaSurgeZone extends AbstractZone implements
 
     @Override
     public Color getColor() {
-        return new Color(0.45f,0.49f, 0.91f, 1f);
+        return new Color(0.3f,0.15f, 0.85f, 0.55f);
     }
 }
