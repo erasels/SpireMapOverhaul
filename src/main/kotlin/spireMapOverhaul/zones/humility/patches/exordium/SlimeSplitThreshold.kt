@@ -2,20 +2,45 @@ package spireMapOverhaul.zones.humility.patches.exordium
 
 import basemod.ReflectionHacks
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch
+import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatches
 import com.evacipated.cardcrawl.modthespire.lib.SpireReturn
 import com.megacrit.cardcrawl.actions.common.SetMoveAction
 import com.megacrit.cardcrawl.actions.utility.TextAboveCreatureAction
 import com.megacrit.cardcrawl.cards.DamageInfo
 import com.megacrit.cardcrawl.core.AbstractCreature
+import com.megacrit.cardcrawl.core.CardCrawlGame
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon
+import com.megacrit.cardcrawl.helpers.FontHelper
+import com.megacrit.cardcrawl.localization.PowerStrings
 import com.megacrit.cardcrawl.monsters.AbstractMonster
 import com.megacrit.cardcrawl.monsters.exordium.AcidSlime_L
 import com.megacrit.cardcrawl.monsters.exordium.SlimeBoss
 import com.megacrit.cardcrawl.monsters.exordium.SpikeSlime_L
+import com.megacrit.cardcrawl.powers.SplitPower
+import spireMapOverhaul.SpireAnniversary6Mod
 import spireMapOverhaul.zones.humility.HumilityZone
 
 class SlimeSplitThreshold {
+    companion object {
+        private val strings: PowerStrings by lazy { CardCrawlGame.languagePack.getPowerStrings(SpireAnniversary6Mod.makeID(SplitPower.POWER_ID)) }
+    }
+
+    @SpirePatch2(
+        clz = SplitPower::class,
+        method = "updateDescription"
+    )
+    class SplitPowerName {
+        companion object {
+            @JvmStatic
+            fun Postfix(__instance: SplitPower) {
+                if (HumilityZone.isNotInZone()) return
+
+                __instance.description = strings.DESCRIPTIONS[0] + FontHelper.colorString(__instance.owner.name, "y") + strings.DESCRIPTIONS[1]
+            }
+        }
+    }
+
     @SpirePatches(
         SpirePatch(
             clz = SlimeBoss::class,
