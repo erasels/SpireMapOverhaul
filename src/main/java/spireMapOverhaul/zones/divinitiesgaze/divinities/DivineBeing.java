@@ -18,6 +18,7 @@ public interface DivineBeing {
   default boolean doUpdate() {
     return true;
   }
+  default void doEnterCombat() {}
   default boolean hasUpdateLogic() {
     return false;
   }

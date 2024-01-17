@@ -28,8 +28,7 @@ public class DivineVisitor extends PhasedEvent {
   private final DivineBeing divinity;
 
   public DivineVisitor() {
-//    this(DivineBeingManager.getDivinityForEvent());
-    this(new Torch());
+    this(DivineBeingManager.getDivinityForEvent());
   }
 
   public DivineVisitor(DivineBeing divinity) {
@@ -97,6 +96,12 @@ public class DivineVisitor extends PhasedEvent {
     }
 
     transitionKey(Phase.ENTRANCE);
+  }
+
+  @Override
+  public void enterCombat() {
+    super.enterCombat();
+    this.divinity.doEnterCombat();
   }
 
   private enum Phase {

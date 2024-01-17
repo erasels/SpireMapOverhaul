@@ -11,6 +11,7 @@ import spireMapOverhaul.zones.divinitiesgaze.divinities.BaseDivineBeing;
 
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 public class Torch extends BaseDivineBeing {
@@ -40,5 +41,11 @@ public class Torch extends BaseDivineBeing {
   @Override
   public String getEventButtonText() {
     return String.format(super.getEventButtonText(), (int)Math.floor(AbstractDungeon.player.maxHealth * 0.10f));
+  }
+
+  @Override
+  public Supplier<Boolean> isEventOptionEnabled() {
+    return () -> AbstractDungeon.player.currentHealth < AbstractDungeon.player.maxHealth
+        || AbstractDungeon.player.masterDeck.group.stream().anyMatch(AbstractCard::canUpgrade);
   }
 }

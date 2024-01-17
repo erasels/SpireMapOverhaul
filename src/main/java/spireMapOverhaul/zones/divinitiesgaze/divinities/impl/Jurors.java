@@ -1,6 +1,8 @@
 package spireMapOverhaul.zones.divinitiesgaze.divinities.impl;
 
 import basemod.ReflectionHacks;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -8,13 +10,14 @@ import com.megacrit.cardcrawl.helpers.ModHelper;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.zones.divinitiesgaze.cards.Verdict;
 import spireMapOverhaul.zones.divinitiesgaze.divinities.BaseDivineBeing;
+import spireMapOverhaul.zones.divinitiesgaze.powers.VerdictPower;
 
 import java.util.function.Consumer;
 
 public class Jurors extends BaseDivineBeing {
-  public static boolean doApplyVerdictOnCombatStart = false;
 
   public Jurors() {
     super(Verdict.ID, Wound.ID);
@@ -27,7 +30,6 @@ public class Jurors extends BaseDivineBeing {
 
   @Override
   public String getCombatPhaseKey() {
-    doApplyVerdictOnCombatStart = true;
     if(AbstractDungeon.eliteMonsterList.isEmpty()) {
       ReflectionHacks.privateMethod(AbstractDungeon.class, "generateElites").invoke(CardCrawlGame.dungeon);
     }
@@ -58,5 +60,17 @@ public class Jurors extends BaseDivineBeing {
       tier = roll > 82 ? AbstractRelic.RelicTier.RARE : AbstractRelic.RelicTier.UNCOMMON;
     }
     return tier;
+  }
+
+  @Override
+  public void doEnterCombat() {
+    super.doEnterCombat();
+    Wiz.atb(new AbstractGameAction() {
+      @Override
+      public void update() {
+        AbstractDungeon.getMonsters().monsters.forEach(m -> Wiz.att(new ApplyPowerAction(m, AbstractDungeon.player, new VerdictPower(m,  10), 10)));
+        this.isDone = true;
+      }
+    });
   }
 }
