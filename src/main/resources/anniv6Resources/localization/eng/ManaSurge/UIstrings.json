@@ -2,7 +2,8 @@
   "${ModID}:ManaSurge": {
     "TEXT": [
       "Mana Surge",
-      "The Spire is being flooded with mana, entering your deck and changing your cards, #gEnchanting or #rBlighting them. NL NL There are also ways to keep these changes for the rest of the run!"
+      "The Spire is being flooded with mana, entering your deck and changing your cards, #gEnchanting or #rBlighting them. NL NL There are also ways to keep these changes for the rest of the run!",
+      "Smear"
     ]
   },
   "${ModID}:EnchantOption": {

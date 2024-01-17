@@ -1,7 +1,7 @@
 {
   "${ModID}:Placeholder": {
     "TEXT": [
-      "Placeholder Name", "Tooltip Body NL More Tooltip Body NL NL End of Tooltip Body"
+      "Placeholder Name", "Tooltip Body NL More Tooltip Body NL NL End of Tooltip Body", "Placeholder"
     ]
   }
 }
