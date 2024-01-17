@@ -39,6 +39,7 @@ public class BuyCardAction extends AbstractGameAction {
         }
         else if (!AbstractDungeon.gridSelectScreen.selectedCards.isEmpty()) {
             addToBot(new AddCardToDeckAction(AbstractDungeon.gridSelectScreen.selectedCards.get(0)));
+            AbstractDungeon.gridSelectScreen.selectedCards.clear();
             this.isDone = true;
         }
         this.tickDuration();

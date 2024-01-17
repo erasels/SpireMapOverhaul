@@ -25,7 +25,7 @@ public class DeactivateAction extends AbstractGameAction {
     }
 
     public void update() {
-        float rand = AbstractDungeon.cardRng.random(0, 100);
+        float rand = AbstractDungeon.cardRandomRng.random(0, 100);
         junkOwner.isActivated = (rand >= chanceToDeactivate);
         if (!junkOwner.isActivated) {
             CardCrawlGame.sound.playA("ORB_LIGHTNING_EVOKE", -0.5f);
