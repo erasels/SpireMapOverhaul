@@ -16,10 +16,6 @@ import java.util.function.Consumer;
 
 public class Eclectic extends BaseDivineBeing {
 
-  static {
-    new Eclectic();
-  }
-
   public Eclectic() {
     super(Clairvoyance.ID, Dazed.ID);
   }
@@ -46,11 +42,16 @@ public class Eclectic extends BaseDivineBeing {
   @Override
   public boolean doUpdate() {
     if (!AbstractDungeon.isScreenUp && !AbstractDungeon.gridSelectScreen.selectedCards.isEmpty()) {
-      AbstractCard c = AbstractDungeon.gridSelectScreen.selectedCards.get(0).makeCopy();
+      AbstractCard c = AbstractDungeon.gridSelectScreen.selectedCards.get(0).makeStatEquivalentCopy();
       AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(c, (float) Settings.WIDTH / 2.0F, (float)Settings.HEIGHT / 2.0F));
       AbstractDungeon.gridSelectScreen.selectedCards.clear();
       return true;
     }
     return false;
+  }
+
+  @Override
+  public boolean hasUpdateLogic() {
+    return true;
   }
 }

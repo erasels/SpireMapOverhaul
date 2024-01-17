@@ -26,7 +26,7 @@ public class DivinitiesGazeZone extends AbstractZone implements ModifiedEventRat
   public static final String ID = "DivinitiesGaze";
 
   public DivinitiesGazeZone() {
-    super(ID);
+    super(ID, Icons.MONSTER, Icons.EVENT);
     this.width = 3;
     this.height = 4;
   }
@@ -38,7 +38,7 @@ public class DivinitiesGazeZone extends AbstractZone implements ModifiedEventRat
 
   @Override
   public Color getColor() {
-    return new Color(0.804f, 1f, 0.529f, 0.43f);
+    return new Color(0.3451f, 0.3137f, 0.9137f, 0.8f);
   }
 
   @Override
@@ -48,17 +48,6 @@ public class DivinitiesGazeZone extends AbstractZone implements ModifiedEventRat
 
   @Override
   public void atPreBattle() {
-    if (Jurors.doApplyVerdictOnCombatStart) {
-        Jurors.doApplyVerdictOnCombatStart = false;
-        Wiz.atb(new AbstractGameAction() {
-            @Override
-            public void update() {
-                AbstractDungeon.getMonsters().monsters.forEach(m -> Wiz.att(new ApplyPowerAction(m, AbstractDungeon.player, new VerdictPower(m,  10), 10)));
-                this.isDone = true;
-            }
-        });
-    }
-
     DivineBeing being = DivineBeingManager.getDivinityForCombat();
     AbstractCard boon = CardLibrary.getCard(being.getDivinityStrings().getBoonCardId());
     AbstractCard status = CardLibrary.getCard(being.getDivinityStrings().getStatusCardId());
@@ -66,11 +55,25 @@ public class DivinitiesGazeZone extends AbstractZone implements ModifiedEventRat
     Wiz.atb(new MakeTempCardInDrawPileAction(status, AbstractDungeon.actNum, true, true));
     String[] quotes = being.getDivinityStrings().getPreCombatQuotes();
     Wiz.atb(new AbstractGameAction() {
+      @Override
+      public void update() {
+        AbstractDungeon.effectList.add(new SpeechBubble(Settings.WIDTH / 2f, Settings.HEIGHT * 3f / 4f, 3, quotes[new Random().nextInt(quotes.length)], false));
+        isDone = true;
+      }
+    });
+  }
+
+  @Override
+  public void atBattleStart() {
+    if (Jurors.doApplyVerdictOnCombatStart) {
+      Jurors.doApplyVerdictOnCombatStart = false;
+      Wiz.atb(new AbstractGameAction() {
         @Override
         public void update() {
-            AbstractDungeon.effectList.add(new SpeechBubble(Settings.WIDTH / 2f, Settings.HEIGHT * 3f / 4f, 3, quotes[new Random().nextInt(quotes.length)], false));
-            isDone = true;
+          AbstractDungeon.getMonsters().monsters.forEach(m -> Wiz.att(new ApplyPowerAction(m, AbstractDungeon.player, new VerdictPower(m,  10), 10)));
+          this.isDone = true;
         }
-    });
+      });
+    }
   }
 }

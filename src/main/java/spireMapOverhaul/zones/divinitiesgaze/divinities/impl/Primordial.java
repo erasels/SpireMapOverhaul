@@ -9,10 +9,6 @@ import java.util.function.Supplier;
 
 public class Primordial extends BaseDivineBeing {
 
-  static {
-    new Primordial();
-  }
-
   public Primordial() {
     super(Propagation.ID, Slimed.ID);
   }

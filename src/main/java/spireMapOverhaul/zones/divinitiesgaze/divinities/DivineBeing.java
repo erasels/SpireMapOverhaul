@@ -18,6 +18,9 @@ public interface DivineBeing {
   default boolean doUpdate() {
     return true;
   }
+  default boolean hasUpdateLogic() {
+    return false;
+  }
 
   default String getEventButtonText() {
     return getDivinityStrings().getEventButtonText();

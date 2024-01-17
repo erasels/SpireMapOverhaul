@@ -17,10 +17,6 @@ import java.util.function.Supplier;
 
 public class End extends BaseDivineBeing {
 
-  static {
-    new End();
-  }
-
   public End() {
     super(Inevitability.ID, VoidCard.ID);
   }
@@ -72,5 +68,10 @@ public class End extends BaseDivineBeing {
     }
 
     AbstractDungeon.gridSelectScreen.open(group, 1, getDivinityStrings().getMiscText().get(SELECT_TEXT), false);
+  }
+
+  @Override
+  public boolean hasUpdateLogic() {
+    return true;
   }
 }

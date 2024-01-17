@@ -11,8 +11,6 @@ public abstract class BaseDivineBeing implements DivineBeing {
     this.divinityStrings = new DivinityStrings(SpireAnniversary6Mod.makeID(DivinitiesGazeZone.ID + "_Divinity_" + this.getClass().getSimpleName()),
         boonCardId, baneCardId,
         SpireAnniversary6Mod.makeEventPath(DivinitiesGazeZone.ID + "/" + this.getClass().getSimpleName()+".png"));
-
-    DivineBeingManager.register(this);
   }
 
   @Override

@@ -2,6 +2,7 @@ package spireMapOverhaul.zones.divinitiesgaze.divinities;
 
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.random.Random;
+import spireMapOverhaul.zones.divinitiesgaze.divinities.impl.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +10,14 @@ import java.util.List;
 public class DivineBeingManager {
   // TODO add a denylist to config maybe?
   private static final List<DivineBeing> DIVINITIES = new ArrayList<>();
+
+  static {
+    register(new Eclectic());
+    register(new End());
+    register(new Jurors());
+    register(new Primordial());
+    register(new Torch());
+  }
 
   public static void register(DivineBeing divinity) {
     if(!DIVINITIES.contains(divinity)) {

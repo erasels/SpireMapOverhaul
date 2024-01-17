@@ -2,8 +2,7 @@ package spireMapOverhaul.zones.divinitiesgaze.events;
 
 import basemod.ReflectionHacks;
 import basemod.abstracts.events.PhasedEvent;
-import basemod.abstracts.events.phases.CombatPhase;
-import basemod.abstracts.events.phases.TextPhase;
+import basemod.abstracts.events.phases.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
@@ -47,21 +46,20 @@ public class DivineVisitor extends PhasedEvent {
 
     AbstractCard boonCard = CardLibrary.getCard(this.divinity.getDivinityStrings().getBoonCardId());
     String combatPhaseKey = this.divinity.getCombatPhaseKey();
-    registerPhase(Phase.APPEARANCE, new TextPhase(this.divinity.getDivinityStrings().getEventText()) {
-          @Override
-          public void update() {
-            super.update();
-            if(combatPhaseKey.isEmpty() && DivineVisitor.this.divinity.doUpdate()) {
-              transitionKey(Phase.ACCEPT);
-            }
-          }
-        }
+    registerPhase(Phase.APPEARANCE, new TextPhase(this.divinity.getDivinityStrings().getEventText())
         .addOption(new TextPhase.OptionInfo(String.format(OPTIONS[1], boonCard.name), boonCard).setOptionResult(i -> {
           AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(boonCard, (float) Settings.WIDTH / 2.0F, (float)Settings.HEIGHT / 2.0F));
           transitionKey(Phase.ACCEPT);
         }))
-        .addOption(new TextPhase.OptionInfo(this.divinity.isEventOptionEnabled().get()? this.divinity.getEventButtonText() : this.divinity.getEventButtonUnavailableText())
-            .setOptionResult(this.divinity.doEventButtonAction().andThen(i -> transitionKey((!combatPhaseKey.isEmpty()) ? Phase.COMBAT : Phase.ACCEPT)))
+        .addOption(new TextPhase.OptionInfo(this.divinity.isEventOptionEnabled().get() ? this.divinity.getEventButtonText() : this.divinity.getEventButtonUnavailableText())
+            .setOptionResult(this.divinity.doEventButtonAction().andThen(i -> {
+              if(!DivineVisitor.this.divinity.hasUpdateLogic()) {
+                transitionKey((!combatPhaseKey.isEmpty()) ? Phase.COMBAT : Phase.ACCEPT);
+              }
+              else {
+                transitionKey(Phase.SCREEN);
+              }
+            }))
             .enabledCondition(this.divinity.isEventOptionEnabled())
         )
         .addOption(OPTIONS[2], i -> {
@@ -71,6 +69,18 @@ public class DivineVisitor extends PhasedEvent {
           transitionKey(Phase.REJECT);
         })
     );
+
+    if(this.divinity.hasUpdateLogic()) {
+      registerPhase(Phase.SCREEN, new TextPhase(""){
+        @Override
+        public void update() {
+          super.update();
+          if(DivineVisitor.this.divinity.doUpdate()) {
+            transitionKey(Phase.ACCEPT);
+          }
+        }
+      });
+    }
 
     registerPhase(Phase.ACCEPT, new TextPhase(this.divinity.getEventAcceptText() + DESCRIPTIONS[1]).addOption(OPTIONS[3], i -> {
       AbstractDungeon.getCurrRoom().phase = AbstractRoom.RoomPhase.COMPLETE;
@@ -90,6 +100,6 @@ public class DivineVisitor extends PhasedEvent {
   }
 
   private enum Phase {
-    ACCEPT, APPEARANCE, ENTRANCE, REJECT, COMBAT
+    ACCEPT, APPEARANCE, ENTRANCE, REJECT, COMBAT, SCREEN
   }
 }

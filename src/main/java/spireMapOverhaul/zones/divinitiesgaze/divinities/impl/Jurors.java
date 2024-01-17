@@ -16,10 +16,6 @@ import java.util.function.Consumer;
 public class Jurors extends BaseDivineBeing {
   public static boolean doApplyVerdictOnCombatStart = false;
 
-  static {
-    new Jurors();
-  }
-
   public Jurors() {
     super(Verdict.ID, Wound.ID);
   }
