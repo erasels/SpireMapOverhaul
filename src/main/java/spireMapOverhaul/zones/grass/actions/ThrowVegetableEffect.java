@@ -88,11 +88,14 @@ public class ThrowVegetableEffect extends AbstractGameEffect {
         float width = img.getWidth();
         float height = img.getHeight();
 
-        sb.setColor(this.color);
         sb.setBlendFunction(GL20.GL_ONE, GL20.GL_ONE_MINUS_SRC_ALPHA);
         for(int i = 5; i < this.previousPos.size(); ++i) {
-            sb.draw(img, this.previousPos.get(i).x, this.previousPos.get(i).y, width / 2.0F, height / 2.0F, width, height, this.scale * i / 40f, this.scale * i / 40f, this.rotation, 0, 0, img.getWidth(), img.getHeight(), false, false);
+            this.color.a = 0.2f * i;
+            sb.setColor(this.color);
+            sb.draw(img, this.previousPos.get(i).x, this.previousPos.get(i).y, width / 2.0F, height / 2.0F, width, height, this.scale * i / 10f, this.scale * i / 10f, this.rotation, 0, 0, img.getWidth(), img.getHeight(), false, false);
         }
+        this.color.a = 1;
+        sb.setColor(this.color);
         sb.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
         sb.draw(img, cX, cY + this.yOffset, width / 2.0F, height / 2.0F, width, height, this.scale, this.scale, this.rotation, 0, 0, img.getWidth(), img.getHeight(), false, false);
     }

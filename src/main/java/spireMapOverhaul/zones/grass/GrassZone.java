@@ -4,7 +4,13 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.RelicLibrary;
 import com.megacrit.cardcrawl.localization.UIStrings;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.Ginger;
+import com.megacrit.cardcrawl.relics.HappyFlower;
+import com.megacrit.cardcrawl.relics.Turnip;
+import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
@@ -12,20 +18,27 @@ import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.zoneInterfaces.CombatModifyingZone;
 import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
 import spireMapOverhaul.zoneInterfaces.RenderableZone;
+import spireMapOverhaul.zoneInterfaces.RewardModifyingZone;
 import spireMapOverhaul.zones.grass.vegetables.*;
 import spireMapOverhaul.zones.mirror.powers.MirrorZonePower;
 
 import java.util.ArrayList;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-public class GrassZone extends AbstractZone implements CombatModifyingZone, RenderableZone {
+public class GrassZone extends AbstractZone implements CombatModifyingZone, RenderableZone, RewardModifyingZone {
     public static final int SPAWN_VEGS = 3;
+    public static final float GRASS_RELIC_CHANCE = 0.5f;
     public static final String ID = "Grass";
+    public static final String[] GRASS_RELICS = new String[] {
+            Turnip.ID,
+            Ginger.ID,
+            HappyFlower.ID
+    };
     private final ArrayList<AbstractVegetableData> ALL = new ArrayList<>();
     private final ArrayList<AbstractVegetable> vegetables = new ArrayList<>();
 
     public GrassZone() {
-        super(ID, Icons.MONSTER);
+        super(ID, Icons.MONSTER, Icons.CHEST);
         this.width = 2;
         this.maxWidth = 4;
         this.height = 3;
@@ -84,6 +97,30 @@ public class GrassZone extends AbstractZone implements CombatModifyingZone, Rend
         ALL.add(Pumpkin.DATA);
         ALL.add(Radish.DATA);
         ALL.add(Tomato.DATA);
+    }
+
+    @Override
+    public void modifyReward(RewardItem rewardItem) {
+        if (rewardItem.type == RewardItem.RewardType.RELIC) {
+            AbstractRelic origRelic = rewardItem.relic;
+            for (String relicID : GRASS_RELICS) {
+                AbstractRelic newRelic = RelicLibrary.getRelic(relicID);
+                if (newRelic != null) {
+                    ArrayList<String> relicPool = Wiz.getRelicPool(newRelic.tier);
+                    // Check if the relic is already in the reward or in the players inventory, and check to see if it is actually in the pool
+                    if (!relicID.equals(origRelic.relicId)
+                            && !AbstractDungeon.player.hasRelic(relicID)
+                            && newRelic.canSpawn()
+                            && (relicPool == null || relicPool.contains(relicID))
+                            && AbstractDungeon.relicRng.randomBoolean(GRASS_RELIC_CHANCE)) {
+                        rewardItem.relic = newRelic.makeCopy();
+                        // Add the old relic back in to the pool so that it can spawn again
+                        Wiz.addRelicToPool(origRelic);
+                        break;
+                    }
+                }
+            }
+        }
     }
 
     public void postRenderBackground(SpriteBatch sb) {
