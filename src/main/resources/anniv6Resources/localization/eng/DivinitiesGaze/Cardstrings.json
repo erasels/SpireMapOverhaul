@@ -35,10 +35,10 @@
   },
   "${ModID}:Propagation": {
     "NAME": "Propagation",
-    "DESCRIPTION": "When drawn, shuffle a Propagation into your draw pile. NL Deal !D! damage for ALL of your cards named \"Propagation\" or \"Slimed\". NL Exhaust.",
+    "DESCRIPTION": "When drawn, shuffle a Propagation into your draw pile. NL Deal !M! damage for ALL of your cards named \"Propagation\" or \"Slimed\". NL Exhaust.",
     "EXTENDED_DESCRIPTION": [
       "Grow...",
-      " NL (Attack !M! times.)"
+      " NL (Deals !D! damage.)"
     ]
   }
 }
