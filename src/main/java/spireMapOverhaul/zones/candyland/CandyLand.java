@@ -33,9 +33,11 @@ public class CandyLand extends AbstractZone implements RewardModifyingZone, Camp
     public static final String ID = "CandyLand";
 
     public CandyLand() {
-        super(ID, Icons.REWARD, Icons.REST, Icons.SHOP);
-        this.width = 3;
+        super(ID, Icons.REST, Icons.SHOP);
+        this.width = 2;
+        this.maxWidth = 4;
         this.height = 3;
+        this.maxHeight = 4;
     }
 
     @Override
@@ -55,6 +57,7 @@ public class CandyLand extends AbstractZone implements RewardModifyingZone, Camp
             ArrayList<AbstractConsumable> consumables = getConsumables();
             consumables.removeIf(c -> c.rarity != card.rarity || cards.stream().anyMatch(listCard -> c.cardID.equals(listCard.cardID)));
             AbstractCard c = consumables.get(AbstractDungeon.cardRng.random(0, consumables.size()-1));
+            this.applyStandardUpgradeLogic(c);
             cards.add(c);
         }
     }
@@ -92,7 +95,7 @@ public class CandyLand extends AbstractZone implements RewardModifyingZone, Camp
         for (int i = 0; i < rewards.size(); i++) {
             RewardItem r = rewards.get(i);
             if(r.type == RewardItem.RewardType.GOLD){
-                rewards.set(i, new HealReward("ChocolateCoins.png", (int) (0.5*r.goldAmt)));
+                rewards.set(i, new HealReward("CandyLand/ChocolateCoins.png", (int) (0.5*r.goldAmt)));
             }
         }
     }

@@ -1,0 +1,11 @@
+{
+  "${ModID}:WingBootEvent": {
+    "NAME": "Broken Wing Boot",
+    "DESCRIPTIONS": [
+      "Before you see two portals. Choose."
+    ],
+    "OPTIONS": [
+      "Broken"
+    ]
+  }
+}

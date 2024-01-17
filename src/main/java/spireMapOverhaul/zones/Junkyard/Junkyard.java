@@ -25,7 +25,7 @@ public class Junkyard extends AbstractZone implements RewardModifyingZone, Encou
     private static final String PEDDLER = SpireAnniversary6Mod.makeID("Peddler");
 
     public Junkyard() {
-        super(ID, Icons.REWARD, Icons.MONSTER, Icons.EVENT);
+        super(ID, Icons.MONSTER, Icons.EVENT);
         this.width = 3;
         this.height = 3;
     }

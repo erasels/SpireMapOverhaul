@@ -1,0 +1,20 @@
+{
+  "${ModID}:WeirdMirrors": {
+    "NAME": "Weird Mirrors",
+    "DESCRIPTIONS": [
+      "You found a room with a lot of mirrors. Reflected lights create a bright spot in the middle. NL NL You feel the urge to put something here.",
+      "You put a card in the middle. The mirror image of it appears everywhere. Feeling uneasy, you quickly put the card back. NL NL For some reason, ~there~ ~are~ ~now~ ~two~ ~copies~ ~of~ ~it.~",
+      "You put Prismatic Shard in the middle. The prism creates a rainbow, vibrantly coloring nearby. NL NL The beautiful sight makes your overflowing emotions #yecho and resonate. You happily take the prism back.",
+      "You put Dolly's Mirror in the middle. The mirror redirects all the light to the ceiling, and it opens! NL You take the mirror back and find a fallen object. NL NL It is an #yEcho #yForm.",
+      "It looks dangerous. Better not touch anything."
+    ],
+    "OPTIONS": [
+      "[Put a card] #gDuplicate #ga #gcard #gin #gyour #gdeck.",
+      "[Put Prismatic Shard] #gReceive Echo Form.",
+      "[Put Dolly's Mirror] #gReceive Echo Form.",
+      "[Locked] Requires: Relic (prism or mirror)",
+      "[Leave]",
+      "Select a Card to Duplicate."
+    ]
+  }
+}

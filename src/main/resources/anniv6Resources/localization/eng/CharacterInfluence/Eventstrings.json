@@ -1,0 +1,14 @@
+{
+  "${ModID}:CharacterVisit": {
+    "NAME": "Battle Nearby",
+    "DESCRIPTIONS": [
+      "There is a fight nearby. One of the combatants has a #ytrustworthy aura - it is ",
+      ". NL NL The fight seems #rparticularly #rtough. They could use your help, and will probably reward you ~in~ ~a~ ~way~ ~only~ ~they~ ~can~ if you do.",
+      "a Stranger"
+    ],
+    "OPTIONS": [
+      "[Help] Fight a damaged #rElite for a special #gReward.",
+      "[Ignore]"
+    ]
+  }
+}

@@ -9,9 +9,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.VerticalAuraEffect;
 import spireMapOverhaul.SpireAnniversary6Mod;
-import spireMapOverhaul.abstracts.AbstractSMOCard;
 
-public class Necropotence extends AbstractSMOCard {
+public class Necropotence extends AbstractInvasionZoneCard {
     public static final String ID = SpireAnniversary6Mod.makeID("Necropotence");
     private static final int COST = 0;
     private static final int DRAW = 1;

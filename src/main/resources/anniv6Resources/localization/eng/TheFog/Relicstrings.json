@@ -1,0 +1,10 @@
+{
+  "${ModID}:StoneFragment": {
+    "NAME": "Standing Stone Fragment",
+    "FLAVOR": "The fragment exudes a powerful aura, but it seems just out of reach.",
+    "DESCRIPTIONS": [
+      "Starts with #b13 charges. ",
+      "At the start of your turn, gain [E] and this loses a charge."
+    ]
+  }
+}

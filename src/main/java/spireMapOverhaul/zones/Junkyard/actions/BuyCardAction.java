@@ -20,7 +20,6 @@ public class BuyCardAction extends AbstractGameAction {
     private float startingDuration;
 
     public BuyCardAction(ArrayList<AbstractCard> cardList, int goldCost){
-        super();
         cards = cardList;
         cost = goldCost;
         this.duration = Settings.ACTION_DUR_FAST;
