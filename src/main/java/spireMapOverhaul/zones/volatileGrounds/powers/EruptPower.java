@@ -13,7 +13,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
-import kotlin.reflect.jvm.internal.impl.descriptors.Visibilities;
 import spireMapOverhaul.abstracts.AbstractSMOPower;
 import spireMapOverhaul.zones.volatileGrounds.VolatileGrounds;
 

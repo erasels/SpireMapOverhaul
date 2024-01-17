@@ -16,9 +16,10 @@
   },
   "${ModID}:GuidingLight": {
     "NAME": "Guiding Light",
-    "DESCRIPTION": "Unplayable. When drawn, exhaust this, then draw cards until your hand is full.",
+    "DESCRIPTION": "Unplayable. When drawn, Exhaust this, then draw cards until your hand is full.",
     "EXTENDED_DESCRIPTION": [
-      "The path is laid bare."
+      "The path is laid bare.",
+      "I can't play this card."
     ]
   },
   "${ModID}:Inevitability": {
