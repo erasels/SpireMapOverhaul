@@ -46,7 +46,7 @@
       "On death, puts #b%d #yDazed on top of your draw pile."
     ]
   },
-  "Hex": {
+  "${ModID}:Hex": {
     "NAME": "Hex",
     "DESCRIPTIONS": [
       "Whenever you play a card, shuffle #b",
