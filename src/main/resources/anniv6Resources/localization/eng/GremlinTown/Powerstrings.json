@@ -52,8 +52,8 @@
   "${ModID}:Horde": {
     "NAME": "Horde",
     "DESCRIPTIONS": [
-      "At the start of your turn, add #b1 random Gremlin card into your hand.",
-      "At the start of your turn, add #b{0} random Gremlin cards into your hand."
+      "At the start of your turn, add #b1 random #yGremlin card into your hand.",
+      "At the start of your turn, add #b{0} random #yGremlin cards into your hand."
     ]
   },
   "${ModID}:Rig": {

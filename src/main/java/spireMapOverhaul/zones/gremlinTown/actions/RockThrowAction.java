@@ -2,6 +2,7 @@ package spireMapOverhaul.zones.gremlinTown.actions;
 
 import basemod.helpers.VfxBuilder;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -39,10 +40,10 @@ public class RockThrowAction extends AbstractGameAction {
         float targetX = 0f;
         float targetY = 0f;
         if (duration == DURATION) {
-            targetX = p.hb.cX + AbstractDungeon.miscRng.random(-25.0f*Settings.xScale, 25.0f*Settings.xScale);
-            targetY = p.hb.cY + AbstractDungeon.miscRng.random(-25.0f*Settings.yScale, 25.0f*Settings.yScale);
-            float targetX2 = targetX + AbstractDungeon.miscRng.random(-400.0f*Settings.xScale, 400.0f*Settings.xScale);
-            float targetY2 = targetY + AbstractDungeon.miscRng.random(-400.0f*Settings.yScale, 400.0f*Settings.yScale);
+            targetX = p.hb.cX + MathUtils.random(-25.0f*Settings.xScale, 25.0f*Settings.xScale);
+            targetY = p.hb.cY + MathUtils.random(-25.0f*Settings.yScale, 25.0f*Settings.yScale);
+            float targetX2 = targetX + MathUtils.random(-400.0f*Settings.xScale, 400.0f*Settings.xScale);
+            float targetY2 = targetY + MathUtils.random(-400.0f*Settings.yScale, 400.0f*Settings.yScale);
             AbstractGameEffect rockEffect = new VfxBuilder(CUCUMBER_IMAGE, m.hb.cX, m.hb.cY, DURATION)
                     .moveX(m.hb.cX, targetX, VfxBuilder.Interpolations.LINEAR)
                     .moveY(m.hb.cY, targetY, VfxBuilder.Interpolations.LINEAR)

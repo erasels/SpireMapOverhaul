@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.PoisonPower;
 import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
+import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractSMOCard;
 import spireMapOverhaul.zones.gremlinTown.GremlinTown;
 
@@ -25,6 +26,7 @@ public class PoisonSpray extends AbstractSMOCard {
     public PoisonSpray() {
         super(ID, GremlinTown.ID, COST, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY, CardColor.COLORLESS);
         baseDamage = DAMAGE;
+        tags.add(SpireAnniversary6Mod.Enums.GREMLIN);
     }
 
     @Override

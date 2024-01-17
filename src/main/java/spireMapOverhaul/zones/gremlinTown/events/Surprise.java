@@ -75,10 +75,6 @@ public class Surprise extends AbstractEvent {
         RIDER_B_END_Y = AbstractDungeon.floorY - 50f;
     }
 
-    public static boolean bonusCondition() {
-        return true;
-    }
-
     public Surprise() {
         super();
         chest = new Chest();
@@ -93,6 +89,10 @@ public class Surprise extends AbstractEvent {
         AbstractDungeon.overlayMenu.proceedButton.show();
         String proceedLabel = CardCrawlGame.languagePack.getUIString("TreasureRoom").TEXT[0];
         AbstractDungeon.overlayMenu.proceedButton.setLabel(proceedLabel);
+    }
+
+    public static boolean endsWithRewardsUI() {
+        return true;
     }
 
     public void update() {

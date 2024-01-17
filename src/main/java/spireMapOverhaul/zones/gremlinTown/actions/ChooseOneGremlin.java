@@ -1,5 +1,6 @@
 package spireMapOverhaul.zones.gremlinTown.actions;
 
+import basemod.BaseMod;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
@@ -36,11 +37,11 @@ public class ChooseOneGremlin extends AbstractGameAction {
 
                     disCard.current_x = -1000.0F * Settings.xScale;
                     if (amount == 1) {
-                        if (adp().hand.size() < 10)
+                        if (adp().hand.size() < BaseMod.MAX_HAND_SIZE)
                             AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(disCard, (float)Settings.WIDTH / 2.0F, (float)Settings.HEIGHT / 2.0F));
                         else
                             AbstractDungeon.effectList.add(new ShowCardAndAddToDiscardEffect(disCard, (float)Settings.WIDTH / 2.0F, (float)Settings.HEIGHT / 2.0F));
-                    } else if (adp().hand.size() + amount <= 10)
+                    } else if (adp().hand.size() + amount <= BaseMod.MAX_HAND_SIZE)
                         AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(disCard, (float)Settings.WIDTH / 2.0F - AbstractCard.IMG_WIDTH / 2.0F, (float)Settings.HEIGHT / 2.0F));
                     else if (adp().hand.size() == 9)
                         AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(disCard, (float)Settings.WIDTH / 2.0F - AbstractCard.IMG_WIDTH / 2.0F, (float)Settings.HEIGHT / 2.0F));

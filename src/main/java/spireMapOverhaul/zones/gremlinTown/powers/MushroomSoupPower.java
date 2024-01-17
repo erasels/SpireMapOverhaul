@@ -28,7 +28,7 @@ public class MushroomSoupPower extends AbstractSMOPower {
 
     @Override
     public void atEndOfTurn(boolean isPlayer) {
-        atb(new AddTemporaryHPAction(adp(), adp(), amount));
+        atb(new AddTemporaryHPAction(owner, owner, amount));
     }
 }
 

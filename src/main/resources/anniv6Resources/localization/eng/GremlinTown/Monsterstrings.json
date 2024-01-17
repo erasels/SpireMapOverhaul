@@ -26,6 +26,13 @@
     ],
     "NAME": "Gremlin Rocker"
   },
+  "${ModID}:GremlinBrute": {
+    "MOVES": [
+      "Slam",
+      "Break"
+    ],
+    "NAME": "Gremlin Brute"
+  },
   "${ModID}:GremlinHealer": {
     "MOVES": [
       "Cure",
@@ -67,8 +74,9 @@
   },
   "${ModID}:GremlinNib": {
     "MOVES": [
-      "Bellow",
-      "Rush",
+      "Slam",
+      "Double Hit",
+      "Frenzy",
       "Crit"
     ],
     "DIALOG": [

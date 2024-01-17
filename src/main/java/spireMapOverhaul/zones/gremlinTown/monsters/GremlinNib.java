@@ -17,15 +17,13 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
-import com.megacrit.cardcrawl.powers.AngerPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.vfx.AwakenedEyeParticle;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.actions.WaitMoreAction;
 import spireMapOverhaul.zones.gremlinTown.powers.GremlinNibPower;
 
-import static spireMapOverhaul.util.Wiz.adp;
-import static spireMapOverhaul.util.Wiz.atb;
+import static spireMapOverhaul.util.Wiz.*;
 
 public class GremlinNib extends CustomMonster
 {
@@ -37,51 +35,60 @@ public class GremlinNib extends CustomMonster
             "monsters/GremlinTown/GremlinNib/skeleton.atlas");
     private static final String SKELETON_JSON = SpireAnniversary6Mod.makeImagePath(
             "monsters/GremlinTown/GremlinNib/skeleton.json");
-    public static final byte BELLOW = 1;
-    public static final byte RUSH = 2;
-    public static final byte CRIT = 3;
+    public static final byte SLAM = 1;
+    public static final byte DOUBLE = 2;
+    public static final byte FRENZY = 3;
+    public static final byte CRIT = 4;
     private static final int HP_MIN = 171;
     private static final int HP_MAX = 180;
     private static final int HP_MIN_A7 = 185;
     private static final int HP_MAX_A7 = 195;
+    private static final int SLAM_DMG = 25;
+    private static final int DOUBLE_DMG = 10;
+    private static final int FRENZY_DMG = 5;
     private static final int CRIT_DMG = 40;
-    private static final int RUSH_DMG = 16;
+    private static final int SLAM_DMG_A2 = 27;
+    private static final int DOUBLE_DMG_A2 = 11;
+    private static final int FRENZY_DMG_A2 = 6;
     private static final int CRIT_DMG_A2 = 45;
-    private static final int RUSH_DMG_A2 = 18;
-    private static final int ANGER_AMOUNT = 1;
-    private static final int PEN_AMOUNT_A18 = 8;
-    private static final int PEN_AMOUNT = 10;
-    private static final int VULN_AMOUNT = 2;
-    private final int rushDmg;
+    private static final int VULN_AMOUNT = 3;
+    private final int slamDmg;
+    private final int doubleDmg;
+    private final int frenzyDmg;
     public final int critDmg;
-    private boolean usedBellow;
 
-    public static boolean isWoke = false;
+    public boolean isWoke = false;
     public static Bone wokePosLeft;
     public static float wokeTimer = 0.0f;
 
+    private boolean firstMove;
+
     public GremlinNib(float x, float y) {
         super(NAME, ID, HP_MAX, -70.0F, -10.0F, 270.0F, 380.0F, null, x, y);
-        usedBellow = false;
         intentOffsetX = -30.0F * Settings.scale;
         type = EnemyType.NORMAL;
         dialogX = -60.0F * Settings.scale;
         dialogY = 50.0F * Settings.scale;
-        if (AbstractDungeon.ascensionLevel >= 7) {
+        if (AbstractDungeon.ascensionLevel >= 7)
             setHp(HP_MIN_A7, HP_MAX_A7);
-        } else {
+        else
             setHp(HP_MIN, HP_MAX);
-        }
 
         if (AbstractDungeon.ascensionLevel >= 2) {
             critDmg = CRIT_DMG_A2;
-            rushDmg = RUSH_DMG_A2;
+            slamDmg = SLAM_DMG_A2;
+            doubleDmg = DOUBLE_DMG_A2;
+            frenzyDmg = FRENZY_DMG_A2;
         } else {
             critDmg = CRIT_DMG;
-            rushDmg = RUSH_DMG;
+            slamDmg = SLAM_DMG;
+            doubleDmg = DOUBLE_DMG;
+            frenzyDmg = FRENZY_DMG;
         }
 
-        damage.add(new DamageInfo(this, rushDmg));
+        damage.add(new DamageInfo(this, slamDmg));
+        damage.add(new DamageInfo(this, doubleDmg));
+        damage.add(new DamageInfo(this, frenzyDmg));
         damage.add(new DamageInfo(this, critDmg));
         loadAnimation(SKELETON_ATLAS, SKELETON_JSON, 1.0F);
         AnimationState.TrackEntry e = state.setAnimation(0, "animation", true);
@@ -91,29 +98,41 @@ public class GremlinNib extends CustomMonster
             isWoke = false;
             wokePosLeft = skeleton.findBone("hornleft");
         }
+
+        firstMove = true;
+    }
+
+    @Override
+    public void usePreBattleAction() {
+        if (asc() >= 17)
+            atb(new ApplyPowerAction(this, this, new GremlinNibPower(this, 1)));
+        else
+            atb(new ApplyPowerAction(this, this, new GremlinNibPower(this, 0)));
     }
 
     public void takeTurn() {
         switch (nextMove) {
-            case BELLOW:
-                playSfx();
-                atb(new TalkAction(this, DIALOG[0], 1.0F, 3.0F));
-                atb(new ApplyPowerAction(this, this, new AngerPower(this, ANGER_AMOUNT)));
-                if (AbstractDungeon.ascensionLevel >= 18)
-                    atb(new ApplyPowerAction(this, this, new GremlinNibPower(this, PEN_AMOUNT_A18)));
-                else
-                    atb(new ApplyPowerAction(this, this, new GremlinNibPower(this, PEN_AMOUNT)));
-                break;
-            case RUSH:
+            case SLAM:
                 atb(new AnimateSlowAttackAction(this));
                 atb(new DamageAction(adp(), damage.get(0), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
+                break;
+            case DOUBLE:
+                atb(new AnimateSlowAttackAction(this));
+                atb(new DamageAction(adp(), damage.get(1), AbstractGameAction.AttackEffect.SLASH_HEAVY));
+                atb(new DamageAction(adp(), damage.get(1), AbstractGameAction.AttackEffect.SLASH_HEAVY));
+                break;
+            case FRENZY:
+                atb(new AnimateSlowAttackAction(this));
+                atb(new DamageAction(adp(), damage.get(2), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
+                atb(new DamageAction(adp(), damage.get(2), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
+                atb(new DamageAction(adp(), damage.get(2), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
                 break;
             case CRIT:
                 playSfx();
                 atb(new TalkAction(this, DIALOG[0], 1.0F, 3.0F));
                 atb(new WaitMoreAction(1f));
                 atb(new AnimateSlowAttackAction(this));
-                atb(new DamageAction(adp(), damage.get(1), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
+                atb(new DamageAction(adp(), damage.get(3), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
                 atb(new ApplyPowerAction(adp(), this, new VulnerablePower(adp(), VULN_AMOUNT, true)));
                 break;
         }
@@ -156,11 +175,34 @@ public class GremlinNib extends CustomMonster
     }
 
     protected void getMove(int num) {
-        if (!usedBellow) {
-            usedBellow = true;
-            setMove(BELLOW, Intent.BUFF);
-        } else
-          setMove(RUSH, Intent.ATTACK, damage.get(0).base);
+        if (firstMove || lastMove(CRIT)) {
+            firstMove = false;
+            int x = AbstractDungeon.monsterRng.random(0, 2);
+            if (x == 0)
+                setMove(SLAM, Intent.ATTACK, slamDmg);
+            if (x == 1)
+                setMove(DOUBLE, Intent.ATTACK, doubleDmg, 2, true);
+            else
+                setMove(FRENZY, Intent.ATTACK, frenzyDmg, 3, true);
+        } else if (lastMove(SLAM)) {
+            int x = AbstractDungeon.monsterRng.random(0, 1);
+            if (x == 0)
+                setMove(DOUBLE, Intent.ATTACK, doubleDmg, 2, true);
+            else
+                setMove(FRENZY, Intent.ATTACK, frenzyDmg, 3, true);
+        } else if (lastMove(DOUBLE)) {
+            int x = AbstractDungeon.monsterRng.random(0, 1);
+            if (x == 0)
+                setMove(SLAM, Intent.ATTACK, slamDmg);
+            else
+                setMove(FRENZY, Intent.ATTACK, frenzyDmg, 3, true);
+        } else {
+            int x = AbstractDungeon.monsterRng.random(0, 1);
+            if (x == 0)
+                setMove(DOUBLE, Intent.ATTACK, doubleDmg, 2, true);
+            else
+                setMove(SLAM, Intent.ATTACK, slamDmg);
+        }
     }
 
     static {

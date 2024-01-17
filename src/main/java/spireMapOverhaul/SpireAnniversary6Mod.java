@@ -25,14 +25,12 @@ import com.google.gson.Gson;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.AbstractEvent;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rewards.RewardSave;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.screens.options.DropdownMenu;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import javassist.CtClass;
@@ -61,9 +59,7 @@ import spireMapOverhaul.zoneInterfaces.CampfireModifyingZone;
 import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
 import spireMapOverhaul.zones.beastslair.BeastsLairZone;
 import spireMapOverhaul.zones.brokenspace.BrokenSpaceZone;
-import spireMapOverhaul.zones.gremlinTown.GremlinTown;
 import spireMapOverhaul.zones.gremlinTown.HordeHelper;
-import spireMapOverhaul.zones.gremlinTown.events.Surprise;
 import spireMapOverhaul.zones.gremlinTown.potions.*;
 import spireMapOverhaul.zones.manasurge.ui.extraicons.BlightIcon;
 import spireMapOverhaul.zones.manasurge.ui.extraicons.EnchantmentIcon;
@@ -93,7 +89,6 @@ public class SpireAnniversary6Mod implements
         EditKeywordsSubscriber,
         PostInitializeSubscriber,
         AddAudioSubscriber,
-        OnStartBattleSubscriber,
         PostRenderSubscriber,
         PostCampfireSubscriber,
         MaxHPChangeSubscriber,
@@ -504,9 +499,6 @@ public class SpireAnniversary6Mod implements
                     }
                     eventBuilder.endsWithRewardsUI(endsWithRewardsUI);
 
-                    if (eventID.equals(Surprise.ID))
-                        eventBuilder.endsWithRewardsUI(true);
-
                     BaseMod.addEvent(eventBuilder.create());
                 }
                 else {
@@ -704,12 +696,6 @@ public class SpireAnniversary6Mod implements
     @Override
     public void receivePostUpdate() {
         time += Gdx.graphics.getRawDeltaTime();
-    }
-
-    @Override
-    public void receiveOnBattleStart(AbstractRoom abstractRoom) {
-        if (AbstractDungeon.lastCombatMetricKey.equals(GremlinTown.GREMLIN_HORDE))
-            HordeHelper.initFight();
     }
 
     public static class SavableCurrentRunActive implements CustomSavable<Boolean> {

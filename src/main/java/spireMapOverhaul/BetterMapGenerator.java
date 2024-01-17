@@ -70,7 +70,6 @@ public class BetterMapGenerator {
             float zoneRate = 1;
 
             for (AbstractZone queuedZone : queueCommandZones) {
-                mapGenLogger.info(queuedZone.id);
                 if (queuedZone.generateMapArea(planner)) {
                     activeZones.add(queuedZone);
                     possibleZones.removeIf(z -> z.id.equals(queuedZone.id));
@@ -98,8 +97,6 @@ public class BetterMapGenerator {
             }
             mapGenLogger.info("Generating map with " + activeZones.size() + " zones...");
         } while (!finishMap(rng, planner, pathDensity));
-        queueCommandZones.clear();
-
         queueCommandZones.clear();
 
         lastMap = planner.generate();

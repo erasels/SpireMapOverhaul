@@ -1,7 +1,7 @@
 package spireMapOverhaul.zones.gremlinTown.powers;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -30,8 +30,7 @@ public class GremsFirePower extends AbstractSMOPower {
 
     @Override
     public void atEndOfTurn(boolean isPlayer) {
-        forAllMonstersLiving(m -> atb(new DamageAction(m, new DamageInfo(adp(), amount, DamageInfo.DamageType.THORNS),
-                AbstractGameAction.AttackEffect.FIRE)));
+        forAllMonstersLiving(m -> atb(new DamageAllEnemiesAction(adp(), amount, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE)));
     }
 }
 

@@ -61,6 +61,7 @@ public class HordeHelper {
     private static final float PLATFORM_X_RIGHT = Settings.WIDTH * 0.7F - HB_WIDTH/2.0F*Settings.scale;
     private static final float RIGHT_X_FRONT = Settings.WIDTH * 0.7F;
     private static final float RIGHT_X_BACK = Settings.WIDTH * 0.82F;
+    private static final float BRUTE_OFFSET = Settings.WIDTH * 0.4F;
     private static final float LEFT_X_FRONT = Settings.WIDTH * 0.3F;
     private static final float LEFT_X_BACK = Settings.WIDTH * 0.18F;
     private static final float PLATFORM_END_Y = Settings.HEIGHT - HB_HEIGHT * Settings.scale - 50F * Settings.scale;
@@ -89,27 +90,24 @@ public class HordeHelper {
             groundQueue.add(new GremlinTsundere(Settings.WIDTH * 4, 0));
             groundQueue.add(new GremlinFat(Settings.WIDTH * 4, 0));
             platformQueue.add(new GremlinWizard(Settings.WIDTH * 4, 0));
+            platformQueue.add(new GremlinRockTosser(Settings.WIDTH * 4, 0));
             if (i < 4)
                 platformQueue.add(new GremlinRockTosser(Settings.WIDTH * 4, 0));
         }
 
         ArrayList<AbstractMonster> tempQueue = new ArrayList<>();
-        tempQueue.add(new GremlinBarbarian(Settings.WIDTH * 4, 0));
-        tempQueue.add(new GremlinAssassin(Settings.WIDTH * 4, 0));
-        tempQueue.add(new ChubbyGremlin(Settings.WIDTH * 4, 0));
-        tempQueue.add(new ArmoredGremlin(Settings.WIDTH * 4, 0));
+        for (int i = 0; i < 5; i++)
+            tempQueue.add(new GremlinBrute(Settings.WIDTH * 4, 0));
 
         Collections.shuffle(tempQueue, AbstractDungeon.monsterRng.random);
         Collections.shuffle(groundQueue, AbstractDungeon.monsterRng.random);
         Collections.shuffle(platformQueue, AbstractDungeon.monsterRng.random);
 
-        int x = AbstractDungeon.monsterRng.random(2, platformQueue.size() - 3);
-        platformQueue.add(x, new GremlinHealer(Settings.WIDTH * 4, 0));
-
         groundQueue.add(5, tempQueue.get(0));
         groundQueue.add(9, tempQueue.get(1));
         groundQueue.add(13, tempQueue.get(2));
         groundQueue.add(17, tempQueue.get(3));
+        groundQueue.add(21, tempQueue.get(4));
 
         ArrayList<AbstractMonster> tempArray = new ArrayList<>(Wiz.getEnemies());
         tempArray.sort( (m1, m2) -> (int)(m1.hb.x - m2.hb.x) );
@@ -292,10 +290,6 @@ public class HordeHelper {
                     right_hb.move(PLATFORM_X_RIGHT, platform_Y);
                     monsterLeftPlatform.drawY = platform_Y + 56F*Settings.scale;
                     monsterRightPlatform.drawY = platform_Y + 56F*Settings.scale;
-                    if (monsterLeftPlatform instanceof GremlinHealer)
-                        monsterLeftPlatform.drawY -= 15F;
-                    if (monsterRightPlatform instanceof GremlinHealer)
-                        monsterRightPlatform.drawY -= 15F;
                 }
 
                 tickDuration();
@@ -334,17 +328,110 @@ public class HordeHelper {
         if (platforms && (monsterRightPlatform == null || monsterRightPlatform.isDeadOrEscaped()))
             fillRightPlatform();
 
-        if (monsterRightFront == null || monsterRightFront.isDeadOrEscaped()) {
-            if (monsterRightBack != null && !monsterRightBack.isDeadOrEscaped()) {
-                moveRightGremlinUp();
-                moveRightGremlinIn(false);
+        int leftSpots = 0;
+        int rightSpots = 0;
+
+        if (groundQueue.size() == 0)
+            return;
+
+        if (monsterRightFront == null || monsterRightFront.isDeadOrEscaped())
+            rightSpots++;
+        if (monsterRightBack == null || monsterRightBack.isDeadOrEscaped())
+            rightSpots++;
+        if (monsterLeftFront == null || monsterLeftFront.isDeadOrEscaped())
+            leftSpots++;
+        if (monsterLeftBack == null || monsterLeftBack.isDeadOrEscaped())
+            leftSpots++;
+        if (monsterRightFront instanceof GremlinBrute)
+            rightSpots = 0;
+        if (monsterLeftFront instanceof GremlinBrute)
+            leftSpots = 0;
+
+        boolean brute = groundQueue.get(0) instanceof GremlinBrute;
+        if (leftSpots + rightSpots == 0)
+            return;
+        if (leftSpots + rightSpots == 1 && brute) {
+            if (leftSpots == 1)
+                fillLeft();
+            else
+                fillRight();
+            return;
+        }
+
+        if (brute) {
+            if (leftSpots == 2 && rightSpots < 2) {
+                moveLeftGremlinIn(true, false);
+                if (rightSpots > 0)
+                    fillRight();
             }
-            else {
-                moveRightGremlinIn(false);
+            else if (rightSpots == 2 && leftSpots < 2) {
                 moveRightGremlinIn(true);
+                if (leftSpots > 0)
+                    fillLeft();
+            } else {
+                int x = AbstractDungeon.monsterRng.random(0, 1);
+                if (x == 0) {
+                    if (leftSpots == 1)
+                        moveLeftGremlinAcross();
+                    else
+                        fillRight();
+                    moveLeftGremlinIn(true, false);
+                } else {
+                    if (rightSpots == 1)
+                        moveRightGremlinAcross();
+                    else
+                        fillLeft();
+                    moveRightGremlinIn(true);
+                }
             }
-        } else if (monsterRightBack == null || monsterRightBack.isDeadOrEscaped())
-            moveRightGremlinIn(false);
+        } else {
+            if (rightSpots > 0 && leftSpots == 0) {
+                fillRight();
+                return;
+            } else if (rightSpots == 0 && leftSpots > 0) {
+                fillLeft();
+                return;
+            } else {
+                int x = AbstractDungeon.monsterRng.random(0, 1);
+                if (x == 0) {
+                    fillLeft();
+                    leftSpots = 0;
+                } else {
+                    fillRight();
+                    rightSpots = 0;
+                }
+            }
+
+            if (leftSpots + rightSpots == 0)
+                return;
+
+            if (groundQueue.size() == 0)
+                return;
+            brute = groundQueue.get(0) instanceof GremlinBrute;
+
+            if (leftSpots + rightSpots == 1 && brute)
+                return;
+
+            if (leftSpots == 2) {
+                if (brute)
+                    moveLeftGremlinIn(true, false);
+                else
+                    fillLeft();
+            } else if (rightSpots == 2) {
+                if (brute)
+                    moveRightGremlinIn(true);
+                else
+                    fillRight();
+            } else if (leftSpots == 1)
+                fillLeft();
+            else
+                fillRight();
+        }
+    }
+
+    public static void fillLeft() {
+        if (groundQueue.size() == 0 || groundQueue.get(0) instanceof GremlinBrute)
+            return;
 
         if (monsterLeftFront == null || monsterLeftFront.isDeadOrEscaped()) {
             if (monsterLeftBack != null && !monsterLeftBack.isDeadOrEscaped()) {
@@ -352,11 +439,29 @@ public class HordeHelper {
                 moveLeftGremlinIn(false, false);
             }
             else {
-                moveLeftGremlinIn(false, false);
                 moveLeftGremlinIn(true, false);
+                if (groundQueue.size() == 0 || groundQueue.get(0) instanceof GremlinBrute)
+                    return;
+                moveLeftGremlinIn(false, false);
             }
-        } else if (monsterLeftBack == null || monsterLeftBack.isDeadOrEscaped())
+        } else if ((monsterLeftBack == null || monsterLeftBack.isDeadOrEscaped()))
             moveLeftGremlinIn(false, false);
+    }
+
+    public static void fillRight() {
+        if (monsterRightFront == null || monsterRightFront.isDeadOrEscaped()) {
+            if (monsterRightBack != null && !monsterRightBack.isDeadOrEscaped()) {
+                moveRightGremlinUp();
+                moveRightGremlinIn(false);
+            }
+            else {
+                moveRightGremlinIn(true);
+                if (groundQueue.size() == 0 || groundQueue.get(0) instanceof GremlinBrute)
+                    return;
+                moveRightGremlinIn(false);
+            }
+        } else if ((monsterRightBack == null || monsterRightBack.isDeadOrEscaped()))
+            moveRightGremlinIn(false);
     }
 
     public static void calculateBackAttack() {
@@ -581,11 +686,6 @@ public class HordeHelper {
         m.hb_x = -m.hb_x;
         m.intentOffsetX = -m.intentOffsetX;
 
-        final float end_x;
-        if (far)
-            end_x = LEFT_X_FRONT;
-        else
-            end_x = LEFT_X_BACK;
         float start_x = -200.0F*Settings.scale;
 
         m.drawY = AbstractDungeon.floorY + AbstractDungeon.miscRng.random(-30.0F, 30.0F);
@@ -593,17 +693,27 @@ public class HordeHelper {
         AbstractGameEffect x = new AbstractGameEffect() {
             boolean first = true;
             float DURATION;
+            float end_x = 0;
+
             @Override
             public void update() {
                 duration -= Gdx.graphics.getDeltaTime();
 
                 if (first) {
                     first = false;
+
                     if (far)
                         DURATION = 1.6F;
                     else
                         DURATION = 1.2F;
                     duration = DURATION;
+
+                    if (far)
+                        end_x = LEFT_X_FRONT;
+                    else
+                        end_x = LEFT_X_BACK;
+                    if (m instanceof GremlinBrute)
+                        end_x -= BRUTE_OFFSET;
                 }
                 m.drawX = Interpolation.linear.apply(start_x, end_x, (DURATION - duration)/DURATION);
 
@@ -652,12 +762,6 @@ public class HordeHelper {
         else
             monsterRightBack = m;
 
-        final float end_x;
-        if (far)
-            end_x = RIGHT_X_FRONT;
-        else
-            end_x = RIGHT_X_BACK;
-
         float start_x = Settings.WIDTH + 200.0F*Settings.scale;
 
         m.drawY = AbstractDungeon.floorY + AbstractDungeon.miscRng.random(-30.0F, 30.0F);
@@ -668,6 +772,7 @@ public class HordeHelper {
             @Override
             public void update() {
                 duration -= Gdx.graphics.getDeltaTime();
+                float end_x = 0;
 
                 if (first) {
                     first = false;
@@ -676,6 +781,13 @@ public class HordeHelper {
                     else
                         DURATION = 0.8F;
                     duration = DURATION;
+
+                    if (far)
+                        end_x = LEFT_X_FRONT;
+                    else
+                        end_x = LEFT_X_BACK;
+                    if (m instanceof GremlinBrute)
+                        end_x += BRUTE_OFFSET;
                 }
                 m.drawX = Interpolation.linear.apply(start_x, end_x, (DURATION - duration)/DURATION);
 
@@ -703,16 +815,15 @@ public class HordeHelper {
         });
         att(new RollMoveAction(m));
         att(new SpawnMonsterAction(m, false));
-
     }
 
     public static void fillLeftPlatform() {
-        final float start_y = Settings.HEIGHT*1.05F;
         if (platformQueue.isEmpty())
             return;
-
         monsterLeftPlatform = platformQueue.get(0);
         platformQueue.remove(0);
+
+        final float start_y = Settings.HEIGHT*1.05F;
 
         monsterLeftPlatform.drawX = PLATFORM_X_LEFT + HB_WIDTH/2.0F*Settings.scale;
         monsterLeftPlatform.drawY = start_y;
@@ -732,15 +843,11 @@ public class HordeHelper {
                     DURATION = 1.0F;
                     duration = DURATION;
                 }
-                monsterLeftPlatform.drawY = Interpolation.linear.apply(start_y, PLATFORM_END_Y + 56F*Settings.scale,
+                monsterLeftPlatform.drawY = Interpolation.pow2In.apply(start_y, PLATFORM_END_Y + 56F*Settings.scale,
                         (DURATION - duration)/DURATION);
-                if (monsterLeftPlatform instanceof GremlinHealer)
-                    monsterLeftPlatform.drawY -= 15F;
 
-                if (duration < 0.0F) {
-                    CardCrawlGame.sound.play("BLUNT_FAST");
+                if (duration < 0.0F)
                     isDone = true;
-                }
             }
 
             @Override
@@ -766,12 +873,12 @@ public class HordeHelper {
     }
 
     public static void fillRightPlatform() {
-        final float start_y = Settings.HEIGHT*1.05F;
         if (platformQueue.isEmpty())
             return;
-
         monsterRightPlatform = platformQueue.get(0);
         platformQueue.remove(0);
+
+        final float start_y = Settings.HEIGHT*1.05F;
 
         monsterRightPlatform.drawX = PLATFORM_X_RIGHT + HB_WIDTH/2.0F*Settings.scale;
         monsterRightPlatform.drawY = start_y;
@@ -789,16 +896,12 @@ public class HordeHelper {
                     duration = DURATION + 0.15F;
                 }
                 if (duration <= DURATION) {
-                    monsterRightPlatform.drawY = Interpolation.linear.apply(start_y, PLATFORM_END_Y + 56 * Settings.scale,
+                    monsterRightPlatform.drawY = Interpolation.pow2In.apply(start_y, PLATFORM_END_Y + 56 * Settings.scale,
                             (DURATION - duration) / DURATION);
-                    if (monsterRightPlatform instanceof GremlinHealer)
-                        monsterRightPlatform.drawY -= 15F;
                 }
 
-                if (duration < 0.0F) {
-                    CardCrawlGame.sound.play("BLUNT_FAST");
+                if (duration < 0.0F)
                     isDone = true;
-                }
             }
 
             @Override
@@ -821,6 +924,116 @@ public class HordeHelper {
         });
         att(new RollMoveAction(monsterRightPlatform));
         att(new SpawnMonsterAction(monsterRightPlatform, false));
+    }
+
+    public static void moveLeftGremlinAcross() {
+        AbstractMonster m;
+        if (monsterLeftFront != null && !monsterLeftFront.isDeadOrEscaped())
+            m = monsterLeftFront;
+        else if (monsterLeftBack != null && !monsterLeftBack.isDeadOrEscaped())
+            m = monsterLeftBack;
+        else
+            return;
+
+        final float end_x;
+
+        if (monsterRightFront == null || monsterRightFront.isDeadOrEscaped()) {
+            monsterRightFront = m;
+            end_x = RIGHT_X_FRONT;
+        } else if (monsterRightBack == null || monsterRightBack.isDeadOrEscaped()) {
+            monsterRightBack = m;
+            end_x = RIGHT_X_BACK;
+        }
+        else
+            return;
+
+        final float start_x = m.drawX;
+
+        AbstractGameEffect x = new AbstractGameEffect() {
+            boolean first = true;
+            float DURATION = 0;
+            @Override
+            public void update() {
+                duration -= Gdx.graphics.getDeltaTime();
+
+                if (first) {
+                    first = false;
+                    DURATION = (end_x - start_x)/Settings.WIDTH*4.3F;
+                    duration = DURATION;
+                }
+                m.drawX = Interpolation.linear.apply(start_x, end_x, (DURATION - duration)/DURATION);
+
+                if (duration < 0.0F) {
+                    isDone = true;
+                    m.flipHorizontal = false;
+                }
+            }
+
+            @Override
+            public void render(SpriteBatch spriteBatch) {
+            }
+
+            @Override
+            public void dispose() {
+            }
+        };
+
+        att(new VFXAction(x));
+    }
+
+    public static void moveRightGremlinAcross() {
+        AbstractMonster m;
+        if (monsterRightFront != null && !monsterRightFront.isDeadOrEscaped())
+            m = monsterRightFront;
+        else if (monsterRightBack != null && !monsterRightBack.isDeadOrEscaped())
+            m = monsterRightBack;
+        else
+            return;
+
+        final float end_x;
+
+        if (monsterLeftFront == null || monsterLeftFront.isDeadOrEscaped()) {
+            monsterLeftFront = m;
+            end_x = LEFT_X_FRONT;
+        } else if (monsterLeftBack == null || monsterLeftBack.isDeadOrEscaped()) {
+            monsterLeftBack = m;
+            end_x = LEFT_X_BACK;
+        }
+        else
+            return;
+
+        final float start_x = m.drawX;
+
+        AbstractGameEffect x = new AbstractGameEffect() {
+            boolean first = true;
+            float DURATION = 0;
+            @Override
+            public void update() {
+                duration -= Gdx.graphics.getDeltaTime();
+
+                if (first) {
+                    first = false;
+                    DURATION = (start_x - end_x)/Settings.WIDTH*4.3F;
+                    duration = DURATION;
+                }
+                m.drawX = Interpolation.linear.apply(start_x, end_x, (DURATION - duration)/DURATION);
+
+                if (duration < 0.0F) {
+                    isDone = true;
+                    m.flipHorizontal = true;
+                }
+            }
+
+            @Override
+            public void render(SpriteBatch spriteBatch) {
+            }
+
+            @Override
+            public void dispose() {
+            }
+        };
+
+        att(new VFXAction(x));
     }
 
     public static void render(SpriteBatch sb) {

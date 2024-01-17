@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.helpers.PotionHelper;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
-import com.megacrit.cardcrawl.monsters.exordium.*;
+import com.megacrit.cardcrawl.monsters.exordium.GremlinWarrior;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rewards.RewardItem;
@@ -21,10 +21,7 @@ import com.megacrit.cardcrawl.shop.StoreRelic;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.util.Wiz;
-import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
-import spireMapOverhaul.zoneInterfaces.ModifiedEventRateZone;
-import spireMapOverhaul.zoneInterfaces.RewardModifyingZone;
-import spireMapOverhaul.zoneInterfaces.ShopModifyingZone;
+import spireMapOverhaul.zoneInterfaces.*;
 import spireMapOverhaul.zones.gremlinTown.cards.*;
 import spireMapOverhaul.zones.gremlinTown.events.misc.Chest;
 import spireMapOverhaul.zones.gremlinTown.monsters.*;
@@ -39,13 +36,12 @@ import java.util.List;
 import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.*;
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 import static spireMapOverhaul.SpireAnniversary6Mod.makePath;
-import static spireMapOverhaul.util.Wiz.adp;
-import static spireMapOverhaul.util.Wiz.asc;
 
 public class GremlinTown extends AbstractZone
         implements EncounterModifyingZone,
         RewardModifyingZone,
         ShopModifyingZone,
+        CombatModifyingZone,
         ModifiedEventRateZone {
     public static final String ID = GremlinTown.class.getSimpleName();
     public static final String GREMLIN_RIDERS = SpireAnniversary6Mod.makeID("Gremlin_Riders");
@@ -82,6 +78,11 @@ public class GremlinTown extends AbstractZone
         height = 6;
     }
 
+    public void atBattleStart() {
+        if (AbstractDungeon.lastCombatMetricKey.equals(GremlinTown.GREMLIN_HORDE))
+            HordeHelper.initFight();
+    }
+
     @Override
     public AbstractZone copy() {
         return new GremlinTown();
@@ -109,8 +110,6 @@ public class GremlinTown extends AbstractZone
 
     @Override
     public List<ZoneEncounter> getNormalEncounters() {
-        // This example has new custom enemies in act 1, remixes of base game enemies in act 2, and isn't valid in act 3
-        // (Ignore the lack of any thematic connection, it's just an example)
         return Arrays.asList(
                 new ZoneEncounter(GREMLIN_RIDERS, 2, () -> new MonsterGroup(
                         new AbstractMonster[] {
@@ -144,7 +143,6 @@ public class GremlinTown extends AbstractZone
         key = gremlinPool.get(index);
         gremlinPool.remove(index);
         retVal[2] = getGremlin(key, 115.0F, -30.0F);
-        index = AbstractDungeon.miscRng.random(gremlinPool.size() - 1);
 
         return new MonsterGroup(retVal);
     }
@@ -187,36 +185,20 @@ public class GremlinTown extends AbstractZone
         int index = AbstractDungeon.miscRng.random(gremlinPool.size() - 1);
         String key = gremlinPool.get(index);
         gremlinPool.remove(index);
-        retVal[0] = getHordeGremlin(key, -320.0F, 25.0F);
+        retVal[0] = getGremlin(key, -320.0F, 25.0F);
         index = AbstractDungeon.miscRng.random(gremlinPool.size() - 1);
         key = gremlinPool.get(index);
         gremlinPool.remove(index);
-        retVal[1] = getHordeGremlin(key, -160.0F, -12.0F);
+        retVal[1] = getGremlin(key, -160.0F, -12.0F);
         index = AbstractDungeon.miscRng.random(gremlinPool.size() - 1);
         key = gremlinPool.get(index);
         gremlinPool.remove(index);
-        retVal[2] = getHordeGremlin(key, 25.0F, -35.0F);
-        index = AbstractDungeon.miscRng.random(gremlinPool.size() - 1);
-        key = gremlinPool.get(index);
-        gremlinPool.remove(index);
-        retVal[3] = getHordeGremlin(key, 205.0F, 40.0F);
+        retVal[2] = getGremlin(key, 25.0F, -35.0F);
+        key = gremlinPool.get(0);
+        gremlinPool.remove(0);
+        retVal[3] = getGremlin(key, 205.0F, 40.0F);
 
         return new MonsterGroup(retVal);
-    }
-
-    public static AbstractMonster getHordeGremlin(String key, float xPos, float yPos) {
-        switch (key) {
-            case "GremlinWarrior":
-                return new GremlinWarrior(xPos, yPos);
-            case "GremlinThief":
-                return new GremlinThief(xPos, yPos);
-            case "GremlinFat":
-                return new GremlinFat(xPos, yPos);
-            case "GremlinTsundere":
-                return new GremlinTsundere(xPos, yPos);
-            default:
-                return new GremlinWizard(xPos, yPos);
-        }
     }
 
     @Override
@@ -306,12 +288,8 @@ public class GremlinTown extends AbstractZone
         idleMessages.addAll(Arrays.asList(talkyStrings.TEXT));
     }
 
-    private static ArrayList<AbstractCard> getGremlinCardReward(ArrayList<AbstractCard> cards) {
+    private ArrayList<AbstractCard> getGremlinCardReward(ArrayList<AbstractCard> cards) {
         ArrayList<AbstractCard> retVal = new ArrayList<>();
-
-        float cardUpgradedChance = 0.25f;
-        if (asc() >= 12)
-            cardUpgradedChance = 0.125f;
 
         AbstractCard card;
         for (AbstractCard ogCard : cards) {
@@ -335,34 +313,20 @@ public class GremlinTown extends AbstractZone
                         break;
                     }
                 }
-
-                if (card.rarity != AbstractCard.CardRarity.RARE && cardRng.randomBoolean(cardUpgradedChance) && card.canUpgrade())
-                    card.upgrade();
-                else
-                    for (AbstractRelic r : adp().relics)
-                        r.onPreviewObtainCard(card);
             }
 
             retVal.add(card);
         }
 
-        for (AbstractCard c : retVal) {
-            if (c.rarity != AbstractCard.CardRarity.RARE && cardRng.randomBoolean(cardUpgradedChance) && c.canUpgrade())
-                c.upgrade();
-            else
-                for (AbstractRelic r : adp().relics)
-                    r.onPreviewObtainCard(c);
-        }
+        applyStandardUpgradeLogic(retVal);
 
         return retVal;
     }
 
     @Override
     public void modifyRewards(ArrayList<RewardItem> rewards) {
-        int potionCount = 0;
         for (RewardItem item : rewards) {
             if (item.type == RewardItem.RewardType.POTION) {
-                potionCount++;
                 item.potion = getRandomWeightedPotion();
                 item.text = item.potion.name;
             }
@@ -393,8 +357,8 @@ public class GremlinTown extends AbstractZone
     private static AbstractCard getRandomCommonGremlin() {
         if (gremlinCards == null)
             initGremlinCards();
-
-        return Wiz.getRandomEntry(commonGremlinCards, cardRng.random).makeCopy();
+        
+        return Wiz.getRandomItem(commonGremlinCards, cardRng).makeCopy();
     }
 
     private static AbstractCard getRandomCommonGremlin(AbstractCard.CardType type) {
@@ -409,14 +373,14 @@ public class GremlinTown extends AbstractZone
             if (c.type == type)
                 list.add(c);
 
-        return Wiz.getRandomEntry(list, cardRng.random).makeCopy();
+        return Wiz.getRandomItem(list, cardRng).makeCopy();
     }
 
     private static AbstractCard getRandomUncommonGremlin() {
         if (gremlinCards == null)
             initGremlinCards();
 
-        return Wiz.getRandomEntry(uncommonGremlinCards, cardRng.random).makeCopy();
+        return Wiz.getRandomItem(uncommonGremlinCards, cardRng).makeCopy();
     }
 
     private static AbstractCard getRandomUncommonGremlin(AbstractCard.CardType type) {
@@ -431,14 +395,14 @@ public class GremlinTown extends AbstractZone
             if (c.type == type)
                 list.add(c);
 
-        return Wiz.getRandomEntry(list, cardRng.random).makeCopy();
+        return Wiz.getRandomItem(list, cardRng).makeCopy();
     }
 
     private static AbstractCard getRandomRareGremlin() {
         if (gremlinCards == null)
             initGremlinCards();
 
-        return Wiz.getRandomEntry(rareGremlinCards, cardRng.random).makeCopy();
+        return Wiz.getRandomItem(rareGremlinCards, cardRng).makeCopy();
     }
 
     private static AbstractCard getRandomRareGremlin(AbstractCard.CardType type) {
@@ -453,7 +417,7 @@ public class GremlinTown extends AbstractZone
             if (c.type == type)
                 list.add(c);
 
-        return Wiz.getRandomEntry(list, cardRng.random).makeCopy();
+        return Wiz.getRandomItem(list, cardRng).makeCopy();
     }
 
     private static AbstractCard getGremlinCardByRarity(AbstractCard.CardRarity rarity) {
@@ -483,7 +447,7 @@ public class GremlinTown extends AbstractZone
         if (gremlinCards == null)
             initGremlinCards();
 
-        return Wiz.getRandomEntry(gremlinCards, cardRandomRng.random).makeCopy();
+        return Wiz.getRandomItem(gremlinCards, cardRandomRng).makeCopy();
     }
 
     // For use spawning temp cards in combat
@@ -491,28 +455,28 @@ public class GremlinTown extends AbstractZone
         if (gremlinCards == null)
             initGremlinCards();
 
-        return Wiz.getRandomEntry(commonGremlinCards, cardRandomRng.random).makeCopy();
+        return Wiz.getRandomItem(commonGremlinCards, cardRandomRng).makeCopy();
     }
 
     private static AbstractPotion getRandomCommonGPotion() {
         if (commonGremlinPotions == null)
             initGremlinPotions();
 
-        return Wiz.getRandomEntry(commonGremlinPotions, potionRng.random).makeCopy();
+        return Wiz.getRandomItem(commonGremlinPotions, potionRng).makeCopy();
     }
 
     private static AbstractPotion getRandomUncommonGPotion() {
         if (uncommonGremlinPotions == null)
             initGremlinPotions();
 
-        return Wiz.getRandomEntry(uncommonGremlinPotions, potionRng.random).makeCopy();
+        return Wiz.getRandomItem(uncommonGremlinPotions, potionRng).makeCopy();
     }
 
     private static AbstractPotion getRandomRareGPotion() {
         if (rareGremlinPotions == null)
             initGremlinPotions();
 
-        return Wiz.getRandomEntry(rareGremlinPotions, potionRng.random).makeCopy();
+        return Wiz.getRandomItem(rareGremlinPotions, potionRng).makeCopy();
     }
 
     private static AbstractPotion getRandomWeightedPotion() {
@@ -530,7 +494,7 @@ public class GremlinTown extends AbstractZone
         if (gremlinPotions == null)
             initGremlinPotions();
 
-        AbstractPotion potion = Wiz.getRandomEntry(gremlinPotions, potionRng.random).makeCopy();
+        AbstractPotion potion = Wiz.getRandomItem(gremlinPotions, potionRng).makeCopy();
         // This is a hell of a potion.  Shouldn't be quite so easy to get
         if (potion.ID.equals(RitualBlood.POTION_ID) && potionRng.random(0, 1) == 0)
             potion = gremlinPotions.get(1).makeCopy();

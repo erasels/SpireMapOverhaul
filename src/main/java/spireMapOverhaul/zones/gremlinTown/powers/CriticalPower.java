@@ -27,8 +27,10 @@ public class CriticalPower extends AbstractSMOPower {
 
     @Override
     public void stackPower(int stackAmount) {
-        if (stackAmount > 1)
+        if (stackAmount > 1) {
+            fontScale = 8.0F;
             amount += stackAmount - 1;
+        }
     }
 
     @Override

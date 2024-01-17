@@ -64,8 +64,8 @@
   },
   "${ModID}:TheHorde": {
     "NAME": "The Horde",
-    "DESCRIPTION": "At the start of your turn, add a random Gremlin card into your hand.",
-    "UPGRADE_DESCRIPTION": "Innate. NL At the start of your turn, add a random Gremlin card into your hand."
+    "DESCRIPTION": "At the start of your turn, add a random *Gremlin card into your hand.",
+    "UPGRADE_DESCRIPTION": "Innate. NL At the start of your turn, add a random *Gremlin card into your hand."
   },
   "${ModID}:Rig": {
     "NAME": "Rig",

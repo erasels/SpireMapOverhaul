@@ -56,12 +56,6 @@ public class RitualBlood extends CustomPotion {
     }
 
     public CustomPotion makeCopy() {
-        try {
-            return getClass().newInstance();
-        } catch (IllegalAccessException | InstantiationException var2) {
-            RuntimeException e = new RuntimeException("BaseMod failed to auto-generate makeCopy for potion: " + ID);
-            e.printStackTrace();
-            throw e;
-        }
+        return new RitualBlood();
     }
 }

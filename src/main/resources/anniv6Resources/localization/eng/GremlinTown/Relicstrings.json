@@ -10,21 +10,21 @@
     "NAME": "Gremlin Claw",
     "FLAVOR": "Gremlins can be very dangerous even without a weapon.",
     "DESCRIPTIONS": [
-      "Whenever you land a #yFatal blow, heal #b1 HP."
+      "Whenever a non-minion enemy dies, heal #b1 HP."
     ]
   },
   "${ModID}:GremlinHood": {
     "NAME": "Gremlin Hood",
     "FLAVOR": "The orange mask bandits never really caught on.",
     "DESCRIPTIONS": [
-      "At the start of each combat, choose #b1 of #b3 random Gremlin cards and add the chosen card into your hand."
+      "At the start of each combat, choose #b1 of #b3 random #yGremlin cards and add the chosen card into your hand."
     ]
   },
   "${ModID}:NobClub": {
     "NAME": "Nob Club",
     "FLAVOR": "You can barely lift it.",
     "DESCRIPTIONS": [
-      "Every time you play #b{0} attacks, apply #b1 #yVulnerable to a random enemy."
+      "Every time you play #b{0} Attacks, apply #b1 #yVulnerable to a random enemy."
     ]
   },
   "${ModID}:GremlinStaff": {

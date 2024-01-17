@@ -16,7 +16,7 @@ import static spireMapOverhaul.util.Wiz.*;
 public class OmegaCurse extends AbstractSMOCard {
     public final static String ID = makeID(OmegaCurse.class.getSimpleName());
     private final static int MAGIC = 5;
-    private final static int UPGRADE_MAGIC = 7;
+    private final static int UPGRADE_MAGIC = 2;
     private final static int HP_LOSS = 10;
     private final static int COST = 1;
 

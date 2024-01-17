@@ -188,7 +188,7 @@ public class HordePatches {
             clz = AbstractMonster.class,
             method = "applyPowers"
     )
-    public static class StupidFuckingBackstabBullshitImSoMadDontChangeThisPatchNameGK {
+    public static class ApplyPowersOptimizationPatch {
         @SpirePrefixPatch
         public static SpireReturn Prefix(AbstractMonster __instance) {
             if (__instance.isDeadOrEscaped() && GremlinField.horde.get(__instance))
