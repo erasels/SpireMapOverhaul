@@ -2,7 +2,7 @@
   "${ModID}:Humility": {
     "TEXT": [
       "Humility",
-      "All enemies are #rbuffed in new ways. NL Upon entry, obtain a random #grare #grelic [REMOVE_SPACE]."
+      "All enemies are #rbuffed in new and #rdangerous ways. NL Upon entry, obtain a random #grare #grelic [REMOVE_SPACE]."
     ]
   }
 }
