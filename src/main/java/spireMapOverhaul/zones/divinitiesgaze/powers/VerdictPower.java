@@ -44,4 +44,10 @@ public class VerdictPower extends AbstractSMOPower implements HealthBarRenderPow
   public Color getColor() {
     return Color.DARK_GRAY;
   }
+
+  @Override
+  public void updateDescription() {
+    super.updateDescription();
+    this.description = DESCRIPTIONS[0];
+  }
 }
