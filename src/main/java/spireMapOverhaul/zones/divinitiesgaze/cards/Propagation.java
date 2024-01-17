@@ -20,8 +20,8 @@ public class Propagation extends AbstractSMOCard {
 
   public Propagation() {
     super(ID, 1, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY, CardColor.COLORLESS);
-    this.baseMagicNumber = this.magicNumber = 0;
-    this.baseDamage = this.damage = 2;
+    this.baseDamage = this.damage = 0;
+    this.baseMagicNumber = this.magicNumber = 2;
     this.exhaust = true;
   }
 
@@ -33,16 +33,30 @@ public class Propagation extends AbstractSMOCard {
 
   @Override
   public void applyPowers() {
+    int tmp = baseDamage;
+    baseDamage += (magicNumber * findCandidates());
     super.applyPowers();
-    magicNumber = baseMagicNumber + findCandidates();
-    if (magicNumber > 0) {
-      rawDescription = cardStrings.DESCRIPTION + cardStrings.EXTENDED_DESCRIPTION[1];
-      initializeDescription();
-      isMagicNumberModified = magicNumber != baseMagicNumber;
-    } else {
-      rawDescription = cardStrings.DESCRIPTION;
-      initializeDescription();
+    baseDamage = tmp;
+    isDamageModified = damage != baseDamage;
+    rawDescription = cardStrings.DESCRIPTION;
+    if (damage > 0) {
+      rawDescription += cardStrings.EXTENDED_DESCRIPTION[1];
     }
+    initializeDescription();
+  }
+
+  @Override
+  public void calculateCardDamage(AbstractMonster mo) {
+    int tmp = baseDamage;
+    baseDamage += (magicNumber * findCandidates());
+    super.calculateCardDamage(mo);
+    baseDamage = tmp;
+    isDamageModified = damage != baseDamage;
+    rawDescription = cardStrings.DESCRIPTION;
+    if (damage > 0) {
+      rawDescription += cardStrings.EXTENDED_DESCRIPTION[1];
+    }
+    initializeDescription();
   }
 
   public void onMoveToDiscard() {
@@ -64,8 +78,6 @@ public class Propagation extends AbstractSMOCard {
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
-    for (int i = 0; i < magicNumber; ++i) {
-      Wiz.atb(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.POISON, true));
-    }
+    Wiz.atb(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.POISON, false));
   }
 }
