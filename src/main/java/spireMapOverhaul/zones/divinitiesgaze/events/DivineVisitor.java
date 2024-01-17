@@ -15,7 +15,6 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.zones.divinitiesgaze.divinities.DivineBeing;
 import spireMapOverhaul.zones.divinitiesgaze.divinities.DivineBeingManager;
-import spireMapOverhaul.zones.divinitiesgaze.divinities.impl.*;
 
 public class DivineVisitor extends PhasedEvent {
   public static final String ID = SpireAnniversary6Mod.makeID("DivineVisitor");
@@ -38,7 +37,7 @@ public class DivineVisitor extends PhasedEvent {
 
     registerPhase(Phase.ENTRANCE, new TextPhase(DESCRIPTIONS[0]).addOption(OPTIONS[0], i -> {
       this.imageEventText.loadImage(this.divinity.getDivinityStrings().getImagePath());
-      ReflectionHacks.setPrivate(this, AbstractImageEvent.class, "title", String.format(title, " - " + this.divinity.getDivinityStrings().getName()));
+      ReflectionHacks.setPrivate(this, AbstractImageEvent.class, "title", getTitle());
       this.imageEventText.show(super.title, this.body);
       transitionKey(Phase.APPEARANCE);
     }));
@@ -102,6 +101,10 @@ public class DivineVisitor extends PhasedEvent {
   public void enterCombat() {
     super.enterCombat();
     this.divinity.doEnterCombat();
+  }
+
+  private String getTitle() {
+    return String.format(title, " - " + this.divinity.getDivinityStrings().getName() + " - " + this.divinity.getDivinityStrings().getTitle());
   }
 
   private enum Phase {

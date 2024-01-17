@@ -30,10 +30,10 @@
       "NAME": "Nihilo",
       "TITLE": "The End",
       "EVENT_TEXT": "The world around you plunges into darkness, dragging your mind with it. The abyss ~swallows~ you, body and soul, until nothing remains of what you once were. NL NL You see them. Who are they? You know, but cannot recall. Is this #rThe #rEnd? NL NL ~Moments~ stretch into eons... then #r@vanish@ in the blink of an eye.",
-      "EVENT_BUTTON_TEXT": "[Forget] #gRemove #g2 #gcards #gfrom #gyour #gdeck.",
+      "EVENT_BUTTON_TEXT": "[Forget] #gChoose #g1 #gof #g3 #gcards #gto #gremove #gfrom #gyour #gdeck. #gDo #gthis #gtwice.",
       "EVENT_ACCEPT_TEXT": "The light returns to your eyes and mind... but it feels... dim? Why are you even here? NL NL You are #y@alone@ now. NL NL You feel #r@empty@ inside.",
       "EVENT_REJECT_TEXT": "The light returns to your eyes and mind. It is blinding. The End's empty presence howls within you, but it will not swallow you.",
-      "EVENT_BUTTON_UNAVAILABLE_TEXT": "Requires at least 3 cards in your deck.",
+      "EVENT_BUTTON_UNAVAILABLE_TEXT": "[Locked] Requires at least 3 cards in your deck.",
       "SELECT_TEXT": "Choose a card to remove from your deck."
     }
   },
@@ -65,7 +65,7 @@
       "TITLE": "The Primordial",
       "EVENT_TEXT": "You take a step, and your foot sinks into a puddle of ooze. You are #r~stuck.~ NL NL Each time you blink, it multiplies, spreading up your body rapidly. It covers your mouth... your nose... your ears... your @eyes...@ NL NL You feel #r~death~ as your ooze-addled lungs ~speak~ with a voice not their own... #g@\"Propagate...\"@",
       "EVENT_BUTTON_TEXT": "[Propagate] #gDuplicate #ga #gcard #gin #gyour #gdeck #gtwice.",
-      "EVENT_BUTTON_UNAVAILABLE_TEXT": "Requires at least 1 card in your deck.",
+      "EVENT_BUTTON_UNAVAILABLE_TEXT": "[Locked] Requires at least 1 card in your deck.",
       "EVENT_ACCEPT_TEXT": "Your body is your own again. You are no longer consumed by their will. But you are one of many. Others will join you. NL NL You will #ggrow together. You must.",
       "EVENT_REJECT_TEXT": "Your body is your own. You are no longer consumed by their will. You are unique. NL NL You can't help but feel a bit... #r@isolated.@",
       "SELECT_TEXT": "Choose a card to duplicate."
@@ -82,7 +82,7 @@
       "TITLE": "The Torch",
       "EVENT_TEXT": "#r~Flames~ engulf you! Your flesh is #rseared away in an excruciating instant. And yet... It is painless. You feel warm. Safe. Comfortable. NL NL \"This Spire is yours, child. To explore. To #ggrow. We shall guide you.\"",
       "EVENT_BUTTON_TEXT": "[Bask] #gHeal #g%d #gHP. #gUpgrade #ga #grandom #gcard #gin #gyour #gdeck.",
-      "EVENT_BUTTON_UNAVAILABLE_TEXT": "Requires missing HP or an upgradeable card.",
+      "EVENT_BUTTON_UNAVAILABLE_TEXT": "[Locked] Requires missing HP or an upgradeable card.",
       "EVENT_ACCEPT_TEXT": "The searing heat of the flames fades into a faint warmth. The path you walk seems a bit #gbrighter than before. NL NL You don't know who they are, but you seem to have friends at your back.",
       "EVENT_REJECT_TEXT": "The searing heat of the flames fades into a faint warmth. The path you walk seems a bit #rdarker than before. NL NL Perhaps, had you accepted them, things could have been different?"
     }

@@ -37,7 +37,7 @@ public class End extends BaseDivineBeing {
 
   public boolean doUpdate() {
     if (!AbstractDungeon.isScreenUp && !AbstractDungeon.gridSelectScreen.selectedCards.isEmpty()) {
-      AbstractDungeon.topLevelEffects.add(new PurgeCardEffect(AbstractDungeon.gridSelectScreen.selectedCards.get(0), (float)(Settings.WIDTH / 2), (float)(Settings.HEIGHT / 2)));// 44 46
+      AbstractDungeon.topLevelEffects.add(new PurgeCardEffect(AbstractDungeon.gridSelectScreen.selectedCards.get(0), (Settings.WIDTH * 0.75f), (float)(Settings.HEIGHT / 2)));// 44 46
       AbstractDungeon.player.masterDeck.removeCard(AbstractDungeon.gridSelectScreen.selectedCards.get(0));// 49
       AbstractDungeon.gridSelectScreen.selectedCards.clear();
       counter++;
@@ -48,6 +48,7 @@ public class End extends BaseDivineBeing {
       }
       return false;
     }
+    counter = 0;
     return true;
   }
 

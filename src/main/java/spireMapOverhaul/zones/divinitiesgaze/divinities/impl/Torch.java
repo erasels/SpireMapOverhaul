@@ -30,7 +30,7 @@ public class Torch extends BaseDivineBeing {
         return;
       }
 
-      AbstractCard card = availableCards.get(AbstractDungeon.eventRng.random(0, availableCards.size()));
+      AbstractCard card = availableCards.get(AbstractDungeon.eventRng.random(0, availableCards.size() - 1));
       card.upgrade();
       AbstractDungeon.player.bottledCardUpgradeCheck(card);
       AbstractDungeon.effectsQueue.add(new UpgradeShineEffect((float) Settings.WIDTH / 2.0F, (float)Settings.HEIGHT / 2.0F));
