@@ -31,6 +31,7 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Wiz {
     //The wonderful Wizard of Oz allows access to most easy compilations of data, or functions.
@@ -131,40 +132,28 @@ public class Wiz {
     }
 
     public static AbstractCard returnTrulyRandomRarityCardInCombat(AbstractCard.CardRarity rarity) {
-        ArrayList<AbstractCard> cardsList = new ArrayList<>();
+        Stream<AbstractCard> cardStream;
+
         switch (rarity) {
             case COMMON:
-                for (AbstractCard c : AbstractDungeon.srcCommonCardPool.group) {
-                    if (!c.hasTag(AbstractCard.CardTags.HEALING)) {
-                        cardsList.add(c.makeStatEquivalentCopy());
-                    }
-                }
+                cardStream = AbstractDungeon.srcCommonCardPool.group.stream();
                 break;
             case UNCOMMON:
-                for (AbstractCard c : AbstractDungeon.srcUncommonCardPool.group) {
-                    if (!c.hasTag(AbstractCard.CardTags.HEALING)) {
-                        cardsList.add(c.makeStatEquivalentCopy());
-                    }
-                }
+                cardStream = AbstractDungeon.srcUncommonCardPool.group.stream();
                 break;
             case RARE:
-                for (AbstractCard c : AbstractDungeon.srcRareCardPool.group) {
-                    if (!c.hasTag(AbstractCard.CardTags.HEALING)) {
-                        cardsList.add(c.makeStatEquivalentCopy());
-                    }
-                }
+                cardStream = AbstractDungeon.srcRareCardPool.group.stream();
                 break;
             default:
-                for (AbstractCard c : CardLibrary.getAllCards()) {
-                    if (c.rarity.equals(rarity)) {
-                        if (!c.hasTag(AbstractCard.CardTags.HEALING)) {
-                            cardsList.add(c.makeStatEquivalentCopy());
-                        }
-                    }
-                }
+                cardStream = CardLibrary.getAllCards().stream()
+                        .filter(c -> c.rarity.equals(rarity));
         }
-        return cardsList.get(AbstractDungeon.cardRandomRng.random(cardsList.size() - 1));
 
+        List<AbstractCard> filteredCards = cardStream
+                .filter(c -> !c.hasTag(AbstractCard.CardTags.HEALING))
+                .collect(Collectors.toList());
+
+        return Wiz.getRandomItem(filteredCards).makeStatEquivalentCopy();
     }
 
     public static <T> T getRandomItem(List<T> list, Random rng) {

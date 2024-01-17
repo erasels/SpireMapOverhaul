@@ -1,42 +1,25 @@
 package spireMapOverhaul.zones.Junkyard.monsters;
 
 import basemod.abstracts.CustomMonster;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.AnimateFastAttackAction;
-import com.megacrit.cardcrawl.actions.animations.AnimateSlowAttackAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
-import com.megacrit.cardcrawl.vfx.cardManip.PurgeCardEffect;
 import com.megacrit.cardcrawl.vfx.combat.FlickCoinEffect;
-import com.megacrit.cardcrawl.vfx.combat.PowerBuffEffect;
 import com.megacrit.cardcrawl.vfx.combat.SmokeBombEffect;
-import org.lwjgl.opengl.ATIVertexStreams;
 import spireMapOverhaul.SpireAnniversary6Mod;
-import spireMapOverhaul.util.TexLoader;
 import spireMapOverhaul.util.Wiz;
-import spireMapOverhaul.zones.Junkyard.actions.DeactivateAction;
-import spireMapOverhaul.zones.Junkyard.actions.GrabCardAction;
-import spireMapOverhaul.zones.Junkyard.actions.RemoveHeldCardAction;
 import spireMapOverhaul.zones.Junkyard.cards.Bargain;
-import spireMapOverhaul.zones.Junkyard.powers.JunkGrabPower;
-import spireMapOverhaul.zones.invasion.powers.StaggershockReboundPower;
 
 import java.util.ArrayList;
 
@@ -110,7 +93,6 @@ public class Peddler extends CustomMonster {
         else {
             goldCost = AbstractDungeon.cardRandomRng.random(GOLDMIN, GOLDMAX);
         }
-        System.out.println(goldCost);
         this.damage.add(new DamageInfo(this, this.rummageDamage));
         this.damage.add(new DamageInfo(this, this.payupDamage));
     }
@@ -165,7 +147,6 @@ public class Peddler extends CustomMonster {
                 AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new StrengthPower(this, strgain)));
                 Bargain bargain = new Bargain(goldCost);
                 bargain.setCost(goldCost);
-                System.out.println(bargain.goldCost);
                 AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(bargain));
                 break;
             case PAYUP:

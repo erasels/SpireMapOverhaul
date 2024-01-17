@@ -1,7 +1,6 @@
 package spireMapOverhaul.zones.Junkyard;
 
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.events.AbstractEvent;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.monsters.exordium.*;

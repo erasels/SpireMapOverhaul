@@ -7,13 +7,10 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.events.AbstractEvent;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.ui.buttons.LargeDialogOptionButton;
-import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
-import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import spireMapOverhaul.SpireAnniversary6Mod;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
@@ -55,7 +52,6 @@ public class CollectingSpree extends PhasedEvent {
                 }
             AbstractDungeon.gridSelectScreen.open(g, 1, OPTIONS[4], false, false, false, false);
             for (LargeDialogOptionButton o : imageEventText.optionList) {
-                System.out.println(o.msg + " " + o.slot);
             }
             if (chance <= 0){
                 this.imageEventText.updateDialogOption(1, OPTIONS[5]);
@@ -64,7 +60,6 @@ public class CollectingSpree extends PhasedEvent {
                 this.imageEventText.updateDialogOption(1, OPTIONS[1] + (100-chance) + OPTIONS[2] + chance + OPTIONS[3]);
             }
             this.updateDialog();
-            System.out.println("chance: "+chance);
         }).addOption(OPTIONS[1] + (100-chance) + OPTIONS[2] + chance + OPTIONS[3], (i) ->{
             int rand = AbstractDungeon.cardRng.random(0, 100);
             if (rand < chance){
@@ -78,7 +73,6 @@ public class CollectingSpree extends PhasedEvent {
                 }
                 AbstractDungeon.gridSelectScreen.open(g, 1, OPTIONS[3], false, false, false, false);
                 for (LargeDialogOptionButton o : imageEventText.optionList){
-                    System.out.println(o.msg + " "+o.slot);
                 }
                 if (chance <= 0){
                     this.imageEventText.updateDialogOption(1, OPTIONS[5]);
@@ -88,7 +82,6 @@ public class CollectingSpree extends PhasedEvent {
                 }
                 this.updateDialog();
                 this.update();
-                System.out.println("chance: "+chance);
             }
             else {
                 AbstractDungeon.getCurrRoom().phase = AbstractRoom.RoomPhase.COMPLETE; //If it's not over don't do this
