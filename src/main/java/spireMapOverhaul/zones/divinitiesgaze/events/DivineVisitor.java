@@ -28,7 +28,7 @@ public class DivineVisitor extends PhasedEvent {
   private static final String[] DESCRIPTIONS = eventStrings.DESCRIPTIONS;
   private static final String[] OPTIONS = eventStrings.OPTIONS;
   private static final String title = eventStrings.NAME;
-  private static final String IMAGE = SpireAnniversary6Mod.makeImagePath("events/DivnitiesGaze/Appearance.png");
+  private static final String IMAGE = SpireAnniversary6Mod.makeEventPath("DivinitiesGaze/Appearance.png");
 
   private final DivineBeing divinity;
 
@@ -87,18 +87,7 @@ public class DivineVisitor extends PhasedEvent {
     }));
 
     if(!combatPhaseKey.isEmpty()) {
-      registerPhase(Phase.COMBAT, new CombatPhase(combatPhaseKey)/*{
-        @Override
-        public void transition(PhasedEvent event) {
-          super.transition(event);
-          Wiz.atb(new AbstractGameAction() {
-            @Override
-            public void update() {
-              AbstractDungeon.getMonsters().monsters.forEach(m -> Wiz.att(new ApplyPowerAction(AbstractDungeon.player, m, new VerdictPower(m, 10), 10)));
-            }
-          });
-        }
-      }*/.setNextKey(Phase.ACCEPT));
+      registerPhase(Phase.COMBAT, new CombatPhase(combatPhaseKey).setNextKey(Phase.ACCEPT));
     }
 
     transitionKey(Phase.ENTRANCE);

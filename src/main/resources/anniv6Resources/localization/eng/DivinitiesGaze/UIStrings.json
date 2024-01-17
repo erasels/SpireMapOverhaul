@@ -47,7 +47,7 @@
       "NAME": "Bouquet",
       "TITLE": "The Jurors",
       "EVENT_TEXT": "A chorus of voices ~rings~ out. You are surrounded. Cornered. At their mercy. NL NL \"Guilty, guilty, #r@guilty!\",@ a voice cries. NL NL \"You judge too #g~harshly,~ too swiftly...\", echoes another. NL NL \"Perhaps, for a #ycriminal, an eye for an eye?\"... Their faces gaze upon you. Your #r~Judgment~ is nigh.",
-      "EVENT_BUTTON_TEXT": "[Judge] Enter an Elite Combat. #gApply #gPassing #gJudgment #gto #gall #genemies.",
+      "EVENT_BUTTON_TEXT": "[Judge] Enter an Elite Combat. #gApply #g10 #gVerdict #gto #gall #genemies.",
       "EVENT_ACCEPT_TEXT": "Justice is passed, and the scales tip. The Jurors shuffle out of the courtroom. Your conviction is made, and now your conviction will be tested. NL NL The #rwrongs of the world are yours to #gright.",
       "EVENT_REJECT_TEXT": "Justice is passed, and the scales tip. The Jurors shuffle out of the courtroom. No conviction was made. NL NL Are you #ginnocent... or #rdeceitful? Perhaps you tricked them. NL NL ... NL NL Perhaps they know."
     }

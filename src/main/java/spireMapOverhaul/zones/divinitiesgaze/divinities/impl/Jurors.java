@@ -10,6 +10,7 @@ import spireMapOverhaul.zones.divinitiesgaze.divinities.BaseDivineBeing;
 import java.util.function.Consumer;
 
 public class Jurors extends BaseDivineBeing {
+  public static boolean doApplyVerdictOnCombatStart = false;
 
   static {
     new Jurors();
@@ -26,6 +27,7 @@ public class Jurors extends BaseDivineBeing {
 
   @Override
   public String getCombatPhaseKey() {
+    doApplyVerdictOnCombatStart = true;
     if(AbstractDungeon.eliteMonsterList.isEmpty()) {
       ReflectionHacks.privateMethod(AbstractDungeon.class, "generateElites")
           .invoke(CardCrawlGame.dungeon);
