@@ -3,6 +3,7 @@ package spireMapOverhaul.zones.divinitiesgaze.cards;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
+import com.megacrit.cardcrawl.actions.utility.ShowCardAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -37,7 +38,7 @@ public class Inevitability extends AbstractSMOCard {
   }
 
   @Override
-  public void triggerOnEndOfPlayerTurn() {
+  public void onRetained() {
     Wiz.atb(new DamageAllEnemiesAction(AbstractDungeon.player, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE));
     Wiz.atb(new GainBlockAction(AbstractDungeon.player, this.block));
     Wiz.atb(new AbstractGameAction() {
