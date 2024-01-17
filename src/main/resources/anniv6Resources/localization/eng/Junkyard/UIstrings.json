@@ -2,7 +2,7 @@
   "${ModID}:Junkyard": {
     "TEXT": [
       "The Junkyard",
-      "Lots of things to pick up! Gain 2 card rewards per combat but cannot skip card rewards. Also contains unique encounters.",
+      "Lots of things to pick up! Gain 2 card rewards per combat but cannot skip card rewards.",
       ""
     ]
   },
