@@ -29,7 +29,7 @@ public class DivineVisitor extends PhasedEvent {
 
   public DivineVisitor() {
 //    this(DivineBeingManager.getDivinityForEvent());
-    this(new Jurors());
+    this(new Torch());
   }
 
   public DivineVisitor(DivineBeing divinity) {
