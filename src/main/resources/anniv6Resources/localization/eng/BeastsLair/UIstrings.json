@@ -2,7 +2,8 @@
   "${ModID}:BeastsLair": {
     "TEXT": [
       "Beast's Lair",
-      "A powerful beast has made its home here, and it's not happy to see you. NL NL This node contains a boss from last act, its fury increases its power. It drops high rarity cards and an extra relic."
+      "A powerful beast has made its home here, and it's not happy to see you. NL NL This node contains a boss from last act, its fury increases its power. It drops high rarity cards and an extra relic.",
+      "Tetraminus"
     ]
   }
 }

@@ -169,8 +169,8 @@ public class GremlinCamp extends AbstractZone implements EncounterModifyingZone,
     public void replaceRooms(Random rng) {
         //Replace all shops with event rooms
         for (MapRoomNode node : this.nodes) {
-            if (true) {
-                node.setRoom(new RestRoom());
+            if (node.room instanceof ShopRoom) {
+                node.setRoom(new EventRoom());
             }
         }
     }
