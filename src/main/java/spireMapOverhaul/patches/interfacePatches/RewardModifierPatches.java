@@ -4,6 +4,7 @@ import basemod.ReflectionHacks;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ModHelper;
@@ -161,4 +162,39 @@ public class RewardModifierPatches {
             Wiz.forCurZone(RewardModifyingZone.class, z -> numCards[0] = z.changeNumberOfCardsInReward(numCards[0]));
         }
     }
+
+    //Borrowed from replay the spire
+     @SpirePatch(cls = "com.megacrit.cardcrawl.screens.CombatRewardScreen", method = "rewardViewUpdate")
+        public static class ReplayRewardSkipPositionPatch {
+
+        public static float HIDE_X = -1.0f;
+        public static float SHOW_X = -1.0f;
+
+         public static void Postfix(CombatRewardScreen __Instance) {
+             AbstractZone zone = Wiz.getCurZone();
+
+             if (zone instanceof RewardModifyingZone && ((RewardModifyingZone) zone).cannotSkipCardRewards()) {
+                    if (HIDE_X == -1.0f) {
+                        HIDE_X = AbstractDungeon.topPanel.mapHb.cX - 400.0f * Settings.scale;
+                        SHOW_X = AbstractDungeon.topPanel.mapHb.cX;
+                    }
+                    boolean proceed = true;
+                    for (int i = 0; i < __Instance.rewards.size(); i++){
+                        if (__Instance.rewards.get(i).type == RewardItem.RewardType.CARD){
+                            proceed = false;
+                            break;
+                        }
+                    }
+                    if (proceed) {
+                        AbstractDungeon.overlayMenu.proceedButton.show();
+                        AbstractDungeon.topPanel.mapHb.move(SHOW_X, AbstractDungeon.topPanel.mapHb.cY);
+                    } else {
+                        AbstractDungeon.overlayMenu.proceedButton.hide();
+                        AbstractDungeon.overlayMenu.cancelButton.hide();
+                        //ReflectionHacks.setPrivate((Object)__Instance, (Class)CombatRewardScreen.class, "labelOverride", (Object)null);
+                        AbstractDungeon.topPanel.mapHb.move(ReplayRewardSkipPositionPatch.HIDE_X, AbstractDungeon.topPanel.mapHb.cY);
+                    }
+                }
+            }
+        }
 }
