@@ -64,7 +64,11 @@ public class GrassZone extends AbstractZone implements CombatModifyingZone, Rend
 
     @Override
     public String getCombatText() {
-        return TEXT[2];
+        return TEXT[3];
+    }
+
+    public int getCount() {
+        return vegetables.size();
     }
 
     public AbstractVegetable getRandom() {
@@ -94,7 +98,7 @@ public class GrassZone extends AbstractZone implements CombatModifyingZone, Rend
 
     public void spawn(AbstractVegetable vegetable) {
         vegetables.add(vegetable);
-        vegetable.onSpawn();
+        vegetable.onSpawn(getCount());
     }
 
     public void update() {

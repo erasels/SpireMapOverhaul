@@ -19,6 +19,9 @@ import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.vfx.SmokePuffEffect;
+import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
+import com.megacrit.cardcrawl.vfx.combat.EmptyStanceParticleEffect;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.actions.CallbackAction;
 import spireMapOverhaul.util.TexLoader;
@@ -78,13 +81,13 @@ public abstract class AbstractVegetable {
 
     protected String getBodyText() {
         StringJoiner sj = new StringJoiner(" NL ");
-        sj.add(STRINGS.TEXT[3] + level + "/" + data.maxUpgradeLevel);
+        sj.add(STRINGS.TEXT[4] + level + "/" + data.maxUpgradeLevel);
         if (level > 0) {
             sj.add(getDescription());
-            sj.add(STRINGS.TEXT[4]);
+            sj.add(STRINGS.TEXT[5]);
         }
         else {
-            sj.add(STRINGS.TEXT[5]);
+            sj.add(STRINGS.TEXT[6]);
         }
         return sj.toString();
     }
@@ -116,6 +119,7 @@ public abstract class AbstractVegetable {
     }
 
     public AbstractGameAction launch() {
+        AbstractDungeon.effectsQueue.add(new SmokePuffEffect(hb.cX, hb.cY));
         AbstractCreature randomMonster = getTarget();
         ThrowVegetableAction action = new ThrowVegetableAction(this, randomMonster, getHits());
         Wiz.att(action);
@@ -129,8 +133,8 @@ public abstract class AbstractVegetable {
         Wiz.atb(CallbackAction.voidAction((__) -> launch()));
     }
 
-    public void onSpawn() {
-        hb.translate(Settings.WIDTH * MathUtils.random(0.35f, 0.5f), AbstractDungeon.player != null ? AbstractDungeon.player.hb.y + Settings.scale * MathUtils.random(-20, 20) : Settings.HEIGHT * MathUtils.random(0.2f, 0.3f));
+    public void onSpawn(int size) {
+        hb.translate(Settings.WIDTH * (0.30f + size * 0.05f), AbstractDungeon.player != null ? AbstractDungeon.player.hb.y + Settings.scale * MathUtils.random(-20, 20) : Settings.HEIGHT * MathUtils.random(0.2f, 0.3f));
     }
 
     public void render(SpriteBatch sb) {

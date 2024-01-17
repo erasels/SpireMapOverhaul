@@ -22,17 +22,16 @@ import java.util.ArrayList;
 
 public class ThrowVegetableEffect extends AbstractGameEffect {
     private static Texture img;
-    private float sX;
-    private float sY;
+    private final ArrayList<Vector2> previousPos = new ArrayList<>();
+    private final float sX;
+    private final float sY;
+    private final float dX;
+    private final float dY;
+    private final float bounceHeight;
     private float cX;
     private float cY;
-    private float dX;
-    private float dY;
     private float yOffset;
-    private float bounceHeight;
-    private static final float DUR = 0.6F;
     private boolean playedSfx = false;
-    private ArrayList<Vector2> previousPos = new ArrayList<>();
 
     public ThrowVegetableEffect(AbstractVegetable vegetable, float srcX, float srcY, float destX, float destY) {
         super();
@@ -44,29 +43,19 @@ public class ThrowVegetableEffect extends AbstractGameEffect {
         this.dX = destX;
         this.dY = destY;
         this.rotation = 0.0F;
-        this.duration = 0.6F;
+        this.duration = vegetable.data.duration;
         this.color = Color.WHITE.cpy();
         if (this.sY > this.dY) {
-            this.bounceHeight = 400.0F * Settings.scale;
+            this.bounceHeight = vegetable.data.bounce * Settings.scale;
         } else {
-            this.bounceHeight = this.dY - this.sY + 400.0F * Settings.scale;
+            this.bounceHeight = this.dY - this.sY + vegetable.data.bounce * Settings.scale;
         }
     }
 
     public void update() {
         if (!this.playedSfx) {
             this.playedSfx = true;
-            if (MathUtils.randomBoolean()) {
-                CardCrawlGame.sound.playA("POTION_DROP_1", MathUtils.random(-0.3F, -0.2F));
-            } else {
-                CardCrawlGame.sound.playA("POTION_DROP_2", MathUtils.random(-0.3F, -0.2F));
-            }
-
-            if (MathUtils.randomBoolean()) {
-                CardCrawlGame.sound.play("POTION_1");
-            } else {
-                CardCrawlGame.sound.play("POTION_2");
-            }
+            CardCrawlGame.sound.playA("BLUNT_FAST", MathUtils.random(-0.3F, -0.2F));
         }
 
         this.cX = Interpolation.linear.apply(this.dX, this.sX, this.duration / 0.6F);
@@ -104,8 +93,8 @@ public class ThrowVegetableEffect extends AbstractGameEffect {
         for(int i = 5; i < this.previousPos.size(); ++i) {
             sb.draw(img, this.previousPos.get(i).x, this.previousPos.get(i).y, width / 2.0F, height / 2.0F, width, height, this.scale * i / 40f, this.scale * i / 40f, this.rotation, 0, 0, img.getWidth(), img.getHeight(), false, false);
         }
-        sb.draw(img, cX, cY + this.yOffset, width / 2.0F, height / 2.0F, width, height, this.scale, this.scale, this.rotation, 0, 0, img.getWidth(), img.getHeight(), false, false);
         sb.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+        sb.draw(img, cX, cY + this.yOffset, width / 2.0F, height / 2.0F, width, height, this.scale, this.scale, this.rotation, 0, 0, img.getWidth(), img.getHeight(), false, false);
     }
 
     @Override

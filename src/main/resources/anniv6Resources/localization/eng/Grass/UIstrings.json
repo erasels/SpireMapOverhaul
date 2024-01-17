@@ -2,8 +2,9 @@
   "${ModID}:Grass": {
     "TEXT": [
       "Grass",
-      "The Spire has grass. Grass needs Energy to turn into juicy vegetables.",
-      "A random #yGrass grows by #b1 level for each unspent [E] at the end of your turn. The higher its level, the stronger its effect is. NL NL When it has grown at least once, click on it during your turn to throw it at enemies.",
+      "During battles, there is grass. Grass grows with Energy. When you pluck grass, good things will happen.",
+      "Pina Colada",
+      "A random #yGrass grows by #b1 level for each unspent [E] at the end of your turn. The higher its level, the stronger its effect is. NL NL When it has grown at least once, click on it during your turn to pluck it and use its effect. Each grass can only be used once.",
       "#bLevel #b",
       "#gLeft-click #gto #gpluck",
       "#rGrass #rneeds #rat #rleast #r1 #rlevel #rto #rpluck"

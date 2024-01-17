@@ -20,8 +20,8 @@ public class AbstractVegetableData {
     public String imagePath;
     public OrbStrings strings;
     public int maxUpgradeLevel = 5;
-    public float bounce = 100f;
-    public float gravity = -22f;
+    public float bounce = 200f;
+    public float duration = 0.6f;
 
     public AbstractVegetableData(Constructor<? extends AbstractVegetable> constructor, String id, String imagePath) {
         this(constructor, id, imagePath, CardCrawlGame.languagePack.getOrbString(id));
