@@ -48,6 +48,17 @@ public class DivinitiesGazeZone extends AbstractZone implements ModifiedEventRat
 
   @Override
   public void atPreBattle() {
+    if (Jurors.doApplyVerdictOnCombatStart) {
+      Jurors.doApplyVerdictOnCombatStart = false;
+      Wiz.atb(new AbstractGameAction() {
+        @Override
+        public void update() {
+          AbstractDungeon.getMonsters().monsters.forEach(m -> Wiz.att(new ApplyPowerAction(m, AbstractDungeon.player, new VerdictPower(m,  10), 10)));
+          this.isDone = true;
+        }
+      });
+    }
+
     DivineBeing being = DivineBeingManager.getDivinityForCombat();
     AbstractCard boon = CardLibrary.getCard(being.getDivinityStrings().getBoonCardId());
     AbstractCard status = CardLibrary.getCard(being.getDivinityStrings().getStatusCardId());
@@ -61,19 +72,5 @@ public class DivinitiesGazeZone extends AbstractZone implements ModifiedEventRat
         isDone = true;
       }
     });
-  }
-
-  @Override
-  public void atBattleStart() {
-    if (Jurors.doApplyVerdictOnCombatStart) {
-      Jurors.doApplyVerdictOnCombatStart = false;
-      Wiz.atb(new AbstractGameAction() {
-        @Override
-        public void update() {
-          AbstractDungeon.getMonsters().monsters.forEach(m -> Wiz.att(new ApplyPowerAction(m, AbstractDungeon.player, new VerdictPower(m,  10), 10)));
-          this.isDone = true;
-        }
-      });
-    }
   }
 }
