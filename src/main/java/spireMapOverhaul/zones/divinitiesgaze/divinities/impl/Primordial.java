@@ -1,7 +1,7 @@
 package spireMapOverhaul.zones.divinitiesgaze.divinities.impl;
 
-import com.megacrit.cardcrawl.cards.red.Strike_Red;
 import com.megacrit.cardcrawl.cards.status.Slimed;
+import spireMapOverhaul.zones.divinitiesgaze.cards.Propagation;
 import spireMapOverhaul.zones.divinitiesgaze.divinities.BaseDivineBeing;
 
 import java.util.function.Consumer;
@@ -14,7 +14,7 @@ public class Primordial extends BaseDivineBeing {
   }
 
   public Primordial() {
-    super(Strike_Red.ID, Slimed.ID);
+    super(Propagation.ID, Slimed.ID);
   }
 
   @Override

@@ -25,6 +25,6 @@ public class Verdict extends AbstractSMOCard {
 
   @Override
   public void use(AbstractPlayer abstractPlayer, AbstractMonster abstractMonster) {
-    Wiz.atb(new ApplyPowerAction(abstractPlayer, abstractMonster, new VerdictPower(abstractMonster, 10), 10));
+    Wiz.atb(new ApplyPowerAction(abstractMonster, abstractPlayer, new VerdictPower(abstractMonster, 10), 10));
   }
 }

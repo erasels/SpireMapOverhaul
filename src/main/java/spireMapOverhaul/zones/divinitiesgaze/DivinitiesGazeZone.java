@@ -4,7 +4,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.events.AbstractEvent;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.zoneInterfaces.CombatModifyingZone;
@@ -21,7 +20,6 @@ public class DivinitiesGazeZone extends AbstractZone implements ModifiedEventRat
     super(ID);
     this.width = 3;
     this.height = 4;
-
   }
 
   @Override
@@ -40,16 +38,18 @@ public class DivinitiesGazeZone extends AbstractZone implements ModifiedEventRat
   }
 
   @Override
-  public void atBattleStartPreDraw() {
-    if(Jurors.doApplyVerdictOnCombatStart) {
-      Jurors.doApplyVerdictOnCombatStart = false;
-      Wiz.atb(new AbstractGameAction() {
-        @Override
-        public void update() {
-          this.isDone = true;
-          AbstractDungeon.getMonsters().monsters.forEach(m -> Wiz.att(new ApplyPowerAction(AbstractDungeon.player, m, new VerdictPower(m,  10), 10)));
-        }
-      });
+  public void atPreBattle() {
+    if (!Jurors.doApplyVerdictOnCombatStart) {
+      return;
     }
+
+    Jurors.doApplyVerdictOnCombatStart = false;
+    Wiz.atb(new AbstractGameAction() {
+      @Override
+      public void update() {
+        AbstractDungeon.getMonsters().monsters.forEach(m -> Wiz.att(new ApplyPowerAction(m, AbstractDungeon.player, new VerdictPower(m,  10), 10)));
+        this.isDone = true;
+      }
+    });
   }
 }

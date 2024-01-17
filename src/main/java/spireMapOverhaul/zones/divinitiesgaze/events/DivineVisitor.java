@@ -4,8 +4,6 @@ import basemod.ReflectionHacks;
 import basemod.abstracts.events.PhasedEvent;
 import basemod.abstracts.events.phases.CombatPhase;
 import basemod.abstracts.events.phases.TextPhase;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
@@ -16,11 +14,9 @@ import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import spireMapOverhaul.SpireAnniversary6Mod;
-import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.zones.divinitiesgaze.divinities.DivineBeing;
 import spireMapOverhaul.zones.divinitiesgaze.divinities.DivineBeingManager;
 import spireMapOverhaul.zones.divinitiesgaze.divinities.impl.*;
-import spireMapOverhaul.zones.divinitiesgaze.powers.VerdictPower;
 
 public class DivineVisitor extends PhasedEvent {
   public static final String ID = SpireAnniversary6Mod.makeID("DivineVisitor");
@@ -87,7 +83,7 @@ public class DivineVisitor extends PhasedEvent {
     }));
 
     if(!combatPhaseKey.isEmpty()) {
-      registerPhase(Phase.COMBAT, new CombatPhase(combatPhaseKey).setNextKey(Phase.ACCEPT));
+      registerPhase(Phase.COMBAT, new CombatPhase(combatPhaseKey).addRewards(true, this.divinity.getCombatRewards()).setNextKey(Phase.ACCEPT));
     }
 
     transitionKey(Phase.ENTRANCE);

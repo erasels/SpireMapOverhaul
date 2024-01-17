@@ -1,5 +1,7 @@
 package spireMapOverhaul.zones.divinitiesgaze.divinities;
 
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
+
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
@@ -12,6 +14,7 @@ public interface DivineBeing {
   default Supplier<Boolean> isEventOptionEnabled() {
     return () -> true;
   }
+  default Consumer<AbstractRoom> getCombatRewards() { return room -> {};}
   default boolean doUpdate() {
     return true;
   }

@@ -1,8 +1,8 @@
 package spireMapOverhaul.zones.divinitiesgaze.divinities.impl;
 
-import com.megacrit.cardcrawl.cards.red.Strike_Red;
 import com.megacrit.cardcrawl.cards.status.Burn;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import spireMapOverhaul.zones.divinitiesgaze.cards.GuidingLight;
 import spireMapOverhaul.zones.divinitiesgaze.divinities.BaseDivineBeing;
 
 import java.util.function.Consumer;
@@ -14,7 +14,7 @@ public class Torch extends BaseDivineBeing {
   }
 
   public Torch() {
-    super(Strike_Red.ID, Burn.ID);
+    super(GuidingLight.ID, Burn.ID);
   }
 
   @Override
