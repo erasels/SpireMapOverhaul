@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.helpers.RelicLibrary;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.relics.*;
@@ -15,6 +16,7 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.zones.manasurge.ManaSurgeZone;
 import spireMapOverhaul.zones.manasurge.ui.campfire.EnchantOption;
+import spireMapOverhaul.zones.manasurge.vfx.EnchantBlightEffect;
 
 import java.util.ArrayList;
 
@@ -25,6 +27,8 @@ public class ManaCycloneEvent extends PhasedEvent {
     private static final String[] OPTIONS = eventStrings.OPTIONS;
     private static final String title = eventStrings.NAME;
     public static final String IMG = SpireAnniversary6Mod.makeImagePath("events/ManaSurge/ManaCycloneEvent.png");
+    public static final String ENCHANT_ID = SpireAnniversary6Mod.makeID("ManaSurge:Enchant");
+    public static final String BLIGHTED_ID = SpireAnniversary6Mod.makeID("ManaSurge:Blighted");
 
     private static final ArrayList<String> relicIds = new ArrayList<>();
     static {
@@ -53,8 +57,18 @@ public class ManaCycloneEvent extends PhasedEvent {
         this.noCardsInRewards = true;
         float cardWidth = AbstractCard.IMG_WIDTH;
         float horizontalOffset = cardWidth * 0.75F;
+
+        AbstractRelic rEnchantBlight = new Circlet();
+        rEnchantBlight.tips.clear();
+        rEnchantBlight.tips.add(new PowerTip(ManaSurgeZone.getKeywordProper(ENCHANT_ID), ManaSurgeZone.getKeywordDescription(ENCHANT_ID)));
+        rEnchantBlight.tips.add(new PowerTip(ManaSurgeZone.getKeywordProper(BLIGHTED_ID), ManaSurgeZone.getKeywordDescription(BLIGHTED_ID)));
+
+        AbstractRelic rBlight = new Circlet();
+        rBlight.tips.clear();
+        rBlight.tips.add(new PowerTip(ManaSurgeZone.getKeywordProper(BLIGHTED_ID), ManaSurgeZone.getKeywordDescription(BLIGHTED_ID)));
+
         registerPhase("Start", new TextPhase(DESCRIPTIONS[0])
-                .addOption(new TextPhase.OptionInfo(OPTIONS[0])
+                .addOption(new TextPhase.OptionInfo(OPTIONS[0],rEnchantBlight)
                         .cardSelectOption("Reached Inside",
                                 ()->{
                                     CardGroup filteredCards = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
@@ -72,7 +86,12 @@ public class ManaCycloneEvent extends PhasedEvent {
                                     for (AbstractCard c : cards) {
                                         ManaSurgeZone.applyPermanentPositiveModifier(c);
                                         CardCrawlGame.sound.play(ManaSurgeZone.ENCHANTBLIGHT_KEY);
-                                        AbstractDungeon.effectList.add(new ShowCardBrieflyEffect(c.makeStatEquivalentCopy(), Settings.WIDTH / 2.0F - horizontalOffset, Settings.HEIGHT / 2.0F));
+                                        AbstractDungeon.topLevelEffectsQueue.add(new EnchantBlightEffect(
+                                                Settings.WIDTH / 2.0F - horizontalOffset,
+                                                Settings.HEIGHT / 2.0F));
+                                        AbstractDungeon.effectList.add(new ShowCardBrieflyEffect(c.makeStatEquivalentCopy(),
+                                                Settings.WIDTH / 2.0F - horizontalOffset,
+                                                Settings.HEIGHT / 2.0F));
                                     }
                                     CardGroup filteredCards = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
                                     AbstractDungeon.player.masterDeck.group.stream()
@@ -85,13 +104,18 @@ public class ManaCycloneEvent extends PhasedEvent {
                                     AbstractCard randomCard = filteredCards.getRandomCard(AbstractDungeon.miscRng);
                                     if (randomCard != null) {
                                         ManaSurgeZone.applyPermanentNegativeModifier(randomCard);
-                                        AbstractDungeon.effectList.add(new ShowCardBrieflyEffect(randomCard.makeStatEquivalentCopy(), Settings.WIDTH / 2.0F + horizontalOffset, Settings.HEIGHT / 2.0F));
+                                        AbstractDungeon.topLevelEffectsQueue.add(new EnchantBlightEffect(
+                                                Settings.WIDTH / 2.0F + horizontalOffset,
+                                                Settings.HEIGHT / 2.0F));
+                                        AbstractDungeon.effectList.add(new ShowCardBrieflyEffect(randomCard.makeStatEquivalentCopy(),
+                                                Settings.WIDTH / 2.0F + horizontalOffset,
+                                                Settings.HEIGHT / 2.0F));
                                         filteredCards.group.remove(randomCard);
                                     }
                                 }
                         )
                 )
-                .addOption(OPTIONS[1],(i) -> {
+                .addOption(OPTIONS[1],rBlight,(i) -> {
                     CardGroup filteredCards = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
                     AbstractDungeon.player.masterDeck.group.stream()
                             .filter(card -> !ManaSurgeZone.hasManaSurgeModifier(card) &&
@@ -102,16 +126,22 @@ public class ManaCycloneEvent extends PhasedEvent {
                     AbstractCard randomCard1 = filteredCards.getRandomCard(AbstractDungeon.miscRng);
                     filteredCards.removeCard(randomCard1);
                     AbstractCard randomCard2 = filteredCards.getRandomCard(AbstractDungeon.miscRng);
-                    CardCrawlGame.sound.play(ManaSurgeZone.ENCHANTBLIGHT_KEY);
 
+                    CardCrawlGame.sound.play(ManaSurgeZone.ENCHANTBLIGHT_KEY);
                     if (randomCard1 != null) {
                         ManaSurgeZone.applyPermanentNegativeModifier(randomCard1);
+                        AbstractDungeon.topLevelEffectsQueue.add(new EnchantBlightEffect(
+                                Settings.WIDTH / 2.0F - horizontalOffset,
+                                Settings.HEIGHT / 2.0F));
                         AbstractDungeon.effectList.add(new ShowCardBrieflyEffect(randomCard1.makeStatEquivalentCopy(),
                                 Settings.WIDTH / 2.0F - horizontalOffset,
                                 Settings.HEIGHT / 2.0F));
                     }
                     if (randomCard2 != null) {
                         ManaSurgeZone.applyPermanentNegativeModifier(randomCard2);
+                        AbstractDungeon.topLevelEffectsQueue.add(new EnchantBlightEffect(
+                                Settings.WIDTH / 2.0F + horizontalOffset,
+                                Settings.HEIGHT / 2.0F));
                         AbstractDungeon.effectList.add(new ShowCardBrieflyEffect(randomCard2.makeStatEquivalentCopy(),
                                 Settings.WIDTH / 2.0F + horizontalOffset,
                                 Settings.HEIGHT / 2.0F));

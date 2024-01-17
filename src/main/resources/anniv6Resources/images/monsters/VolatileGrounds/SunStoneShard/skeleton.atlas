@@ -1,0 +1,55 @@
+
+skeleton.png
+size: 256,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+SunstoneShard5
+  rotate: false
+  xy: 125, 121
+  size: 122, 118
+  orig: 122, 118
+  offset: 0, 0
+  index: -1
+SunstoneShard3
+  rotate: false
+  xy: 1, 241
+  size: 122, 118
+  orig: 122, 118
+  offset: 0, 0
+  index: -1
+SunstoneShard2
+  rotate: false
+  xy: 125, 241
+  size: 122, 118
+  orig: 122, 118
+  offset: 0, 0
+  index: -1
+SunstoneShard4
+  rotate: false
+  xy: 1, 1
+  size: 122, 118
+  orig: 122, 118
+  offset: 0, 0
+  index: -1
+SunstoneShard1
+  rotate: false
+  xy: 1, 121
+  size: 122, 118
+  orig: 122, 118
+  offset: 0, 0
+  index: -1
+SunstoneShard0
+  rotate: false
+  xy: 125, 1
+  size: 122, 118
+  orig: 122, 118
+  offset: 0, 0
+  index: -1
+SunstoneShard6
+  rotate: false
+  xy: 1, 361
+  size: 118, 20
+  orig: 118, 20
+  offset: 0, 0
+  index: -1

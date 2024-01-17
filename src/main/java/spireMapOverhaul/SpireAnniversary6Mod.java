@@ -57,6 +57,7 @@ import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.util.ZoneShapeMaker;
 import spireMapOverhaul.zoneInterfaces.CampfireModifyingZone;
 import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
+import spireMapOverhaul.zoneInterfaces.ModifiedEventRateZone;
 import spireMapOverhaul.zones.beastslair.BeastsLairZone;
 import spireMapOverhaul.zones.brokenspace.BrokenSpaceZone;
 import spireMapOverhaul.zones.gremlinTown.HordeHelper;
@@ -160,6 +161,10 @@ public class SpireAnniversary6Mod implements
 
     public static String makeRelicPath(String resourcePath) {
         return modID + "Resources/images/relics/" + resourcePath;
+    }
+
+    public static String makeMonsterPath(String resourcePath) {
+        return modID + "Resources/images/monsters/" + resourcePath;
     }
 
     public static String makePowerPath(String resourcePath) {
@@ -508,6 +513,15 @@ public class SpireAnniversary6Mod implements
                 throw new RuntimeException(e);
             }
         }
+        unfilteredAllZones.stream()
+                .filter(z -> z instanceof ModifiedEventRateZone)
+                .forEach(z -> {
+                    Set<String> specEvents =  ((ModifiedEventRateZone) z).addSpecificEvents();
+                    if(specEvents != null) {
+                        Set<String> eventList = zoneEvents.computeIfAbsent(z.id, k -> new HashSet<>());
+                        eventList.addAll(specEvents);
+                    }
+                });
     }
 
     @Override
