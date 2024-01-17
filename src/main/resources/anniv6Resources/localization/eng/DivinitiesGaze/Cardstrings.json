@@ -33,39 +33,12 @@
       "Into nothingness..."
     ]
   },
-  "${ModID}:Propagation1": {
-    "NAME": "Propagation",
-    "DESCRIPTION": "When drawn, add a #ySlimed to your hand. NL Duplicate your hand. NL Exhaust.",
-    "EXTENDED_DESCRIPTION": [
-      "Multiply..."
-    ]
-  },
-  "${ModID}:Propagation2": {
-    "NAME": "Propagation",
-    "DESCRIPTION": "At the end of your turn, add a copy of a random card in your hand and of #yPropagation to your discard pile.",
-    "EXTENDED_DESCRIPTION": [
-      "Propagate..."
-    ]
-  },
-  "${ModID}:Propagation3": {
-    "NAME": "Propagation",
-    "DESCRIPTION": "At the end of your turn, shuffle a copy of this into your draw pile. NL Gain !B! Block. NL Draw !M! card. NL Exhaust.",
-    "EXTENDED_DESCRIPTION": [
-      "Evolve..."
-    ]
-  },
-  "${ModID}:Propagation4": {
+  "${ModID}:Propagation": {
     "NAME": "Propagation",
     "DESCRIPTION": "When drawn, shuffle a Propagation into your draw pile. NL Deal !D! damage for ALL of your cards named \"Propagation\" or \"Slimed\". NL Exhaust.",
     "EXTENDED_DESCRIPTION": [
-      "Grow..."
-    ]
-  },
-  "${ModID}:Propagation5": {
-    "NAME": "Propagation",
-    "DESCRIPTION": "Whenever you play another card, shuffle a #ySlimed into your draw pile. NL Deal !D! damage for ALL of your cards named \"Slimed\".",
-    "EXTENDED_DESCRIPTION": [
-      "Grow..."
+      "Grow...",
+      " NL (Attack !M! times.)"
     ]
   }
 }
