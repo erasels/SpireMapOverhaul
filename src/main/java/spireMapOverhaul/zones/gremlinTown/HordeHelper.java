@@ -323,7 +323,6 @@ public class HordeHelper {
     }
 
     public static void reinforce() {
-        SpireAnniversary6Mod.logger.info("REINFORCE");
         if (platforms && (monsterLeftPlatform == null || monsterLeftPlatform.isDeadOrEscaped()))
             fillLeftPlatform();
         if (platforms && (monsterRightPlatform == null || monsterRightPlatform.isDeadOrEscaped()))
@@ -347,9 +346,6 @@ public class HordeHelper {
             rightSpots = 0;
         if (monsterLeftFront instanceof GremlinBrute && !monsterLeftFront.isDeadOrEscaped())
             leftSpots = 0;
-
-        SpireAnniversary6Mod.logger.info("RIGHT SPOTS " + rightSpots);
-        SpireAnniversary6Mod.logger.info("LEFT SPOTS " + leftSpots);
 
         if (leftSpots + rightSpots == 0)
             return;
@@ -433,7 +429,6 @@ public class HordeHelper {
     }
 
     public static void fillLeft() {
-        SpireAnniversary6Mod.logger.info("FILL LEFT");
         if (getNextGround() == null)
             return;
         if (monsterLeftFront != null && !monsterLeftFront.isDeadOrEscaped() && monsterLeftFront instanceof GremlinBrute)
@@ -461,7 +456,6 @@ public class HordeHelper {
     }
 
     public static void fillRight() {
-        SpireAnniversary6Mod.logger.info("FILL RIGHT");
         if (getNextGround() == null)
             return;
         if (monsterRightFront != null && !monsterRightFront.isDeadOrEscaped() && monsterRightFront instanceof GremlinBrute)
@@ -626,7 +620,6 @@ public class HordeHelper {
     }
 
     public static void moveLeftGremlinUp() {
-        SpireAnniversary6Mod.logger.info("LEFT GREMLIN UP");
         if (monsterLeftFront != null && !monsterLeftFront.isDeadOrEscaped())
             return;
 
@@ -663,7 +656,6 @@ public class HordeHelper {
     }
 
     public static void moveRightGremlinUp() {
-        SpireAnniversary6Mod.logger.info("RIGHT GREMLIN UP");
         if (monsterRightFront != null && !monsterRightFront.isDeadOrEscaped())
             return;
 
@@ -700,7 +692,6 @@ public class HordeHelper {
     }
 
     public static void moveLeftGremlinIn(boolean far, boolean shout) {
-        SpireAnniversary6Mod.logger.info("LEFT GREMLIN IN");
         AbstractMonster m = getNextGround();
         if (m == null)
             return;
@@ -775,7 +766,6 @@ public class HordeHelper {
     }
 
     public static void moveRightGremlinIn(boolean far) {
-        SpireAnniversary6Mod.logger.info("RIGHT GREMLIN IN");
         AbstractMonster m = getNextGround();
         if (m == null)
             return;
@@ -841,7 +831,6 @@ public class HordeHelper {
     }
 
     public static void fillLeftPlatform() {
-        SpireAnniversary6Mod.logger.info("FILL LEFT PLATFORM");
         if (platformQueue.isEmpty())
             return;
         monsterLeftPlatform = platformQueue.get(0);
@@ -896,7 +885,6 @@ public class HordeHelper {
     }
 
     public static void fillRightPlatform() {
-        SpireAnniversary6Mod.logger.info("FILL RIGHT PLATFORM");
         if (platformQueue.isEmpty())
             return;
         monsterRightPlatform = platformQueue.get(0);
@@ -950,7 +938,6 @@ public class HordeHelper {
     }
 
     public static void moveLeftGremlinAcross() {
-        SpireAnniversary6Mod.logger.info("MOVE LEFT ACROSS");
         AbstractMonster m;
         if (monsterLeftFront != null && !monsterLeftFront.isDeadOrEscaped()) {
             m = monsterLeftFront;
@@ -1013,7 +1000,6 @@ public class HordeHelper {
     }
 
     public static void moveRightGremlinAcross() {
-        SpireAnniversary6Mod.logger.info("MOVE RIGHT ACROSS");
         AbstractMonster m;
         if (monsterRightFront != null && !monsterRightFront.isDeadOrEscaped()) {
             m = monsterRightFront;
