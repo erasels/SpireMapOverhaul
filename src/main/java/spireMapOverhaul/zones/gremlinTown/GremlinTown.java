@@ -5,6 +5,7 @@ import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.MonsterHelper;
 import com.megacrit.cardcrawl.helpers.PotionHelper;
@@ -34,6 +35,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.*;
+import static com.megacrit.cardcrawl.helpers.MonsterHelper.getGremlin;
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 import static spireMapOverhaul.SpireAnniversary6Mod.makePath;
 
@@ -74,13 +76,8 @@ public class GremlinTown extends AbstractZone
 
     public GremlinTown() {
         super(ID, Icons.MONSTER, Icons.EVENT, Icons.SHOP);
-        width = 5;
-        height = 6;
-    }
-
-    public void atBattleStart() {
-        if (AbstractDungeon.lastCombatMetricKey.equals(GremlinTown.GREMLIN_HORDE))
-            HordeHelper.initFight();
+        width = 3;
+        height = 5;
     }
 
     @Override
@@ -134,20 +131,20 @@ public class GremlinTown extends AbstractZone
         int index = AbstractDungeon.miscRng.random(gremlinPool.size() - 1);
         String key = gremlinPool.get(index);
         gremlinPool.remove(index);
-        retVal[0] = getGremlin(key, -430.0F, -25.0F);
+        retVal[0] = getAdvancedGremlin(key, -430.0F, -25.0F);
         index = AbstractDungeon.miscRng.random(gremlinPool.size() - 1);
         key = gremlinPool.get(index);
         gremlinPool.remove(index);
-        retVal[1] = getGremlin(key, -170.0F, 21.0F);
+        retVal[1] = getAdvancedGremlin(key, -170.0F, 21.0F);
         index = AbstractDungeon.miscRng.random(gremlinPool.size() - 1);
         key = gremlinPool.get(index);
         gremlinPool.remove(index);
-        retVal[2] = getGremlin(key, 115.0F, -30.0F);
+        retVal[2] = getAdvancedGremlin(key, 115.0F, -30.0F);
 
         return new MonsterGroup(retVal);
     }
 
-    public static AbstractMonster getGremlin(String key, float xPos, float yPos) {
+    public static AbstractMonster getAdvancedGremlin(String key, float xPos, float yPos) {
         switch (key) {
             case "GremlinAssassin":
                 return new GremlinAssassin(xPos, yPos);
@@ -220,9 +217,9 @@ public class GremlinTown extends AbstractZone
         // These start in their combat positions instead of spawning off the screen and being animated
         encounters.add(new ZoneEncounter(SURPRISE, 2, () -> new MonsterGroup(
                 new AbstractMonster[]{
-                    new GremlinCannon(Chest.CHEST_LOC_X, Chest.CHEST_LOC_Y),
-                    new GremlinRiderRed(-320.0F, -50.0F),
-                    new GremlinRiderRed(-100.0F, -50.0F)
+                    new GremlinRiderRed(Settings.WIDTH * -0.22F, 40F),
+                    new GremlinRiderRed(Settings.WIDTH * -0.32F, -60F),
+                        new GremlinCannon(Chest.CHEST_LOC_X - Settings.WIDTH * 0.75F, Chest.CHEST_LOC_Y - floorY -256F*Settings.scale)
                 })));
 
         for (ZoneEncounter ze : encounters)
@@ -339,7 +336,8 @@ public class GremlinTown extends AbstractZone
             if (item.type == RewardItem.RewardType.CARD)
                 item.cards = getGremlinCardReward(item.cards);
 
-            if (item.type == RewardItem.RewardType.GOLD && lastCombatMetricKey.equals(GREMLIN_HORDE))
+            if (item.type == RewardItem.RewardType.GOLD && lastCombatMetricKey != null
+                    && lastCombatMetricKey.equals(GREMLIN_HORDE))
                 item.bonusGold = treasureRng.random(200, 250);
         }
 
@@ -347,10 +345,10 @@ public class GremlinTown extends AbstractZone
         item.cards = getGremlinCardReward(item.cards);
         rewards.add(item);
 
-        if (lastCombatMetricKey.equals(NIB))
+        if (lastCombatMetricKey != null && lastCombatMetricKey.equals(NIB))
             rewards.add(new RewardItem(getRandomGRelic()));
 
-        if (lastCombatMetricKey.equals(GREMLIN_HORDE))
+        if (lastCombatMetricKey != null && lastCombatMetricKey.equals(GREMLIN_HORDE))
             rewards.add(new RewardItem(getRandomGRelic()));
     }
 

@@ -134,6 +134,7 @@ public class GremlinNib extends CustomMonster
                 atb(new AnimateSlowAttackAction(this));
                 atb(new DamageAction(adp(), damage.get(3), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
                 atb(new ApplyPowerAction(adp(), this, new VulnerablePower(adp(), VULN_AMOUNT, true)));
+                isWoke = false;
                 break;
         }
 
@@ -167,15 +168,17 @@ public class GremlinNib extends CustomMonster
         super.update();
     }
 
-    @Override
-    public void setMove(String moveName, byte nm, Intent intent, int baseDamage, int multiplier, boolean isMultiDamage) {
-        isWoke = nm == CRIT;
-
-        super.setMove(moveName, nm, intent, baseDamage, multiplier, isMultiDamage);
-    }
-
     protected void getMove(int num) {
-        if (firstMove || lastMove(CRIT)) {
+        int nibs = 0;
+        GremlinNibPower pow = (GremlinNibPower) this.getPower(GremlinNibPower.POWER_ID);
+        if (pow != null)
+            nibs = pow.amount2;
+
+        if (nibs == 7) {
+            setMove(DOUBLE, Intent.ATTACK, doubleDmg, 2, true);
+        } else if (nibs == 8) {
+            setMove(SLAM, Intent.ATTACK, slamDmg);
+        } else if (firstMove || lastMove(CRIT)) {
             firstMove = false;
             int x = AbstractDungeon.monsterRng.random(0, 2);
             if (x == 0)

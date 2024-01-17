@@ -46,7 +46,7 @@ public class GremlinBrute extends CustomMonster
     private boolean firstMove;
 
     public GremlinBrute(float x, float y) {
-        super(NAME, ID, HP_MAX, -70.0F*0.6F, -10.0F*0.6F, 270.0F*0.6F, 380.0F, null, x, y);
+        super(NAME, ID, HP_MAX, -70.0F*0.6F, -10.0F*0.6F, 270.0F*0.6F, 380.0F*0.6F, null, x, y);
         intentOffsetX = -30.0F * Settings.scale;
         type = EnemyType.NORMAL;
         dialogX = -60.0F * Settings.scale;
@@ -67,7 +67,7 @@ public class GremlinBrute extends CustomMonster
         damage.add(new DamageInfo(this, slamDmg));
         damage.add(new DamageInfo(this, breakDmg));
         
-        this.loadAnimation("images/monsters/theBottom/nobGremlin/skeleton.atlas", "images/monsters/theBottom/nobGremlin/skeleton.json", 0.6F);
+        this.loadAnimation("images/monsters/theBottom/nobGremlin/skeleton.atlas", "images/monsters/theBottom/nobGremlin/skeleton.json", 1F/0.6F);
         AnimationState.TrackEntry e = state.setAnimation(0, "animation", true);
         e.setTime(e.getEndTime() * MathUtils.random());
 

@@ -16,7 +16,6 @@ import spireMapOverhaul.abstracts.AbstractSMOPower;
 import spireMapOverhaul.zones.gremlinTown.GremlinTown;
 import spireMapOverhaul.zones.gremlinTown.monsters.GremlinNib;
 
-import static spireMapOverhaul.util.Wiz.applyToEnemyTop;
 import static spireMapOverhaul.util.Wiz.atb;
 
 public class GremlinNibPower extends AbstractSMOPower {
@@ -24,6 +23,7 @@ public class GremlinNibPower extends AbstractSMOPower {
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
+    public static final String MSG = "Nib Power";
 
     public GremlinNibPower(AbstractCreature owner, int amount2) {
         super(POWER_ID, NAME, GremlinTown.ID, PowerType.BUFF,false, owner, 9);
@@ -33,27 +33,6 @@ public class GremlinNibPower extends AbstractSMOPower {
 
     @Override
     public void stackPower(int stackAmount) {
-        if (owner instanceof GremlinNib && ((GremlinNib) owner).isWoke)
-            return;
-
-        fontScale = 8.0F;
-        amount2 += stackAmount;
-        if (amount2 >= amount) {
-            amount2 = 0;
-            if (owner instanceof GremlinNib) {  // This should always be true
-                atb(new AbstractGameAction() {
-                    @Override
-                    public void update() {
-                        isDone = true;
-                        flash();
-                        CardCrawlGame.sound.play("STANCE_ENTER_WRATH");
-                        ((GremlinNib) owner).setMove(GremlinNib.CRIT, AbstractMonster.Intent.ATTACK_DEBUFF,
-                                ((GremlinNib) owner).critDmg);
-                        ((GremlinNib) owner).createIntent();
-                    }
-                });
-            }
-        }
     }
 
     @Override
@@ -63,10 +42,26 @@ public class GremlinNibPower extends AbstractSMOPower {
 
     @Override
     public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) {
-        if (owner instanceof GremlinNib && ((GremlinNib) owner).isWoke)
-            return;
+        amount2 += 1;
+        if (amount2 > amount)
+            amount2 = 0;
 
-        applyToEnemyTop((AbstractMonster) owner, new GremlinNibPower(owner, 1));
+        flash();
+        if (amount2 == amount) {
+            if (owner instanceof GremlinNib) {  // This should always be true
+                atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        isDone = true;
+                        CardCrawlGame.sound.play("STANCE_ENTER_WRATH");
+                        ((GremlinNib) owner).isWoke = true;
+                        ((GremlinNib) owner).setMove(GremlinNib.CRIT, AbstractMonster.Intent.ATTACK_DEBUFF,
+                                ((GremlinNib) owner).critDmg);
+                        ((GremlinNib) owner).createIntent();
+                    }
+                });
+            }
+        }
     }
 
     @Override

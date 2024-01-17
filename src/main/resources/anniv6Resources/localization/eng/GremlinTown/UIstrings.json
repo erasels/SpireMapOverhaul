@@ -2,7 +2,8 @@
   "${ModID}:GremlinTown": {
     "TEXT": [
       "Gremlin Town",
-      "A section of the city populated by gremlins.  A more dangerous zone with stronger rewards."
+      "A section of the city populated by gremlins.  A more dangerous zone with stronger rewards.",
+      "Bryan K."
     ]
   },
   "${ModID}:ShopBanter": {

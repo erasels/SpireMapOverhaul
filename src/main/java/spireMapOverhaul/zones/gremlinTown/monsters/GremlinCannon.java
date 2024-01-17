@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
+import com.megacrit.cardcrawl.powers.WeakPower;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.zones.gremlinTown.events.Surprise;
 import spireMapOverhaul.zones.gremlinTown.events.misc.Shell;
@@ -74,8 +75,8 @@ public class GremlinCannon extends CustomMonster
                     public void update() {
                         if (shell == null) {
                             duration = SHELL_DURATION;
-                            shell = new Shell((float) Settings.WIDTH / 2.0F + 408.0F * Settings.scale,
-                                    AbstractDungeon.floorY + 144f * Settings.scale,
+                            shell = new Shell(1198F * Settings.scale,
+                                    AbstractDungeon.floorY + 124F * Settings.scale,
                                     adp().hb.cX, adp().hb.y, Surprise.SHELL_FLIGHT_TIME);
                         }
                         shell.update();
@@ -96,8 +97,8 @@ public class GremlinCannon extends CustomMonster
                     public void update() {
                         if (shell == null) {
                             duration = SHELL_DURATION;
-                            shell = new Shell((float) Settings.WIDTH / 2.0F + 408.0F * Settings.scale,
-                                    AbstractDungeon.floorY + 144f * Settings.scale,
+                            shell = new Shell(1198F * Settings.scale,
+                                    AbstractDungeon.floorY + 124F * Settings.scale,
                                     adp().hb.cX, adp().hb.y, Surprise.SHELL_FLIGHT_TIME);
                         }
                         shell.update();
@@ -107,9 +108,9 @@ public class GremlinCannon extends CustomMonster
                     }
                 });
                 if (asc() <= 17)
-                    atb(new ApplyPowerAction(adp(), this, new VulnerablePower(adp(), WEAK_AMOUNT, true)));
+                    atb(new ApplyPowerAction(adp(), this, new WeakPower(adp(), WEAK_AMOUNT, true)));
                 else
-                    atb(new ApplyPowerAction(adp(), this, new VulnerablePower(adp(), WEAK_AMOUNT_A17, true)));
+                    atb(new ApplyPowerAction(adp(), this, new WeakPower(adp(), WEAK_AMOUNT_A17, true)));
         }
         atb(new RollMoveAction(this));
     }
@@ -127,9 +128,9 @@ public class GremlinCannon extends CustomMonster
 
     @Override
     public void render(SpriteBatch sb) {
+        super.render(sb);
         if (shell != null)
             shell.render(sb);
-        super.render(sb);
     }
 
     static {

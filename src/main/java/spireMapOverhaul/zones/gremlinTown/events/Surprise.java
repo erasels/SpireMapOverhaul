@@ -1,7 +1,6 @@
 package spireMapOverhaul.zones.gremlinTown.events;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Interpolation;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -69,10 +68,10 @@ public class Surprise extends AbstractEvent {
         RIDER_B_MID_X = Settings.WIDTH * 0.58F;
         RIDER_A_END_X = Settings.WIDTH * 0.53F;
         RIDER_B_END_X = Settings.WIDTH * 0.43F;
-        RIDER_A_START_Y = AbstractDungeon.floorY - 80f;
-        RIDER_B_START_Y = AbstractDungeon.floorY - 95f;
-        RIDER_A_END_Y = AbstractDungeon.floorY + 60f;
-        RIDER_B_END_Y = AbstractDungeon.floorY - 50f;
+        RIDER_A_START_Y = AbstractDungeon.floorY - 100f;
+        RIDER_B_START_Y = AbstractDungeon.floorY - 115f;
+        RIDER_A_END_Y = AbstractDungeon.floorY + 40f;
+        RIDER_B_END_Y = AbstractDungeon.floorY - 60f;
     }
 
     public Surprise() {
@@ -124,7 +123,7 @@ public class Surprise extends AbstractEvent {
                     fired = true;
                     float shellTargetX = adp().hb.cX;
                     float shellTargetY = adp().hb.y;
-                    shell = new Shell(chest.hb.x + 60f, chest.hb.cY + 52f,
+                    shell = new Shell(chest.hb.x + 60f*Settings.scale, chest.hb.cY + 52f,
                             shellTargetX, shellTargetY, SHELL_FLIGHT_TIME);
                 }
             }
@@ -132,6 +131,11 @@ public class Surprise extends AbstractEvent {
                 screen = CUR_SCREEN.COMBAT;
                 adRoom().addGoldToRewards(GOLD_BASE + AbstractDungeon.miscRng.random(0, GOLD_VARIANCE));
                 adRoom().addRelicToRewards(GremlinTown.getRandomGRelic());
+                // For render order
+                AbstractMonster tmp = adRoom().monsters.monsters.get(0);
+                adRoom().monsters.monsters.add(tmp);
+                adRoom().monsters.monsters.remove(0);
+                AbstractDungeon.lastCombatMetricKey = GremlinTown.SURPRISE;
                 enterCombat();
             }
         }
@@ -196,11 +200,11 @@ public class Surprise extends AbstractEvent {
 
     @Override
     public void render(SpriteBatch sb) {
+        super.render(sb);
         if (chest != null)
             chest.render(sb);
         if (shell != null)
             shell.render(sb);
-        sb.setColor(Color.WHITE);
     }
 
     private enum CUR_SCREEN {

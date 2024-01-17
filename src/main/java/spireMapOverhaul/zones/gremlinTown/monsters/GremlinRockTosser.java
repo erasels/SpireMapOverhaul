@@ -25,10 +25,10 @@ public class GremlinRockTosser extends CustomMonster
     private static final byte ATTACK = 1;
     private static final int DAMAGE = 7;
     private static final int DAMAGE_A2 = 8;
-    private static final int MIN_HP = 18;
-    private static final int MAX_HP = 20;
-    private static final int MIN_HP_A7 = 20;
-    private static final int MAX_HP_A7 = 23;
+    private static final int MIN_HP = 13;
+    private static final int MAX_HP = 17;
+    private static final int MIN_HP_A7 = 15;
+    private static final int MAX_HP_A7 = 19;
 
     private final int attackDamage;
 
@@ -59,16 +59,12 @@ public class GremlinRockTosser extends CustomMonster
 
     @Override
     public void takeTurn() {
-        this.applyPowers();
-        DamageInfo info = new DamageInfo(this, attackDamage, DamageInfo.DamageType.NORMAL);
-        atb(new RockThrowAction(this, info));
-
+        atb(new RockThrowAction(this, damage.get(0)));
         atb(new RollMoveAction(this));
     }
 
     @Override
     protected void getMove(final int num) {
-        this.applyPowers();
         setMove(ATTACK, Intent.ATTACK, attackDamage);
     }
 

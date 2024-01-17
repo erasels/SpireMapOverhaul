@@ -61,7 +61,7 @@ public class HordeHelper {
     private static final float PLATFORM_X_RIGHT = Settings.WIDTH * 0.7F - HB_WIDTH/2.0F*Settings.scale;
     private static final float RIGHT_X_FRONT = Settings.WIDTH * 0.7F;
     private static final float RIGHT_X_BACK = Settings.WIDTH * 0.82F;
-    private static final float BRUTE_OFFSET = Settings.WIDTH * 0.4F;
+    private static final float BRUTE_OFFSET = Settings.WIDTH * 0.06F;
     private static final float LEFT_X_FRONT = Settings.WIDTH * 0.3F;
     private static final float LEFT_X_BACK = Settings.WIDTH * 0.18F;
     private static final float PLATFORM_END_Y = Settings.HEIGHT - HB_HEIGHT * Settings.scale - 50F * Settings.scale;
@@ -91,7 +91,7 @@ public class HordeHelper {
             groundQueue.add(new GremlinFat(Settings.WIDTH * 4, 0));
             platformQueue.add(new GremlinWizard(Settings.WIDTH * 4, 0));
             platformQueue.add(new GremlinRockTosser(Settings.WIDTH * 4, 0));
-            if (i < 4)
+            if (i < 2)
                 platformQueue.add(new GremlinRockTosser(Settings.WIDTH * 4, 0));
         }
 
@@ -202,7 +202,7 @@ public class HordeHelper {
             public void update() {
                 isDone = true;
                 //These are all add to top, so reverse order
-                att(new WaitMoreAction(3.0F));
+                att(new WaitMoreAction(2.5F));
 
                 moveLeftGremlinIn(false, false);
                 moveLeftGremlinIn(true, true);
@@ -323,6 +323,7 @@ public class HordeHelper {
     }
 
     public static void reinforce() {
+        SpireAnniversary6Mod.logger.info("REINFORCE");
         if (platforms && (monsterLeftPlatform == null || monsterLeftPlatform.isDeadOrEscaped()))
             fillLeftPlatform();
         if (platforms && (monsterRightPlatform == null || monsterRightPlatform.isDeadOrEscaped()))
@@ -331,7 +332,7 @@ public class HordeHelper {
         int leftSpots = 0;
         int rightSpots = 0;
 
-        if (groundQueue.size() == 0)
+        if (groundQueue.isEmpty())
             return;
 
         if (monsterRightFront == null || monsterRightFront.isDeadOrEscaped())
@@ -342,23 +343,24 @@ public class HordeHelper {
             leftSpots++;
         if (monsterLeftBack == null || monsterLeftBack.isDeadOrEscaped())
             leftSpots++;
-        if (monsterRightFront instanceof GremlinBrute)
+        if (monsterRightFront instanceof GremlinBrute && !monsterRightFront.isDeadOrEscaped())
             rightSpots = 0;
-        if (monsterLeftFront instanceof GremlinBrute)
+        if (monsterLeftFront instanceof GremlinBrute && !monsterLeftFront.isDeadOrEscaped())
             leftSpots = 0;
 
-        boolean brute = groundQueue.get(0) instanceof GremlinBrute;
+        SpireAnniversary6Mod.logger.info("RIGHT SPOTS " + rightSpots);
+        SpireAnniversary6Mod.logger.info("LEFT SPOTS " + leftSpots);
+
         if (leftSpots + rightSpots == 0)
             return;
+
+        boolean brute = getNextGround() instanceof GremlinBrute;
         if (leftSpots + rightSpots == 1 && brute) {
             if (leftSpots == 1)
                 fillLeft();
             else
                 fillRight();
-            return;
-        }
-
-        if (brute) {
+        } else if (brute) {
             if (leftSpots == 2 && rightSpots < 2) {
                 moveLeftGremlinIn(true, false);
                 if (rightSpots > 0)
@@ -371,67 +373,77 @@ public class HordeHelper {
             } else {
                 int x = AbstractDungeon.monsterRng.random(0, 1);
                 if (x == 0) {
-                    if (leftSpots == 1)
+                    if (leftSpots == 1) {
                         moveLeftGremlinAcross();
-                    else
+                        moveLeftGremlinIn(true, false);
+                    } else {
+                        moveLeftGremlinIn(true, false);
                         fillRight();
-                    moveLeftGremlinIn(true, false);
+                    }
                 } else {
-                    if (rightSpots == 1)
+                    if (rightSpots == 1) {
                         moveRightGremlinAcross();
-                    else
+                        moveRightGremlinIn(true);
+                    } else {
+                        moveRightGremlinIn(true);
                         fillLeft();
-                    moveRightGremlinIn(true);
+                    }
                 }
             }
         } else {
             if (rightSpots > 0 && leftSpots == 0) {
                 fillRight();
-                return;
             } else if (rightSpots == 0 && leftSpots > 0) {
                 fillLeft();
-                return;
             } else {
                 int x = AbstractDungeon.monsterRng.random(0, 1);
                 if (x == 0) {
                     fillLeft();
-                    leftSpots = 0;
+                    if (getNextGround() instanceof GremlinBrute && rightSpots == 2) {
+                        moveRightGremlinIn(true);
+                        fillLeft();
+                    } else
+                        fillRight();
                 } else {
                     fillRight();
-                    rightSpots = 0;
+                    if (getNextGround() instanceof GremlinBrute && leftSpots == 2) {
+                        moveLeftGremlinIn(true, false);
+                        fillRight();
+                    } else
+                        fillLeft();
                 }
             }
-
-            if (leftSpots + rightSpots == 0)
-                return;
-
-            if (groundQueue.size() == 0)
-                return;
-            brute = groundQueue.get(0) instanceof GremlinBrute;
-
-            if (leftSpots + rightSpots == 1 && brute)
-                return;
-
-            if (leftSpots == 2) {
-                if (brute)
-                    moveLeftGremlinIn(true, false);
-                else
-                    fillLeft();
-            } else if (rightSpots == 2) {
-                if (brute)
-                    moveRightGremlinIn(true);
-                else
-                    fillRight();
-            } else if (leftSpots == 1)
-                fillLeft();
-            else
-                fillRight();
         }
     }
 
+    public static AbstractMonster getNextGround() {
+        if (groundQueue.size() > (platformQueue.size() * 2) / 3 )
+            return groundQueue.get(0);
+        else if (!platformQueue.isEmpty())
+            return platformQueue.get(0);
+        else
+            return null;
+    }
+
+    public static void removeNextGround() {
+        if (groundQueue.size() > (platformQueue.size() * 2) / 3 )
+            groundQueue.remove(0);
+        else if (!platformQueue.isEmpty())
+            platformQueue.remove(0);
+    }
+
     public static void fillLeft() {
-        if (groundQueue.size() == 0 || groundQueue.get(0) instanceof GremlinBrute)
+        SpireAnniversary6Mod.logger.info("FILL LEFT");
+        if (getNextGround() == null)
             return;
+        if (monsterLeftFront != null && !monsterLeftFront.isDeadOrEscaped() && monsterLeftFront instanceof GremlinBrute)
+            return;
+
+        if (getNextGround() == null || getNextGround() instanceof GremlinBrute) {
+            if (monsterLeftFront == null || monsterLeftFront.isDeadOrEscaped())
+                moveLeftGremlinUp();
+            return;
+        }
 
         if (monsterLeftFront == null || monsterLeftFront.isDeadOrEscaped()) {
             if (monsterLeftBack != null && !monsterLeftBack.isDeadOrEscaped()) {
@@ -440,7 +452,7 @@ public class HordeHelper {
             }
             else {
                 moveLeftGremlinIn(true, false);
-                if (groundQueue.size() == 0 || groundQueue.get(0) instanceof GremlinBrute)
+                if (groundQueue.size() == 0 || getNextGround() instanceof GremlinBrute)
                     return;
                 moveLeftGremlinIn(false, false);
             }
@@ -449,6 +461,18 @@ public class HordeHelper {
     }
 
     public static void fillRight() {
+        SpireAnniversary6Mod.logger.info("FILL RIGHT");
+        if (getNextGround() == null)
+            return;
+        if (monsterRightFront != null && !monsterRightFront.isDeadOrEscaped() && monsterRightFront instanceof GremlinBrute)
+            return;
+
+        if (getNextGround() == null || getNextGround() instanceof GremlinBrute) {
+            if (monsterRightFront == null || monsterRightFront.isDeadOrEscaped())
+                moveRightGremlinUp();
+            return;
+        }
+
         if (monsterRightFront == null || monsterRightFront.isDeadOrEscaped()) {
             if (monsterRightBack != null && !monsterRightBack.isDeadOrEscaped()) {
                 moveRightGremlinUp();
@@ -456,7 +480,7 @@ public class HordeHelper {
             }
             else {
                 moveRightGremlinIn(true);
-                if (groundQueue.size() == 0 || groundQueue.get(0) instanceof GremlinBrute)
+                if (groundQueue.size() == 0 || getNextGround() instanceof GremlinBrute)
                     return;
                 moveRightGremlinIn(false);
             }
@@ -602,6 +626,10 @@ public class HordeHelper {
     }
 
     public static void moveLeftGremlinUp() {
+        SpireAnniversary6Mod.logger.info("LEFT GREMLIN UP");
+        if (monsterLeftFront != null && !monsterLeftFront.isDeadOrEscaped())
+            return;
+
         monsterLeftFront = monsterLeftBack;
         monsterLeftBack = null;
         AbstractGameEffect x = new AbstractGameEffect() {
@@ -635,6 +663,10 @@ public class HordeHelper {
     }
 
     public static void moveRightGremlinUp() {
+        SpireAnniversary6Mod.logger.info("RIGHT GREMLIN UP");
+        if (monsterRightFront != null && !monsterRightFront.isDeadOrEscaped())
+            return;
+
         monsterRightFront = monsterRightBack;
         monsterRightBack = null;
         AbstractGameEffect x = new AbstractGameEffect() {
@@ -668,15 +700,11 @@ public class HordeHelper {
     }
 
     public static void moveLeftGremlinIn(boolean far, boolean shout) {
-        AbstractMonster m;
-        if (groundQueue.size() > platformQueue.size() / 3) {
-            m = groundQueue.get(0);
-            groundQueue.remove(0);
-        } else if (!platformQueue.isEmpty()) {
-            m = platformQueue.get(0);
-            platformQueue.remove(0);
-        } else
+        SpireAnniversary6Mod.logger.info("LEFT GREMLIN IN");
+        AbstractMonster m = getNextGround();
+        if (m == null)
             return;
+        removeNextGround();
 
         if (far)
             monsterLeftFront = m;
@@ -687,6 +715,7 @@ public class HordeHelper {
         m.intentOffsetX = -m.intentOffsetX;
 
         float start_x = -200.0F*Settings.scale;
+        m.drawX = -200.0F*Settings.scale;
 
         m.drawY = AbstractDungeon.floorY + AbstractDungeon.miscRng.random(-30.0F, 30.0F);
 
@@ -742,20 +771,15 @@ public class HordeHelper {
                 m.usePreBattleAction();
             }
         });
-        att(new RollMoveAction(m));
         att(new SpawnMonsterAction(m, false));
     }
 
     public static void moveRightGremlinIn(boolean far) {
-        AbstractMonster m;
-        if (groundQueue.size() > platformQueue.size() / 3) {
-            m = groundQueue.get(0);
-            groundQueue.remove(0);
-        } else if (!platformQueue.isEmpty()) {
-            m = platformQueue.get(0);
-            platformQueue.remove(0);
-        } else
+        SpireAnniversary6Mod.logger.info("RIGHT GREMLIN IN");
+        AbstractMonster m = getNextGround();
+        if (m == null)
             return;
+        removeNextGround();
 
         if (far)
             monsterRightFront = m;
@@ -769,10 +793,10 @@ public class HordeHelper {
         AbstractGameEffect x = new AbstractGameEffect() {
             boolean first = true;
             float DURATION;
+            float end_x = 0;
             @Override
             public void update() {
                 duration -= Gdx.graphics.getDeltaTime();
-                float end_x = 0;
 
                 if (first) {
                     first = false;
@@ -783,9 +807,9 @@ public class HordeHelper {
                     duration = DURATION;
 
                     if (far)
-                        end_x = LEFT_X_FRONT;
+                        end_x = RIGHT_X_FRONT;
                     else
-                        end_x = LEFT_X_BACK;
+                        end_x = RIGHT_X_BACK;
                     if (m instanceof GremlinBrute)
                         end_x += BRUTE_OFFSET;
                 }
@@ -813,17 +837,17 @@ public class HordeHelper {
                 m.usePreBattleAction();
             }
         });
-        att(new RollMoveAction(m));
         att(new SpawnMonsterAction(m, false));
     }
 
     public static void fillLeftPlatform() {
+        SpireAnniversary6Mod.logger.info("FILL LEFT PLATFORM");
         if (platformQueue.isEmpty())
             return;
         monsterLeftPlatform = platformQueue.get(0);
         platformQueue.remove(0);
 
-        final float start_y = Settings.HEIGHT*1.05F;
+        final float start_y = Settings.HEIGHT*1.02F;
 
         monsterLeftPlatform.drawX = PLATFORM_X_LEFT + HB_WIDTH/2.0F*Settings.scale;
         monsterLeftPlatform.drawY = start_y;
@@ -843,7 +867,7 @@ public class HordeHelper {
                     DURATION = 1.0F;
                     duration = DURATION;
                 }
-                monsterLeftPlatform.drawY = Interpolation.pow2In.apply(start_y, PLATFORM_END_Y + 56F*Settings.scale,
+                monsterLeftPlatform.drawY = Interpolation.linear.apply(start_y, PLATFORM_END_Y + 56F*Settings.scale,
                         (DURATION - duration)/DURATION);
 
                 if (duration < 0.0F)
@@ -868,17 +892,17 @@ public class HordeHelper {
                 monsterLeftPlatform.usePreBattleAction();
             }
         });
-        att(new RollMoveAction(monsterLeftPlatform));
         att(new SpawnMonsterAction(monsterLeftPlatform, false));
     }
 
     public static void fillRightPlatform() {
+        SpireAnniversary6Mod.logger.info("FILL RIGHT PLATFORM");
         if (platformQueue.isEmpty())
             return;
         monsterRightPlatform = platformQueue.get(0);
         platformQueue.remove(0);
 
-        final float start_y = Settings.HEIGHT*1.05F;
+        final float start_y = Settings.HEIGHT*1.02F;
 
         monsterRightPlatform.drawX = PLATFORM_X_RIGHT + HB_WIDTH/2.0F*Settings.scale;
         monsterRightPlatform.drawY = start_y;
@@ -896,7 +920,7 @@ public class HordeHelper {
                     duration = DURATION + 0.15F;
                 }
                 if (duration <= DURATION) {
-                    monsterRightPlatform.drawY = Interpolation.pow2In.apply(start_y, PLATFORM_END_Y + 56 * Settings.scale,
+                    monsterRightPlatform.drawY = Interpolation.linear.apply(start_y, PLATFORM_END_Y + 56 * Settings.scale,
                             (DURATION - duration) / DURATION);
                 }
 
@@ -922,16 +946,20 @@ public class HordeHelper {
                 monsterRightPlatform.usePreBattleAction();
             }
         });
-        att(new RollMoveAction(monsterRightPlatform));
         att(new SpawnMonsterAction(monsterRightPlatform, false));
     }
 
     public static void moveLeftGremlinAcross() {
+        SpireAnniversary6Mod.logger.info("MOVE LEFT ACROSS");
         AbstractMonster m;
-        if (monsterLeftFront != null && !monsterLeftFront.isDeadOrEscaped())
+        if (monsterLeftFront != null && !monsterLeftFront.isDeadOrEscaped()) {
             m = monsterLeftFront;
-        else if (monsterLeftBack != null && !monsterLeftBack.isDeadOrEscaped())
+            monsterLeftFront = null;
+        }
+        else if (monsterLeftBack != null && !monsterLeftBack.isDeadOrEscaped()) {
             m = monsterLeftBack;
+            monsterLeftBack = null;
+        }
         else
             return;
 
@@ -966,6 +994,9 @@ public class HordeHelper {
                 if (duration < 0.0F) {
                     isDone = true;
                     m.flipHorizontal = false;
+                    m.hb_x = -m.hb_x;
+                    m.intentOffsetX = -m.intentOffsetX;
+                    calculateBackAttack();
                 }
             }
 
@@ -982,11 +1013,16 @@ public class HordeHelper {
     }
 
     public static void moveRightGremlinAcross() {
+        SpireAnniversary6Mod.logger.info("MOVE RIGHT ACROSS");
         AbstractMonster m;
-        if (monsterRightFront != null && !monsterRightFront.isDeadOrEscaped())
+        if (monsterRightFront != null && !monsterRightFront.isDeadOrEscaped()) {
             m = monsterRightFront;
-        else if (monsterRightBack != null && !monsterRightBack.isDeadOrEscaped())
+            monsterRightFront = null;
+        }
+        else if (monsterRightBack != null && !monsterRightBack.isDeadOrEscaped()) {
             m = monsterRightBack;
+            monsterRightBack = null;
+        }
         else
             return;
 
@@ -1021,6 +1057,9 @@ public class HordeHelper {
                 if (duration < 0.0F) {
                     isDone = true;
                     m.flipHorizontal = true;
+                    m.hb_x = -m.hb_x;
+                    m.intentOffsetX = -m.intentOffsetX;
+                    calculateBackAttack();
                 }
             }
 
