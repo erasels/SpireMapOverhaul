@@ -50,7 +50,7 @@ public class Spruce extends CustomMonster
         setHp(hp, hp+10);
         damage.add(new DamageInfo(this, dmg));
         damage.add(new DamageInfo(this, (int)(.67f * dmg)));
-        move = AbstractDungeon.monsterRng.random(1, 2);
+        move = AbstractDungeon.aiRng.random(1, 2);
     }
 
     @Override
