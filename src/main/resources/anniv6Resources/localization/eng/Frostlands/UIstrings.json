@@ -1,0 +1,9 @@
+{
+  "${ModID}:Frostlands": {
+    "TEXT": [
+      "Frostlands",
+      "A frosty crew can be found chilling in the Frostlands within the Spire. If you can overcome their challenges, they may have powerful rewards for you.",
+      "Laugic and Kuma"
+    ]
+  }
+}
