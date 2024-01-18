@@ -35,7 +35,7 @@ public class CandyLand extends AbstractZone implements RewardModifyingZone, Camp
     public CandyLand() {
         super(ID, Icons.REST, Icons.SHOP);
         this.width = 2;
-        this.maxWidth = 4;
+        this.maxWidth = 3;
         this.height = 3;
         this.maxHeight = 4;
     }
