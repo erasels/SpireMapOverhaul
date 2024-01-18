@@ -45,7 +45,7 @@ public class Cole extends CustomMonster
             hp+=10;
         if (AbstractDungeon.ascensionLevel >= 3)
             blk += 2;
-        if (AbstractDungeon.ascensionLevel >= 17)
+        if (AbstractDungeon.ascensionLevel >= 18)
         {
             buff++;
             blk += 2;
