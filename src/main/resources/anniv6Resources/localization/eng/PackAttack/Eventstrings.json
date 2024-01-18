@@ -28,7 +28,7 @@
     "OPTIONS": [
       "[Box] #gGain {0}. #rBecome #rCursed #r- #rVexed.",
       "[Locked] Out of stock.",
-      "[Bag] #gGain #g{0} #grandom #gcards #gfrom #gthe #gzone's #gpacks. #rLose #r{1} #rHP.",
+      "[Bag] #gGain #g{0} #grandom #gcards #gfrom #gthe #gbiome's #gpacks. #rLose #r{1} #rHP.",
       "[Bin] #gGain {0}. #rLose #r{1} #rGold.",
       "[Locked] Requires {0} Gold.",
       "[Leave]"

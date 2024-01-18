@@ -160,7 +160,7 @@ public abstract class AbstractZone {
             sb.append(" NL ");
         sb.append(getDescriptionText());
         sb.append(" NL NL ");
-        sb.append(getGlobalText()[0].replace("{0}", TEXT[2]));
+        sb.append(getGlobalText()[0].replace("{0}", FontHelper.colorString(TEXT[2], "p")));
         tooltipBody = sb.toString();
     }
 
