@@ -5,11 +5,9 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireField;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
@@ -19,7 +17,6 @@ import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 import com.megacrit.cardcrawl.ui.panels.SeedPanel;
 import spireMapOverhaul.SpireAnniversary6Mod;
-import spireMapOverhaul.util.DownfallUtil;
 
 public class CharacterSelectScreenPatch {
     private static final String[] TEXT = CardCrawlGame.languagePack.getUIString(SpireAnniversary6Mod.makeID("CharacterSelectScreen")).TEXT;
@@ -59,7 +56,7 @@ public class CharacterSelectScreenPatch {
     public static class RenderCheckboxPatch {
         @SpirePostfixPatch
         public static void renderCheckbox(CharacterSelectScreen __instance, SpriteBatch sb, boolean ___anySelected) {
-            if (!DownfallUtil.isDownfallMode() && ___anySelected) {
+            if (___anySelected) {
                 Hitbox hb = HitboxField.hitbox.get(__instance);
                 float checkBoxX = getCheckboxX();
                 sb.draw(ImageMaster.OPTION_TOGGLE, checkBoxX, hb.cY - 16.0F, 16.0F, 16.0F, 32.0F, 32.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 32, 32, false, false);
@@ -83,7 +80,7 @@ public class CharacterSelectScreenPatch {
     public static class UpdateCheckboxPatch {
         @SpirePostfixPatch
         public static void updateCheckbox(CharacterSelectScreen __instance, SeedPanel ___seedPanel, boolean ___anySelected) {
-            if (DownfallUtil.isDownfallMode() || !___anySelected) {
+            if (!___anySelected) {
                 return;
             }
 
