@@ -1,0 +1,95 @@
+{
+  "${ModID}:DivineProtection": {
+    "NAME": "Snecko's Protection",
+    "DESCRIPTIONS": [
+      "Can only lose #b%d more HP this turn.",
+      "Can no longer be harmed this turn.",
+      " NL Removed when %s dies."
+    ]
+  },
+  "${ModID}:Split": {
+    "NAME": "Split",
+    "DESCRIPTIONS": [
+      "When its HP is at or below #b75%, will split into #b2 smaller slimes with ",
+      "'s current HP."
+    ]
+  },
+  "${ModID}:PainfulPunches": {
+    "NAME": "Painful Punches",
+    "DESCRIPTIONS": [
+      "Whenever you receive attack damage from this enemy, add a #yWound onto the top of your draw pile."
+    ]
+  },
+  "${ModID}:SneckoBot": {
+    "NAME": "Snecko Bot",
+    "DESCRIPTIONS": [
+      "Whenever you play a card, chooses a random number from #b0 to #b3. If the number is equal to the cost of the card played, gains #b",
+      " #yStrength."
+    ]
+  },
+  "${ModID}:ExplodingSporeCloud": {
+    "NAME": "Exploding Spore Cloud",
+    "DESCRIPTIONS": [
+      "In #b%2$d turns, applies #b%1$d #yVulnerable. NL On death, applies #b%1$d #yVulnerable.",
+      "On death, applies #b%1$d #yVulnerable."
+    ]
+  },
+  "${ModID}:DoubleTime": {
+    "NAME": "Double Time",
+    "DESCRIPTIONS": [
+      "Whenever you play #b%d cards, gains #b%d #yStrength."
+    ]
+  },
+  "${ModID}:DeathRattle": {
+    "NAME": "Death Rattle",
+    "DESCRIPTIONS": [
+      "On death, puts #b%d #yDazed on top of your draw pile."
+    ]
+  },
+  "${ModID}:Hex": {
+    "NAME": "Hex",
+    "DESCRIPTIONS": [
+      "Whenever you play a card, shuffle #b",
+      " #yDazed into your draw pile."
+    ]
+  },
+  "${ModID}:VenomStrikes": {
+    "NAME": "Venom Strikes",
+    "DESCRIPTIONS": [
+      "Whenever you receive attack damage from this enemy, gain #b%d #yVenom."
+    ]
+  },
+  "${ModID}:Venom": {
+    "NAME": "Venom",
+    "DESCRIPTIONS": [
+      "At the end of your turn, take #b%d damage, then reduce #yVenom by #b%d."
+    ]
+  },
+  "${ModID}:EnergyDownPower": {
+    "NAME": "Energy Down"
+  },
+  "${ModID}:SemiIntangible": {
+    "NAME": "Semi-Intangible",
+    "DESCRIPTIONS": [
+      "Reduce ALL damage taken and HP loss by #b%d this turn. #ySemi-Intangible is reapplied every other turn."
+    ]
+  },
+  "${ModID}:SlimeCoating": {
+    "NAME": "Extra Slimy",
+    "DESCRIPTIONS": [
+      "At the end of its turn, adds #b%d #ySlimed into your discard pile."
+    ]
+  },
+  "${ModID}:DemonFormMonster": {
+    "NAME": "Demon Form",
+    "DESCRIPTIONS": [
+      "At the start of its turn, gains #b%d #yStrength."
+    ]
+  },
+  "${ModID}:FatedShapes": {
+    "NAME": "Fated Shapes",
+    "DESCRIPTIONS": [
+      "%1$s and %2$s have shared HP."
+    ]
+  }
+}
