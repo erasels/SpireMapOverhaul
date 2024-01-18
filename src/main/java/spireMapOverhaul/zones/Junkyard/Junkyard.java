@@ -68,8 +68,8 @@ public class Junkyard extends AbstractZone implements RewardModifyingZone, Encou
                 new EncounterModifyingZone.ZoneEncounter(MUGGER_JUNKBOT, 1, () -> new MonsterGroup(
                         new AbstractMonster[] {
                                 new AcidSlime_S(-300.0F, 0.0F, 0),
-                                new SpikeSlime_S(-300.0F, 0.0F, 0),
-                                new Junkbot(0.0F, 0.0F),
+                                new SpikeSlime_S(-150.0F, 0.0F, 0),
+                                new Junkbot(50.0F, 0.0F),
                         })),
                 new EncounterModifyingZone.ZoneEncounter(PEDDLER, 1, () -> new MonsterGroup(
                 new AbstractMonster[] {
