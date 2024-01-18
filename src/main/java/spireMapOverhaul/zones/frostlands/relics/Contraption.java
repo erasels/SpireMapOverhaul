@@ -57,8 +57,11 @@ public class Contraption extends AbstractSMORelic implements OnPlayerDeathRelic 
             if(usedUp && escaping != 1)
                 return true;
             abstractPlayer.currentHealth = 1;
+            abstractPlayer.healthBarUpdatedEvent();
+            AbstractDungeon.player.hbAlpha = 1f;
             if(canFlee() && escaping != 1)
                 flee();
+            usedUp();
             return false;
         }
         return true;
@@ -83,7 +86,6 @@ public class Contraption extends AbstractSMORelic implements OnPlayerDeathRelic 
         if(AbstractDungeon.getCurrRoom().event instanceof SnowmanMafiaEvent)
             ((SnowmanMafiaEvent) AbstractDungeon.getCurrRoom().event).usedContraption();
         counter = -2;
-        usedUp();
     }
 
     public boolean canFlee() {
