@@ -5,6 +5,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import spireMapOverhaul.SpireAnniversary6Mod;
+import spireMapOverhaul.util.DownfallUtil;
 
 import java.util.HashSet;
 import java.util.stream.Collectors;
@@ -13,7 +14,7 @@ import java.util.stream.Collectors;
 public class InitializeCurrentRunPatch {
     @SpirePostfixPatch
     public static void initializeCurrentRun() {
-        SpireAnniversary6Mod.currentRunActive = SpireAnniversary6Mod.getActiveConfig();
+        SpireAnniversary6Mod.currentRunActive = SpireAnniversary6Mod.getActiveConfig() && !DownfallUtil.isDownfallMode();
         SpireAnniversary6Mod.currentRunNoRepeatZones = SpireAnniversary6Mod.getNoRepeatZonesConfig();
         SpireAnniversary6Mod.currentRunAllZones = SpireAnniversary6Mod.unfilteredAllZones.stream()
                 .map(z -> z.id)
