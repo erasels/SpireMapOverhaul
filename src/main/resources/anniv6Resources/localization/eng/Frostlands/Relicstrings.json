@@ -17,7 +17,7 @@
     "NAME": "Frostcoal",
     "FLAVOR": "Chip off the old block.",
     "DESCRIPTIONS": [
-      "Enemies deal #b", " less damage for the first turn of combat."
+      "Enemies deal #b", " less damage during the first turn of combat."
     ]
   },
   "${ModID}:SpruceCharm": {
