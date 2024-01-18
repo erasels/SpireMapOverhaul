@@ -9,13 +9,14 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractSMOCard;
 import spireMapOverhaul.util.Wiz;
+import spireMapOverhaul.zones.divinitiesgaze.DivinitiesGazeZone;
 
 public class GuidingLight extends AbstractSMOCard {
   public static String ID = SpireAnniversary6Mod.makeID("GuidingLight");
   public static boolean canTalk = true;
 
   public GuidingLight() {
-    super(ID, -2, CardType.SKILL, CardRarity.SPECIAL, CardTarget.NONE, CardColor.COLORLESS);
+    super(ID, DivinitiesGazeZone.ID,  -2, CardType.SKILL, CardRarity.SPECIAL, CardTarget.NONE, CardColor.COLORLESS);
     this.exhaust = true;
   }
 

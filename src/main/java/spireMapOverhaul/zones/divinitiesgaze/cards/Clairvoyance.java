@@ -11,6 +11,7 @@ import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractSMOCard;
 import spireMapOverhaul.cardmods.RetainMod;
 import spireMapOverhaul.util.Wiz;
+import spireMapOverhaul.zones.divinitiesgaze.DivinitiesGazeZone;
 
 public class Clairvoyance extends AbstractSMOCard {
 
@@ -18,7 +19,7 @@ public class Clairvoyance extends AbstractSMOCard {
   private static boolean canTalk = false;
 
   public Clairvoyance() {
-    super(ID, 0, CardType.SKILL, CardRarity.SPECIAL, CardTarget.ENEMY, CardColor.COLORLESS);
+    super(ID, DivinitiesGazeZone.ID, 0, CardType.SKILL, CardRarity.SPECIAL, CardTarget.ENEMY, CardColor.COLORLESS);
     this.baseMagicNumber = this.magicNumber = 1;
     this.selfRetain = true;
     this.exhaust = true;

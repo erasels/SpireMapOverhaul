@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractSMOCard;
 import spireMapOverhaul.util.Wiz;
+import spireMapOverhaul.zones.divinitiesgaze.DivinitiesGazeZone;
 import spireMapOverhaul.zones.divinitiesgaze.powers.VerdictPower;
 
 public class Verdict extends AbstractSMOCard {
@@ -14,7 +15,7 @@ public class Verdict extends AbstractSMOCard {
   private static boolean canTalk = true;
 
   public Verdict() {
-    super(ID, 2, CardType.SKILL, CardRarity.SPECIAL, CardTarget.ENEMY, CardColor.COLORLESS);
+    super(ID, DivinitiesGazeZone.ID, 2, CardType.SKILL, CardRarity.SPECIAL, CardTarget.ENEMY, CardColor.COLORLESS);
     this.magicNumber = this.baseMagicNumber = 10;
     this.exhaust = true;
   }

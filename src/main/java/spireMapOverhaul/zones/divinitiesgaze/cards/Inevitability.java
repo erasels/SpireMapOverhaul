@@ -12,13 +12,14 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractSMOCard;
 import spireMapOverhaul.util.Wiz;
+import spireMapOverhaul.zones.divinitiesgaze.DivinitiesGazeZone;
 
 public class Inevitability extends AbstractSMOCard {
   public static String ID = SpireAnniversary6Mod.makeID("Inevitability");
   private static boolean canTalk = true;
 
   public Inevitability() {
-    super(ID, -2, CardType.ATTACK, CardRarity.SPECIAL, CardTarget.ALL, CardColor.COLORLESS);
+    super(ID, DivinitiesGazeZone.ID, -2, CardType.ATTACK, CardRarity.SPECIAL, CardTarget.ALL, CardColor.COLORLESS);
     this.damage = this.baseDamage = 5;
     this.block = this.baseBlock = 3;
     this.magicNumber = this.baseMagicNumber = 1;

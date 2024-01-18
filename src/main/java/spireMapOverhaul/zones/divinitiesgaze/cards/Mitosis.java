@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractSMOCard;
 import spireMapOverhaul.util.Wiz;
+import spireMapOverhaul.zones.divinitiesgaze.DivinitiesGazeZone;
 
 import java.util.stream.Stream;
 
@@ -21,7 +22,7 @@ public class Mitosis extends AbstractSMOCard {
   private static boolean canTalk = true;
 
   public Mitosis() {
-    super(ID, 1, CardType.ATTACK, CardRarity.SPECIAL, CardTarget.ENEMY, CardColor.COLORLESS);
+    super(ID, DivinitiesGazeZone.ID, 1, CardType.ATTACK, CardRarity.SPECIAL, CardTarget.ENEMY, CardColor.COLORLESS);
     this.baseDamage = this.damage = 0;
     this.baseMagicNumber = this.magicNumber = 2;
     this.exhaust = true;
