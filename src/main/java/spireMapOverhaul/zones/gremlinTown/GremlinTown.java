@@ -272,7 +272,7 @@ public class GremlinTown extends AbstractZone
         if (!purchasedCard.hasTag(SpireAnniversary6Mod.Enums.GREMLIN))
             return null;
 
-        ShopScreen screen = ReflectionHacks.getPrivateStatic(AbstractDungeon.class, "shopScreen");
+        ShopScreen screen = AbstractDungeon.shopScreen;
         if (screen == null)
             return null;
 
