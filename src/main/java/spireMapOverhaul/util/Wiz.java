@@ -112,6 +112,8 @@ public class Wiz {
         }
     }
 
+    public static int asc() { return AbstractDungeon.ascensionLevel; }
+
     public static void forAllCardsInList(Consumer<AbstractCard> consumer, ArrayList<AbstractCard> cardsList) {
         for (AbstractCard c : cardsList) {
             consumer.accept(c);
@@ -504,6 +506,18 @@ public class Wiz {
         return (int) c.powers.stream()
                 .filter(pow -> pow.type == AbstractPower.PowerType.DEBUFF )
                 .count();
+    }
+
+    public static <T> T getRandomEntry(ArrayList<T> list, java.util.Random rng) {
+        if (list.size() == 0)
+            return null;
+        return list.get(rng.nextInt(list.size()));
+    }
+
+    public static AbstractRoom adRoom() {
+        if (AbstractDungeon.currMapNode != null)
+            return AbstractDungeon.getCurrRoom();
+        return null;
     }
 
     /************************************************************

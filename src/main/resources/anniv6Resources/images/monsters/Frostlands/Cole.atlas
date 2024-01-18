@@ -1,0 +1,13 @@
+
+Cole.png
+size: 512,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Cole
+  rotate: false
+  xy: 1, 1
+  size: 342, 526
+  orig: 342, 526
+  offset: 0, 0
+  index: -1

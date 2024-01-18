@@ -91,6 +91,10 @@ public class ThievesHideoutZone extends AbstractZone implements EncounterModifyi
         }
     }
 
+    protected boolean allowAdditionalEntrances() {
+        return false;
+    }
+
     @Override
     public List<ZoneEncounter> getNormalEncounters() {
         return Arrays.asList(

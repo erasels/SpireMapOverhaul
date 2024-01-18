@@ -48,6 +48,10 @@ public class MonsterZooZone extends AbstractZone implements RewardModifyingZone,
         }
     }
 
+    protected boolean allowAdditionalEntrances() {
+        return false;
+    }
+
     @Override
     protected boolean canIncludeTreasureRow() {
         return false;

@@ -276,7 +276,7 @@ public abstract class AbstractZone {
      * If allowAdditionalPaths is false, this will only affect attempts to enter through the side onto active nodes.
     */
     protected boolean allowAdditionalEntrances() {
-        return false;
+        return true;
     }
 
     //Note: isValidPath can be overridden to completely ignore these three methods.

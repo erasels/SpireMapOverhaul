@@ -2,6 +2,7 @@ package spireMapOverhaul.zones.storm.powers;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.mod.stslib.patches.NeutralPowertypePatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
@@ -15,6 +16,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
+import org.apache.commons.lang3.math.NumberUtils;
 import spireMapOverhaul.abstracts.AbstractSMOPower;
 import spireMapOverhaul.zones.storm.StormUtil;
 import spireMapOverhaul.zones.storm.StormZone;
@@ -31,7 +33,7 @@ public class ConduitPower extends AbstractSMOPower {
     private Color redColor = new Color(1.0F, 0.0F, 0.0F, 1.0F);
 
     public ConduitPower(AbstractCreature target) {
-        super(POWER_ID, NAME, StormZone.ID, NeutralPowertypePatch.NEUTRAL, false, target, target instanceof AbstractPlayer ? target.maxHealth / 20 : target.maxHealth / 10);
+        super(POWER_ID, NAME, StormZone.ID, NeutralPowertypePatch.NEUTRAL, false, target, NumberUtils.max(6, target instanceof AbstractPlayer ? target.maxHealth / 20 : target.maxHealth / 10));
     }
 
     @Override

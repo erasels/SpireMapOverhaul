@@ -1,0 +1,75 @@
+{
+  "${ModID}:Tenderizer": {
+    "NAME": "Tenderizer",
+    "DESCRIPTIONS": ["Whenever you deal unblocked attack damage this turn, apply #b{0} #yWeak."]
+  },
+  "${ModID}:DelayedVigor": {
+    "NAME": "Charging",
+    "DESCRIPTIONS": ["Gain #b{0} #yVigor in #b2 turns.",
+      "Gain #b{0} #yVigor in #b1 turn."]
+  },
+  "${ModID}:Sap": {
+    "NAME": "Sapped",
+    "DESCRIPTIONS": ["Lose [E] at the start of your next turn.",
+      "Lose #b{0} [E] at the start of your next turn."]
+  },
+  "${ModID}:HeartImpairment": {
+    "NAME": "Impaired",
+    "DESCRIPTIONS": ["The Heart is less dangerous."]
+  },
+  "${ModID}:NoxiousBrew": {
+    "NAME": "Noxious Brew",
+    "DESCRIPTIONS": ["At the end of your turn apply #b{0} #yPoison to a random enemy."]
+  },
+  "${ModID}:MushroomSoup": {
+    "NAME": "Mushroom Soup",
+    "DESCRIPTIONS": ["At the end of your turn gain #b{0} #yTemporary #yHP."]
+  },
+  "${ModID}:GremsFire": {
+    "NAME": "Grem's Fire",
+    "DESCRIPTIONS": ["At the end of your turn deal #b{0} damage to ALL enemies."]
+  },
+  "${ModID}:Raging": {
+    "NAME": "Raging",
+    "DESCRIPTIONS": ["At the end of its turn, gains #b{0} #yStrength."]
+  },
+  "${ModID}:GremlinNib": {
+    "NAME": "Nib Power",
+    "DESCRIPTIONS": ["Every #b{0} Attacks you play, unleashes a powerful attack on its turn."]
+  },
+  "${ModID}:Bellow": {
+    "NAME": "Gremlin Roar",
+    "DESCRIPTIONS": ["Whenever an enemy doesn't attack on its turn, gain #b{0} #yStrength."]
+  },
+  "${ModID}:Critical": {
+    "NAME": "Critical",
+    "DESCRIPTIONS": ["Your next Attack deals #b{0} times as much damage."]
+  },
+  "${ModID}:OmegaCurse": {
+    "NAME": "Omega Curse",
+    "DESCRIPTIONS": ["Takes {0} more damage from Attacks."]
+  },
+  "${ModID}:Horde": {
+    "NAME": "Horde",
+    "DESCRIPTIONS": [
+      "At the start of your turn, add #b1 random #yGremlin card into your hand.",
+      "At the start of your turn, add #b{0} random #yGremlin cards into your hand."
+    ]
+  },
+  "${ModID}:Rig": {
+    "NAME": "Rig",
+    "DESCRIPTIONS": [
+      "At the start of your turn, draw #b1 card and #yExhaust #b1 card.",
+      "At the start of your turn, draw #b{0} cards and #yExhaust #b{0} cards."
+    ]
+  },
+  "${ModID}:Inspired": {
+    "NAME": "Inspired",
+    "DESCRIPTIONS": ["At the start of your turn, gain #b{0} energy and draw #b{0} card.",
+      "At the start of your turn, gain #b{0} energy and draw #b{0} cards."]
+  },
+  "${ModID}:Spiteful": {
+    "NAME": "Spiteful",
+    "DESCRIPTIONS": ["When its HP is at or below #b50%, will stop attacking for 2 turns before unleashing a powerful curse."]
+  }
+}

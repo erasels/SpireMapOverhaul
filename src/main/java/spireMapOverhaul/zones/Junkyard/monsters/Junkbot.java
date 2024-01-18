@@ -31,6 +31,7 @@ public class Junkbot extends CustomMonster {
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
     private static final String IMG = SpireAnniversary6Mod.makeImagePath("monsters/Junkyard/Junkbot/Junkbot.png");
+    public static final String IMG_INACTIVE = SpireAnniversary6Mod.makeImagePath("monsters/Junkyard/Junkbot/Junkbot_inactive.png");
     private boolean firstMove = true;
     private static final byte GRAB_MOVE = 1;
     private static final byte REBOOT_MOVE = 2;
@@ -74,7 +75,7 @@ public class Junkbot extends CustomMonster {
         int rand = AbstractDungeon.cardRng.random(0, 100);
         isActivated = (rand <= 60);
         if (!isActivated){
-            setImage(TexLoader.getTexture(SpireAnniversary6Mod.makeImagePath("monsters/Junkbot/Junkbot_inactive.png")));
+            setImage(TexLoader.getTexture(IMG_INACTIVE));
             addToBot(new GrabCardAction(this, new Wound()));
         }
         getMove(0);
@@ -91,7 +92,7 @@ public class Junkbot extends CustomMonster {
                 break;
             case REBOOT_MOVE:
                 isActivated = true;
-                this.img = TexLoader.getTexture(SpireAnniversary6Mod.makeImagePath("monsters/Junkbot/Junkbot.png"));
+                this.img = TexLoader.getTexture(IMG);
                 AbstractDungeon.actionManager.addToBottom(new VFXAction(new PowerBuffEffect(this.hb.cX, this.hb.cY, "Rebooted")));
                 AbstractDungeon.actionManager.addToBottom(new RemoveHeldCardAction(this, cardsToPreview.get(0)));
                 break;

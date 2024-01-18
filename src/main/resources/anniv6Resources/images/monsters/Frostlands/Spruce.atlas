@@ -1,0 +1,13 @@
+
+Spruce.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Spruce
+  rotate: false
+  xy: 1, 1
+  size: 380, 429
+  orig: 380, 429
+  offset: 0, 0
+  index: -1

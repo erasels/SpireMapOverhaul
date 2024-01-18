@@ -25,12 +25,14 @@ import com.google.gson.Gson;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.AbstractEvent;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rewards.RewardSave;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.screens.options.DropdownMenu;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import javassist.CtClass;
@@ -46,8 +48,8 @@ import spireMapOverhaul.patches.ZonePatches;
 import spireMapOverhaul.patches.ZonePerFloorRunHistoryPatch;
 import spireMapOverhaul.patches.interfacePatches.CampfireModifierPatches;
 import spireMapOverhaul.patches.interfacePatches.EncounterModifierPatches;
-import spireMapOverhaul.rewards.AnyColorCardReward;
 import spireMapOverhaul.patches.interfacePatches.TravelTrackingPatches;
+import spireMapOverhaul.rewards.AnyColorCardReward;
 import spireMapOverhaul.rewards.HealReward;
 import spireMapOverhaul.rewards.SingleCardReward;
 import spireMapOverhaul.ui.*;
@@ -60,6 +62,9 @@ import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
 import spireMapOverhaul.zoneInterfaces.ModifiedEventRateZone;
 import spireMapOverhaul.zones.beastslair.BeastsLairZone;
 import spireMapOverhaul.zones.brokenspace.BrokenSpaceZone;
+import spireMapOverhaul.zones.gremlinTown.GremlinTown;
+import spireMapOverhaul.zones.gremlinTown.HordeHelper;
+import spireMapOverhaul.zones.gremlinTown.potions.*;
 import spireMapOverhaul.zones.manasurge.ui.extraicons.BlightIcon;
 import spireMapOverhaul.zones.manasurge.ui.extraicons.EnchantmentIcon;
 
@@ -73,6 +78,8 @@ import java.util.*;
 import java.util.function.Consumer;
 
 import static spireMapOverhaul.util.Wiz.adp;
+import static spireMapOverhaul.zones.gremlinTown.GremlinTown.PLATFORM_KEY;
+import static spireMapOverhaul.zones.gremlinTown.GremlinTown.PLATFORM_OGG;
 import static spireMapOverhaul.zones.manasurge.ManaSurgeZone.ENCHANTBLIGHT_KEY;
 import static spireMapOverhaul.zones.manasurge.ManaSurgeZone.ENCHANTBLIGHT_OGG;
 import static spireMapOverhaul.zones.storm.StormZone.*;
@@ -85,6 +92,7 @@ public class SpireAnniversary6Mod implements
         EditStringsSubscriber,
         EditKeywordsSubscriber,
         PostInitializeSubscriber,
+        OnStartBattleSubscriber,
         AddAudioSubscriber,
         PostRenderSubscriber,
         PostCampfireSubscriber,
@@ -103,6 +111,8 @@ public class SpireAnniversary6Mod implements
     public static class Enums {
         @SpireEnum
         public static AbstractPotion.PotionRarity ZONE;
+        @SpireEnum
+        public static AbstractCard.CardTags GREMLIN;
     }
 
     public static SpireAnniversary6Mod thismod;
@@ -122,8 +132,6 @@ public class SpireAnniversary6Mod implements
     private static final String ATTACK_L_ART = modID + "Resources/images/1024/attack.png";
     private static final String SKILL_L_ART = modID + "Resources/images/1024/skill.png";
     private static final String POWER_L_ART = modID + "Resources/images/1024/power.png";
-
-
 
     public static boolean initializedStrings = false;
 
@@ -267,6 +275,13 @@ public class SpireAnniversary6Mod implements
         TextCodeInterpreter.addAccessible(ZoneShapeMaker.class);
     }
 
+    @Override
+    public void receiveOnBattleStart(AbstractRoom abstractRoom) {
+        // I can't have this in my zone because it still needs called if I access this fight via the dev console
+        if (AbstractDungeon.lastCombatMetricKey != null && AbstractDungeon.lastCombatMetricKey.equals(GremlinTown.GREMLIN_HORDE))
+            HordeHelper.initFight();
+    }
+
     public static void addMonsters() {
         for (AbstractZone zone : unfilteredAllZones) {
             if (zone instanceof EncounterModifyingZone) {
@@ -279,8 +294,19 @@ public class SpireAnniversary6Mod implements
 
         if (Loader.isModLoaded("widepotions")) {
             Consumer<String> whitelist = getWidePotionsWhitelistMethod();
-
+            whitelist.accept(LouseMilk.POTION_ID);
+            whitelist.accept(PreerelxsBlueRibbon.POTION_ID);
+            whitelist.accept(NoxiousBrew.POTION_ID);
+            whitelist.accept(MushroomSoup.POTION_ID);
+            whitelist.accept(GremsFire.POTION_ID);
         }
+
+        BaseMod.addPotion(LouseMilk.class, Color.WHITE.cpy(), null, null, LouseMilk.POTION_ID);
+        BaseMod.addPotion(PreerelxsBlueRibbon.class, Color.GOLDENROD.cpy(), null, null, PreerelxsBlueRibbon.POTION_ID);
+        BaseMod.addPotion(RitualBlood.class, RitualBlood.POTION_COLOR.cpy(), null, null, RitualBlood.POTION_ID);
+        BaseMod.addPotion(NoxiousBrew.class, NoxiousBrew.POTION_COLOR.cpy(), null, Color.DARK_GRAY.cpy(), NoxiousBrew.POTION_ID);
+        BaseMod.addPotion(MushroomSoup.class, MushroomSoup.POTION_COLOR.cpy(), null, Color.GRAY.cpy(), MushroomSoup.POTION_ID);
+        BaseMod.addPotion(GremsFire.class, Color.RED.cpy(), null, Color.ORANGE.cpy(), GremsFire.POTION_ID);
     }
 
     public static void addSaveFields() {
@@ -520,6 +546,7 @@ public class SpireAnniversary6Mod implements
 
         // Mana Surge Audio
         BaseMod.addAudio(ENCHANTBLIGHT_KEY,ENCHANTBLIGHT_OGG);
+        BaseMod.addAudio(PLATFORM_KEY, PLATFORM_OGG);
     }
 
     private void registerCustomRewards() {
@@ -691,6 +718,7 @@ public class SpireAnniversary6Mod implements
         if (!CardCrawlGame.loadingSave) {
             BeastsLairZone.clearBossList();
         }
+        HordeHelper.hidePlatforms();
     }
 
     public static float time = 0f;
