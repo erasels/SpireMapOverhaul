@@ -46,14 +46,14 @@ public class Hypothema extends CustomMonster
             hp+=10;
         if (AbstractDungeon.ascensionLevel >= 3)
             dmg++;
-        if (AbstractDungeon.ascensionLevel >= 17)
+        if (AbstractDungeon.ascensionLevel >= 18)
         {
             buff++;
             dmg++;
         }
         setHp(hp, hp+10);
         damage.add(new DamageInfo(this, dmg));
-        move = AbstractDungeon.monsterRng.random(1, 2);
+        move = AbstractDungeon.aiRng.random(1, 2);
     }
 
     @Override

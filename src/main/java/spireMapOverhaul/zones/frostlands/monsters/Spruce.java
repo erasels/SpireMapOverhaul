@@ -45,12 +45,12 @@ public class Spruce extends CustomMonster
             hp+=10;
         if (AbstractDungeon.ascensionLevel >= 3)
             dmg++;
-        if (AbstractDungeon.ascensionLevel >= 17)
+        if (AbstractDungeon.ascensionLevel >= 18)
             dmg += 2;
         setHp(hp, hp+10);
         damage.add(new DamageInfo(this, dmg));
         damage.add(new DamageInfo(this, (int)(.67f * dmg)));
-        move = AbstractDungeon.monsterRng.random(1, 2);
+        move = AbstractDungeon.aiRng.random(1, 2);
     }
 
     @Override
