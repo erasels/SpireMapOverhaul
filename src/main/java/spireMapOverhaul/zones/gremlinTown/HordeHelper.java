@@ -236,15 +236,15 @@ public class HordeHelper {
             });
         }
 
-        if (monsterRightBack == null || monsterRightBack.isDeadOrEscaped())
-            moveRightGremlinIn();
-        else
-            retreatGremlinBack(monsterRightBack);
-
         if (monsterRightFront == null || monsterRightFront.isDeadOrEscaped())
             moveRightGremlinIn();
         else
             retreatGremlinFront(monsterRightFront);
+
+        if (monsterRightBack == null || monsterRightBack.isDeadOrEscaped())
+            moveRightGremlinIn();
+        else
+            retreatGremlinBack(monsterRightBack);
 
         atb(new WaitAction(0.1F));
         atb(new WaitAction(0.1F));
