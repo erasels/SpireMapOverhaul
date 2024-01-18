@@ -10,21 +10,20 @@ import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rewards.RewardItem;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import com.megacrit.cardcrawl.rooms.EventRoom;
-import com.megacrit.cardcrawl.rooms.MonsterRoom;
-import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
+import com.megacrit.cardcrawl.rooms.*;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.zoneInterfaces.*;
 import spireMapOverhaul.zones.frostlands.monsters.*;
+import spireMapOverhaul.zones.frostlands.powers.FrigidPower;
 import spireMapOverhaul.zones.frostlands.relics.Frostcoal;
 import spireMapOverhaul.zones.frostlands.relics.OldHat;
 import spireMapOverhaul.zones.frostlands.relics.SpruceCharm;
 import spireMapOverhaul.zones.frostlands.vfx.SnowEffect;
 import spireMapOverhaul.zones.invasion.InvasionUtil;
 import spireMapOverhaul.zones.invasion.cards.HandOfTheAbyss;
+import spireMapOverhaul.zones.manasurge.powers.ManaSurgePower;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -33,7 +32,7 @@ import java.util.List;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.modID;
 
-public class FrostlandsZone extends AbstractZone implements EncounterModifyingZone, RewardModifyingZone, ShopModifyingZone, RenderableZone, ModifiedEventRateZone{
+public class FrostlandsZone extends AbstractZone implements CombatModifyingZone, EncounterModifyingZone, RewardModifyingZone, ShopModifyingZone, RenderableZone, ModifiedEventRateZone{
     public static final String ID = "Frostlands";
     private static final String STEWARD = SpireAnniversary6Mod.makeID("STEWARD");
     java.util.Random rand;
@@ -42,7 +41,7 @@ public class FrostlandsZone extends AbstractZone implements EncounterModifyingZo
     public FrostlandsZone() {
         super(ID, Icons.MONSTER, Icons.EVENT);
         width = 1;
-        height = 2;
+        height = 4;
         rand = new java.util.Random();
     }
 
@@ -66,13 +65,22 @@ public class FrostlandsZone extends AbstractZone implements EncounterModifyingZo
         for (MapRoomNode node : nodes) {
             switch (node.y - y) {
                 case 0:
+                case 2:
                     node.setRoom(roomOrDefault(roomList, (room)->room instanceof MonsterRoom, MonsterRoom::new));
                     break;
                 case 1:
                     node.setRoom(roomOrDefault(roomList, (room)->room instanceof EventRoom, EventRoom::new));
                     break;
+                case 3:
+                    node.setRoom(new TreasureRoom());
+                    break;
             }
         }
+    }
+
+    @Override
+    public void atBattleStartPreDraw() {
+        Wiz.applyToSelf(new FrigidPower(AbstractDungeon.player,1));
     }
 
     @Override

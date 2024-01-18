@@ -93,7 +93,7 @@ public class Steward extends CustomMonster
             firstMove = false;
             AbstractDungeon.effectsQueue.add(new LightFlareParticleEffect(drawX, drawY, Color.WHITE));
             Wiz.atb(new AnimateSlowAttackAction(this));
-            Wiz.atb(new ApplyPowerAction(AbstractDungeon.player, this, new FrigidPower(AbstractDungeon.player, 2)));
+            Wiz.atb(new ApplyPowerAction(AbstractDungeon.player, this, new FrigidPower(AbstractDungeon.player, 1)));
         }
         else
         {
