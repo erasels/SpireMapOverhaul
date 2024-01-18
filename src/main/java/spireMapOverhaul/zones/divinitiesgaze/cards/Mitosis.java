@@ -14,22 +14,22 @@ import spireMapOverhaul.util.Wiz;
 
 import java.util.stream.Stream;
 
-public class Propagation extends AbstractSMOCard {
+public class Mitosis extends AbstractSMOCard {
 
-  public static String ID = SpireAnniversary6Mod.makeID("Propagation");
+  public static String ID = SpireAnniversary6Mod.makeID("Mitosis");
 
-  public Propagation() {
-    super(ID, 1, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY, CardColor.COLORLESS);
+  public Mitosis() {
+    super(ID, 1, CardType.ATTACK, CardRarity.SPECIAL, CardTarget.ENEMY, CardColor.COLORLESS);
     this.baseDamage = this.damage = 0;
     this.baseMagicNumber = this.magicNumber = 2;
     this.exhaust = true;
   }
 
   @Override
-  public void upgrade() {}
-
-  @Override
-  public void upp() {}
+  public void upp() {
+    upgradeMagicNumber(1);
+    this.upgraded = true;
+  }
 
   @Override
   public void applyPowers() {

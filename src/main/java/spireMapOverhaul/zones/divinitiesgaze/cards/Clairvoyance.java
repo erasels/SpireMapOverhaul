@@ -17,17 +17,17 @@ public class Clairvoyance extends AbstractSMOCard {
   public static String ID = SpireAnniversary6Mod.makeID("Clairvoyance");
 
   public Clairvoyance() {
-    super(ID, 0, CardType.SKILL, CardRarity.RARE, CardTarget.ENEMY, CardColor.COLORLESS);
+    super(ID, 0, CardType.SKILL, CardRarity.SPECIAL, CardTarget.ENEMY, CardColor.COLORLESS);
     this.baseMagicNumber = this.magicNumber = 1;
     this.selfRetain = true;
     this.exhaust = true;
   }
 
   @Override
-  public void upgrade() {}
-
-  @Override
-  public void upp() {}
+  public void upp() {
+    upgradeMagicNumber(1);
+    this.upgraded = true;
+  }
 
   @Override
   public void use(AbstractPlayer abstractPlayer, AbstractMonster abstractMonster) {

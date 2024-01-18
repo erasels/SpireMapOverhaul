@@ -1,7 +1,7 @@
 {
   "${ModID}:Clairvoyance": {
     "NAME": "Clairvoyance",
-    "DESCRIPTION": "{@@}Retain. NL If this card is in your hand at the start of your turn, draw {!M!|1=a card|@=!M! cards}. It gains Retain until played. NL Exhaust.",
+    "DESCRIPTION": "{@@}Retain. NL If this card is in your hand at the start of your turn, draw {!M!|1=a card|@=!M! cards}. {!M!|1=It|@=They} gain{!M!|1=s|@=} Retain until played. NL Exhaust.",
     "EXTENDED_DESCRIPTION": [
       "I see ALL!",
       "I reject this gift..."
@@ -16,7 +16,7 @@
   },
   "${ModID}:GuidingLight": {
     "NAME": "Guiding Light",
-    "DESCRIPTION": "Unplayable. When drawn, Exhaust this, then draw cards until your hand is full.",
+    "DESCRIPTION": "{@@}Unplayable. When drawn, Exhaust this, then draw cards until your hand is full.{!Upgrades!|>0= NL Upgrade all cards in your hand.|@=}",
     "EXTENDED_DESCRIPTION": [
       "The path is laid bare.",
       "I can't play this card."
@@ -33,9 +33,9 @@
       "Into nothingness..."
     ]
   },
-  "${ModID}:Propagation": {
-    "NAME": "Propagation",
-    "DESCRIPTION": "When drawn, shuffle a Propagation into your draw pile. NL Deal !M! damage for ALL of your cards named \"Propagation\" or \"Slimed\". NL Exhaust.",
+  "${ModID}:Mitosis": {
+    "NAME": "Mitosis",
+    "DESCRIPTION": "Deal !M! damage for ALL your *Mitoses or *Statuses. NL When you draw this, shuffle a copy into your draw pile. Exhaust.",
     "EXTENDED_DESCRIPTION": [
       "Grow...",
       " NL (Deals !D! damage.)"

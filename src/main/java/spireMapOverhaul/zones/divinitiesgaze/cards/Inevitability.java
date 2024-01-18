@@ -15,19 +15,20 @@ public class Inevitability extends AbstractSMOCard {
   public static String ID = SpireAnniversary6Mod.makeID("Inevitability");
 
   public Inevitability() {
-    super(ID, -2, CardType.ATTACK, CardRarity.RARE, CardTarget.ALL, CardColor.COLORLESS);
-    this.damage = this.baseDamage = 6;
-    this.block = this.baseBlock = 4;
+    super(ID, -2, CardType.ATTACK, CardRarity.SPECIAL, CardTarget.ALL, CardColor.COLORLESS);
+    this.damage = this.baseDamage = 5;
+    this.block = this.baseBlock = 3;
     this.magicNumber = this.baseMagicNumber = 1;
     this.isMultiDamage = true;
     this.selfRetain = true;
   }
 
   @Override
-  public void upp() {}
-
-  @Override
-  public void upgrade() {}
+  public void upp() {
+    upgradeDamage(2);
+    upgradeBlock(1);
+    this.upgraded = true;
+  }
 
   @Override
   public void use(AbstractPlayer abstractPlayer, AbstractMonster abstractMonster) {}

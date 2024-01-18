@@ -1,11 +1,10 @@
 package spireMapOverhaul.zones.divinitiesgaze.divinities.impl;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.status.Slimed;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
-import spireMapOverhaul.zones.divinitiesgaze.cards.Propagation;
+import spireMapOverhaul.zones.divinitiesgaze.cards.Mitosis;
 import spireMapOverhaul.zones.divinitiesgaze.divinities.BaseDivineBeing;
 
 import java.util.function.Consumer;
@@ -14,7 +13,7 @@ import java.util.function.Supplier;
 public class Primordial extends BaseDivineBeing {
 
   public Primordial() {
-    super(Propagation.ID, Slimed.ID);
+    super(Mitosis.ID, Slimed.ID);
   }
 
   @Override

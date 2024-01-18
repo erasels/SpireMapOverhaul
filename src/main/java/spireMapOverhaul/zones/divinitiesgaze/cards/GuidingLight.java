@@ -2,6 +2,7 @@ package spireMapOverhaul.zones.divinitiesgaze.cards;
 
 import basemod.BaseMod;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
+import com.megacrit.cardcrawl.actions.unique.ArmamentsAction;
 import com.megacrit.cardcrawl.actions.unique.ExpertiseAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -14,15 +15,14 @@ public class GuidingLight extends AbstractSMOCard {
   public static String ID = SpireAnniversary6Mod.makeID("GuidingLight");
 
   public GuidingLight() {
-    super(ID, -2, CardType.SKILL, CardRarity.RARE, CardTarget.NONE, CardColor.COLORLESS);
+    super(ID, -2, CardType.SKILL, CardRarity.SPECIAL, CardTarget.NONE, CardColor.COLORLESS);
     this.exhaust = true;
   }
 
   @Override
-  public void upgrade() {}
-
-  @Override
-  public void upp() {}
+  public void upp() {
+    this.upgraded = true;
+  }
 
   @Override
   public void use(AbstractPlayer abstractPlayer, AbstractMonster abstractMonster) {
@@ -31,6 +31,9 @@ public class GuidingLight extends AbstractSMOCard {
   @Override
   public void triggerWhenDrawn() {
     Wiz.atb(new ExpertiseAction(Wiz.p(), BaseMod.MAX_HAND_SIZE));
+    if(this.upgraded) {
+      Wiz.atb(new ArmamentsAction(true));
+    }
     Wiz.atb(new TalkAction(true, cardStrings.EXTENDED_DESCRIPTION[0], 2.0F, 3.0F));
   }
 

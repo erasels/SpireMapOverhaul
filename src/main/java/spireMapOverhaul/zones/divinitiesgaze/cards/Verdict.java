@@ -12,19 +12,19 @@ public class Verdict extends AbstractSMOCard {
   public static String ID = SpireAnniversary6Mod.makeID("Verdict");
 
   public Verdict() {
-    super(ID, 2, CardType.SKILL, CardRarity.RARE, CardTarget.ENEMY, CardColor.COLORLESS);
+    super(ID, 2, CardType.SKILL, CardRarity.SPECIAL, CardTarget.ENEMY, CardColor.COLORLESS);
     this.magicNumber = this.baseMagicNumber = 10;
     this.exhaust = true;
   }
 
   @Override
-  public void upp() {}
-
-  @Override
-  public void upgrade() {}
+  public void upp() {
+    upgradeMagicNumber(5);
+    this.upgraded = true;
+  }
 
   @Override
   public void use(AbstractPlayer abstractPlayer, AbstractMonster abstractMonster) {
-    Wiz.atb(new ApplyPowerAction(abstractMonster, abstractPlayer, new VerdictPower(abstractMonster, 10), 10));
+    Wiz.atb(new ApplyPowerAction(abstractMonster, abstractPlayer, new VerdictPower(abstractMonster, this.magicNumber), this.magicNumber));
   }
 }
