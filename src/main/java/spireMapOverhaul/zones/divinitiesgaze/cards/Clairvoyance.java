@@ -33,13 +33,13 @@ public class Clairvoyance extends AbstractSMOCard {
 
   @Override
   public void use(AbstractPlayer abstractPlayer, AbstractMonster abstractMonster) {
-    Wiz.atb(new TalkAction(true, cardStrings.EXTENDED_DESCRIPTION[0], 2.0F, 3.0F));
+    Wiz.atb(new TalkAction(true, cardStrings.EXTENDED_DESCRIPTION[1], 2.0F, 3.0F));
   }
 
   @Override
   public void triggerWhenDrawn() {
     if(canTalk) {
-      Wiz.atb(new TalkAction(true, cardStrings.EXTENDED_DESCRIPTION[1], 2.0F, 3.0F));
+      Wiz.atb(new TalkAction(true, cardStrings.EXTENDED_DESCRIPTION[0], 2.0F, 3.0F));
     }
     canTalk = false;
   }
