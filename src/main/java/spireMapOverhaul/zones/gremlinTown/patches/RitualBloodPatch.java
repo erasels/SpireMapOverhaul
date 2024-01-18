@@ -17,6 +17,7 @@ import com.megacrit.cardcrawl.monsters.ending.CorruptHeart;
 import com.megacrit.cardcrawl.powers.FrailPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.vfx.combat.HeartMegaDebuffEffect;
+import spireMapOverhaul.zones.gremlinTown.powers.HeartImpairmentPower;
 
 import static spireMapOverhaul.util.Wiz.adp;
 import static spireMapOverhaul.util.Wiz.atb;
@@ -28,7 +29,7 @@ import static spireMapOverhaul.util.Wiz.atb;
 public class RitualBloodPatch {
     @SpirePrefixPatch
     public static SpireReturn heartStopper(CorruptHeart __instance) {
-        if (__instance.nextMove == 3) {
+        if (__instance.nextMove == 3 && __instance.hasPower(HeartImpairmentPower.POWER_ID)) {
             atb(new VFXAction(new HeartMegaDebuffEffect()));
             atb(new WaitAction(0.1f));
             atb(new WaitAction(0.1f));
