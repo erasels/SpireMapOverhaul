@@ -1,6 +1,7 @@
 package spireMapOverhaul.zones.Junkyard;
 
 import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.events.exordium.ScrapOoze;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.monsters.exordium.*;
@@ -13,9 +14,7 @@ import spireMapOverhaul.zoneInterfaces.RewardModifyingZone;
 import spireMapOverhaul.zones.Junkyard.monsters.Junkbot;
 import spireMapOverhaul.zones.Junkyard.monsters.Peddler;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class Junkyard extends AbstractZone implements RewardModifyingZone, EncounterModifyingZone, ModifiedEventRateZone {
     public static final String ID = "Junkyard";
@@ -47,7 +46,7 @@ public class Junkyard extends AbstractZone implements RewardModifyingZone, Encou
 
     @Override
     public ArrayList<RewardItem> getAdditionalRewards() {
-        ArrayList<RewardItem> newRewards = new ArrayList<RewardItem>();
+        ArrayList<RewardItem> newRewards = new ArrayList<>();
         newRewards.add(new RewardItem());
         return newRewards;
     }
@@ -68,14 +67,21 @@ public class Junkyard extends AbstractZone implements RewardModifyingZone, Encou
                 new EncounterModifyingZone.ZoneEncounter(MUGGER_JUNKBOT, 1, () -> new MonsterGroup(
                         new AbstractMonster[] {
                                 new AcidSlime_S(-300.0F, 0.0F, 0),
-                                new SpikeSlime_S(-300.0F, 0.0F, 0),
-                                new Junkbot(0.0F, 0.0F),
+                                new SpikeSlime_S(-100.0F, 0.0F, 0),
+                                new Junkbot(130.0F, 0.0F),
                         })),
                 new EncounterModifyingZone.ZoneEncounter(PEDDLER, 1, () -> new MonsterGroup(
                 new AbstractMonster[] {
                         new Peddler(0.0f, 0.0F)
                 }))
         );
+    }
+
+    @Override
+    public Set<String> addSpecificEvents() {
+        Set<String> baseGameEvents = new HashSet<>();
+        baseGameEvents.add(ScrapOoze.ID);
+        return baseGameEvents;
     }
 
     @Override

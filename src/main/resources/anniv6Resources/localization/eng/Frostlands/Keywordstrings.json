@@ -1,0 +1,10 @@
+[
+  {
+    "ID": "frostbite",
+    "PROPER_NAME": "Frostbite",
+    "NAMES": [
+      "frostbite"
+    ],
+    "DESCRIPTION": "If this card is in your hand at the end of your turn, take #b4 damage."
+  }
+]

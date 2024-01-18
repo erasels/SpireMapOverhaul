@@ -29,7 +29,7 @@ public class Peddler extends CustomMonster {
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
     public static final String[] DIALOG = monsterStrings.DIALOG;
-    private static final String IMG = SpireAnniversary6Mod.makeImagePath("monsters/Peddler/Peddler.png");
+    private static final String IMG = SpireAnniversary6Mod.makeImagePath("monsters/Junkyard/Peddler/Peddler.png");
     private boolean firstMove = true;
     private static final byte FREE_SAMPLES = 1;
     private static final byte RUMMAGE = 2;

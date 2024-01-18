@@ -14,7 +14,6 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
-import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
@@ -23,10 +22,13 @@ import spireMapOverhaul.BetterMapGenerator.MapPlanner;
 import spireMapOverhaul.BetterMapGenerator.MapPlanner.PlanningNode;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.util.ActUtil;
+import spireMapOverhaul.util.DownfallUtil;
 import spireMapOverhaul.util.TexLoader;
 import spireMapOverhaul.util.ZoneShapeMaker;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
@@ -158,7 +160,7 @@ public abstract class AbstractZone {
             sb.append(" NL ");
         sb.append(getDescriptionText());
         sb.append(" NL NL ");
-        sb.append(getGlobalText()[0].replace("{0}", TEXT[2]));
+        sb.append(getGlobalText()[0].replace("{0}", FontHelper.colorString(TEXT[2], "p")));
         tooltipBody = sb.toString();
     }
 
@@ -187,12 +189,19 @@ public abstract class AbstractZone {
             if (showTooltip) {
                 TipHelper.renderGenericTip(InputHelper.mX + 40f*Settings.scale, InputHelper.mY - 65f*Settings.scale, name, tooltipBody);
             }
+        }
+    }
 
+    public void renderNameOnMap(SpriteBatch sb, float alpha) {
+        if (alpha > 0) {
+            // Not sure why this is the exact value that seems to work for adjusting the labels to be in the right place
+            // with Downfall (something about how it shifts the map to put the boss at the bottom?), but empirically it
+            // works. A bit hacky, but fine for now.
+            float adjustedLabelY = labelY + (DownfallUtil.isDownfallMode() ? 3 : 0);
             FontHelper.renderFontCentered(sb, FontHelper.menuBannerFont, name,
-                    labelX * SPACING_X + OFFSET_X, labelY * Settings.MAP_DST_Y + OFFSET_Y + DungeonMapScreen.offsetY,
+                    labelX * SPACING_X + OFFSET_X,  adjustedLabelY * Settings.MAP_DST_Y + OFFSET_Y + DungeonMapScreen.offsetY,
                     labelColor.cpy().mul(1, 1, 1, alpha), 0.8f
             );
-
         }
     }
 
@@ -267,7 +276,7 @@ public abstract class AbstractZone {
      * If allowAdditionalPaths is false, this will only affect attempts to enter through the side onto active nodes.
     */
     protected boolean allowAdditionalEntrances() {
-        return false;
+        return true;
     }
 
     //Note: isValidPath can be overridden to completely ignore these three methods.
