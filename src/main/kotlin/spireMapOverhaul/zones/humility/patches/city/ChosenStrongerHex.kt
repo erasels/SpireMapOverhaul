@@ -27,6 +27,8 @@ class ChosenStrongerHex {
                         f.replace(
                             "if (${HumilityZone::class.qualifiedName}.isInZone()) {" +
                                     "\$_ = ${AbstractCard.CardType::class.qualifiedName}.SKILL;" +
+                                    "} else {" +
+                                    "\$_ = \$proceed(\$\$);" +
                                     "}"
                         )
                     }
