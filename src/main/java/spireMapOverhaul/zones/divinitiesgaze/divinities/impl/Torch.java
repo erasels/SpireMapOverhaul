@@ -40,7 +40,7 @@ public class Torch extends BaseDivineBeing {
 
   @Override
   public String getEventButtonText() {
-    return String.format(super.getEventButtonText(), (int)Math.floor(AbstractDungeon.player.maxHealth * 0.10f));
+    return String.format(super.getEventButtonText(), (int)Math.floor(AbstractDungeon.player.maxHealth * (AbstractDungeon.ascensionLevel >= 15 ? 0.10f : 0.15f)));
   }
 
   @Override

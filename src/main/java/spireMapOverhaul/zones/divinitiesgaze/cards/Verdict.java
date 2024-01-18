@@ -23,7 +23,6 @@ public class Verdict extends AbstractSMOCard {
   @Override
   public void upp() {
     upgradeMagicNumber(5);
-    this.upgraded = true;
   }
 
   @Override

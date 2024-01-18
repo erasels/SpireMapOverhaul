@@ -28,7 +28,6 @@ public class Clairvoyance extends AbstractSMOCard {
   @Override
   public void upp() {
     upgradeMagicNumber(1);
-    this.upgraded = true;
   }
 
   @Override

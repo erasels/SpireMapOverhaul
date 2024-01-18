@@ -21,9 +21,7 @@ public class GuidingLight extends AbstractSMOCard {
   }
 
   @Override
-  public void upp() {
-    this.upgraded = true;
-  }
+  public void upp() {}
 
   @Override
   public void use(AbstractPlayer abstractPlayer, AbstractMonster abstractMonster) {

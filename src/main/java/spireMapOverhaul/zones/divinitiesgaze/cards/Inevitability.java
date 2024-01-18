@@ -30,7 +30,6 @@ public class Inevitability extends AbstractSMOCard {
   public void upp() {
     upgradeDamage(2);
     upgradeBlock(1);
-    this.upgraded = true;
   }
 
   @Override

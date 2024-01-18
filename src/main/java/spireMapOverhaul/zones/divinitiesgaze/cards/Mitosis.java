@@ -31,7 +31,6 @@ public class Mitosis extends AbstractSMOCard {
   @Override
   public void upp() {
     upgradeMagicNumber(1);
-    this.upgraded = true;
   }
 
   @Override
@@ -72,7 +71,7 @@ public class Mitosis extends AbstractSMOCard {
   }
 
   private boolean itCounts(AbstractCard card) {
-    return card.cardID.equals(Slimed.ID) || card.cardID.equals(ID);
+    return card.type == CardType.STATUS || card.cardID.equals(ID);
   }
 
   public void triggerWhenDrawn() {

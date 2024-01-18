@@ -5,9 +5,11 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.daily.mods.BigGameHunter;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ModHelper;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.BlackStar;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import spireMapOverhaul.util.Wiz;
@@ -43,7 +45,7 @@ public class Jurors extends BaseDivineBeing {
   public Consumer<AbstractRoom> getCombatRewards() {
     return (room) -> {
       AbstractDungeon.getCurrRoom().rewards.add(new RewardItem(AbstractDungeon.returnRandomRelic(getRandomTier())));
-      if(AbstractDungeon.player.hasRelic("Black Star")) {
+      if(AbstractDungeon.player.hasRelic(BlackStar.ID)) {
         AbstractDungeon.getCurrRoom().rewards.add(new RewardItem(AbstractDungeon.returnRandomNonCampfireRelic(getRandomTier())));
       }
     };
@@ -52,7 +54,7 @@ public class Jurors extends BaseDivineBeing {
   private AbstractRelic.RelicTier getRandomTier() {
     AbstractRelic.RelicTier tier = AbstractRelic.RelicTier.COMMON;
     int roll = AbstractDungeon.relicRng.random(0, 99);
-    if (ModHelper.isModEnabled("Elite Swarm")) {
+    if (ModHelper.isModEnabled(BigGameHunter.ID)) {
       roll += 10;
     }
 
