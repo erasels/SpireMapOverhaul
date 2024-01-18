@@ -2,12 +2,14 @@ package spireMapOverhaul.zones.divinitiesgaze;
 
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
+import com.megacrit.cardcrawl.random.Random;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import com.megacrit.cardcrawl.rooms.EventRoom;
 import com.megacrit.cardcrawl.vfx.SpeechBubble;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.util.Wiz;
@@ -15,11 +17,9 @@ import spireMapOverhaul.zoneInterfaces.CombatModifyingZone;
 import spireMapOverhaul.zoneInterfaces.ModifiedEventRateZone;
 import spireMapOverhaul.zones.divinitiesgaze.divinities.DivineBeing;
 import spireMapOverhaul.zones.divinitiesgaze.divinities.DivineBeingManager;
-import spireMapOverhaul.zones.divinitiesgaze.divinities.impl.Jurors;
 import spireMapOverhaul.zones.divinitiesgaze.events.DivineVisitor;
-import spireMapOverhaul.zones.divinitiesgaze.powers.VerdictPower;
 
-import java.util.Random;
+import java.util.ArrayList;
 
 public class DivinitiesGazeZone extends AbstractZone implements ModifiedEventRateZone, CombatModifyingZone {
 
@@ -47,6 +47,12 @@ public class DivinitiesGazeZone extends AbstractZone implements ModifiedEventRat
   }
 
   @Override
+  public void distributeRooms(Random rng, ArrayList<AbstractRoom> roomList) {
+    //Guarantee at least one event
+    placeRoomRandomly(rng, roomOrDefault(roomList, (room) -> room instanceof EventRoom, EventRoom::new));
+  }
+
+  @Override
   public void atPreBattle() {
     DivineBeing being = DivineBeingManager.getDivinityForCombat();
     AbstractCard boon = CardLibrary.getCard(being.getDivinityStrings().getBoonCardId());
@@ -57,7 +63,7 @@ public class DivinitiesGazeZone extends AbstractZone implements ModifiedEventRat
     Wiz.atb(new AbstractGameAction() {
       @Override
       public void update() {
-        AbstractDungeon.effectList.add(new SpeechBubble(Settings.WIDTH / 2f, Settings.HEIGHT * 3f / 4f, 3, quotes[new Random().nextInt(quotes.length)], false));
+        AbstractDungeon.effectList.add(new SpeechBubble(Settings.WIDTH / 2f, Settings.HEIGHT * 3f / 4f, 3, quotes[AbstractDungeon.miscRng.random(quotes.length - 1)], false));
         isDone = true;
       }
     });
