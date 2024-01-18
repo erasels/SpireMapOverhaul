@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractSMOCard;
+import spireMapOverhaul.zones.Junkyard.Junkyard;
 import spireMapOverhaul.zones.Junkyard.actions.BuyCardAction;
 import spireMapOverhaul.zones.Junkyard.monsters.Peddler;
 
@@ -28,14 +29,14 @@ public class Bargain extends AbstractSMOCard {
     private int index = 0;
 
     public Bargain() {
-        super(ID, COST, CardType.SKILL, CardRarity.SPECIAL, CardTarget.NONE, CardColor.COLORLESS);
+        super(ID, Junkyard.ID, COST, CardType.SKILL, CardRarity.SPECIAL, CardTarget.NONE, CardColor.COLORLESS);
         this.selfRetain = true;
         this.exhaust = true;
         goldCost = 50;
     }
 
     public Bargain(int cost) {
-        super(ID, COST, CardType.SKILL, CardRarity.SPECIAL, CardTarget.NONE, CardColor.COLORLESS);
+        super(ID, Junkyard.ID, COST, CardType.SKILL, CardRarity.SPECIAL, CardTarget.NONE, CardColor.COLORLESS);
         this.selfRetain = true;
         this.exhaust = true;
         goldCost = cost;
