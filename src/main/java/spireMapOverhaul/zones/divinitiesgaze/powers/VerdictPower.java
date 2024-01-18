@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.vfx.combat.WeightyImpactEffect;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractSMOPower;
 import spireMapOverhaul.util.Wiz;
+import spireMapOverhaul.zones.divinitiesgaze.DivinitiesGazeZone;
 
 public class VerdictPower extends AbstractSMOPower implements HealthBarRenderPower {
   public static final String POWER_ID = SpireAnniversary6Mod.makeID("VerdictPower");
@@ -21,7 +22,7 @@ public class VerdictPower extends AbstractSMOPower implements HealthBarRenderPow
   public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
   public VerdictPower(AbstractCreature owner, int amount) {
-    super(POWER_ID, NAME, PowerType.DEBUFF, false, owner, amount);
+    super(POWER_ID, NAME, DivinitiesGazeZone.ID, PowerType.DEBUFF, false, owner, amount);
   }
 
   @Override
