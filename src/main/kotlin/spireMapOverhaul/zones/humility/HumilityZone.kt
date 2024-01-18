@@ -37,7 +37,7 @@ class HumilityZone : AbstractZone(ID, Icons.MONSTER), OnTravelZone {
         false
 
     override fun allowAdditionalEntrances(): Boolean =
-        true
+        false
 
     override fun distributeRooms(rng: Random?, roomList: ArrayList<AbstractRoom>?) {
         // Guarantee at least 1 elite and 2 normal combats

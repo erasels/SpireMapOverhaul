@@ -298,6 +298,10 @@ public class AmbushedZone extends AbstractZone implements CombatModifyingZone, E
         }
     }
 
+    protected boolean allowAdditionalEntrances() {
+        return false;
+    }
+
     @Override
     public List<ZoneEncounter> getNormalEncounters() {
         return Arrays.asList(

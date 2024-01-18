@@ -181,6 +181,10 @@ public class CandyLand extends AbstractZone implements RewardModifyingZone, Camp
         }
     }
 
+    protected boolean allowAdditionalEntrances() {
+        return false;
+    }
+
 
     public ArrayList<AbstractConsumable> getConsumables(){
         ArrayList<AbstractConsumable> consumables = new ArrayList<>();
