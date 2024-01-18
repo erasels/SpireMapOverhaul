@@ -3,10 +3,10 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>STS-Discord-Modding-Technical</groupId>
 
-    <artifactId>SpireMapOverhaul</artifactId>
+    <artifactId>SpireBiomes</artifactId>
     <version>1.0.0</version>
-    <name>Spire Map Overhaul</name>
-    <description>Modding Anniversary 6: Spire Map Overhaul</description>
+    <name>Spire Biomes</name>
+    <description>Modding Anniversary 6: Spire Biomes</description>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
