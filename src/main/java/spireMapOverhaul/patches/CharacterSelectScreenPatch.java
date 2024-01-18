@@ -19,6 +19,7 @@ import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 import com.megacrit.cardcrawl.ui.panels.SeedPanel;
 import spireMapOverhaul.SpireAnniversary6Mod;
+import spireMapOverhaul.util.DownfallUtil;
 
 public class CharacterSelectScreenPatch {
     private static final String[] TEXT = CardCrawlGame.languagePack.getUIString(SpireAnniversary6Mod.makeID("CharacterSelectScreen")).TEXT;
@@ -58,7 +59,7 @@ public class CharacterSelectScreenPatch {
     public static class RenderCheckboxPatch {
         @SpirePostfixPatch
         public static void renderCheckbox(CharacterSelectScreen __instance, SpriteBatch sb, boolean ___anySelected) {
-            if (___anySelected) {
+            if (!DownfallUtil.isDownfallMode() && ___anySelected) {
                 Hitbox hb = HitboxField.hitbox.get(__instance);
                 float checkBoxX = getCheckboxX();
                 sb.draw(ImageMaster.OPTION_TOGGLE, checkBoxX, hb.cY - 16.0F, 16.0F, 16.0F, 32.0F, 32.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 32, 32, false, false);
@@ -82,7 +83,7 @@ public class CharacterSelectScreenPatch {
     public static class UpdateCheckboxPatch {
         @SpirePostfixPatch
         public static void updateCheckbox(CharacterSelectScreen __instance, SeedPanel ___seedPanel, boolean ___anySelected) {
-            if (!___anySelected) {
+            if (DownfallUtil.isDownfallMode() || !___anySelected) {
                 return;
             }
 
