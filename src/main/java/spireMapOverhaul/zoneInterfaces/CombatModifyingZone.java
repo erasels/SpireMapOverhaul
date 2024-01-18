@@ -7,6 +7,12 @@ public interface CombatModifyingZone {
      * For more complex modifications, apply a custom power that explains itself to the player.
      */
 
+    /**
+     * This method happens before AbstractPlayer.preBattlePrep.
+     * Most use cases should use atPreBattle instead.
+     */
+    default void beforePreBattlePrep() {}
+
     default void atPreBattle() {}
 
     default void atBattleStartPreDraw() {}
