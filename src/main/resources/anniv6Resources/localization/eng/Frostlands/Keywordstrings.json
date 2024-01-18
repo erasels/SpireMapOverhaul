@@ -5,6 +5,6 @@
     "NAMES": [
       "frostbite"
     ],
-    "DESCRIPTION": "If this card is in your hand at the end of your turn, take 4 damage."
+    "DESCRIPTION": "If this card is in your hand at the end of your turn, take #b4 damage."
   }
 ]
