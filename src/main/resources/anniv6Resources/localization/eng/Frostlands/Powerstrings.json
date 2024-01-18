@@ -17,7 +17,7 @@
   "${ModID}:ChillPower": {
   "NAME": "Chill",
   "DESCRIPTIONS": [
-    "Decreases Attack damage by #b",
+    "Decreases attack damage by #b",
     " this turn."
   ]
 }
