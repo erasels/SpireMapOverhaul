@@ -30,11 +30,11 @@ public class GremlinBrute extends CustomMonster
             "monsters/GremlinTown/GremlinNib/skeleton.json");
     public static final byte SLAM = 1;
     public static final byte BREAK = 2;
-    private static final int HP_MIN = 58;
-    private static final int HP_MAX = 62;
-    private static final int HP_MIN_A8 = 63;
-    private static final int HP_MAX_A8 = 68;
-    private static final int SLAM_DMG = 11;
+    private static final int HP_MIN = 67;
+    private static final int HP_MAX = 73;
+    private static final int HP_MIN_A8 = 72;
+    private static final int HP_MAX_A8 = 78;
+    private static final int SLAM_DMG = 10;
     private static final int BREAK_DMG = 6;
     private static final int SLAM_DMG_A3 = 12;
     private static final int BREAK_DMG_A3 = 7;

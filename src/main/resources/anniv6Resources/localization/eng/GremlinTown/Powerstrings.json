@@ -67,5 +67,9 @@
     "NAME": "Inspired",
     "DESCRIPTIONS": ["At the start of your turn, gain #b{0} energy and draw #b{0} card.",
       "At the start of your turn, gain #b{0} energy and draw #b{0} cards."]
+  },
+  "${ModID}:Spiteful": {
+    "NAME": "Spiteful",
+    "DESCRIPTIONS": ["When its HP is at or below #b50%, will stop attacking for 2 turns before unleashing a powerful curse."]
   }
 }

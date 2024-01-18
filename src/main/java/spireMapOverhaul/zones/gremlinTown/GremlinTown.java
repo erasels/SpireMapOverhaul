@@ -73,11 +73,16 @@ public class GremlinTown extends AbstractZone
             () -> MonsterHelper.getEncounter("Gremlin Leader"));
     public static final String PLATFORM_KEY = makeID("GremlinTown:Platform");
     public static final String PLATFORM_OGG = makePath("audio/GremlinTown/Platform.ogg");
+    private final Color zoneColor;
 
     public GremlinTown() {
         super(ID, Icons.MONSTER, Icons.EVENT, Icons.SHOP);
-        width = 3;
-        height = 5;
+        width = 1;
+        maxWidth = 3;
+        height = 4;
+        maxHeight = 6;
+        zoneColor = Color.FIREBRICK.cpy();
+        zoneColor.a = 1.0F;
     }
 
     @Override
@@ -87,7 +92,7 @@ public class GremlinTown extends AbstractZone
 
     @Override
     public Color getColor() {
-        return Color.FIREBRICK.cpy();
+        return zoneColor;
     }
 
     @Override
@@ -338,7 +343,7 @@ public class GremlinTown extends AbstractZone
 
             if (item.type == RewardItem.RewardType.GOLD && lastCombatMetricKey != null
                     && lastCombatMetricKey.equals(GREMLIN_HORDE))
-                item.bonusGold = treasureRng.random(200, 250);
+                item.bonusGold = treasureRng.random(150, 200);
         }
 
         RewardItem item = new RewardItem();

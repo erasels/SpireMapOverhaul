@@ -14,7 +14,7 @@
   "${ModID}:RitualBlood": {
     "NAME": "Ritual Blood",
     "DESCRIPTIONS": [
-      "Impairs the Corrupted Heart."
+      "#rImpairs the Corrupted Heart."
     ]
   },
   "${ModID}:NoxiousBrew": {

@@ -47,17 +47,15 @@ public class GremlinWheel extends AbstractImageEvent {
     private float animTimer;
     private float spinVelocity;
     private boolean buttonPressed;
-    private Hitbox buttonHb;
-    private Texture wheelImg;
-    private Texture arrowImg;
-    private Texture buttonImg;
+    private final Hitbox buttonHb;
+    private final Texture wheelImg;
+    private final Texture arrowImg;
+    private final Texture buttonImg;
     private static final float START_Y;
     private static final float TARGET_Y;
     private float imgX;
     private float imgY;
     private float wheelAngle;
-    private static final int WHEEL_W = 1024;
-    private static final int ARROW_W = 512;
     private static final float ARROW_OFFSET_X;
     private Color color;
     private static final float HP_LOSS = 0.1f;
@@ -67,17 +65,16 @@ public class GremlinWheel extends AbstractImageEvent {
     private static final String WHEEL_PATH = makeImagePath("events/GremlinTown/Wheel.png");
     private float decisionTimer;
     private boolean deciding;
-    private ArrayList<Integer> ops;
     int buttonPanic;
     int buttonSubmit;
     int buttonWhat;
     int buttonFight;
-    private float testTimer;
 
     private static final int GOLD_BASE = 100;
     private static final int GOLD_VARIANCE = 25;
-    private static final float DECISION_TIME = 3.0F;
-    private int goldAmount;
+    private static final float DECISION_TIME = 4.5F;
+    private static final float DECISION_TIME_A15 = 3.0F;
+    private final int goldAmount;
 
     static {
         eventStrings = CardCrawlGame.languagePack.getEventString(ID);
@@ -133,7 +130,6 @@ public class GremlinWheel extends AbstractImageEvent {
         if (screen == CUR_SCREEN.COMPLETE)
             return;
         updatePosition();
-        testTimer += Gdx.graphics.getDeltaTime();
         if (bounceTimer == 0.0F && startSpinFake) {
             if (!buttonPressed) {
                 buttonHb.cY = MathHelper.cardLerpSnap(buttonHb.cY, Settings.OPTION_Y - 330.0F * Settings.scale);
@@ -192,7 +188,10 @@ public class GremlinWheel extends AbstractImageEvent {
             } else if (bounceTimer == 0.0F) {
                 doneSpinning = false;
                 deciding = true;
-                decisionTimer = DECISION_TIME;
+                if (asc() >= 15)
+                    decisionTimer = DECISION_TIME_A15;
+                else
+                    decisionTimer = DECISION_TIME;
                 preApplyDialog();
                 GenericEventDialog.show();
                 screen = CUR_SCREEN.DECISION;
@@ -262,7 +261,6 @@ public class GremlinWheel extends AbstractImageEvent {
         SpireAnniversary6Mod.logger.info("BUTTON PRESSED");
         if (screen == CUR_SCREEN.INTRO) {
             if (buttonPressed == 0) {
-                testTimer = 0f;
                 GenericEventDialog.hide();
                 wheelAngle = 0.0F;
                 startSpinFake = true;

@@ -85,8 +85,7 @@ public class GremlinPerformance extends AbstractImageEvent {
             screen = CUR_SCREEN.DECISION;
             imageEventText.clearAllDialogs();
             imageEventText.setDialogOption(OPTIONS[1].replace("{0}", String.valueOf(getRemovalPrice())));
-            imageEventText.setDialogOption(OPTIONS[2].replace("{0}", String.valueOf(getMaxHpPrice())));
-            imageEventText.setDialogOption(OPTIONS[2].replace("{1}", String.valueOf(MAX_HP_GAIN)));
+            imageEventText.setDialogOption(OPTIONS[2].replace("{0}", String.valueOf(getMaxHpPrice())).replace("{1}", String.valueOf(MAX_HP_GAIN)));
             if (adp().gold > getUpgradePrice())
                 imageEventText.setDialogOption(OPTIONS[3].replace("{0}", String.valueOf(getUpgradePrice())));
             else
@@ -116,6 +115,7 @@ public class GremlinPerformance extends AbstractImageEvent {
                     int effectCount = 0;
                     for (AbstractCard c : adp().masterDeck.group) {
                         if (c.canUpgrade() && c.type == AbstractCard.CardType.ATTACK) {
+                            c.upgrade();
                             ++effectCount;
                             if (effectCount <= 20) {
                                 float x = MathUtils.random(0.1F, 0.9F) * (float)Settings.WIDTH;
@@ -123,8 +123,6 @@ public class GremlinPerformance extends AbstractImageEvent {
                                 AbstractDungeon.effectList.add(new ShowCardBrieflyEffect(c.makeStatEquivalentCopy(), x, y));
                                 AbstractDungeon.topLevelEffects.add(new UpgradeShineEffect(x, y));
                             }
-
-                            c.upgrade();
                             AbstractDungeon.player.bottledCardUpgradeCheck(c);
                         }
                     }

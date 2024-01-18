@@ -91,8 +91,7 @@ public class HordeHelper {
             groundQueue.add(new GremlinFat(Settings.WIDTH * 4, 0));
             platformQueue.add(new GremlinWizard(Settings.WIDTH * 4, 0));
             platformQueue.add(new GremlinRockTosser(Settings.WIDTH * 4, 0));
-            if (i < 2)
-                platformQueue.add(new GremlinRockTosser(Settings.WIDTH * 4, 0));
+            platformQueue.add(new GremlinRockTosser(Settings.WIDTH * 4, 0));
         }
 
         ArrayList<AbstractMonster> tempQueue = new ArrayList<>();
@@ -103,11 +102,11 @@ public class HordeHelper {
         Collections.shuffle(groundQueue, AbstractDungeon.monsterRng.random);
         Collections.shuffle(platformQueue, AbstractDungeon.monsterRng.random);
 
-        groundQueue.add(5, tempQueue.get(0));
-        groundQueue.add(9, tempQueue.get(1));
-        groundQueue.add(13, tempQueue.get(2));
-        groundQueue.add(17, tempQueue.get(3));
-        groundQueue.add(21, tempQueue.get(4));
+        groundQueue.add(6, tempQueue.get(0));
+        groundQueue.add(10, tempQueue.get(1));
+        groundQueue.add(14, tempQueue.get(2));
+        groundQueue.add(18, tempQueue.get(3));
+        groundQueue.add(22, tempQueue.get(4));
 
         ArrayList<AbstractMonster> tempArray = new ArrayList<>(Wiz.getEnemies());
         tempArray.sort( (m1, m2) -> (int)(m1.hb.x - m2.hb.x) );
@@ -166,7 +165,7 @@ public class HordeHelper {
         calculateBackAttack();
         if (GameActionManager.turn == 2)
             surround();
-        else if (GameActionManager.turn == 4) {
+        else if (GameActionManager.turn == 3) {
             lowerPlatforms();
             reinforce();
         } else
@@ -214,11 +213,11 @@ public class HordeHelper {
 
                 boolean movedFrontIn = false;
                 boolean movedBackIn = false;
-                if (monsterRightBack == null) {
+                if (monsterRightBack == null || monsterRightBack.isDeadOrEscaped()) {
                     moveRightGremlinIn(false);
                     movedBackIn = true;
                 }
-                if (monsterRightFront == null) {
+                if (monsterRightFront == null || monsterRightFront.isDeadOrEscaped()) {
                     moveRightGremlinIn(true);
                     movedFrontIn = true;
                 }

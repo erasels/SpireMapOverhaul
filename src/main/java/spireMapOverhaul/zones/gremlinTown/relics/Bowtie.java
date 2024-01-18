@@ -34,7 +34,7 @@ public class Bowtie extends AbstractSMORelic {
     }
 
     public void onObtainCard(AbstractCard c) {
-        if (isInMerchantStock(c) && c.canUpgrade() && !c.upgraded)
+        if (isInMerchantStock(c) && c.canUpgrade())
             c.upgrade();
     }
 

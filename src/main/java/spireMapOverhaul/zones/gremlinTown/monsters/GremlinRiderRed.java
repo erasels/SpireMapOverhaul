@@ -33,6 +33,7 @@ public class GremlinRiderRed extends CustomMonster
     private static final int TACTICAL_DAMAGE = 4;
     private static final int TACTICAL_DAMAGE_A2 = 5;
     private static final int TACTICAL_STRENGTH = 3;
+    private static final int TACTICAL_STRENGTH_A17 = 2;
     private static final int MIN_HP = 45;
     private static final int MAX_HP = 50;
     private static final int MIN_HP_A7 = 49;
@@ -85,7 +86,7 @@ public class GremlinRiderRed extends CustomMonster
                 atb(new DamageAction(adp(), damage.get(1), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
                 atb(new WaitAction(0.1f));
                 if (asc() < 17)
-                    applyToEnemy(this, new StrengthPower(this, TACTICAL_STRENGTH));
+                    applyToEnemy(this, new StrengthPower(this, TACTICAL_STRENGTH_A17));
                 else
                     forAllMonstersLiving(m -> applyToEnemy(m, new StrengthPower(m, TACTICAL_STRENGTH)));
         }

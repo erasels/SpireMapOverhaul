@@ -15,8 +15,8 @@ import static spireMapOverhaul.util.Wiz.applyToSelf;
 @NoPools
 public class Charge extends AbstractSMOCard {
     public final static String ID = makeID(Charge.class.getSimpleName());
-    private final static int MAGIC = 12;
-    private final static int UPGRADE_MAGIC = 3;
+    private final static int MAGIC = 14;
+    private final static int UPGRADE_MAGIC = 4;
     private final static int COST = 1;
 
     public Charge() {

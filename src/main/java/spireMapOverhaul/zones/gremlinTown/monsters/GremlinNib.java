@@ -46,11 +46,11 @@ public class GremlinNib extends CustomMonster
     private static final int SLAM_DMG = 25;
     private static final int DOUBLE_DMG = 10;
     private static final int FRENZY_DMG = 5;
-    private static final int CRIT_DMG = 40;
+    private static final int CRIT_DMG = 45;
     private static final int SLAM_DMG_A2 = 27;
     private static final int DOUBLE_DMG_A2 = 11;
     private static final int FRENZY_DMG_A2 = 6;
-    private static final int CRIT_DMG_A2 = 45;
+    private static final int CRIT_DMG_A2 = 50;
     private static final int VULN_AMOUNT = 3;
     private final int slamDmg;
     private final int doubleDmg;

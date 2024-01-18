@@ -29,7 +29,7 @@ public class HordePatches {
     public static class basicallyAlivePatch {
         @SpirePostfixPatch
         public static boolean Postfix(boolean __result) {
-            if (AbstractDungeon.lastCombatMetricKey != null && AbstractDungeon.lastCombatMetricKey.equals(GremlinTown.GREMLIN_HORDE))
+            if (GremlinTown.GREMLIN_HORDE.equals(AbstractDungeon.lastCombatMetricKey))
                 return HordeHelper.areMonstersBasicallyDead(__result);
             return __result;
         }
@@ -41,7 +41,7 @@ public class HordePatches {
     public static class alivePatch {
         @SpirePostfixPatch
         public static boolean Postfix(boolean __result) {
-            if (AbstractDungeon.lastCombatMetricKey != null && AbstractDungeon.lastCombatMetricKey.equals(GremlinTown.GREMLIN_HORDE))
+            if (GremlinTown.GREMLIN_HORDE.equals(AbstractDungeon.lastCombatMetricKey))
                 return HordeHelper.areMonstersDead(__result);
             return __result;
         }
@@ -56,7 +56,7 @@ public class HordePatches {
                 locator = Locator.class
         )
         public static void Insert() {
-            if (AbstractDungeon.lastCombatMetricKey != null && AbstractDungeon.lastCombatMetricKey.equals(GremlinTown.GREMLIN_HORDE))
+            if (GremlinTown.GREMLIN_HORDE.equals(AbstractDungeon.lastCombatMetricKey))
                 HordeHelper.update();
         }
 
@@ -81,7 +81,7 @@ public class HordePatches {
                 localvars = {"sb"}
         )
         public static void Insert(SpriteBatch sb) {
-            if (AbstractDungeon.lastCombatMetricKey != null && AbstractDungeon.lastCombatMetricKey.equals(GremlinTown.GREMLIN_HORDE))
+            if (GremlinTown.GREMLIN_HORDE.equals(AbstractDungeon.lastCombatMetricKey))
                 HordeHelper.render(sb);
         }
 
@@ -103,7 +103,7 @@ public class HordePatches {
     public static class victoryPatch {
         @SpirePrefixPatch
         public static void Prefix() {
-            if (AbstractDungeon.lastCombatMetricKey != null && AbstractDungeon.lastCombatMetricKey.equals(GremlinTown.GREMLIN_HORDE))
+            if (GremlinTown.GREMLIN_HORDE.equals(AbstractDungeon.lastCombatMetricKey))
                 HordeHelper.onVictory();
         }
     }
@@ -116,7 +116,7 @@ public class HordePatches {
     public static class backAttackPatch {
         @SpirePostfixPatch
         public static void Postfix() {
-            if (AbstractDungeon.lastCombatMetricKey != null && AbstractDungeon.lastCombatMetricKey.equals(GremlinTown.GREMLIN_HORDE)) {
+            if (GremlinTown.GREMLIN_HORDE.equals(AbstractDungeon.lastCombatMetricKey)) {
                 HordeHelper.calculateBackAttack();
             }
         }

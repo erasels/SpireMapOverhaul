@@ -21,6 +21,7 @@ import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import spireMapOverhaul.SpireAnniversary6Mod;
+import spireMapOverhaul.zones.gremlinTown.powers.SpitefulPower;
 
 import static spireMapOverhaul.util.Wiz.*;
 
@@ -44,8 +45,8 @@ public class GremlinElder extends CustomMonster
     private static final int HP_MAX_A8 = 251;
     private static final int SLAM_DMG = 22;
     private static final int SLAM_DMG_A3 = 24;
-    private static final int SLAP_DMG = 10;
-    private static final int SLAP_DMG_A3 = 11;
+    private static final int SLAP_DMG = 12;
+    private static final int SLAP_DMG_A3 = 13;
 
     private boolean firstTurn;
     private boolean curseTriggered;
@@ -80,6 +81,11 @@ public class GremlinElder extends CustomMonster
         loadAnimation(SKELETON_ATLAS, SKELETON_JSON, 0.4F);
         AnimationState.TrackEntry e = state.setAnimation(0, "animation", true);
         e.setTime(e.getEndTime() * MathUtils.random());
+    }
+
+    @Override
+    public void usePreBattleAction() {
+        applyToEnemy(this, new SpitefulPower(this));
     }
 
     public void takeTurn() {
