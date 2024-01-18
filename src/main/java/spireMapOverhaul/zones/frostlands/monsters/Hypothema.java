@@ -46,7 +46,7 @@ public class Hypothema extends CustomMonster
             hp+=10;
         if (AbstractDungeon.ascensionLevel >= 3)
             dmg++;
-        if (AbstractDungeon.ascensionLevel >= 17)
+        if (AbstractDungeon.ascensionLevel >= 18)
         {
             buff++;
             dmg++;
