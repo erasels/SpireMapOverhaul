@@ -107,7 +107,7 @@ public class CandyLand extends AbstractZone implements RewardModifyingZone, Camp
                 button.usable = false;
             } else if(button instanceof RestOption){
                 String newDescription = ReflectionHacks.getPrivateInherited(button, RestOption.class, "description");
-                newDescription += TEXT[2];
+                newDescription += TEXT[3];
                 ReflectionHacks.setPrivateInherited(button, RestOption.class, "description", newDescription);
 
             }
@@ -140,6 +140,19 @@ public class CandyLand extends AbstractZone implements RewardModifyingZone, Camp
         colorlessCards.clear();
         colorlessCards.add(new Bite());
         colorlessCards.add(new Feed());
+    }
+
+    @Override
+    public AbstractCard getReplacementShopCardForCourier(AbstractCard purchasedCard) {
+        if (purchasedCard.cardID.equals(Bite.ID) || purchasedCard.cardID.equals(Feed.ID)) {
+            return purchasedCard.makeCopy();
+        }
+        else if (getConsumables().stream().anyMatch(c -> c.cardID.equals(purchasedCard.cardID))) {
+            ArrayList<AbstractConsumable> consumables = getConsumables();
+            consumables.removeIf(c -> c.rarity != purchasedCard.rarity || c.type != purchasedCard.type || c.cardID.equals(GoldCandy.ID));
+            return consumables.get(AbstractDungeon.cardRng.random(0, consumables.size() - 1));
+        }
+        return null;
     }
 
     @Override

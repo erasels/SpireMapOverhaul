@@ -27,7 +27,7 @@ public class EncounterModifierPatches {
             MonsterGroup result = __result;
             AbstractZone zone = Wiz.getCurZone();
             if (zone instanceof EncounterModifyingZone) {
-                EncounterModifyingZone z = (EncounterModifyingZone)zone;
+                EncounterModifyingZone z = (EncounterModifyingZone) zone;
                 List<EncounterModifyingZone.ZoneEncounter> encounters = z.getNormalEncounters();
                 if (encounters != null) {
                     encounters = encounters.stream().filter(e -> e.getActNum() == ActUtil.getRealActNum()).collect(Collectors.toList());
@@ -37,8 +37,7 @@ public class EncounterModifierPatches {
                     }
                     if (encounters.isEmpty()) {
                         LastZoneNormalEncounter.lastZoneNormalEncounter = null;
-                    }
-                    else {
+                    } else {
                         EncounterModifyingZone.ZoneEncounter ze = encounters.get(AbstractDungeon.monsterRng.random(encounters.size() - 1));
                         AbstractDungeon.lastCombatMetricKey = ze.getID();
                         LastZoneNormalEncounter.lastZoneNormalEncounter = zone.id + ":" + ze.getID();
@@ -46,8 +45,8 @@ public class EncounterModifierPatches {
                     }
                 }
 
-                addAdditionalMonsters((EncounterModifyingZone)zone, result);
-                result = z.changeEncounter(result);
+                addAdditionalMonsters((EncounterModifyingZone) zone, result);
+                result = z.changeEncounter(result, AbstractDungeon.lastCombatMetricKey);
             }
             return result;
         }
@@ -60,7 +59,7 @@ public class EncounterModifierPatches {
             MonsterGroup result = __result;
             AbstractZone zone = Wiz.getCurZone();
             if (zone instanceof EncounterModifyingZone) {
-                EncounterModifyingZone z = (EncounterModifyingZone)zone;
+                EncounterModifyingZone z = (EncounterModifyingZone) zone;
                 List<EncounterModifyingZone.ZoneEncounter> encounters = z.getEliteEncounters();
                 if (encounters != null) {
                     encounters = encounters.stream().filter(e -> e.getActNum() == ActUtil.getRealActNum()).collect(Collectors.toList());
@@ -70,8 +69,7 @@ public class EncounterModifierPatches {
                     }
                     if (encounters.isEmpty()) {
                         LastZoneEliteEncounter.lastZoneEliteEncounter = null;
-                    }
-                    else {
+                    } else {
                         EncounterModifyingZone.ZoneEncounter ze = encounters.get(AbstractDungeon.monsterRng.random(encounters.size() - 1));
                         AbstractDungeon.lastCombatMetricKey = ze.getID();
                         LastZoneEliteEncounter.lastZoneEliteEncounter = zone.id + ":" + ze.getID();
@@ -79,8 +77,8 @@ public class EncounterModifierPatches {
                     }
                 }
 
-                addAdditionalMonsters((EncounterModifyingZone)zone, result);
-                result = z.changeEncounter(result);
+                addAdditionalMonsters((EncounterModifyingZone) zone, result);
+                result = z.changeEncounter(result, AbstractDungeon.lastCombatMetricKey);
             }
             return result;
         }
@@ -89,7 +87,7 @@ public class EncounterModifierPatches {
     private static void addAdditionalMonsters(EncounterModifyingZone zone, MonsterGroup monsterGroup) {
         List<AbstractMonster> additionalMonsters = zone.getAdditionalMonsters();
         if (additionalMonsters != null) {
-            float currentX = monsterGroup.monsters.stream().map(m -> m.drawX).min(Comparator.comparingDouble(x -> (double)x)).orElse(0.0f);
+            float currentX = monsterGroup.monsters.stream().map(m -> m.drawX).min(Comparator.comparingDouble(x -> (double) x)).orElse(0.0f);
             for (AbstractMonster monster : additionalMonsters) {
                 // We give healthy additional space to account for fights such as Reptomancer, which spawn minions in
                 // the empty space near the main monster. Since there are modded enemies with this behavior too, this

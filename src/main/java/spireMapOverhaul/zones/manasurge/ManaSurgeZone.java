@@ -7,13 +7,11 @@ import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.events.AbstractEvent;
 import com.megacrit.cardcrawl.ui.campfire.AbstractCampfireOption;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.zoneInterfaces.*;
-import spireMapOverhaul.zones.manasurge.events.ManaCycloneEvent;
 import spireMapOverhaul.zones.manasurge.modifiers.AbstractManaSurgeModifier;
 import spireMapOverhaul.zones.manasurge.modifiers.common.negative.FeebleModifier;
 import spireMapOverhaul.zones.manasurge.modifiers.common.negative.FlawedModifier;
@@ -236,12 +234,12 @@ public class ManaSurgeZone extends AbstractZone implements
     }
 
     @Override
-    public String forceEvent() {
-        return ModifiedEventRateZone.returnIfUnseen(ManaCycloneEvent.ID);
+    public float zoneSpecificEventRate() {
+        return 1;
     }
 
     @Override
     public Color getColor() {
-        return new Color(0.45f,0.49f, 0.91f, 1f);
+        return new Color(0.3f,0.15f, 0.85f, 0.55f);
     }
 }

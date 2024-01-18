@@ -1,0 +1,18 @@
+{
+  "${ModID}:CollectingSpree": {
+    "NAME": "The Junk Heap",
+    "DESCRIPTIONS": [
+    "You come across what appears to be a large pile of junk, but upon further inspection, you see lots of ~useful~ ~cards~ littered around the refuse. NL It seems so ~tempting~ to pick some of them up. There's so many that you're not sure you'll ~know~ ~when~ ~to~ ~stop!~",
+      "You resist the urge, and take your leave.",
+      "You search and search, but it seems there is nothing left to take."
+    ],
+    "OPTIONS": [
+      "[Pickup] #bGain #ba #bcard #breward. #yIncrease #ythe #ychance #yto #ypick #yup #ymore.",
+      "[Try to Leave] ",
+      "% chance to leave. ",
+      "% chance to gain a card reward.",
+      "Choose a card.",
+      "[Leave]"
+    ]
+  }
+}

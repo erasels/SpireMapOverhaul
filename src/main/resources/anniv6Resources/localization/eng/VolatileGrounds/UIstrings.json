@@ -1,0 +1,9 @@
+{
+  "${ModID}:VolatileGrounds": {
+    "TEXT": [
+      "Volatile Grounds",
+      "Houses various enemies with explosive abilities. Play around their triggers carefully or block their blasts.",
+      "lobbienjonsji"
+    ]
+  }
+}

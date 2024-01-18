@@ -1,0 +1,38 @@
+
+{
+	"${ModID}:BellPepper":
+	{
+		"DESCRIPTION": ["Apply {0} #yPoison to a random enemy {1} time(s)."],
+		"NAME": "Bell Pepper"
+	},
+	"${ModID}:Carrot":
+	{
+		"DESCRIPTION": ["Deal {0} damage to a random enemy {1} time(s)."],
+		"NAME": "Carrot"
+	},
+	"${ModID}:Leek":
+	{
+		"DESCRIPTION": ["Apply {0} #yWeak to a random enemy {1} time(s)."],
+		"NAME": "Leek"
+	},
+	"${ModID}:Onion":
+	{
+		"DESCRIPTION": ["Apply {0} #yVulnerable to a random enemy {1} time(s)."],
+		"NAME": "Onion"
+	},
+	"${ModID}:Pumpkin":
+	{
+		"DESCRIPTION": ["Gain {0} #yBlock."],
+		"NAME": "Pumpkin"
+	},
+	"${ModID}:Radish":
+	{
+		"DESCRIPTION": ["Deal {0} damage to a random enemy {1} time(s)."],
+		"NAME": "Radish"
+	},
+	"${ModID}:Tomato":
+	{
+		"DESCRIPTION": ["Gain {0} #yStrength."],
+		"NAME": "Tomato"
+	}
+}

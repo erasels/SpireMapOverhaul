@@ -28,7 +28,7 @@ public class HeavenlyCloudsZone extends AbstractZone implements CombatModifyingZ
     public HeavenlyCloudsZone() {
         super(ID, Icons.MONSTER);
         this.width = 3;
-        this.maxHeight = 4;
+        this.maxWidth = 4;
         this.height = 4;
         this.maxHeight = 5;
     }
@@ -72,8 +72,8 @@ public class HeavenlyCloudsZone extends AbstractZone implements CombatModifyingZ
                 atb(new TalkAction(mo, TEXT[AbstractDungeon.monsterRng.random(TEXT.length - 1)]));
             } else if (!mo.hasPower(MinionPower.POWER_ID)) {
                 atb(new ApplyPowerAction(mo, mo, new HeavenlyFlightPower(mo, flightAmount), flightAmount));
-                mo.currentHealth = (int)((float)mo.currentHealth * HEALTH_MODIFIER);
-                mo.maxHealth = (int)((float)mo.maxHealth * HEALTH_MODIFIER);
+                mo.currentHealth = Math.max((int)((float)mo.currentHealth * HEALTH_MODIFIER), 1);
+                mo.maxHealth = Math.max((int)((float)mo.maxHealth * HEALTH_MODIFIER), 1);
                 mo.healthBarUpdatedEvent();
                 mo.currentBlock = (int)((float)mo.currentBlock * HEALTH_MODIFIER); // wreck spheric guardian
             }

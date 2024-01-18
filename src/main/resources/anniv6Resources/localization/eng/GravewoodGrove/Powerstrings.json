@@ -1,0 +1,8 @@
+{
+  "${ModID}:DeadBranch": {
+    "NAME": "Dead Branch",
+    "DESCRIPTIONS": [
+      "Whenever you #yExhaust a card, add a random card to your hand. NL #yExhaust the first card you play each turn."
+    ]
+  }
+}

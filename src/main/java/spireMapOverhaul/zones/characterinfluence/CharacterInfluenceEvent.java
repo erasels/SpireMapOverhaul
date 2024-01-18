@@ -17,6 +17,7 @@ import com.megacrit.cardcrawl.helpers.RelicLibrary;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.rewards.RewardItem;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
 import java.util.ArrayList;
 
@@ -47,7 +48,18 @@ public class CharacterInfluenceEvent extends PhasedEvent {
             }
         }.addOption(OPTIONS[0], (i)->transitionKey("Combat")).addOption(OPTIONS[1], (i)->this.openMap()));
 
-        registerPhase("Combat", new CombatPhase(AbstractDungeon.eliteMonsterList.remove(0)).setType(AbstractMonster.EnemyType.ELITE).addRewards(true, (room)->{
+        registerPhase("Combat", new CombatPhase(AbstractDungeon.eliteMonsterList.remove(0)) {
+            //This is a slightly hacky fix for a bug with PhasedEvent; it incorrectly sets the room phase to incomplete
+            //even though this phase has no follow up and the event is intended to end with the combat rewards
+            //There's a BaseMod PR with a fix, so once BaseMod is updated and everyone has that update, we can remove this
+            //See https://github.com/daviscook477/BaseMod/pull/422
+            @Override
+            public boolean reopen(PhasedEvent phasedEvent) {
+                boolean b = super.reopen(phasedEvent);
+                AbstractDungeon.getCurrRoom().phase = AbstractRoom.RoomPhase.COMPLETE;
+                return b;
+            }
+        }.setType(AbstractMonster.EnemyType.ELITE).addRewards(true, (room)->{
 
             //Adds all starting relics to the reward screen
             ArrayList<String> relicStrings = new ArrayList<>();

@@ -22,11 +22,13 @@ import spireMapOverhaul.BetterMapGenerator.MapPlanner;
 import spireMapOverhaul.BetterMapGenerator.MapPlanner.PlanningNode;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.util.ActUtil;
+import spireMapOverhaul.util.DownfallUtil;
 import spireMapOverhaul.util.TexLoader;
 import spireMapOverhaul.util.ZoneShapeMaker;
 
-import java.awt.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
@@ -37,6 +39,7 @@ public abstract class AbstractZone {
     private static final float OFFSET_X = Settings.isMobile ? 496.0F * Settings.xScale : 560.0F * Settings.xScale;
     private static final float OFFSET_Y = 180.0F * Settings.scale;
     private static final float SPACING_X = Settings.isMobile ? (int)(Settings.xScale * 64.0F) * 2.2F : (int)(Settings.xScale * 64.0F) * 2.0F;
+    private static String[] GLOBAL_TEXT = null;
     private static final String[] NO_TEXT = new String[] { };
     private static final int NO_ELITES_BOUNDARY_ROW = 4;
     private static final int TREASURE_ROW = 8;
@@ -141,6 +144,13 @@ public abstract class AbstractZone {
         }
     }
 
+    private String[] getGlobalText() {
+        if (GLOBAL_TEXT == null) {
+            GLOBAL_TEXT = CardCrawlGame.languagePack.getUIString(makeID("ZoneTooltip")).TEXT;
+        }
+        return GLOBAL_TEXT;
+    }
+
     public void updateDescription() {
         StringBuilder sb = new StringBuilder();
         for(Icons icon : icons) {
@@ -149,6 +159,8 @@ public abstract class AbstractZone {
         if (icons.length > 0)
             sb.append(" NL ");
         sb.append(getDescriptionText());
+        sb.append(" NL NL ");
+        sb.append(getGlobalText()[0].replace("{0}", FontHelper.colorString(TEXT[2], "p")));
         tooltipBody = sb.toString();
     }
 
@@ -177,12 +189,19 @@ public abstract class AbstractZone {
             if (showTooltip) {
                 TipHelper.renderGenericTip(InputHelper.mX + 40f*Settings.scale, InputHelper.mY - 65f*Settings.scale, name, tooltipBody);
             }
+        }
+    }
 
+    public void renderNameOnMap(SpriteBatch sb, float alpha) {
+        if (alpha > 0) {
+            // Not sure why this is the exact value that seems to work for adjusting the labels to be in the right place
+            // with Downfall (something about how it shifts the map to put the boss at the bottom?), but empirically it
+            // works. A bit hacky, but fine for now.
+            float adjustedLabelY = labelY + (DownfallUtil.isDownfallMode() ? 3 : 0);
             FontHelper.renderFontCentered(sb, FontHelper.menuBannerFont, name,
-                    labelX * SPACING_X + OFFSET_X, labelY * Settings.MAP_DST_Y + OFFSET_Y + DungeonMapScreen.offsetY,
+                    labelX * SPACING_X + OFFSET_X,  adjustedLabelY * Settings.MAP_DST_Y + OFFSET_Y + DungeonMapScreen.offsetY,
                     labelColor.cpy().mul(1, 1, 1, alpha), 0.8f
             );
-
         }
     }
 

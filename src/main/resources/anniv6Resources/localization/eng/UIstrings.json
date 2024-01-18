@@ -1,12 +1,13 @@
 {
   "${ModID}:ConfigMenuText": {
     "TEXT": [
-      "Spire Map Overhaul",
+      "Spire Biomes",
       "StS Modding Community",
       "Makes the map more interesting.",
       "Enabled",
-      "Make zone icons larger but cut off by the zone's shape.",
-      "Don't repeat zones during a run."
+      "Make biome icons larger but cut off by the biome's shape.",
+      "Don't repeat biomes during a run.",
+      "Enable shaders"
     ]
   },
   "${ModID}:SingleCardReward": {
@@ -33,19 +34,24 @@
   },
   "${ModID}:RunHistoryScreen": {
     "TEXT": [
-      "Zone: {0}"
+      "Biome: {0}"
     ]
   },
   "${ModID}:ZonePotionsPatch": {
     "TEXT": [
-      "Zone:",
-      "Potions that can only be obtained in their specific zone."
+      "Biome:",
+      "Potions that can only be obtained in their specific biome."
     ]
   },
   "${ModID}:CharacterSelectScreen": {
     "TEXT": [
-      "Enable Spawning Zones",
-      "Adds zones to the Spire, which change parts of the map to have new content."
+      "Enable Spawning Biomes",
+      "Adds biomes to the Spire, which change parts of the map to have new content."
+    ]
+  },
+  "${ModID}:ZoneTooltip": {
+    "TEXT": [
+      "#pAuthor: {0}"
     ]
   }
 }
