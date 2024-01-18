@@ -28,6 +28,16 @@ public class CombatModifierPatches {
     private static UIStrings uiStrings;
     private static boolean hideButton = true;
 
+    @SpirePatch2(clz =AbstractPlayer.class, method = "preBattlePrep")
+    public static class BeforePreCombat {
+        @SpirePrefixPatch
+        public static void patch() {
+            Wiz.forCurZone(CombatModifyingZone.class, z -> {
+                z.beforePreBattlePrep();
+            });
+        }
+    }
+
     @SpirePatch2(clz =AbstractPlayer.class, method = "applyPreCombatLogic")
     public static class PreCombat {
         @SpirePostfixPatch
