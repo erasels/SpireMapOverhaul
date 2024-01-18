@@ -1,7 +1,9 @@
 package spireMapOverhaul.util;
 
+import basemod.DevConsole;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -17,9 +19,11 @@ import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.random.Random;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.actions.TimedVFXAction;
 import spireMapOverhaul.patches.ZonePatches;
@@ -58,6 +62,54 @@ public class Wiz {
 
     public static CardGroup deck() {
         return AbstractDungeon.player.masterDeck;
+    }
+
+    public static boolean isPlayerTurn(boolean beforeEndTurnEvents) {
+        return  !AbstractDungeon.actionManager.turnHasEnded && !AbstractDungeon.player.isEndingTurn;
+    }
+
+    public static boolean canAcceptInput() {
+        return isPlayerTurn(true) && AbstractDungeon.actionManager.phase == GameActionManager.Phase.WAITING_ON_USER && AbstractDungeon.actionManager.cardQueue.isEmpty() && AbstractDungeon.actionManager.actions.isEmpty() && !DevConsole.visible && !AbstractDungeon.isScreenUp && !CardCrawlGame.isPopupOpen;
+    }
+
+    public static void addRelicToPool(AbstractRelic origRelic) {
+        switch (origRelic.tier) {
+            case COMMON:
+                AbstractDungeon.commonRelicPool.add(origRelic.relicId);
+                break;
+            case UNCOMMON:
+                AbstractDungeon.uncommonRelicPool.add(origRelic.relicId);
+                break;
+            case RARE:
+                AbstractDungeon.rareRelicPool.add(origRelic.relicId);
+                break;
+            case SHOP:
+                AbstractDungeon.shopRelicPool.add(origRelic.relicId);
+                break;
+            case BOSS:
+                AbstractDungeon.bossRelicPool.add(origRelic.relicId);
+                break;
+            default:
+                SpireAnniversary6Mod.logger.info("Relic tier does not have a pool: " + origRelic.tier);
+                break;
+        }
+    }
+
+    public static ArrayList<String> getRelicPool(AbstractRelic.RelicTier tier) {
+        switch (tier) {
+            case COMMON:
+                return AbstractDungeon.commonRelicPool;
+            case UNCOMMON:
+                return AbstractDungeon.uncommonRelicPool;
+            case RARE:
+                return AbstractDungeon.rareRelicPool;
+            case BOSS:
+                return AbstractDungeon.bossRelicPool;
+            case SHOP:
+                return AbstractDungeon.shopRelicPool;
+            default:
+                return null;
+        }
     }
 
     public static void forAllCardsInList(Consumer<AbstractCard> consumer, ArrayList<AbstractCard> cardsList) {
