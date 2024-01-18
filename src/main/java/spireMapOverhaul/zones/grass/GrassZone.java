@@ -6,28 +6,23 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.RelicLibrary;
 import com.megacrit.cardcrawl.localization.UIStrings;
-import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.relics.Ginger;
-import com.megacrit.cardcrawl.relics.HappyFlower;
-import com.megacrit.cardcrawl.relics.Turnip;
+import com.megacrit.cardcrawl.relics.*;
 import com.megacrit.cardcrawl.rewards.RewardItem;
+import com.megacrit.cardcrawl.shop.ShopScreen;
+import com.megacrit.cardcrawl.shop.StoreRelic;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.util.Wiz;
-import spireMapOverhaul.zoneInterfaces.CombatModifyingZone;
-import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
-import spireMapOverhaul.zoneInterfaces.RenderableZone;
-import spireMapOverhaul.zoneInterfaces.RewardModifyingZone;
+import spireMapOverhaul.zoneInterfaces.*;
 import spireMapOverhaul.zones.grass.vegetables.*;
 import spireMapOverhaul.zones.mirror.powers.MirrorZonePower;
 
 import java.util.ArrayList;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-public class GrassZone extends AbstractZone implements CombatModifyingZone, RenderableZone, RewardModifyingZone {
+public class GrassZone extends AbstractZone implements CombatModifyingZone, RenderableZone, RewardModifyingZone, ShopModifyingZone {
     public static final int SPAWN_VEGS = 3;
-    public static final float GRASS_RELIC_CHANCE = 0.5f;
     public static final String ID = "Grass";
     public static final String[] GRASS_RELICS = new String[] {
             Turnip.ID,
@@ -38,11 +33,15 @@ public class GrassZone extends AbstractZone implements CombatModifyingZone, Rend
     private final ArrayList<AbstractVegetable> vegetables = new ArrayList<>();
 
     public GrassZone() {
-        super(ID, Icons.MONSTER, Icons.CHEST);
+        super(ID, Icons.MONSTER, Icons.SHOP, Icons.CHEST);
         this.width = 2;
         this.maxWidth = 4;
         this.height = 3;
         this.maxHeight = 4;
+    }
+
+    private static float getRelicChance() {
+        return 1f / GRASS_RELICS.length;
     }
 
     @Override
@@ -112,7 +111,7 @@ public class GrassZone extends AbstractZone implements CombatModifyingZone, Rend
                             && !AbstractDungeon.player.hasRelic(relicID)
                             && newRelic.canSpawn()
                             && (relicPool == null || relicPool.contains(relicID))
-                            && AbstractDungeon.relicRng.randomBoolean(GRASS_RELIC_CHANCE)) {
+                            && AbstractDungeon.relicRng.randomBoolean(getRelicChance())) {
                         rewardItem.relic = newRelic.makeCopy();
                         // Add the old relic back in to the pool so that it can spawn again
                         Wiz.addRelicToPool(origRelic);
@@ -123,6 +122,32 @@ public class GrassZone extends AbstractZone implements CombatModifyingZone, Rend
         }
     }
 
+    @Override
+    public void postCreateShopRelics(ShopScreen screen, ArrayList<StoreRelic> relics) {
+        if (!relics.isEmpty()) {
+            StoreRelic first = relics.get(0);
+            AbstractRelic origRelic = first.relic;
+            for (String relicID : GRASS_RELICS) {
+                AbstractRelic newRelic = RelicLibrary.getRelic(relicID);
+                if (newRelic != null) {
+                    ArrayList<String> relicPool = Wiz.getRelicPool(newRelic.tier);
+                    // Check if the relic is already in the reward or in the players inventory, and check to see if it is actually in the pool
+                    if (!relicID.equals(origRelic.relicId)
+                            && !AbstractDungeon.player.hasRelic(relicID)
+                            && newRelic.canSpawn()
+                            && (relicPool == null || relicPool.contains(relicID))
+                            && AbstractDungeon.relicRng.randomBoolean(getRelicChance())) {
+                        first.relic = newRelic.makeCopy();
+                        // Add the old relic back in to the pool so that it can spawn again
+                        Wiz.addRelicToPool(origRelic);
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    @Override
     public void postRenderBackground(SpriteBatch sb) {
         for (AbstractVegetable veg : vegetables) {
             veg.render(sb);
@@ -138,6 +163,7 @@ public class GrassZone extends AbstractZone implements CombatModifyingZone, Rend
         vegetable.onSpawn(getCount());
     }
 
+    @Override
     public void update() {
         for (AbstractVegetable veg : vegetables) {
             veg.update();

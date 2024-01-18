@@ -85,7 +85,7 @@ public class Wiz {
                 AbstractDungeon.bossRelicPool.add(origRelic.relicId);
                 break;
             default:
-                SpireAnniversary6Mod.logger.info("what.");
+                SpireAnniversary6Mod.logger.info("Relic tier does not have a pool: " + origRelic.tier);
                 break;
         }
     }
