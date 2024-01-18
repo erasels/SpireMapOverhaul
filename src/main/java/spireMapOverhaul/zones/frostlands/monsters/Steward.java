@@ -34,8 +34,8 @@ public class Steward extends CustomMonster
     public boolean firstMove = true, spawned = false;
     private static final byte PREP_ATTACK = 1;
     private static final byte ATTACK = 2;
-    private static final int HP = 48, DMG = 18;
-    private static final int A7_HP = 64, A7_DMG = 20;
+    private static final int HP = 48, DMG = 16;
+    private static final int A7_HP = 64;
     float currentX, currentY, currentHB;
 
     public Steward() {
@@ -50,16 +50,16 @@ public class Steward extends CustomMonster
         currentY = y;
         currentHB = 336;
         type = EnemyType.NORMAL;
+        int hp = HP;
+        int dmg = DMG;
+        if (AbstractDungeon.ascensionLevel >= 2)
+            dmg++;
         if (AbstractDungeon.ascensionLevel >= 7)
-        {
-            setHp(A7_HP, A7_HP);
-            damage.add(new DamageInfo(this, A7_DMG));
-        }
-        else
-        {
-            setHp(HP, HP);
-            damage.add(new DamageInfo(this, DMG));
-        }
+            hp += 12;
+        if (AbstractDungeon.ascensionLevel >= 17)
+            dmg += 3;
+        setHp(hp, hp + 8);
+        damage.add(new DamageInfo(this, dmg));
     }
 
     public Steward(int HP, final float x, final float y) {
@@ -76,11 +76,12 @@ public class Steward extends CustomMonster
         firstMove = false;
         spawned = true;
         type = EnemyType.NORMAL;
-        setHp(HP, HP+1);
-        if (AbstractDungeon.ascensionLevel >= 7)
-            damage.add(new DamageInfo(this, (int)(A7_DMG * .8f)));
-        else
-            damage.add(new DamageInfo(this, (int)(DMG * .8f)));
+        int dmg = DMG;
+        if (AbstractDungeon.ascensionLevel >= 2)
+            dmg++;
+        if (AbstractDungeon.ascensionLevel >= 17)
+            dmg += 3;
+        damage.add(new DamageInfo(this, (int)(dmg * .8f)));
         setHp(HP, HP);
     }
 

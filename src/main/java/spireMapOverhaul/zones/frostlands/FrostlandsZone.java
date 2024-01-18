@@ -19,6 +19,9 @@ import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.zoneInterfaces.*;
 import spireMapOverhaul.zones.frostlands.monsters.*;
+import spireMapOverhaul.zones.frostlands.relics.Frostcoal;
+import spireMapOverhaul.zones.frostlands.relics.OldHat;
+import spireMapOverhaul.zones.frostlands.relics.SpruceCharm;
 import spireMapOverhaul.zones.frostlands.vfx.SnowEffect;
 import spireMapOverhaul.zones.invasion.InvasionUtil;
 import spireMapOverhaul.zones.invasion.cards.HandOfTheAbyss;
@@ -73,58 +76,11 @@ public class FrostlandsZone extends AbstractZone implements EncounterModifyingZo
     }
 
     @Override
-    public void modifyReward(RewardItem rewardItem) {
-        if (AbstractDungeon.getCurrRoom().eliteTrigger && rewardItem.type == RewardItem.RewardType.GOLD) {
-            rewardItem.incrementGold(ELITE_EXTRA_GOLD);
-        }
-    }
-
-    @Override
-    public void modifyRewards(ArrayList<RewardItem> rewards) {
-        for (int i = 0; i < rewards.size(); i++) {
-            if (rewards.get(i).type == RewardItem.RewardType.RELIC) {
-                RewardItem rewardItem = new RewardItem();
-                //Note that this reward does not get the normal act-dependent chance of cards being upgraded
-                //rewardItem.cards = InvasionUtil.getRewardCards();
-                for (AbstractRelic r : AbstractDungeon.player.relics) {
-                    for (AbstractCard c : rewardItem.cards) {
-                        r.onPreviewObtainCard(c);
-                    }
-                }
-                rewards.set(i, rewardItem);
-            }
-        }
-    }
-
-    @Override
-    public void postCreateShopCards(ArrayList<AbstractCard> coloredCards, ArrayList<AbstractCard> colorlessCards) {
-        ArrayList<AbstractCard> cards = new ArrayList<>();
-        cards.addAll(InvasionUtil.getSpells());
-        cards.addAll(InvasionUtil.getBlades());
-        cards.add(new HandOfTheAbyss());
-        Collections.shuffle(cards, new java.util.Random(AbstractDungeon.merchantRng.randomLong()));
-        colorlessCards.set(0, cards.get(0));
-        colorlessCards.set(1, cards.get(1));
-    }
-
-    @Override
     public List<ZoneEncounter> getNormalEncounters() {
         return Arrays.asList(
             new ZoneEncounter(Steward.ID, 2, () -> new Steward(0.0f, 0.0f))
         );
     }
-/*
-    @Override
-    public List<ZoneEncounter> getEliteEncounters() {
-        return Arrays.asList(
-            new ZoneEncounter(modID + ":SnowmanMafia", 2, () -> new MonsterGroup(
-                    new AbstractMonster[] {
-                            new Cole(-450.0F, 0.0F),
-                            new Spruce(-150.0F, 0.0F),
-                            new Hypothema(150.0F, 0.0F)
-                    }))
-        );
-    }*/
 
     @Override
     public void update() {

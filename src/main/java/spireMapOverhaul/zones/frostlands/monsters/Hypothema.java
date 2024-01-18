@@ -26,9 +26,9 @@ public class Hypothema extends CustomMonster
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
     private static final String IMG = SpireAnniversary6Mod.makeImagePath("monsters/Frostlands/Hypothema.png");
-    public int move = 0;
+    public int move = 0, buff = 0;
     private static final byte FIRST_MOVE = 0, PRIMARY = 1, SECONDARY = 2;
-    private static final int HP = 30, HP_MAX = 40, DMG = 6, A7_DMG = 8;
+    private static final int HP = 30, DMG = 6;
 
     public Hypothema() {
         this(0.0f, 0.0f);
@@ -38,17 +38,21 @@ public class Hypothema extends CustomMonster
         super(Hypothema.NAME, ID, HP, 20.0F, -10.0F, 145.0F, 286, IMG, x, y);
         loadAnimation(modID + "Resources/images/monsters/Frostlands/Hypothema.atlas", modID + "Resources/images/monsters/Frostlands/Hypothema.json", 1.75F);
         state.setAnimation(0, "idle", true);
-        type = EnemyType.NORMAL;
-        if (AbstractDungeon.ascensionLevel >= 7)
+        type = EnemyType.ELITE;
+        buff = 0;
+        int hp = HP;
+        int dmg = DMG;
+        if (AbstractDungeon.ascensionLevel >= 8)
+            hp+=10;
+        if (AbstractDungeon.ascensionLevel >= 3)
+            dmg++;
+        if (AbstractDungeon.ascensionLevel >= 17)
         {
-            setHp(HP+8, HP_MAX+8);
-            damage.add(new DamageInfo(this, A7_DMG));
+            buff++;
+            dmg++;
         }
-        else
-        {
-            setHp(HP, HP_MAX);
-            damage.add(new DamageInfo(this, DMG));
-        }
+        setHp(hp, hp+10);
+        damage.add(new DamageInfo(this, dmg));
         move = AbstractDungeon.monsterRng.random(1, 2);
     }
 
@@ -70,7 +74,7 @@ public class Hypothema extends CustomMonster
                 //Speech bubble?
                 for (AbstractMonster m: AbstractDungeon.getMonsters().monsters) {
                     if(!m.isDeadOrEscaped())
-                        Wiz.atb(new ApplyPowerAction(m, this, new StrengthPower(m, 2)));
+                        Wiz.atb(new ApplyPowerAction(m, this, new StrengthPower(m, 1+buff)));
                 }
                 break;
             default:

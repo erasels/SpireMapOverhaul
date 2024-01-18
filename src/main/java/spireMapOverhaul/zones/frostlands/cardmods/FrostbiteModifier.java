@@ -28,6 +28,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToDiscardEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
+import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.util.TexLoader;
 import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.zones.frostlands.vfx.SnowEffect;
@@ -74,20 +75,6 @@ public class FrostbiteModifier extends AbstractCardModifier {
         ArrayList<TooltipInfo> tooltips = new ArrayList<>();
         tooltips.add(new TooltipInfo(BaseMod.getKeywordTitle(makeID("frostbite")), BaseMod.getKeywordDescription(makeID("frostbite"))));
         return tooltips;
-    }
-
-//    @Override
-//    public void onUpdate(AbstractCard card) {
-//    }
-    @Override
-    public void onDrawn(AbstractCard card) {
-        card.dontTriggerOnUseCard = false;
-    }
-
-    @Override
-    public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        //if (card.dontTriggerOnUseCard)
-        //    Wiz.atb(new DamageAction(AbstractDungeon.player, new DamageInfo(AbstractDungeon.player, 4, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
     }
 
     @Override

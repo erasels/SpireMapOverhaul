@@ -28,7 +28,7 @@ public class Spruce extends CustomMonster
     private static final String IMG = SpireAnniversary6Mod.makeImagePath("monsters/Frostlands/Spruce.png");
     public int move = 0;
     private static final byte FIRST_MOVE = 0, PRIMARY = 1, SECONDARY = 2;
-    private static final int HP = 30, HP_MAX = 40, DMG = 12, A7_DMG = 14, BLK = 8, DMG2 = 8;
+    private static final int HP = 35, DMG = 12;
 
     public Spruce() {
         this(0.0f, 0.0f);
@@ -38,18 +38,18 @@ public class Spruce extends CustomMonster
         super(Spruce.NAME, ID, HP, 20.0F, -10.0F, 190.0F, 235, IMG, x, y);
         loadAnimation(modID + "Resources/images/monsters/Frostlands/Spruce.atlas", modID + "Resources/images/monsters/Frostlands/Spruce.json", 1.75F);
         state.setAnimation(0, "idle", true);
-        type = EnemyType.NORMAL;
-        if (AbstractDungeon.ascensionLevel >= 7)
-        {
-            setHp(HP+8, HP_MAX+8);
-            damage.add(new DamageInfo(this, A7_DMG));
-        }
-        else
-        {
-            setHp(HP, HP_MAX);
-            damage.add(new DamageInfo(this, DMG));
-        }
-        damage.add(new DamageInfo(this, DMG2));
+        type = EnemyType.ELITE;
+        int hp = HP;
+        int dmg = DMG;
+        if (AbstractDungeon.ascensionLevel >= 8)
+            hp+=10;
+        if (AbstractDungeon.ascensionLevel >= 3)
+            dmg++;
+        if (AbstractDungeon.ascensionLevel >= 17)
+            dmg += 2;
+        setHp(hp, hp+10);
+        damage.add(new DamageInfo(this, dmg));
+        damage.add(new DamageInfo(this, (int)(.67f * dmg)));
         move = AbstractDungeon.monsterRng.random(1, 2);
     }
 
@@ -69,7 +69,7 @@ public class Spruce extends CustomMonster
             case 2:
                 Wiz.atb(new AnimateSlowAttackAction(this));
                 Wiz.atb(new DamageAction(AbstractDungeon.player, damage.get(1), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
-                Wiz.atb(new GainBlockAction(this, BLK));
+                Wiz.atb(new GainBlockAction(this, damage.get(1).base));
                 break;
             default:
                 //Speech bubble

@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import spireMapOverhaul.abstracts.AbstractSMOPower;
 import spireMapOverhaul.util.Wiz;
+import spireMapOverhaul.zones.frostlands.FrostlandsZone;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 
@@ -18,7 +19,7 @@ public class ChillPower  extends AbstractSMOPower {
     public static String[] DESCRIPTIONS = strings.DESCRIPTIONS;
 
     public ChillPower(AbstractCreature owner, int amount) {
-        super(POWER_ID, strings.NAME, "Frostlands", AbstractPower.PowerType.DEBUFF, true, owner, amount);
+        super(POWER_ID, strings.NAME, FrostlandsZone.ID, AbstractPower.PowerType.DEBUFF, false, owner, amount);
         isTurnBased = true;
     }
 

@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.AbstractEvent;
 import com.megacrit.cardcrawl.events.AbstractImageEvent;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
@@ -30,6 +31,7 @@ public class SnowmanMafiaEvent extends AbstractImageEvent {
     private CurScreen screen = CurScreen.INTRO;
     public static final String IMG = SpireAnniversary6Mod.makeImagePath("events/Frostlands/SnowmanMafia.png");
     public static boolean usedContraption;
+    public AbstractRelic oldHat, frostcoal, spruceCharm;
 
 
     private enum CurScreen {
@@ -41,6 +43,9 @@ public class SnowmanMafiaEvent extends AbstractImageEvent {
         imageEventText.setDialogOption(OPTIONS[0]);
         imageEventText.updateDialogOption(1, OPTIONS[1]);
         usedContraption = false;
+        oldHat = new OldHat();
+        frostcoal = new Frostcoal();
+        spruceCharm = new SpruceCharm();
     }
 
     protected void buttonEffect(int buttonPressed) {
@@ -69,8 +74,6 @@ public class SnowmanMafiaEvent extends AbstractImageEvent {
                         screen = CurScreen.POST_COMBAT;
                         imageEventText.clearRemainingOptions();
                         imageEventText.updateBodyText(DESCRIPTIONS[3]);
-                        imageEventText.updateDialogOption(0, OPTIONS[2]);
-                        logMetric("Fight");
                         (AbstractDungeon.getCurrRoom()).monsters = new MonsterGroup(
                                 new AbstractMonster[] {
                                         new Cole(-450.0F, 0.0F),
@@ -88,21 +91,18 @@ public class SnowmanMafiaEvent extends AbstractImageEvent {
             case POST_COMBAT:
                 switch (buttonPressed) {
                     case 0:
-                        AbstractRelic abstractRelic = new OldHat();
-                        AbstractDungeon.getCurrRoom().spawnRelicAndObtain(drawX, drawY, abstractRelic);
+                        AbstractDungeon.getCurrRoom().spawnRelicAndObtain(drawX, drawY, oldHat.makeCopy());
                         break;
                     case 1:
-                        AbstractRelic abstractRelic2 = new Frostcoal();
-                        AbstractDungeon.getCurrRoom().spawnRelicAndObtain(drawX, drawY, abstractRelic2);
+                        AbstractDungeon.getCurrRoom().spawnRelicAndObtain(drawX, drawY, frostcoal.makeCopy());
                         break;
                     case 2:
-                        AbstractRelic abstractRelic3 = new SpruceCharm();
-                        AbstractDungeon.getCurrRoom().spawnRelicAndObtain(drawX, drawY, abstractRelic3);
+                        AbstractDungeon.getCurrRoom().spawnRelicAndObtain(drawX, drawY, spruceCharm.makeCopy());
                         break;
                 }
                 imageEventText.clearRemainingOptions();
                 imageEventText.updateBodyText(DESCRIPTIONS[5]);
-                imageEventText.updateDialogOption(0, OPTIONS[8]);
+                imageEventText.updateDialogOption(0, OPTIONS[4]);
                 screen = CurScreen.RECOVER;
                 return;
             case DENY:
@@ -116,9 +116,11 @@ public class SnowmanMafiaEvent extends AbstractImageEvent {
                 switch (buttonPressed) {
                     case 0:
                         AbstractDungeon.player.heal(10);
-                        openMap();
+                        imageEventText.clearRemainingOptions();
+                        imageEventText.updateDialogOption(0, OPTIONS[8]);
                         break;
                 }
+                screen = CurScreen.LEAVE;
                 return;
             case LEAVE:
                 openMap();
@@ -127,21 +129,19 @@ public class SnowmanMafiaEvent extends AbstractImageEvent {
         openMap();
     }
 
-    public void logMetric(String actionTaken) {
-        AbstractEvent.logMetric("Colosseum", actionTaken);
-    }
-
     public void reopen() {
-        if (this.screen != CurScreen.DENY) {
-            AbstractDungeon.resetPlayer();
-            AbstractDungeon.player.drawX = Settings.WIDTH * 0.25F;
-            AbstractDungeon.player.preBattlePrep();
-            enterImageFromCombat();
-            imageEventText.clearRemainingOptions();
+        AbstractDungeon.resetPlayer();
+        AbstractDungeon.player.drawX = Settings.WIDTH * 0.25F;
+        AbstractDungeon.player.preBattlePrep();
+        enterImageFromCombat();
+        imageEventText.clearRemainingOptions();
+        if (this.screen != CurScreen.RECOVER) {
+            screen = CurScreen.POST_COMBAT;
+            imageEventText.optionList.clear();
             imageEventText.updateBodyText(DESCRIPTIONS[3]);
-            imageEventText.updateDialogOption(0, OPTIONS[5]);
-            imageEventText.updateDialogOption(1, OPTIONS[6]);
-            imageEventText.updateDialogOption(2, OPTIONS[7]);
+            imageEventText.setDialogOption(OPTIONS[5], oldHat.makeCopy());
+            imageEventText.setDialogOption(OPTIONS[6], frostcoal.makeCopy());
+            imageEventText.setDialogOption(OPTIONS[7], spruceCharm.makeCopy());
         }
         else
         {
@@ -153,7 +153,7 @@ public class SnowmanMafiaEvent extends AbstractImageEvent {
 
     public void usedContraption()
     {
-        screen = CurScreen.DENY;
+        screen = CurScreen.RECOVER;
         imageEventText.clearRemainingOptions();
         imageEventText.updateBodyText(DESCRIPTIONS[4]);
         imageEventText.updateDialogOption(0, OPTIONS[4]);

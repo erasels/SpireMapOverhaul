@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.actions.animations.AnimateSlowAttackAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
@@ -24,9 +25,9 @@ public class Cole extends CustomMonster
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
     private static final String IMG = SpireAnniversary6Mod.makeImagePath("monsters/Frostlands/Cole.png");
-    public int move = 0, blk = 0;
+    public int move = 0, buff = 0, blk = 0;
     private static final byte FIRST_MOVE = 0, PRIMARY = 1, SECONDARY = 2;
-    private static final int HP = 30, HP_MAX = 40, BLK = 10,  A7_BLK = 12;
+    private static final int HP = 30, BLK = 10;
 
     public Cole() {
         this(0.0f, 0.0f);
@@ -36,17 +37,20 @@ public class Cole extends CustomMonster
         super(Cole.NAME, ID, HP, 20.0F, -10.0F, 171.0F, 283.0f, IMG, x, y);
         loadAnimation(modID + "Resources/images/monsters/Frostlands/Cole.atlas", modID + "Resources/images/monsters/Frostlands/Cole.json", 1.75F);
         state.setAnimation(0, "idle", true);
-        type = EnemyType.NORMAL;
-        if (AbstractDungeon.ascensionLevel >= 7)
+        type = EnemyType.ELITE;
+        buff = 0;
+        int hp = HP;
+        blk = BLK;
+        if (AbstractDungeon.ascensionLevel >= 8)
+            hp+=10;
+        if (AbstractDungeon.ascensionLevel >= 3)
+            blk += 2;
+        if (AbstractDungeon.ascensionLevel >= 17)
         {
-            setHp(HP+8, HP_MAX+8);
-            blk = A7_BLK;
+            buff++;
+            blk += 2;
         }
-        else
-        {
-            setHp(HP, HP_MAX);
-            blk = BLK;
-        }
+        setHp(hp, hp+10);
         move = AbstractDungeon.monsterRng.random(1, 2);
     }
 
@@ -67,7 +71,7 @@ public class Cole extends CustomMonster
                 break;
             case 2:
                 Wiz.atb(new AnimateSlowAttackAction(this));
-                Wiz.atb(new ApplyPowerAction(AbstractDungeon.player, this, new WeakPower(AbstractDungeon.player, 1, true)));
+                Wiz.atb(new ApplyPowerAction(AbstractDungeon.player, this, new WeakPower(AbstractDungeon.player, 1+buff, true)));
                 Wiz.atb(new ApplyPowerAction(AbstractDungeon.player, this, new FrigidPower(AbstractDungeon.player, 1)));
                 break;
             default:

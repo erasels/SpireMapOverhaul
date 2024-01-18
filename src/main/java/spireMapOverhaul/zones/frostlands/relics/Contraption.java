@@ -70,7 +70,6 @@ public class Contraption extends AbstractSMORelic implements OnPlayerDeathRelic 
             if(escaping == 0)
                 escaping = 1;
 
-            AbstractDungeon.actionManager.clearPostCombatActions();
             AbstractDungeon.actionManager.currentAction.isDone = true;
             AbstractDungeon.getCurrRoom().smoked = true;
             this.addToBot(new VFXAction(new SmokeBombEffect(target.hb.cX, target.hb.cY)));
