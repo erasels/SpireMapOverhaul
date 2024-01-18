@@ -51,7 +51,7 @@ public class Cole extends CustomMonster
             blk += 2;
         }
         setHp(hp, hp+10);
-        move = AbstractDungeon.monsterRng.random(1, 2);
+        move = AbstractDungeon.aiRng.random(1, 2);
     }
 
     @Override
