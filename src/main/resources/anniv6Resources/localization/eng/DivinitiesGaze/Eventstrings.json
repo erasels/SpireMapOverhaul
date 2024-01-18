@@ -2,7 +2,7 @@
   "${ModID}:DivineVisitor": {
     "NAME": "Divine Visitor%s",
     "DESCRIPTIONS": [
-      "As you walk, you begin to feel you mind ~tingle...~ Something is here with you. You have been spotted. NL NL #r~You~ #r~are~ #r~not~ #r~alone...~",
+      "As you walk, you begin to feel your mind ~tingle...~ Something is here with you. You have been spotted. NL NL #r~You~ #r~are~ #r~not~ #r~alone...~",
       " NL NL #yIt #yis #ytime #yto #ypress #yon."
     ],
     "OPTIONS": [

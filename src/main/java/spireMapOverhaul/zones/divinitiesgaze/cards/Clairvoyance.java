@@ -19,7 +19,7 @@ public class Clairvoyance extends AbstractSMOCard {
   private static boolean canTalk = false;
 
   public Clairvoyance() {
-    super(ID, DivinitiesGazeZone.ID, 0, CardType.SKILL, CardRarity.SPECIAL, CardTarget.ENEMY, CardColor.COLORLESS);
+    super(ID, DivinitiesGazeZone.ID, 0, CardType.SKILL, CardRarity.SPECIAL, CardTarget.NONE, CardColor.COLORLESS);
     this.baseMagicNumber = this.magicNumber = 1;
     this.selfRetain = true;
     this.exhaust = true;
