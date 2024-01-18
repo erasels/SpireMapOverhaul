@@ -18,6 +18,15 @@ public interface ShopModifyingZone {
     default void postCreateShopCards(ArrayList<AbstractCard> coloredCards, ArrayList<AbstractCard> colorlessCards) {}
 
     /**
+     * Returns the card that should be added to shop due to courier after another card is bought.
+     * @param purchasedCard The purchased card that is being replaced.
+     * @return The card to add to the shop. If null, the default Courier behavior will take place.
+     */
+    default AbstractCard getReplacementShopCardForCourier(AbstractCard purchasedCard) {
+        return null;
+    }
+
+    /**
      * Happens after all messages are added to the list.
      * @param idleMessages The current list of messages which can be modified to your liking.
      */

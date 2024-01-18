@@ -123,7 +123,14 @@ public interface RewardModifyingZone {
     }
 
     /**
-     * Hook for modifying the number of cards in the reward, this happens after BustedCrown and Binary apply their modifications
+     * Allows modifying base game behavior of being able to skip card rewards.
+     * @return When true, player cannot skip card rewards from combat.
+     */
+    default boolean cannotSkipCardRewards() {
+        return false;
+    }
+
+     /* Hook for modifying the number of cards in the reward, this happens after BustedCrown and Binary apply their modifications
      * @param curNumCards the current amount of cards that would be in the reward
      * @return the new amount of cards in the reward, generally the final amount
      */

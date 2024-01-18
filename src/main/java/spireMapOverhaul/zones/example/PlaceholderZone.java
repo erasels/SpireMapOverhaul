@@ -1,25 +1,12 @@
 package spireMapOverhaul.zones.example;
 
 import basemod.AutoAdd;
-import basemod.helpers.TooltipInfo;
-import com.badlogic.gdx.assets.loaders.TextureLoader;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.MathUtils;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.events.AbstractEvent;
-import com.megacrit.cardcrawl.events.shrines.GremlinWheelGame;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
-import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import com.megacrit.cardcrawl.rooms.EventRoom;
 import spireMapOverhaul.BetterMapGenerator;
-import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
-import spireMapOverhaul.util.ImageHelper;
-import spireMapOverhaul.util.TexLoader;
 import spireMapOverhaul.zoneInterfaces.ModifiedEventRateZone;
 import spireMapOverhaul.zoneInterfaces.RenderableZone;
 
@@ -28,8 +15,6 @@ import java.util.ArrayList;
 @AutoAdd.Ignore
 public class PlaceholderZone extends AbstractZone implements ModifiedEventRateZone, RenderableZone {
     public static final String ID = "Placeholder";
-    private final int width, height;
-    private final Color color;
 
     @Override
     public String forceEvent() {
@@ -42,23 +27,16 @@ public class PlaceholderZone extends AbstractZone implements ModifiedEventRateZo
     }
 
     public PlaceholderZone() {
-        this("Placeholder 0", 2, 4);
-        System.out.println("Placeholder Zone " + name + " " + width + "x" + height);
+        super(ID, Icons.MONSTER, Icons.CHEST, Icons.EVENT, Icons.REST);
+        this.width = 3;
+        this.maxWidth = 4;
+        this.height = 3;
+        this.maxHeight = 4;
     }
 
     @Override
     public AbstractZone copy() {
-        return new PlaceholderZone(name, width, height);
-    }
-
-    private PlaceholderZone(String name, int width, int height) {
-        super(ID);
-
-        this.width = width;
-        this.height = height;
-
-        color = new Color(MathUtils.random(1f), MathUtils.random(1f), MathUtils.random(1f), 1);
-        this.name = name;
+        return new PlaceholderZone();
     }
 
     @Override
@@ -72,15 +50,15 @@ public class PlaceholderZone extends AbstractZone implements ModifiedEventRateZo
     }
 
     @Override
-    public Color getColor() { //I considered changing this to a variable, but a method lets you do funky stuff like a rainbow zone that changes colors or something.
-        return color;
+    public Color getColor() {
+        return Color.BLACK.cpy();
     }
 
     @Override
     public void manualRoomPlacement(Random rng) {
         //set all nodes to a specific room.
         /*for (MapRoomNode node : nodes) {
-            node.setRoom(new EventRoom());//new MonsterRoomElite());
+            node.setRoom(new EventRoom());
         }*/
     }
 

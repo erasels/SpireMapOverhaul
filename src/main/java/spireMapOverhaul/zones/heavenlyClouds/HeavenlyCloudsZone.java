@@ -28,7 +28,7 @@ public class HeavenlyCloudsZone extends AbstractZone implements CombatModifyingZ
     public HeavenlyCloudsZone() {
         super(ID, Icons.MONSTER);
         this.width = 3;
-        this.maxHeight = 4;
+        this.maxWidth = 4;
         this.height = 4;
         this.maxHeight = 5;
     }
