@@ -1,0 +1,24 @@
+{
+
+  "${ModID}:FrigidPower": {
+    "NAME": "Frigid",
+    "DESCRIPTIONS": [
+      "Apply #yFrostbite to the first card you draw each turn.",
+      "Apply #yFrostbite to the first #b",
+      " cards you draw each turn."
+    ]
+  },
+  "${ModID}:LeavePower": {
+    "NAME": "Leave",
+    "DESCRIPTIONS": [
+      "If this creature would be killed in combat, they leave instead."
+    ]
+  },
+  "${ModID}:ChillPower": {
+  "NAME": "Chill",
+  "DESCRIPTIONS": [
+    "Decreases attack damage by #b",
+    " this turn."
+  ]
+}
+}
