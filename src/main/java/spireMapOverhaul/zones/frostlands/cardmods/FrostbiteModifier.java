@@ -46,7 +46,7 @@ import static spireMapOverhaul.util.Wiz.atb;
 public class FrostbiteModifier extends AbstractCardModifier {
 
     public static String ID = makeID(FrostbiteModifier.class.getSimpleName());
-    private static final Texture tex = TexLoader.getTexture(modID + "Resources/images/ui/Frostlands/Frostbite.png");
+    private static final Texture tex = TexLoader.getTexture(SpireAnniversary6Mod.makeUIPath("Frostlands/Frostbite.png"));
 
 
     public FrostbiteModifier()
