@@ -51,7 +51,7 @@
   },
   "${ModID}:ZoneTooltip": {
     "TEXT": [
-      "Author: {0}"
+      "#pAuthor: #p{0}"
     ]
   }
 }
