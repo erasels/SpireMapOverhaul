@@ -29,7 +29,7 @@ public class CollectingSpree extends PhasedEvent {
     }
 
     public CollectingSpree() {
-        super(ID, title, SpireAnniversary6Mod.makeImagePath("events/Junkheap.png"));
+        super(ID, title, SpireAnniversary6Mod.makeImagePath("events/Junkyard/Junkheap.png"));
 
         registerPhase(0, new TextPhase(DESCRIPTIONS[0]) {
             @Override

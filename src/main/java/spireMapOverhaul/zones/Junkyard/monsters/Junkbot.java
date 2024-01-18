@@ -30,7 +30,7 @@ public class Junkbot extends CustomMonster {
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
-    private static final String IMG = SpireAnniversary6Mod.makeImagePath("monsters/Junkbot/Junkbot.png");
+    private static final String IMG = SpireAnniversary6Mod.makeImagePath("monsters/Junkyard/Junkbot/Junkbot.png");
     private boolean firstMove = true;
     private static final byte GRAB_MOVE = 1;
     private static final byte REBOOT_MOVE = 2;
