@@ -143,6 +143,19 @@ public class CandyLand extends AbstractZone implements RewardModifyingZone, Camp
     }
 
     @Override
+    public AbstractCard getReplacementShopCardForCourier(AbstractCard purchasedCard) {
+        if (purchasedCard.cardID.equals(Bite.ID) || purchasedCard.cardID.equals(Feed.ID)) {
+            return purchasedCard.makeCopy();
+        }
+        else if (getConsumables().stream().anyMatch(c -> c.cardID.equals(purchasedCard.cardID))) {
+            ArrayList<AbstractConsumable> consumables = getConsumables();
+            consumables.removeIf(c -> c.rarity != purchasedCard.rarity || c.type != purchasedCard.type || c.cardID.equals(GoldCandy.ID));
+            return consumables.get(AbstractDungeon.cardRng.random(0, consumables.size() - 1));
+        }
+        return null;
+    }
+
+    @Override
     public float modifyCardBaseCost(AbstractCard c, float baseCost) {
         switch(c.cardID) {
             case Bite.ID: return 80 + AbstractDungeon.merchantRng.random(1, 19); // Uncommon Colorless cost
