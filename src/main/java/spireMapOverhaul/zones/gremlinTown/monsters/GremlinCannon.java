@@ -75,7 +75,7 @@ public class GremlinCannon extends CustomMonster
                     public void update() {
                         if (shell == null) {
                             duration = SHELL_DURATION;
-                            shell = new Shell(1198F * Settings.scale,
+                            shell = new Shell(1198.0F * Settings.scale,
                                     AbstractDungeon.floorY + 124F * Settings.scale,
                                     adp().hb.cX, adp().hb.y, Surprise.SHELL_FLIGHT_TIME);
                         }

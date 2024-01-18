@@ -108,8 +108,8 @@ public class Surprise extends AbstractEvent {
             riderA = new GremlinRiderRed(RIDER_A_START_X - Settings.WIDTH*0.75F, RIDER_A_START_Y - AbstractDungeon.floorY);
             riderB = new GremlinRiderRed(RIDER_B_START_X - Settings.WIDTH*0.75F, RIDER_B_START_Y - AbstractDungeon.floorY);
             Wiz.adRoom().monsters = new MonsterGroup(new AbstractMonster[]{
-                    new GremlinCannon(Chest.CHEST_LOC_X - Settings.WIDTH*0.75F,
-                            Chest.CHEST_LOC_Y - AbstractDungeon.floorY - 256.0F),
+                    new GremlinCannon((Chest.CHEST_LOC_X - Settings.WIDTH*0.75F)/Settings.scale,
+                            (Chest.CHEST_LOC_Y - AbstractDungeon.floorY - 256.0F*Settings.scale)/Settings.yScale),
                     riderA, riderB
             });
             chest.hide = true;
@@ -123,7 +123,7 @@ public class Surprise extends AbstractEvent {
                     fired = true;
                     float shellTargetX = adp().hb.cX;
                     float shellTargetY = adp().hb.y;
-                    shell = new Shell(chest.hb.x + 60f*Settings.scale, chest.hb.cY + 52f,
+                    shell = new Shell(chest.hb.x + 60f*Settings.scale, chest.hb.cY + 52f*Settings.scale,
                             shellTargetX, shellTargetY, SHELL_FLIGHT_TIME);
                 }
             }

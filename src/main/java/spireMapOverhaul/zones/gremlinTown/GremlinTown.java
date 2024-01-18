@@ -77,7 +77,7 @@ public class GremlinTown extends AbstractZone
 
     public GremlinTown() {
         super(ID, Icons.MONSTER, Icons.EVENT, Icons.SHOP);
-        width = 1;
+        width = 2;
         maxWidth = 3;
         height = 4;
         maxHeight = 6;
@@ -222,9 +222,10 @@ public class GremlinTown extends AbstractZone
         // These start in their combat positions instead of spawning off the screen and being animated
         encounters.add(new ZoneEncounter(SURPRISE, 2, () -> new MonsterGroup(
                 new AbstractMonster[]{
-                    new GremlinRiderRed(Settings.WIDTH * -0.22F, 40F),
-                    new GremlinRiderRed(Settings.WIDTH * -0.32F, -60F),
-                        new GremlinCannon(Chest.CHEST_LOC_X - Settings.WIDTH * 0.75F, Chest.CHEST_LOC_Y - floorY -256F*Settings.scale)
+                    new GremlinRiderRed((Settings.WIDTH * -0.22F)/Settings.scale, 40F),
+                    new GremlinRiderRed((Settings.WIDTH * -0.32F)/Settings.scale, -60F),
+                        new GremlinCannon((Chest.CHEST_LOC_X - Settings.WIDTH*0.75F)/Settings.scale,
+                                (Chest.CHEST_LOC_Y - AbstractDungeon.floorY - 256.0F*Settings.scale)/Settings.yScale)
                 })));
 
         for (ZoneEncounter ze : encounters)
@@ -264,6 +265,55 @@ public class GremlinTown extends AbstractZone
 
             coloredCards.add(card);
         }
+    }
+
+    @Override
+    public AbstractCard getReplacementShopCardForCourier(AbstractCard purchasedCard) {
+        if (!purchasedCard.hasTag(SpireAnniversary6Mod.Enums.GREMLIN))
+            return null;
+
+        ShopScreen screen = ReflectionHacks.getPrivateStatic(AbstractDungeon.class, "shopScreen");
+        if (screen == null)
+            return null;
+
+        AbstractCard.CardRarity rarity = rollRarity();
+        switch (rarity) {
+            case COMMON:
+                cardBlizzRandomizer -= cardBlizzGrowth;
+                if (cardBlizzRandomizer <= cardBlizzMaxOffset) {
+                    cardBlizzRandomizer = cardBlizzMaxOffset;
+                }
+            case UNCOMMON:
+                break;
+            case RARE:
+                cardBlizzRandomizer = cardBlizzStartOffset;
+                break;
+            default:
+                return null;
+        }
+        AbstractCard.CardType type = purchasedCard.type;
+        if (type == AbstractCard.CardType.POWER && rarity == AbstractCard.CardRarity.COMMON)
+            rarity = AbstractCard.CardRarity.UNCOMMON;
+
+        AbstractCard card = null;
+        int attempts = 0;
+        boolean containsDupe = true;
+        while (containsDupe) {
+            containsDupe = false;
+            card = getGremlinCardByRarityType(rarity, type);
+
+            if (attempts >= 20 || card == null)
+                return null;
+
+            for (AbstractCard c : screen.coloredCards) {
+                if (c.cardID.equals(card.cardID)) {
+                    containsDupe = true;
+                    attempts++;
+                    break;
+                }
+            }
+        }
+        return card;
     }
 
     @Override
@@ -436,6 +486,8 @@ public class GremlinTown extends AbstractZone
     private static AbstractCard getGremlinCardByRarityType(AbstractCard.CardRarity rarity, AbstractCard.CardType type) {
         if (type == null)
             return getGremlinCardByRarity(rarity);
+        if (type == AbstractCard.CardType.POWER && rarity == AbstractCard.CardRarity.COMMON)
+            rarity = AbstractCard.CardRarity.UNCOMMON;
         if (rarity == AbstractCard.CardRarity.COMMON)
             return getRandomCommonGremlin(type);
         else if (rarity == AbstractCard.CardRarity.UNCOMMON)
@@ -451,14 +503,6 @@ public class GremlinTown extends AbstractZone
             initGremlinCards();
 
         return Wiz.getRandomItem(gremlinCards, cardRandomRng).makeCopy();
-    }
-
-    // For use spawning temp cards in combat
-    public static AbstractCard getRandomCommonGremlinInCombat() {
-        if (gremlinCards == null)
-            initGremlinCards();
-
-        return Wiz.getRandomItem(commonGremlinCards, cardRandomRng).makeCopy();
     }
 
     private static AbstractPotion getRandomCommonGPotion() {

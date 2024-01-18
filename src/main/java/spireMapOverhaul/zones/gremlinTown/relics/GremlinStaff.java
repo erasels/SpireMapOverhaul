@@ -31,7 +31,7 @@ public class GremlinStaff extends AbstractSMORelic {
             ++counter;
         }
 
-        if (counter == 4) {
+        if (counter == 3) {
             flash();
             atb(new RelicAboveCreatureAction(adp(), this));
             applyToSelf(new VigorPower(adp(), VIGOR_AMOUNT));

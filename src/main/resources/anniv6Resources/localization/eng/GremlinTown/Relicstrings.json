@@ -31,7 +31,7 @@
     "NAME": "Gremlin Staff",
     "FLAVOR": "Your hand tingles when you hold it.",
     "DESCRIPTIONS": [
-      "At the start of your 4th turn, gain #b{0} #yVigor."
+      "At the start of your #b3rd turn, gain #b{0} #yVigor."
     ]
   },
   "${ModID}:WarHorn": {

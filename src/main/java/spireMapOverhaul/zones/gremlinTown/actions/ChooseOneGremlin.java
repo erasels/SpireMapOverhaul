@@ -63,7 +63,7 @@ public class ChooseOneGremlin extends AbstractGameAction {
 
         while(derp.size() != 3) {
             boolean dupe = false;
-            AbstractCard tmp = GremlinTown.getRandomCommonGremlinInCombat();
+            AbstractCard tmp = GremlinTown.getRandomGremlinInCombat();
 
             for (AbstractCard c : derp) {
                 if (c.cardID.equals(tmp.cardID)) {

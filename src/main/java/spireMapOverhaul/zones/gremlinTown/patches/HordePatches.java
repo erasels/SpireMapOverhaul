@@ -52,24 +52,33 @@ public class HordePatches {
             method = "getNextAction"
     )
     public static class updatePatch {
-        @SpireInsertPatch (
-                locator = Locator.class
-        )
-        public static void Insert() {
-            if (GremlinTown.GREMLIN_HORDE.equals(AbstractDungeon.lastCombatMetricKey))
+        @SpirePrefixPatch
+        public static SpireReturn Prefix(GameActionManager __instance) {
+            if (GremlinTown.GREMLIN_HORDE.equals(AbstractDungeon.lastCombatMetricKey)
+                    && __instance.actions.isEmpty()
+                    && __instance.preTurnActions.isEmpty()
+                    && __instance.cardQueue.isEmpty()
+                    && __instance.monsterAttacksQueued
+                    && __instance.monsterQueue.isEmpty()
+                    && HordeHelper.needsUpdate) {
                 HordeHelper.update();
-        }
-
-        public static class Locator extends SpireInsertLocator {
-            private Locator() {}
-
-            @Override
-            public int[] Locate(CtBehavior behavior) throws Exception {
-                Matcher matcher = new Matcher.FieldAccessMatcher(GameActionManager.class, "totalDiscardedThisTurn");
-                return LineFinder.findInOrder(behavior, matcher);
+                return SpireReturn.Return();
             }
+            return SpireReturn.Continue();
         }
     }
+
+    @SpirePatch2(
+            clz = MonsterGroup.class,
+            method = "queueMonsters"
+    )
+    public static class resetPatch {
+        @SpirePrefixPatch
+        public static void Prefix() {
+            HordeHelper.needsUpdate = true;
+        }
+    }
+
 
     @SpirePatch2(
             clz = AbstractRoom.class,

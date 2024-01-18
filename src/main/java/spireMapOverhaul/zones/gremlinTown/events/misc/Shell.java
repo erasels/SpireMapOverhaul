@@ -32,9 +32,9 @@ public class Shell {
 
     
     public Shell(float startX, float startY, float endX, float endY, float flightTime) {
-        hb = new Hitbox(startX, startY, RAW_W, RAW_W);
+        hb = new Hitbox(startX, startY, RAW_W*Settings.scale, RAW_W*Settings.scale);
         animTimer = flightTime;
-        hide = false;
+        hide = true;
         START_X = startX;
         START_Y = startY;
         END_X = endX;
@@ -58,6 +58,7 @@ public class Shell {
             hb.move(x, y);
             float vel_y = startVelY + gravity*t;
             rotation = (float)((180.0F / Math.PI) * Math.atan2(vel_y, vel_x));
+            hide = false;
         } else if (animTimer < 0F && !hide) {
             AbstractDungeon.effectsQueue.add(new SmokeBombEffect(END_X, adp().hb.cY));
             hide = true;
