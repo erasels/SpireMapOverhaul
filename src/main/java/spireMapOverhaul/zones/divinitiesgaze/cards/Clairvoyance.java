@@ -15,6 +15,7 @@ import spireMapOverhaul.util.Wiz;
 public class Clairvoyance extends AbstractSMOCard {
 
   public static String ID = SpireAnniversary6Mod.makeID("Clairvoyance");
+  private static boolean canTalk = false;
 
   public Clairvoyance() {
     super(ID, 0, CardType.SKILL, CardRarity.SPECIAL, CardTarget.ENEMY, CardColor.COLORLESS);
@@ -35,7 +36,16 @@ public class Clairvoyance extends AbstractSMOCard {
   }
 
   @Override
+  public void triggerWhenDrawn() {
+    if(canTalk) {
+      Wiz.atb(new TalkAction(true, cardStrings.EXTENDED_DESCRIPTION[1], 2.0F, 3.0F));
+    }
+    canTalk = false;
+  }
+
+  @Override
   public void atTurnStart() {
+    canTalk = true;
     if(Wiz.hand().contains(this)) {
       Wiz.atb(new DrawCardAction(this.magicNumber, new AbstractGameAction() {
         @Override

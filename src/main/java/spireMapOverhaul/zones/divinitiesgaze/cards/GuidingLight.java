@@ -11,8 +11,8 @@ import spireMapOverhaul.abstracts.AbstractSMOCard;
 import spireMapOverhaul.util.Wiz;
 
 public class GuidingLight extends AbstractSMOCard {
-
   public static String ID = SpireAnniversary6Mod.makeID("GuidingLight");
+  public static boolean canTalk = true;
 
   public GuidingLight() {
     super(ID, -2, CardType.SKILL, CardRarity.SPECIAL, CardTarget.NONE, CardColor.COLORLESS);
@@ -29,12 +29,20 @@ public class GuidingLight extends AbstractSMOCard {
   }
 
   @Override
+  public void atTurnStart() {
+    canTalk = true;
+  }
+
+  @Override
   public void triggerWhenDrawn() {
     Wiz.atb(new ExpertiseAction(Wiz.p(), BaseMod.MAX_HAND_SIZE));
     if(this.upgraded) {
       Wiz.atb(new ArmamentsAction(true));
     }
-    Wiz.atb(new TalkAction(true, cardStrings.EXTENDED_DESCRIPTION[0], 2.0F, 3.0F));
+    if(canTalk) {
+      Wiz.atb(new TalkAction(true, cardStrings.EXTENDED_DESCRIPTION[0], 2.0F, 3.0F));
+    }
+    canTalk = false;
   }
 
   public boolean canUse(AbstractPlayer p, AbstractMonster m) {

@@ -1,6 +1,7 @@
 package spireMapOverhaul.zones.divinitiesgaze.cards;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -17,6 +18,7 @@ import java.util.stream.Stream;
 public class Mitosis extends AbstractSMOCard {
 
   public static String ID = SpireAnniversary6Mod.makeID("Mitosis");
+  private static boolean canTalk = true;
 
   public Mitosis() {
     super(ID, 1, CardType.ATTACK, CardRarity.SPECIAL, CardTarget.ENEMY, CardColor.COLORLESS);
@@ -73,7 +75,16 @@ public class Mitosis extends AbstractSMOCard {
   }
 
   public void triggerWhenDrawn() {
-    addToTop(new MakeTempCardInDrawPileAction(makeStatEquivalentCopy(), 1, true, true));
+    if(canTalk) {
+      Wiz.atb(new TalkAction(true, cardStrings.EXTENDED_DESCRIPTION[0], 2.0F, 3.0F));
+    }
+    canTalk = false;
+    Wiz.att(new MakeTempCardInDrawPileAction(makeStatEquivalentCopy(), 1, true, true));
+  }
+
+  @Override
+  public void atTurnStart() {
+    canTalk = true;
   }
 
   @Override

@@ -1,18 +1,21 @@
 package spireMapOverhaul.zones.divinitiesgaze.cards;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
-import com.megacrit.cardcrawl.actions.utility.ShowCardAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractSMOCard;
 import spireMapOverhaul.util.Wiz;
 
 public class Inevitability extends AbstractSMOCard {
   public static String ID = SpireAnniversary6Mod.makeID("Inevitability");
+  private static boolean canTalk = true;
 
   public Inevitability() {
     super(ID, -2, CardType.ATTACK, CardRarity.SPECIAL, CardTarget.ALL, CardColor.COLORLESS);
@@ -39,7 +42,13 @@ public class Inevitability extends AbstractSMOCard {
   }
 
   @Override
+  public void atTurnStart() {
+    canTalk = true;
+  }
+
+  @Override
   public void onRetained() {
+    AbstractDungeon.effectsQueue.add(new ShowCardBrieflyEffect(this, Settings.WIDTH / 2f, Settings.HEIGHT / 2f));
     Wiz.atb(new DamageAllEnemiesAction(AbstractDungeon.player, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE));
     Wiz.atb(new GainBlockAction(AbstractDungeon.player, this.block));
     Wiz.atb(new AbstractGameAction() {
@@ -50,5 +59,9 @@ public class Inevitability extends AbstractSMOCard {
         Inevitability.this.baseBlock += Inevitability.this.magicNumber;
       }
     });
+    if(canTalk) {
+      Wiz.atb(new TalkAction(true, cardStrings.EXTENDED_DESCRIPTION[AbstractDungeon.cardRandomRng.random(0, cardStrings.EXTENDED_DESCRIPTION.length - 1)], 2.0F, 3.0F));
+    }
+    canTalk = false;
   }
 }
