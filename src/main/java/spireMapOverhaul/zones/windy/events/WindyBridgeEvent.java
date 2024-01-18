@@ -200,6 +200,7 @@ public class WindyBridgeEvent extends AbstractImageEvent {
         }
 
         if(AbstractDungeon.miscRng.randomBoolean(getLossProbability() * 0.01f)){
+            CardCrawlGame.sound.play("CARD_EXHAUST");
             lostItem = true;
             newBodyText += desc.get("loseItem");
             switch (c){

@@ -61,6 +61,7 @@ import spireMapOverhaul.zones.beastslair.BeastsLairZone;
 import spireMapOverhaul.zones.brokenspace.BrokenSpaceZone;
 import spireMapOverhaul.zones.manasurge.ui.extraicons.BlightIcon;
 import spireMapOverhaul.zones.manasurge.ui.extraicons.EnchantmentIcon;
+import spireMapOverhaul.zones.windy.WindyZone;
 import spireMapOverhaul.zones.windy.patches.GoldRewardReductionPatch;
 
 import java.io.IOException;
@@ -503,6 +504,9 @@ public class SpireAnniversary6Mod implements
 
         // Mana Surge Audio
         BaseMod.addAudio(ENCHANTBLIGHT_KEY,ENCHANTBLIGHT_OGG);
+
+        // Windy Audio
+        BaseMod.addAudio(WindyZone.WINDY_KEY, WindyZone.WINDY_MP3);
     }
 
     private void registerCustomRewards() {
