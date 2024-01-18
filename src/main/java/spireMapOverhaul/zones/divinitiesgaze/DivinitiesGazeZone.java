@@ -27,8 +27,10 @@ public class DivinitiesGazeZone extends AbstractZone implements ModifiedEventRat
 
   public DivinitiesGazeZone() {
     super(ID, Icons.MONSTER, Icons.EVENT);
-    this.width = 3;
+    this.width = 2;
+    this.maxWidth = 3;
     this.height = 4;
+    this.maxHeight = 5;
   }
 
   @Override

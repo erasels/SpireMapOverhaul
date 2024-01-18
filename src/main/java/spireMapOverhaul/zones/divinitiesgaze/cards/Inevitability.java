@@ -49,7 +49,7 @@ public class Inevitability extends AbstractSMOCard {
 
   @Override
   public void onRetained() {
-    AbstractDungeon.effectsQueue.add(new ShowCardBrieflyEffect(this, Settings.WIDTH / 2f, Settings.HEIGHT / 2f));
+    this.flash();
     Wiz.atb(new DamageAllEnemiesAction(AbstractDungeon.player, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE));
     Wiz.atb(new GainBlockAction(AbstractDungeon.player, this.block));
     Wiz.atb(new AbstractGameAction() {
