@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.RelicLibrary;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.relics.DeadBranch;
 import spireMapOverhaul.SpireAnniversary6Mod;
 
 public class DeadBranchPower extends AbstractGravewoodGrovePower {
@@ -28,8 +29,8 @@ public class DeadBranchPower extends AbstractGravewoodGrovePower {
 
     public void onExhaust(AbstractCard card) {
         if (!AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
-            flash();
-            addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, RelicLibrary.getRelic("Dead Branch")));
+            flashWithoutSound();
+            addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, RelicLibrary.getRelic(DeadBranch.ID)));
             addToBot(new MakeTempCardInHandAction(AbstractDungeon.returnTrulyRandomCardInCombat().makeCopy(), false));
         }
     }
@@ -41,7 +42,7 @@ public class DeadBranchPower extends AbstractGravewoodGrovePower {
     public void onUseCard(AbstractCard card, UseCardAction action) {
         if (this.cardsExhaustedThisTurn < 1) {
             this.cardsExhaustedThisTurn++;
-            flash();
+            flashWithoutSound();
             action.exhaustCard = true;
         }
     }

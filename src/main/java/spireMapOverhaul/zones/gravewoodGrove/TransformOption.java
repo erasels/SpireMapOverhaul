@@ -16,11 +16,10 @@ import static spireMapOverhaul.SpireAnniversary6Mod.makeUIPath;
 public class TransformOption extends AbstractCampfireOption {
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(makeID("TransformOption"));
     public static final String[] TEXT = uiStrings.TEXT;
-    protected int minGold, maxGold;
 
     public TransformOption() {
         this.label = TEXT[0];
-        this.description = String.format(TEXT[1], minGold, maxGold);
+        this.description = TEXT[1];
         this.img = TexLoader.getTexture(makeUIPath("GravewoodGrove/transform.png"));
     }
 
