@@ -179,6 +179,10 @@ public class SpireAnniversary6Mod implements
         return modID + "Resources/images/orbs/" + resourcePath;
     }
 
+    public static String makeEventPath(String resourcePath) {
+        return modID + "Resources/images/events/" + resourcePath;
+    }
+
     public static void initialize() {
         thismod = new SpireAnniversary6Mod();
 
