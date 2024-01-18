@@ -32,9 +32,6 @@ public class ManaCycloneEvent extends PhasedEvent {
 
     private static final ArrayList<String> relicIds = new ArrayList<>();
     static {
-        relicIds.add(BottledFlame.ID);
-        relicIds.add(BottledTornado.ID);
-        relicIds.add(BottledLightning.ID);
         relicIds.add(FrozenEgg2.ID);
         relicIds.add(MoltenEgg2.ID);
         relicIds.add(ToxicEgg2.ID);
