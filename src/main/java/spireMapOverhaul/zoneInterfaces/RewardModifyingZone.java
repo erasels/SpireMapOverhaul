@@ -130,7 +130,7 @@ public interface RewardModifyingZone {
         return false;
     }
 
-     * Hook for modifying the number of cards in the reward, this happens after BustedCrown and Binary apply their modifications
+     /* Hook for modifying the number of cards in the reward, this happens after BustedCrown and Binary apply their modifications
      * @param curNumCards the current amount of cards that would be in the reward
      * @return the new amount of cards in the reward, generally the final amount
      */
