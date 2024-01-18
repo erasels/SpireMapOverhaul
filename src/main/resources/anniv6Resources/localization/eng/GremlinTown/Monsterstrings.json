@@ -1,0 +1,112 @@
+{
+  "${ModID}:GremlinRiderRed": {
+    "MOVES": [
+      "Charge",
+      "Tactical Attack"
+    ],
+    "NAME": "Gremlin Rider"
+  },
+  "${ModID}:GremlinRiderBlue": {
+    "MOVES": [
+      "Charge",
+      "Tactical Attack"
+    ],
+    "NAME": "Gremlin Rider"
+  },
+  "${ModID}:GremlinRiderGreen": {
+    "MOVES": [
+      "Charge",
+      "Tactical Attack"
+    ],
+    "NAME": "Gremlin Rider"
+  },
+  "${ModID}:GremlinRockTosser": {
+    "MOVES": [
+      "Throw"
+    ],
+    "NAME": "Gremlin Rocker"
+  },
+  "${ModID}:GremlinBrute": {
+    "MOVES": [
+      "Slam",
+      "Break"
+    ],
+    "NAME": "Gremlin Brute"
+  },
+  "${ModID}:GremlinHealer": {
+    "MOVES": [
+      "Cure",
+      "Attack"
+    ],
+    "NAME": "Gremlin Healer"
+  },
+  "${ModID}:ChubbyGremlin": {
+    "MOVES": [
+      "Sit"
+    ],
+    "NAME": "Chubby Gremlin"
+  },
+  "${ModID}:ArmoredGremlin": {
+    "MOVES": [
+      "Body Slam"
+    ],
+    "NAME": "Armored Gremlin"
+  },
+  "${ModID}:GremlinBarbarian": {
+    "MOVES": [
+      "Frenzy"
+    ],
+    "NAME": "Gremlin Barbarian"
+  },
+  "${ModID}:GremlinAssassin": {
+    "MOVES": [
+      "Hamstring",
+      "Sap"
+    ],
+    "NAME": "Gremlin Assassin"
+  },
+  "${ModID}:GremlinJerk": {
+    "MOVES": [
+      "Hamstring",
+      "Sap"
+    ],
+    "NAME": "Gremlin Jerk"
+  },
+  "${ModID}:GremlinNib": {
+    "MOVES": [
+      "Slam",
+      "Double Hit",
+      "Frenzy",
+      "Crit"
+    ],
+    "DIALOG": [
+      "RRrriihrrRGHHhhh!!"
+    ],
+    "NAME": "Gremlin Nib"
+  },
+  "${ModID}:GremlinElder": {
+    "MOVES": [
+      "Slam",
+      "Slap",
+      "Charging",
+      "Dying Curse"
+    ],
+    "DIALOG": [
+      "My body takes a heavy toll...",
+      "I give my life to curse thy soul...",
+      "You shall never again be whole!"
+    ],
+    "NAME": "Gremlin Elder"
+  },
+  "${ModID}:GremlinCannon": {
+    "MOVES": [
+      "Loading",
+      "Fire!",
+      "Fire!"
+    ],
+    "DIALOG": [
+      "Loading..."
+    ],
+    "NAME": "Gremlin Cannon"
+  }
+}
