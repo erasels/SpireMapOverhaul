@@ -1,0 +1,10 @@
+{
+  "${ModID}:Bargain": {
+    "NAME": "A Bargain",
+    "DESCRIPTION": "Purchase one of the peddler's wonderful wares!",
+    "EXTENDED_DESCRIPTION": [
+      "Retain. NL Add one of the peddler's wonderful wares to your deck for the low low price of ",
+      " gold! NL Peddler will leave peacefully. NL Exhaust."
+      ]
+  }
+}
