@@ -7,7 +7,7 @@
     ],
     "OPTIONS": [
       "Close your eyes...",
-      "[Accept] #gAdd #g1 #g%s #gto #gyour #gdeck.",
+      "[Accept] #gAdd #g1 %s #gto #gyour #gdeck.",
       "[Reject]",
       "Press on..."
     ]
