@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
+import com.evacipated.cardcrawl.modthespire.Loader;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -31,6 +32,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
@@ -106,6 +108,39 @@ public abstract class AbstractZone {
 
     public abstract Color getColor();
 
+    /**
+     * Gets the color that should be used for the zone when the Dark Map mod is active.
+     * This check how bright the color is and attempts to lighten colors that are too dark to be easily seen with Dark Map.
+     * If the logic here results in a color doesn't work well, this can be overridden to provide an alternate color.
+     * @return The color.
+     */
+    public Color getDarkMapColor() {
+        Color baseColor = this.getColor();
+        // Luminance calculation based on https://stackoverflow.com/a/56678483
+        Function<Float, Double> sRGBtoLin = c -> c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+        double luminance = 0.2126 * sRGBtoLin.apply(baseColor.r) + 0.7152 * sRGBtoLin.apply(baseColor.g) + 0.0722 * sRGBtoLin.apply(baseColor.b);
+        // This threshold was chosen based on a mix of theory (it's a bit above "middle grey") and empirical testing
+        // (it catches pretty much all the zones that are hard to make out with Dark Map and leaves out the rest)
+        if (luminance <= 0.20) {
+            // We lighten the color by proportionally increasing each color component to maintain RGB balance (as much as possible).
+            // The factor to lighten by was chosen empirically; there might be a better value or different ways to
+            // calculate it that we could try (e.g. calculating it based on the luminance).
+            // Note that a higher value will make the color darker (1.0f leaves the color unchanged, 0.0f makes the color white)
+            float factor = 0.5f;
+            Function<Float, Float> lighten = (Float v) -> 1.0f - ((1.0f - v) * factor);
+            return new Color(lighten.apply(baseColor.r), lighten.apply(baseColor.g), lighten.apply(baseColor.b), baseColor.a);
+        }
+        return baseColor;
+    }
+
+    /**
+     * Gets the color that should be used for the zone, adjusted for whether the Dark Map mod is active.
+     * @return The color
+     */
+    public final Color getAdjustedColor() {
+        return Loader.isModLoaded("ojb_DarkMap") ? this.getDarkMapColor() : this.getColor();
+    }
+
     public int getX() {
         return x;
     }
@@ -176,7 +211,7 @@ public abstract class AbstractZone {
             }
             float anchorX = x * SPACING_X + OFFSET_X - ZoneShapeMaker.FB_OFFSET;
             float anchorY = y * Settings.MAP_DST_Y + OFFSET_Y + DungeonMapScreen.offsetY - ZoneShapeMaker.FB_OFFSET;
-            sb.setColor(getColor().cpy().mul(1f, 1f, 1f, alpha*0.5f));
+            sb.setColor(getAdjustedColor().cpy().mul(1f, 1f, 1f, alpha*0.5f));
             sb.draw(shapeRegion, anchorX, anchorY);
             boolean showTooltip = false;
             for (Hitbox hb : hitboxes) {
@@ -388,7 +423,7 @@ public abstract class AbstractZone {
         }
         labelX /= count;
 
-        labelColor = getColor().cpy();
+        labelColor = getAdjustedColor().cpy();
         labelColor.mul(0.5f,0.5f,0.5f,0.8f);
     }
 
