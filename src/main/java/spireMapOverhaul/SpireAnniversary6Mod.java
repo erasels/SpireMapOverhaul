@@ -67,6 +67,8 @@ import spireMapOverhaul.zones.gremlinTown.HordeHelper;
 import spireMapOverhaul.zones.gremlinTown.potions.*;
 import spireMapOverhaul.zones.manasurge.ui.extraicons.BlightIcon;
 import spireMapOverhaul.zones.manasurge.ui.extraicons.EnchantmentIcon;
+import spireMapOverhaul.zones.windy.WindyZone;
+import spireMapOverhaul.zones.windy.patches.GoldRewardReductionPatch;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -318,6 +320,7 @@ public class SpireAnniversary6Mod implements
         BaseMod.addSaveField(ZonePerFloorRunHistoryPatch.ZonePerFloorLog.SaveKey, new ZonePerFloorRunHistoryPatch.ZonePerFloorLog());
         BaseMod.addSaveField(EncounterModifierPatches.LastZoneNormalEncounter.SaveKey, new EncounterModifierPatches.LastZoneNormalEncounter());
         BaseMod.addSaveField(EncounterModifierPatches.LastZoneEliteEncounter.SaveKey, new EncounterModifierPatches.LastZoneEliteEncounter());
+        BaseMod.addSaveField(GoldRewardReductionPatch.SavableCombatGoldReduction.SaveKey, new GoldRewardReductionPatch.SavableCombatGoldReduction()); //windy zone
     }
 
     private static Consumer<String> getWidePotionsWhitelistMethod() {
@@ -547,6 +550,9 @@ public class SpireAnniversary6Mod implements
 
         // Mana Surge Audio
         BaseMod.addAudio(ENCHANTBLIGHT_KEY,ENCHANTBLIGHT_OGG);
+        // Windy Audio
+        BaseMod.addAudio(WindyZone.WINDY_KEY, WindyZone.WINDY_MP3);
+
         BaseMod.addAudio(PLATFORM_KEY, PLATFORM_OGG);
     }
 
