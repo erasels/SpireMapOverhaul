@@ -47,6 +47,7 @@ import spireMapOverhaul.patches.CustomRewardTypes;
 import spireMapOverhaul.patches.ZonePatches;
 import spireMapOverhaul.patches.ZonePerFloorRunHistoryPatch;
 import spireMapOverhaul.patches.interfacePatches.CampfireModifierPatches;
+import spireMapOverhaul.patches.interfacePatches.CombatModifierPatches;
 import spireMapOverhaul.patches.interfacePatches.EncounterModifierPatches;
 import spireMapOverhaul.patches.interfacePatches.TravelTrackingPatches;
 import spireMapOverhaul.rewards.AnyColorCardReward;
@@ -726,6 +727,7 @@ public class SpireAnniversary6Mod implements
             BeastsLairZone.clearBossList();
         }
         HordeHelper.hidePlatforms();
+        CombatModifierPatches.hideButton = true;
     }
 
     public static float time = 0f;
