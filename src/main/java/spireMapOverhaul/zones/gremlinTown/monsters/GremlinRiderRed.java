@@ -86,9 +86,9 @@ public class GremlinRiderRed extends CustomMonster
                 atb(new DamageAction(adp(), damage.get(1), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
                 atb(new WaitAction(0.1f));
                 if (asc() < 17)
-                    applyToEnemy(this, new StrengthPower(this, TACTICAL_STRENGTH_A17));
+                    applyToEnemy(this, new StrengthPower(this, TACTICAL_STRENGTH));
                 else
-                    forAllMonstersLiving(m -> applyToEnemy(m, new StrengthPower(m, TACTICAL_STRENGTH)));
+                    forAllMonstersLiving(m -> applyToEnemy(m, new StrengthPower(m, TACTICAL_STRENGTH_A17)));
         }
         atb(new RollMoveAction(this));
     }
