@@ -38,7 +38,7 @@ public class GremlinDog extends AbstractSMOMonster {
     }
 
     public GremlinDog(float x, float y) {
-        super(NAME, ID, 30, 0, -20, 230f, 150f, null, x, y);
+        super(NAME, ID, 30, 0, -20, 200f, 150f, null, x, y);
         type = EnemyType.NORMAL;
         setHp(calcAscensionTankiness(21), calcAscensionTankiness(27));
         addMove(POISON_BITE, Intent.ATTACK_DEBUFF, calcAscensionDamage(4));
