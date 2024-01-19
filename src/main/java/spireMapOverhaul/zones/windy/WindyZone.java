@@ -1,3 +1,8 @@
+/*
+    Windy zone:
+    Combat modifier – Enemies are defeated when below 10% hp, reducing the gold reward amount equal to their hp.
+    Event – Windy Bridge
+ */
 package spireMapOverhaul.zones.windy;
 
 import com.badlogic.gdx.Gdx;
@@ -58,6 +63,7 @@ public class WindyZone extends AbstractZone implements CombatModifyingZone, Modi
         StormUtil.rainSoundId = 0L;
     }
 
+    //damage check for executing monsters in combat, call sent by PostDamagePatch
     public void postDamageCheck(AbstractMonster m){
         if(m.currentHealth <= m.maxHealth/10 && !m.isDeadOrEscaped()){
             Wiz.att(new FlyAwayAction(m));
@@ -72,7 +78,7 @@ public class WindyZone extends AbstractZone implements CombatModifyingZone, Modi
     public float particleTime = 0f;
     @Override
     public void update() {
-        //spawn 12 windy particles a second, averaging at ~100 particles on screen, about the same as the normal exordium dust rate
+        //spawn 12 windy particles a second, averaging at ~100 particles on screen, about the same as the regular exordium dust rate
         particleTime += Gdx.graphics.getDeltaTime();
         if(particleTime >= 0.25f){
             particleTime = 0;

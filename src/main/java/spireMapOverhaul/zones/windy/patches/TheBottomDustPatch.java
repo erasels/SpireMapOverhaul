@@ -1,7 +1,3 @@
-/*
-    code copied from storm zone
- */
-
 package spireMapOverhaul.zones.windy.patches;
 
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
@@ -12,6 +8,7 @@ import spireMapOverhaul.zones.windy.WindyZone;
 
 import static spireMapOverhaul.util.Wiz.getCurZone;
 
+//windy dust is played throughout the zone, but exordium has non-windy dust, so it's disabled while in zone
 public class TheBottomDustPatch {
     public static boolean inWindyZone() {
             return getCurZone() instanceof WindyZone;

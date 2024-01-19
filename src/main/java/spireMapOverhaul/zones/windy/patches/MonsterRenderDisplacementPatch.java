@@ -24,7 +24,7 @@ public class MonsterRenderDisplacementPatch {
 
         @SpirePrefixPatch
         public static void Prefix(AbstractMonster __instance, SpriteBatch sb) {
-            if(MonsterDisplacement.rotation.get(__instance) != 0.0f){
+            if(MonsterDisplacement.rotation.get(__instance) != 0.0f){ //old check but still works, render buffer only triggers when FlyAwayAction is active
                 sb.end();
                 StormUtil.beginBuffer(fbo);
                 sb.begin();

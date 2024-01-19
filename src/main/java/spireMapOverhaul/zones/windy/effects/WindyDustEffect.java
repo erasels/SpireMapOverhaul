@@ -1,5 +1,5 @@
 /*
-    Directly copied from decompiled base game's DustEffect, now with more y velocity.
+    Directly copied from decompiled base game's DustEffect, with fixed alphas and adjusted speed stuff.
  */
 package spireMapOverhaul.zones.windy.effects;
 

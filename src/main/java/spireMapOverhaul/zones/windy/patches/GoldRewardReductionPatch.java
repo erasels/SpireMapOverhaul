@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 public class GoldRewardReductionPatch {
     public static int combatGoldReduction = 0;
 
+    //on the first call to addGoldToRewards, reduce gold reward param
     @SpirePatch2(clz = AbstractRoom.class, method = "addGoldToRewards")
     public static class GoldReductionPatch {
         @SpirePrefixPatch
@@ -18,6 +19,7 @@ public class GoldRewardReductionPatch {
         }
     }
 
+    //to have save and load retain gold reduction:
     public static class SavableCombatGoldReduction implements CustomSavable<Integer> {
         public final static String SaveKey = "WindyCombatGoldReduction";
 

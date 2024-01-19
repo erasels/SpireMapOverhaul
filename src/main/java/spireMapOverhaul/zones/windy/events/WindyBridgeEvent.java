@@ -1,3 +1,8 @@
+/*
+    event: player may grab a hidden card, or see its cost/rarity/type, or leave
+    all options other than leave is associated with a chance to lose a card/potion/relic/gold
+    actions and items lost are mixed and matched, and card/potion/relic loss options are replaced with gold loss when needed
+ */
 package spireMapOverhaul.zones.windy.events;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -68,7 +73,7 @@ public class WindyBridgeEvent extends AbstractImageEvent {
             optionCons.set(2, OptionCon.POTION);
         }
 
-        //shuffle order of pros and cons and update
+        //shuffle order of pros and cons
         Collections.shuffle(optionCons, new Random(AbstractDungeon.miscRng.randomLong()));
         Collections.shuffle(optionPros, new Random(AbstractDungeon.miscRng.randomLong()));
         imageEventText.setDialogOption(opt.get("hold"));
@@ -77,7 +82,7 @@ public class WindyBridgeEvent extends AbstractImageEvent {
     protected void buttonEffect(int buttonPressed) {
         int betterButtonNum = imageEventText.optionList.size() - buttonPressed - 1; //counting bottom up makes cases more consistent... i think
         switch (screen) {
-            case INTRO:
+            case INTRO: //plain first screen
                 imageEventText.updateBodyText(desc.get("intro2"));
                 screen = CurScreen.OPTIONS;
                 updateOptions();
@@ -113,7 +118,7 @@ public class WindyBridgeEvent extends AbstractImageEvent {
         }
     }
 
-    // update dialogue options
+    // update dialogue options: up to 2 information options + 1 grab option + 1 leave option
     public void updateOptions(){
         imageEventText.clearAllDialogs();
         for (int i = Math.min(1, optionPros.size()-1); i >= 0; i--) {
@@ -157,6 +162,7 @@ public class WindyBridgeEvent extends AbstractImageEvent {
         }
     }
 
+    //trigger the upside of grabbing/seeing information and the downside of losing items + update event text accordingly
     public void triggerComplexOption(OptionPro p, OptionCon c, int optionNum){
         String newBodyText = "";
         switch (p){
@@ -241,7 +247,7 @@ public class WindyBridgeEvent extends AbstractImageEvent {
         return 25;
     }
 
-    // method copied from Nloth event
+    // method sampled from Nloth event
     public AbstractRelic getLosableRelic(){
         ArrayList<AbstractRelic> relics = new ArrayList<>(AbstractDungeon.player.relics);
         Collections.shuffle(relics, new Random(AbstractDungeon.miscRng.randomLong()));
@@ -264,6 +270,7 @@ public class WindyBridgeEvent extends AbstractImageEvent {
         return couldLoseCard;
     }
 
+    //map ID'd strings to dictionary so i dont have to deal with 100 shifting string indices
     public static Dictionary<String, String> mapStrings(String[] strings){
         Dictionary<String, String> dict = new Hashtable<>();
         for(String s : strings){
@@ -275,13 +282,13 @@ public class WindyBridgeEvent extends AbstractImageEvent {
         return dict;
     }
 
-    private static enum OptionCon {
-        CARD, GOLD, RELIC, POTION;
+    private enum OptionCon {
+        CARD, GOLD, RELIC, POTION
     }
-    private static enum OptionPro {
-        GRAB, RARITY, COST, TYPE;
+    private enum OptionPro {
+        GRAB, RARITY, COST, TYPE
     }
-    private static enum CurScreen {
-        INTRO, OPTIONS, RESULT;
+    private enum CurScreen {
+        INTRO, OPTIONS, RESULT
     }
 }

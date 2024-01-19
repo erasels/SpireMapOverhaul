@@ -20,6 +20,7 @@ public class FlyAwayAction extends AbstractGameAction {
     public FlyAwayAction(AbstractMonster target){
         target.hideHealthBar();
 
+        // merge into copies of this action to allow fly animation to play simultaneously
         for(AbstractGameAction a : AbstractDungeon.actionManager.actions){
             if(a instanceof FlyAwayAction){
                 this.isDone = true;
@@ -34,13 +35,13 @@ public class FlyAwayAction extends AbstractGameAction {
 
     @Override
     public void update() {
-        if(this.duration == 0){
+        if(this.duration == 0){ //increase wind dust effect when action triggers
             for (int i = 0; i < 100; i++) {
                 AbstractDungeon.effectsQueue.add(new WindyDustEffect(true));
             }
         }
 
-        if(this.duration >= MAX_DUR){
+        if(this.duration >= MAX_DUR){ //when action animation finishes, execute enemies, reduce gold reward, and check for combat end
             for(AbstractMonster m: targets){
                 //darklings why
                 boolean temp = AbstractDungeon.getCurrRoom().cannotLose;
@@ -63,6 +64,7 @@ public class FlyAwayAction extends AbstractGameAction {
             return;
         }
 
+        // monster spinny
         this.duration += Gdx.graphics.getDeltaTime();
         float ratio = this.duration / MAX_DUR;
         float degree = 900 * ratio * ratio;
