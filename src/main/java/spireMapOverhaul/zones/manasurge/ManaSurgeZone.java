@@ -142,7 +142,7 @@ public class ManaSurgeZone extends AbstractZone implements
 
     public static void applyRandomPermanentModifier(AbstractCard card) {
         if (AbstractDungeon.cardRng.randomBoolean(COMMON_CHANCE)) {
-            if (AbstractDungeon.cardRandomRng.randomBoolean(ENCHANT_CHANCE)) {
+            if (AbstractDungeon.cardRng.randomBoolean(ENCHANT_CHANCE)) {
                 CardModifierManager.addModifier(card, Wiz.getRandomItem(getPositiveCommonModifierList(true), AbstractDungeon.cardRng));
             } else {
                 CardModifierManager.addModifier(card, Wiz.getRandomItem(getNegativeCommonModifierList(true), AbstractDungeon.cardRng));
