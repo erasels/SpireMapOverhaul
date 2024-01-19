@@ -1,0 +1,9 @@
+{
+  "${ModID}:Windy": {
+    "TEXT": [
+      "Windy",
+      "Extreme winds are happening in the spire! NL NL Enemies are blown away when at or below #b10% HP, defeating them but lowering the gold reward by an amount equal to their HP.",
+      "iry"
+    ]
+  }
+}

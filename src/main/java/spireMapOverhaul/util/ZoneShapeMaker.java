@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class ZoneShapeMaker {
     private static final float SPACING_X = Settings.isMobile ? (int)(Settings.xScale * 64.0F) * 2.2F : (int)(Settings.xScale * 64.0F) * 2.0F;
@@ -77,7 +78,6 @@ public class ZoneShapeMaker {
         if (zone.zoneFb == null) {
             zone.zoneFb = new FrameBuffer(Pixmap.Format.RGBA8888, zoneWidth, zoneHeight, false);
         }
-
         if (zoneWidth > commonBuffer.getWidth() || zoneHeight > commonBuffer.getHeight()) {
             zoneWidth = Math.max(commonBuffer.getWidth(), zoneWidth);
             zoneHeight = Math.max(commonBuffer.getHeight(), zoneHeight);
@@ -133,9 +133,10 @@ public class ZoneShapeMaker {
         //in-between circles. Each node in the zone looks to add a circle between it and nodes from the same zone if they are adjacent
         //(to the right and up to avoid drawing the same thing multiple times)
         for (MapRoomNode n : nodes) {
+            List<MapRoomNode> cleanedFloor = map.get(n.y).stream().filter(MapRoomNode::hasEdges).collect(Collectors.toList());
             for (MapRoomNode m : nodes) {
                 boolean isMAboveAndClose = (m.y == n.y+1) && (Math.abs(m.x - n.x) <= 1);
-                boolean isMToTheRight = m.y == n.y && m.x == n.x+1;
+                boolean isMToTheRight = m.y == n.y && cleanedFloor.indexOf(m) == cleanedFloor.indexOf(n)+1;
                 if (isMAboveAndClose || isMToTheRight) {
                     float nX = (n.x - zX) * SPACING_X + FB_OFFSET + n.offsetX;
                     float mX = (m.x - zX) * SPACING_X + FB_OFFSET + m.offsetX;
@@ -370,10 +371,20 @@ public class ZoneShapeMaker {
     }
 
     public static float nodeDistance(MapRoomNode n1, MapRoomNode n2) {
-        return (float) Math.sqrt((n1.hb.cX - n2.hb.cX)*(n1.hb.cX - n2.hb.cX) + (n1.hb.cY - n2.hb.cY)*(n1.hb.cY - n2.hb.cY));
+        return (float) Math.sqrt((nodeX(n1) - nodeX(n2))*(nodeX(n1) - nodeX(n2)) + (nodeY(n1) - nodeY(n2))*(nodeY(n1) - nodeY(n2)));
     }
     public static float nodeDistanceSquared(MapRoomNode n1, MapRoomNode n2) {
-        return (n1.hb.cX - n2.hb.cX)*(n1.hb.cX - n2.hb.cX) + (n1.hb.cY - n2.hb.cY)*(n1.hb.cY - n2.hb.cY);
+        return (nodeX(n1) - nodeX(n2))*(nodeX(n1) - nodeX(n2)) + (nodeY(n1) - nodeY(n2))*(nodeY(n1) - nodeY(n2));
+    }
+
+    public static float nodeX(MapRoomNode n) {
+        //return n.x * SPACING_X + OFFSET_X + n.offsetX;
+        return n.hb.cX;
+    }
+
+    public static float nodeY(MapRoomNode n) {
+        //return n.y * Settings.MAP_DST_Y + 180.0F * Settings.scale + DungeonMapScreen.offsetY + n.offsetY;
+        return n.hb.cY;
     }
 
     private static Pair<Integer, Integer> getEffectiveSize(List<MapRoomNode> nodes) {
