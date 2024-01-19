@@ -1,3 +1,7 @@
+/*
+    code copied from storm zone
+ */
+
 package spireMapOverhaul.zones.windy.patches;
 
 import com.badlogic.gdx.Gdx;

@@ -1,5 +1,7 @@
 package spireMapOverhaul.zones.windy;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Graphics;
 import com.badlogic.gdx.graphics.Color;
 import com.evacipated.cardcrawl.modthespire.lib.ByRef;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInsertLocator;
@@ -7,6 +9,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireInsertPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import spireMapOverhaul.SpireAnniversary6Mod;
@@ -64,7 +67,7 @@ public class WindyZone extends AbstractZone implements CombatModifyingZone, Modi
 
     public void postDamageCheck(AbstractMonster m){
         if(m.currentHealth <= m.maxHealth/10 && !m.isDeadOrEscaped()){
-            Wiz.atb(new FlyAwayAction(m));
+            Wiz.att(new FlyAwayAction(m));
         }
     }
 
@@ -73,8 +76,16 @@ public class WindyZone extends AbstractZone implements CombatModifyingZone, Modi
         return 0.70f;
     }
 
+    public float particleTime = 0f;
     @Override
     public void update() {
-//        AbstractDungeon.effectsQueue.add(new WindyDustEffect());
+        //spawn 12 windy particles a second, averaging at ~100 particles on screen, about the same as the normal exordium dust rate
+        particleTime += Gdx.graphics.getDeltaTime();
+        if(particleTime >= 0.25f){
+            particleTime = 0;
+            for (int i = 0; i < 3; i++) {
+                AbstractDungeon.effectsQueue.add(new WindyDustEffect(false));
+            }
+        }
     }
 }

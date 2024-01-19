@@ -143,10 +143,10 @@ public class WindyBridgeEvent extends AbstractImageEvent {
         option += getLossProbability() + opt.get("lose");
         switch (c){
             case CARD:
-                imageEventText.setDialogOption(option + FontHelper.colorString(couldLoseCard.name, "r"), couldLoseCard);
+                imageEventText.setDialogOption(option + FontHelper.colorString(couldLoseCard.name, "r"));
                 break;
             case RELIC:
-                imageEventText.setDialogOption(option + FontHelper.colorString(couldLoseRelic.name, "r"), couldLoseRelic);
+                imageEventText.setDialogOption(option + FontHelper.colorString(couldLoseRelic.name, "r"));
                 break;
             case POTION:
                 imageEventText.setDialogOption(option + FontHelper.colorString(couldLosePotion.name, "r"));
