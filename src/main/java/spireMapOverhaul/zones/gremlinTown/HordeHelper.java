@@ -66,7 +66,7 @@ public class HordeHelper {
     private static float PLATFORM_END_Y;
     private static float PLATFORM_START_Y;
     private static boolean reinforced;
-    public static boolean needsUpdate;
+    public static boolean needsUpdate = false;
 
     static {
         uiStrings = CardCrawlGame.languagePack.getUIString(HORDE_STRINGS);
@@ -341,6 +341,8 @@ public class HordeHelper {
     }
 
     public static AbstractMonster getNextGround() {
+        SpireAnniversary6Mod.logger.info("Get next ground");
+        SpireAnniversary6Mod.logger.info(AbstractDungeon.lastCombatMetricKey);
         if (groundQueue.size() > (platformQueue.size() * 2) / 3 )
             return groundQueue.get(0);
         else if (!platformQueue.isEmpty())

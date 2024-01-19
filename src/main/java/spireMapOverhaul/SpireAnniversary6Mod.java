@@ -278,6 +278,7 @@ public class SpireAnniversary6Mod implements
     @Override
     public void receiveOnBattleStart(AbstractRoom abstractRoom) {
         // I can't have this in my zone because it still needs called if I access this fight via the dev console
+        HordeHelper.needsUpdate = false;
         if (AbstractDungeon.lastCombatMetricKey != null && AbstractDungeon.lastCombatMetricKey.equals(GremlinTown.GREMLIN_HORDE))
             HordeHelper.initFight();
     }
