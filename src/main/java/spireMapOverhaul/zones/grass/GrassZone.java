@@ -8,6 +8,8 @@ import com.megacrit.cardcrawl.helpers.RelicLibrary;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.relics.*;
 import com.megacrit.cardcrawl.rewards.RewardItem;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import com.megacrit.cardcrawl.rooms.MonsterRoom;
 import com.megacrit.cardcrawl.shop.ShopScreen;
 import com.megacrit.cardcrawl.shop.StoreRelic;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
@@ -56,9 +58,13 @@ public class GrassZone extends AbstractZone implements CombatModifyingZone, Rend
 
     @Override
     public void atBattleStart() {
-        initializeVegetables();
-        for (int i = 0; i < AbstractDungeon.cardRandomRng.random(1, 3); i++) {
-            spawn(random().create());
+        // Do not actually spawn vegetables in the shop
+        AbstractRoom room = AbstractDungeon.getCurrRoom();
+        if (room instanceof MonsterRoom) {
+            initializeVegetables();
+            for (int i = 0; i < AbstractDungeon.cardRandomRng.random(1, 3); i++) {
+                spawn(random().create());
+            }
         }
     }
 
