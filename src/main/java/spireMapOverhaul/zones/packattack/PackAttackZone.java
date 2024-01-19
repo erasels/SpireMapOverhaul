@@ -147,6 +147,14 @@ public class PackAttackZone extends AbstractZone implements CombatModifyingZone,
         }
     }
 
+    @Override
+    public AbstractCard getReplacementShopCardForCourier(AbstractCard purchasedCard) {
+        if (this.cards.stream().anyMatch(c -> c.cardID.equals(purchasedCard.cardID))) {
+            return this.getPackCard(AbstractDungeon.rollRarity(), purchasedCard.type, new HashSet<>(), AbstractDungeon.merchantRng);
+        }
+        return null;
+    }
+
     private void replaceWithPackCards(ArrayList<AbstractCard> cards, boolean sameCardType, Random rng) {
         HashSet<String> cardsSoFar = new HashSet<>();
         for (int i = 0; i < cards.size(); i++) {
@@ -157,6 +165,10 @@ public class PackAttackZone extends AbstractZone implements CombatModifyingZone,
     }
 
     private AbstractCard getPackCard(AbstractCard.CardRarity rarity, AbstractCard.CardType type, HashSet<String> excludedCards, Random rng) {
+        if (rarity == AbstractCard.CardRarity.COMMON && type == AbstractCard.CardType.POWER) {
+            rarity = AbstractCard.CardRarity.UNCOMMON;
+        }
+
         ArrayList<AbstractCard> options;
         switch(rarity) {
             case UNCOMMON:
