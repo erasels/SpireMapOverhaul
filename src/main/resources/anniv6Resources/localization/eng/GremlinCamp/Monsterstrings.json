@@ -6,7 +6,10 @@
       "Rotten Food",
       "Tackle"
     ],
-    "NAME": "Gremlin Cook"
+    "NAME": "Gremlin Cook",
+    "DIALOG": [
+      "Eat up, boys!"
+    ]
   },
   "${ModID}:GremlinDog": {
     "MOVES": [

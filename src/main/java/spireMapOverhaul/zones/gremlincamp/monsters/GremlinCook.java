@@ -22,6 +22,7 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.ExhaustEmberEffect;
+import com.megacrit.cardcrawl.vfx.SpeechBubble;
 import com.megacrit.cardcrawl.vfx.combat.FlameParticleEffect;
 import com.megacrit.cardcrawl.vfx.combat.HealEffect;
 import com.megacrit.cardcrawl.vfx.combat.SmokeBlurEffect;
@@ -36,8 +37,7 @@ import spireMapOverhaul.zones.gremlincamp.SmokeEffect;
 
 import java.util.ArrayList;
 
-import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
-import static spireMapOverhaul.SpireAnniversary6Mod.makeMonsterPath;
+import static spireMapOverhaul.SpireAnniversary6Mod.*;
 
 public class GremlinCook extends AbstractSMOMonster {
     public static final String ID = makeID(GremlinCook.class.getSimpleName());
@@ -45,6 +45,7 @@ public class GremlinCook extends AbstractSMOMonster {
     private static final Texture cauldron = TexLoader.getTexture(makeMonsterPath(GremlinCamp.ID+"/cauldron.png"));
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
+    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final Byte ALL_BUFF = 0, ALL_BULK = 1, POISON = 2, TACKLE = 3;
 
@@ -76,10 +77,14 @@ public class GremlinCook extends AbstractSMOMonster {
     public void takeTurn() {
         switch (nextMove) {
             case 0:
+                if(!secondMove)
+                    AbstractDungeon.effectList.add(new SpeechBubble(hb.cX + dialogX, hb.cY + dialogY, 1.5F, DIALOG[0], false));
                 useShakeAnimation(Settings.ACTION_DUR_MED);
                 Wiz.atb(new AllEnemyApplyPowerAction(this, strAmt, (m) -> new StrengthPower(m, strAmt)));
                 break;
             case 1:
+                if(!secondMove)
+                    AbstractDungeon.effectList.add(new SpeechBubble(hb.cX + dialogX, hb.cY + dialogY, 1.5F, DIALOG[0], false));
                 useShakeAnimation(Settings.ACTION_DUR_FAST);
                 Wiz.atb(new AbstractGameAction() {
                     @Override
