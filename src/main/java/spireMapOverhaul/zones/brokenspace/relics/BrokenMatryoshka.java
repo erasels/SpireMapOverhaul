@@ -55,6 +55,7 @@ public class BrokenMatryoshka extends BrokenRelic {
             AbstractDungeon.combatRewardScreen.rewards.removeIf(rewardItem -> rewardItem.relic == this);
 
             AbstractDungeon.combatRewardScreen.rewards.addAll(newRelics);
+            AbstractDungeon.combatRewardScreen.positionRewards();
         }
 
         super.update();

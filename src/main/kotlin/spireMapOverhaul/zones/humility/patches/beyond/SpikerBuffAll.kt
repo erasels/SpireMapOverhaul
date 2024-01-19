@@ -18,6 +18,8 @@ class SpikerBuffAll {
         fun Instrument(): ExprEditor =
             object : ExprEditor() {
                 override fun edit(e: NewExpr) {
+                    if (HumilityZone.hasHumilityMod()) return
+
                     if (e.className == ApplyPowerAction::class.qualifiedName) {
                         e.replace(
                             "if (${HumilityZone::class.qualifiedName}.isInZone()) {" +

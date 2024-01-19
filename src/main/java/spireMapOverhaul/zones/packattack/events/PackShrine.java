@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.events.AbstractImageEvent;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import com.megacrit.cardcrawl.vfx.RainingGoldEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.PurgeCardEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import spireMapOverhaul.SpireAnniversary6Mod;
@@ -81,7 +82,9 @@ public class PackShrine extends AbstractImageEvent {
                 int gold = c.rarity == AbstractCard.CardRarity.COMMON ? this.commonGold
                         : c.rarity == AbstractCard.CardRarity.UNCOMMON ? this.uncommonGold
                         : c.rarity == AbstractCard.CardRarity.RARE ? this.rareGold
-                        : 0;
+                        : 5;
+                AbstractDungeon.effectList.add(new RainingGoldEffect(gold));
+                AbstractDungeon.player.gainGold(gold);
                 logMetric(ID, "Offer", null, Collections.singletonList(c.cardID), null, null, null, null, null, 0, 0, 0, 0, gold, 0);
                 this.imageEventText.updateBodyText(gold == 0 ? DESCRIPTIONS[2] : DESCRIPTIONS[3]);
                 this.screenNum = 1;

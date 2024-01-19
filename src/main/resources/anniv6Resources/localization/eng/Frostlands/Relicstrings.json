@@ -1,0 +1,30 @@
+{
+  "${ModID}:Contraption": {
+    "NAME": "Contraption",
+    "FLAVOR": "A strange gift.",
+    "DESCRIPTIONS": [
+      "The next time you would die in combat, heal to #b1 HP and flee combat if possible."
+    ]
+  },
+  "${ModID}:OldHat": {
+    "NAME": "Old Hat",
+    "FLAVOR": "Hypothema's hand-me-down.",
+    "DESCRIPTIONS": [
+      "At the start of your turn, gain #b", " #yVigor."
+    ]
+  },
+  "${ModID}:Frostcoal": {
+    "NAME": "Frostcoal",
+    "FLAVOR": "Chip off the old block.",
+    "DESCRIPTIONS": [
+      "Enemies deal #b", " less damage during the first turn of combat."
+    ]
+  },
+  "${ModID}:SpruceCharm": {
+    "NAME": "Spruce Charm",
+    "FLAVOR": "From the pommel of her sword.",
+    "DESCRIPTIONS": [
+      "The first Attack you play during the first turn of combat is played twice."
+    ]
+  }
+}

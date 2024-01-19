@@ -1,0 +1,13 @@
+
+Hypothema.png
+size: 512,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Hypothema
+  rotate: false
+  xy: 1, 1
+  size: 290, 533
+  orig: 290, 533
+  offset: 0, 0
+  index: -1

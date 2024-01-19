@@ -5,9 +5,10 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.util.TexLoader;
 import spireMapOverhaul.zones.Junkyard.monsters.Junkbot;
+
+import static spireMapOverhaul.zones.Junkyard.monsters.Junkbot.IMG_INACTIVE;
 
 public class DeactivateAction extends AbstractGameAction {
     private AbstractCreature owner;
@@ -29,7 +30,7 @@ public class DeactivateAction extends AbstractGameAction {
         junkOwner.isActivated = (rand >= chanceToDeactivate);
         if (!junkOwner.isActivated) {
             CardCrawlGame.sound.playA("ORB_LIGHTNING_EVOKE", -0.5f);
-            junkOwner.setImage(TexLoader.getTexture(SpireAnniversary6Mod.makeImagePath("monsters/Junkbot/Junkbot_inactive.png")));
+            junkOwner.setImage(TexLoader.getTexture(IMG_INACTIVE));
         }
         else {
             junkOwner.setDeactivateChance(chanceToDeactivate + 20);

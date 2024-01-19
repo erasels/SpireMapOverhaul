@@ -162,6 +162,10 @@ public class AmbushedZone extends AbstractZone implements CombatModifyingZone, E
     @Override
     public void beforePreBattlePrep() {
         AbstractDungeon.player.movePosition((float) Settings.WIDTH / 2.0F, AbstractDungeon.floorY);
+    }
+
+    @Override
+    public void atPreBattle() {
         AbstractDungeon.player.powers.add(new SurroundedPower(AbstractDungeon.player));
     }
 
@@ -296,6 +300,10 @@ public class AmbushedZone extends AbstractZone implements CombatModifyingZone, E
                 node.setRoom(new MonsterRoom());
             }
         }
+    }
+
+    protected boolean allowAdditionalEntrances() {
+        return false;
     }
 
     @Override

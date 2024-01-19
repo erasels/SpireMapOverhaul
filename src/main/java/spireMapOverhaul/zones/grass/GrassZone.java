@@ -113,6 +113,7 @@ public class GrassZone extends AbstractZone implements CombatModifyingZone, Rend
                             && (relicPool == null || relicPool.contains(relicID))
                             && AbstractDungeon.relicRng.randomBoolean(getRelicChance())) {
                         rewardItem.relic = newRelic.makeCopy();
+                        rewardItem.text = newRelic.name;
                         // Add the old relic back in to the pool so that it can spawn again
                         Wiz.addRelicToPool(origRelic);
                         break;

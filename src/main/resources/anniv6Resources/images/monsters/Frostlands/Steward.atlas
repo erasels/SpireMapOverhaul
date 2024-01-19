@@ -1,0 +1,13 @@
+
+Steward.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Steward
+  rotate: false
+  xy: 1, 1
+  size: 336, 336
+  orig: 336, 336
+  offset: 0, 0
+  index: -1

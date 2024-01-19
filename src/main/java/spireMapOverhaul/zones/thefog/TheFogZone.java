@@ -60,8 +60,12 @@ public class TheFogZone extends AbstractZone implements CombatModifyingZone, Mod
         return false;
     }
 
+    protected boolean allowAdditionalEntrances() {
+        return false;
+    }
+
     @Override
     public float zoneSpecificEventRate() {
-        return 0.3f;
+        return 0.33f;
     }
 }

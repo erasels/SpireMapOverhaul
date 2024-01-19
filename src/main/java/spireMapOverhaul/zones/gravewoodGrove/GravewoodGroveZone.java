@@ -41,11 +41,6 @@ public class GravewoodGroveZone extends AbstractZone implements CombatModifyingZ
     }
 
     @Override
-    protected boolean allowAdditionalEntrances() {
-        return true;
-    }
-
-    @Override
     public AbstractZone copy() {
         return new GravewoodGroveZone();
     }

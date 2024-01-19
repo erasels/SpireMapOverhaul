@@ -1,0 +1,38 @@
+{
+  "${ModID}:LouseMilk": {
+    "NAME": "Louse Milk",
+    "DESCRIPTIONS": [
+      "Draw #b{0} cards and gain #b{1} Energy."
+    ]
+  },
+  "${ModID}:PreerelxsBlueRibbon": {
+    "NAME": "Preerelx's Blue Ribbon",
+    "DESCRIPTIONS": [
+      "Gain #b{0} #yVigor."
+    ]
+  },
+  "${ModID}:RitualBlood": {
+    "NAME": "Ritual Blood",
+    "DESCRIPTIONS": [
+      "#rImpairs the Corrupted Heart."
+    ]
+  },
+  "${ModID}:NoxiousBrew": {
+    "NAME": "Noxious Brew",
+    "DESCRIPTIONS": [
+      "Apply #b{0} #yPoison to a random enemy at the end of your turn."
+    ]
+  },
+  "${ModID}:MushroomSoup": {
+    "NAME": "Mushroom Soup",
+    "DESCRIPTIONS": [
+      "Gain #b{0} #yTemporary #yHP at the end of your turn."
+    ]
+  },
+  "${ModID}:GremsFire": {
+    "NAME": "Grem's Fire",
+    "DESCRIPTIONS": [
+      "Deal #b{0} damage to ALL enemies at the end of your turn."
+    ]
+  }
+}

@@ -1,0 +1,18 @@
+[
+  {
+    "PROPER_NAME": "Vigor",
+    "NAMES": [
+      "Vigor",
+      "vigor"
+    ],
+    "DESCRIPTION": "Your next #yAttack deals more damage"
+  },
+  {
+    "PROPER_NAME": "Slow",
+    "NAMES": [
+      "Slow",
+      "slow"
+    ],
+    "DESCRIPTION": "Whenever you play a card, the enemy receives 10% more damage from #yAttacks that turn."
+  }
+]
