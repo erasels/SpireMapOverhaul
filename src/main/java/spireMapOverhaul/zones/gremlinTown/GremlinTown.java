@@ -86,6 +86,11 @@ public class GremlinTown extends AbstractZone
     }
 
     @Override
+    public void beforePreBattlePrep() {
+        HordeHelper.needsUpdate = false;
+    }
+
+    @Override
     public AbstractZone copy() {
         return new GremlinTown();
     }

@@ -27,6 +27,7 @@ public class AngryStrike extends AbstractSMOCard {
         super(ID, GremlinTown.ID, COST, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
         baseDamage = DAMAGE;
         tags.add(SpireAnniversary6Mod.Enums.GREMLIN);
+        tags.add(CardTags.STRIKE);
     }
 
     @Override
