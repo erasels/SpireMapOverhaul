@@ -19,10 +19,7 @@ import spireMapOverhaul.zoneInterfaces.ModifiedEventRateZone;
 import spireMapOverhaul.zoneInterfaces.RewardModifyingZone;
 import spireMapOverhaul.zoneInterfaces.ShopModifyingZone;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class PackAttackZone extends AbstractZone implements CombatModifyingZone, RewardModifyingZone, ShopModifyingZone, ModifiedEventRateZone {
@@ -136,13 +133,13 @@ public class PackAttackZone extends AbstractZone implements CombatModifyingZone,
 
     @Override
     public void modifyRewardCards(ArrayList<AbstractCard> cards) {
-        this.replaceWithPackCards(cards, AbstractDungeon.cardRng);
+        this.replaceWithPackCards(cards, false, AbstractDungeon.cardRng);
         this.applyStandardUpgradeLogic(cards);
     }
 
     @Override
     public void postCreateShopCards(ArrayList<AbstractCard> coloredCards, ArrayList<AbstractCard> colorlessCards) {
-        this.replaceWithPackCards(coloredCards, AbstractDungeon.merchantRng);
+        this.replaceWithPackCards(coloredCards, true, AbstractDungeon.merchantRng);
         for (AbstractCard c : coloredCards) {
             for (AbstractRelic relic : AbstractDungeon.player.relics) {
                 relic.onPreviewObtainCard(c);
@@ -150,13 +147,16 @@ public class PackAttackZone extends AbstractZone implements CombatModifyingZone,
         }
     }
 
-    private void replaceWithPackCards(ArrayList<AbstractCard> cards, Random rng) {
+    private void replaceWithPackCards(ArrayList<AbstractCard> cards, boolean sameCardType, Random rng) {
+        HashSet<String> cardsSoFar = new HashSet<>();
         for (int i = 0; i < cards.size(); i++) {
-            cards.set(i, this.getPackCard(cards.get(i).rarity, rng));
+            AbstractCard card = this.getPackCard(cards.get(i).rarity, sameCardType ? cards.get(i).type : null, cardsSoFar, rng);
+            cards.set(i, card);
+            cardsSoFar.add(card.cardID);
         }
     }
 
-    private AbstractCard getPackCard(AbstractCard.CardRarity rarity, Random rng) {
+    private AbstractCard getPackCard(AbstractCard.CardRarity rarity, AbstractCard.CardType type, HashSet<String> excludedCards, Random rng) {
         ArrayList<AbstractCard> options;
         switch(rarity) {
             case UNCOMMON:
@@ -170,6 +170,16 @@ public class PackAttackZone extends AbstractZone implements CombatModifyingZone,
                 break;
         }
 
+        ArrayList<AbstractCard> filteredOptions = options.stream().filter(c -> !excludedCards.contains(c.cardID)).collect(Collectors.toCollection(ArrayList::new));
+        if (filteredOptions.size() > 0) {
+            options = filteredOptions;
+        }
+        if (type != null) {
+            ArrayList<AbstractCard> filteredOptions2 = options.stream().filter(c -> c.type == type).collect(Collectors.toCollection(ArrayList::new));
+            if (filteredOptions2.size() > 0) {
+                options = filteredOptions2;
+            }
+        }
         return options.get(rng.random(options.size() - 1)).makeCopy();
     }
 }
