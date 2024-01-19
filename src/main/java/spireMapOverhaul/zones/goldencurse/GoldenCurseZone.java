@@ -3,12 +3,10 @@ package spireMapOverhaul.zones.goldencurse;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.patches.CustomRewardTypes;
 import spireMapOverhaul.rewards.SingleCardReward;
-import spireMapOverhaul.util.ActUtil;
 import spireMapOverhaul.zoneInterfaces.RewardModifyingZone;
 
 import java.util.ArrayList;
@@ -84,6 +82,7 @@ public class GoldenCurseZone extends AbstractZone implements RewardModifyingZone
             int goldAmt = GoldenCurseZone.getRewardCost(r);
             RewardPatches.RewardItemFields.cost.set(r, goldAmt);
         });
+        AbstractDungeon.combatRewardScreen.positionRewards();
     }
 
     @Override
