@@ -148,7 +148,7 @@ public class ManaSurgeZone extends AbstractZone implements
                 CardModifierManager.addModifier(card, Wiz.getRandomItem(getNegativeCommonModifierList(true), AbstractDungeon.cardRng));
             }
         } else {
-            if (AbstractDungeon.cardRandomRng.randomBoolean(ENCHANT_CHANCE)) {
+            if (AbstractDungeon.cardRng.randomBoolean(ENCHANT_CHANCE)) {
                 CardModifierManager.addModifier(card, Wiz.getRandomItem(getPositiveUncommonModifierList(true), AbstractDungeon.cardRng));
             } else {
                 CardModifierManager.addModifier(card, Wiz.getRandomItem(getNegativeUncommonModifierList(true), AbstractDungeon.cardRng));
