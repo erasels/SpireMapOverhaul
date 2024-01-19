@@ -58,6 +58,8 @@ class SpireGrowthConstrictAttack {
                     }
 
                     override fun edit(m: MethodCall) {
+                        if (HumilityZone.hasHumilityMod()) return
+
                         if (constrict && m.methodName == "setMove") {
                             m.replace(
                                 "if (${HumilityZone::class.qualifiedName}.isInZone()) {" +

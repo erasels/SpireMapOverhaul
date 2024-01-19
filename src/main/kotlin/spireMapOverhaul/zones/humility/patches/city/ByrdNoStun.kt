@@ -18,6 +18,8 @@ class ByrdNoStun {
         fun Instrument(): ExprEditor =
             object : ExprEditor() {
                 override fun edit(m: MethodCall) {
+                    if (HumilityZone.hasHumilityMod()) return
+
                     if (m.methodName == "setMove" || m.methodName == "createIntent") {
                         m.replace(
                             "if (${HumilityZone::class.qualifiedName}.isNotInZone()) {" +
