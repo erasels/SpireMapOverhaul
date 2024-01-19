@@ -47,12 +47,13 @@ public class EncounterModifierPatches {
                 List<EncounterModifyingZone.ZoneEncounter> encounters = z.getNormalEncounters();
                 if (encounters != null) {
                     encounters = encounters.stream().filter(e -> e.getActNum() == ActUtil.getRealActNum()).collect(Collectors.toList());
-                    if (LastZoneNormalEncounter.lastZoneNormalEncounter != null && LastZoneNormalEncounter.lastZoneNormalEncounter.startsWith(zone.id + ":")) {
+                    boolean hasPreviousZoneEncounter = LastZoneNormalEncounter.lastZoneNormalEncounter != null && LastZoneNormalEncounter.lastZoneNormalEncounter.startsWith(zone.id + ":");
+                    if (hasPreviousZoneEncounter) {
                         String encounterId = LastZoneNormalEncounter.lastZoneNormalEncounter.substring(zone.id.length() + 1);
                         encounters = encounters.stream().filter(e -> !e.getID().equals(encounterId)).collect(Collectors.toList());
                     }
 
-                    if (EncounterModifierPatchFields.loadingPostCombat.get(AbstractDungeon.getCurrMapNode()) && LastZoneNormalEncounter.lastZoneNormalEncounter != null) {
+                    if (EncounterModifierPatchFields.loadingPostCombat.get(AbstractDungeon.getCurrMapNode()) && hasPreviousZoneEncounter) {
                         String encounterId = LastZoneNormalEncounter.lastZoneNormalEncounter.substring(zone.id.length() + 1);
                         EncounterModifyingZone.ZoneEncounter ze = z.getNormalEncounters().stream().filter(e -> e.getID().equals(encounterId)).collect(Collectors.toList()).get(0);
                         AbstractDungeon.lastCombatMetricKey = ze.getID();
@@ -85,12 +86,13 @@ public class EncounterModifierPatches {
                 List<EncounterModifyingZone.ZoneEncounter> encounters = z.getEliteEncounters();
                 if (encounters != null) {
                     encounters = encounters.stream().filter(e -> e.getActNum() == ActUtil.getRealActNum()).collect(Collectors.toList());
-                    if (LastZoneEliteEncounter.lastZoneEliteEncounter != null && LastZoneEliteEncounter.lastZoneEliteEncounter.startsWith(zone.id + ":")) {
+                    boolean hasPreviousZoneEncounter = LastZoneEliteEncounter.lastZoneEliteEncounter != null && LastZoneEliteEncounter.lastZoneEliteEncounter.startsWith(zone.id + ":");
+                    if (hasPreviousZoneEncounter) {
                         String encounterId = LastZoneEliteEncounter.lastZoneEliteEncounter.substring(zone.id.length() + 1);
                         encounters = encounters.stream().filter(e -> !e.getID().equals(encounterId)).collect(Collectors.toList());
                     }
 
-                    if (EncounterModifierPatchFields.loadingPostCombat.get(AbstractDungeon.getCurrMapNode()) && LastZoneEliteEncounter.lastZoneEliteEncounter != null) {
+                    if (EncounterModifierPatchFields.loadingPostCombat.get(AbstractDungeon.getCurrMapNode()) && hasPreviousZoneEncounter) {
                         String encounterId = LastZoneEliteEncounter.lastZoneEliteEncounter.substring(zone.id.length() + 1);
                         EncounterModifyingZone.ZoneEncounter ze = z.getEliteEncounters().stream().filter(e -> e.getID().equals(encounterId)).collect(Collectors.toList()).get(0);
                         AbstractDungeon.lastCombatMetricKey = ze.getID();
