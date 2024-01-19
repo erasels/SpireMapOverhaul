@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
+import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.map.MapRoomNode;
@@ -187,7 +188,17 @@ public abstract class AbstractZone {
                 }
             }
             if (showTooltip) {
-                TipHelper.renderGenericTip(InputHelper.mX + 40f*Settings.scale, InputHelper.mY - 65f*Settings.scale, name, tooltipBody);
+                float tooltipWidth = 280.0F * Settings.scale;
+                float lineHeight = 26.0F * Settings.scale;
+                float tooltipHeight = -FontHelper.getSmartHeight(FontHelper.tipBodyFont, tooltipBody, tooltipWidth, lineHeight) -7f * Settings.scale;
+
+                float tooltipY = InputHelper.mY - 65f * Settings.scale;
+
+                if (tooltipY - tooltipHeight < 0) {
+                    tooltipY = tooltipHeight;
+                }
+
+                TipHelper.renderGenericTip(InputHelper.mX + 40f * Settings.scale, tooltipY, name, tooltipBody);
             }
         }
     }
