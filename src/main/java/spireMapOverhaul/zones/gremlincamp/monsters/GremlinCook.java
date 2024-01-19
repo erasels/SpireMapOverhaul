@@ -48,7 +48,7 @@ public class GremlinCook extends AbstractSMOMonster {
         addMove(POISON, Intent.STRONG_DEBUFF);
         addMove(TACKLE, Intent.ATTACK_DEBUFF, calcAscensionDamage(10));
 
-        healAmt = calcAscensionSpecial(8);
+        healAmt = calcAscensionSpecial(10);
         strAmt = AbstractDungeon.ascensionLevel >= 18? 3: 2;
         poisonAmt = calcAscensionSpecial(6);
     }
@@ -97,22 +97,28 @@ public class GremlinCook extends AbstractSMOMonster {
         //First turn always buffs
         if(firstMove) {
             firstMove = false;
-            setMoveShortcut(ALL_BUFF, MOVES[ALL_BUFF]);
+            if(enemies > 1 && i > 50) {
+                setMoveShortcut(ALL_BULK, MOVES[ALL_BULK]);
+            } else {
+                setMoveShortcut(ALL_BUFF, MOVES[ALL_BUFF]);
+            }
             return;
         }
 
         if(!secondMove) {
             secondMove = true;
-            if(enemies > 1) {
-                setMoveShortcut(ALL_BULK, MOVES[ALL_BULK]);
-                return;
-            }
+            setMoveShortcut(POISON, MOVES[POISON]);
+            return;
         }
 
         ArrayList<Byte> possibilities = new ArrayList<>();
         // Can buff everyone if not alone or late in combat and last move wasn't buff
         if((enemies > 1 || GameActionManager.turn > 5) && !lastMove(ALL_BUFF)) {
             possibilities.add(ALL_BUFF);
+        }
+
+        if(enemies == 3 && !lastMove(ALL_BULK)) {
+            possibilities.add(ALL_BULK);
         }
 
         // Turn 3+ can start poisoning player if it wasn't done last turn

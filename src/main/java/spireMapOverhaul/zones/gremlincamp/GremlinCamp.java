@@ -134,7 +134,7 @@ public class GremlinCamp extends AbstractZone implements EncounterModifyingZone,
             //The bros have more HP
             for (AbstractMonster m : AbstractDungeon.getCurrRoom().monsters.monsters) {
                 if (!GremlinCook.ID.equals(m.id)) {
-                    Wiz.atb(new IncreaseMaxHpAction(m, 1f, false));
+                    Wiz.atb(new IncreaseMaxHpAction(m, 1.5f, false));
                 }
             }
         }
