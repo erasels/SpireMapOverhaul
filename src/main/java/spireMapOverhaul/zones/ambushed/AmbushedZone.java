@@ -58,7 +58,7 @@ public class AmbushedZone extends AbstractZone implements CombatModifyingZone, E
     public AmbushedZone() {
         super(ID, Icons.MONSTER, Icons.SHOP);
         this.width = 3;
-        this.height = 4;
+        this.height = 3;
         initCardDrawCardIDs();
     }
 
@@ -234,6 +234,43 @@ public class AmbushedZone extends AbstractZone implements CombatModifyingZone, E
         boolean isCardColored = card.color != AbstractCard.CardColor.COLORLESS;
         return card != null && card.rarity == rarity && card.type == type && isCardColored == isColored;
     }
+
+    @Override
+    public AbstractCard getReplacementShopCardForCourier(AbstractCard purchasedCard) {
+        boolean isColored = purchasedCard.color != AbstractCard.CardColor.COLORLESS;
+        AbstractCard replacementCard = getCardForCourier(purchasedCard.type, isColored);
+
+        // Handle the case where no replacement card is found
+        if (replacementCard == null) {
+            // You can decide how to handle this - return null, a default card, etc.
+            return null; // or some default behavior
+        }
+
+        return replacementCard;
+    }
+
+    private AbstractCard getCardForCourier(AbstractCard.CardType type, boolean isColored) {
+        HashSet<String> selectedCardIDs = new HashSet<>(); // To avoid selecting the same card
+
+        // Filter cards by type and whether it's colored or colorless
+        List<String> filteredCardIDs = cardDrawCardIDs.stream()
+                .filter(id -> isCardSuitableForCourier(id, type, isColored))
+                .collect(Collectors.toList());
+
+        if (!filteredCardIDs.isEmpty()) {
+            String selectedCardID = filteredCardIDs.get(AbstractDungeon.cardRng.random(filteredCardIDs.size() - 1));
+            return CardLibrary.getCard(selectedCardID).makeCopy();
+        }
+
+        return null;
+    }
+
+    private boolean isCardSuitableForCourier(String cardID, AbstractCard.CardType type, boolean isColored) {
+        AbstractCard card = CardLibrary.getCard(cardID);
+        boolean isCardColored = card.color != AbstractCard.CardColor.COLORLESS;
+        return card != null && card.type == type && isCardColored == isColored;
+    }
+
 
     @Override
     public void postCreateShopPotions(ShopScreen screen, ArrayList<StorePotion> potions) {
