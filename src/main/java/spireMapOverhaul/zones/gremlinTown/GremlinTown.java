@@ -79,7 +79,7 @@ public class GremlinTown extends AbstractZone
         super(ID, Icons.MONSTER, Icons.EVENT, Icons.SHOP);
         width = 2;
         maxWidth = 3;
-        height = 4;
+        height = 5;
         maxHeight = 6;
         zoneColor = Color.FIREBRICK.cpy();
         zoneColor.a = 1.0F;
@@ -107,6 +107,11 @@ public class GremlinTown extends AbstractZone
 
     @Override
     protected boolean canIncludeEarlyRows() {
+        return false;
+    }
+
+    @Override
+    protected boolean canIncludeFinalCampfireRow() {
         return false;
     }
 
