@@ -257,13 +257,13 @@ public class WindyBridgeEvent extends AbstractImageEvent {
     //identify a random highest tier card that can be lost
     public AbstractCard getLosableCard(){
         CardGroup group = CardGroup.getGroupWithoutBottledCards(AbstractDungeon.player.masterDeck);
-        couldLoseCard = group.getRandomCard(AbstractDungeon.eventRng, AbstractCard.CardRarity.RARE);
+        couldLoseCard = group.getRandomCard(AbstractDungeon.miscRng, AbstractCard.CardRarity.RARE);
         if(couldLoseCard == null){
-            couldLoseCard = group.getRandomCard(AbstractDungeon.eventRng, AbstractCard.CardRarity.UNCOMMON);
+            couldLoseCard = group.getRandomCard(AbstractDungeon.miscRng, AbstractCard.CardRarity.UNCOMMON);
             if(couldLoseCard == null){
-                couldLoseCard = group.getRandomCard(AbstractDungeon.eventRng, AbstractCard.CardRarity.COMMON);
+                couldLoseCard = group.getRandomCard(AbstractDungeon.miscRng, AbstractCard.CardRarity.COMMON);
                 if(couldLoseCard == null){
-                    couldLoseCard = group.getRandomCard(AbstractDungeon.eventRng, AbstractCard.CardRarity.BASIC);
+                    couldLoseCard = group.getRandomCard(AbstractDungeon.miscRng, AbstractCard.CardRarity.BASIC);
                 }
             }
         }
