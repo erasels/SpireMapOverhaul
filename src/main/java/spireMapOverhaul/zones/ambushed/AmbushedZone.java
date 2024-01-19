@@ -240,17 +240,14 @@ public class AmbushedZone extends AbstractZone implements CombatModifyingZone, E
         boolean isColored = purchasedCard.color != AbstractCard.CardColor.COLORLESS;
         AbstractCard replacementCard = getCardForCourier(purchasedCard.type, isColored);
 
-        // Handle the case where no replacement card is found
         if (replacementCard == null) {
-            // You can decide how to handle this - return null, a default card, etc.
-            return null; // or some default behavior
+            return null;
         }
 
         return replacementCard;
     }
 
     private AbstractCard getCardForCourier(AbstractCard.CardType type, boolean isColored) {
-        HashSet<String> selectedCardIDs = new HashSet<>(); // To avoid selecting the same card
 
         // Filter cards by type and whether it's colored or colorless
         List<String> filteredCardIDs = cardDrawCardIDs.stream()
