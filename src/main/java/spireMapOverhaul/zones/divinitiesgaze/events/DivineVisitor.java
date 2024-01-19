@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.AbstractImageEvent;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
@@ -45,7 +46,7 @@ public class DivineVisitor extends PhasedEvent {
     AbstractCard boonCard = CardLibrary.getCard(this.divinity.getDivinityStrings().getBoonCardId());
     String combatPhaseKey = this.divinity.getCombatPhaseKey();
     registerPhase(Phase.APPEARANCE, new TextPhase(this.divinity.getDivinityStrings().getEventText())
-        .addOption(new TextPhase.OptionInfo(String.format(OPTIONS[1], boonCard.name), boonCard).setOptionResult(i -> {
+        .addOption(new TextPhase.OptionInfo(String.format(OPTIONS[1], FontHelper.colorString(boonCard.name, "g")), boonCard).setOptionResult(i -> {
           AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(boonCard, (float) Settings.WIDTH / 2.0F, (float)Settings.HEIGHT / 2.0F));
           transitionKey(Phase.ACCEPT);
         }))
