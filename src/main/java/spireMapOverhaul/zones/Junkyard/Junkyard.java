@@ -56,8 +56,8 @@ public class Junkyard extends AbstractZone implements RewardModifyingZone, Encou
         return Arrays.asList(
                 new EncounterModifyingZone.ZoneEncounter(JUNKBOTS, 1, () -> new MonsterGroup(
                         new AbstractMonster[] {
-                                new Junkbot(-400.0F, 0.0F),
                                 new Junkbot(-200.0F, 0.0F),
+                                new Junkbot(100.0F, 0.0F),
                         })),
                 new EncounterModifyingZone.ZoneEncounter(CULTIST_JUNKBOT, 1, () -> new MonsterGroup(
                         new AbstractMonster[] {

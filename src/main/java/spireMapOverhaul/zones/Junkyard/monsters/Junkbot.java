@@ -88,6 +88,9 @@ public class Junkbot extends CustomMonster {
                 AbstractDungeon.actionManager.addToBottom(new AnimateSlowAttackAction(this));
                 AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player, this.damage.get(0), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
                 AbstractDungeon.actionManager.addToBottom(new GrabCardAction(this));
+                if(AbstractDungeon.ascensionLevel >= 17) {
+                    AbstractDungeon.actionManager.addToBottom(new GrabCardAction(this));
+                }
                 AbstractDungeon.actionManager.addToBottom(new DeactivateAction(this, chanceToDeactivate));
                 break;
             case REBOOT_MOVE:
