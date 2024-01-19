@@ -14,7 +14,6 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
-import spireMapOverhaul.SpireAnniversary6Mod;
 
 public class WindyDustEffect extends AbstractGameEffect {
     private TextureAtlas.AtlasRegion img = getImg();

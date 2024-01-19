@@ -3,15 +3,8 @@ package spireMapOverhaul.zones.windy.patches;
 import basemod.abstracts.CustomSavable;
 import com.evacipated.cardcrawl.modthespire.lib.ByRef;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
-import com.megacrit.cardcrawl.actions.GameActionManager;
-import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import spireMapOverhaul.SpireAnniversary6Mod;
-import spireMapOverhaul.patches.ZonePatches;
-import spireMapOverhaul.zones.windy.WindyZone;
 
 public class GoldRewardReductionPatch {
     public static int combatGoldReduction = 0;

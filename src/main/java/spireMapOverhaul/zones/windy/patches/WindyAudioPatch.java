@@ -4,31 +4,15 @@
 
 package spireMapOverhaul.zones.windy.patches;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.glutils.ShaderProgram;
-import com.badlogic.gdx.utils.GdxRuntimeException;
-import com.evacipated.cardcrawl.modthespire.Loader;
-import com.evacipated.cardcrawl.modthespire.ModInfo;
-import com.evacipated.cardcrawl.modthespire.lib.SpireField;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.scenes.AbstractScene;
-import javassist.*;
-import org.clapper.util.classutil.*;
-import spireMapOverhaul.zones.storm.StormUtil;
 import spireMapOverhaul.zones.windy.WindyZone;
 
-import java.io.File;
-import java.net.URISyntaxException;
-import java.util.ArrayList;
-
-import static spireMapOverhaul.SpireAnniversary6Mod.makeShaderPath;
-import static spireMapOverhaul.SpireAnniversary6Mod.time;
 import static spireMapOverhaul.util.Wiz.getCurZone;
-import static spireMapOverhaul.zones.storm.StormZone.RAIN_KEY;
 
 public class WindyAudioPatch {
     public static boolean inWindyZone() {

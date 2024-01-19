@@ -1,15 +1,8 @@
 package spireMapOverhaul.zones.windy;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Graphics;
 import com.badlogic.gdx.graphics.Color;
-import com.evacipated.cardcrawl.modthespire.lib.ByRef;
-import com.evacipated.cardcrawl.modthespire.lib.SpireInsertLocator;
-import com.evacipated.cardcrawl.modthespire.lib.SpireInsertPatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import spireMapOverhaul.SpireAnniversary6Mod;
@@ -23,8 +16,8 @@ import spireMapOverhaul.zones.storm.StormUtil;
 import spireMapOverhaul.zones.windy.actions.FlyAwayAction;
 import spireMapOverhaul.zones.windy.effects.WindyDustEffect;
 
-import static spireMapOverhaul.SpireAnniversary6Mod.*;
-import static spireMapOverhaul.zones.storm.StormUtil.conduitTarget;
+import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
+import static spireMapOverhaul.SpireAnniversary6Mod.makePath;
 
 public class WindyZone extends AbstractZone implements CombatModifyingZone, ModifiedEventRateZone, OnTravelZone, RenderableZone {
     public static final String ID = "Windy";
