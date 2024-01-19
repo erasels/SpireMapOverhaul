@@ -23,6 +23,8 @@ class CultistVoids {
             fun Instrument(): ExprEditor =
                 object : ExprEditor() {
                     override fun edit(f: FieldAccess) {
+                        if (HumilityZone.hasHumilityMod()) return
+
                         if (f.isReader && f.fieldName == "ATTACK") {
                             f.replace("\$_ = ${ChangeIntent::class.qualifiedName}.replaceIntent(\$proceed(\$\$));")
                         }

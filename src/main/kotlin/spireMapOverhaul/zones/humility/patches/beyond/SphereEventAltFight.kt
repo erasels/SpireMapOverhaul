@@ -18,6 +18,8 @@ class SphereEventAltFight {
         fun Instrument(): ExprEditor =
             object : ExprEditor() {
                 override fun edit(m: MethodCall) {
+                    if (HumilityZone.hasHumilityMod()) return
+
                     if (m.className == MonsterHelper::class.qualifiedName && m.methodName == "getEncounter") {
                         m.replace(
                             "if (${HumilityZone::class.qualifiedName}.isInZone() && ${AbstractDungeon::class.qualifiedName}.miscRng.randomBoolean()) {" +

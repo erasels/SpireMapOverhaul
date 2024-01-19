@@ -28,7 +28,7 @@ class HumilityZone : AbstractZone(ID, Icons.MONSTER), OnTravelZone {
         Companion.color
 
     override fun canSpawn(): Boolean =
-        !Loader.isModLoadedOrSideloaded("humility")
+        !hasHumilityMod()
 
     override fun canIncludeEarlyRows(): Boolean =
         AbstractDungeon.actNum != 1
@@ -66,5 +66,8 @@ class HumilityZone : AbstractZone(ID, Icons.MONSTER), OnTravelZone {
         @JvmStatic
         fun isNotInZone(): Boolean =
             !isInZone()
+
+        fun hasHumilityMod(): Boolean =
+            Loader.isModLoadedOrSideloaded("humility")
     }
 }
