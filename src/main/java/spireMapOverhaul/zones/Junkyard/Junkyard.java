@@ -78,6 +78,11 @@ public class Junkyard extends AbstractZone implements RewardModifyingZone, Encou
     }
 
     @Override
+    public boolean canSpawn() {
+        return isAct(1);
+    }
+
+    @Override
     public Set<String> addSpecificEvents() {
         Set<String> baseGameEvents = new HashSet<>();
         baseGameEvents.add(ScrapOoze.ID);
