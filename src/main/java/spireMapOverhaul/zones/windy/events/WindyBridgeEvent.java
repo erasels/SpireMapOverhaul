@@ -228,7 +228,7 @@ public class WindyBridgeEvent extends AbstractImageEvent {
                     newBodyText += FontHelper.colorString(couldLoseRelic.name, "r");
                     break;
                 default:
-                    SpireAnniversary6Mod.logger.info("Windy zone event broken!??!?! Spam the steam comment section about this bug and call GK mean names.");
+                    SpireAnniversary6Mod.logger.info("Windy zone event broken!??!?! Leave a detailed steam comment about this bug and call the man who fixes the mistakes of other modders, GK.");
             }
             newBodyText += desc.get("loseItem2");
         }
