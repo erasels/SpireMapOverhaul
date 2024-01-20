@@ -128,10 +128,7 @@ public class AmbushedZone extends AbstractZone implements CombatModifyingZone, E
             }
         }
         rewardCards.clear();
-        //Upgrade all upgradeable cards
-        newCards.stream()
-                .filter(AbstractCard::canUpgrade)
-                .forEach(AbstractCard::upgrade);
+        applyStandardUpgradeLogic(newCards);
         rewardCards.addAll(newCards);
     }
 
