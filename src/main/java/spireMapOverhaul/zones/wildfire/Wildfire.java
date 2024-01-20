@@ -28,6 +28,7 @@ import java.util.ArrayList;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.*;
 
+//Credit for zone icon: https://game-icons.net/1x1/lorc/burning-tree.html
 public class Wildfire extends AbstractZone implements CombatModifyingZone, RewardModifyingZone {
     public static final String ID = "Wildfire";
     public static ShaderProgram mapShader = new ShaderProgram(SpriteBatch.createDefaultShader().getVertexShaderSource(), Gdx.files.internal(makeShaderPath("wildfire/mapShader.frag")).readString(String.valueOf(StandardCharsets.UTF_8)));

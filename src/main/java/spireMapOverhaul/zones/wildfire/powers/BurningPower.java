@@ -19,6 +19,7 @@ import spireMapOverhaul.abstracts.AbstractSMOPower;
 import spireMapOverhaul.zones.wildfire.Wildfire;
 import spireMapOverhaul.zones.wildfire.actions.BurningLoseHPAction;
 
+//Credit for the power icon used: https://game-icons.net/1x1/carl-olsen/flame.html
 public class BurningPower extends AbstractSMOPower implements HealthBarRenderPower {
     public static final String POWER_ID = SpireAnniversary6Mod.makeID(BurningPower.class.getSimpleName());
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
