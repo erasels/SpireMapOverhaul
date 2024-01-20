@@ -105,7 +105,6 @@ public class AmbushedZone extends AbstractZone implements CombatModifyingZone, E
         cardDrawCardIDs.add(Reboot.ID);
         cardDrawCardIDs.add(CutThroughFate.ID);
         cardDrawCardIDs.add(EmptyMind.ID);
-        cardDrawCardIDs.add(InnerPeace.ID);
         cardDrawCardIDs.add(Sanctity.ID);
         cardDrawCardIDs.add(WheelKick.ID);
         cardDrawCardIDs.add(Scrawl.ID);
