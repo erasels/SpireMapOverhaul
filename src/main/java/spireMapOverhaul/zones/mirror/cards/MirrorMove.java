@@ -309,7 +309,7 @@ public class MirrorMove extends AbstractSMOCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if (moveData.isEmpty()) {
+        if (moveData == null || moveData.isEmpty()) {
             return;
         }
         if (gainEnergy) {
