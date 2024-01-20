@@ -1727,6 +1727,200 @@
 			]
 		},
 		{
+			"name": "Hatchling",
+			"id": "${ModID}:Hatchling",
+			"ai": [
+				{
+					"min_asc": 0,
+					"desc": "Starts with #wHeadbutt. Afterwards, 40-30-30 split between #wNibble, #wCorrosive #wSpit, and #wHeadbutt. Can't use #wCorrosive #wSpit or #wHeadbutt three times in a row or #wNibble twice in a row (if any of those limits have been reached, 50-50 split between the two other moves). NL NL In the first two normal fights in the act, the middle Hatchling starts with #wJust #wHatched, then 50-50 split between #wCorrosive #wSpit and #wHeadbutt.",
+					"hp": "(60 - 65 HP)",
+					"moves": [
+						{
+							"name": "Just Hatched",
+							"effects": [
+								{
+									"name": "Skip turn",
+									"color": "SKIP"
+								}
+							]
+						},
+						{
+							"name": "Nibble",
+							"effects": [
+								{
+									"name": "6x2",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Corrosive Spit",
+							"effects": [
+								{
+									"name": "Abysstouched 4",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Headbutt",
+							"effects": [
+								{
+									"name": "8",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Block 10",
+									"color": "BLOCK"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 2,
+					"desc": "Starts with #wHeadbutt. Afterwards, 40-30-30 split between #wNibble, #wCorrosive #wSpit, and #wHeadbutt. Can't use #wCorrosive #wSpit or #wHeadbutt three times in a row or #wNibble twice in a row (if any of those limits have been reached, 50-50 split between the two other moves). NL NL In the first two normal fights in the act, the middle Hatchling starts with #wJust #wHatched, then 50-50 split between #wCorrosive #wSpit and #wHeadbutt.",
+					"hp": "(60 - 65 HP)",
+					"moves": [
+						{
+							"name": "Just Hatched",
+							"effects": [
+								{
+									"name": "Skip turn",
+									"color": "SKIP"
+								}
+							]
+						},
+						{
+							"name": "Nibble",
+							"effects": [
+								{
+									"name": "7x2",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Corrosive Spit",
+							"effects": [
+								{
+									"name": "Abysstouched 4",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Headbutt",
+							"effects": [
+								{
+									"name": "9",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Block 10",
+									"color": "BLOCK"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 7,
+					"desc": "Starts with #wHeadbutt. Afterwards, 40-30-30 split between #wNibble, #wCorrosive #wSpit, and #wHeadbutt. Can't use #wCorrosive #wSpit or #wHeadbutt three times in a row or #wNibble twice in a row (if any of those limits have been reached, 50-50 split between the two other moves). NL NL In the first two normal fights in the act, the middle Hatchling starts with #wJust #wHatched, then 50-50 split between #wCorrosive #wSpit and #wHeadbutt.",
+					"hp": "(64 - 69 HP)",
+					"moves": [
+						{
+							"name": "Just Hatched",
+							"effects": [
+								{
+									"name": "Skip turn",
+									"color": "SKIP"
+								}
+							]
+						},
+						{
+							"name": "Nibble",
+							"effects": [
+								{
+									"name": "7x2",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Corrosive Spit",
+							"effects": [
+								{
+									"name": "Abysstouched 4",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Headbutt",
+							"effects": [
+								{
+									"name": "9",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Block 12",
+									"color": "BLOCK"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 17,
+					"desc": "Starts with 50-50 split between #wNibble and #wCorrosive Spit. Afterwards, 40-30-30 split between #wNibble, #wCorrosive #wSpit, and #wHeadbutt. Can't use #wCorrosive #wSpit or #wHeadbutt three times in a row or #wNibble twice in a row (if any of those limits have been reached, 50-50 split between the two other moves). NL NL In the first two normal fights in the act, the middle Hatchling starts with #wJust #wHatched, then 50-50 split between #wCorrosive #wSpit and #wHeadbutt.",
+					"hp": "(64 - 69 HP)",
+					"moves": [
+						{
+							"name": "Just Hatched",
+							"effects": [
+								{
+									"name": "Skip turn",
+									"color": "SKIP"
+								}
+							]
+						},
+						{
+							"name": "Nibble",
+							"effects": [
+								{
+									"name": "7x2",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Corrosive Spit",
+							"effects": [
+								{
+									"name": "Abysstouched 6",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Headbutt",
+							"effects": [
+								{
+									"name": "9",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Block 12",
+									"color": "BLOCK"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
 			"name": "Croaking Brute",
 			"id": "${ModID}:CroakingBrute",
 			"ai": [
