@@ -3,6 +3,9 @@ package spireMapOverhaul.zones.humility
 import com.badlogic.gdx.graphics.Color
 import com.evacipated.cardcrawl.modthespire.Loader
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon
+import com.megacrit.cardcrawl.dungeons.Exordium
+import com.megacrit.cardcrawl.dungeons.TheBeyond
+import com.megacrit.cardcrawl.dungeons.TheCity
 import com.megacrit.cardcrawl.helpers.input.InputHelper
 import com.megacrit.cardcrawl.random.Random
 import com.megacrit.cardcrawl.relics.AbstractRelic
@@ -28,7 +31,7 @@ class HumilityZone : AbstractZone(ID, Icons.MONSTER), OnTravelZone {
         Companion.color
 
     override fun canSpawn(): Boolean =
-        !hasHumilityMod()
+        !hasHumilityMod() && arrayOf(Exordium.ID, TheCity.ID, TheBeyond.ID).contains(AbstractDungeon.id)
 
     override fun canIncludeEarlyRows(): Boolean =
         AbstractDungeon.actNum != 1
