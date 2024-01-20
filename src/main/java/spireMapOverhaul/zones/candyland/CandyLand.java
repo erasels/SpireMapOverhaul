@@ -28,6 +28,8 @@ import spireMapOverhaul.zones.candyland.consumables.rare.GoldCandy;
 import spireMapOverhaul.zones.candyland.consumables.uncommon.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class CandyLand extends AbstractZone implements RewardModifyingZone, CampfireModifyingZone, ShopModifyingZone {
     public static final String ID = "CandyLand";
@@ -55,7 +57,9 @@ public class CandyLand extends AbstractZone implements RewardModifyingZone, Camp
         for (AbstractCard card : (ArrayList<AbstractCard>) cards.clone()) {
             cards.remove(card);
             ArrayList<AbstractConsumable> consumables = getConsumables();
-            consumables.removeIf(c -> c.rarity != card.rarity || cards.stream().anyMatch(listCard -> c.cardID.equals(listCard.cardID)));
+            List<AbstractCard.CardRarity> validRarities = Arrays.asList(AbstractCard.CardRarity.COMMON, AbstractCard.CardRarity.UNCOMMON, AbstractCard.CardRarity.RARE);
+            AbstractCard.CardRarity rarity = validRarities.contains(card.rarity) ? card.rarity : AbstractCard.CardRarity.COMMON;
+            consumables.removeIf(c -> c.rarity != rarity || cards.stream().anyMatch(listCard -> c.cardID.equals(listCard.cardID)));
             AbstractCard c = consumables.get(AbstractDungeon.cardRng.random(0, consumables.size()-1));
             this.applyStandardUpgradeLogic(c);
             cards.add(c);

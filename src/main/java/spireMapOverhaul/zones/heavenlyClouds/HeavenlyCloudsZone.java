@@ -27,9 +27,9 @@ public class HeavenlyCloudsZone extends AbstractZone implements CombatModifyingZ
     private static final float HEALTH_MODIFIER = 0.70f;
     public HeavenlyCloudsZone() {
         super(ID, Icons.MONSTER);
-        this.width = 3;
+        this.width = 2;
+        this.maxWidth = 3;
         this.height = 3;
-        this.maxHeight = 4;
     }
 
     @Override
@@ -53,9 +53,6 @@ public class HeavenlyCloudsZone extends AbstractZone implements CombatModifyingZ
         UIStrings uistrings = CardCrawlGame.languagePack.getUIString(SpireAnniversary6Mod.makeID("ByrdTalk"));
         String[] TEXT = uistrings.TEXT;
         int flightAmount = 3;
-        if (AbstractDungeon.ascensionLevel >= 19) {
-            flightAmount = 4;
-        }
         int numNonMinionEnemies = 0;
         for (AbstractMonster mo : Wiz.getEnemies()) {
             if (!mo.hasPower(MinionPower.POWER_ID)) {

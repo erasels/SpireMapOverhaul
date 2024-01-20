@@ -69,6 +69,15 @@
     ],
     "NAME": "Shimmering Mirage"
   },
+  "${ModID}:Hatchling": {
+    "MOVES": [
+      "Just Hatched",
+      "Nibble",
+      "Corrosive Acid",
+      "Headbutt"
+    ],
+    "NAME": "Hatchling"
+  },
   "${ModID}:CroakingBrute": {
     "MOVES": [
       "Lacerate",

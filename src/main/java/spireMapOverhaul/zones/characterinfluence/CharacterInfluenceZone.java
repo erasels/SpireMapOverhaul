@@ -15,6 +15,8 @@ import spireMapOverhaul.zoneInterfaces.RewardModifyingZone;
 import spireMapOverhaul.zoneInterfaces.ShopModifyingZone;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 @SuppressWarnings("unused")
 public class CharacterInfluenceZone extends AbstractZone implements RewardModifyingZone, ShopModifyingZone, OnTravelZone, ModifiedEventRateZone {
@@ -51,9 +53,10 @@ public class CharacterInfluenceZone extends AbstractZone implements RewardModify
     @Override
     public void mapGenDone(ArrayList<ArrayList<MapRoomNode>> map) {
         super.mapGenDone(map);
-        do {
-            this.classInfluence = CardCrawlGame.characterManager.getRandomCharacter(AbstractDungeon.mapRng);
-        } while (this.classInfluence.chosenClass == AbstractDungeon.player.chosenClass && CardCrawlGame.characterManager.getAllCharacters().size() != 1);
+        ArrayList<AbstractPlayer> options = CardCrawlGame.characterManager.getAllCharacters().stream()
+                .filter(p -> p.chosenClass != AbstractDungeon.player.chosenClass && !p.chosenClass.name().equals("THE_PACKMASTER"))
+                .collect(Collectors.toCollection(ArrayList::new));
+        this.classInfluence = !options.isEmpty() ? options.get(AbstractDungeon.mapRng.random(options.size() - 1)) : AbstractDungeon.player;
         this.name = TEXT[3] + this.classInfluence.title;
         updateDescription();
     }
@@ -98,6 +101,11 @@ public class CharacterInfluenceZone extends AbstractZone implements RewardModify
 
     public AbstractCard getCard(AbstractCard.CardRarity rarity, AbstractCard.CardType type) {
         if (commonPool == null || uncommonPool == null || rarePool == null) initPools();
+        //Extra saftey checks to prevent crashes when characters have weird cardpool mechanics
+        if(commonPool.isEmpty()) commonPool = AbstractDungeon.commonCardPool;
+        if(uncommonPool.isEmpty()) uncommonPool = AbstractDungeon.uncommonCardPool;
+        if(rarePool.isEmpty()) rarePool = AbstractDungeon.rareCardPool;
+
         AbstractCard cardToReturn;
         switch (rarity) {
             case UNCOMMON:
@@ -135,6 +143,14 @@ public class CharacterInfluenceZone extends AbstractZone implements RewardModify
         cardList.clear();
         applyStandardUpgradeLogic(newCards);
         cardList.addAll(newCards);
+    }
+
+    @Override
+    public AbstractCard getReplacementShopCardForCourier(AbstractCard purchasedCard) {
+        AbstractCard.CardRarity rar = purchasedCard.rarity;
+        if(!Arrays.asList(AbstractCard.CardRarity.COMMON, AbstractCard.CardRarity.UNCOMMON, AbstractCard.CardRarity.RARE).contains(rar))
+            rar = AbstractCard.CardRarity.UNCOMMON;
+        return getCard(rar, purchasedCard.type);
     }
 
     @Override
