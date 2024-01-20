@@ -54,7 +54,9 @@ public class CharacterInfluenceZone extends AbstractZone implements RewardModify
     public void mapGenDone(ArrayList<ArrayList<MapRoomNode>> map) {
         super.mapGenDone(map);
         ArrayList<AbstractPlayer> options = CardCrawlGame.characterManager.getAllCharacters().stream()
-                .filter(p -> p.chosenClass != AbstractDungeon.player.chosenClass && !p.chosenClass.name().equals("THE_PACKMASTER"))
+                .filter(p -> p.chosenClass != AbstractDungeon.player.chosenClass
+                        && !p.chosenClass.name().equals("THE_PACKMASTER")
+                        && !p.chosenClass.name().equals("THE_SISTERS"))
                 .collect(Collectors.toCollection(ArrayList::new));
         this.classInfluence = !options.isEmpty() ? options.get(AbstractDungeon.mapRng.random(options.size() - 1)) : AbstractDungeon.player;
         this.name = TEXT[3] + this.classInfluence.title;
