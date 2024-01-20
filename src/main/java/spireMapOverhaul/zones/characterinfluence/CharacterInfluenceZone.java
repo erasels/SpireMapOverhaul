@@ -15,6 +15,7 @@ import spireMapOverhaul.zoneInterfaces.RewardModifyingZone;
 import spireMapOverhaul.zoneInterfaces.ShopModifyingZone;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 @SuppressWarnings("unused")
 public class CharacterInfluenceZone extends AbstractZone implements RewardModifyingZone, ShopModifyingZone, OnTravelZone, ModifiedEventRateZone {
@@ -51,9 +52,10 @@ public class CharacterInfluenceZone extends AbstractZone implements RewardModify
     @Override
     public void mapGenDone(ArrayList<ArrayList<MapRoomNode>> map) {
         super.mapGenDone(map);
-        do {
-            this.classInfluence = CardCrawlGame.characterManager.getRandomCharacter(AbstractDungeon.mapRng);
-        } while (this.classInfluence.chosenClass == AbstractDungeon.player.chosenClass && CardCrawlGame.characterManager.getAllCharacters().size() != 1);
+        ArrayList<AbstractPlayer> options = CardCrawlGame.characterManager.getAllCharacters().stream()
+                .filter(p -> p.chosenClass != AbstractDungeon.player.chosenClass && !p.chosenClass.name().equals("THE_PACKMASTER"))
+                .collect(Collectors.toCollection(ArrayList::new));
+        this.classInfluence = !options.isEmpty() ? options.get(AbstractDungeon.mapRng.random(options.size() - 1)) : AbstractDungeon.player;
         this.name = TEXT[3] + this.classInfluence.title;
         updateDescription();
     }
