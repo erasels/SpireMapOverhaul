@@ -43,7 +43,7 @@
   "${ModID}:MountedCombat": {
     "NAME": "Mounted Combat",
     "DESCRIPTION": "Ethereal. NL Apply ${ModID}:Slow. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "Apply ${ModID}:Slow to an enemy. NL Exhaust."
+    "UPGRADE_DESCRIPTION": "Apply ${ModID}:Slow. NL Exhaust."
   },
   "${ModID}:RRrroohrrRGHHhhh": {
     "NAME": "RRrroohrrRGHHhhh!!",
