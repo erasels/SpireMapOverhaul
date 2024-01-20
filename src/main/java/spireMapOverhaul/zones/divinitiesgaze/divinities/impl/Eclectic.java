@@ -26,7 +26,7 @@ public class Eclectic extends BaseDivineBeing {
     return x -> {
       CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
       Set<UUID> cardUUIDs = new HashSet<>();
-      while (group.size() < 20) {
+      while (group.size() < 10) {
         AbstractCard card = AbstractDungeon.getCard(AbstractDungeon.rollRarity());
         if(!cardUUIDs.contains(card.uuid)) {
           cardUUIDs.add(card.uuid);

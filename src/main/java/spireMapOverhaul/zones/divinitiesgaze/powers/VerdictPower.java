@@ -20,6 +20,7 @@ public class VerdictPower extends AbstractSMOPower implements HealthBarRenderPow
   private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
   public static final String NAME = powerStrings.NAME;
   public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
+  public static final String KEYWORD = SpireAnniversary6Mod.makeID("Verdict");
 
   public VerdictPower(AbstractCreature owner, int amount) {
     super(POWER_ID, NAME, DivinitiesGazeZone.ID, PowerType.DEBUFF, false, owner, amount);
