@@ -32,7 +32,7 @@ public class End extends BaseDivineBeing {
 
   @Override
   public Supplier<Boolean> isEventOptionEnabled() {
-    return () -> AbstractDungeon.player.masterDeck.size() > 2;
+    return () -> AbstractDungeon.player.masterDeck.getPurgeableCards().size() > 2;
   }
 
   public boolean doUpdate() {
@@ -55,12 +55,13 @@ public class End extends BaseDivineBeing {
   private void spawnChoice() {
     CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
     Set<UUID> cardUUIDs = new HashSet<>();
-    if (AbstractDungeon.player.masterDeck.size() <= 3){
-      group.group.addAll(AbstractDungeon.player.masterDeck.group);
+    CardGroup purgeableCards = AbstractDungeon.player.masterDeck.getPurgeableCards();
+    if (purgeableCards.group.size() <= 3){
+      group.group.addAll(purgeableCards.group);
     }
     else {
       while (group.size() < 3) {
-        AbstractCard card = AbstractDungeon.player.masterDeck.getRandomCard(AbstractDungeon.eventRng);
+        AbstractCard card = purgeableCards.getRandomCard(AbstractDungeon.eventRng);
         if (!cardUUIDs.contains(card.uuid)) {
           cardUUIDs.add(card.uuid);
           group.addToTop(card);
