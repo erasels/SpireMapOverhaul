@@ -114,7 +114,7 @@ public class MirrorMove extends AbstractSMOCard {
 
     @Override
     public void applyPowers() {
-        if (moveData != MirrorZone.chosenMoveData) {
+        if (moveData == null && MirrorZone.chosenMoveData != null) {
             setMoveData(MirrorZone.chosenMoveData, true);
         }
         super.applyPowers();
