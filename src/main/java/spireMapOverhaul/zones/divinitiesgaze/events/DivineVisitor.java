@@ -17,6 +17,8 @@ import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.util.EventTooltipCreator;
 import spireMapOverhaul.zones.divinitiesgaze.divinities.DivineBeing;
 import spireMapOverhaul.zones.divinitiesgaze.divinities.DivineBeingManager;
+import spireMapOverhaul.zones.divinitiesgaze.divinities.impl.Eclectic;
+import spireMapOverhaul.zones.divinitiesgaze.divinities.impl.Jurors;
 
 public class DivineVisitor extends PhasedEvent {
   public static final String ID = SpireAnniversary6Mod.makeID("DivineVisitor");
@@ -29,7 +31,8 @@ public class DivineVisitor extends PhasedEvent {
   private final DivineBeing divinity;
 
   public DivineVisitor() {
-    this(DivineBeingManager.getDivinityForEvent());
+    //this(DivineBeingManager.getDivinityForEvent());
+    this(new Eclectic());
   }
 
   public DivineVisitor(DivineBeing divinity) {
