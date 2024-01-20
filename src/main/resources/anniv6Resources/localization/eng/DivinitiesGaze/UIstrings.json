@@ -1,8 +1,8 @@
 {
   "${ModID}:DivinitiesGaze": {
     "TEXT": [
-      "Under Divinities' Gaze",
-      "Powerful divinities have descended upon this zone. Are you worthy of their attention, and can you withstand it? NL NL At the start of combat, receive a #gpowerful #gcard and some #rstatuses from a random divinity.",
+      "Divinities' Gaze",
+      "Powerful divinities have descended! Are you worthy of their attention, and can you withstand it? NL NL At the start of combat, receive a #gpowerful #gcard and some #rstatuses from a random divinity.",
       "Shammy, NoelleDevo, PitohuiArt"
     ]
   },
