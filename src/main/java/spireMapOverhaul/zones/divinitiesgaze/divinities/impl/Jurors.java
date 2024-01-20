@@ -75,4 +75,14 @@ public class Jurors extends BaseDivineBeing {
       }
     });
   }
+
+  @Override
+  public String[] getKeywordsForCardChoice() {
+    return new String[]{VerdictPower.KEYWORD};
+  }
+
+  @Override
+  public String[] getKeywordsForCustomChoice() {
+    return new String[]{VerdictPower.KEYWORD};
+  }
 }
