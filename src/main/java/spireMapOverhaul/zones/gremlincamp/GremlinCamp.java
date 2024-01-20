@@ -138,7 +138,9 @@ public class GremlinCamp extends AbstractZone implements EncounterModifyingZone,
             for (AbstractMonster m : AbstractDungeon.getCurrRoom().monsters.monsters) {
                 Wiz.atb(new IncreaseMaxHpAction(m, 0.5f, false));
                 if (GremlinFat.ID.equals(m.id)) {
-                    Wiz.atb(new ApplyPowerAction(m, null, new RitualPower(m, 2, false), 2, true));
+                    RitualPower p = new RitualPower(m, 2, false);
+                    ReflectionHacks.setPrivate(p, RitualPower.class, "skipFirst", false);
+                    Wiz.atb(new ApplyPowerAction(m, null, p, 2, true));
                 }
             }
         } else if (WHO_LET_EM_COOK.equals(AbstractDungeon.lastCombatMetricKey)) {
