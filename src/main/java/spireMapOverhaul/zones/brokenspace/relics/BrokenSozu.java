@@ -32,15 +32,23 @@ public class BrokenSozu extends BrokenRelic implements BetterOnUsePotionRelic {
 
     @Override
     public void betterOnUsePotion(AbstractPotion p) {
-
-
         if (adp().hasRelic(makeID(ID)) && isInCombat() && !canUseOverridden(p)) {
             flash();
             adp().energy.use(POTION_COST);
-            AbstractPotion secondPotion = AbstractDungeon.returnRandomPotion(true);
+            AbstractPotion secondPotion = null;
+            int i = 0;
+            // Get a potion that can be used (which excludes things like Fairy in a Bottle)
+            while (secondPotion == null || !secondPotion.canUse()) {
+                if (i > 100) {
+                    // Just in case some other mod makes every potion unusable (or we roll Fairy in a Bottle every time)
+                    SpireAnniversary6Mod.logger.info("No usable potions found for Broken Sozu");
+                    return;
+                }
+                secondPotion = AbstractDungeon.returnRandomPotion(true);
+                i++;
+            }
             secondPotion.use(AbstractDungeon.getRandomMonster());
             addToBot(new BetterTextCenteredAction(adp(), secondPotion.name, 0.5F));
-
         }
     }
 
