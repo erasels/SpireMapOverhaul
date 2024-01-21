@@ -725,6 +725,8 @@ public class SpireAnniversary6Mod implements
         BetterMapGenerator.clearActiveZones();
         if (!CardCrawlGame.loadingSave) {
             BeastsLairZone.clearBossList();
+            // Fix crash when you die to Gremlin horde and then start a new run
+            AbstractDungeon.lastCombatMetricKey = "";
         }
         HordeHelper.hidePlatforms();
         CombatModifierPatches.hideButton = true;
