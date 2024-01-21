@@ -132,6 +132,7 @@ public class AmbushedZone extends AbstractZone implements CombatModifyingZone, E
         rewardCards.addAll(newCards);
     }
 
+
     private AbstractCard getCardDrawCard(AbstractCard.CardRarity rarity, HashSet<String> selectedCardIDs) {
         // Filter the cardDrawCardIDs list by the specified rarity
         List<String> filteredCardIDs = cardDrawCardIDs.stream()
@@ -322,6 +323,10 @@ public class AmbushedZone extends AbstractZone implements CombatModifyingZone, E
 
             // Update the reward item's description to match the new potion
             rewardItem.text = replacementPotion.name;
+        }
+        if (rewardItem.type == RewardItem.RewardType.GOLD) {
+            int additionalGold = rewardItem.goldAmt;
+            rewardItem.incrementGold(additionalGold);
         }
     }
 
