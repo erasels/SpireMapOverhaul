@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.powers.watcher.MantraPower;
 import com.megacrit.cardcrawl.relics.Damaru;
+import spireMapOverhaul.util.Wiz;
 
 import static spireMapOverhaul.util.Wiz.adp;
 import static spireMapOverhaul.util.Wiz.applyToSelf;
@@ -29,14 +30,17 @@ public class BrokenDamaru extends BrokenRelic {
 
     @Override
     public void onPlayerEndTurn() {
-        addToBot(new SelectCardsInHandAction(1, DESCRIPTIONS[1], false, true, (c) -> {// 76
-            return true;
-        }, (abstractCards -> {
-            AbstractCard c = abstractCards.get(0);
-            applyToSelf(new MantraPower(adp(), c.costForTurn));
-            addToBot(new ExhaustSpecificCardAction(c, adp().hand));
-            flash();
-        })));
+        addToBot(new SelectCardsInHandAction(1, DESCRIPTIONS[1], false, true,
+                (c) -> Wiz.getLogicalCardCost(c) > 0,
+                (abstractCards -> {
+                    if(!abstractCards.isEmpty()) {
+                        AbstractCard c = abstractCards.get(0);
+                        applyToSelf(new MantraPower(adp(), Wiz.getLogicalCardCost(c)));
+                        addToBot(new ExhaustSpecificCardAction(c, adp().hand));
+                        flash();
+                    }
+                }))
+        );
     }
 
     @Override
