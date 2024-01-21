@@ -1,6 +1,5 @@
 package spireMapOverhaul.zones.hailstorm;
 
-import basemod.AutoAdd;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
@@ -16,7 +15,7 @@ import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
 import spireMapOverhaul.zoneInterfaces.ModifiedEventRateZone;
 import spireMapOverhaul.zoneInterfaces.RenderableZone;
 import spireMapOverhaul.zones.example.CoolExampleEvent;
-import spireMapOverhaul.zones.hailstorm.monsters.FrostSlime;
+import spireMapOverhaul.zones.hailstorm.monsters.FrostSlimeL;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -124,7 +123,7 @@ public class HailstormZone extends AbstractZone implements ModifiedEventRateZone
 //        EncounterModifyingZone.super.registerEncounters();
 //        BaseMod.addMonster(Frost_Slime, () -> new MonsterGroup(
 //                new AbstractMonster[] {
-//                        new FrostSlime(0.0f, 0.0f),
+//                        new FrostSlimeL(0.0f, 0.0f),
 //                }
 //        ));
 //    }
@@ -134,7 +133,7 @@ public class HailstormZone extends AbstractZone implements ModifiedEventRateZone
         return Collections.singletonList(
                 new ZoneEncounter(Frost_Slime, 1, () -> new MonsterGroup(
                         new AbstractMonster[]{
-                                new FrostSlime(0.0f, 0.0f),
+                                new FrostSlimeL(0.0f, 0.0f),
                         }))
         );
     }

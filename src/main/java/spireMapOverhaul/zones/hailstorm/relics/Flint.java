@@ -11,18 +11,9 @@ import static spireMapOverhaul.util.Wiz.adp;
 public class Flint extends BrokenRelic {
     public static final String ID = Flint.class.getSimpleName();
 
+
     public Flint() {
         super(ID, RelicTier.SPECIAL, LandingSound.CLINK, Flint.ID);
     }
 
-    @Override
-    public boolean canSpawn() {
-        return adp().chosenClass == AbstractPlayer.PlayerClass.WATCHER;
-    }
-
-
-    @Override
-    public String getUpdatedDescription() {
-        return DESCRIPTIONS[0];
-    }
 }
