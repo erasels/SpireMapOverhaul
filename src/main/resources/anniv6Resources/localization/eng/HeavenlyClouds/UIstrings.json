@@ -8,7 +8,6 @@
   },
   "${ModID}:FlightMod": {
     "TEXT": [
-      " NL The first time this card is drawn each combat, draw 1 card.",
       "Flighty "
     ]
   },
