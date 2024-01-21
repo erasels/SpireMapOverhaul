@@ -39,8 +39,8 @@ public class FrostSlimeM extends CustomMonster {
     private boolean firstMove = true;
     public static final int HP_MIN = 28;
     public static final int HP_MAX = 32;
-    public static final int A_2_HP_MIN = 29;
-    public static final int A_2_HP_MAX = 34;
+    public static final int A_7_HP_MIN = 29;
+    public static final int A_7_HP_MAX = 34;
     public static final int W_TACKLE_DMG = 7;
     public static final int N_TACKLE_DMG = 10;
     public static final int A_2_W_TACKLE_DMG = 8;
@@ -64,10 +64,10 @@ public class FrostSlimeM extends CustomMonster {
     }
 
     public FrostSlimeM(final float x, final float y) {
-        super(NAME, ID, HP_MAX, -5.0F, -4.0F, 180.0F, 280.0F, IMG, x, y);
+        super(NAME, ID, HP_MAX, -5.0F, -4.0F, 100.0F, 150.0F, IMG, x, y);
         this.type = EnemyType.NORMAL;
         if (AbstractDungeon.ascensionLevel >= 7) {
-            this.setHp(A_2_HP_MIN, A_2_HP_MAX);
+            this.setHp(A_7_HP_MIN, A_7_HP_MAX);
         } else {
             this.setHp(HP_MIN, HP_MAX);
         }
