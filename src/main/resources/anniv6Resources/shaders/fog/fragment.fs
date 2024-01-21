@@ -40,27 +40,27 @@ float noise(vec2 st) {
 
 
 float fractal_brownian_motion(vec2 coord) {
-	float value = 0.0;
-	float scale = 0.2;
-	for (int i = 0; i < 4; i++) {
-		value += noise(coord) * scale;
-		coord *= 2.0;
-		scale *= 0.5;
-	}
-	return value + 0.2;
+    float value = 0.0;
+    float scale = 0.2;
+    for (int i = 0; i <2; i++) { // Reduced iterations
+        value += noise(coord) * scale;
+        coord *= 2.0;
+        scale *= 0.5;
+    }
+    return value + 0.2;
 }
 
-void main()
-{
+void main() {
     vec2 st = gl_FragCoord.xy / u_screenSize.xy;
-	st *= u_screenSize.xy  / u_screenSize.y; // Correct the aspect ratio
+    st *= u_screenSize.xy / u_screenSize.y;
 
     float finalFog = 1.0;
-    for(int i = 0; i < u_size; i++) {
+    for (int i = 0; i < u_size; i++) {
+        if (finalFog < 0.06) break; // Early exit if finalFog is small (0.1 has small artifacting for fast mouse movements)
+
         vec2 correctedMouse = vec2(u_positions[i].x / u_screenSize.x * (u_screenSize.x / u_screenSize.y), u_positions[i].y / u_screenSize.y); // Correct the cursor position for the aspect ratio
         float distance = length(correctedMouse - st);
         float fogFactor = mix(1.0, 0.0, smoothstep(0.0, 0.2, distance)); // Calculate the fog factor based on the distance
-
         fogFactor *= 1.0 - u_positions[i].z;
 
         vec2 pos = vec2(st * u_zoom);
