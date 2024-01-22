@@ -490,7 +490,8 @@ public class GremlinTown extends AbstractZone
             return getRandomUncommonGremlin();
         else if (rarity == AbstractCard.CardRarity.RARE)
             return getRandomRareGremlin();
-        else return null;
+        // For error prevention with Treasure Hunter which adds special cards
+        else return getRandomUncommonGremlin();
     }
 
     private static AbstractCard getGremlinCardByRarityType(AbstractCard.CardRarity rarity, AbstractCard.CardType type) {
