@@ -7,6 +7,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ModHelper;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rewards.RewardItem;
+import spireMapOverhaul.SpireAnniversary6Mod;
+import spireMapOverhaul.util.Wiz;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -164,6 +166,10 @@ public interface RewardModifyingZone {
      * @param card The card to apply the standard upgrade logic to.
      */
     default void applyStandardUpgradeLogic(AbstractCard card) {
+        if(card == null) {
+            SpireAnniversary6Mod.logger.error("Called applyStandardUpgradeLogic with null input, current zone: " + Wiz.getCurZone());
+            return;
+        }
         float upgradeChance = ReflectionHacks.getPrivateStatic(AbstractDungeon.class, "cardUpgradedChance");
         upgradeChance = this.changeCardUpgradeChance(upgradeChance);
         if ((card.rarity != AbstractCard.CardRarity.RARE || this.allowUpgradingRareCards()) && AbstractDungeon.cardRng.randomBoolean(upgradeChance) && card.canUpgrade()) {
