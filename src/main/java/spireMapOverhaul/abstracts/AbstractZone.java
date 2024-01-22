@@ -562,6 +562,8 @@ public abstract class AbstractZone {
 
     @Override
     public String toString() {
-        return "Biome: " + this.name + ", by " + TEXT[2];
+        String auth = "not initialized";
+        if(TEXT != null && TEXT.length >= 3) auth = TEXT[2];
+        return "Biome: " + this.name + ", by " + auth;
     }
 }
