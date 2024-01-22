@@ -31,13 +31,15 @@ public class BrokenDamaru extends BrokenRelic {
     @Override
     public void onPlayerEndTurn() {
         addToBot(new SelectCardsInHandAction(1, DESCRIPTIONS[1], false, true,
-                (c) -> Wiz.getLogicalCardCost(c) > 0,
+                c -> true,
                 (abstractCards -> {
                     if(!abstractCards.isEmpty()) {
                         AbstractCard c = abstractCards.get(0);
-                        applyToSelf(new MantraPower(adp(), Wiz.getLogicalCardCost(c)));
-                        addToBot(new ExhaustSpecificCardAction(c, adp().hand));
-                        flash();
+                        if(Wiz.getLogicalCardCost(c) > 0) {
+                            applyToSelf(new MantraPower(adp(), Wiz.getLogicalCardCost(c)));
+                            addToBot(new ExhaustSpecificCardAction(c, adp().hand));
+                            flash();
+                        }
                     }
                 }))
         );
