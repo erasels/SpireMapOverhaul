@@ -134,6 +134,10 @@ public class AmbushedZone extends AbstractZone implements CombatModifyingZone, E
 
 
     private AbstractCard getCardDrawCard(AbstractCard.CardRarity rarity, HashSet<String> selectedCardIDs) {
+        if(!Arrays.asList(AbstractCard.CardRarity.COMMON, AbstractCard.CardRarity.UNCOMMON, AbstractCard.CardRarity.RARE).contains(rarity)) {
+            rarity = AbstractCard.CardRarity.UNCOMMON;
+        }
+
         // Filter the cardDrawCardIDs list by the specified rarity
         List<String> filteredCardIDs = cardDrawCardIDs.stream()
                 .filter(id -> isCardOfRarity(id, rarity))
