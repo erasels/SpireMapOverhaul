@@ -1,11 +1,14 @@
 package spireMapOverhaul.zones.keymaster;
 
+import basemod.BaseMod;
+import basemod.abstracts.CustomSavable;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.powers.*;
+import com.megacrit.cardcrawl.powers.DexterityPower;
+import com.megacrit.cardcrawl.powers.FocusPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.zoneInterfaces.CombatModifyingZone;
 import spireMapOverhaul.zoneInterfaces.RewardModifyingZone;
@@ -13,10 +16,13 @@ import spireMapOverhaul.zoneInterfaces.ShopModifyingZone;
 
 import java.util.ArrayList;
 
+import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 import static spireMapOverhaul.util.Wiz.atb;
 
 public class KeymasterZone extends AbstractZone implements CombatModifyingZone, RewardModifyingZone, ShopModifyingZone {
     public static final String ID = "Keymaster";
+    public static final String SaveID = makeID("KeymasterStartOfActHasKeys");
+    public static boolean startOfActHasKeys = false;
 
     public KeymasterZone() {
         super(ID, Icons.MONSTER, Icons.SHOP);
@@ -36,7 +42,11 @@ public class KeymasterZone extends AbstractZone implements CombatModifyingZone, 
 
     @Override
     public boolean canSpawn() {
-        return (Settings.hasSapphireKey && Settings.hasEmeraldKey && Settings.hasRubyKey);
+        // We record whether the player has the three keys at the start of each act in order to maintain save/load
+        // stability, because otherwise this condition could change during an act. (Because the map is regenerated
+        // from scratch every time you save and load, the process must happen the exact same way regardless of whether
+        // the player is entering the act after beating the previous one or loading a save.)
+        return startOfActHasKeys;
     }
 
     @Override
@@ -82,6 +92,21 @@ public class KeymasterZone extends AbstractZone implements CombatModifyingZone, 
     public void postAddIdleMessages(ArrayList<String> idleMessages) {
         String localizedMessage = TEXT[3];
         idleMessages.add(localizedMessage);
+    }
+
+
+    public static void initializeSaveFields() {
+        BaseMod.addSaveField(SaveID, new CustomSavable<Boolean>() {
+            @Override
+            public Boolean onSave() {
+                return KeymasterZone.startOfActHasKeys;
+            }
+
+            @Override
+            public void onLoad(Boolean b) {
+                KeymasterZone.startOfActHasKeys = b != null && b;
+            }
+        });
     }
 
 }

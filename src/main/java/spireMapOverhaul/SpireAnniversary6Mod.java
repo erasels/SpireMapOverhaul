@@ -66,6 +66,7 @@ import spireMapOverhaul.zones.brokenspace.BrokenSpaceZone;
 import spireMapOverhaul.zones.gremlinTown.GremlinTown;
 import spireMapOverhaul.zones.gremlinTown.HordeHelper;
 import spireMapOverhaul.zones.gremlinTown.potions.*;
+import spireMapOverhaul.zones.keymaster.KeymasterZone;
 import spireMapOverhaul.zones.manasurge.ui.extraicons.BlightIcon;
 import spireMapOverhaul.zones.manasurge.ui.extraicons.EnchantmentIcon;
 import spireMapOverhaul.zones.windy.WindyZone;
@@ -101,6 +102,7 @@ public class SpireAnniversary6Mod implements
         PostCampfireSubscriber,
         MaxHPChangeSubscriber,
         StartGameSubscriber,
+        StartActSubscriber,
         ImGuiSubscriber,
         PostUpdateSubscriber {
 
@@ -701,6 +703,7 @@ public class SpireAnniversary6Mod implements
         });
 
         BeastsLairZone.initializeSaveFields();
+        KeymasterZone.initializeSaveFields();
     }
 
     @Override
@@ -730,6 +733,11 @@ public class SpireAnniversary6Mod implements
         }
         HordeHelper.hidePlatforms();
         CombatModifierPatches.hideButton = true;
+    }
+
+    @Override
+    public void receiveStartAct() {
+        KeymasterZone.startOfActHasKeys = Settings.hasSapphireKey && Settings.hasEmeraldKey && Settings.hasRubyKey;
     }
 
     public static float time = 0f;
