@@ -559,4 +559,9 @@ public abstract class AbstractZone {
 
         return siblings;
     }
+
+    @Override
+    public String toString() {
+        return "Biome: " + this.name + ", by " + TEXT[2];
+    }
 }
