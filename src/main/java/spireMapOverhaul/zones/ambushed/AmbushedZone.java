@@ -139,8 +139,9 @@ public class AmbushedZone extends AbstractZone implements CombatModifyingZone, E
         }
 
         // Filter the cardDrawCardIDs list by the specified rarity
+        AbstractCard.CardRarity finalRarity = rarity;
         List<String> filteredCardIDs = cardDrawCardIDs.stream()
-                .filter(id -> isCardOfRarity(id, rarity))
+                .filter(id -> isCardOfRarity(id, finalRarity))
                 .collect(Collectors.toList());
 
         // Exclude already selected card IDs to avoid duplicates
