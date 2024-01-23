@@ -9,9 +9,12 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import com.megacrit.cardcrawl.ui.campfire.AbstractCampfireOption;
+import com.megacrit.cardcrawl.ui.campfire.RestOption;
 import spireMapOverhaul.BetterMapGenerator;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
+import spireMapOverhaul.zoneInterfaces.CampfireModifyingZone;
 import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
 import spireMapOverhaul.zoneInterfaces.ModifiedEventRateZone;
 import spireMapOverhaul.zoneInterfaces.RenderableZone;
@@ -23,7 +26,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class HailstormZone extends AbstractZone implements ModifiedEventRateZone, RenderableZone, EncounterModifyingZone {
+public class HailstormZone extends AbstractZone implements ModifiedEventRateZone, RenderableZone, EncounterModifyingZone, CampfireModifyingZone {
     public static final String ID = "Hailstorm";
     private final int width, height;
     private final Color color;
@@ -139,5 +142,15 @@ public class HailstormZone extends AbstractZone implements ModifiedEventRateZone
                                 new FrostSlimeL(0.0f, 0.0f),
                         }))
         );
+    }
+
+    public void postAddButtons(ArrayList<AbstractCampfireOption> buttons) {
+        for (AbstractCampfireOption c : buttons) {
+            if (c instanceof RestOption && c.usable) {
+                c.usable = false;
+                ((RestOption) c).updateUsability(false);
+                break;
+            }
+        }
     }
 }

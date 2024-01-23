@@ -5,19 +5,10 @@
       "A never ending Hail is taking over the spire."
     ]
   },
-  "${ModID}:Evolving": {
-    "TEXT": ["The Behemoth evolves..."],
-    "EXTRA_TEXT": ["Burns in draw pile", "Max HP"],
-    "TEXT_DICT": {
-      "Anger": "${ModID}:Enraged {0}",
-      "BeatOfDeath": "${ModID}:Beat\u00a0of\u00a0Death {0}",
-      "Metallicize": "${ModID}:Metallicize {0}",
-      "Buffer": "${ModID}:Buffer {0}",
-      "${ModID}:FrailPulse": "${ModID}:Frail\u00a0Pulse",
-      "${ModID}:DazedPulse": "${ModID}:Dazed\u00a0Pulse",
-      "${ModID}:AbysstouchedPulse": "${ModID}:Abysstouched\u00a0Pulse {0}",
-      "${ModID}:SlimyBody": "${ModID}:Slimy\u00a0Body",
-      "Invincible": "${ModID}:Invincible {0}"
-    }
+  "${ModID}:FlintOption": {
+    "TEXT": [
+      "Light a fire and rest",
+      "Heal for 50% of your max HP."
+    ]
   }
 }

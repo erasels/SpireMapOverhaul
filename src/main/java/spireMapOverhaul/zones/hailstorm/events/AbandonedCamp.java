@@ -9,27 +9,17 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.AbstractImageEvent;
-import com.megacrit.cardcrawl.events.city.Colosseum;
-import com.megacrit.cardcrawl.events.exordium.BigFish;
-import com.megacrit.cardcrawl.events.shrines.WomanInBlue;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.relics.AbstractRelic.RelicTier;
-import com.megacrit.cardcrawl.relics.Circlet;
 import com.megacrit.cardcrawl.relics.DeadBranch;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import com.megacrit.cardcrawl.vfx.RainingGoldEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
-import jdk.nashorn.internal.ir.IfNode;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.zones.hailstorm.cards.Freeze;
 import spireMapOverhaul.zones.hailstorm.relics.Flint;
-import spireMapOverhaul.zones.thieveshideout.ThievesHideoutZone;
 
-// We extend the Colosseum event because ProceedButton.java specifically checks if an event is an instance of this type
-// (or a few other types) in the logic for what happens when you click proceed. This is easier than a patch.
 public class AbandonedCamp extends AbstractImageEvent {
     public static final String ID = SpireAnniversary6Mod.makeID(AbandonedCamp.class.getSimpleName());
     private static final EventStrings eventStrings = CardCrawlGame.languagePack.getEventString(ID);
@@ -102,7 +92,7 @@ public class AbandonedCamp extends AbstractImageEvent {
         if (T_DEADBRANCH_F_FLINT) {
             this.imageEventText.setDialogOption(OPTIONS[0], curse);
         } else {
-            this.imageEventText.setDialogOption(OPTIONS[1] + hpLoss + OPTIONS[2], new Circlet());
+            this.imageEventText.setDialogOption(OPTIONS[1] + hpLoss + OPTIONS[2], new Flint());
         }
 
         //Second light choice
@@ -125,7 +115,7 @@ public class AbandonedCamp extends AbstractImageEvent {
                 }
 
                 AbstractDungeon.getCurrRoom().rewards.clear();
-                String targetRelicId = T_DEADBRANCH_F_FLINT ? DeadBranch.ID : Circlet.ID;
+                String targetRelicId = T_DEADBRANCH_F_FLINT ? DeadBranch.ID : Flint.ID;
                 AbstractRelic relic = RelicLibrary.getRelic(targetRelicId).makeCopy();
                 AbstractDungeon.getCurrRoom().rewards.add(new RewardItem(relic));
 
