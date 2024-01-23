@@ -10,11 +10,9 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.AbstractImageEvent;
 import com.megacrit.cardcrawl.events.city.Colosseum;
+import com.megacrit.cardcrawl.events.exordium.BigFish;
 import com.megacrit.cardcrawl.events.shrines.WomanInBlue;
-import com.megacrit.cardcrawl.helpers.MonsterHelper;
-import com.megacrit.cardcrawl.helpers.PotionHelper;
-import com.megacrit.cardcrawl.helpers.RelicLibrary;
-import com.megacrit.cardcrawl.helpers.ScreenShake;
+import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.AbstractRelic.RelicTier;
@@ -44,13 +42,13 @@ public class AbandonedCamp extends AbstractImageEvent {
     private static final float A_15_FLINT_HP_LOSS = (float) 1 /16;
     private static final int GOLD = 90;
     private static final int A_15_GOLD = 60;
-    private static final int HEALING = 1/4;
-    private static final int A_15_HEALING = 1/6;
+    private static final float HEALING = (float) 1/4;
+    private static final float A_15_HEALING = (float) 1/6;
 
-    private boolean T_DEADBRANCH_F_FLINT;
-    private boolean T_GOLD_F_HEALING;
+    private final boolean T_DEADBRANCH_F_FLINT;
+    private final boolean T_GOLD_F_HEALING;
 
-    private AbstractCard curse = new Freeze();
+    private final AbstractCard curse = new Freeze();
     private int hpLoss;
     private int goldGain;
     private int healing;
@@ -59,6 +57,8 @@ public class AbandonedCamp extends AbstractImageEvent {
     public AbandonedCamp() {
         super(ID, NAME ,IMG );
         this.noCardsInRewards = true;
+        this.title = NAME;
+        this.body = DESCRIPTIONS[0] + " NL " + DESCRIPTIONS[1] + " NL " + DESCRIPTIONS[2] + " NL " + DESCRIPTIONS[3] + " NL " + DESCRIPTIONS[4];
 
         //Event randomly chooses one big reward between two, and one light reward between two
         T_DEADBRANCH_F_FLINT = AbstractDungeon.miscRng.randomBoolean();
@@ -78,7 +78,7 @@ public class AbandonedCamp extends AbstractImageEvent {
             if (T_GOLD_F_HEALING) {
                 goldGain = A_15_GOLD;
             } else {
-                healing = A_15_HEALING;
+                healing = (int)(A_15_HEALING * AbstractDungeon.player.maxHealth);
             }
 
         } else {//Non-Asc 15
@@ -92,7 +92,7 @@ public class AbandonedCamp extends AbstractImageEvent {
             if (T_GOLD_F_HEALING) {
                 goldGain = GOLD;
             } else {
-                healing = HEALING;
+                healing = (int)(HEALING * AbstractDungeon.player.maxHealth);
             }
 
         }
@@ -100,9 +100,9 @@ public class AbandonedCamp extends AbstractImageEvent {
         //Text
         //First impactful choice
         if (T_DEADBRANCH_F_FLINT) {
-            this.imageEventText.setDialogOption(OPTIONS[0]);
+            this.imageEventText.setDialogOption(OPTIONS[0], curse);
         } else {
-            this.imageEventText.setDialogOption(OPTIONS[1] + hpLoss + OPTIONS[2]);
+            this.imageEventText.setDialogOption(OPTIONS[1] + hpLoss + OPTIONS[2], new Circlet());
         }
 
         //Second light choice
@@ -130,7 +130,10 @@ public class AbandonedCamp extends AbstractImageEvent {
                 AbstractDungeon.getCurrRoom().rewards.add(new RewardItem(relic));
 
                 AbstractDungeon.getCurrRoom().phase = AbstractRoom.RoomPhase.COMPLETE;
+
                 AbstractDungeon.combatRewardScreen.open();
+                this.imageEventText.clearAllDialogs();
+                this.openMap();
                 break;
             case 1:
                 if (T_GOLD_F_HEALING)
@@ -140,10 +143,16 @@ public class AbandonedCamp extends AbstractImageEvent {
                 }
 
                 AbstractDungeon.getCurrRoom().phase = AbstractRoom.RoomPhase.COMPLETE;
+
+                this.openMap();
                 break;
             case 2:
                 AbstractDungeon.getCurrRoom().phase = AbstractRoom.RoomPhase.COMPLETE;
+
+                this.openMap();
                 break;
+            default:
+                this.openMap();
         }
     }
 

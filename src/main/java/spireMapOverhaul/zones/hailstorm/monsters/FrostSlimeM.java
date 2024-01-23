@@ -17,6 +17,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.status.Slimed;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.SlimeAnimListener;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.exordium.AcidSlime_M;
@@ -89,7 +90,7 @@ public class FrostSlimeM extends CustomMonster {
         this.powers.add(new BarricadePower(this));
     }
 
-    public FrostSlimeM(float x, float y, int poisonAmount, int newHealth) {
+    public FrostSlimeM(float x, float y, int newHealth) {
         super(NAME, ID, newHealth, 0.0F, 0.0F, 170.0F, 130.0F, (String)null, x, y, true);
         if (AbstractDungeon.ascensionLevel >= 2) {
             this.damage.add(new DamageInfo(this, A_2_W_TACKLE_DMG));
@@ -98,6 +99,9 @@ public class FrostSlimeM extends CustomMonster {
             this.damage.add(new DamageInfo(this, W_TACKLE_DMG));
             this.damage.add(new DamageInfo(this, N_TACKLE_DMG));
         }
+
+        this.img = ImageMaster.loadImage(IMG);
+
     }
 
     @Override

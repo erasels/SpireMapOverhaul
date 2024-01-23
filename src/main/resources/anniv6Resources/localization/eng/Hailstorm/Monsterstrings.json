@@ -5,7 +5,7 @@
       "Split",
       "Lick"
     ],
-    "NAME": "Frost Slime"
+    "NAME": "Frost Slime (M)"
   },
   "${ModID}:FrostSlimeL": {
     "MOVES": [
@@ -13,6 +13,6 @@
       "Split",
       "Lick"
     ],
-    "NAME": "Frost Slime"
+    "NAME": "Frost Slime (L)"
   }
 }

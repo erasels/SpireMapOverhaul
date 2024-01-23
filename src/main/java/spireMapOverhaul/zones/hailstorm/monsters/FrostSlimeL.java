@@ -108,8 +108,8 @@ public class FrostSlimeL extends CustomMonster {
                 AbstractDungeon.actionManager.addToBottom(new SuicideAction(this, false));
                 AbstractDungeon.actionManager.addToBottom(new WaitAction(1.0F));
                 AbstractDungeon.actionManager.addToBottom(new SFXAction("SLIME_SPLIT"));
-                AbstractDungeon.actionManager.addToBottom(new SpawnMonsterAction(new FrostSlimeM(this.saveX - 134.0F, this.saveY + MathUtils.random(-4.0F, 4.0F), 0, this.currentHealth), false));
-                AbstractDungeon.actionManager.addToBottom(new SpawnMonsterAction(new FrostSlimeM(this.saveX + 134.0F, this.saveY + MathUtils.random(-4.0F, 4.0F), 0, this.currentHealth), false));
+                AbstractDungeon.actionManager.addToBottom(new SpawnMonsterAction(new FrostSlimeM(this.saveX - 134.0F, this.saveY + MathUtils.random(-4.0F, 4.0F), this.currentHealth), false));
+                AbstractDungeon.actionManager.addToBottom(new SpawnMonsterAction(new FrostSlimeM(this.saveX + 134.0F, this.saveY + MathUtils.random(-4.0F, 4.0F), this.currentHealth), false));
                 AbstractDungeon.actionManager.addToBottom(new CanLoseAction());
                 this.setMove(SPLIT_NAME, (byte)3, Intent.UNKNOWN);
                 break;

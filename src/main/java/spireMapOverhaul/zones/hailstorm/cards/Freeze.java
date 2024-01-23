@@ -14,7 +14,8 @@ import spireMapOverhaul.abstracts.AbstractSMOCard;
 import spireMapOverhaul.zones.invasion.cards.AbstractInvasionZoneRewardCard;
 //Can be renamed Freezing if needed
 public class Freeze extends AbstractSMOCard {
-    public static final String ID = SpireAnniversary6Mod.makeID(Freeze.class.getSimpleName());
+    //public static final String ID = SpireAnniversary6Mod.makeID(Freeze.class.getSimpleName());
+    public static final String ID = SpireAnniversary6Mod.makeID("Freeze");
     private static final int COST = -2;
 
     public Freeze() {

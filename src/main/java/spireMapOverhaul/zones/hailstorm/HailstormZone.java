@@ -1,5 +1,6 @@
 package spireMapOverhaul.zones.hailstorm;
 
+import basemod.BaseMod;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
@@ -16,6 +17,7 @@ import spireMapOverhaul.zoneInterfaces.ModifiedEventRateZone;
 import spireMapOverhaul.zoneInterfaces.RenderableZone;
 import spireMapOverhaul.zones.example.CoolExampleEvent;
 import spireMapOverhaul.zones.hailstorm.monsters.FrostSlimeL;
+import spireMapOverhaul.zones.hailstorm.monsters.FrostSlimeM;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -26,7 +28,8 @@ public class HailstormZone extends AbstractZone implements ModifiedEventRateZone
     private final int width, height;
     private final Color color;
 
-    public static final String Frost_Slime = SpireAnniversary6Mod.makeID("Frost_Slime");
+    public static final String Frost_Slime_L = SpireAnniversary6Mod.makeID("Frost_Slime_L");
+    public static final String Frost_Slime_M = SpireAnniversary6Mod.makeID("Frost_Slime_M");
 
     @Override
     public AbstractEvent forceEvent() {
@@ -118,20 +121,20 @@ public class HailstormZone extends AbstractZone implements ModifiedEventRateZone
         return false;
     }
 
-//    @Override
-//    public void registerEncounters() {
-//        EncounterModifyingZone.super.registerEncounters();
-//        BaseMod.addMonster(Frost_Slime, () -> new MonsterGroup(
-//                new AbstractMonster[] {
-//                        new FrostSlimeL(0.0f, 0.0f),
-//                }
-//        ));
-//    }
+    @Override
+    public void registerEncounters() {
+        EncounterModifyingZone.super.registerEncounters();
+        BaseMod.addMonster(Frost_Slime_M, () -> new MonsterGroup(
+                new AbstractMonster[] {
+                        new FrostSlimeM(0.0f, 0.0f),
+                }
+        ));
+    }
 
     @Override
     public List<ZoneEncounter> getNormalEncounters() {
         return Collections.singletonList(
-                new ZoneEncounter(Frost_Slime, 1, () -> new MonsterGroup(
+                new ZoneEncounter(Frost_Slime_L, 1, () -> new MonsterGroup(
                         new AbstractMonster[]{
                                 new FrostSlimeL(0.0f, 0.0f),
                         }))
