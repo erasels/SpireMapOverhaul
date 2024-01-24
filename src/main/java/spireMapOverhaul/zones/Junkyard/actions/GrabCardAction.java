@@ -44,6 +44,7 @@ public class GrabCardAction extends AbstractGameAction {
             else {
                 if (AbstractDungeon.player.drawPile.isEmpty() && AbstractDungeon.player.discardPile.isEmpty()) {
                     this.isDone = true;
+                    return;
                 } else {
                     if (AbstractDungeon.player.drawPile.isEmpty()) {
                         this.card = AbstractDungeon.player.discardPile.getRandomCard(AbstractDungeon.cardRandomRng);
