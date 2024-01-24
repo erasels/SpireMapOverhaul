@@ -32,7 +32,7 @@ public class ZonePatches {
         public static void setColor(MapRoomNode __instance, SpriteBatch sb) {
             AbstractZone zone = Fields.zone.get(__instance);
             if (zone != null) {
-                __instance.color = zone.getColor().cpy();
+                __instance.color = zone.getAdjustedColor().cpy();
             }
         }
     }

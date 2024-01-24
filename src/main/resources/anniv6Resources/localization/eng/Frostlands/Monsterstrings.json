@@ -1,0 +1,42 @@
+{
+  "${ModID}:Steward": {
+    "MOVES": [
+      "Roll Up",
+      "Roll Out",
+      "Slam"
+    ],
+    "NAME": "Steward"
+  },
+  "${ModID}:Snowman": {
+    "MOVES": [
+      "Greet",
+      "Double Punch",
+      "Power Up!"
+    ],
+    "NAME": "Snowman"
+  },
+  "${ModID}:Hypothema": {
+    "MOVES": [
+      "Greet",
+      "Double Punch",
+      "Power Up!"
+    ],
+    "NAME": "Hypothema"
+  },
+  "${ModID}:Spruce": {
+    "MOVES": [
+      "Greet",
+      "Slash",
+      "Parry"
+    ],
+    "NAME": "Spruce"
+  },
+  "${ModID}:Cole": {
+    "MOVES": [
+      "Greet",
+      "Defend",
+      "Freeze"
+    ],
+    "NAME": "Cole"
+  }
+}

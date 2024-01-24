@@ -19,7 +19,7 @@ public class ManaSurgePower extends AbstractSMOPower implements NonStackablePowe
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
     public static String ZONE_ID = ManaSurgeZone.ID;
 
-    private static final float EFFECT_CHANCE = 0.5f;
+    private static final float EFFECT_CHANCE = 0.4f;
 
     public ManaSurgePower(AbstractCreature owner, int amount) {
         super(POWER_ID,NAME,ZONE_ID, NeutralPowertypePatch.NEUTRAL, false, owner, amount);

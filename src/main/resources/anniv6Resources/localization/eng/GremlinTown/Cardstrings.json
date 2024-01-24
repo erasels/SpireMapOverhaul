@@ -1,0 +1,87 @@
+{
+  "${ModID}:SneakAttack": {
+    "NAME": "Sneak Attack",
+    "DESCRIPTION": "Deal !D! damage."
+  },
+  "${ModID}:MeatMallet": {
+    "NAME": "Meat Mallet",
+    "DESCRIPTION": "Whenever an Attack deals unblocked damage this turn, apply !M! Weak. NL Exhaust."
+  },
+  "${ModID}:AngryStrike": {
+    "NAME": "Angry Strike",
+    "DESCRIPTION": "Deal !D! damage. NL Exhaust 1 non-Attack card at random."
+  },
+  "${ModID}:Shield": {
+    "NAME": "Shield",
+    "DESCRIPTION": "Gain !B! Block. NL Exhaust."
+  },
+  "${ModID}:Charge": {
+    "NAME": "Charge",
+    "DESCRIPTION": "In 2 turns, gain !M! ${ModID}:Vigor."
+  },
+  "${ModID}:Cure": {
+    "NAME": "Cure",
+    "DESCRIPTION": "Remove ALL of your debuffs. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Retain. NL Remove ALL of your debuffs. NL Exhaust."
+  },
+  "${ModID}:Sit": {
+    "NAME": "Sit",
+    "DESCRIPTION": "Enemy loses !M! Strength this turn."
+  },
+  "${ModID}:FullPlate": {
+    "NAME": "Full Plate",
+    "DESCRIPTION": "At the end of your turn, gain !M! Block."
+  },
+  "${ModID}:Frenzy": {
+    "NAME": "Frenzy",
+    "DESCRIPTION": "Deal !D! damage twice. NL Gain !M! Strength."
+  },
+  "${ModID}:Assassinate": {
+    "NAME": "Assassinate",
+    "DESCRIPTION": "Innate. NL Deal !D! damage. NL Exhaust."
+  },
+  "${ModID}:MountedCombat": {
+    "NAME": "Mounted Combat",
+    "DESCRIPTION": "Ethereal. NL Apply ${ModID}:Slow. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Apply ${ModID}:Slow. NL Exhaust."
+  },
+  "${ModID}:RRrroohrrRGHHhhh": {
+    "NAME": "RRrroohrrRGHHhhh!!",
+    "DESCRIPTION": "Whenever an enemy doesn't attack during its turn, gain !M! Strength."
+  },
+  "${ModID}:CriticalHit": {
+    "NAME": "Critical Hit",
+    "DESCRIPTION": "Your next attack deals double damage. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Your next attack deals triple damage. NL Exhaust."
+  },
+  "${ModID}:Flurry": {
+    "NAME": "Flurry",
+    "DESCRIPTION": "Deal !D! damage to a random enemy X+1 times."
+  },
+  "${ModID}:OmegaCurse": {
+    "NAME": "Omega Curse",
+    "DESCRIPTION": "Enemy takes !M! more damage from Attacks. NL Lose !${ModID}:m2! HP."
+  },
+  "${ModID}:TheHorde": {
+    "NAME": "The Horde",
+    "DESCRIPTION": "At the start of your turn, add a random *Gremlin card into your hand.",
+    "UPGRADE_DESCRIPTION": "Innate. NL At the start of your turn, add a random *Gremlin card into your hand."
+  },
+  "${ModID}:Rig": {
+    "NAME": "Rig",
+    "DESCRIPTION": "At the start of your turn, draw a card and Exhaust a card."
+  },
+  "${ModID}:ThrowRock": {
+    "NAME": "Throw Rock",
+    "DESCRIPTION": "Deal !D! damage. NL Gain !M! Strength. NL At the end of this turn, lose !M! Strength."
+  },
+  "${ModID}:PoisonSpray": {
+    "NAME": "Poison Spray",
+    "DESCRIPTION": "Deal !D! damage. NL Apply Poison equal to unblocked damage dealt."
+  },
+  "${ModID}:Inspire": {
+    "NAME": "Inspire",
+    "DESCRIPTION": "Ethereal. NL At the start of your turn, gain [E] and draw 1 card.",
+    "UPGRADE_DESCRIPTION": "At the start of your turn, gain [E] and draw 1 card."
+  }
+}

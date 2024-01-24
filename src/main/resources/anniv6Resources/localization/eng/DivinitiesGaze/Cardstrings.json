@@ -1,0 +1,44 @@
+{
+  "${ModID}:Clairvoyance": {
+    "NAME": "Clairvoyance",
+    "DESCRIPTION": "{@@}Retain. NL If this card is in your hand at the start of your turn, draw {!M!|1=a card|@=!M! cards}. {!M!|1=It|@=They} gain{!M!|1=s|@=} Retain until played. NL Exhaust.",
+    "EXTENDED_DESCRIPTION": [
+      "I see ALL!",
+      "I reject this gift..."
+    ]
+  },
+  "${ModID}:Verdict": {
+    "NAME": "Verdict",
+    "DESCRIPTION": "Apply !M! ${ModID}:Verdict. NL Exhaust.",
+    "EXTENDED_DESCRIPTION": [
+      "By honor, be judged!"
+    ]
+  },
+  "${ModID}:GuidingLight": {
+    "NAME": "Guiding Light",
+    "DESCRIPTION": "{@@}Unplayable. When drawn, Exhaust this, then draw cards until your hand is full.{!Upgrades!|>0= NL Upgrade all cards in your hand.|@=}",
+    "EXTENDED_DESCRIPTION": [
+      "The path is laid bare.",
+      "I can't play this card."
+    ]
+  },
+  "${ModID}:Inevitability": {
+    "NAME": "Inevitability",
+    "DESCRIPTION": "Unplayable. Retain. At the end of your turn, deal !M! damage to ALL enemies and gain !B! Block. NL Increase these amounts by !${ModID}:secondMagic}! this combat.",
+    "EXTENDED_DESCRIPTION": [
+      "This is The End.",
+      "Begone!",
+      "Rest, now.",
+      "Futile...",
+      "Into nothingness..."
+    ]
+  },
+  "${ModID}:Mitosis": {
+    "NAME": "Mitosis",
+    "DESCRIPTION": "Deal !M! damage for ALL your *Mitoses or *Statuses. NL When you draw this, shuffle a copy into your draw pile. Exhaust.",
+    "EXTENDED_DESCRIPTION": [
+      "Grow...",
+      " NL (Deals !D! damage.)"
+    ]
+  }
+}

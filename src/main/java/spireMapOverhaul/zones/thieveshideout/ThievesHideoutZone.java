@@ -91,6 +91,10 @@ public class ThievesHideoutZone extends AbstractZone implements EncounterModifyi
         }
     }
 
+    protected boolean allowAdditionalEntrances() {
+        return false;
+    }
+
     @Override
     public List<ZoneEncounter> getNormalEncounters() {
         return Arrays.asList(
@@ -130,8 +134,8 @@ public class ThievesHideoutZone extends AbstractZone implements EncounterModifyi
         BaseMod.addMonster(THIEF_KING, () -> new MonsterGroup(
             new AbstractMonster[] {
                 new Looter(-385.0f, -15.0f),
-                new Mugger(-133.0f, 0.0f),
-                new ThiefKing(125.0f, -30.0f)
+                new Mugger(-133.0f, 15.0f),
+                new ThiefKing(125.0f, 0.0f)
             }
         ));
     }

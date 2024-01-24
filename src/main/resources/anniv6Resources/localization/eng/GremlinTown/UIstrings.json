@@ -1,0 +1,32 @@
+{
+  "${ModID}:GremlinTown": {
+    "TEXT": [
+      "Gremlin Town",
+      "A section of the city populated by gremlins. More dangerous, but more rewarding.",
+      "Bryan K."
+    ]
+  },
+  "${ModID}:ShopBanter": {
+    "TEXT": [
+      "Hi! NL Buy something! NL Buy buy buy!",
+      "I like your haircut.  Us gremlins don't have hair.",
+      "Do you have the time?",
+      "Are you a louse person?",
+      "You look ~dangerous,~ NL hehe...",
+      "Do you like this rug? NL It's not for sale",
+      "Support Gremlin Town!",
+      "What mask?  That's my face.",
+      "Stay awhile and listen!",
+      "It's dangerous in Gremlin Town! Give me all your gold!",
+      "Buy somethin'",
+      "I like gold."
+    ]
+  },
+  "${ModID}:Horde": {
+    "TEXT": [
+      "Any time now!",
+      "Scram!",
+      "You're surrounded!"
+    ]
+  }
+}

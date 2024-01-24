@@ -2,7 +2,11 @@
   "${ModID}:Invasion": {
     "TEXT": [
       "Invasion",
-      "The Spire is being invaded by monsters from alternate acts! Fight new monsters and elites. NL NL Elites give extra gold and special powerful card rewards instead of relics. Shops have special cards for sale."
+      "The Spire is being invaded by monsters from alternate acts! Fight new monsters and elites. NL NL Elites give extra gold and special powerful card rewards instead of relics. Shops have special cards for sale.",
+      "modargo",
+      "The Spire is being invaded by monsters from the #bMenagerie! Fight new monsters and elites. NL NL Elites give extra gold and special powerful card rewards instead of relics. Shops have special cards for sale.",
+      "The Spire is being invaded by monsters from the #bElementarium! Fight new monsters and elites. NL NL Elites give extra gold and special powerful card rewards instead of relics. Shops have special cards for sale.",
+      "The Spire is being invaded by monsters from the #bAbyss! Fight new monsters and elites. NL NL Elites give extra gold and special powerful card rewards instead of relics. Shops have special cards for sale."
     ]
   },
   "${ModID}:Evolving": {

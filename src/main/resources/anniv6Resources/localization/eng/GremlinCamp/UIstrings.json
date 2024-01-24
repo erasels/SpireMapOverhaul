@@ -1,0 +1,23 @@
+{
+  "${ModID}:GremlinCamp": {
+    "TEXT": [
+      "Gremlin Camp",
+      "A large group of #rgremlins has taken over this space. Keep your eyes peeled, you won't be able to sleep there.",
+      "(Gk) erasels"
+    ]
+  },
+  "${ModID}:GCEncounterNames": {
+    "TEXT": [
+      "Gremlin Brawlers",
+      "Gremlin President and Guards",
+      "Gremlin Cook and the Boys",
+      "Pack of Feral Gremlins"
+    ]
+  },
+  "${ModID}:ScavengeOption": {
+    "TEXT": [
+      "Scavenge",
+      "Gain %s-%s gold."
+    ]
+  }
+}

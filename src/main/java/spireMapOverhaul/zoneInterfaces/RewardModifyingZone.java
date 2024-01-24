@@ -7,6 +7,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ModHelper;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rewards.RewardItem;
+import spireMapOverhaul.SpireAnniversary6Mod;
+import spireMapOverhaul.util.Wiz;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -123,7 +125,14 @@ public interface RewardModifyingZone {
     }
 
     /**
-     * Hook for modifying the number of cards in the reward, this happens after BustedCrown and Binary apply their modifications
+     * Allows modifying base game behavior of being able to skip card rewards.
+     * @return When true, player cannot skip card rewards from combat.
+     */
+    default boolean cannotSkipCardRewards() {
+        return false;
+    }
+
+     /* Hook for modifying the number of cards in the reward, this happens after BustedCrown and Binary apply their modifications
      * @param curNumCards the current amount of cards that would be in the reward
      * @return the new amount of cards in the reward, generally the final amount
      */
@@ -157,6 +166,10 @@ public interface RewardModifyingZone {
      * @param card The card to apply the standard upgrade logic to.
      */
     default void applyStandardUpgradeLogic(AbstractCard card) {
+        if(card == null) {
+            SpireAnniversary6Mod.logger.error("Called applyStandardUpgradeLogic with null input, current zone: " + Wiz.getCurZone());
+            return;
+        }
         float upgradeChance = ReflectionHacks.getPrivateStatic(AbstractDungeon.class, "cardUpgradedChance");
         upgradeChance = this.changeCardUpgradeChance(upgradeChance);
         if ((card.rarity != AbstractCard.CardRarity.RARE || this.allowUpgradingRareCards()) && AbstractDungeon.cardRng.randomBoolean(upgradeChance) && card.canUpgrade()) {

@@ -7,11 +7,13 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
+import com.evacipated.cardcrawl.modthespire.Loader;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
+import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.map.MapRoomNode;
@@ -22,12 +24,15 @@ import spireMapOverhaul.BetterMapGenerator.MapPlanner;
 import spireMapOverhaul.BetterMapGenerator.MapPlanner.PlanningNode;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.util.ActUtil;
+import spireMapOverhaul.util.DownfallUtil;
 import spireMapOverhaul.util.TexLoader;
 import spireMapOverhaul.util.ZoneShapeMaker;
 
-import java.awt.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
@@ -37,10 +42,11 @@ public abstract class AbstractZone {
     private static final float OFFSET_X = Settings.isMobile ? 496.0F * Settings.xScale : 560.0F * Settings.xScale;
     private static final float OFFSET_Y = 180.0F * Settings.scale;
     private static final float SPACING_X = Settings.isMobile ? (int)(Settings.xScale * 64.0F) * 2.2F : (int)(Settings.xScale * 64.0F) * 2.0F;
+    private static String[] GLOBAL_TEXT = null;
     private static final String[] NO_TEXT = new String[] { };
     private static final int NO_ELITES_BOUNDARY_ROW = 4;
     private static final int TREASURE_ROW = 8;
-    private static final int FINAL_CAMPFIRE_ROW = 15;
+    private static final int FINAL_CAMPFIRE_ROW = 14;
 
     private static final HashMap<Icons, String> iconsMap;
     static {
@@ -102,6 +108,39 @@ public abstract class AbstractZone {
 
     public abstract Color getColor();
 
+    /**
+     * Gets the color that should be used for the zone when the Dark Map mod is active.
+     * This check how bright the color is and attempts to lighten colors that are too dark to be easily seen with Dark Map.
+     * If the logic here results in a color doesn't work well, this can be overridden to provide an alternate color.
+     * @return The color.
+     */
+    public Color getDarkMapColor() {
+        Color baseColor = this.getColor();
+        // Luminance calculation based on https://stackoverflow.com/a/56678483
+        Function<Float, Double> sRGBtoLin = c -> c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+        double luminance = 0.2126 * sRGBtoLin.apply(baseColor.r) + 0.7152 * sRGBtoLin.apply(baseColor.g) + 0.0722 * sRGBtoLin.apply(baseColor.b);
+        // This threshold was chosen based on a mix of theory (it's a bit above "middle grey") and empirical testing
+        // (it catches pretty much all the zones that are hard to make out with Dark Map and leaves out the rest)
+        if (luminance <= 0.20) {
+            // We lighten the color by proportionally increasing each color component to maintain RGB balance (as much as possible).
+            // The factor to lighten by was chosen empirically; there might be a better value or different ways to
+            // calculate it that we could try (e.g. calculating it based on the luminance).
+            // Note that a higher value will make the color darker (1.0f leaves the color unchanged, 0.0f makes the color white)
+            float factor = 0.5f;
+            Function<Float, Float> lighten = (Float v) -> 1.0f - ((1.0f - v) * factor);
+            return new Color(lighten.apply(baseColor.r), lighten.apply(baseColor.g), lighten.apply(baseColor.b), baseColor.a);
+        }
+        return baseColor;
+    }
+
+    /**
+     * Gets the color that should be used for the zone, adjusted for whether the Dark Map mod is active.
+     * @return The color
+     */
+    public final Color getAdjustedColor() {
+        return Loader.isModLoaded("ojb_DarkMap") ? this.getDarkMapColor() : this.getColor();
+    }
+
     public int getX() {
         return x;
     }
@@ -141,6 +180,13 @@ public abstract class AbstractZone {
         }
     }
 
+    private String[] getGlobalText() {
+        if (GLOBAL_TEXT == null) {
+            GLOBAL_TEXT = CardCrawlGame.languagePack.getUIString(makeID("ZoneTooltip")).TEXT;
+        }
+        return GLOBAL_TEXT;
+    }
+
     public void updateDescription() {
         StringBuilder sb = new StringBuilder();
         for(Icons icon : icons) {
@@ -148,8 +194,14 @@ public abstract class AbstractZone {
         }
         if (icons.length > 0)
             sb.append(" NL ");
-        sb.append(TEXT[1]);
+        sb.append(getDescriptionText());
+        sb.append(" NL NL ");
+        sb.append(getGlobalText()[0].replace("{0}", FontHelper.colorString(TEXT[2], "p")));
         tooltipBody = sb.toString();
+    }
+
+    public String getDescriptionText() {
+        return TEXT[1];
     }
 
     public void renderOnMap(SpriteBatch sb, float alpha) {
@@ -159,7 +211,7 @@ public abstract class AbstractZone {
             }
             float anchorX = x * SPACING_X + OFFSET_X - ZoneShapeMaker.FB_OFFSET;
             float anchorY = y * Settings.MAP_DST_Y + OFFSET_Y + DungeonMapScreen.offsetY - ZoneShapeMaker.FB_OFFSET;
-            sb.setColor(getColor().cpy().mul(1f, 1f, 1f, alpha*0.5f));
+            sb.setColor(getAdjustedColor().cpy().mul(1f, 1f, 1f, alpha*0.5f));
             sb.draw(shapeRegion, anchorX, anchorY);
             boolean showTooltip = false;
             for (Hitbox hb : hitboxes) {
@@ -171,14 +223,31 @@ public abstract class AbstractZone {
                 }
             }
             if (showTooltip) {
-                TipHelper.renderGenericTip(InputHelper.mX + 40f*Settings.scale, InputHelper.mY - 65f*Settings.scale, name, tooltipBody);
-            }
+                float tooltipWidth = 280.0F * Settings.scale;
+                float lineHeight = 26.0F * Settings.scale;
+                float tooltipHeight = -FontHelper.getSmartHeight(FontHelper.tipBodyFont, tooltipBody, tooltipWidth, lineHeight) -7f * Settings.scale;
 
+                float tooltipY = InputHelper.mY - 65f * Settings.scale;
+
+                if (tooltipY - tooltipHeight < 0) {
+                    tooltipY = tooltipHeight;
+                }
+
+                TipHelper.renderGenericTip(InputHelper.mX + 40f * Settings.scale, tooltipY, name, tooltipBody);
+            }
+        }
+    }
+
+    public void renderNameOnMap(SpriteBatch sb, float alpha) {
+        if (alpha > 0) {
+            // Not sure why this is the exact value that seems to work for adjusting the labels to be in the right place
+            // with Downfall (something about how it shifts the map to put the boss at the bottom?), but empirically it
+            // works. A bit hacky, but fine for now.
+            float adjustedLabelY = labelY + (DownfallUtil.isDownfallMode() ? 3 : 0);
             FontHelper.renderFontCentered(sb, FontHelper.menuBannerFont, name,
-                    labelX * SPACING_X + OFFSET_X, labelY * Settings.MAP_DST_Y + OFFSET_Y + DungeonMapScreen.offsetY,
+                    labelX * SPACING_X + OFFSET_X,  adjustedLabelY * Settings.MAP_DST_Y + OFFSET_Y + DungeonMapScreen.offsetY,
                     labelColor.cpy().mul(1, 1, 1, alpha), 0.8f
             );
-
         }
     }
 
@@ -253,7 +322,7 @@ public abstract class AbstractZone {
      * If allowAdditionalPaths is false, this will only affect attempts to enter through the side onto active nodes.
     */
     protected boolean allowAdditionalEntrances() {
-        return false;
+        return true;
     }
 
     //Note: isValidPath can be overridden to completely ignore these three methods.
@@ -354,7 +423,7 @@ public abstract class AbstractZone {
         }
         labelX /= count;
 
-        labelColor = getColor().cpy();
+        labelColor = getAdjustedColor().cpy();
         labelColor.mul(0.5f,0.5f,0.5f,0.8f);
     }
 
@@ -489,5 +558,12 @@ public abstract class AbstractZone {
         }
 
         return siblings;
+    }
+
+    @Override
+    public String toString() {
+        String auth = "not initialized";
+        if(TEXT != null && TEXT.length >= 3) auth = TEXT[2];
+        return "Biome: " + this.name + ", by " + auth;
     }
 }

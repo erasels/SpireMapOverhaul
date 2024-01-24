@@ -1,0 +1,16 @@
+{
+  "${ModID}:GravewoodGrove": {
+    "TEXT": [
+      "Gravewood Grove",
+      "You are surrounded by dead branches. You feel your life slowly seeping away. NL NL Each turn, draw #b1 less card and #yExhaust the first card you play. NL Whenever you #yExhaust a card, add a random card to your hand.",
+      "Mindbomber"
+    ]
+  },
+  "${ModID}:TransformOption": {
+    "TEXT": [
+      "Transform",
+      "Transform a card",
+      "Select a card to Transform."
+    ]
+  }
+}

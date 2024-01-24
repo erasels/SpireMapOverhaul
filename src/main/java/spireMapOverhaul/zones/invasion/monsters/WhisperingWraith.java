@@ -18,6 +18,7 @@ import spireMapOverhaul.abstracts.AbstractSMOMonster;
 import spireMapOverhaul.zones.invasion.powers.FixedTextIntangiblePower;
 
 import java.util.Random;
+import static spireMapOverhaul.util.Wiz.*;
 
 public class WhisperingWraith extends AbstractSMOMonster
 {
@@ -25,7 +26,7 @@ public class WhisperingWraith extends AbstractSMOMonster
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
-    private static final String IMG = SpireAnniversary6Mod.makeImagePath("monsters/Invasion/WhisperingWraith/WhisperingWraith.png");
+    private static final String IMG = SpireAnniversary6Mod.makeMonsterPath("Invasion/WhisperingWraith/WhisperingWraith.png");
     private boolean firstMove = true;
     private static final byte FADE_AWAY_ATTACK = 1;
     private static final byte GHOSTLY_TOUCH_ATTACK = 2;
@@ -51,70 +52,70 @@ public class WhisperingWraith extends AbstractSMOMonster
 
     public WhisperingWraith(final float x, final float y) {
         super(WhisperingWraith.NAME, ID, HP_MAX, -5.0F, 0, 145.0f, 205.0f, IMG, x, y);
-        this.type = EnemyType.NORMAL;
+        type = EnemyType.NORMAL;
         if (AbstractDungeon.ascensionLevel >= 7) {
-            this.setHp(A7_HP_MIN, A7_HP_MAX);
+            setHp(A7_HP_MIN, A7_HP_MAX);
         } else {
-            this.setHp(HP_MIN, HP_MAX);
+            setHp(HP_MIN, HP_MAX);
         }
 
         if (AbstractDungeon.ascensionLevel >= 2) {
-            this.fadeAwayDamage = A2_FADE_AWAY_DAMAGE;
-            this.ghostlyTouchDamage = A2_GHOSTLY_TOUCH_DAMAGE;
+            fadeAwayDamage = A2_FADE_AWAY_DAMAGE;
+            ghostlyTouchDamage = A2_GHOSTLY_TOUCH_DAMAGE;
         } else {
-            this.fadeAwayDamage = FADE_AWAY_DAMAGE;
-            this.ghostlyTouchDamage = GHOSTLY_TOUCH_DAMAGE;
+            fadeAwayDamage = FADE_AWAY_DAMAGE;
+            ghostlyTouchDamage = GHOSTLY_TOUCH_DAMAGE;
         }
-        this.damage.add(new DamageInfo(this, this.fadeAwayDamage));
-        this.damage.add(new DamageInfo(this, this.ghostlyTouchDamage));
+        damage.add(new DamageInfo(this, fadeAwayDamage));
+        damage.add(new DamageInfo(this, ghostlyTouchDamage));
 
         if (AbstractDungeon.ascensionLevel >= 17) {
-            this.absorbLifeStrength = A17_ABSORB_LIFE_STRENGTH;
+            absorbLifeStrength = A17_ABSORB_LIFE_STRENGTH;
         }
         else {
-            this.absorbLifeStrength = ABSORB_LIFE_STRENGTH;
+            absorbLifeStrength = ABSORB_LIFE_STRENGTH;
         }
     }
 
     @Override
     public void takeTurn() {
-        if (this.firstMove) {
-            this.firstMove = false;
+        if (firstMove) {
+            firstMove = false;
         }
-        switch (this.nextMove) {
+        switch (nextMove) {
             case FADE_AWAY_ATTACK:
-                AbstractDungeon.actionManager.addToBottom(new AnimateSlowAttackAction(this));
-                AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player, this.damage.get(0), AbstractGameAction.AttackEffect.NONE));
-                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new FixedTextIntangiblePower(this, 1)));
+                atb(new AnimateSlowAttackAction(this));
+                atb(new DamageAction(AbstractDungeon.player, damage.get(0), AbstractGameAction.AttackEffect.NONE));
+                atb(new ApplyPowerAction(this, this, new FixedTextIntangiblePower(this, 1)));
                 break;
             case GHOSTLY_TOUCH_ATTACK:
-                AbstractDungeon.actionManager.addToBottom(new AnimateFastAttackAction(this));
-                AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player, this.damage.get(1), AbstractGameAction.AttackEffect.NONE));
+                atb(new AnimateFastAttackAction(this));
+                atb(new DamageAction(AbstractDungeon.player, damage.get(1), AbstractGameAction.AttackEffect.NONE));
                 break;
             case ABSORB_LIFE_MOVE:
-                AbstractDungeon.actionManager.addToBottom(new FastShakeAction(this, 0.5F, 0.2F));
-                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new StrengthPower(this, this.absorbLifeStrength), this.absorbLifeStrength));
+                atb(new FastShakeAction(this, 0.5F, 0.2F));
+                atb(new ApplyPowerAction(this, this, new StrengthPower(this, absorbLifeStrength), absorbLifeStrength));
                 break;
         }
-        AbstractDungeon.actionManager.addToBottom(new RollMoveAction(this));
+        atb(new RollMoveAction(this));
     }
 
     @Override
     protected void getMove(final int num) {
-        if (this.firstMove || this.lastMove(ABSORB_LIFE_MOVE)) {
-            this.setMove(WhisperingWraith.MOVES[0], FADE_AWAY_ATTACK, Intent.ATTACK_DEFEND, this.fadeAwayDamage);
+        if (firstMove || lastMove(ABSORB_LIFE_MOVE)) {
+            setMove(WhisperingWraith.MOVES[0], FADE_AWAY_ATTACK, Intent.ATTACK_DEFEND, fadeAwayDamage);
         }
-        else if (this.lastMove(FADE_AWAY_ATTACK)) {
-            this.setMove(WhisperingWraith.MOVES[1], GHOSTLY_TOUCH_ATTACK, Intent.ATTACK, this.ghostlyTouchDamage);
+        else if (lastMove(FADE_AWAY_ATTACK)) {
+            setMove(WhisperingWraith.MOVES[1], GHOSTLY_TOUCH_ATTACK, Intent.ATTACK, ghostlyTouchDamage);
         }
         else {
-            this.setMove(WhisperingWraith.MOVES[2], ABSORB_LIFE_MOVE, Intent.BUFF);
+            setMove(WhisperingWraith.MOVES[2], ABSORB_LIFE_MOVE, Intent.BUFF);
         }
     }
 
     @Override
     public void damage(DamageInfo info) {
-        if (info.output > 0 && this.hasPower(IntangiblePower.POWER_ID)) {
+        if (info.output > 0 && hasPower(IntangiblePower.POWER_ID)) {
             info.output = 1;
         }
 

@@ -2,7 +2,8 @@
   "${ModID}:CandyLand": {
     "TEXT": [
       "Candy Land",
-      "All rewards here are edible. It will be hard to improve much while in this zone, as most rewards are healing, max HP or otherwise temporary.",
+      "All rewards here are edible. It will be hard to improve much while in this biome, as most rewards are healing, max HP or otherwise temporary.",
+      "Jack Renoson",
       " Also, raise your max HP by 5."
     ]
   }

@@ -3,7 +3,9 @@ package spireMapOverhaul.zones.invasion;
 import basemod.BaseMod;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.random.Random;
@@ -13,6 +15,7 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
+import spireMapOverhaul.util.ActUtil;
 import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
 import spireMapOverhaul.zoneInterfaces.RewardModifyingZone;
 import spireMapOverhaul.zoneInterfaces.ShopModifyingZone;
@@ -23,6 +26,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class InvasionZone extends AbstractZone implements EncounterModifyingZone, RewardModifyingZone, ShopModifyingZone {
     public static final String ID = "Invasion";
@@ -38,7 +42,7 @@ public class InvasionZone extends AbstractZone implements EncounterModifyingZone
     public InvasionZone() {
         super(ID, Icons.MONSTER, Icons.SHOP);
         this.width = 3;
-        this.maxHeight = 4;
+        this.maxWidth = 4;
         this.height = 4;
         this.maxHeight = 5;
     }
@@ -51,6 +55,24 @@ public class InvasionZone extends AbstractZone implements EncounterModifyingZone
     @Override
     public Color getColor() {
         return new Color(0.3f,0.5f, 0.35f, 1f);
+    }
+
+    @Override
+    public String getDescriptionText() {
+        if (!CardCrawlGame.isInARun()) {
+            return TEXT[1];
+        }
+
+        switch (ActUtil.getRealActNum()) {
+            case 1:
+                return TEXT[3];
+            case 2:
+                return TEXT[4];
+            case 3:
+                return TEXT[5];
+            default:
+                return TEXT[1];
+        }
     }
 
     @Override

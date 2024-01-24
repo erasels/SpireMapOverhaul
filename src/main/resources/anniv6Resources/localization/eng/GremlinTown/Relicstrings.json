@@ -1,0 +1,65 @@
+{
+  "${ModID}:Duelity": {
+    "NAME": "Duelity",
+    "FLAVOR": "Apparently Gremlin Nobs are bad at spelling.",
+    "DESCRIPTIONS": [
+      "Whenever you play a Skill, gain #b1 temporary #yStrength."
+    ]
+  },
+  "${ModID}:GremlinClaw": {
+    "NAME": "Gremlin Claw",
+    "FLAVOR": "Gremlins can be very dangerous even without a weapon.",
+    "DESCRIPTIONS": [
+      "Whenever a non-minion enemy dies, heal #b1 HP."
+    ]
+  },
+  "${ModID}:GremlinHood": {
+    "NAME": "Gremlin Hood",
+    "FLAVOR": "The orange mask bandits never really caught on.",
+    "DESCRIPTIONS": [
+      "At the start of each combat, choose #b1 of #b3 random #yGremlin cards and add the chosen card into your hand."
+    ]
+  },
+  "${ModID}:NobClub": {
+    "NAME": "Nob Club",
+    "FLAVOR": "You can barely lift it.",
+    "DESCRIPTIONS": [
+      "Every time you play #b{0} Attacks, apply #b1 #yVulnerable to a random enemy."
+    ]
+  },
+  "${ModID}:GremlinStaff": {
+    "NAME": "Gremlin Staff",
+    "FLAVOR": "Your hand tingles when you hold it.",
+    "DESCRIPTIONS": [
+      "At the start of your #b3rd turn, gain #b{0} #yVigor."
+    ]
+  },
+  "${ModID}:WarHorn": {
+    "NAME": "War Horn",
+    "FLAVOR": "When you blow on this horn, you feel like you could take on anything.",
+    "DESCRIPTIONS": [
+      "Start each Boss combat with #b3 #yStrength."
+    ]
+  },
+  "${ModID}:Lockpicks": {
+    "NAME": "Lock Picks",
+    "FLAVOR": "A common Gremlin \"Investment.\"",
+    "DESCRIPTIONS": [
+      "Gain #b{0} #yGold upon entering a rest site."
+    ]
+  },
+  "${ModID}:Bowtie": {
+    "NAME": "Bow Tie",
+    "FLAVOR": "It makes you look twice as professional.",
+    "DESCRIPTIONS": [
+      "Shop cards are #yUpgraded."
+    ]
+  },
+  "${ModID}:LousePlushie": {
+    "NAME": "Louse Plushie",
+    "FLAVOR": "A toy for Gremlin children.",
+    "DESCRIPTIONS": [
+      "The first time you take unblocked Attack damage each combat, gain #b{0} #yBlock next turn."
+    ]
+  }
+}

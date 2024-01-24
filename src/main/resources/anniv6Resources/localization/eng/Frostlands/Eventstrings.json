@@ -1,0 +1,24 @@
+{
+  "${ModID}:SnowmanMafiaEvent": {
+    "NAME": "Snowmafia",
+    "DESCRIPTIONS": [
+      "You enter a room and find yourself faced with the imposing presence of... a snowman? NL NL #b\"Oh #bmy, #bwhat's #bthis? #bYou #bcertainly #blook #blike #bsomeone #bthat #bcan #bhandle #bthemselves #bwell #bin #bthis... #r~accursed~ #bSpire.\" NL NL #b\"Do #byou #bfancy #byourself #ba #bsparring #bsort? #bThe #bfamily #band #bI #bhaven't #bhad #ba #bchallenge #bin #bweeks. #bWhat #bdo #byou #bsay, #bare #byou #bup #bfor #ba #g~friendly~ #bduel?\"",
+      "#b\"Excellent! #bWe'll #ball #bbe #busing #ban #bitem #bso #bthat #bany #binjuries #bare #bnot... #r~permanent~ . #bI #bdid #bsay #bit #bwould #bbe #ba #g~friendly~ #bduel, #bafter #ball. #bTo #bthe #bbattlefield!\"",
+      "#b\"Hmm, #bperhaps #bI #bmisjudged #byou. #bVery #bwell, #bout #bof #bmy #bsight #bthen!\"",
+      "#b\"Wow, #bwhat #ba #bthrill! #bI #bwas #bright #bto #bpick #byou #bas #ba #bfighter. #bSince #byou #bwere #bable #bto #bbest #bus, #btake #ba #blittle #bsomething #bfrom #bone #bof #bus #bthat #byou #bthink #bwould #bbe #bhelpful. #bOh, #band #bfeel #bfree #bto #bkeep #bthat #blittle #bgizmo #bI #bgave #byou. #bThanks #bagain #bfor #bindulging #bmy #blittle #bgame~.\"",
+      "#b\" #b~HAHAHAHA~ #b! #bWell, #byou #bmay #bhave #bnot #bbeen #bthe #bchallenge #bI #bwas #blooking #bfor, #bbut #bat #bleast #bthat #bwas #bentertaining. #bHave #ba #blittle #bpick-me-up #bfor #bbeing #ba #bgood #bsport #bon #bthe #bway #bout. #b~HAHAHAHAHA~ #b.\"",
+      "#b\"Hope #byou #benjoy #bthat, #band #benjoyed #bour #blittle #btussle. #bOh, #band #bgrab #ba #blittle #bpick-me-up #bon #bthe #bway #bout. #bTa-ta!"
+    ],
+    "OPTIONS": [
+      "[Absolutely] Fight in a #gfriendly duel.",
+      "[No thanks] Don't fight.",
+      "[Let's go!] Fight.",
+      "[Out of her sight] Leave.",
+      "[Recover] #gHeal #g10 #gHP.",
+      "[The Hat] For some #yscaling damage.",
+      "[The Coal] To make enemies #bchill out.",
+      "[The Charm] To start combats out #rswinging.",
+      "[See ya!] Leave."
+    ]
+  }
+}

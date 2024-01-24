@@ -28,6 +28,8 @@ import spireMapOverhaul.zones.candyland.consumables.rare.GoldCandy;
 import spireMapOverhaul.zones.candyland.consumables.uncommon.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class CandyLand extends AbstractZone implements RewardModifyingZone, CampfireModifyingZone, ShopModifyingZone {
     public static final String ID = "CandyLand";
@@ -35,7 +37,7 @@ public class CandyLand extends AbstractZone implements RewardModifyingZone, Camp
     public CandyLand() {
         super(ID, Icons.REST, Icons.SHOP);
         this.width = 2;
-        this.maxWidth = 4;
+        this.maxWidth = 3;
         this.height = 3;
         this.maxHeight = 4;
     }
@@ -55,7 +57,9 @@ public class CandyLand extends AbstractZone implements RewardModifyingZone, Camp
         for (AbstractCard card : (ArrayList<AbstractCard>) cards.clone()) {
             cards.remove(card);
             ArrayList<AbstractConsumable> consumables = getConsumables();
-            consumables.removeIf(c -> c.rarity != card.rarity || cards.stream().anyMatch(listCard -> c.cardID.equals(listCard.cardID)));
+            List<AbstractCard.CardRarity> validRarities = Arrays.asList(AbstractCard.CardRarity.COMMON, AbstractCard.CardRarity.UNCOMMON, AbstractCard.CardRarity.RARE);
+            AbstractCard.CardRarity rarity = validRarities.contains(card.rarity) ? card.rarity : AbstractCard.CardRarity.COMMON;
+            consumables.removeIf(c -> c.rarity != rarity || cards.stream().anyMatch(listCard -> c.cardID.equals(listCard.cardID)));
             AbstractCard c = consumables.get(AbstractDungeon.cardRng.random(0, consumables.size()-1));
             this.applyStandardUpgradeLogic(c);
             cards.add(c);
@@ -107,7 +111,7 @@ public class CandyLand extends AbstractZone implements RewardModifyingZone, Camp
                 button.usable = false;
             } else if(button instanceof RestOption){
                 String newDescription = ReflectionHacks.getPrivateInherited(button, RestOption.class, "description");
-                newDescription += TEXT[2];
+                newDescription += TEXT[3];
                 ReflectionHacks.setPrivateInherited(button, RestOption.class, "description", newDescription);
 
             }
@@ -143,6 +147,19 @@ public class CandyLand extends AbstractZone implements RewardModifyingZone, Camp
     }
 
     @Override
+    public AbstractCard getReplacementShopCardForCourier(AbstractCard purchasedCard) {
+        if (purchasedCard.cardID.equals(Bite.ID) || purchasedCard.cardID.equals(Feed.ID)) {
+            return purchasedCard.makeCopy();
+        }
+        else if (getConsumables().stream().anyMatch(c -> c.cardID.equals(purchasedCard.cardID))) {
+            ArrayList<AbstractConsumable> consumables = getConsumables();
+            consumables.removeIf(c -> c.rarity != purchasedCard.rarity || c.type != purchasedCard.type || c.cardID.equals(GoldCandy.ID));
+            return consumables.get(AbstractDungeon.cardRng.random(0, consumables.size() - 1));
+        }
+        return null;
+    }
+
+    @Override
     public float modifyCardBaseCost(AbstractCard c, float baseCost) {
         switch(c.cardID) {
             case Bite.ID: return 80 + AbstractDungeon.merchantRng.random(1, 19); // Uncommon Colorless cost
@@ -166,6 +183,10 @@ public class CandyLand extends AbstractZone implements RewardModifyingZone, Camp
                 potion.potion = AbstractDungeon.returnRandomPotion(potion.potion.rarity, true);
             }
         }
+    }
+
+    protected boolean allowAdditionalEntrances() {
+        return false;
     }
 
 

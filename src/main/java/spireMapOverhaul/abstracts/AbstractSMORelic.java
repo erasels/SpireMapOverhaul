@@ -12,8 +12,12 @@ public abstract class AbstractSMORelic extends CustomRelic {
     public AbstractCard.CardColor color;
 
     public AbstractSMORelic(String setId, AbstractRelic.RelicTier tier, AbstractRelic.LandingSound sfx) {
-        super(setId, TexLoader.getTexture(makeRelicPath(setId.replace(modID + ":", "") + ".png")), tier, sfx);
-        outlineImg = TexLoader.getTexture(makeRelicPath(setId.replace(modID + ":", "") + "Outline.png"));
+        this(setId, null, tier, sfx);
+    }
+
+    public AbstractSMORelic(String setId, String zoneID, AbstractRelic.RelicTier tier, AbstractRelic.LandingSound sfx) {
+        super(setId, TexLoader.getTexture(makeRelicPath((zoneID != null ? zoneID + "/" : "") + setId.replace(modID + ":", "") + ".png")), tier, sfx);
+        outlineImg = TexLoader.getTexture(makeRelicPath((zoneID != null ? zoneID + "/" : "") + setId.replace(modID + ":", "") + "Outline.png"));
     }
 
     public String getUpdatedDescription() {

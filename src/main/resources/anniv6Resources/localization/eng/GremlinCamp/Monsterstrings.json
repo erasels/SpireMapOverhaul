@@ -1,0 +1,21 @@
+{
+  "${ModID}:GremlinCook": {
+    "MOVES": [
+      "Let Him Cook",
+      "Field Rations",
+      "Rotten Food",
+      "Tackle"
+    ],
+    "NAME": "Gremlin Cook",
+    "DIALOG": [
+      "Eat up, boys!"
+    ]
+  },
+  "${ModID}:GremlinDog": {
+    "MOVES": [
+      "Poison Fang",
+      "Defensive nibble"
+    ],
+    "NAME": "Feral Gremlin"
+  }
+}

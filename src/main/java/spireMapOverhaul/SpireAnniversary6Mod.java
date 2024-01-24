@@ -22,42 +22,55 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.AbstractEvent;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rewards.RewardSave;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.screens.options.DropdownMenu;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import javassist.CtClass;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import spireMapOverhaul.abstracts.AbstractSMORelic;
+import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.cardvars.SecondDamage;
 import spireMapOverhaul.cardvars.SecondMagicNumber;
 import spireMapOverhaul.interfaces.relics.MaxHPChangeRelic;
+import spireMapOverhaul.patches.CustomRewardTypes;
+import spireMapOverhaul.patches.ZonePatches;
 import spireMapOverhaul.patches.ZonePerFloorRunHistoryPatch;
 import spireMapOverhaul.patches.interfacePatches.CampfireModifierPatches;
-import spireMapOverhaul.patches.CustomRewardTypes;
-import spireMapOverhaul.abstracts.AbstractSMORelic;
-import spireMapOverhaul.patches.ZonePatches;
-import spireMapOverhaul.patches.interfacePatches.TravelTrackingPatches;
+import spireMapOverhaul.patches.interfacePatches.CombatModifierPatches;
 import spireMapOverhaul.patches.interfacePatches.EncounterModifierPatches;
+import spireMapOverhaul.patches.interfacePatches.TravelTrackingPatches;
+import spireMapOverhaul.rewards.AnyColorCardReward;
+import spireMapOverhaul.rewards.HealReward;
 import spireMapOverhaul.rewards.SingleCardReward;
 import spireMapOverhaul.ui.*;
 import spireMapOverhaul.util.QueueZoneCommand;
 import spireMapOverhaul.util.TexLoader;
-import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.util.ZoneShapeMaker;
 import spireMapOverhaul.zoneInterfaces.CampfireModifyingZone;
 import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
-import spireMapOverhaul.rewards.HealReward;
+import spireMapOverhaul.zoneInterfaces.ModifiedEventRateZone;
+import spireMapOverhaul.zones.beastslair.BeastsLairZone;
+import spireMapOverhaul.zones.brokenspace.BrokenSpaceZone;
+import spireMapOverhaul.zones.gremlinTown.GremlinTown;
+import spireMapOverhaul.zones.gremlinTown.HordeHelper;
+import spireMapOverhaul.zones.gremlinTown.potions.*;
+import spireMapOverhaul.zones.keymaster.KeymasterZone;
 import spireMapOverhaul.zones.manasurge.ui.extraicons.BlightIcon;
 import spireMapOverhaul.zones.manasurge.ui.extraicons.EnchantmentIcon;
-import spireMapOverhaul.zones.brokenSpace.BrokenSpaceZone;
+import spireMapOverhaul.zones.windy.WindyZone;
+import spireMapOverhaul.zones.windy.patches.GoldRewardReductionPatch;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -68,9 +81,11 @@ import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.function.Consumer;
 
+import static spireMapOverhaul.util.Wiz.adp;
+import static spireMapOverhaul.zones.gremlinTown.GremlinTown.PLATFORM_KEY;
+import static spireMapOverhaul.zones.gremlinTown.GremlinTown.PLATFORM_OGG;
 import static spireMapOverhaul.zones.manasurge.ManaSurgeZone.ENCHANTBLIGHT_KEY;
 import static spireMapOverhaul.zones.manasurge.ManaSurgeZone.ENCHANTBLIGHT_OGG;
-import static spireMapOverhaul.util.Wiz.adp;
 import static spireMapOverhaul.zones.storm.StormZone.*;
 
 @SuppressWarnings({"unused"})
@@ -81,11 +96,13 @@ public class SpireAnniversary6Mod implements
         EditStringsSubscriber,
         EditKeywordsSubscriber,
         PostInitializeSubscriber,
+        OnStartBattleSubscriber,
         AddAudioSubscriber,
         PostRenderSubscriber,
         PostCampfireSubscriber,
         MaxHPChangeSubscriber,
         StartGameSubscriber,
+        StartActSubscriber,
         ImGuiSubscriber,
         PostUpdateSubscriber {
 
@@ -99,12 +116,16 @@ public class SpireAnniversary6Mod implements
     public static class Enums {
         @SpireEnum
         public static AbstractPotion.PotionRarity ZONE;
+        @SpireEnum
+        public static AbstractCard.CardTags GREMLIN;
     }
 
     public static SpireAnniversary6Mod thismod;
     public static SpireConfig modConfig = null;
-    public static SpireConfig currentRunConfig = null;
     public static boolean currentRunActive = false;
+    public static boolean currentRunNoRepeatZones = false;
+    public static HashSet<String> currentRunAllZones = null;
+    public static HashSet<String> currentRunSeenZones = null;
 
     public static final String modID = "anniv6";
 
@@ -117,14 +138,11 @@ public class SpireAnniversary6Mod implements
     private static final String SKILL_L_ART = modID + "Resources/images/1024/skill.png";
     private static final String POWER_L_ART = modID + "Resources/images/1024/power.png";
 
-
-
     public static boolean initializedStrings = false;
 
     public static final Map<String, Keyword> keywords = new HashMap<>();
 
     public static List<AbstractZone> unfilteredAllZones = new ArrayList<>();
-    public static List<AbstractZone> allZones = new ArrayList<>();
     private static Map<String, AbstractZone> zonePackages = new HashMap<>();
     public static Map<String, Set<String>> zoneEvents = new HashMap<>();
 
@@ -154,6 +172,10 @@ public class SpireAnniversary6Mod implements
         return modID + "Resources/images/relics/" + resourcePath;
     }
 
+    public static String makeMonsterPath(String resourcePath) {
+        return modID + "Resources/images/monsters/" + resourcePath;
+    }
+
     public static String makePowerPath(String resourcePath) {
         return modID + "Resources/images/powers/" + resourcePath;
     }
@@ -170,19 +192,20 @@ public class SpireAnniversary6Mod implements
         return modID + "Resources/images/orbs/" + resourcePath;
     }
 
+    public static String makeEventPath(String resourcePath) {
+        return modID + "Resources/images/events/" + resourcePath;
+    }
+
     public static void initialize() {
         thismod = new SpireAnniversary6Mod();
 
         try {
             Properties defaults = new Properties();
             defaults.put("active", "TRUE");
+            defaults.put("noRepeatZones", "TRUE");
             defaults.put("largeIconsMode", "FALSE");
+            defaults.put("enableShaders", "TRUE");
             modConfig = new SpireConfig(modID, "anniv6Config", defaults);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        try {
-            currentRunConfig = new SpireConfig(modID, "anniv6ConfigCurrentRun");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -197,9 +220,6 @@ public class SpireAnniversary6Mod implements
                         int lastSeparator = pkg.lastIndexOf('.');
                         if (lastSeparator >= 0) pkg = pkg.substring(0, lastSeparator);
                         unfilteredAllZones.add(zone);
-                        if (getCurrentRunFilterConfig(zone.id)) {
-                            allZones.add(zone);
-                        }
                         zonePackages.put(pkg, zone);
                     }
                 });
@@ -260,6 +280,14 @@ public class SpireAnniversary6Mod implements
         TextCodeInterpreter.addAccessible(ZoneShapeMaker.class);
     }
 
+    @Override
+    public void receiveOnBattleStart(AbstractRoom abstractRoom) {
+        // I can't have this in my zone because it still needs called if I access this fight via the dev console
+        HordeHelper.needsUpdate = false;
+        if (AbstractDungeon.lastCombatMetricKey != null && AbstractDungeon.lastCombatMetricKey.equals(GremlinTown.GREMLIN_HORDE))
+            HordeHelper.initFight();
+    }
+
     public static void addMonsters() {
         for (AbstractZone zone : unfilteredAllZones) {
             if (zone instanceof EncounterModifyingZone) {
@@ -272,15 +300,30 @@ public class SpireAnniversary6Mod implements
 
         if (Loader.isModLoaded("widepotions")) {
             Consumer<String> whitelist = getWidePotionsWhitelistMethod();
-
+            whitelist.accept(LouseMilk.POTION_ID);
+            whitelist.accept(PreerelxsBlueRibbon.POTION_ID);
+            whitelist.accept(NoxiousBrew.POTION_ID);
+            whitelist.accept(MushroomSoup.POTION_ID);
+            whitelist.accept(GremsFire.POTION_ID);
         }
+
+        BaseMod.addPotion(LouseMilk.class, Color.WHITE.cpy(), null, null, LouseMilk.POTION_ID);
+        BaseMod.addPotion(PreerelxsBlueRibbon.class, Color.GOLDENROD.cpy(), null, null, PreerelxsBlueRibbon.POTION_ID);
+        BaseMod.addPotion(RitualBlood.class, RitualBlood.POTION_COLOR.cpy(), null, null, RitualBlood.POTION_ID);
+        BaseMod.addPotion(NoxiousBrew.class, NoxiousBrew.POTION_COLOR.cpy(), null, Color.DARK_GRAY.cpy(), NoxiousBrew.POTION_ID);
+        BaseMod.addPotion(MushroomSoup.class, MushroomSoup.POTION_COLOR.cpy(), null, Color.GRAY.cpy(), MushroomSoup.POTION_ID);
+        BaseMod.addPotion(GremsFire.class, Color.RED.cpy(), null, Color.ORANGE.cpy(), GremsFire.POTION_ID);
     }
 
     public static void addSaveFields() {
         BaseMod.addSaveField(SavableCurrentRunActive.SaveKey, new SavableCurrentRunActive());
+        BaseMod.addSaveField(SavableCurrentRunNoRepeatZones.SaveKey, new SavableCurrentRunNoRepeatZones());
+        BaseMod.addSaveField(SavableCurrentRunAllZones.SaveKey, new SavableCurrentRunAllZones());
+        BaseMod.addSaveField(SavableCurrentRunSeenZones.SaveKey, new SavableCurrentRunSeenZones());
         BaseMod.addSaveField(ZonePerFloorRunHistoryPatch.ZonePerFloorLog.SaveKey, new ZonePerFloorRunHistoryPatch.ZonePerFloorLog());
         BaseMod.addSaveField(EncounterModifierPatches.LastZoneNormalEncounter.SaveKey, new EncounterModifierPatches.LastZoneNormalEncounter());
         BaseMod.addSaveField(EncounterModifierPatches.LastZoneEliteEncounter.SaveKey, new EncounterModifierPatches.LastZoneEliteEncounter());
+        BaseMod.addSaveField(GoldRewardReductionPatch.SavableCombatGoldReduction.SaveKey, new GoldRewardReductionPatch.SavableCombatGoldReduction()); //windy zone
     }
 
     private static Consumer<String> getWidePotionsWhitelistMethod() {
@@ -327,80 +370,42 @@ public class SpireAnniversary6Mod implements
 
     private void loadStrings(String langKey) {
         if (!Gdx.files.internal(modID + "Resources/localization/" + langKey + "/").exists()) return;
-        String filepath = modID + "Resources/localization/" + langKey + "/Cardstrings.json";
-        if (Gdx.files.internal(filepath).exists()) {
-            BaseMod.loadCustomStringsFile(CardStrings.class, filepath);
-        }
-        filepath = modID + "Resources/localization/" + langKey + "/Relicstrings.json";
-        if (Gdx.files.internal(filepath).exists()) {
-            BaseMod.loadCustomStringsFile(RelicStrings.class, filepath);
-        }
-        filepath = modID + "Resources/localization/" + langKey + "/Powerstrings.json";
-        if (Gdx.files.internal(filepath).exists()) {
-            BaseMod.loadCustomStringsFile(PowerStrings.class, filepath);
-        }
-        filepath = modID + "Resources/localization/" + langKey + "/UIstrings.json";
-        if (Gdx.files.internal(filepath).exists()) {
-            BaseMod.loadCustomStringsFile(UIStrings.class, filepath);
-        }
-        filepath = modID + "Resources/localization/" + langKey + "/Stancestrings.json";
-        if (Gdx.files.internal(filepath).exists()) {
-            BaseMod.loadCustomStringsFile(StanceStrings.class, filepath);
-        }
-        filepath = modID + "Resources/localization/" + langKey + "/Orbstrings.json";
-        if (Gdx.files.internal(filepath).exists()) {
-            BaseMod.loadCustomStringsFile(OrbStrings.class, filepath);
-        }
-        filepath = modID + "Resources/localization/" + langKey + "/Potionstrings.json";
-        if (Gdx.files.internal(filepath).exists()) {
-            BaseMod.loadCustomStringsFile(PotionStrings.class, filepath);
-        }
-        filepath = modID + "Resources/localization/" + langKey + "/Eventstrings.json";
-        if (Gdx.files.internal(filepath).exists()) {
-            BaseMod.loadCustomStringsFile(EventStrings.class, filepath);
-        }
-        filepath = modID + "Resources/localization/" + langKey + "/Monsterstrings.json";
-        if (Gdx.files.internal(filepath).exists()) {
-            BaseMod.loadCustomStringsFile(MonsterStrings.class, filepath);
-        }
+        loadStringsFile(langKey, CardStrings.class);
+        loadStringsFile(langKey, RelicStrings.class);
+        loadStringsFile(langKey, PowerStrings.class);
+        loadStringsFile(langKey, UIStrings.class);
+        loadStringsFile(langKey, StanceStrings.class);
+        loadStringsFile(langKey, OrbStrings.class);
+        loadStringsFile(langKey, PotionStrings.class);
+        loadStringsFile(langKey, EventStrings.class);
+        loadStringsFile(langKey, MonsterStrings.class);
     }
 
     public void loadZoneStrings(Collection<AbstractZone> zones, String langKey) {
         for (AbstractZone zone : zones) {
-            String languageAndZone = langKey + "/" + zone.id + "/";
+            String languageAndZone = langKey + "/" + zone.id;
             String filepath = modID + "Resources/localization/" + languageAndZone;
             if (!Gdx.files.internal(filepath).exists()) {
                 continue;
             }
             logger.info("Loading strings for zone " + zone.id + "from \"resources/localization/" + languageAndZone + "\"");
 
-            if (Gdx.files.internal(filepath + "Cardstrings.json").exists()) {
-                BaseMod.loadCustomStringsFile(CardStrings.class, filepath + "Cardstrings.json");
-            }
-            if (Gdx.files.internal(filepath + "Relicstrings.json").exists()) {
-                BaseMod.loadCustomStringsFile(RelicStrings.class, filepath + "Relicstrings.json");
-            }
-            if (Gdx.files.internal(filepath + "Powerstrings.json").exists()) {
-                BaseMod.loadCustomStringsFile(PowerStrings.class, filepath + "Powerstrings.json");
-            }
-            if (Gdx.files.internal(filepath + "UIstrings.json").exists()) {
-                BaseMod.loadCustomStringsFile(UIStrings.class, filepath + "UIstrings.json");
-            }
-            if (Gdx.files.internal(filepath + "Stancestrings.json").exists()) {
-                BaseMod.loadCustomStringsFile(StanceStrings.class, filepath + "Stancestrings.json");
-            }
-            if (Gdx.files.internal(filepath + "Orbstrings.json").exists()) {
-                BaseMod.loadCustomStringsFile(OrbStrings.class, filepath + "Orbstrings.json");
-            }
-            if (Gdx.files.internal(filepath + "Potionstrings.json").exists()) {
-                BaseMod.loadCustomStringsFile(PotionStrings.class, filepath + "Potionstrings.json");
-            }
-            if (Gdx.files.internal(filepath + "Monsterstrings.json").exists()) {
-                BaseMod.loadCustomStringsFile(MonsterStrings.class, filepath + "Monsterstrings.json");
-            }
-            if (Gdx.files.internal(filepath + "Eventstrings.json").exists()) {
-                BaseMod.loadCustomStringsFile(EventStrings.class, filepath + "Eventstrings.json");
-            }
+            loadStringsFile(languageAndZone, CardStrings.class);
+            loadStringsFile(languageAndZone, RelicStrings.class);
+            loadStringsFile(languageAndZone, PowerStrings.class);
+            loadStringsFile(languageAndZone, UIStrings.class);
+            loadStringsFile(languageAndZone, StanceStrings.class);
+            loadStringsFile(languageAndZone, OrbStrings.class);
+            loadStringsFile(languageAndZone, PotionStrings.class);
+            loadStringsFile(languageAndZone, EventStrings.class);
+            loadStringsFile(languageAndZone, MonsterStrings.class);
+        }
+    }
+
+    private void loadStringsFile(String key, Class<?> stringType) {
+        String filepath = modID + "Resources/localization/" + key + "/" + stringType.getSimpleName().replace("Strings", "strings") + ".json";
+        if (Gdx.files.internal(filepath).exists()) {
+            BaseMod.loadCustomStringsFile(stringType, filepath);
         }
     }
 
@@ -460,6 +465,7 @@ public class SpireAnniversary6Mod implements
                     AddEventParams.Builder eventBuilder = new AddEventParams.Builder(eventID, eventClass);
 
                     Condition eventCondition = null;
+                    boolean endsWithRewardsUI = false;
                     Method[] methods = eventClass.getDeclaredMethods();
                     for (Method m : methods) {
                         if (Modifier.isStatic(m.getModifiers()) && m.getName().equals("bonusCondition")
@@ -473,6 +479,15 @@ public class SpireAnniversary6Mod implements
                                 }
                             };
                             break;
+                        }
+                        else if (Modifier.isStatic(m.getModifiers()) && m.getName().equals("endsWithRewardsUI")
+                                && m.getReturnType().equals(boolean.class) && m.getParameterCount() == 0) {
+                            m.setAccessible(true);
+                            try {
+                                endsWithRewardsUI = (boolean)m.invoke(null);
+                            } catch (IllegalAccessException | InvocationTargetException e) {
+                                throw new RuntimeException(e);
+                            }
                         }
                     }
 
@@ -506,8 +521,10 @@ public class SpireAnniversary6Mod implements
                         logger.info("Event " + eventClass.getSimpleName() + " has no linked zone.");
                     }
 
-                    if (eventCondition != null)
+                    if (eventCondition != null) {
                         eventBuilder.bonusCondition(eventCondition);
+                    }
+                    eventBuilder.endsWithRewardsUI(endsWithRewardsUI);
 
                     BaseMod.addEvent(eventBuilder.create());
                 }
@@ -518,6 +535,15 @@ public class SpireAnniversary6Mod implements
                 throw new RuntimeException(e);
             }
         }
+        unfilteredAllZones.stream()
+                .filter(z -> z instanceof ModifiedEventRateZone)
+                .forEach(z -> {
+                    Set<String> specEvents =  ((ModifiedEventRateZone) z).addSpecificEvents();
+                    if(specEvents != null) {
+                        Set<String> eventList = zoneEvents.computeIfAbsent(z.id, k -> new HashSet<>());
+                        eventList.addAll(specEvents);
+                    }
+                });
     }
 
     @Override
@@ -527,6 +553,10 @@ public class SpireAnniversary6Mod implements
 
         // Mana Surge Audio
         BaseMod.addAudio(ENCHANTBLIGHT_KEY,ENCHANTBLIGHT_OGG);
+        // Windy Audio
+        BaseMod.addAudio(WindyZone.WINDY_KEY, WindyZone.WINDY_MP3);
+
+        BaseMod.addAudio(PLATFORM_KEY, PLATFORM_OGG);
     }
 
     private void registerCustomRewards() {
@@ -547,6 +577,17 @@ public class SpireAnniversary6Mod implements
                 reward -> {
                     int i = ((HealReward) reward).amount;
                     return new RewardSave(CustomRewardTypes.HEALREWARD.toString(), ((HealReward) reward).iconPath, i, 0);
+                }
+        );
+
+        BaseMod.registerCustomReward(CustomRewardTypes.SMO_ANYCOLORCARDREWARD,
+                rewardSave -> new AnyColorCardReward(rewardSave.id),
+                reward -> {
+                    StringBuilder s = new StringBuilder();
+                    for (AbstractCard c : reward.cards) {
+                        s.append(c.cardID).append("|").append(c.timesUpgraded).append("|").append(c.misc).append("#");
+                    }
+                    return new RewardSave(CustomRewardTypes.SMO_ANYCOLORCARDREWARD.toString(), s.toString());
                 }
         );
     }
@@ -573,6 +614,8 @@ public class SpireAnniversary6Mod implements
     }
 
     private ModPanel settingsPanel;
+    private static final float NOREPEATZONES_CHECKBOX_X = 400f;
+    private static final float NOREPEATZONES_CHECKBOX_Y = 685f;
     private static final float LARGEICONS_CHECKBOX_X = 400f;
     private static final float LARGEICONS_CHECKBOX_Y = 650f;
     private DropdownMenu filterDropdown;
@@ -584,6 +627,9 @@ public class SpireAnniversary6Mod implements
     private AbstractZone filterViewedZone;
     private static final float DESC_X = 760f;
     private static final float DESC_Y = 575f;
+    private ModLabeledToggleButton shaderCheckbox;
+    private static final float SHADER_CHECKBOX_X = 400f;
+    private static final float SHADER_CHECKBOX_Y = 440f;
 
     private void initializeConfig() {
         UIStrings configStrings = CardCrawlGame.languagePack.getUIString(makeID("ConfigMenuText"));
@@ -591,6 +637,11 @@ public class SpireAnniversary6Mod implements
         Texture badge = TexLoader.getTexture(makeImagePath("ui/badge.png"));
 
         settingsPanel = new ModPanel();
+
+        ModLabeledToggleButton noRepeatZonesToggle = new ModLabeledToggleButton(configStrings.TEXT[5], NOREPEATZONES_CHECKBOX_X, NOREPEATZONES_CHECKBOX_Y, Color.WHITE, FontHelper.tipBodyFont, getNoRepeatZonesConfig(), null,
+                (label) -> {},
+                (button) -> setNoRepeatZonesConfig(button.enabled));
+        settingsPanel.addUIElement(noRepeatZonesToggle);
 
         ModLabeledToggleButton largeIconsModeToggle = new ModLabeledToggleButton(configStrings.TEXT[4], LARGEICONS_CHECKBOX_X, LARGEICONS_CHECKBOX_Y, Color.WHITE, FontHelper.tipBodyFont, getLargeIconsModeConfig(), null,
                 (label) -> {},
@@ -623,6 +674,11 @@ public class SpireAnniversary6Mod implements
         settingsPanel.addUIElement(filterCheckbox);
         filterSetViewedZone(0);
 
+        shaderCheckbox = new ModLabeledToggleButton(configStrings.TEXT[6], SHADER_CHECKBOX_X, SHADER_CHECKBOX_Y, Color.WHITE, FontHelper.tipBodyFont, getShaderConfig(), null,
+                (label) -> {},
+                (button) -> setShaderConfig(button.enabled));
+        settingsPanel.addUIElement(shaderCheckbox);
+
         BaseMod.registerModBadge(badge, configStrings.TEXT[0], configStrings.TEXT[1], configStrings.TEXT[2], settingsPanel);
     }
 
@@ -645,6 +701,9 @@ public class SpireAnniversary6Mod implements
                 }
             }
         });
+
+        BeastsLairZone.initializeSaveFields();
+        KeymasterZone.initializeSaveFields();
     }
 
     @Override
@@ -665,27 +724,20 @@ public class SpireAnniversary6Mod implements
 
     @Override
     public void receiveStartGame() {
+        // Clean up any zones from before the save and load or from previous runs
+        BetterMapGenerator.clearActiveZones();
         if (!CardCrawlGame.loadingSave) {
-            updateZoneList(); //only updated on new games to not mess anything up if settings are changed and a game is loaded
+            BeastsLairZone.clearBossList();
+            // Fix crash when you die to Gremlin horde and then start a new run
+            AbstractDungeon.lastCombatMetricKey = "";
         }
+        HordeHelper.hidePlatforms();
+        CombatModifierPatches.hideButton = true;
     }
 
-    private void updateZoneList() {
-        allZones.clear();
-        currentRunConfig.clear();
-        for (AbstractZone z : unfilteredAllZones) {
-            if (getFilterConfig(z.id)) {
-                allZones.add(z);
-                setCurrentRunFilterConfig(z.id, true);
-            } else {
-                setCurrentRunFilterConfig(z.id, false);
-            }
-        }
-        try {
-            currentRunConfig.save();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    @Override
+    public void receiveStartAct() {
+        KeymasterZone.startOfActHasKeys = Settings.hasSapphireKey && Settings.hasEmeraldKey && Settings.hasRubyKey;
     }
 
     public static float time = 0f;
@@ -708,6 +760,48 @@ public class SpireAnniversary6Mod implements
         }
     }
 
+    public static class SavableCurrentRunNoRepeatZones implements CustomSavable<Boolean> {
+        public final static String SaveKey = "CurrentRunNoRepeatZones";
+
+        @Override
+        public Boolean onSave() {
+            return currentRunNoRepeatZones;
+        }
+
+        @Override
+        public void onLoad(Boolean b) {
+            currentRunNoRepeatZones = b == null || b;
+        }
+    }
+
+    public static class SavableCurrentRunAllZones implements CustomSavable<HashSet<String>> {
+        public final static String SaveKey = "CurrentRunAllZones";
+
+        @Override
+        public HashSet<String> onSave() {
+            return currentRunAllZones;
+        }
+
+        @Override
+        public void onLoad(HashSet<String> s) {
+            currentRunAllZones = s == null ? new HashSet<>() : s;
+        }
+    }
+
+    public static class SavableCurrentRunSeenZones implements CustomSavable<HashSet<String>> {
+        public final static String SaveKey = "CurrentRunSeenZones";
+
+        @Override
+        public HashSet<String> onSave() {
+            return currentRunSeenZones;
+        }
+
+        @Override
+        public void onLoad(HashSet<String> s) {
+            currentRunSeenZones = s == null ? new HashSet<>() : s;
+        }
+    }
+
     public static boolean getActiveConfig() {
         return modConfig == null || modConfig.getBool("active");
     }
@@ -715,6 +809,21 @@ public class SpireAnniversary6Mod implements
     public static void setActiveConfig(boolean active) {
         if (modConfig != null) {
             modConfig.setBool("active", active);
+            try {
+                modConfig.save();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static boolean getNoRepeatZonesConfig() {
+        return modConfig != null && modConfig.getBool("noRepeatZones");
+    }
+
+    public static void setNoRepeatZonesConfig(boolean bool) {
+        if (modConfig != null) {
+            modConfig.setBool("noRepeatZones", bool);
             try {
                 modConfig.save();
             } catch (IOException e) {
@@ -738,7 +847,7 @@ public class SpireAnniversary6Mod implements
         }
     }
 
-    private boolean getFilterConfig(String zoneId) {
+    public static boolean getFilterConfig(String zoneId) {
         if (modConfig != null && modConfig.has( zoneId +"_ENABLED")) {
             return modConfig.getBool(zoneId +"_ENABLED");
         } else {
@@ -746,7 +855,7 @@ public class SpireAnniversary6Mod implements
         }
     }
 
-    private void setFilterConfig(String zoneId, boolean enable) {
+    private static void setFilterConfig(String zoneId, boolean enable) {
         if (modConfig != null) {
             modConfig.setBool(zoneId + "_ENABLED", enable);
             try {
@@ -757,18 +866,19 @@ public class SpireAnniversary6Mod implements
         }
     }
 
-    private boolean getCurrentRunFilterConfig(String zoneId) {
-        if (currentRunConfig != null && currentRunConfig.has( zoneId +"_ONCURRENTRUN")) {
-            return currentRunConfig.getBool(zoneId +"_ONCURRENTRUN");
-        } else {
-            return false;
+    private static void setShaderConfig(boolean enable) {
+        if (modConfig != null) {
+            modConfig.setBool("enableShaders", enable);
+            try {
+                modConfig.save();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
-    private void setCurrentRunFilterConfig(String zoneId, boolean enable) {
-        if (currentRunConfig != null) {
-            currentRunConfig.setBool(zoneId + "_ONCURRENTRUN", enable);
-        }
+    public static boolean getShaderConfig() {
+        return modConfig != null && modConfig.getBool("enableShaders");
     }
 
     private static ZoneShapeMaker shapeUi = null;

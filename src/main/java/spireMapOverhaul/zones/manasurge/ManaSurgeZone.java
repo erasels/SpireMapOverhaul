@@ -7,13 +7,11 @@ import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.events.AbstractEvent;
 import com.megacrit.cardcrawl.ui.campfire.AbstractCampfireOption;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.zoneInterfaces.*;
-import spireMapOverhaul.zones.manasurge.events.ManaCycloneEvent;
 import spireMapOverhaul.zones.manasurge.modifiers.AbstractManaSurgeModifier;
 import spireMapOverhaul.zones.manasurge.modifiers.common.negative.FeebleModifier;
 import spireMapOverhaul.zones.manasurge.modifiers.common.negative.FlawedModifier;
@@ -48,11 +46,11 @@ public class ManaSurgeZone extends AbstractZone implements
     public static final String ENCHANTBLIGHT_KEY = makeID("ManaSurge:EnchantBlight");
     public static final String ENCHANTBLIGHT_OGG = makePath("audio/ManaSurge/enchantblight.ogg");
     public static final float COMMON_CHANCE = 0.8f;
+    public static final float ENCHANT_CHANCE = 0.65f;
 
     public ManaSurgeZone() {
         super(ID,Icons.MONSTER,Icons.SHOP,Icons.EVENT,Icons.REST);
         this.width = 3;
-        this.maxWidth = 4;
         this.height = 3;
         this.maxHeight = 4;
     }
@@ -128,31 +126,33 @@ public class ManaSurgeZone extends AbstractZone implements
 
     public static void applyRandomTemporaryModifier(AbstractCard card) {
         if (AbstractDungeon.cardRandomRng.randomBoolean(COMMON_CHANCE)) {
-           List<AbstractManaSurgeModifier> commonModifierList = new ArrayList<>();
-           commonModifierList.addAll(getPositiveCommonModifierList(false));
-           commonModifierList.addAll(getNegativeCommonModifierList(false));
-            CardModifierManager.addModifier(card, Wiz.getRandomItem(commonModifierList, AbstractDungeon.cardRandomRng));
+            if (AbstractDungeon.cardRandomRng.randomBoolean(ENCHANT_CHANCE)) {
+                CardModifierManager.addModifier(card, Wiz.getRandomItem(getPositiveCommonModifierList(false), AbstractDungeon.cardRandomRng));
+            } else {
+                CardModifierManager.addModifier(card, Wiz.getRandomItem(getNegativeCommonModifierList(false), AbstractDungeon.cardRandomRng));
+            }
         } else {
-            List<AbstractManaSurgeModifier> uncommonModifierList = new ArrayList<>();
-            uncommonModifierList.addAll(getPositiveUncommonModifierList(false));
-            uncommonModifierList.addAll(getNegativeUncommonModifierList(false));
-            CardModifierManager.addModifier(card, Wiz.getRandomItem(uncommonModifierList, AbstractDungeon.cardRandomRng));
+            if (AbstractDungeon.cardRandomRng.randomBoolean(ENCHANT_CHANCE)) {
+                CardModifierManager.addModifier(card, Wiz.getRandomItem(getPositiveUncommonModifierList(false), AbstractDungeon.cardRandomRng));
+            } else {
+                CardModifierManager.addModifier(card, Wiz.getRandomItem(getNegativeUncommonModifierList(false), AbstractDungeon.cardRandomRng));
+            }
         }
     }
 
     public static void applyRandomPermanentModifier(AbstractCard card) {
         if (AbstractDungeon.cardRng.randomBoolean(COMMON_CHANCE)) {
-            List<AbstractManaSurgeModifier> commonModifierList = new ArrayList<>();
-            commonModifierList.addAll(getPositiveCommonModifierList(true));
-            commonModifierList.addAll(getNegativeCommonModifierList(true));
-            CardModifierManager.addModifier(card, Wiz.getRandomItem(commonModifierList, AbstractDungeon.cardRng));
-
+            if (AbstractDungeon.cardRng.randomBoolean(ENCHANT_CHANCE)) {
+                CardModifierManager.addModifier(card, Wiz.getRandomItem(getPositiveCommonModifierList(true), AbstractDungeon.cardRng));
+            } else {
+                CardModifierManager.addModifier(card, Wiz.getRandomItem(getNegativeCommonModifierList(true), AbstractDungeon.cardRng));
+            }
         } else {
-            List<AbstractManaSurgeModifier> uncommonModifierList = new ArrayList<>();
-            uncommonModifierList.addAll(getPositiveUncommonModifierList(true));
-            uncommonModifierList.addAll(getNegativeUncommonModifierList(true));
-            CardModifierManager.addModifier(card, Wiz.getRandomItem(uncommonModifierList, AbstractDungeon.cardRng));
-
+            if (AbstractDungeon.cardRng.randomBoolean(ENCHANT_CHANCE)) {
+                CardModifierManager.addModifier(card, Wiz.getRandomItem(getPositiveUncommonModifierList(true), AbstractDungeon.cardRng));
+            } else {
+                CardModifierManager.addModifier(card, Wiz.getRandomItem(getNegativeUncommonModifierList(true), AbstractDungeon.cardRng));
+            }
         }
     }
 
@@ -160,7 +160,6 @@ public class ManaSurgeZone extends AbstractZone implements
         if (AbstractDungeon.cardRng.randomBoolean(COMMON_CHANCE)) {
             List<AbstractManaSurgeModifier> commonModifierList = new ArrayList<>(getPositiveCommonModifierList(true));
             CardModifierManager.addModifier(card, Wiz.getRandomItem(commonModifierList, AbstractDungeon.cardRng));
-
         } else {
             List<AbstractManaSurgeModifier> uncommonModifierList = new ArrayList<>(getPositiveUncommonModifierList(true));
             CardModifierManager.addModifier(card, Wiz.getRandomItem(uncommonModifierList, AbstractDungeon.cardRng));
@@ -236,12 +235,12 @@ public class ManaSurgeZone extends AbstractZone implements
     }
 
     @Override
-    public AbstractEvent forceEvent() {
-        return ModifiedEventRateZone.returnIfUnseen(ManaCycloneEvent.ID);
+    public float zoneSpecificEventRate() {
+        return 1;
     }
 
     @Override
     public Color getColor() {
-        return new Color(0.45f,0.49f, 0.91f, 1f);
+        return new Color(0.3f,0.15f, 0.85f, 0.55f);
     }
 }

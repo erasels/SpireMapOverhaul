@@ -1,0 +1,48 @@
+
+skeleton.png
+size: 128,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Eruptor4
+  rotate: false
+  xy: 1, 152
+  size: 80, 25
+  orig: 80, 25
+  offset: 0, 0
+  index: -1
+Eruptor0
+  rotate: false
+  xy: 1, 63
+  size: 60, 60
+  orig: 60, 60
+  offset: 0, 0
+  index: -1
+Eruptor1
+  rotate: false
+  xy: 1, 1
+  size: 60, 60
+  orig: 60, 60
+  offset: 0, 0
+  index: -1
+Eruptor2
+  rotate: false
+  xy: 1, 206
+  size: 60, 20
+  orig: 60, 20
+  offset: 0, 0
+  index: -1
+Eruptor3
+  rotate: false
+  xy: 1, 179
+  size: 80, 25
+  orig: 80, 25
+  offset: 0, 0
+  index: -1
+Eruptor5
+  rotate: false
+  xy: 1, 125
+  size: 80, 25
+  orig: 80, 25
+  offset: 0, 0
+  index: -1

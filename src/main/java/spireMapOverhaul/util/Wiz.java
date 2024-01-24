@@ -1,6 +1,9 @@
 package spireMapOverhaul.util;
 
+import basemod.DevConsole;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -16,17 +19,23 @@ import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.random.Random;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.actions.TimedVFXAction;
 import spireMapOverhaul.patches.ZonePatches;
+import spireMapOverhaul.zoneInterfaces.CampfireModifyingZone;
+import spireMapOverhaul.zoneInterfaces.CombatModifyingZone;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Wiz {
     //The wonderful Wizard of Oz allows access to most easy compilations of data, or functions.
@@ -54,6 +63,56 @@ public class Wiz {
     public static CardGroup deck() {
         return AbstractDungeon.player.masterDeck;
     }
+
+    public static boolean isPlayerTurn(boolean beforeEndTurnEvents) {
+        return  !AbstractDungeon.actionManager.turnHasEnded && !AbstractDungeon.player.isEndingTurn;
+    }
+
+    public static boolean canAcceptInput() {
+        return isPlayerTurn(true) && AbstractDungeon.actionManager.phase == GameActionManager.Phase.WAITING_ON_USER && AbstractDungeon.actionManager.cardQueue.isEmpty() && AbstractDungeon.actionManager.actions.isEmpty() && !DevConsole.visible && !AbstractDungeon.isScreenUp && !CardCrawlGame.isPopupOpen;
+    }
+
+    public static void addRelicToPool(AbstractRelic origRelic) {
+        switch (origRelic.tier) {
+            case COMMON:
+                AbstractDungeon.commonRelicPool.add(origRelic.relicId);
+                break;
+            case UNCOMMON:
+                AbstractDungeon.uncommonRelicPool.add(origRelic.relicId);
+                break;
+            case RARE:
+                AbstractDungeon.rareRelicPool.add(origRelic.relicId);
+                break;
+            case SHOP:
+                AbstractDungeon.shopRelicPool.add(origRelic.relicId);
+                break;
+            case BOSS:
+                AbstractDungeon.bossRelicPool.add(origRelic.relicId);
+                break;
+            default:
+                SpireAnniversary6Mod.logger.info("Relic tier does not have a pool: " + origRelic.tier);
+                break;
+        }
+    }
+
+    public static ArrayList<String> getRelicPool(AbstractRelic.RelicTier tier) {
+        switch (tier) {
+            case COMMON:
+                return AbstractDungeon.commonRelicPool;
+            case UNCOMMON:
+                return AbstractDungeon.uncommonRelicPool;
+            case RARE:
+                return AbstractDungeon.rareRelicPool;
+            case BOSS:
+                return AbstractDungeon.bossRelicPool;
+            case SHOP:
+                return AbstractDungeon.shopRelicPool;
+            default:
+                return null;
+        }
+    }
+
+    public static int asc() { return AbstractDungeon.ascensionLevel; }
 
     public static void forAllCardsInList(Consumer<AbstractCard> consumer, ArrayList<AbstractCard> cardsList) {
         for (AbstractCard c : cardsList) {
@@ -124,6 +183,31 @@ public class Wiz {
 
     public static AbstractCard returnTrulyRandomPrediCardInCombat(Predicate<AbstractCard> pred) {
         return returnTrulyRandomPrediCardInCombat(pred, false);
+    }
+
+    public static AbstractCard returnTrulyRandomRarityCardInCombat(AbstractCard.CardRarity rarity) {
+        Stream<AbstractCard> cardStream;
+
+        switch (rarity) {
+            case COMMON:
+                cardStream = AbstractDungeon.srcCommonCardPool.group.stream();
+                break;
+            case UNCOMMON:
+                cardStream = AbstractDungeon.srcUncommonCardPool.group.stream();
+                break;
+            case RARE:
+                cardStream = AbstractDungeon.srcRareCardPool.group.stream();
+                break;
+            default:
+                cardStream = CardLibrary.getAllCards().stream()
+                        .filter(c -> c.rarity.equals(rarity));
+        }
+
+        List<AbstractCard> filteredCards = cardStream
+                .filter(c -> !c.hasTag(AbstractCard.CardTags.HEALING))
+                .collect(Collectors.toList());
+
+        return Wiz.getRandomItem(filteredCards).makeStatEquivalentCopy();
     }
 
     public static <T> T getRandomItem(List<T> list, Random rng) {
@@ -422,6 +506,18 @@ public class Wiz {
         return (int) c.powers.stream()
                 .filter(pow -> pow.type == AbstractPower.PowerType.DEBUFF )
                 .count();
+    }
+
+    public static <T> T getRandomEntry(ArrayList<T> list, java.util.Random rng) {
+        if (list.size() == 0)
+            return null;
+        return list.get(rng.nextInt(list.size()));
+    }
+
+    public static AbstractRoom adRoom() {
+        if (AbstractDungeon.currMapNode != null)
+            return AbstractDungeon.getCurrRoom();
+        return null;
     }
 
     /************************************************************

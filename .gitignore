@@ -34,6 +34,7 @@ hs_err_pid*
 *.blend
 *.blend1
 *.xcf
+*.pdn
 
 
 # =========================
@@ -89,6 +90,12 @@ $RECYCLE.BIN/
 
 # Spriter files
 *.autosave.scml
+
+# Alpha fixer
+fixalpha.exe
+
+# Krita files
+*.kra
 
 pom.xml
 example-pom.xml

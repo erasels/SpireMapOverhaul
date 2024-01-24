@@ -42,10 +42,14 @@ public class MonsterZooZone extends AbstractZone implements RewardModifyingZone,
     public void replaceRooms(Random rng) {
         //Replace all non monster rooms with monster rooms
         for (MapRoomNode node : this.nodes) {
-            if(node.room != null && !(MonsterRoom.class.equals(node.room.getClass()))) {
+            if(!(node.room instanceof MonsterRoom)) { //Replaces shop/rest/event with normal monster room
                 node.setRoom(new MonsterRoom());
             }
         }
+    }
+
+    protected boolean allowAdditionalEntrances() {
+        return false;
     }
 
     @Override

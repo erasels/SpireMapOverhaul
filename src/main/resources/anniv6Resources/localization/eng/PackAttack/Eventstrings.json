@@ -1,0 +1,37 @@
+{
+  "${ModID}:PackShrine": {
+    "NAME": "Pack Shrine",
+    "DESCRIPTIONS": [
+      "Before you is a shrine to a ~legendary~ ~adventurer.~ Normally, statues are larger than life, but this one is life-size and seems #yjust #yright for its subject. NL NL Though diminutive in stature, this fabled hero is said to be able to cause #rmayhem for foes with their unusual abilities. Nobody knows what's in the #bbackpack, but it sure is big. NL NL Also, they have a nice hat.",
+      "Taking a few minutes to appreciate the power of the Pack, you think about the incredible versatility of techniques said to be used by the enabled by the backpack. NL NL You're not sure how they manage it, but you do work out how to replicate one technique. You bow thankfully to the statue as you leave.",
+      "You present your #goffering at the shrine. It fades into mist, but nothing appears in its place. Seems like your offering wasn't appreciated by the Pack.",
+      "You present your #goffering at the shrine. As it fades into mist, a #ygold coins falls to the ground. Your offering must have been appreciated by the Pack.",
+      "You don't linger long at the shrine. As it fades into the distance behind you, you feel like you missed out on something big."
+    ],
+    "OPTIONS": [
+      "[Learn] #gChoose #g1 #gof #g{0} #gcards #gto #gadd #gto #gyour #gdeck.",
+      "[Offer] #gRemove #ga #gcard #gfrom #gyour #gdeck. #gGain #ggold #gbased #gon #gits #grarity.",
+      "[Leave]",
+      "Add a card to your deck.",
+      "Remove a card in return for gold based on its rarity."
+    ]
+  },
+  "${ModID}:BlackMarketTwo": {
+    "NAME": "Black Market 2: Electric Boogaloo",
+    "DESCRIPTIONS": [
+      "\"YOU THERE! Come in and browse! We're a fully legitimate business providing the best of the Pack, in your hands, for a very reasonable price!\" NL NL The main offerings seem to be an ornate box of cards, a grab bag of random prizes, and a big bin of what mostly looks like junk.",
+      "\"Ah, it's good to meet someone who ~truly~ appreciates the #gpower of the Pack. Now, hold still for just a moment, this won't hurt a bit.\" NL NL When you return to your senses, the box is in front of you, but the market is gone, and you feel a bit... #pvexed.",
+      "You reach into the bag to pull out a few prizes.... NL NL #r@Ouch!!@ You pull your hand back from the bag as quickly as you can, but that really hurt. It felt like teeth, but you don't see anything other than the bag and the prizes. Strange. NL NL Still, you got a few prizes for your trouble, even if some of them look to be of dubious value. NL NL The dealer chuckles as you leave.",
+      "Rummaging through the bin, almost all of it is #rjunk. However, just as you're about to give up hope, you find something basic but #ghigh #gquality. NL NL The dealer smiles when you ask to purchase it. NL NL \"That's a good deal right there. Many adventurers use something like that their entire career. There's always some value from it.\" NL NL The price is very reasonable, and the dealer wishes you the best of luck with your new acquisition.",
+      "You don't trust this place. Best to keep moving."
+    ],
+    "OPTIONS": [
+      "[Box] #gGain {0}. #rBecome #rCursed #r- #rVexed.",
+      "[Locked] Out of stock.",
+      "[Bag] #gGain #g{0} #grandom #gcards #gfrom #gthe #gbiome's #gpacks. #rLose #r{1} #rHP.",
+      "[Bin] #gGain {0}. #rLose #r{1} #rGold.",
+      "[Locked] Requires {0} Gold.",
+      "[Leave]"
+    ]
+  }
+}

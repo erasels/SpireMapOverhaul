@@ -1,0 +1,20 @@
+{
+  "${ModID}:volEruptPower": {
+    "NAME": "Erupt",
+    "DESCRIPTIONS": ["After you play #b{0} more cards, this enemy dies and deals #r{1} damage.",
+      "After you play #b{0} more card, this enemy dies and deals #r{1} damage."]
+  },
+  "${ModID}:volUnstablePower": {
+    "NAME": "Unstable",
+    "DESCRIPTIONS": ["On its turn, deals #b{0} damage to EVERYONE."]
+  },
+  "${ModID}:volChargedPower": {
+    "NAME": "Charged",
+    "DESCRIPTIONS": ["On its death, deals #b{0} damage to EVERYONE."]
+  },
+  "${ModID}:volExplodePlusPower": {
+    "NAME": "Explode+",
+    "DESCRIPTIONS": ["Dies and deals #b{0} damage in #r{1} turns.",
+      "Dies and deals #b{0} damage in #r{1} turn."]
+  }
+}

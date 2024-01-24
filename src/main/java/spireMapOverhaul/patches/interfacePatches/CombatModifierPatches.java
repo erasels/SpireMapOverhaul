@@ -26,12 +26,23 @@ public class CombatModifierPatches {
             Settings.HEIGHT - 356 * Settings.scale);
 
     private static UIStrings uiStrings;
-    private static boolean hideButton = true;
+    public static boolean hideButton = true;
+
+    @SpirePatch2(clz =AbstractPlayer.class, method = "preBattlePrep")
+    public static class BeforePreCombat {
+        @SpirePrefixPatch
+        public static void patch() {
+            Wiz.forCurZone(CombatModifyingZone.class, z -> {
+                z.beforePreBattlePrep();
+            });
+        }
+    }
 
     @SpirePatch2(clz =AbstractPlayer.class, method = "applyPreCombatLogic")
     public static class PreCombat {
         @SpirePostfixPatch
         public static void patch() {
+            hideButton = true;
             Wiz.forCurZone(CombatModifyingZone.class, z -> {
                 String txt = z.getCombatText();
                 if(txt != null) {
@@ -39,8 +50,6 @@ public class CombatModifierPatches {
                     if(uiStrings == null)
                         uiStrings = CardCrawlGame.languagePack.getUIString(SpireAnniversary6Mod.makeID("CombatExplainButton"));
                     combatBtn = combatBtn.setHoverTip(uiStrings.TEXT[0], txt);
-                } else {
-                    hideButton = true;
                 }
                 z.atPreBattle();
             });

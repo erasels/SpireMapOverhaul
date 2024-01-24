@@ -1,0 +1,40 @@
+{
+  "${ModID}:Eruptor": {
+    "MOVES": [
+      "Bruise",
+      "Boil"
+    ],
+    "NAME": "Eruptor"
+  },
+  "${ModID}:UnstableSunstone": {
+    "MOVES": [
+      "Destabilize",
+      "Sear",
+      "Hot Potato"
+    ],
+    "NAME": "Unstable Sun Stone"
+  },
+  "${ModID}:SunStoneShard": {
+    "MOVES": [
+      "Charge",
+      "Sear",
+      "Barrier"
+    ],
+    "NAME": "Sun Stone Shard"
+  },
+  "${ModID}:HeatBlister": {
+    "MOVES": [
+      "Crush",
+      "Phosphoric Bile"
+    ],
+    "NAME": "Heat Blister"
+  },
+  "${ModID}:GremlinArchmage": {
+    "MOVES": [
+      "Summon Shapes",
+      "Fireball",
+      "Mage Armor"
+    ],
+    "NAME": "Gremlin Archmage"
+  }
+}

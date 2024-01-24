@@ -17,6 +17,7 @@ import com.megacrit.cardcrawl.rooms.RestRoom;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import spireMapOverhaul.zones.manasurge.ManaSurgeZone;
+import spireMapOverhaul.zones.manasurge.vfx.EnchantBlightEffect;
 
 public class CampfireEnchantEffect extends AbstractGameEffect {
     private static final float DUR = 1.5F;
@@ -41,6 +42,7 @@ public class CampfireEnchantEffect extends AbstractGameEffect {
                 ManaSurgeZone.applyPermanentPositiveModifier(c);
                 AbstractDungeon.player.bottledCardUpgradeCheck(c);
                 CardCrawlGame.sound.play(ManaSurgeZone.ENCHANTBLIGHT_KEY);
+                AbstractDungeon.topLevelEffectsQueue.add(new EnchantBlightEffect((float) Settings.WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F));
                 AbstractDungeon.effectsQueue.add(new ShowCardBrieflyEffect(c.makeStatEquivalentCopy(), (float) Settings.WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F));
             }
 

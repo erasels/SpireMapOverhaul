@@ -1,0 +1,9 @@
+{
+  "${ModID}:Ambushed": {
+    "TEXT": [
+      "Ambushed!",
+      "You've been ambushed! Start each combat #ySurrounded by two enemies in #rhighly #rdifficult fights inspired by base game encounters. NL NL Rewards include #ydouble #ygold and immediate card draw options from any base game color.",
+      "Cany0udance"
+    ]
+  }
+}
