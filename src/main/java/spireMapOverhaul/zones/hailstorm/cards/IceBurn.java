@@ -11,13 +11,14 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.FrailPower;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractSMOCard;
+import spireMapOverhaul.zones.hailstorm.HailstormZone;
 
 public class IceBurn extends AbstractSMOCard {
     public static final String ID = SpireAnniversary6Mod.makeID(IceBurn.class.getSimpleName());
     private static final int COST = -2;
 
     public IceBurn() {
-        super(ID, COST, CardType.STATUS, CardRarity.COMMON, CardTarget.NONE, CardColor.COLORLESS);
+        super(ID, HailstormZone.ID, COST, CardType.STATUS, CardRarity.COMMON, CardTarget.NONE, CardColor.COLORLESS);
         this.selfRetain = false;
         this.magicNumber = 2;
         this.baseMagicNumber = 2;

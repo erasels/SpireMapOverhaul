@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.FrailPower;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractSMOCard;
+import spireMapOverhaul.zones.hailstorm.HailstormZone;
 import spireMapOverhaul.zones.invasion.cards.AbstractInvasionZoneRewardCard;
 //Can be renamed Freezing if needed
 public class Freeze extends AbstractSMOCard {
@@ -19,7 +20,7 @@ public class Freeze extends AbstractSMOCard {
     private static final int COST = -2;
 
     public Freeze() {
-        super(ID, COST, CardType.CURSE, CardRarity.CURSE, CardTarget.NONE, CardColor.CURSE);
+        super(ID, HailstormZone.ID, COST, CardType.CURSE, CardRarity.CURSE, CardTarget.NONE, CardColor.CURSE);
         this.selfRetain = true;
         cardsToPreview = new IceBurn();
     }
