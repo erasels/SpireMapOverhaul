@@ -1,0 +1,10 @@
+{
+  "anniv6:Bargain": {
+    "NAME": "一项交易",
+    "DESCRIPTION": "购买一件小贩的精品！",
+    "EXTENDED_DESCRIPTION": [
+      "保留 NL 以 ",
+      " 金币的超低价格购买一张小贩的精品卡牌加入你的牌组 NL 交易完成后，小贩会平静地离开 NL 消耗"
+      ]
+  }
+}
