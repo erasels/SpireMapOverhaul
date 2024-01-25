@@ -1,0 +1,104 @@
+{
+  "anniv6:BrokenDataDisk": {
+    "NAME": "破碎的数据磁盘",
+    "FLAVOR": "no",
+    "DESCRIPTIONS": [
+      "每场战斗开始时，失去 #b",
+      " 点 #y集中。 每回合第一次 #y生成 一个充能球时，额外 #y生成 同类型的另一个充能球"
+    ]
+  },
+  "anniv6:BrokenSneckoSkull": {
+    "NAME": "破碎的异蛇头骨",
+    "FLAVOR": "no",
+    "DESCRIPTIONS": [
+      "每当你获得一层增益时，再获得额外 #b",
+      " 层"
+    ]
+  },
+  "anniv6:BrokenRedSkull": {
+    "NAME": "破碎的红头骨",
+    "FLAVOR": "no",
+    "DESCRIPTIONS": [
+      "当你的生命值高于 #b",
+      "% 时，你获得额外 #b",
+      " 点 #y敏捷。"
+    ]
+  },
+  "anniv6:BrokenOmamori": {
+    "NAME": "破碎的御守",
+    "FLAVOR": "no",
+    "DESCRIPTIONS": [
+      "向你的牌组中添加 #b",
+      " 张 #r诅咒 。每当你休息时， #y升级 牌组中的随机 #b",
+      " 张卡牌"
+    ]
+  },
+  "anniv6:BrokenDamaru": {
+    "NAME": "破碎的摇鼓",
+    "FLAVOR": "no",
+    "DESCRIPTIONS": [
+      "在你的回合结束时，你可以 #y消耗 一张手牌，并获得等同其费用的 #y真言 层数",
+      "选择消耗一张卡牌获取真言"
+
+    ]
+  },
+  "anniv6:BrokenWingBoots": {
+    "NAME": "破碎的羽翼之靴",
+    "FLAVOR": "no",
+    "DESCRIPTIONS": [
+      "当你在 #y? 房间遭遇事件时，可以在两种事件中任选一种"
+
+    ]
+  },
+  "anniv6:BrokenSozu": {
+    "NAME": "破碎的添水",
+    "FLAVOR": "no",
+    "DESCRIPTIONS": [
+      "在战斗中，药水需消耗 [E] 来使用。当你在一种药水上消耗能量时，使用另一种随机药剂",
+      " 能量"
+    ]
+  },
+  "anniv6:BrokenSneckoEye": {
+    "NAME": "破碎的异蛇之眼",
+    "FLAVOR": "no",
+    "DESCRIPTIONS": [
+      "每回合开始时，添加你牌组中的随机 #b",
+      " 卡牌复制进你的手牌中。此复制牌具有 #y消耗 、 #y虚无 和 #y难以辨认 的特性"
+    ]
+  },
+  "anniv6:BrokenMawBank": {
+    "NAME": "破碎的巨口储蓄罐",
+    "FLAVOR": "no",
+    "DESCRIPTIONS": [
+      "下次你进入商店时，获得 #b",
+      " #y金币 ，但当你离开时失去 #b",
+      " #y金币"
+    ]
+  },
+  "anniv6:BrokenPrayerWheel": {
+    "NAME": "破碎的转经轮",
+    "FLAVOR": "no",
+    "DESCRIPTIONS": [
+      "少掉落 #b",
+      " 张卡牌奖励，但多获得 #b",
+      " 倍 #y金币 奖励"
+    ]
+  },
+  "anniv6:BrokenMatryoshka": {
+    "NAME": "破碎的套娃",
+    "FLAVOR": "no",
+    "DESCRIPTIONS": [
+      "奖励中添加 #b",
+      " #y遗物 ，但你打开的下 #b",
+      " 个宝箱将是空的。当你没有蓝钥匙时，它将会被链接到 #y遗物 中"
+    ]
+  },
+  "anniv6:BrokenSingingBowl": {
+    "NAME": "破碎的颂钵",
+    "FLAVOR": "no",
+    "DESCRIPTIONS": [
+      "每当你获得最大生命值时， #y升级 你牌组中随机 #b",
+        " 张卡牌"
+    ]
+  }
+}

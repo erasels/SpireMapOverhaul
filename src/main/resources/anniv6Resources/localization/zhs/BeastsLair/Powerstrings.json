@@ -1,0 +1,15 @@
+{
+
+  "anniv6:FuryPower": {
+    "NAME": "暴怒",
+    "DESCRIPTIONS": [
+      "回合结束时，获得 #b", "% 伤害提升"
+    ]
+  },
+  "anniv6:DamageUpPower": {
+    "NAME": "伤害提升",
+    "DESCRIPTIONS": [
+      "额外造成 #b", "% 伤害"
+    ]
+  }
+}

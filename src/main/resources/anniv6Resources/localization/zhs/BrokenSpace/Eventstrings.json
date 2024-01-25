@@ -1,0 +1,11 @@
+{
+  "anniv6:WingBootEvent": {
+    "NAME": "破碎的羽翼之靴",
+    "DESCRIPTIONS": [
+      "你的面前出现了两道传送门，请选择"
+    ],
+    "OPTIONS": [
+      "破碎"
+    ]
+  }
+}
