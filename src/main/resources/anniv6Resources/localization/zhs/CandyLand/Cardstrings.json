@@ -1,0 +1,70 @@
+{
+  "anniv6:Broccoli": {
+    "NAME": "西兰花",
+    "DESCRIPTION": "获得 !M! 点力量 NL 获得 !M! 点敏捷 NL 即逝"
+  },
+  "anniv6:CandyCane": {
+    "NAME": "糖果棒",
+    "DESCRIPTION": "造成 !D! 点伤害 NL 即逝"
+  },
+  "anniv6:Cookie": {
+    "NAME": "饼干",
+    "DESCRIPTION": "获得 !B! 点格挡 NL 即逝"
+  },
+  "anniv6:EnergyDrink": {
+    "NAME": "红牛饮料",
+    "DESCRIPTION": "获得{@@}{!M!|1= [E] |2= [E] [E] |3= [E] [E] [E] |@= !M! [E] }。 NL 即逝"
+  },
+  "anniv6:FastFood": {
+    "NAME": "快餐",
+    "DESCRIPTION": "抽 !M! 张牌 NL 即逝"
+  },
+  "anniv6:Banana": {
+    "NAME": "香蕉",
+    "DESCRIPTION": "提升 !M! 点最大生命值 NL 即逝"
+  },
+  "anniv6:ChocolateBar": {
+    "NAME": "巧克力棒",
+    "DESCRIPTION": "获得 !M! 层再生 NL 即逝"
+  },
+  "anniv6:Cocktail": {
+    "NAME": "鸡尾酒",
+    "DESCRIPTION": "获取一瓶可饮用的随机药水 NL 即逝"
+  },
+  "anniv6:GoldCandy": {
+    "NAME": "金色糖果",
+    "DESCRIPTION": "获得 !M! 金币 NL 即逝"
+  },
+  "anniv6:Cake": {
+    "NAME": "蛋糕",
+    "DESCRIPTION": "获得 !B! 格挡 NL 格挡不会在你的下{@@}{!M!|1= 回合|@= !M! 回合}开始时消失 NL 即逝"
+  },
+  "anniv6:FrozenYoghurt": {
+    "NAME": "冷冻酸奶",
+    "DESCRIPTION": "获得 !M! 层金属化 NL 获得 !anniv6:m2! 层脆弱 NL 即逝"
+  },
+  "anniv6:JawBreaker": {
+    "NAME": "硬糖果",
+    "DESCRIPTION": "造成 !D! 点伤害 NL 即逝"
+  },
+  "anniv6:JellyBeans": {
+    "NAME": "软心糖豆",
+    "DESCRIPTION": "对所有敌人施加 !M! 层脆弱 NL 获得 !anniv6:m2! 层虚弱 NL 即逝"
+  },
+  "anniv6:Milk": {
+    "NAME": "牛奶",
+    "DESCRIPTION": "施加 !anniv6:m2! 层人工制品 NL 获得 !M! 层人工制品 NL 即逝"
+  },
+  "anniv6:Pepper": {
+    "NAME": "红辣椒",
+    "DESCRIPTION": "获得 !M! 点力量 NL 失去 !anniv6:m2! 点敏捷 NL 即逝"
+  },
+  "anniv6:PoisonedApple": {
+    "NAME": "毒苹果",
+    "DESCRIPTION": "施加 !M! 层中毒 NL 受到 !anniv6:m2! 点伤害 NL 即逝"
+  },
+  "anniv6:ChewingGum": {
+    "NAME": "口香糖",
+    "DESCRIPTION": "抽 !M! 张牌并获得{@@}{!M!|1= [E] |2= [E] [E] |3= [E] [E] [E] |@= !M! [E] }。 NL 在你的抽牌堆中添加 *黏液 NL 即逝"
+  }
+}
