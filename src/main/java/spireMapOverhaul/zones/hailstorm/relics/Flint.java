@@ -13,7 +13,6 @@ import java.util.ArrayList;
 public class Flint extends AbstractSMORelic {
     public static final String ID = Flint.class.getSimpleName();
 
-
     public Flint() {
         super(ID, HailstormZone.ID, RelicTier.SPECIAL, AbstractRelic.LandingSound.CLINK);
     }
