@@ -2,7 +2,8 @@
   "${ModID}:Hailstorm": {
     "TEXT": [
       "Hailstorm",
-      "A never ending Hail is taking over the spire."
+      "A never ending Hail is taking over the spire.",
+      "Diamsword"
     ]
   },
   "${ModID}:FlintOption": {
