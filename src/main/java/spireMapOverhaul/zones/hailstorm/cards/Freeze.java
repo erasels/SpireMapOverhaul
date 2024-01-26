@@ -1,18 +1,12 @@
 package spireMapOverhaul.zones.hailstorm.cards;
 
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDiscardAction;
-import com.megacrit.cardcrawl.cards.CardQueueItem;
-import com.megacrit.cardcrawl.cards.status.Slimed;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.FrailPower;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractSMOCard;
 import spireMapOverhaul.zones.hailstorm.HailstormZone;
-import spireMapOverhaul.zones.invasion.cards.AbstractInvasionZoneRewardCard;
+
 //Can be renamed Freezing if needed
 public class Freeze extends AbstractSMOCard {
     //public static final String ID = SpireAnniversary6Mod.makeID(Freeze.class.getSimpleName());
