@@ -1,7 +1,7 @@
 {
   "${ModID}:BrokenDataDisk": {
     "NAME": "Broken Data Disk",
-    "FLAVOR": "no",
+    "FLAVOR": "",
     "DESCRIPTIONS": [
       "At the start of each combat, lose #b",
       " #yFocus. The first time you #yChannel an Orb each turn, #yChannel another Orb of the same type."
@@ -9,7 +9,7 @@
   },
   "${ModID}:BrokenSneckoSkull": {
     "NAME": "Broken Snecko Skull",
-    "FLAVOR": "no",
+    "FLAVOR": "",
     "DESCRIPTIONS": [
       "When you gain a buff, gain #b",
       " more."
@@ -17,7 +17,7 @@
   },
   "${ModID}:BrokenRedSkull": {
     "NAME": "Broken Red Skull",
-    "FLAVOR": "no",
+    "FLAVOR": "",
     "DESCRIPTIONS": [
       "When you are above #b",
       "% #yHP, you have #b",
@@ -26,7 +26,7 @@
   },
   "${ModID}:BrokenOmamori": {
     "NAME": "Broken Omamori",
-    "FLAVOR": "no",
+    "FLAVOR": "",
     "DESCRIPTIONS": [
       "Add #b",
       " #rCurses to your deck. Whenever you rest, #yUpgrade #b",
@@ -35,7 +35,7 @@
   },
   "${ModID}:BrokenDamaru": {
     "NAME": "Broken Damaru",
-    "FLAVOR": "no",
+    "FLAVOR": "",
     "DESCRIPTIONS": [
       "At the end of your turn, you may #yExhaust a card in your hand. Gain #yMantra equal to its cost.",
       "Select a card to exhaust for Mantra."
@@ -44,7 +44,7 @@
   },
   "${ModID}:BrokenWingBoots": {
     "NAME": "Broken Wing Boots",
-    "FLAVOR": "no",
+    "FLAVOR": "",
     "DESCRIPTIONS": [
       "When you would enter an event in a #y? room, choose between two events."
 
@@ -52,7 +52,7 @@
   },
   "${ModID}:BrokenSozu": {
     "NAME": "Broken Sozu",
-    "FLAVOR": "no",
+    "FLAVOR": "",
     "DESCRIPTIONS": [
       "In-combat potions cost [E] to use. When you spend energy on a potion, use another random potion.",
       " Energy"
@@ -60,7 +60,7 @@
   },
   "${ModID}:BrokenSneckoEye": {
     "NAME": "Broken Snecko Eye",
-    "FLAVOR": "no",
+    "FLAVOR": "",
     "DESCRIPTIONS": [
       "At the start of each turn, add #b",
       " copy of a random card from your deck into your hand. It #yPurges, is #yEthereal, and is unreadable."
@@ -68,7 +68,7 @@
   },
   "${ModID}:BrokenMawBank": {
     "NAME": "Broken Maw Bank",
-    "FLAVOR": "no",
+    "FLAVOR": "",
     "DESCRIPTIONS": [
       "Gain #b",
       " #yGold next time you enter a shop, but lose #b",
@@ -77,7 +77,7 @@
   },
   "${ModID}:BrokenPrayerWheel": {
     "NAME": "Broken Prayer Wheel",
-    "FLAVOR": "no",
+    "FLAVOR": "",
     "DESCRIPTIONS": [
       "Card rewards contain #b",
       " less card, but each #yGold reward is multiplied by #b",
@@ -86,7 +86,7 @@
   },
   "${ModID}:BrokenMatryoshka": {
     "NAME": "Broken Matryoshka",
-    "FLAVOR": "no",
+    "FLAVOR": "",
     "DESCRIPTIONS": [
       "Add #b",
       " #yRelics to the rewards, but the next #b",
@@ -95,7 +95,7 @@
   },
   "${ModID}:BrokenSingingBowl": {
     "NAME": "Broken Singing Bowl",
-    "FLAVOR": "no",
+    "FLAVOR": "",
     "DESCRIPTIONS": [
       "Whenever you gain Max HP, #yUpgrade #b",
         " random card in your deck."
