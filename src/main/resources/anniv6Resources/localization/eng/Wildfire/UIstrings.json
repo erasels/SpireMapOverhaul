@@ -1,0 +1,20 @@
+{
+  "${ModID}:Wildfire": {
+    "TEXT": [
+      "Wildfire",
+      "A raging fire is consuming the spire! NL #rEverything #ris #rBurning, dealing increasing damage each turn. NL Card rewards #gharness #gthe #gpower of these flames.",
+      "Mistress Autumn",
+      "At the start of each turn, apply #b1 #rBurning to EVERYONE."
+    ]
+  },
+  "${ModID}:Wildfire:BurningMod": {
+    "TEXT": [
+      " NL Apply %d ${ModID}:Burning.",
+      " NL Apply %d ${ModID}:Burning to ALL enemies.",
+      " NL Apply %d ${ModID}:Burning to a random enemy.",
+      " NL Apply %d ${ModID}:Burning X times.",
+      " NL Apply %d ${ModID}:Burning to ALL enemies X times.",
+      " NL Apply %d ${ModID}:Burning to a random enemy X times."
+    ]
+  }
+}
