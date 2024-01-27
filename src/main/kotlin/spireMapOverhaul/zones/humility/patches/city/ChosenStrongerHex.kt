@@ -23,6 +23,8 @@ class ChosenStrongerHex {
         fun Instrument(): ExprEditor =
             object : ExprEditor() {
                 override fun edit(f: FieldAccess) {
+                    if (HumilityZone.hasHumilityMod()) return
+
                     if (f.isReader && f.className == AbstractCard::class.qualifiedName && f.fieldName == "type") {
                         f.replace(
                             "if (${HumilityZone::class.qualifiedName}.isInZone()) {" +

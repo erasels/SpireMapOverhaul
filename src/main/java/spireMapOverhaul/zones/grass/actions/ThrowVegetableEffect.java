@@ -21,6 +21,7 @@ import spireMapOverhaul.zones.grass.vegetables.AbstractVegetableData;
 import java.util.ArrayList;
 
 public class ThrowVegetableEffect extends AbstractGameEffect {
+    private static final int MAX_POS = 10;
     private static Texture img;
     private final ArrayList<Vector2> previousPos = new ArrayList<>();
     private final float sX;
@@ -30,6 +31,7 @@ public class ThrowVegetableEffect extends AbstractGameEffect {
     private final float bounceHeight;
     private float cX;
     private float cY;
+    private float vR;
     private float yOffset;
     private boolean playedSfx = false;
 
@@ -50,6 +52,12 @@ public class ThrowVegetableEffect extends AbstractGameEffect {
         } else {
             this.bounceHeight = this.dY - this.sY + vegetable.data.bounce * Settings.scale;
         }
+        if (this.dX > this.sX) {
+            this.vR = -vegetable.data.rotation;
+        }
+        else {
+            this.vR = vegetable.data.rotation;
+        }
     }
 
     public void update() {
@@ -61,15 +69,11 @@ public class ThrowVegetableEffect extends AbstractGameEffect {
         this.cX = Interpolation.linear.apply(this.dX, this.sX, this.duration / 0.6F);
         this.cY = Interpolation.linear.apply(this.dY, this.sY, this.duration / 0.6F);
         this.previousPos.add(new Vector2(this.cX, this.cY + + this.yOffset));
-        if (this.previousPos.size() > 20) {
+        if (this.previousPos.size() > MAX_POS) {
             this.previousPos.remove(this.previousPos.get(0));
         }
 
-        if (this.dX > this.sX) {
-            this.rotation -= Gdx.graphics.getDeltaTime() * 1000.0F;
-        } else {
-            this.rotation += Gdx.graphics.getDeltaTime() * 1000.0F;
-        }
+        this.rotation += Gdx.graphics.getDeltaTime() * vR;
 
         if (this.duration > 0.3F) {
             this.yOffset = Interpolation.circleIn.apply(this.bounceHeight, 0.0F, (this.duration - 0.3F) / 0.3F) * Settings.scale;
@@ -89,8 +93,8 @@ public class ThrowVegetableEffect extends AbstractGameEffect {
         float height = img.getHeight();
 
         sb.setBlendFunction(GL20.GL_ONE, GL20.GL_ONE_MINUS_SRC_ALPHA);
-        for(int i = 5; i < this.previousPos.size(); ++i) {
-            this.color.a = 0.2f * i;
+        for(int i = 0; i < this.previousPos.size(); i++) {
+            this.color.a = 0.1f * i;
             sb.setColor(this.color);
             sb.draw(img, this.previousPos.get(i).x, this.previousPos.get(i).y, width / 2.0F, height / 2.0F, width, height, this.scale * i / 10f, this.scale * i / 10f, this.rotation, 0, 0, img.getWidth(), img.getHeight(), false, false);
         }

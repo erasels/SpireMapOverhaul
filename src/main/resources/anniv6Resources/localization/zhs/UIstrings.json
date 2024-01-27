@@ -1,0 +1,57 @@
+{
+  "anniv6:ConfigMenuText": {
+    "TEXT": [
+      "生态尖塔",
+      "StS Modding Community",
+      "让尖塔地图变得更加有趣",
+      "开启",
+      "让地图中的群落图标变得更大，但过大的图标可能会显示不全",
+      "在一个生态群落中只会触发一次群落事件，取消勾选则会多次触发",
+      "开启着色器"
+    ]
+  },
+  "anniv6:SingleCardReward": {
+    "TEXT": [
+      "[卡牌] ",
+      "提示：右击查看详细卡牌信息！"
+    ]
+  },
+  "anniv6:HealReward": {
+    "TEXT": [
+      "回复 "
+    ]
+  },
+  "anniv6:AnyColorCardReward": {
+    "TEXT": [
+      "添加一张任意颜色的卡牌",
+      "选择一张卡牌"
+    ]
+  },
+  "anniv6:CombatExplainButton": {
+    "TEXT": [
+      "生态群落"
+    ]
+  },
+  "anniv6:RunHistoryScreen": {
+    "TEXT": [
+      "生态群落: {0}"
+    ]
+  },
+  "anniv6:ZonePotionsPatch": {
+    "TEXT": [
+      "生态群落：",
+      "只能在特定生态群落中获得的药水。"
+    ]
+  },
+  "anniv6:CharacterSelectScreen": {
+    "TEXT": [
+      "开启生态群落",
+      "为尖塔添加各种生态群落，让地图拥有更加生动、有趣"
+    ]
+  },
+  "anniv6:ZoneTooltip": {
+    "TEXT": [
+      "#p作者: {0}"
+    ]
+  }
+}

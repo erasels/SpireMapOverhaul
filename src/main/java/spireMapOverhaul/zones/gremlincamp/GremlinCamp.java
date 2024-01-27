@@ -29,6 +29,7 @@ import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
 import spireMapOverhaul.zoneInterfaces.ModifiedEventRateZone;
 import spireMapOverhaul.zones.gremlincamp.monsters.GremlinBodyguard;
 import spireMapOverhaul.zones.gremlincamp.monsters.GremlinCook;
+import spireMapOverhaul.zones.gremlincamp.monsters.GremlinDog;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -52,6 +53,7 @@ public class GremlinCamp extends AbstractZone implements EncounterModifyingZone,
     public static final String GET_DOWN_MR_PRESIDENT = makeID("GremlinPrez");
     public static final String BRAWL_BROS = makeID("GremlinBrawlers");
     public static final String GREMLIN_GANG = makeID("GremlinGang");
+    public static final String GREMLIN_DOGGOS = makeID("GremlinDoggos");
 
     @Override
     public List<ZoneEncounter> getNormalEncounters() {
@@ -62,18 +64,24 @@ public class GremlinCamp extends AbstractZone implements EncounterModifyingZone,
                 new MonsterGroup(new AbstractMonster[]{
                         new GremlinBodyguard(-200f, 10),
                         new GremlinWizard(0, 0),
-                        new GremlinBodyguard(200f, -10),
+                        new GremlinBodyguard(200f, -10)
                 }), encounter_names[1])
         );
         encs.add(new ZoneEncounter(BRAWL_BROS, 1, () ->
                 new MonsterGroup(new AbstractMonster[]{
                         new GremlinFat(-100f, 10),
-                        new GremlinWarrior(100f, -10),
+                        new GremlinWarrior(100f, -10)
                 }), encounter_names[0])
         );
         encs.add(new ZoneEncounter(GREMLIN_GANG, 1, () ->
                 (MonsterGroup) ReflectionHacks.privateStaticMethod(MonsterHelper.class, "spawnGremlins").invoke(),
                 MonsterHelper.MIXED_COMBAT_NAMES[0])
+        );
+        encs.add(new ZoneEncounter(GREMLIN_DOGGOS, 1, () ->
+                new MonsterGroup(new AbstractMonster[]{
+                        new GremlinDog(-250f, -10),
+                        new GremlinDog(100f, 17)
+                }), encounter_names[3])
         );
         return encs;
     }
@@ -103,10 +111,13 @@ public class GremlinCamp extends AbstractZone implements EncounterModifyingZone,
         gremlinPool.add(GremlinThief.ID);
         gremlinPool.add(GremlinFat.ID);
         gremlinPool.add(GremlinBodyguard.ID);
+        gremlinPool.add(GremlinDog.ID);
         gremlinPool.removeIf(id -> id.equals(prev));
         String id = Wiz.getRandomItem(gremlinPool, AbstractDungeon.miscRng);
         if (GremlinBodyguard.ID.equals(id)) {
             return new GremlinBodyguard(x, y);
+        } else if(GremlinDog.ID.equals(id)) {
+            return new GremlinDog(x, y);
         } else {
             return MonsterHelper.getGremlin(id, x, y);
         }
@@ -127,14 +138,16 @@ public class GremlinCamp extends AbstractZone implements EncounterModifyingZone,
             for (AbstractMonster m : AbstractDungeon.getCurrRoom().monsters.monsters) {
                 Wiz.atb(new IncreaseMaxHpAction(m, 0.5f, false));
                 if (GremlinFat.ID.equals(m.id)) {
-                    Wiz.atb(new ApplyPowerAction(m, null, new RitualPower(m, 2, false), 2, true));
+                    RitualPower p = new RitualPower(m, 2, false);
+                    ReflectionHacks.setPrivate(p, RitualPower.class, "skipFirst", false);
+                    Wiz.atb(new ApplyPowerAction(m, null, p, 2, true));
                 }
             }
         } else if (WHO_LET_EM_COOK.equals(AbstractDungeon.lastCombatMetricKey)) {
             //The bros have more HP
             for (AbstractMonster m : AbstractDungeon.getCurrRoom().monsters.monsters) {
                 if (!GremlinCook.ID.equals(m.id)) {
-                    Wiz.atb(new IncreaseMaxHpAction(m, 1.5f, false));
+                    Wiz.atb(new IncreaseMaxHpAction(m, 1f, false));
                 }
             }
         }

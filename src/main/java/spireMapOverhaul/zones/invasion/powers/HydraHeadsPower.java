@@ -18,6 +18,7 @@ public class HydraHeadsPower extends AbstractInvasionPower {
     public HydraHeadsPower(AbstractCreature owner, int threshold) {
         super(POWER_ID, NAME, PowerType.BUFF, true, owner, 0);
         this.threshold = threshold;
+        this.updateDescription();
     }
 
     @Override

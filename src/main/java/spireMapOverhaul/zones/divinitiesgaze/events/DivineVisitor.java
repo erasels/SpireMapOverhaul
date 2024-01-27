@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import spireMapOverhaul.SpireAnniversary6Mod;
+import spireMapOverhaul.util.EventTooltipCreator;
 import spireMapOverhaul.zones.divinitiesgaze.divinities.DivineBeing;
 import spireMapOverhaul.zones.divinitiesgaze.divinities.DivineBeingManager;
 
@@ -46,11 +47,13 @@ public class DivineVisitor extends PhasedEvent {
     AbstractCard boonCard = CardLibrary.getCard(this.divinity.getDivinityStrings().getBoonCardId());
     String combatPhaseKey = this.divinity.getCombatPhaseKey();
     registerPhase(Phase.APPEARANCE, new TextPhase(this.divinity.getDivinityStrings().getEventText())
-        .addOption(new TextPhase.OptionInfo(String.format(OPTIONS[1], FontHelper.colorString(boonCard.name, "g")), boonCard).setOptionResult(i -> {
+        .addOption(new TextPhase.OptionInfo(String.format(OPTIONS[1], FontHelper.colorString(boonCard.name, "g")),
+            boonCard, EventTooltipCreator.createRelicForTootlips(this.divinity.getKeywordsForCardChoice())).setOptionResult(i -> {
           AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(boonCard, (float) Settings.WIDTH / 2.0F, (float)Settings.HEIGHT / 2.0F));
           transitionKey(Phase.ACCEPT);
         }))
-        .addOption(new TextPhase.OptionInfo(this.divinity.isEventOptionEnabled().get() ? this.divinity.getEventButtonText() : this.divinity.getEventButtonUnavailableText())
+        .addOption(new TextPhase.OptionInfo(this.divinity.isEventOptionEnabled().get() ? this.divinity.getEventButtonText() : this.divinity.getEventButtonUnavailableText(),
+            EventTooltipCreator.createRelicForTootlips(this.divinity.getKeywordsForCustomChoice()))
             .setOptionResult(this.divinity.doEventButtonAction().andThen(i -> {
               if(!DivineVisitor.this.divinity.hasUpdateLogic()) {
                 transitionKey((!combatPhaseKey.isEmpty()) ? Phase.COMBAT : Phase.ACCEPT);

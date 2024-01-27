@@ -52,5 +52,10 @@ public class MidasAuraPower extends AbstractInvasionPower {
         }
         return null;
     }
+
+    @Override
+    public void updateDescription() {
+        description = powerStrings.DESCRIPTIONS[0];
+    }
 }
 

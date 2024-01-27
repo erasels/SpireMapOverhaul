@@ -16,6 +16,8 @@ class GiantHeadNotSlow {
         fun Instrument(): ExprEditor =
             object : ExprEditor() {
                 override fun edit(m: MethodCall) {
+                    if (HumilityZone.hasHumilityMod()) return
+
                     if (m.methodName == "addToBottom") {
                         m.replace(
                             "if (${HumilityZone::class.qualifiedName}.isNotInZone()) {" +

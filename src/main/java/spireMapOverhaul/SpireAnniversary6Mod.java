@@ -47,6 +47,7 @@ import spireMapOverhaul.patches.CustomRewardTypes;
 import spireMapOverhaul.patches.ZonePatches;
 import spireMapOverhaul.patches.ZonePerFloorRunHistoryPatch;
 import spireMapOverhaul.patches.interfacePatches.CampfireModifierPatches;
+import spireMapOverhaul.patches.interfacePatches.CombatModifierPatches;
 import spireMapOverhaul.patches.interfacePatches.EncounterModifierPatches;
 import spireMapOverhaul.patches.interfacePatches.TravelTrackingPatches;
 import spireMapOverhaul.rewards.AnyColorCardReward;
@@ -65,8 +66,11 @@ import spireMapOverhaul.zones.brokenspace.BrokenSpaceZone;
 import spireMapOverhaul.zones.gremlinTown.GremlinTown;
 import spireMapOverhaul.zones.gremlinTown.HordeHelper;
 import spireMapOverhaul.zones.gremlinTown.potions.*;
+import spireMapOverhaul.zones.keymaster.KeymasterZone;
 import spireMapOverhaul.zones.manasurge.ui.extraicons.BlightIcon;
 import spireMapOverhaul.zones.manasurge.ui.extraicons.EnchantmentIcon;
+import spireMapOverhaul.zones.windy.WindyZone;
+import spireMapOverhaul.zones.windy.patches.GoldRewardReductionPatch;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -98,6 +102,7 @@ public class SpireAnniversary6Mod implements
         PostCampfireSubscriber,
         MaxHPChangeSubscriber,
         StartGameSubscriber,
+        StartActSubscriber,
         ImGuiSubscriber,
         PostUpdateSubscriber {
 
@@ -278,6 +283,7 @@ public class SpireAnniversary6Mod implements
     @Override
     public void receiveOnBattleStart(AbstractRoom abstractRoom) {
         // I can't have this in my zone because it still needs called if I access this fight via the dev console
+        HordeHelper.needsUpdate = false;
         if (AbstractDungeon.lastCombatMetricKey != null && AbstractDungeon.lastCombatMetricKey.equals(GremlinTown.GREMLIN_HORDE))
             HordeHelper.initFight();
     }
@@ -317,6 +323,7 @@ public class SpireAnniversary6Mod implements
         BaseMod.addSaveField(ZonePerFloorRunHistoryPatch.ZonePerFloorLog.SaveKey, new ZonePerFloorRunHistoryPatch.ZonePerFloorLog());
         BaseMod.addSaveField(EncounterModifierPatches.LastZoneNormalEncounter.SaveKey, new EncounterModifierPatches.LastZoneNormalEncounter());
         BaseMod.addSaveField(EncounterModifierPatches.LastZoneEliteEncounter.SaveKey, new EncounterModifierPatches.LastZoneEliteEncounter());
+        BaseMod.addSaveField(GoldRewardReductionPatch.SavableCombatGoldReduction.SaveKey, new GoldRewardReductionPatch.SavableCombatGoldReduction()); //windy zone
     }
 
     private static Consumer<String> getWidePotionsWhitelistMethod() {
@@ -546,6 +553,9 @@ public class SpireAnniversary6Mod implements
 
         // Mana Surge Audio
         BaseMod.addAudio(ENCHANTBLIGHT_KEY,ENCHANTBLIGHT_OGG);
+        // Windy Audio
+        BaseMod.addAudio(WindyZone.WINDY_KEY, WindyZone.WINDY_MP3);
+
         BaseMod.addAudio(PLATFORM_KEY, PLATFORM_OGG);
     }
 
@@ -693,6 +703,7 @@ public class SpireAnniversary6Mod implements
         });
 
         BeastsLairZone.initializeSaveFields();
+        KeymasterZone.initializeSaveFields();
     }
 
     @Override
@@ -717,8 +728,16 @@ public class SpireAnniversary6Mod implements
         BetterMapGenerator.clearActiveZones();
         if (!CardCrawlGame.loadingSave) {
             BeastsLairZone.clearBossList();
+            // Fix crash when you die to Gremlin horde and then start a new run
+            AbstractDungeon.lastCombatMetricKey = "";
         }
         HordeHelper.hidePlatforms();
+        CombatModifierPatches.hideButton = true;
+    }
+
+    @Override
+    public void receiveStartAct() {
+        KeymasterZone.startOfActHasKeys = Settings.hasSapphireKey && Settings.hasEmeraldKey && Settings.hasRubyKey;
     }
 
     public static float time = 0f;

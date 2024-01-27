@@ -79,10 +79,15 @@ public class GremlinTown extends AbstractZone
         super(ID, Icons.MONSTER, Icons.EVENT, Icons.SHOP);
         width = 2;
         maxWidth = 3;
-        height = 4;
+        height = 5;
         maxHeight = 6;
         zoneColor = Color.FIREBRICK.cpy();
         zoneColor.a = 1.0F;
+    }
+
+    @Override
+    public void beforePreBattlePrep() {
+        HordeHelper.needsUpdate = false;
     }
 
     @Override
@@ -102,6 +107,11 @@ public class GremlinTown extends AbstractZone
 
     @Override
     protected boolean canIncludeEarlyRows() {
+        return false;
+    }
+
+    @Override
+    protected boolean canIncludeFinalCampfireRow() {
         return false;
     }
 
@@ -480,7 +490,8 @@ public class GremlinTown extends AbstractZone
             return getRandomUncommonGremlin();
         else if (rarity == AbstractCard.CardRarity.RARE)
             return getRandomRareGremlin();
-        else return null;
+        // For error prevention with Treasure Hunter which adds special cards
+        else return getRandomUncommonGremlin();
     }
 
     private static AbstractCard getGremlinCardByRarityType(AbstractCard.CardRarity rarity, AbstractCard.CardType type) {

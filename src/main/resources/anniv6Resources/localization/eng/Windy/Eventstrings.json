@@ -1,0 +1,39 @@
+{
+  "${ModID}:WindyBridge": {
+    "NAME": "Windy Bridge",
+    "DESCRIPTIONS": [
+      "intro1:While crossing a bridge, a @strong@ @gust@ suddenly picks up, almost knocking you over!",
+      "intro2:You can barely hold on to all your belongings, much less open your eyes, but you notice the shimmer of a #y~Rare~ #y~card~ on a platform to the side! ...or was it #b~Uncommon?~ NL NL Either way, you should probably hurry up if you don't want to lose anything.",
+      "grab:You grab the card as quickly as possible and make it across the bridge.",
+      "rarity:You open your eyes wider for half a second and spot that the object is ",
+      "rarityR:a #yRare #ycard!",
+      "rarityU:an #bUncommon #bcard!",
+      "type:You pry open your eyes until the wind forces them closed again. The shape of the card is definitely one of ",
+      "typeA:#ban #bAttack!",
+      "typeS:#ba #bSkill!",
+      "typeP:#ba #bPower!",
+      "typeU:... not any of the main three types?",
+      "cost:You force your eyes open for a split second and see that the card has ",
+      "costN:a #bcost #bof #b",
+      "costN2:!",
+      "costX:a #bcost #bof #bX!",
+      "costZ:#bno #bcost!",
+      "loseItem: NL NL Your ",
+      "loseItem2: is @blown@ @away@ by the wind!",
+      "gold: #rGold",
+      "leaveG:You sprint across the bridge to the best of your ability, keeping all your belongs safe.",
+      "leaveB:You sprint across the bridge to the best of your ability, keeping the rest of your belongs safe."
+    ],
+    "OPTIONS": [
+      "hold:[Hold On]",
+      "rarity:[Check Rarity] #r",
+      "cost:[Check Cost] #r",
+      "type:[Check Type] #r",
+      "lose:%: #rLose ",
+      "gold: #rGold.",
+      "grab:[Grab] #gGain #gthe #gmystery #gcard. #r",
+      "run:[Run] Cross the bridge quickly.",
+      "leave:[Leave]"
+    ]
+  }
+}

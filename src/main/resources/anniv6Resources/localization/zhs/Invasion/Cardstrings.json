@@ -1,0 +1,86 @@
+{
+  "anniv6:GildedStrike": {
+    "NAME": "镀金打击",
+    "DESCRIPTION": "造成 !D! 点伤害 NL 施加 !M! 层脆弱"
+  },
+  "anniv6:GildedDefend": {
+    "NAME": "镀金防守",
+    "DESCRIPTION": "获得 !B! 点格挡 NL 失去 !M! 点敏捷"
+  },
+  "anniv6:GildedEssence": {
+    "NAME": "镀金之躯",
+    "DESCRIPTION": "获得 !M! 层多层护甲\u00a0护甲."
+  },
+  "anniv6:Necropotence": {
+    "NAME": "死冥权能",
+    "DESCRIPTION": "保留 NL 抽 !M! 张牌 NL 失去 1 生命值 NL 将此牌返回你的手牌",
+    "UPGRADE_DESCRIPTION": "保留 NL 抽 !M! 张牌 NL 失去 1 生命值 NL 将此牌返回你的手牌"
+  },
+  "anniv6:FireblessedBlade": {
+    "NAME": "火眷之刃",
+    "DESCRIPTION": "造成 !D! 点伤害 NL 获得 !M! 点力量、1 点敏捷与1  点集中 NL 消耗"
+  },
+  "anniv6:WindblessedBlade": {
+    "NAME": "风眷之刃",
+    "DESCRIPTION": "造成 !D! 点伤害 3 次 NL 获得 !B! 点格挡 2 次 NL 施加 !M! 层虚弱 NL 消耗"
+  },
+  "anniv6:EarthblessedBlade": {
+    "NAME": "地眷之刃",
+    "DESCRIPTION": "对所有敌人造成 !D! 点伤害 NL 获得 !B! 层 金属化\u00a0护甲 NL 获得 !M! 层荆棘 NL 消耗"
+  },
+  "anniv6:IceblessedBlade": {
+    "NAME": "冰眷之刃",
+    "DESCRIPTION": "造成 !D! 点伤害 NL 获得 !M! 层人工制品 NL 获得 1 层 *缓冲 NL 消耗"
+  },
+  "anniv6:VoidblessedBlade": {
+    "NAME": "空眷之刃",
+    "DESCRIPTION": "造成 !D! 点伤害 !M! 次 NL 敌人失去 !M! 点力量 NL 获得 1 层 *缓冲 NL 消耗"
+  },
+  "anniv6:Languish": {
+    "NAME": "衰弱",
+    "DESCRIPTION": "虚无 NL 所有敌人本回合失去 !M! 点力量并失去 !M! 点生命值 NL 消耗",
+    "UPGRADE_DESCRIPTION": "所有敌人本回合失去 !M! 点力量并失去 !M! 点生命值 NL 消耗"
+  },
+  "anniv6:MirarisWake": {
+    "NAME": "唤醒奇迹",
+    "DESCRIPTION": "虚无 NL 获得 !M! 点力量 NL 获得 !M! 点敏捷 NL 你回合开始时获得 [E] 。",
+    "UPGRADE_DESCRIPTION": "获得 !M! 点力量 NL 获得 !M! 点敏捷 NL 你回合开始时获得 [E] 。"
+  },
+  "anniv6:WallOfBlossoms": {
+    "NAME": "盛花之墙",
+    "DESCRIPTION": "获得 !M! 点敏捷 NL 抽 1 张牌"
+  },
+  "anniv6:DarkRitual": {
+    "NAME": "黑暗仪式",
+    "DESCRIPTION": "获得 [E] [E] [E] 。 NL 消耗",
+    "UPGRADE_DESCRIPTION": "保留 NL 获得 [E] [E] [E] 。 NL 消耗"
+  },
+  "anniv6:LightningHelix": {
+    "NAME": "闪电螺旋",
+    "DESCRIPTION": "造成 !D! 点伤害 NL 回复 !M! 点生命 NL 消耗"
+  },
+  "anniv6:Foresee": {
+    "NAME": "预知",
+    "DESCRIPTION": "预见 !M!. NL 抽 2 张牌"
+  },
+  "anniv6:SteelWall": {
+    "NAME": "铜墙铁壁",
+    "DESCRIPTION": "获得 !B! 点格挡 NL 获得 !M! 层金属化 NL 消耗"
+  },
+  "anniv6:LightningBolt": {
+    "NAME": "霹雳闪电",
+    "DESCRIPTION": "造成 !D! 点伤害 NL 将此牌洗入你的抽牌堆"
+  },
+  "anniv6:Staggershock": {
+    "NAME": "交错冲击",
+    "DESCRIPTION": "对所有敌人造成 !D! 点伤害。你下回合开始时，再次打出这张牌"
+  },
+  "anniv6:HandOfTheAbyss": {
+    "NAME": "深渊之手",
+    "DESCRIPTION": "每当你造成未被格挡的伤害时，施加 !M! 层深渊之触"
+  },
+  "anniv6:BrokenCrystal": {
+    "NAME": "破碎晶体",
+    "DESCRIPTION": "当你抽到此牌时，随机化其费用并再抽一张牌 NL 减少所有敌人 !M! 层再生 NL 消耗"
+  }
+}

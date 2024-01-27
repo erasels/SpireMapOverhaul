@@ -3,6 +3,7 @@ package spireMapOverhaul.zones.gremlinTown.cards;
 import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.ArtifactPower;
 import com.megacrit.cardcrawl.powers.GainStrengthPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import spireMapOverhaul.SpireAnniversary6Mod;
@@ -28,7 +29,8 @@ public class Sit extends AbstractSMOCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         applyToEnemy(m, new StrengthPower(m, -magicNumber));
-        applyToEnemy(m, new GainStrengthPower(m, magicNumber));
+        if (m != null && !(m.hasPower(ArtifactPower.POWER_ID)))
+            applyToEnemy(m, new GainStrengthPower(m, magicNumber));
     }
 
     public void upp() {

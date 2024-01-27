@@ -79,6 +79,8 @@ class GremlinThiefThievery {
             fun Instrument(): ExprEditor =
                 object : ExprEditor() {
                     override fun edit(e: NewExpr) {
+                        if (HumilityZone.hasHumilityMod()) return
+
                         if (e.className == DamageAction::class.qualifiedName) {
                             e.replace(
                                 "if (${HumilityZone::class.qualifiedName}.isInZone()) {" +

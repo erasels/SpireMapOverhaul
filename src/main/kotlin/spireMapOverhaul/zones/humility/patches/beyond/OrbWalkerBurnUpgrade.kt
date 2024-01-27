@@ -17,6 +17,8 @@ class OrbWalkerBurnUpgrade {
         fun Instrument(): ExprEditor =
             object : ExprEditor() {
                 override fun edit(e: NewExpr) {
+                    if (HumilityZone.hasHumilityMod()) return
+
                     if (e.className == Burn::class.qualifiedName) {
                         e.replace(
                             "\$_ = \$proceed(\$\$);" +

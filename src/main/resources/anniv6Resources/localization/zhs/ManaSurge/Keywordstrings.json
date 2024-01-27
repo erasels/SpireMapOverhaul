@@ -1,0 +1,130 @@
+[
+  {
+    "ID": "anniv6:ManaSurge:Sharp",
+    "PROPER_NAME": "[#8c9cff]造成伤害[]",
+    "NAMES": [
+      "sharp"
+    ],
+    "DESCRIPTION": "对目标敌人造成 #b5 点伤害，若不是单个目标则改为随机一位敌人"
+  },
+  {
+    "ID": "anniv6:ManaSurge:Tough",
+    "PROPER_NAME": "[#8c9cff]获得格挡[]",
+    "NAMES": [
+      "tough"
+    ],
+    "DESCRIPTION": "获得 #b4 点 #y格挡 "
+  },
+  {
+    "ID": "anniv6:ManaSurge:Powerful",
+    "PROPER_NAME": "[#8c9cff]获得力量[]",
+    "NAMES": [
+      "powerful"
+    ],
+    "DESCRIPTION": "获得 #b1 点 #y力量 "
+  },
+  {
+    "ID": "anniv6:ManaSurge:Protective",
+    "PROPER_NAME": "[#8c9cff]获得敏捷[]",
+    "NAMES": [
+      "protective"
+    ],
+    "DESCRIPTION": "获得 #b1 点 #y敏捷 "
+  },
+  {
+    "ID": "anniv6:ManaSurge:Exposing",
+    "PROPER_NAME": "[#8c9cff]施加脆弱[]",
+    "NAMES": [
+      "exposing"
+    ],
+    "DESCRIPTION": "对目标敌人施加 #b1 层 #y脆弱 ，若不是单个目标则改为随机一位敌人"
+  },
+  {
+    "ID": "anniv6:ManaSurge:Crippling",
+    "PROPER_NAME": "[#8c9cff]施加虚弱[]",
+    "NAMES": [
+      "crippling"
+    ],
+    "DESCRIPTION": "对目标敌人施加 #b1 层 #y虚弱 ，若不是单个目标则改为随机一位敌人"
+  },
+  {
+    "ID": "anniv6:ManaSurge:Harmful",
+    "PROPER_NAME": "[#ff8cd5]受到伤害[]",
+    "NAMES": [
+      "harmful"
+    ],
+    "DESCRIPTION": "受到 #b5 点伤害"
+  },
+  {
+    "ID": "anniv6:ManaSurge:Fragile",
+    "PROPER_NAME": "[#ff8cd5]获得易伤[]",
+    "NAMES": [
+      "fragile"
+    ],
+    "DESCRIPTION": "获得 #b1 层 #y易伤"
+  },
+  {
+    "ID": "anniv6:ManaSurge:Feeble",
+    "PROPER_NAME": "[#ff8cd5]获得脆弱[]",
+    "NAMES": [
+      "feeble"
+    ],
+    "DESCRIPTION": "获得 #b1 层 #y脆弱"
+  },
+  {
+    "ID": "anniv6:ManaSurge:Flawed",
+    "PROPER_NAME": "[#ff8cd5]获得虚弱[]",
+    "NAMES": [
+      "flawed"
+    ],
+    "DESCRIPTION": "获得 #b1 层 #y虚弱"
+  },
+  {
+    "ID": "anniv6:ManaSurge:Powerless",
+    "PROPER_NAME": "[#ff8cd5]失去力量[]",
+    "NAMES": [
+      "powerless"
+    ],
+    "DESCRIPTION": "失去 #b1 点 #y力量"
+  },
+  {
+    "ID": "anniv6:ManaSurge:Brittle",
+    "PROPER_NAME": "[#ff8cd5]失去敏捷[]",
+    "NAMES": [
+      "brittle"
+    ],
+    "DESCRIPTION": "失去 #b1 点 #y敏捷"
+  },
+  {
+    "ID": "anniv6:ManaSurge:Blight",
+    "PROPER_NAME": "[#ff8cd5]衰朽[]",
+    "NAMES": [
+      "blight"
+    ],
+    "DESCRIPTION": "一种负面效果"
+  },
+  {
+    "ID": "anniv6:ManaSurge:Enchantment",
+    "PROPER_NAME": "[#8c9cff]附魔[]",
+    "NAMES": [
+      "enchantment"
+    ],
+    "DESCRIPTION": "一种正面效果"
+  },
+  {
+    "ID": "anniv6:ManaSurge:Blighted",
+    "PROPER_NAME": "[#ff8cd5]衰朽[]",
+    "NAMES": [
+      "blighted"
+    ],
+    "DESCRIPTION": "具有负面效果的词条"
+  },
+  {
+    "ID": "anniv6:ManaSurge:Enchant",
+    "PROPER_NAME": "[#8c9cff]附魔[]",
+    "NAMES": [
+      "enchant"
+    ],
+    "DESCRIPTION": "具有负面效果的词条"
+  }
+]

@@ -35,6 +35,7 @@ import java.util.StringJoiner;
 
 public abstract class AbstractVegetable {
     private static final float SIZE = Settings.scale * AbstractRelic.RAW_W;
+    private static final float SPAWN_START = 0.40f;
     private static final float FLASH_SIZE = 2.5f;
     private static Texture GRASS;
     private static final UIStrings STRINGS = CardCrawlGame.languagePack.getUIString(SpireAnniversary6Mod.makeID(GrassZone.ID));
@@ -134,7 +135,7 @@ public abstract class AbstractVegetable {
     }
 
     public void onSpawn(int size) {
-        hb.translate(Settings.WIDTH * (0.30f + size * 0.05f), AbstractDungeon.player != null ? AbstractDungeon.player.hb.y + Settings.scale * MathUtils.random(-20, 20) : Settings.HEIGHT * MathUtils.random(0.2f, 0.3f));
+        hb.translate(Settings.WIDTH * (SPAWN_START + size * 0.05f), AbstractDungeon.player != null ? AbstractDungeon.player.hb.y + Settings.scale * MathUtils.random(-20, 20) : Settings.HEIGHT * MathUtils.random(0.2f, 0.3f));
     }
 
     public void render(SpriteBatch sb) {
@@ -144,7 +145,7 @@ public abstract class AbstractVegetable {
         int h = image.getHeight();
         float halfWidth = w / 2.0F;
         float halfHeight = h / 2.0F;
-        sb.draw(this.image, hb.x, hb.y, halfWidth, halfHeight, w, h, scale, scale, 0, 0, 0, w, h, false, false);
+        sb.draw(this.image, hb.x, hb.y, 0, 0, w, h, scale, scale, 0, 0, 0, w, h, false, false);
         if (flash > 1) {
             float fScale = FLASH_SIZE / flash * scale;
             color.a = MathUtils.lerp(0, 1, flash - 1);
@@ -153,6 +154,7 @@ public abstract class AbstractVegetable {
             sb.draw(this.image, hb.x, hb.y, halfWidth, halfHeight, w, h, fScale, fScale, 0, 0, 0, w, h, false, false);
             sb.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
         }
+        hb.render(sb);
         if (hb.hovered && !AbstractDungeon.isScreenUp && !CardCrawlGame.isPopupOpen) {
             TipHelper.queuePowerTips(hb.x, hb.y, tips);
         }

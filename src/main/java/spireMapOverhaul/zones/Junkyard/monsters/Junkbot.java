@@ -35,13 +35,13 @@ public class Junkbot extends CustomMonster {
     private boolean firstMove = true;
     private static final byte GRAB_MOVE = 1;
     private static final byte REBOOT_MOVE = 2;
-    private static final int GRAB_DAMAGE = 5;
-    private static final int A2_GRAB_DAMAGE = 6;
-    private static final int HP_MIN = 15;
-    private static final int HP_MAX = 19;
+    private static final int GRAB_DAMAGE = 7;
+    private static final int A2_GRAB_DAMAGE = 8;
+    private static final int HP_MIN = 21;
+    private static final int HP_MAX = 27;
 
-    private static final int A7_HP_MIN = 18;
-    private static final int A7_HP_MAX = 22;
+    private static final int A7_HP_MIN = 26;
+    private static final int A7_HP_MAX = 31;
     private int grabDamage;
     public boolean isActivated = true;
     private int chanceToDeactivate = 20;
@@ -88,6 +88,9 @@ public class Junkbot extends CustomMonster {
                 AbstractDungeon.actionManager.addToBottom(new AnimateSlowAttackAction(this));
                 AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player, this.damage.get(0), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
                 AbstractDungeon.actionManager.addToBottom(new GrabCardAction(this));
+                if(AbstractDungeon.ascensionLevel >= 17) {
+                    AbstractDungeon.actionManager.addToBottom(new GrabCardAction(this));
+                }
                 AbstractDungeon.actionManager.addToBottom(new DeactivateAction(this, chanceToDeactivate));
                 break;
             case REBOOT_MOVE:
@@ -124,7 +127,6 @@ public class Junkbot extends CustomMonster {
             for (int i = 0; i < cardsToPreview.size(); i++) {
                 AbstractCard c = cardsToPreview.get(i);
                 float widthspacing = AbstractCard.IMG_WIDTH_S + 100.0f * Settings.scale;
-                int tar = 4;
                 c.target_x = c.current_x = this.hb.cX - (widthspacing/6) + (i * (widthspacing * 0.175f));
                 c.target_y = c.current_y = this.hb.cY + (widthspacing/3) + (AbstractCard.IMG_HEIGHT_S * 0.25f);
                 c.drawScale = c.targetDrawScale = c.hb.hovered ? 0.6f : 0.15f;

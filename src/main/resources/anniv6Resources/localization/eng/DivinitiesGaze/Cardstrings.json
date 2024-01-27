@@ -24,7 +24,7 @@
   },
   "${ModID}:Inevitability": {
     "NAME": "Inevitability",
-    "DESCRIPTION": "Unplayable. Retain. At the end of your turn, deal !D! damage to ALL enemies and gain !B! Block. NL Increase these amounts by !M! this combat.",
+    "DESCRIPTION": "Unplayable. Retain. At the end of your turn, deal !M! damage to ALL enemies and gain !B! Block. NL Increase these amounts by !${ModID}:secondMagic}! this combat.",
     "EXTENDED_DESCRIPTION": [
       "This is The End.",
       "Begone!",

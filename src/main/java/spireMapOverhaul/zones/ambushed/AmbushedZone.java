@@ -58,7 +58,7 @@ public class AmbushedZone extends AbstractZone implements CombatModifyingZone, E
     public AmbushedZone() {
         super(ID, Icons.MONSTER, Icons.SHOP);
         this.width = 3;
-        this.height = 4;
+        this.height = 3;
         initCardDrawCardIDs();
     }
 
@@ -105,7 +105,6 @@ public class AmbushedZone extends AbstractZone implements CombatModifyingZone, E
         cardDrawCardIDs.add(Reboot.ID);
         cardDrawCardIDs.add(CutThroughFate.ID);
         cardDrawCardIDs.add(EmptyMind.ID);
-        cardDrawCardIDs.add(InnerPeace.ID);
         cardDrawCardIDs.add(Sanctity.ID);
         cardDrawCardIDs.add(WheelKick.ID);
         cardDrawCardIDs.add(Scrawl.ID);
@@ -133,10 +132,16 @@ public class AmbushedZone extends AbstractZone implements CombatModifyingZone, E
         rewardCards.addAll(newCards);
     }
 
+
     private AbstractCard getCardDrawCard(AbstractCard.CardRarity rarity, HashSet<String> selectedCardIDs) {
+        if(!Arrays.asList(AbstractCard.CardRarity.COMMON, AbstractCard.CardRarity.UNCOMMON, AbstractCard.CardRarity.RARE).contains(rarity)) {
+            rarity = AbstractCard.CardRarity.UNCOMMON;
+        }
+
         // Filter the cardDrawCardIDs list by the specified rarity
+        AbstractCard.CardRarity finalRarity = rarity;
         List<String> filteredCardIDs = cardDrawCardIDs.stream()
-                .filter(id -> isCardOfRarity(id, rarity))
+                .filter(id -> isCardOfRarity(id, finalRarity))
                 .collect(Collectors.toList());
 
         // Exclude already selected card IDs to avoid duplicates
@@ -240,6 +245,40 @@ public class AmbushedZone extends AbstractZone implements CombatModifyingZone, E
     }
 
     @Override
+    public AbstractCard getReplacementShopCardForCourier(AbstractCard purchasedCard) {
+        boolean isColored = purchasedCard.color != AbstractCard.CardColor.COLORLESS;
+        AbstractCard replacementCard = getCardForCourier(purchasedCard.type, isColored);
+
+        if (replacementCard == null) {
+            return null;
+        }
+
+        return replacementCard;
+    }
+
+    private AbstractCard getCardForCourier(AbstractCard.CardType type, boolean isColored) {
+
+        // Filter cards by type and whether it's colored or colorless
+        List<String> filteredCardIDs = cardDrawCardIDs.stream()
+                .filter(id -> isCardSuitableForCourier(id, type, isColored))
+                .collect(Collectors.toList());
+
+        if (!filteredCardIDs.isEmpty()) {
+            String selectedCardID = filteredCardIDs.get(AbstractDungeon.cardRng.random(filteredCardIDs.size() - 1));
+            return CardLibrary.getCard(selectedCardID).makeCopy();
+        }
+
+        return null;
+    }
+
+    private boolean isCardSuitableForCourier(String cardID, AbstractCard.CardType type, boolean isColored) {
+        AbstractCard card = CardLibrary.getCard(cardID);
+        boolean isCardColored = card.color != AbstractCard.CardColor.COLORLESS;
+        return card != null && card.type == type && isCardColored == isColored;
+    }
+
+
+    @Override
     public void postCreateShopPotions(ShopScreen screen, ArrayList<StorePotion> potions) {
         if (potions.size() >= 3) {
             potions.clear();
@@ -289,6 +328,10 @@ public class AmbushedZone extends AbstractZone implements CombatModifyingZone, E
 
             // Update the reward item's description to match the new potion
             rewardItem.text = replacementPotion.name;
+        }
+        if (rewardItem.type == RewardItem.RewardType.GOLD) {
+            int additionalGold = rewardItem.goldAmt;
+            rewardItem.incrementGold(additionalGold);
         }
     }
 
