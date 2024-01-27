@@ -37,7 +37,6 @@ public abstract class BrokenRelic extends AbstractSMORelic {
     private static final boolean DO_ANIMATIONS = false; // :(
 
 
-
     static {
         brokenSpaceShader = new ShaderProgram(Gdx.files.internal(makeShaderPath("BrokenSpace/Glitch.vs")), Gdx.files.internal(makeShaderPath("BrokenSpace/Glitch.fs")));
         if (!brokenSpaceShader.isCompiled()) {
@@ -224,7 +223,6 @@ public abstract class BrokenRelic extends AbstractSMORelic {
         }
         if (!DO_ANIMATIONS && getRotation() != frozenRotation) {
             setRotation(frozenRotation);
-
         }
 
     }
@@ -233,7 +231,6 @@ public abstract class BrokenRelic extends AbstractSMORelic {
     public void render(SpriteBatch sb, boolean renderAmount, Color outlineColor) {
         GlitchRotation();
         firstRenderCheck();
-
         StartFbo(sb);
         super.render(sb, renderAmount, outlineColor);
         StopFbo(sb, renderAmount);
@@ -241,8 +238,6 @@ public abstract class BrokenRelic extends AbstractSMORelic {
     }
 
     private void firstRenderCheck() {
-
-
         if (img == missingImg && originalRelic != null) {
             img = originalRelic.img;
             largeImg = originalRelic.largeImg;
