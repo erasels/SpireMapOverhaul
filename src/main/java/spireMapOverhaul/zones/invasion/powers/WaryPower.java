@@ -17,7 +17,7 @@ public class WaryPower extends AbstractInvasionPower {
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     public WaryPower(AbstractCreature owner, int amount) {
-        super(POWER_ID, NAME, PowerType.BUFF, false, owner, 0);
+        super(POWER_ID, NAME, PowerType.BUFF, false, owner, amount);
     }
 
     @Override
