@@ -79,7 +79,8 @@ public class GrassZone extends AbstractZone implements CombatModifyingZone, Rend
                 }
             }
             // Use only as much energy as was used for upgrading
-            AbstractDungeon.player.energy.use(upgrades);
+            if(upgrades > 0)
+                AbstractDungeon.player.energy.use(upgrades);
         }
     }
 
