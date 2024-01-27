@@ -1,6 +1,7 @@
 package spireMapOverhaul.util;
 
 import basemod.DevConsole;
+import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
@@ -115,12 +116,6 @@ public class Wiz {
         for (AbstractCard c : cardsList) {
             consumer.accept(c);
         }
-    }
-
-    public static int getLogicalPowerAmount(AbstractCreature ac, String powerId) {
-        AbstractPower pow = ac.getPower(powerId);
-        if (pow == null) return 0;
-        return pow.amount;
     }
 
     public static ArrayList<AbstractCard> getAllCardsInCardGroups(boolean includeHand, boolean includeExhaust) {
@@ -426,7 +421,7 @@ public class Wiz {
     }
 
     public static AbstractGameAction.AttackEffect getRandomSlash() {
-        int x = AbstractDungeon.miscRng.random(0, 2);
+        int x = MathUtils.random(0, 2);
         if (x == 0)
             return AbstractGameAction.AttackEffect.SLASH_DIAGONAL;
         if (x == 1)
@@ -480,14 +475,6 @@ public class Wiz {
         discard(amount, false);
     }
 
-    public static int pwrAmt(AbstractCreature check, String ID) {
-        AbstractPower found = check.getPower(ID);
-        if (found != null) {
-            return found.amount;
-        }
-        return 0;
-    }
-
     public static int getLogicalCardCost(AbstractCard c) {
         if (!c.freeToPlay()) {
             if (c.cost <= -2) {
@@ -497,6 +484,12 @@ public class Wiz {
             return c.costForTurn;
         }
         return 0;
+    }
+
+    public static int getLogicalPowerAmount(AbstractCreature ac, String powerId) {
+        AbstractPower pow = ac.getPower(powerId);
+        if (pow == null) return 0;
+        return pow.amount;
     }
 
     public static int countDebuffs(AbstractCreature c){
