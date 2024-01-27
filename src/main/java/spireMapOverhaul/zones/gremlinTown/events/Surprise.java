@@ -46,8 +46,9 @@ public class Surprise extends AbstractEvent {
     private static final float RIDER_B_END_Y;
     private static final int GOLD_BASE = 40;
     private static final int GOLD_VARIANCE = 10;
-    private static final float AMBUSH_TIME = 2.5F;
-    private static final float STARE_TIME = 0.25F;
+    private static final float AMBUSH_TIME = 3.0F;
+    private static final float SOUND_TIME = 0.15F;
+    private static final float STARE_TIME = 0.75F;
     public static final float SHELL_FLIGHT_TIME = 1.0F;
 
     private GremlinRiderRed riderA;
@@ -56,6 +57,7 @@ public class Surprise extends AbstractEvent {
     private Shell shell;
     public boolean mimic;
     private boolean fired;
+    private boolean soundFired;
 
     static {
         eventStrings = CardCrawlGame.languagePack.getEventString(ID);
@@ -84,6 +86,7 @@ public class Surprise extends AbstractEvent {
         roomEventText.hide();
         mimic = true;
         fired = false;
+        soundFired = false;
         adRoom().phase = AbstractRoom.RoomPhase.COMPLETE;
         AbstractDungeon.overlayMenu.proceedButton.show();
         String proceedLabel = CardCrawlGame.languagePack.getUIString("TreasureRoom").TEXT[0];
@@ -113,19 +116,20 @@ public class Surprise extends AbstractEvent {
                     riderA, riderB
             });
             chest.hide = true;
-            CardCrawlGame.sound.play("BLUNT_HEAVY");
         } else if (screen == CUR_SCREEN.AMBUSH) {
             animTimer -= Gdx.graphics.getDeltaTime();
             updateRiderA();
             updateRiderB();
-            if (animTimer <= AMBUSH_TIME - STARE_TIME) {
-                if (!fired) {
-                    fired = true;
-                    float shellTargetX = adp().hb.cX;
-                    float shellTargetY = adp().hb.y;
-                    shell = new Shell(chest.hb.x + 60f*Settings.scale, chest.hb.cY + 52f*Settings.scale,
-                            shellTargetX, shellTargetY, SHELL_FLIGHT_TIME);
-                }
+            if (animTimer <= AMBUSH_TIME - STARE_TIME + SOUND_TIME && !soundFired) {
+                soundFired = true;
+                CardCrawlGame.sound.play("BLUNT_HEAVY");
+            }
+            if (animTimer <= AMBUSH_TIME - STARE_TIME && !fired) {
+                fired = true;
+                float shellTargetX = adp().hb.cX;
+                float shellTargetY = adp().hb.y;
+                shell = new Shell(chest.hb.x + 60f*Settings.scale, chest.hb.cY + 52f*Settings.scale,
+                        shellTargetX, shellTargetY, SHELL_FLIGHT_TIME);
             }
             if (animTimer < 0.0F) {
                 screen = CUR_SCREEN.COMBAT;
