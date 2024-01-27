@@ -121,6 +121,11 @@ public class GremlinTown extends AbstractZone
     }
 
     @Override
+    public String getCombatText() {
+        return HordeHelper.getCombatString();
+    }
+
+    @Override
     public List<ZoneEncounter> getNormalEncounters() {
         return Arrays.asList(
                 new ZoneEncounter(GREMLIN_RIDERS, 2, () -> new MonsterGroup(
@@ -191,7 +196,7 @@ public class GremlinTown extends AbstractZone
         gremlinPool.add("GremlinWarrior");
         gremlinPool.add("GremlinThief");
         gremlinPool.add("GremlinFat");
-        gremlinPool.add("GremlinTsundere");
+        gremlinPool.add("GremlinWarrior");
 
         AbstractMonster[] retVal = new AbstractMonster[4];
         int index = AbstractDungeon.miscRng.random(gremlinPool.size() - 1);

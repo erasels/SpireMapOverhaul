@@ -41,8 +41,8 @@ public class GremlinCannon extends CustomMonster
     private static final int VULN_AMOUNT_A17 = 4;
     private static final int WEAK_AMOUNT = 3;
     private static final int WEAK_AMOUNT_A17 = 4;
-    private static final int DAMAGE = 10;
-    private static final int DAMAGE_A2 = 12;
+    private static final int DAMAGE = 13;
+    private static final int DAMAGE_A2 = 15;
     private static final float SHELL_DURATION = 1.3F;
     private static final float SOUND_TIME = 0.15F;
 
