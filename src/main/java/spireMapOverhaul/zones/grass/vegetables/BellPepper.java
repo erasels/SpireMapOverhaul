@@ -16,12 +16,12 @@ public class BellPepper extends AbstractVegetable {
 
     @Override
     public int getEffectAmount() {
-        return level;
+        return 3 + (level * 2);
     }
 
     @Override
     public int getHits() {
-        return 3;
+        return 1;
     }
 
     @Override
