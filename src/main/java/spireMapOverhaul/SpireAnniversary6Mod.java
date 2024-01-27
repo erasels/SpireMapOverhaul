@@ -47,6 +47,7 @@ import spireMapOverhaul.patches.CustomRewardTypes;
 import spireMapOverhaul.patches.ZonePatches;
 import spireMapOverhaul.patches.ZonePerFloorRunHistoryPatch;
 import spireMapOverhaul.patches.interfacePatches.CampfireModifierPatches;
+import spireMapOverhaul.patches.interfacePatches.CombatModifierPatches;
 import spireMapOverhaul.patches.interfacePatches.EncounterModifierPatches;
 import spireMapOverhaul.patches.interfacePatches.TravelTrackingPatches;
 import spireMapOverhaul.rewards.AnyColorCardReward;
@@ -65,6 +66,7 @@ import spireMapOverhaul.zones.brokenspace.BrokenSpaceZone;
 import spireMapOverhaul.zones.gremlinTown.GremlinTown;
 import spireMapOverhaul.zones.gremlinTown.HordeHelper;
 import spireMapOverhaul.zones.gremlinTown.potions.*;
+import spireMapOverhaul.zones.keymaster.KeymasterZone;
 import spireMapOverhaul.zones.manasurge.ui.extraicons.BlightIcon;
 import spireMapOverhaul.zones.manasurge.ui.extraicons.EnchantmentIcon;
 import spireMapOverhaul.zones.windy.WindyZone;
@@ -100,6 +102,7 @@ public class SpireAnniversary6Mod implements
         PostCampfireSubscriber,
         MaxHPChangeSubscriber,
         StartGameSubscriber,
+        StartActSubscriber,
         ImGuiSubscriber,
         PostUpdateSubscriber {
 
@@ -700,6 +703,7 @@ public class SpireAnniversary6Mod implements
         });
 
         BeastsLairZone.initializeSaveFields();
+        KeymasterZone.initializeSaveFields();
     }
 
     @Override
@@ -724,8 +728,16 @@ public class SpireAnniversary6Mod implements
         BetterMapGenerator.clearActiveZones();
         if (!CardCrawlGame.loadingSave) {
             BeastsLairZone.clearBossList();
+            // Fix crash when you die to Gremlin horde and then start a new run
+            AbstractDungeon.lastCombatMetricKey = "";
         }
         HordeHelper.hidePlatforms();
+        CombatModifierPatches.hideButton = true;
+    }
+
+    @Override
+    public void receiveStartAct() {
+        KeymasterZone.startOfActHasKeys = Settings.hasSapphireKey && Settings.hasEmeraldKey && Settings.hasRubyKey;
     }
 
     public static float time = 0f;

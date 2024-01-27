@@ -20,6 +20,8 @@ public class BrokenSingingBowl extends BrokenRelic implements MaxHPChangeRelic {
 
     @Override
     public int onMaxHPChange(int amount) {
+        if(amount <= 0) return amount;
+
         ArrayList<AbstractCard> upgradableCards = new ArrayList<>();
         flash();
 
@@ -31,7 +33,7 @@ public class BrokenSingingBowl extends BrokenRelic implements MaxHPChangeRelic {
 
         for (int i = 0; i < AMOUNT; i++) {
             if (!upgradableCards.isEmpty()) {
-                AbstractCard c = upgradableCards.remove(AbstractDungeon.cardRandomRng.random(upgradableCards.size() - 1));
+                AbstractCard c = upgradableCards.remove(AbstractDungeon.miscRng.random(upgradableCards.size() - 1));
                 c.upgrade();
                 AbstractDungeon.player.bottledCardUpgradeCheck(c);
                 AbstractDungeon.topLevelEffectsQueue.add(new ShowCardBrieflyEffect(c.makeStatEquivalentCopy()));

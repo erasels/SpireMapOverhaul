@@ -16,7 +16,7 @@
   },
   "${ModID}:MidasAura": {
     "NAME": "Midas Aura",
-    "DESCRIPTIONS": ["When you play an upgraded attack, skill, or power, #yExhaust it and add a Gilded Strike, Gilded Defend, or Gilded Essence to your discard pile."]
+    "DESCRIPTIONS": ["When you play an upgraded Attack, Skill, or Power, #yExhaust it and add a #yGilded #yStrike, #yGilded #yDefend, or #yGilded #yEssence to your discard pile."]
   },
   "${ModID}:GoldenBulwark": {
     "NAME": "Golden Bulwark",

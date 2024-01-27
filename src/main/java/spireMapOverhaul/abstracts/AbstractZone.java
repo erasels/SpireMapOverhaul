@@ -559,4 +559,11 @@ public abstract class AbstractZone {
 
         return siblings;
     }
+
+    @Override
+    public String toString() {
+        String auth = "not initialized";
+        if(TEXT != null && TEXT.length >= 3) auth = TEXT[2];
+        return "Biome: " + this.name + ", by " + auth;
+    }
 }

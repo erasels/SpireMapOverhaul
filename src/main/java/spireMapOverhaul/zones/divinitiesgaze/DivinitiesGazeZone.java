@@ -1,6 +1,7 @@
 package spireMapOverhaul.zones.divinitiesgaze;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -65,7 +66,7 @@ public class DivinitiesGazeZone extends AbstractZone implements ModifiedEventRat
     Wiz.atb(new AbstractGameAction() {
       @Override
       public void update() {
-        AbstractDungeon.effectList.add(new SpeechBubble(Settings.WIDTH / 2f, Settings.HEIGHT * 3f / 4f, 3, quotes[AbstractDungeon.miscRng.random(quotes.length - 1)], false));
+        AbstractDungeon.effectList.add(new SpeechBubble(Settings.WIDTH / 2f, Settings.HEIGHT * 3f / 4f, 3, quotes[MathUtils.random(quotes.length - 1)], false));
         isDone = true;
       }
     });

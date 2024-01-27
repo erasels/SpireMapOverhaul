@@ -1,0 +1,10 @@
+[
+  {
+    "ID": "frostbite",
+    "PROPER_NAME": "冻伤",
+    "NAMES": [
+      "冻伤"
+    ],
+    "DESCRIPTION": "回合结束时，若此牌在你的手牌中，受到 #b4 点伤害"
+  }
+]

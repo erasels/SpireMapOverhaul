@@ -26,7 +26,7 @@ public class CombatModifierPatches {
             Settings.HEIGHT - 356 * Settings.scale);
 
     private static UIStrings uiStrings;
-    private static boolean hideButton = true;
+    public static boolean hideButton = true;
 
     @SpirePatch2(clz =AbstractPlayer.class, method = "preBattlePrep")
     public static class BeforePreCombat {

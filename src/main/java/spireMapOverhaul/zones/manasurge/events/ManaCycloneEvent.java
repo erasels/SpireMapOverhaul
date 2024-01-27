@@ -7,13 +7,13 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.helpers.RelicLibrary;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.relics.*;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import spireMapOverhaul.SpireAnniversary6Mod;
+import spireMapOverhaul.util.EventTooltipCreator;
 import spireMapOverhaul.zones.manasurge.ManaSurgeZone;
 import spireMapOverhaul.zones.manasurge.ui.campfire.EnchantOption;
 import spireMapOverhaul.zones.manasurge.vfx.EnchantBlightEffect;
@@ -55,17 +55,8 @@ public class ManaCycloneEvent extends PhasedEvent {
         float cardWidth = AbstractCard.IMG_WIDTH;
         float horizontalOffset = cardWidth * 0.75F;
 
-        AbstractRelic rEnchantBlight = new Circlet();
-        rEnchantBlight.tips.clear();
-        rEnchantBlight.tips.add(new PowerTip(ManaSurgeZone.getKeywordProper(ENCHANT_ID), ManaSurgeZone.getKeywordDescription(ENCHANT_ID)));
-        rEnchantBlight.tips.add(new PowerTip(ManaSurgeZone.getKeywordProper(BLIGHTED_ID), ManaSurgeZone.getKeywordDescription(BLIGHTED_ID)));
-
-        AbstractRelic rBlight = new Circlet();
-        rBlight.tips.clear();
-        rBlight.tips.add(new PowerTip(ManaSurgeZone.getKeywordProper(BLIGHTED_ID), ManaSurgeZone.getKeywordDescription(BLIGHTED_ID)));
-
         registerPhase("Start", new TextPhase(DESCRIPTIONS[0])
-                .addOption(new TextPhase.OptionInfo(OPTIONS[0],rEnchantBlight)
+                .addOption(new TextPhase.OptionInfo(OPTIONS[0], EventTooltipCreator.createRelicForTootlips(ENCHANT_ID, BLIGHTED_ID))
                         .cardSelectOption("Reached Inside",
                                 ()->{
                                     CardGroup filteredCards = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
@@ -112,7 +103,7 @@ public class ManaCycloneEvent extends PhasedEvent {
                                 }
                         )
                 )
-                .addOption(OPTIONS[1],rBlight,(i) -> {
+                .addOption(OPTIONS[1], EventTooltipCreator.createRelicForTootlips(BLIGHTED_ID), (i) -> {
                     CardGroup filteredCards = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
                     AbstractDungeon.player.masterDeck.group.stream()
                             .filter(card -> !ManaSurgeZone.hasManaSurgeModifier(card) &&

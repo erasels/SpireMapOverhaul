@@ -25,7 +25,7 @@ public class WindyAudioPatch {
         @SpirePrefixPatch
         public static void Prefix(AbstractScene __instance) {
             if(inWindyZone()) {
-                if (Settings.AMBIANCE_ON) {
+                if (Settings.AMBIANCE_ON && Settings.MASTER_VOLUME > 0) {
                     CardCrawlGame.sound.adjustVolume(WindyZone.WINDY_KEY, WindyZone.windID);
                 } else {
                     CardCrawlGame.sound.adjustVolume(WindyZone.WINDY_KEY, WindyZone.windID, 0.0f);

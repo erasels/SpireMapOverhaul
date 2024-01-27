@@ -4,10 +4,10 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.EntanglePower;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractSMOCard;
 import spireMapOverhaul.util.Wiz;
@@ -18,17 +18,17 @@ public class Inevitability extends AbstractSMOCard {
   private static boolean canTalk = true;
 
   public Inevitability() {
-    super(ID, DivinitiesGazeZone.ID, -2, CardType.ATTACK, CardRarity.SPECIAL, CardTarget.ALL, CardColor.COLORLESS);
-    this.damage = this.baseDamage = 5;
+    super(ID, DivinitiesGazeZone.ID, -2, CardType.SKILL, CardRarity.SPECIAL, CardTarget.ALL, CardColor.COLORLESS);
+    this.magicNumber = this.baseMagicNumber = 5;
     this.block = this.baseBlock = 3;
-    this.magicNumber = this.baseMagicNumber = 1;
+    this.secondMagic = this.baseSecondMagic = 1;
     this.isMultiDamage = true;
     this.selfRetain = true;
   }
 
   @Override
   public void upp() {
-    upgradeDamage(2);
+    upgradeMagicNumber(2);
     upgradeBlock(1);
   }
 
@@ -47,25 +47,21 @@ public class Inevitability extends AbstractSMOCard {
 
   @Override
   public void onRetained() {
-    if(AbstractDungeon.player.hasPower(EntanglePower.POWER_ID)) {
-      // do not trigger if cannot attack
-      return;
-    }
-
     this.flash();
-    Wiz.atb(new DamageAllEnemiesAction(AbstractDungeon.player, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE));
+    if(canTalk) {
+      Wiz.atb(new TalkAction(true, cardStrings.EXTENDED_DESCRIPTION[AbstractDungeon.cardRandomRng.random(0, cardStrings.EXTENDED_DESCRIPTION.length - 1)], 0.5F, 1.5F));
+      canTalk = false;
+    }
+    Wiz.atb(new DamageAllEnemiesAction(AbstractDungeon.player, DamageInfo.createDamageMatrix(this.magicNumber, true),
+        DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE));
     Wiz.atb(new GainBlockAction(AbstractDungeon.player, this.block));
     Wiz.atb(new AbstractGameAction() {
       @Override
       public void update() {
         this.isDone = true;
-        Inevitability.this.baseDamage += Inevitability.this.magicNumber;
-        Inevitability.this.baseBlock += Inevitability.this.magicNumber;
+        Inevitability.this.baseMagicNumber += Inevitability.this.secondMagic;
+        Inevitability.this.baseBlock += Inevitability.this.secondMagic;
       }
     });
-    if(canTalk) {
-      Wiz.atb(new TalkAction(true, cardStrings.EXTENDED_DESCRIPTION[AbstractDungeon.cardRandomRng.random(0, cardStrings.EXTENDED_DESCRIPTION.length - 1)], 2.0F, 3.0F));
-    }
-    canTalk = false;
   }
 }
