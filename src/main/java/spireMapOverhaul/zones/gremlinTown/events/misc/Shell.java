@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.Hitbox;
+import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
 import com.megacrit.cardcrawl.vfx.combat.SmokeBombEffect;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeImagePath;
@@ -30,8 +31,13 @@ public class Shell {
     private final float START_Y;
     private final float END_Y;
 
-    
+    private final boolean attack;
+
     public Shell(float startX, float startY, float endX, float endY, float flightTime) {
+        this(startX, startY, endX, endY, flightTime, false);
+    }
+
+    public Shell(float startX, float startY, float endX, float endY, float flightTime, boolean attack) {
         hb = new Hitbox(startX, startY, RAW_W*Settings.scale, RAW_W*Settings.scale);
         animTimer = flightTime;
         hide = true;
@@ -42,6 +48,7 @@ public class Shell {
         this.flightTime = flightTime;
         rotation = (float)Math.atan(FIRE_RATIO);
         calculateFlightParameters();
+        this.attack = attack;
     }
 
     static {
@@ -60,7 +67,10 @@ public class Shell {
             rotation = (float)((180.0F / Math.PI) * Math.atan2(vel_y, vel_x));
             hide = false;
         } else if (animTimer < 0F && !hide) {
-            AbstractDungeon.effectsQueue.add(new SmokeBombEffect(END_X, adp().hb.cY));
+            if (!attack)
+                AbstractDungeon.effectsQueue.add(new SmokeBombEffect(END_X, adp().hb.cY));
+            else
+                AbstractDungeon.effectsQueue.add(new ExplosionSmallEffect(END_X, adp().hb.cY));
             hide = true;
         }
         hb.update();
