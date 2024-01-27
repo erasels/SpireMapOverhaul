@@ -1,7 +1,6 @@
 package spireMapOverhaul.util;
 
 import basemod.DevConsole;
-import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
@@ -27,8 +26,6 @@ import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.actions.TimedVFXAction;
 import spireMapOverhaul.patches.ZonePatches;
-import spireMapOverhaul.zoneInterfaces.CampfireModifyingZone;
-import spireMapOverhaul.zoneInterfaces.CombatModifyingZone;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -508,13 +505,7 @@ public class Wiz {
                 .count();
     }
 
-    public static <T> T getRandomEntry(ArrayList<T> list, java.util.Random rng) {
-        if (list.size() == 0)
-            return null;
-        return list.get(rng.nextInt(list.size()));
-    }
-
-    public static AbstractRoom adRoom() {
+    public static AbstractRoom curRoom() {
         if (AbstractDungeon.currMapNode != null)
             return AbstractDungeon.getCurrRoom();
         return null;

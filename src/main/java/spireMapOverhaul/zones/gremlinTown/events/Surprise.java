@@ -21,7 +21,7 @@ import spireMapOverhaul.zones.gremlinTown.monsters.GremlinCannon;
 import spireMapOverhaul.zones.gremlinTown.monsters.GremlinRiderRed;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
-import static spireMapOverhaul.util.Wiz.adRoom;
+import static spireMapOverhaul.util.Wiz.curRoom;
 import static spireMapOverhaul.util.Wiz.adp;
 
 public class Surprise extends AbstractEvent {
@@ -87,7 +87,7 @@ public class Surprise extends AbstractEvent {
         mimic = true;
         fired = false;
         soundFired = false;
-        adRoom().phase = AbstractRoom.RoomPhase.COMPLETE;
+        curRoom().phase = AbstractRoom.RoomPhase.COMPLETE;
         AbstractDungeon.overlayMenu.proceedButton.show();
         String proceedLabel = CardCrawlGame.languagePack.getUIString("TreasureRoom").TEXT[0];
         AbstractDungeon.overlayMenu.proceedButton.setLabel(proceedLabel);
@@ -106,11 +106,11 @@ public class Surprise extends AbstractEvent {
         if (chest.isOpen && screen == CUR_SCREEN.INTRO) {
             mimic = false;
             screen = CUR_SCREEN.AMBUSH;
-            adRoom().phase = AbstractRoom.RoomPhase.EVENT;
+            curRoom().phase = AbstractRoom.RoomPhase.EVENT;
             animTimer = AMBUSH_TIME;
             riderA = new GremlinRiderRed(RIDER_A_START_X - Settings.WIDTH*0.75F, RIDER_A_START_Y - AbstractDungeon.floorY);
             riderB = new GremlinRiderRed(RIDER_B_START_X - Settings.WIDTH*0.75F, RIDER_B_START_Y - AbstractDungeon.floorY);
-            Wiz.adRoom().monsters = new MonsterGroup(new AbstractMonster[]{
+            Wiz.curRoom().monsters = new MonsterGroup(new AbstractMonster[]{
                     new GremlinCannon((Chest.CHEST_LOC_X - Settings.WIDTH*0.75F)/Settings.scale,
                             (Chest.CHEST_LOC_Y - AbstractDungeon.floorY - 256.0F*Settings.scale)/Settings.yScale),
                     riderA, riderB
@@ -133,12 +133,12 @@ public class Surprise extends AbstractEvent {
             }
             if (animTimer < 0.0F) {
                 screen = CUR_SCREEN.COMBAT;
-                adRoom().addGoldToRewards(GOLD_BASE + AbstractDungeon.miscRng.random(0, GOLD_VARIANCE));
-                adRoom().addRelicToRewards(GremlinTown.getRandomGRelic());
+                curRoom().addGoldToRewards(GOLD_BASE + AbstractDungeon.miscRng.random(0, GOLD_VARIANCE));
+                curRoom().addRelicToRewards(GremlinTown.getRandomGRelic());
                 // For render order
-                AbstractMonster tmp = adRoom().monsters.monsters.get(0);
-                adRoom().monsters.monsters.add(tmp);
-                adRoom().monsters.monsters.remove(0);
+                AbstractMonster tmp = curRoom().monsters.monsters.get(0);
+                curRoom().monsters.monsters.add(tmp);
+                curRoom().monsters.monsters.remove(0);
                 AbstractDungeon.lastCombatMetricKey = GremlinTown.SURPRISE;
                 enterCombat();
             }
