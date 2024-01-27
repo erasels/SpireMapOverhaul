@@ -78,7 +78,7 @@ public class HordeHelper {
 
     public static String getCombatString() {
         if (GremlinTown.GREMLIN_HORDE.equals(AbstractDungeon.lastCombatMetricKey))
-            return TEXT[4];
+            return TEXT[3];
         else
             return null;
     }
