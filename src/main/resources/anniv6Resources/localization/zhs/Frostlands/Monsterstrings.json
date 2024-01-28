@@ -1,5 +1,5 @@
 {
-  "anniv6:Steward": {
+  "${ModID}:Steward": {
     "MOVES": [
       "滚动",
       "滚动打击",
@@ -7,7 +7,7 @@
     ],
     "NAME": "雪球"
   },
-  "anniv6:Snowman": {
+  "${ModID}:Snowman": {
     "MOVES": [
       "问候",
       "二连击",
@@ -15,7 +15,7 @@
     ],
     "NAME": "雪人"
   },
-  "anniv6:Hypothema": {
+  "${ModID}:Hypothema": {
     "MOVES": [
       "问候",
       "二连击",
@@ -23,7 +23,7 @@
     ],
     "NAME": "海普瑟玛"
   },
-  "anniv6:Spruce": {
+  "${ModID}:Spruce": {
     "MOVES": [
       "问候",
       "力劈",
@@ -31,7 +31,7 @@
     ],
     "NAME": "斯普鲁斯"
   },
-  "anniv6:Cole": {
+  "${ModID}:Cole": {
     "MOVES": [
       "问候",
       "防守",

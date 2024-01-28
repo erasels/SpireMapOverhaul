@@ -1,5 +1,5 @@
 {
-  "anniv6:GremlinCook": {
+  "${ModID}:GremlinCook": {
     "MOVES": [
       "做饭",
       "干粮",
@@ -11,7 +11,7 @@
       "开饭了，小子们！"
     ]
   },
-  "anniv6:GremlinDog": {
+  "${ModID}:GremlinDog": {
     "MOVES": [
       "剧毒尖牙",
       "防守"

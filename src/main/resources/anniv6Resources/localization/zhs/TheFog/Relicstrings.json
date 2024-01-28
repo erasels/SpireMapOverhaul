@@ -1,5 +1,5 @@
 {
-  "anniv6:StoneFragment": {
+  "${ModID}:StoneFragment": {
     "NAME": "立石碎片",
     "FLAVOR": "碎片散发着强大的光环，但又似乎遥不可及。",
     "DESCRIPTIONS": [

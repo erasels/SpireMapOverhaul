@@ -1,20 +1,20 @@
 {
-  "anniv6:Hexaghost": {
+  "${ModID}:Hexaghost": {
     "NAME": "五火亡魂",
     "MOVES": [],
     "DIALOG": []
   },
-  "anniv6:SlaverBlue": {
+  "${ModID}:SlaverBlue": {
     "MOVES": [
       "绊倒"
     ]
   },
-  "anniv6:BanditBear": {
+  "${ModID}:BanditBear": {
     "DIALOG": [
       "~罗密欧欧欧欧欧欧!!!!~"
     ]
   },
-  "anniv6:BookOfStabbing": {
+  "${ModID}:BookOfStabbing": {
     "NAME": "捶人的书",
     "MOVES": [],
     "DIALOG": []

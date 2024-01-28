@@ -1,74 +1,74 @@
 {
-  "anniv6:Tenderizer": {
+  "${ModID}:Tenderizer": {
     "NAME": "嫩肉槌",
     "DESCRIPTIONS": ["本回合每当你造成未被格挡的伤害时， 施加 #b{0} 层 #y虚弱"]
   },
-  "anniv6:DelayedVigor": {
+  "${ModID}:DelayedVigor": {
     "NAME": "蓄力",
     "DESCRIPTIONS": ["在 #b2 回合后，获得 #b{0} 点 #y活力",
       "在 #b1 回合后，获得 #b{0} 点 #y活力"]
   },
-  "anniv6:Sap": {
+  "${ModID}:Sap": {
     "NAME": "枯竭",
     "DESCRIPTIONS": ["你下回合开始时，失去 [E] ",
       "你下回合开始时，失去 #b{0} [E] "]
   },
-  "anniv6:HeartImpairment": {
+  "${ModID}:HeartImpairment": {
     "NAME": "削弱",
     "DESCRIPTIONS": ["腐化之心没那么危险了"]
   },
-  "anniv6:NoxiousBrew": {
+  "${ModID}:NoxiousBrew": {
     "NAME": "毒酒",
     "DESCRIPTIONS": ["在你回合结束时，对随机一位敌人施加 #b{0} 层 #y中毒"]
   },
-  "anniv6:MushroomSoup": {
+  "${ModID}:MushroomSoup": {
     "NAME": "蘑菇汤",
     "DESCRIPTIONS": ["在你回合结束时，获得 #b{0} #y临时生命"]
   },
-  "anniv6:GremsFire": {
+  "${ModID}:GremsFire": {
     "NAME": "格雷姆之炎",
     "DESCRIPTIONS": ["在你回合结束时，对所有敌人造成 #b{0} 点伤害"]
   },
-  "anniv6:Raging": {
+  "${ModID}:Raging": {
     "NAME": "发怒",
     "DESCRIPTIONS": ["回合结束时，获得 #b{0} 点 #y力量"]
   },
-  "anniv6:GremlinNib": {
+  "${ModID}:GremlinNib": {
     "NAME": "大块头之力",
     "DESCRIPTIONS": ["你每打出 #b{0} 张攻击牌后，本回合释放一次强力攻击"]
   },
-  "anniv6:Bellow": {
+  "${ModID}:Bellow": {
     "NAME": "地精怒吼",
     "DESCRIPTIONS": ["每当敌人不进行进攻时，获得 #b{0} 点 #y力量"]
   },
-  "anniv6:Critical": {
+  "${ModID}:Critical": {
     "NAME": "致命攻击",
     "DESCRIPTIONS": ["你的下次攻击额外造成 #b{0} 倍伤害"]
   },
-  "anniv6:OmegaCurse": {
+  "${ModID}:OmegaCurse": {
     "NAME": "欧米伽诅咒",
     "DESCRIPTIONS": ["额外受到 {0} 伤害"]
   },
-  "anniv6:Horde": {
+  "${ModID}:Horde": {
     "NAME": "地精部落",
     "DESCRIPTIONS": [
       "在你回合开始时，添加 #b1 张随机 #y地精卡牌 加入你的手牌",
       "在你回合开始时，添加 #b{0} 张随机 #y地精卡牌 加入你的手牌"
     ]
   },
-  "anniv6:Rig": {
+  "${ModID}:Rig": {
     "NAME": "操控",
     "DESCRIPTIONS": [
       "在你回合开始时，抽 #b1 张牌并 #y消耗 #b1 张牌",
       "在你回合开始时，抽 #b{0} 张牌并 #y消耗 #b{0} 张牌"
     ]
   },
-  "anniv6:Inspired": {
+  "${ModID}:Inspired": {
     "NAME": "激励",
     "DESCRIPTIONS": ["在你回合开始时，获得 #b{0} 点能量并抽 #b{0} 张牌",
       "在你回合开始时，获得 #b{0} 点能量并抽 #b{0} 张牌"]
   },
-  "anniv6:Spiteful": {
+  "${ModID}:Spiteful": {
     "NAME": "恶毒诅咒",
     "DESCRIPTIONS": ["生命值等于或低于 #b50% 时，将停止攻击2回合，然后释放一个强大的诅咒。"]
   }

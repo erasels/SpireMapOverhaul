@@ -1,5 +1,5 @@
 {
-  "anniv6:WindyBridge": {
+  "${ModID}:WindyBridge": {
     "NAME": "强风桥",
     "DESCRIPTIONS": [
       "intro1:当你穿过一座桥时，突然刮起一阵 @强风@ ，差点把你吹倒！",

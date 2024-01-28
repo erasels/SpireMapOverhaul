@@ -1,5 +1,5 @@
 {
-  "anniv6:DivineVisitor": {
+  "${ModID}:DivineVisitor": {
     "NAME": "造访神明%s",
     "DESCRIPTIONS": [
       "正当你走路的时候，你逐渐感觉到脑袋一阵刺痛... 周围似乎有什么东西...盯上了你 NL NL #r~你并非独自一人...~",

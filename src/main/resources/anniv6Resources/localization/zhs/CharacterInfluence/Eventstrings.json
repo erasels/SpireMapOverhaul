@@ -1,5 +1,5 @@
 {
-  "anniv6:CharacterVisit": {
+  "${ModID}:CharacterVisit": {
     "NAME": "附近的战斗",
     "DESCRIPTIONS": [
       "附近有一场战斗。你的一位昔日同伴“ ",

@@ -1,12 +1,12 @@
 {
-  "anniv6:GremlinCamp": {
+  "${ModID}:GremlinCamp": {
     "TEXT": [
       "地精营地",
       "一大群 #r地精 占领了这个地方，保持警惕，你不会希望在这里睡着的",
       "(Gk) erasels"
     ]
   },
-  "anniv6:GCEncounterNames": {
+  "${ModID}:GCEncounterNames": {
     "TEXT": [
       "地精殴斗者",
       "地精老大与护卫",
@@ -14,7 +14,7 @@
       "一群野生地精"
     ]
   },
-  "anniv6:ScavengeOption": {
+  "${ModID}:ScavengeOption": {
     "TEXT": [
       "拾荒",
       "获得 %s-%s 金币"

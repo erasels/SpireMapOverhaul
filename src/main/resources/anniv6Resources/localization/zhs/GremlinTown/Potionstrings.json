@@ -1,35 +1,35 @@
 {
-  "anniv6:LouseMilk": {
+  "${ModID}:LouseMilk": {
     "NAME": "过期牛奶",
     "DESCRIPTIONS": [
       "抽 #b{0} 张牌并获得 #b{1} 点能量"
     ]
   },
-  "anniv6:PreerelxsBlueRibbon": {
+  "${ModID}:PreerelxsBlueRibbon": {
     "NAME": "皮瑞斯的蓝缎带",
     "DESCRIPTIONS": [
       "获得 #b{0} 点 #y活力"
     ]
   },
-  "anniv6:RitualBlood": {
+  "${ModID}:RitualBlood": {
     "NAME": "仪式之血",
     "DESCRIPTIONS": [
       "#r削弱腐化之心"
     ]
   },
-  "anniv6:NoxiousBrew": {
+  "${ModID}:NoxiousBrew": {
     "NAME": "毒酒",
     "DESCRIPTIONS": [
       "你的回合结束时，对随机一位敌人施加 #b{0} 层 #y中毒"
     ]
   },
-  "anniv6:MushroomSoup": {
+  "${ModID}:MushroomSoup": {
     "NAME": "蘑菇汤",
     "DESCRIPTIONS": [
       "你的回合结束时，获得 #b{0} 点 #y临时生命"
     ]
   },
-  "anniv6:GremsFire": {
+  "${ModID}:GremsFire": {
     "NAME": "格雷姆之炎",
     "DESCRIPTIONS": [
       "你的回合结束时，对所有敌人造成 #b{0} 点伤害"

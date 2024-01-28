@@ -1,5 +1,5 @@
 {
-  "anniv6:GremlinPerformance": {
+  "${ModID}:GremlinPerformance": {
     "NAME": "地精演奏",
     "DESCRIPTIONS": [
       "当你正走在街上时，你发现前面聚集了很多地精。从这里你看不出来到底发生了什么事",
@@ -21,7 +21,7 @@
       "选择一张卡牌来移除"
     ]
   },
-  "anniv6:GremlinWheel": {
+  "${ModID}:GremlinWheel": {
     "NAME": "变化大转盘",
     "DESCRIPTIONS": [
       "你见到一位穿着帅气、满面笑容的地精。 NL \"是时候转动转盘了！ ~你准备好了吗？~ 你当然准备好了！\"",

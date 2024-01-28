@@ -1,12 +1,12 @@
 {
-  "anniv6:DivinitiesGaze": {
+  "${ModID}:DivinitiesGaze": {
     "TEXT": [
       "神之凝视",
       "诸神降临！你能引起他们的关注吗？能赢得他们的青睐吗？ NL NL 战斗开始时，从随机神灵中获取一张 #g强力 的 #g卡牌 和一些 #r状态 ",
       "Shammy, NoelleDevo, PitohuiArt"
     ]
   },
-  "anniv6:DivinitiesGaze_Divinity_Eclectic": {
+  "${ModID}:DivinitiesGaze_Divinity_Eclectic": {
     "TEXT": [
       "通过知识取得进步。",
       "通过进步获取知识。",
@@ -23,7 +23,7 @@
       "SELECT_TEXT": "选择一张牌加入你的牌组"
     }
   },
-  "anniv6:DivinitiesGaze_Divinity_End": {
+  "${ModID}:DivinitiesGaze_Divinity_End": {
     "TEXT": [
       "..."
     ],
@@ -38,7 +38,7 @@
       "SELECT_TEXT": "选择一张牌从你的牌组中移除"
     }
   },
-  "anniv6:DivinitiesGaze_Divinity_Jurors": {
+  "${ModID}:DivinitiesGaze_Divinity_Jurors": {
     "TEXT": [
       "你在接受审判。",
       "以正义之名！",
@@ -53,7 +53,7 @@
       "EVENT_REJECT_TEXT": "审判结束了，天平已然倾斜。陪审员们拖着脚步走出法庭。没有任何定罪。 NL NL 你是 #g清白 的？还是 #r骗了他们？也许你耍了他们 NL NL ... NL NL 也许他们知道"
     }
   },
-  "anniv6:DivinitiesGaze_Divinity_Primordial": {
+  "${ModID}:DivinitiesGaze_Divinity_Primordial": {
     "TEXT": [
       "...",
       "生长...",
@@ -72,7 +72,7 @@
       "SELECT_TEXT": "选择一张牌来复制"
     }
   },
-  "anniv6:DivinitiesGaze_Divinity_Torch": {
+  "${ModID}:DivinitiesGaze_Divinity_Torch": {
     "TEXT": [
       "我与你同在！",
       "黑暗中的光",

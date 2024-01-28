@@ -1,5 +1,5 @@
 {
-  "anniv6:DeadBranch": {
+  "${ModID}:DeadBranch": {
     "NAME": "枯木树枝",
     "DESCRIPTIONS": [
       "每当你 #y消耗 一张牌，增加一张随机卡牌到你的手牌 NL #y消耗每回合打出的第一张牌"

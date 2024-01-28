@@ -1,12 +1,12 @@
 {
-  "anniv6:GremlinTown": {
+  "${ModID}:GremlinTown": {
     "TEXT": [
       "地精小镇",
       "这片小镇被地精掌控着。更危险，但奖励也更丰厚",
       "Bryan K."
     ]
   },
-  "anniv6:ShopBanter": {
+  "${ModID}:ShopBanter": {
     "TEXT": [
       "嗨！ NL 买点什么吧！ NL 买买买！",
       "我喜欢你的发型。我们地精根本就没头发",
@@ -22,7 +22,7 @@
       "我喜欢金币。"
     ]
   },
-  "anniv6:Horde": {
+  "${ModID}:Horde": {
     "TEXT": [
       "随时！",
       "滚开！",

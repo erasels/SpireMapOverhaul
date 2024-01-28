@@ -1,12 +1,12 @@
 {
-  "anniv6:Eruptor": {
+  "${ModID}:Eruptor": {
     "MOVES": [
       "打击",
       "沸腾"
     ],
     "NAME": "爆发者"
   },
-  "anniv6:UnstableSunstone": {
+  "${ModID}:UnstableSunstone": {
     "MOVES": [
       "不稳定",
       "灼烧",
@@ -14,7 +14,7 @@
     ],
     "NAME": "不稳定日之石"
   },
-  "anniv6:SunStoneShard": {
+  "${ModID}:SunStoneShard": {
     "MOVES": [
       "蓄能",
       "灼烧",
@@ -22,14 +22,14 @@
     ],
     "NAME": "日之石碎片"
   },
-  "anniv6:HeatBlister": {
+  "${ModID}:HeatBlister": {
     "MOVES": [
       "击打",
       "含磷胆汁"
     ],
     "NAME": "灼热泡泡"
   },
-  "anniv6:GremlinArchmage": {
+  "${ModID}:GremlinArchmage": {
     "MOVES": [
       "召唤爪牙",
       "火球",

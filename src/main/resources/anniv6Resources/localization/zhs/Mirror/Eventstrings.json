@@ -1,5 +1,5 @@
 {
-  "anniv6:WeirdMirrors": {
+  "${ModID}:WeirdMirrors": {
     "NAME": "奇怪的镜子",
     "DESCRIPTIONS": [
       "你发现了一间摆满奇怪镜子的屋子，它们反射的光线在中间形成一个明亮的圆点。 NL NL 你有一种想在圆点处放点什么的冲动。",

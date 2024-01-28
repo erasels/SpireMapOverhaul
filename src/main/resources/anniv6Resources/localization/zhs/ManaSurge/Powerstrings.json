@@ -1,9 +1,9 @@
 {
 
-  "anniv6:ManaSurgePower": {
+  "${ModID}:ManaSurgePower": {
     "NAME": "魔力激增",
     "DESCRIPTIONS": [
-      "抽牌时，卡牌有 40% 几率受到一项随机 NL [#8c9cff]附魔[] [anniv6:ManaSurge:EnchantmentIcon] 或 [#ff8cd5]衰朽[] [anniv6:ManaSurge:BlightIcon] "
+      "抽牌时，卡牌有 40% 几率受到一项随机 NL [#8c9cff]附魔[] [${ModID}:ManaSurge:EnchantmentIcon] 或 [#ff8cd5]衰朽[] [${ModID}:ManaSurge:BlightIcon] "
     ]
   }
 }
