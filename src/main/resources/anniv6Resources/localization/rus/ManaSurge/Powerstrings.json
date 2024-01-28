@@ -1,0 +1,9 @@
+{
+
+  "anniv6:ManaSurgePower": {
+    "NAME": "Всплеск маны",
+    "DESCRIPTIONS": [
+      "Карты имеют 40% шанс получить случайное NL [#8c9cff]Зачарование[] [anniv6:ManaSurge:EnchantmentIcon] или [#ff8cd5]Заговор[] [anniv6:ManaSurge:BlightIcon] при розыгрыше.",
+    ]
+  }
+}
