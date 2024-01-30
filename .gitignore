@@ -7,7 +7,7 @@ out/
 *.xml
 
 # Exclude Code templates
-!.idea/fileTemplates/*
+!.idea/fileTemplates/
 
 # Eclipse
 .classpath
