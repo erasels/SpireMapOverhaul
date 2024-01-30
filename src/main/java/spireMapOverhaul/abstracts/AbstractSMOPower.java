@@ -65,8 +65,4 @@ public abstract class AbstractSMOPower extends AbstractPower {
             FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, Integer.toString(amount2), x, y + 15.0F * Settings.scale, fontScale, c);
         }
     }
-
-    public void removeThis(){
-        addToBot(new RemoveSpecificPowerAction(AbstractDungeon.player, AbstractDungeon.player, this));
-    }
 }

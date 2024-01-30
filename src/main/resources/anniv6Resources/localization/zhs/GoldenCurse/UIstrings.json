@@ -1,0 +1,14 @@
+{
+  "${ModID}:GoldenCurse": {
+    "TEXT": [
+      "黄金诅咒",
+      "贪婪的腐蚀显露了。 NL NL 战斗会掉落更多奖励，但拿起掉落的奖励需要花费金币，而且不会再掉落金色奖励",
+      "Tetraminus"
+    ]
+  },
+  "${ModID}:GreedCurse": {
+    "TEXT": [
+      " | 花费： "
+    ]
+  }
+}

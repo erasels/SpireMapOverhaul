@@ -1,0 +1,20 @@
+{
+  "${ModID}:volEruptPower": {
+    "NAME": "爆发",
+    "DESCRIPTIONS": ["在你打出 #b{0} 张牌后，这名敌人将死亡并造成 #r{1} 点伤害",
+      "在你打出 #b{0} 张牌后，这名敌人将死亡并造成 #r{1} 点伤害"]
+  },
+  "${ModID}:volUnstablePower": {
+    "NAME": "不稳定",
+    "DESCRIPTIONS": ["本回合对所有人造成 #b{0} 点伤害"]
+  },
+  "${ModID}:volChargedPower": {
+    "NAME": "溢能",
+    "DESCRIPTIONS": ["死亡后，所有人造成 #b{0} 点伤害"]
+  },
+  "${ModID}:volExplodePlusPower": {
+    "NAME": "爆炸+",
+    "DESCRIPTIONS": [" #r{1} 回合后，死亡并造成 #b{0} 点伤害",
+      " #r{1} 回合后，死亡并造成 #b{0} 点伤害"]
+  }
+}

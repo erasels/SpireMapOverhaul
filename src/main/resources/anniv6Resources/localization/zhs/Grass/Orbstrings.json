@@ -1,0 +1,38 @@
+
+{
+	"${ModID}:BellPepper":
+	{
+		"DESCRIPTION": ["对随机一位敌人施加 {0} 层 #y中毒 {1} 次"],
+		"NAME": "甜椒"
+	},
+	"${ModID}:Carrot":
+	{
+		"DESCRIPTION": ["对随机一位敌人造成 {0} 点伤害 {1} 次"],
+		"NAME": "胡萝卜"
+	},
+	"${ModID}:Leek":
+	{
+		"DESCRIPTION": ["对随机一位敌人施加 {0} 层 #y虚弱 {1} 次"],
+		"NAME": "韭葱"
+	},
+	"${ModID}:Onion":
+	{
+		"DESCRIPTION": ["对随机一位敌人施加 {0} 层 #y脆弱 {1} 次"],
+		"NAME": "洋葱"
+	},
+	"${ModID}:Pumpkin":
+	{
+		"DESCRIPTION": ["获得 {0} 点 #y格挡"],
+		"NAME": "南瓜"
+	},
+	"${ModID}:Radish":
+	{
+		"DESCRIPTION": ["对随机一位敌人造成 {0} 点伤害 {1} 次"],
+		"NAME": "白萝卜"
+	},
+	"${ModID}:Tomato":
+	{
+		"DESCRIPTION": ["获得 {0} 点 #y力量"],
+		"NAME": "番茄"
+	}
+}

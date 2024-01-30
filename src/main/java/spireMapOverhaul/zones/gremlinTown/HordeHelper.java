@@ -26,8 +26,7 @@ import com.megacrit.cardcrawl.vfx.SpeechBubble;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.actions.WaitMoreAction;
 import spireMapOverhaul.util.Wiz;
-import spireMapOverhaul.zones.gremlinTown.monsters.GremlinBrute;
-import spireMapOverhaul.zones.gremlinTown.monsters.GremlinRockTosser;
+import spireMapOverhaul.zones.gremlinTown.monsters.*;
 import spireMapOverhaul.zones.gremlinTown.patches.HordePatches;
 
 import java.util.ArrayList;
@@ -77,6 +76,13 @@ public class HordeHelper {
     public HordeHelper() {
     }
 
+    public static String getCombatString() {
+        if (GremlinTown.GREMLIN_HORDE.equals(AbstractDungeon.lastCombatMetricKey))
+            return TEXT[3];
+        else
+            return null;
+    }
+
     public static void initFight() {
         PLATFORM_X_LEFT = Settings.WIDTH * 0.25F;
         PLATFORM_X_RIGHT = Settings.WIDTH * 0.75F;
@@ -88,7 +94,7 @@ public class HordeHelper {
         PLATFORM_START_Y = Settings.HEIGHT + HB_HEIGHT/2F*Settings.scale + 10F;
 
         reinforced = false;
-        platforms = true;
+        platforms = false;
         needsUpdate = false;
         platform_Y = PLATFORM_START_Y;
         left_hb = new Hitbox(PLATFORM_X_LEFT, platform_Y, HB_WIDTH*Settings.scale, HB_HEIGHT*Settings.scale);
@@ -96,29 +102,26 @@ public class HordeHelper {
 
         groundQueue = new ArrayList<>();
         platformQueue = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 3; i++) {
+            groundQueue.add(new GremlinWarrior(Settings.WIDTH * 4, 0));
             groundQueue.add(new GremlinWarrior(Settings.WIDTH * 4, 0));
             groundQueue.add(new GremlinThief(Settings.WIDTH * 4, 0));
-            groundQueue.add(new GremlinTsundere(Settings.WIDTH * 4, 0));
             groundQueue.add(new GremlinFat(Settings.WIDTH * 4, 0));
-            platformQueue.add(new GremlinWizard(Settings.WIDTH * 4, 0));
-            platformQueue.add(new GremlinRockTosser(Settings.WIDTH * 4, 0));
-            platformQueue.add(new GremlinRockTosser(Settings.WIDTH * 4, 0));
         }
 
-        ArrayList<AbstractMonster> tempQueue = new ArrayList<>();
-        for (int i = 0; i < 5; i++)
-            tempQueue.add(new GremlinBrute(Settings.WIDTH * 4, 0));
+        platformQueue.add(new GremlinRockTosser(Settings.WIDTH * 4, 0));
+        platformQueue.add(new GremlinWizard(Settings.WIDTH * 4, 0));
+        platformQueue.add(new GremlinRockTosser(Settings.WIDTH * 4, 0));
+        platformQueue.add(new GremlinHealer(Settings.WIDTH * 4, 0));
+        platformQueue.add(new GremlinRockTosser(Settings.WIDTH * 4, 0));
+        platformQueue.add(new GremlinWizard(Settings.WIDTH * 4, 0));
+        platformQueue.add(new GremlinRockTosser(Settings.WIDTH * 4, 0));
 
-        Collections.shuffle(tempQueue, AbstractDungeon.monsterRng.random);
         Collections.shuffle(groundQueue, AbstractDungeon.monsterRng.random);
-        Collections.shuffle(platformQueue, AbstractDungeon.monsterRng.random);
 
-        groundQueue.add(6, tempQueue.get(0));
-        groundQueue.add(10, tempQueue.get(1));
-        groundQueue.add(14, tempQueue.get(2));
-        groundQueue.add(18, tempQueue.get(3));
-        groundQueue.add(22, tempQueue.get(4));
+        groundQueue.add(4, new ArmoredGremlin(Settings.WIDTH * 4, 0));
+        groundQueue.add(8, new ChubbyGremlin(Settings.WIDTH * 4, 0));
+        groundQueue.add(12, new GremlinAssassin(Settings.WIDTH * 4, 0));
 
         ArrayList<AbstractMonster> tempArray = new ArrayList<>(Wiz.getEnemies());
         tempArray.sort( (m1, m2) -> (int)(m1.hb.x - m2.hb.x) );
@@ -180,13 +183,14 @@ public class HordeHelper {
         if (GameActionManager.turn == 1)
             surround();
         else if (GameActionManager.turn == 2) {
+            reinforce();
             lowerPlatforms();
+        } else {
             reinforce();
-        } else
-            reinforce();
+            if (reinforced)
+                atb(new WaitMoreAction(1.5F));
+        }
         calculateBackAttack();
-        if (reinforced)
-            atb(new WaitMoreAction(1.5F));
     }
 
     public static void surround() {
@@ -341,8 +345,6 @@ public class HordeHelper {
     }
 
     public static AbstractMonster getNextGround() {
-        SpireAnniversary6Mod.logger.info("Get next ground");
-        SpireAnniversary6Mod.logger.info(AbstractDungeon.lastCombatMetricKey);
         if (groundQueue.size() > (platformQueue.size() * 2) / 3 )
             return groundQueue.get(0);
         else if (!platformQueue.isEmpty())
@@ -362,11 +364,10 @@ public class HordeHelper {
         AbstractMonster m = getNextGround();
         if (m == null)
             return false;
-        boolean brute = m instanceof GremlinBrute;
 
         if (monsterLeftFront == null || monsterLeftFront.isDeadOrEscaped()) {
             moveLeftGremlinIn();
-            return !(getNextGround() instanceof GremlinBrute) && !brute;
+            return true;
         } else if (monsterLeftBack == null || monsterLeftBack.isDeadOrEscaped())
             moveLeftGremlinIn();
         return false;
@@ -376,11 +377,10 @@ public class HordeHelper {
         AbstractMonster m = getNextGround();
         if (m == null)
             return false;
-        boolean brute = m instanceof GremlinBrute;
 
         if (monsterRightFront == null || monsterRightFront.isDeadOrEscaped()) {
             moveRightGremlinIn();
-            return !(getNextGround() instanceof GremlinBrute) && !brute;
+            return true;
         } else if (monsterRightBack == null || monsterRightBack.isDeadOrEscaped())
             moveRightGremlinIn();
         return false;

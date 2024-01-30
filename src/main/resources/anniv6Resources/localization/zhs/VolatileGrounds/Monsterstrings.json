@@ -1,0 +1,40 @@
+{
+  "${ModID}:Eruptor": {
+    "MOVES": [
+      "打击",
+      "沸腾"
+    ],
+    "NAME": "爆发者"
+  },
+  "${ModID}:UnstableSunstone": {
+    "MOVES": [
+      "不稳定",
+      "灼烧",
+      "烫手山芋"
+    ],
+    "NAME": "不稳定日之石"
+  },
+  "${ModID}:SunStoneShard": {
+    "MOVES": [
+      "蓄能",
+      "灼烧",
+      "屏障"
+    ],
+    "NAME": "日之石碎片"
+  },
+  "${ModID}:HeatBlister": {
+    "MOVES": [
+      "击打",
+      "含磷胆汁"
+    ],
+    "NAME": "灼热泡泡"
+  },
+  "${ModID}:GremlinArchmage": {
+    "MOVES": [
+      "召唤爪牙",
+      "火球",
+      "魔甲"
+    ],
+    "NAME": "地精法师"
+  }
+}

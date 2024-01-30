@@ -79,7 +79,7 @@ public class BeastsLairZone extends AbstractZone implements EncounterModifyingZo
     @Override
     public void manualRoomPlacement(Random rng) {
         for (MapRoomNode node : nodes) {
-            node.setRoom(new ForcedEventRoom(() -> new BeastsLairEvent(bossList.get(AbstractDungeon.mapRng.random(bossList.size() - 1)))));
+            node.setRoom(new ForcedEventRoom(() -> new BeastsLairEvent(bossList.get(rng.random(bossList.size() - 1)))));
         }
     }
 

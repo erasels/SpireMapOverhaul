@@ -1,0 +1,22 @@
+{
+  "${ModID}:Hexaghost": {
+    "NAME": "五火亡魂",
+    "MOVES": [],
+    "DIALOG": []
+  },
+  "${ModID}:SlaverBlue": {
+    "MOVES": [
+      "绊倒"
+    ]
+  },
+  "${ModID}:BanditBear": {
+    "DIALOG": [
+      "~罗密欧欧欧欧欧欧!!!!~"
+    ]
+  },
+  "${ModID}:BookOfStabbing": {
+    "NAME": "捶人的书",
+    "MOVES": [],
+    "DIALOG": []
+  }
+}

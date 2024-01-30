@@ -1,7 +1,7 @@
 package spireMapOverhaul.util;
 
 import basemod.DevConsole;
-import basemod.helpers.CardModifierManager;
+import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
@@ -27,8 +27,6 @@ import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.actions.TimedVFXAction;
 import spireMapOverhaul.patches.ZonePatches;
-import spireMapOverhaul.zoneInterfaces.CampfireModifyingZone;
-import spireMapOverhaul.zoneInterfaces.CombatModifyingZone;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -118,12 +116,6 @@ public class Wiz {
         for (AbstractCard c : cardsList) {
             consumer.accept(c);
         }
-    }
-
-    public static int getLogicalPowerAmount(AbstractCreature ac, String powerId) {
-        AbstractPower pow = ac.getPower(powerId);
-        if (pow == null) return 0;
-        return pow.amount;
     }
 
     public static ArrayList<AbstractCard> getAllCardsInCardGroups(boolean includeHand, boolean includeExhaust) {
@@ -429,7 +421,7 @@ public class Wiz {
     }
 
     public static AbstractGameAction.AttackEffect getRandomSlash() {
-        int x = AbstractDungeon.miscRng.random(0, 2);
+        int x = MathUtils.random(0, 2);
         if (x == 0)
             return AbstractGameAction.AttackEffect.SLASH_DIAGONAL;
         if (x == 1)
@@ -483,14 +475,6 @@ public class Wiz {
         discard(amount, false);
     }
 
-    public static int pwrAmt(AbstractCreature check, String ID) {
-        AbstractPower found = check.getPower(ID);
-        if (found != null) {
-            return found.amount;
-        }
-        return 0;
-    }
-
     public static int getLogicalCardCost(AbstractCard c) {
         if (!c.freeToPlay()) {
             if (c.cost <= -2) {
@@ -502,19 +486,19 @@ public class Wiz {
         return 0;
     }
 
+    public static int getLogicalPowerAmount(AbstractCreature ac, String powerId) {
+        AbstractPower pow = ac.getPower(powerId);
+        if (pow == null) return 0;
+        return pow.amount;
+    }
+
     public static int countDebuffs(AbstractCreature c){
         return (int) c.powers.stream()
                 .filter(pow -> pow.type == AbstractPower.PowerType.DEBUFF )
                 .count();
     }
 
-    public static <T> T getRandomEntry(ArrayList<T> list, java.util.Random rng) {
-        if (list.size() == 0)
-            return null;
-        return list.get(rng.nextInt(list.size()));
-    }
-
-    public static AbstractRoom adRoom() {
+    public static AbstractRoom curRoom() {
         if (AbstractDungeon.currMapNode != null)
             return AbstractDungeon.getCurrRoom();
         return null;

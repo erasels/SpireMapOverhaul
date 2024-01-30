@@ -1,0 +1,190 @@
+{
+  "${ModID}:WhisperingWraith": {
+    "MOVES": [
+      "幽魂之躯体",
+      "幽魂之触",
+      "汲取生命"
+    ],
+    "NAME": "低语幽魂"
+  },
+  "${ModID}:StygianBoar": {
+    "MOVES": [
+      "长牙攻击",
+      "喷火",
+      "猪突猛进"
+    ],
+    "NAME": "幽冥野猪"
+  },
+  "${ModID}:Hexasnake": {
+    "MOVES": [
+      "蛇之凝视",
+      "剧毒噬咬",
+      "束缚"
+    ],
+    "NAME": "多头蛇"
+  },
+  "${ModID}:GraftedWorm": {
+    "MOVES": [
+      "叶刃"
+    ],
+    "NAME": "毛毛虫"
+  },
+  "${ModID}:DreadMoth": {
+    "MOVES": [
+      "掩翅防御",
+      "恐怖挥舞"
+    ],
+    "NAME": "恐惧蛾"
+  },
+  "${ModID}:OrbOfFire": {
+    "MOVES": [
+      "火弹",
+      "燃烧",
+      "火光四射"
+    ],
+    "NAME": "火焰之球"
+  },
+  "${ModID}:LivingStormcloud": {
+    "MOVES": [
+      "迅击",
+      "强风",
+      "降雨"
+    ],
+    "NAME": "活暴云"
+  },
+  "${ModID}:OpulentOffering": {
+    "MOVES": [
+      "金杯猛砸",
+      "硬币齐射",
+      "奢华屏障",
+      "奢华溢流"
+    ],
+    "NAME": "珠宝怪"
+  },
+  "${ModID}:ShimmeringMirage": {
+    "MOVES": [
+      "闪耀",
+      "发光",
+      "脉冲"
+    ],
+    "NAME": "闪耀幻影"
+  },
+  "${ModID}:Hatchling": {
+    "MOVES": [
+      "新近孵化",
+      "啃食",
+      "腐蚀强酸",
+      "头撞"
+    ],
+    "NAME": "跳虫"
+  },
+  "${ModID}:CroakingBrute": {
+    "MOVES": [
+      "撕裂",
+      "横冲直撞"
+    ],
+    "NAME": "蛙人暴徒",
+    "DIALOG": ["*呱呱呱*"]
+  },
+  "${ModID}:CroakingPelter": {
+    "MOVES": [
+      "撕裂",
+      "投掷石头"
+    ],
+    "NAME": "蛙人投掷者",
+    "DIALOG": ["呱呱呱"]
+  },
+  "${ModID}:CroakingSeer": {
+    "MOVES": [
+      "撕裂",
+      "防护"
+    ],
+    "NAME": "蛙人先知",
+    "DIALOG": ["*呱呱呱*"]
+  },
+  "${ModID}:Hydra": {
+    "MOVES": [
+      "尾鞭",
+      "挥击",
+      "贪婪饥渴"
+    ],
+    "NAME": "多头龙"
+  },
+  "${ModID}:VoidReaper": {
+    "MOVES": [
+      "切断未来",
+      "收割",
+      "镰刃之舞"
+    ],
+    "NAME": "虚空收割者"
+  },
+  "${ModID}:VoidCorruption": {
+    "MOVES": [
+      "能量干涸",
+      "腐蚀之触",
+      "活力干涸",
+      "虚空猛击",
+      "虚空投射"
+    ],
+    "NAME": "虚空腐蚀"
+  },
+  "${ModID}:VoidBeast": {
+    "MOVES": [
+      "腐蚀噬咬",
+      "虚空凝视",
+      "暗影之爪牙"
+    ],
+    "NAME": "虚空异兽"
+  },
+  "${ModID}:WarGolem": {
+    "MOVES": [
+      "破心",
+      "碎盾",
+      "卸腿"
+    ],
+    "NAME": "战斗傀儡"
+  },
+  "${ModID}:ElementalPortal": {
+    "MOVES": [
+      "传送门",
+      "强化恢复",
+      "混沌能量",
+      "元素轰击"
+    ],
+    "NAME": "元素传送门"
+  },
+  "${ModID}:UnboundAbyssal": {
+    "MOVES": [
+      "泥泞",
+      "不再回头",
+      "触须攻击"
+    ],
+    "NAME": "深渊解缚者",
+    "DIALOG": ["不...会...再...回去了！"]
+  },
+  "${ModID}:PrimevalQueen": {
+    "MOVES": [
+      "镰爪攻击",
+      "硬化甲壳",
+      "召唤毒爆虫"
+    ],
+    "NAME": "虫后"
+  },
+  "${ModID}:RoyalProtector": {
+    "MOVES": [
+      "硬壳护体",
+      "灼热喷吐",
+      "强酸爆炸",
+      "为了虫后！"
+    ],
+    "NAME": "毒爆虫"
+  },
+  "${ModID}:Behemoth": {
+    "MOVES": [
+      "撕咬",
+      "进化",
+      "挥爪"
+    ],
+    "NAME": "贝西摩斯"
+  }
+}

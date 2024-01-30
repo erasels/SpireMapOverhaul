@@ -43,5 +43,8 @@
       "[Leave]",
       "[Yay!] #yGain #y{0} #yGold."
     ]
+  },
+  "${ModID}:Surprise": {
+    "NAME": "Surprise!"
   }
 }

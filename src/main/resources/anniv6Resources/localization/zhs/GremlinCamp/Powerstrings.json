@@ -1,0 +1,7 @@
+{
+  "${ModID}:PlayerPoisonPower": {
+    "DESCRIPTIONS": [
+      "你的回合结束时，受到 #b%s 点伤害，并降低 #b1 层 #y中毒"
+    ]
+  }
+}

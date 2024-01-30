@@ -1,0 +1,20 @@
+{
+  "${ModID}:MirrorZone": {
+    "NAME": "镜像之力",
+    "DESCRIPTIONS": [
+      "每回合，你获得一张 #p镜像模仿 卡牌，它包含了之前回合敌人所进行过的行动。但作为代价，你将少抽 #b1 张牌"
+    ]
+  },
+  "${ModID}:Reflective": {
+    "NAME": "反射",
+    "DESCRIPTIONS": [
+      " #y镜像模仿 卡牌的伤害与格挡量增加 #b{0} "
+    ]
+  },
+  "${ModID}:Shattered": {
+    "NAME": "破碎",
+    "DESCRIPTIONS": [
+      "你打出一张 #y镜像模仿 牌后，失去 #b{0}% 的当前生命值（四舍五入）"
+    ]
+  }
+}

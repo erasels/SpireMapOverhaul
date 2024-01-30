@@ -1,0 +1,20 @@
+{
+  "${ModID}:Wildfire": {
+    "TEXT": [
+      "野火",
+      "熊熊大火正在吞噬尖塔！ NL #r所有的一切都着火了 ，每回合所造成的伤害越来越高 NL 掉落的卡牌奖励蕴涵有 #g火焰的力量",
+      "Mistress Autumn",
+      "每回合开始时，对所有人施加 #b1 层 #r着火"
+    ]
+  },
+  "${ModID}:Wildfire:BurningMod": {
+    "TEXT": [
+      " NL 施加 %d ${ModID}:着火",
+      " NL 对所有敌人施加 %d ${ModID}:着火",
+      " NL 对随机一位敌人施加 %d ${ModID}:着火",
+      " NL 施加 %d ${ModID}:着火 X 次",
+      " NL 对所有敌人施加 %d ${ModID}:着火 X 次",
+      " NL 对随机一位敌人施加 %d ${ModID}:着火 X 次"
+    ]
+  }
+}

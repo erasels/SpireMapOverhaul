@@ -1,0 +1,112 @@
+{
+  "${ModID}:GremlinRiderRed": {
+    "MOVES": [
+      "冲锋",
+      "战术攻击"
+    ],
+    "NAME": "地精骑手"
+  },
+  "${ModID}:GremlinRiderBlue": {
+    "MOVES": [
+      "冲锋",
+      "战术攻击"
+    ],
+    "NAME": "地精骑手"
+  },
+  "${ModID}:GremlinRiderGreen": {
+    "MOVES": [
+      "冲锋",
+      "战术攻击"
+    ],
+    "NAME": "地精骑手"
+  },
+  "${ModID}:GremlinRockTosser": {
+    "MOVES": [
+      "投掷"
+    ],
+    "NAME": "地精投石者"
+  },
+  "${ModID}:GremlinBrute": {
+    "MOVES": [
+      "猛击",
+      "破裂"
+    ],
+    "NAME": "地精暴徒"
+  },
+  "${ModID}:GremlinHealer": {
+    "MOVES": [
+      "治愈",
+      "攻击"
+    ],
+    "NAME": "地精治愈者"
+  },
+  "${ModID}:ChubbyGremlin": {
+    "MOVES": [
+      "抱头蹲下"
+    ],
+    "NAME": "胖地精"
+  },
+  "${ModID}:ArmoredGremlin": {
+    "MOVES": [
+      "全身撞击"
+    ],
+    "NAME": "披甲地精"
+  },
+  "${ModID}:GremlinBarbarian": {
+    "MOVES": [
+      "狂怒"
+    ],
+    "NAME": "地精蛮徒"
+  },
+  "${ModID}:GremlinAssassin": {
+    "MOVES": [
+      "挑筋",
+      "削弱"
+    ],
+    "NAME": "地精刺客"
+  },
+  "${ModID}:GremlinJerk": {
+    "MOVES": [
+      "挑筋",
+      "削弱"
+    ],
+    "NAME": "地精无赖"
+  },
+  "${ModID}:GremlinNib": {
+    "MOVES": [
+      "猛击",
+      "二连击",
+      "狂怒",
+      "重击"
+    ],
+    "DIALOG": [
+      "啊啊啊啊啊!!"
+    ],
+    "NAME": "地精大块头"
+  },
+  "${ModID}:GremlinElder": {
+    "MOVES": [
+      "猛击",
+      "击打",
+      "蓄力",
+      "垂死诅咒"
+    ],
+    "DIALOG": [
+      "我的身体已经老了...",
+      "我献上我的生命来诅咒你的灵魂...",
+      "死无全尸！"
+    ],
+    "NAME": "老地精"
+  },
+  "${ModID}:GremlinCannon": {
+    "MOVES": [
+      "装弹",
+      "开炮！",
+      "开炮！"
+    ],
+    "DIALOG": [
+      "装弹..."
+    ],
+    "NAME": "地精大炮"
+  }
+}

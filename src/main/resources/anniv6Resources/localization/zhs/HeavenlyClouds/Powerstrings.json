@@ -1,0 +1,6 @@
+{
+  "${ModID}:HeavenlyFlightPower": {
+    "NAME": "飞行",
+    "DESCRIPTIONS": ["将所受到的攻击伤害降低 #b", "% 。如果在一个回合内被攻击伤害 #b", " 次，移除一回合此效果并 #y眩晕 此生物"]
+  }
+}

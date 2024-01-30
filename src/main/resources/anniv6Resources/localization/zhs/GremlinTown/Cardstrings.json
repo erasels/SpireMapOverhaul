@@ -1,0 +1,87 @@
+{
+  "${ModID}:SneakAttack": {
+    "NAME": "鬼祟攻击",
+    "DESCRIPTION": "造成 !D! 点伤害"
+  },
+  "${ModID}:MeatMallet": {
+    "NAME": "槌槌到肉",
+    "DESCRIPTION": "本回合每当你造成一次未被格挡的伤害，施加 !M! 层虚弱 NL 消耗"
+  },
+  "${ModID}:AngryStrike": {
+    "NAME": "愤怒一击",
+    "DESCRIPTION": "造成 !D! 点伤害 NL 消耗1张随机非攻击牌"
+  },
+  "${ModID}:Shield": {
+    "NAME": "格挡",
+    "DESCRIPTION": "获得 !B! 格挡 NL 消耗"
+  },
+  "${ModID}:Charge": {
+    "NAME": "蓄力",
+    "DESCRIPTION": "在2回合后，获得 !M! ${ModID}:活力"
+  },
+  "${ModID}:Cure": {
+    "NAME": "净化",
+    "DESCRIPTION": "移除你的所有负面效果 NL 消耗",
+    "UPGRADE_DESCRIPTION": "保留 NL 移除你的所有负面效果 NL 消耗"
+  },
+  "${ModID}:Sit": {
+    "NAME": "抱头蹲下",
+    "DESCRIPTION": "本回合敌人失去 !M! 点力量"
+  },
+  "${ModID}:FullPlate": {
+    "NAME": "全副武装",
+    "DESCRIPTION": "你的回合结束时，获得 !M! 格挡"
+  },
+  "${ModID}:Frenzy": {
+    "NAME": "狂暴",
+    "DESCRIPTION": "造成 !D! 点伤害2次 NL 获得 !M! 点力量"
+  },
+  "${ModID}:Assassinate": {
+    "NAME": "刺杀",
+    "DESCRIPTION": "固有 NL 造成 !D! 点伤害 NL 消耗"
+  },
+  "${ModID}:MountedCombat": {
+    "NAME": "骑乘作战",
+    "DESCRIPTION": "虚无 NL 施加1层缓慢 NL 消耗",
+    "UPGRADE_DESCRIPTION": "施加1层缓慢 NL 消耗"
+  },
+  "${ModID}:RRrroohrrRGHHhhh": {
+    "NAME": "啊啊啊啊啊!!",
+    "DESCRIPTION": "每当敌人在回合中没有进行攻击时，获得 !M! 点力量"
+  },
+  "${ModID}:CriticalHit": {
+    "NAME": "致命一击",
+    "DESCRIPTION": "你的下次攻击造成双倍伤害 NL 消耗",
+    "UPGRADE_DESCRIPTION": "你的下次攻击造成三倍伤害 NL 消耗"
+  },
+  "${ModID}:Flurry": {
+    "NAME": "迅捷连击",
+    "DESCRIPTION": "对随机一位敌人造成 !D! 点伤害 X+1 次"
+  },
+  "${ModID}:OmegaCurse": {
+    "NAME": "欧米伽诅咒",
+    "DESCRIPTION": "敌人受到额外 !M! 点攻击伤害 NL 失去 !${ModID}:m2! 生命值"
+  },
+  "${ModID}:TheHorde": {
+    "NAME": "地精部落",
+    "DESCRIPTION": "你的回合开始时，添加一张随机 *地精 卡牌加入你的手牌",
+    "UPGRADE_DESCRIPTION": "固有 NL 你的回合开始时，添加一张随机 *地精 卡牌加入你的手牌"
+  },
+  "${ModID}:Rig": {
+    "NAME": "操控",
+    "DESCRIPTION": "你的回合开始时，抽一张牌并消耗一张牌"
+  },
+  "${ModID}:ThrowRock": {
+    "NAME": "投掷石块",
+    "DESCRIPTION": "造成 !D! 点伤害 NL 获得 !M! 点力量 NL 本回合结束时，失去 !M! 点力量"
+  },
+  "${ModID}:PoisonSpray": {
+    "NAME": "毒雾",
+    "DESCRIPTION": "造成 !D! 点伤害 NL 施加等同所造成未被格挡伤害的中毒层数"
+  },
+  "${ModID}:Inspire": {
+    "NAME": "鼓舞",
+    "DESCRIPTION": "虚无 NL 你的回合开始时，获得 [E] 并抽1张牌",
+    "UPGRADE_DESCRIPTION": "你的回合开始时，获得 [E] 并抽1张牌"
+  }
+}

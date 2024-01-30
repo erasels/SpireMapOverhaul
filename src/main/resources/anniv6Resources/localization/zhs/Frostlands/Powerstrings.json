@@ -1,0 +1,24 @@
+{
+
+  "${ModID}:FrigidPower": {
+    "NAME": "严寒",
+    "DESCRIPTIONS": [
+      "每回合你抽到的第一张牌获得 #y冻伤 ",
+      "每回合你抽到的前 #b",
+      " 张牌获得 #y冻伤 "
+    ]
+  },
+  "${ModID}:LeavePower": {
+    "NAME": "逃离",
+    "DESCRIPTIONS": [
+      "如果这个生物在战斗中被杀死，他们就会逃离。"
+    ]
+  },
+  "${ModID}:ChillPower": {
+  "NAME": "寒冷",
+  "DESCRIPTIONS": [
+    "本回合攻击伤害降低 #b",
+    ""
+  ]
+}
+}

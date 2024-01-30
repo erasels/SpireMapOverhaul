@@ -1,0 +1,126 @@
+{
+  "${ModID}:FixedTextIntangiblePower": {
+    "DESCRIPTIONS": ["将 #b{0} 回合内受到的所有伤害和生命减少效果降低为 #b1 "]
+  },
+  "${ModID}:SerpentsGaze": {
+    "NAME": "蛇之凝视",
+    "DESCRIPTIONS": ["本回合你抽到的第一张卡牌多耗费 #b{0} 点能量", "本回合你抽到的第一张 #b{0} 卡牌多耗费 #b{1} 点能量"]
+  },
+  "${ModID}:LeafSpores": {
+    "NAME": "残留孢子",
+    "DESCRIPTIONS": ["在死亡时，添加 #b{0} 层 #y虚弱 与 #b{0} 层 #y脆弱"]
+  },
+  "${ModID}:Hover": {
+    "NAME": "悬浮",
+    "DESCRIPTIONS": ["受到来自攻击的伤害减少 #b{0}% "]
+  },
+  "${ModID}:MidasAura": {
+    "NAME": "镀金",
+    "DESCRIPTIONS": ["当你打出一张升过级的攻击、技能和能力牌时， #y消耗它 ，并在你的弃牌堆在添加一张镀金打击、镀金防守或镀金之躯 "]
+  },
+  "${ModID}:GoldenBulwark": {
+    "NAME": "黄金堡垒",
+    "DESCRIPTIONS": ["战斗开始时，你每有 #b{0} 金币（四舍五入） 就获得 #b1 点格挡"]
+  },
+  "${ModID}:Cleanse": {
+    "NAME": "净化",
+    "DESCRIPTIONS": ["每回合结束时，降低 #b{0} 层所有负面效果", "本回合结束后抹除"]
+  },
+  "${ModID}:Abysstouched": {
+    "NAME": "深渊之触",
+    "DESCRIPTIONS": ["受到额外 #b{0}% #y攻击 伤害。 回合结束时，受到 #b{0} 点伤害", "受到额外 #b{0}% #y攻击 伤害。 回合结束时，受到 #b{0} 点伤害"]
+  },
+  "${ModID}:DelayedAbysstouched": {
+    "NAME": "深渊之触",
+    "DESCRIPTIONS": ["受到额外 #b{0}% #y攻击 伤害。回合结束时，受到 #b{0} 点伤害"]
+  },
+  "${ModID}:Wary": {
+    "NAME": "警惕",
+    "DESCRIPTIONS": ["每当你打出一张 #y攻击牌，获得 #b{0} 点力量"]
+  },
+  "${ModID}:HydraHeads": {
+    "NAME": "多头龙之头",
+    "DESCRIPTIONS": ["每有一个头获得 #b1 点 #y力量 。当这位敌人受到单次 #b{0} 以上的伤害时，失去一个头。两回合后，重新长出两倍数量的头"]
+  },
+  "${ModID}:HydraHeadRegrowth": {
+    "NAME": "头颅再生",
+    "DESCRIPTIONS": ["两回合后，重新长出 #b{0} 个头"]
+  },
+  "${ModID}:DrawReductionSingleTurn": {
+    "NAME": "抽牌降低",
+    "DESCRIPTIONS": ["下回合少抽 #b1 张牌", "下回合少抽 #b{0} 张牌"]
+  },
+  "${ModID}:PermanentDrawReduction": {
+    "NAME": "抽牌",
+    "DESCRIPTIONS": [
+      "你的回合开始时，少抽 #b{0} 张牌",
+      "你的回合开始时，少抽 #b{0} 张牌"
+    ]
+  },
+  "${ModID}:EnergyLimit": {
+    "NAME": "能量限制",
+    "DESCRIPTIONS": ["每回合最多拥有 #b3 点能量"]
+  },
+  "${ModID}:FixedTextDraw": {
+    "NAME": "抽牌",
+    "DESCRIPTIONS": [
+      "你的回合开始时，额外 #b",
+      " 张牌（多抽）",
+      " 张牌（少抽）",
+      " 张牌（多抽）",
+      " 张牌（少抽）"
+    ]
+  },
+  "${ModID}:VoidPressure": {
+    "NAME": "虚空压力",
+    "DESCRIPTIONS": ["#p无法移除 每当一张卡牌被 #y消耗 或你打出一张能力牌，受到 #b{0} 点伤害。在回合结束时，消耗掉你手中的随机一张不是状态、诅咒或虚无的卡牌。"]
+  },
+  "${ModID}:SummoningPortal": {
+    "NAME": "召唤传送门",
+    "DESCRIPTIONS": ["每回合召唤元素，直至达到 #b{0} 激活上限。不会受到伤害并且不会攻击，直到再召唤出 #b{1} 个元素"]
+  },
+  "${ModID}:DurableMinion": {
+    "NAME": "持久爪牙",
+    "DESCRIPTIONS": ["这个爪牙不会在其领袖死后逃离战斗"]
+  },
+  "${ModID}:MirarisWake": {
+    "NAME": "唤醒奇迹",
+    "DESCRIPTIONS": ["你的回合开始时，获得 {0} "]
+  },
+  "${ModID}:StaggershockRebound": {
+    "NAME": "撼动击弹回",
+    "DESCRIPTIONS": ["在你下回合开始时，打出撼动击"]
+  },
+  "${ModID}:HandOfTheAbyss": {
+    "NAME": "深渊之手",
+    "DESCRIPTIONS": ["每当你造成未被格挡的伤害时，施加 #b{0} 层 #y深渊之触"]
+  },
+  "${ModID}:BrokenCrystalSeal": {
+    "NAME": "破碎晶体",
+    "DESCRIPTIONS": ["每回合在你的抽牌堆中添加 #b2 张 #y破碎晶体 NL 曾经用来封印敌人的水晶碎片散落一地，使用它们来抑制其再生！"]
+  },
+  "${ModID}:PrimevalCall": {
+    "NAME": "远古之唤",
+    "DESCRIPTIONS": ["每回合召唤一只 #p战斗傀儡 "]
+  },
+  "${ModID}:Evolving": {
+    "NAME": "进化",
+    "DESCRIPTIONS": ["每回合结束时进化"]
+  },
+  "${ModID}:FrailPulse": {
+    "NAME": "脆弱脉动",
+    "DESCRIPTIONS": ["每回合结束时，施加 #b{0} 层 #y脆弱"]
+  },
+  "${ModID}:DazedPulse": {
+    "NAME": "眩晕脉动",
+    "DESCRIPTIONS": ["每回合结束时，在你的抽牌堆中洗入 #b{0} 张 #y眩晕"]
+  },
+  "${ModID}:AbysstouchedPulse": {
+    "NAME": "深渊之触脉动",
+    "DESCRIPTIONS": ["每回合结束时，施加 #b{0} 层 #y深渊之触"]
+  },
+  "${ModID}:SlimyBody": {
+    "NAME": "黏液躯体",
+    "DESCRIPTIONS": ["当这位敌人受到攻击伤害时，向你的弃牌堆中放入一张 #y黏液"]
+  }
+}

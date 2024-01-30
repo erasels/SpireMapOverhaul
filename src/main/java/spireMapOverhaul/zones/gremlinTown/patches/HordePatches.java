@@ -6,7 +6,6 @@ import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.unique.GainBlockRandomMonsterAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -18,8 +17,6 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import javassist.CtBehavior;
 import spireMapOverhaul.zones.gremlinTown.GremlinTown;
 import spireMapOverhaul.zones.gremlinTown.HordeHelper;
-
-import java.util.ArrayList;
 
 public class HordePatches {
     @SpirePatch2(
@@ -127,30 +124,6 @@ public class HordePatches {
         public static void Postfix() {
             if (GremlinTown.GREMLIN_HORDE.equals(AbstractDungeon.lastCombatMetricKey)) {
                 HordeHelper.calculateBackAttack();
-            }
-        }
-    }
-
-    @SpirePatch2(
-            clz = GainBlockRandomMonsterAction.class,
-            method = "update"
-    )
-    public static class shieldPatch {
-        @SpireInsertPatch (
-                locator = Locator.class,
-                localvars = {"validMonsters"}
-        )
-        public static void Insert(ArrayList<AbstractMonster> validMonsters) {
-            validMonsters.removeIf(AbstractCreature::isDeadOrEscaped);
-        }
-
-        public static class Locator extends SpireInsertLocator {
-            private Locator() {}
-
-            @Override
-            public int[] Locate(CtBehavior behavior) throws Exception {
-                Matcher matcher = new Matcher.MethodCallMatcher(ArrayList.class, "isEmpty");
-                return LineFinder.findInOrder(behavior, matcher);
             }
         }
     }

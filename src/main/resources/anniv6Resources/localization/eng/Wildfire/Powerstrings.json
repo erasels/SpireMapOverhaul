@@ -1,0 +1,9 @@
+{
+  "${ModID}:BurningPower": {
+    "NAME": "Burning",
+    "DESCRIPTIONS": [
+      "At the end of your turn, take #b"," damage.",
+      "At the start of its turn, loses #b"," HP."
+    ]
+  }
+}

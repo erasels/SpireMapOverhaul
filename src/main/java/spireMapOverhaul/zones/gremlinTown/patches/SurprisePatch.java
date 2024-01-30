@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import javassist.CtBehavior;
 import spireMapOverhaul.zones.gremlinTown.events.Surprise;
 
-import static spireMapOverhaul.util.Wiz.adRoom;
+import static spireMapOverhaul.util.Wiz.curRoom;
 
 
 public class SurprisePatch {
@@ -21,7 +21,7 @@ public class SurprisePatch {
                 locator = Locator.class
         )
         public static void Insert(AbstractRoom __instance) {
-            if (adRoom().event != null && adRoom().event instanceof Surprise && ((Surprise) adRoom().event).mimic)
+            if (curRoom().event != null && curRoom().event instanceof Surprise && ((Surprise) curRoom().event).mimic)
                 AbstractDungeon.overlayMenu.proceedButton.show();
         }
 
@@ -58,7 +58,7 @@ public class SurprisePatch {
     public static class SpoilerPatch {
         @SpirePrefixPatch
         public static SpireReturn Prefix() {
-            if (adRoom() != null && adRoom().event != null && adRoom().event instanceof Surprise && ((Surprise) adRoom().event).mimic)
+            if (curRoom() != null && curRoom().event != null && curRoom().event instanceof Surprise && ((Surprise) curRoom().event).mimic)
                 return SpireReturn.Return();
             return SpireReturn.Continue();
         }
