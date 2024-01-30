@@ -30,7 +30,6 @@ public class RansackedForge extends AbstractImageEvent {
     private CurScreen screen = CurScreen.INTRO;
     boolean hasStrike = AbstractDungeon.player.masterDeck.group.stream().anyMatch(card -> card.tags.contains(AbstractCard.CardTags.STARTER_STRIKE));
 
-
     public RansackedForge() {
         super(NAME, DESCRIPTIONS[0], makeImagePath("events/SmithsFolly/RansackedForge.png"));
         this.screen = CurScreen.INTRO;
@@ -38,9 +37,17 @@ public class RansackedForge extends AbstractImageEvent {
         if (AbstractDungeon.player.masterDeck.findCardById(SearingBlow.ID) != null) {
             this.imageEventText.setDialogOption(OPTIONS[0]);
         } else if (AbstractDungeon.actNum == 3 && hasStrike) {
-            this.imageEventText.setDialogOption(OPTIONS[1]);
+            SearingBlow upgradedSearingBlow = new SearingBlow();
+            for (int i = 0; i < 4; i++) {
+                upgradedSearingBlow.upgrade();
+            }
+            this.imageEventText.setDialogOption(OPTIONS[1], upgradedSearingBlow);
         } else {
-            this.imageEventText.setDialogOption(OPTIONS[2]);
+            SearingBlow upgradedSearingBlow = new SearingBlow();
+            for (int i = 0; i < 4; i++) {
+                upgradedSearingBlow.upgrade();
+            }
+            this.imageEventText.setDialogOption(OPTIONS[2], upgradedSearingBlow);
         }
 
         this.imageEventText.setDialogOption(OPTIONS[3]);
