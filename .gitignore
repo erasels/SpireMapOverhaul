@@ -1,13 +1,13 @@
 *.class
 
 # IntelliJ
-.idea/
+.idea/*
+# Except code templates
+!.idea/fileTemplates/
 out/
 *.iml
 *.xml
 
-# Exclude Code templates
-!.idea/fileTemplates/
 
 # Eclipse
 .classpath
