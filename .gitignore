@@ -6,6 +6,9 @@ out/
 *.iml
 *.xml
 
+# Exclude Code templates
+!.idea/fileTemplates/*
+
 # Eclipse
 .classpath
 .project
