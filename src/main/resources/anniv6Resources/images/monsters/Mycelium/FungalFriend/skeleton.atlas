@@ -1,0 +1,69 @@
+
+skeleton.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+FungalFriend8
+  rotate: false
+  xy: 74, 154
+  size: 140, 30
+  orig: 140, 30
+  offset: 0, 0
+  index: -1
+FungalFriend7
+  rotate: false
+  xy: 74, 186
+  size: 42, 55
+  orig: 42, 55
+  offset: 0, 0
+  index: -1
+FungalFriend6
+  rotate: false
+  xy: 142, 82
+  size: 40, 58
+  orig: 40, 58
+  offset: 0, 0
+  index: -1
+FungalFriend5
+  rotate: false
+  xy: 216, 140
+  size: 31, 63
+  orig: 31, 63
+  offset: 0, 0
+  index: -1
+FungalFriend4
+  rotate: false
+  xy: 1, 1
+  size: 139, 151
+  orig: 139, 151
+  offset: 0, 0
+  index: -1
+FungalFriend3
+  rotate: false
+  xy: 1, 154
+  size: 71, 81
+  orig: 71, 81
+  offset: 0, 0
+  index: -1
+FungalFriend2
+  rotate: false
+  xy: 184, 1
+  size: 44, 71
+  orig: 44, 71
+  offset: 0, 0
+  index: -1
+FungalFriend1
+  rotate: false
+  xy: 184, 74
+  size: 48, 64
+  orig: 48, 64
+  offset: 0, 0
+  index: -1
+FungalFriend0
+  rotate: false
+  xy: 142, 1
+  size: 40, 79
+  orig: 40, 79
+  offset: 0, 0
+  index: -1
