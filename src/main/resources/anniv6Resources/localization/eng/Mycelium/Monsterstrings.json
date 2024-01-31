@@ -1,0 +1,13 @@
+{
+  "${ModID}:MutatedWhaleSpawn": {
+    "MOVES": [
+      "Toxins",
+      "Chomp",
+      "Scratch"
+    ],
+    "NAME": "Mutated Whale Spawn",
+    "DIALOG": [
+      "HYurwrrrrggp!"
+    ]
+  }
+}
