@@ -1,0 +1,6 @@
+{
+  "${ModID}:mycToxinPower": {
+    "NAME": "Toxins",
+    "DESCRIPTIONS": ["Whenever you take unblocked attack damage, lose #r{0} additional HP."]
+  }
+}
