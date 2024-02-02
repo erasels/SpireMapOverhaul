@@ -17,11 +17,8 @@ import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.localization.UIStrings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.SmokePuffEffect;
-import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
-import com.megacrit.cardcrawl.vfx.combat.EmptyStanceParticleEffect;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.actions.CallbackAction;
 import spireMapOverhaul.util.TexLoader;
@@ -45,6 +42,7 @@ public abstract class AbstractVegetable {
     private float alpha;
     private float flash;
     private float scale;
+    private float targetScale;
     protected Hitbox hb;
     protected Texture image;
     protected Color color;
@@ -64,7 +62,7 @@ public abstract class AbstractVegetable {
         this.tips.add(mainTip);
 
         float sc = getScaleMult();
-        scale = Settings.scale * sc;
+        targetScale = scale = Settings.scale * sc;
         this.hb = new Hitbox(sc * SIZE, sc * SIZE);
         clickable = true;
     }
@@ -131,7 +129,7 @@ public abstract class AbstractVegetable {
 
     public void onClick() {
         clickable = false;
-        Wiz.atb(CallbackAction.voidAction((__) -> launch()));
+        Wiz.atb(CallbackAction.wait((__) -> launch()));
     }
 
     public void onSpawn(int size) {
@@ -174,13 +172,16 @@ public abstract class AbstractVegetable {
         if (flash > 1) {
             flash -= Gdx.graphics.getDeltaTime() * FLASH_SIZE;
         }
+        if (scale < targetScale) {
+            scale += Gdx.graphics.getDeltaTime() * FLASH_SIZE;
+        }
     }
 
     public void upgrade(int amount) {
         level = Math.min(data.maxUpgradeLevel, level + amount);
         mainTip.body = getBodyText();
         float sc = getScaleMult();
-        scale = Settings.scale * sc;
+        targetScale = Settings.scale * sc;
         hb.resize(sc * SIZE, sc * SIZE);
         flash = FLASH_SIZE;
     }
