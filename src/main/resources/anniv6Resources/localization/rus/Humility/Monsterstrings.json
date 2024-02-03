@@ -1,0 +1,22 @@
+{
+  "anniv6:Hexaghost": {
+    "NAME": "Пятидух",
+    "MOVES": [],
+    "DIALOG": []
+  },
+  "anniv6:SlaverBlue": {
+    "MOVES": [
+      "Путешествие"
+    ]
+  },
+  "anniv6:BanditBear": {
+    "DIALOG": [
+      "~РОМЕЕЕЕЕЕОООО!!!!~"
+    ]
+  },
+  "anniv6:BookOfStabbing": {
+    "NAME": "Книга Ударов",
+    "MOVES": [],
+    "DIALOG": []
+  }
+}

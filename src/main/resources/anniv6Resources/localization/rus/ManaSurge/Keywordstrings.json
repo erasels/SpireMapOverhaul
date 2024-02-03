@@ -1,0 +1,130 @@
+[
+  {
+    "ID": "anniv6:ManaSurge:Sharp",
+    "PROPER_NAME": "[#8c9cff]Острый[]",
+    "NAMES": [
+      "sharp"
+    ],
+    "DESCRIPTION": "Нанести #b5 урона врагу-цели или случайному врагу, если он не является единственной целью."
+  },
+  {
+    "ID": "anniv6:ManaSurge:Tough",
+    "PROPER_NAME": "[#8c9cff]Прочный[]",
+    "NAMES": [
+      "tough"
+    ],
+    "DESCRIPTION": "Дает #b4 #yЗащиты."
+  },
+  {
+    "ID": "anniv6:ManaSurge:Powerful",
+    "PROPER_NAME": "[#8c9cff]Мощный[]",
+    "NAMES": [
+      "powerful"
+    ],
+    "DESCRIPTION": "Дает #b1 #yСилы."
+  },
+  {
+    "ID": "anniv6:ManaSurge:Protective",
+    "PROPER_NAME": "[#8c9cff]Защитный[]",
+    "NAMES": [
+      "protective"
+    ],
+    "DESCRIPTION": "Дает #b1 #yЛовкости."
+  },
+  {
+    "ID": "anniv6:ManaSurge:Exposing",
+    "PROPER_NAME": "[#8c9cff]Раскрытие[]",
+    "NAMES": [
+      "exposing"
+    ],
+    "DESCRIPTION": "Применить #b1 #yУязвимости к выбранному противнику или к случайному противнику, если цель не одна."
+  },
+  {
+    "ID": "anniv6:ManaSurge:Crippling",
+    "PROPER_NAME": "[#8c9cff]Калечащий[]",
+    "NAMES": [
+      "crippling"
+    ],
+    "DESCRIPTION": "Применяет #b1 #yСлабости к выбранному противнику или к случайному противнику, если цель не одна."
+  },
+  {
+    "ID": "anniv6:ManaSurge:Harmful",
+    "PROPER_NAME": "[#ff8cd5]Вредный[]",
+    "NAMES": [
+      "harmful"
+    ],
+    "DESCRIPTION": "Получить #b5 урона."
+  },
+  {
+    "ID": "anniv6:ManaSurge:Fragile",
+    "PROPER_NAME": "[#ff8cd5]Уязвимый[]",
+    "NAMES": [
+      "fragile"
+    ],
+    "DESCRIPTION": "Дает #b1 #yУязвимости."
+  },
+  {
+    "ID": "anniv6:ManaSurge:Feeble",
+    "PROPER_NAME": "[#ff8cd5]Хрупкий[]",
+    "NAMES": [
+      "feeble"
+    ],
+    "DESCRIPTION": "Дает #b1 #yХрупкости."
+  },
+  {
+    "ID": "anniv6:ManaSurge:Flawed",
+    "PROPER_NAME": "[#ff8cd5]Неисправный[]",
+    "NAMES": [
+      "flawed"
+    ],
+    "DESCRIPTION": "Дает #b1 #yСлабости."
+  },
+  {
+    "ID": "anniv6:ManaSurge:Powerless",
+    "PROPER_NAME": "[#ff8cd5]Беспомощность[]",
+    "NAMES": [
+      "powerless"
+    ],
+    "DESCRIPTION": "Потерять #b1 #yСилы."
+  },
+  {
+    "ID": "anniv6:ManaSurge:Brittle",
+    "PROPER_NAME": "[#ff8cd5]Ломкий[]",
+    "NAMES": [
+      "brittle"
+    ],
+    "DESCRIPTION": "Потерять #b1 #yЛовкости."
+  },
+  {
+    "ID": "anniv6:ManaSurge:Blight",
+    "PROPER_NAME": "[#ff8cd5]Заговор[]",
+    "NAMES": [
+      "blight"
+    ],
+    "DESCRIPTION": "Негативный модификатор."
+  },
+  {
+    "ID": "anniv6:ManaSurge:Enchantment",
+    "PROPER_NAME": "[#8c9cff]Зачарование[]",
+    "NAMES": [
+      "enchantment"
+    ],
+    "DESCRIPTION": "Позитивный модификатор."
+  },
+  {
+    "ID": "anniv6:ManaSurge:Blighted",
+    "PROPER_NAME": "[#ff8cd5]Заговорен[]",
+    "NAMES": [
+      "blighted"
+    ],
+    "DESCRIPTION": "Модифицирован негативным эффектом."
+  },
+  {
+    "ID": "anniv6:ManaSurge:Enchant",
+    "PROPER_NAME": "[#8c9cff]Зачарован[]",
+    "NAMES": [
+      "enchant"
+    ],
+    "DESCRIPTION": "Модифицирован позитивным эффектом."
+  }
+]

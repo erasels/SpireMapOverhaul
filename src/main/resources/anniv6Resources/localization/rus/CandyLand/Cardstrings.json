@@ -1,0 +1,70 @@
+{
+  "anniv6:Broccoli": {
+    "NAME": "Брокколи",
+    "DESCRIPTION": "Получи !M! Силы. NL Получи !M! Ловкости. NL Мимолетность."
+  },
+  "anniv6:CandyCane": {
+    "NAME": "Карамельная трость",
+    "DESCRIPTION": "Нанести !D! урона. NL Мимолетность."
+  },
+  "anniv6:Cookie": {
+    "NAME": "Печенька",
+    "DESCRIPTION": "Получить !B! Защиты. NL Мимолетность."
+  },
+  "anniv6:EnergyDrink": {
+    "NAME": "Энергетик",
+    "DESCRIPTION": "Получить{@@}{!M!|1= [E] |2= [E] [E] |3= [E] [E] [E] |@= !M! [E] }. NL Мимолетность."
+  },
+  "anniv6:FastFood": {
+    "NAME": "Фастфуд",
+    "DESCRIPTION": "Взять !M! карт. NL Мимолетность."
+  },
+  "anniv6:Banana": {
+    "NAME": "Банан",
+    "DESCRIPTION": "Увеличьте ваше Максимальное HP на !M!. NL Мимолетность."
+  },
+  "anniv6:ChocolateBar": {
+    "NAME": "Шоколадный батончик",
+    "DESCRIPTION": "Получить !M! Регенирации. NL Мимолетность."
+  },
+  "anniv6:Cocktail": {
+    "NAME": "Коктель",
+    "DESCRIPTION": "Получить случайное зелье. NL Мимолетность."
+  },
+  "anniv6:GoldCandy": {
+    "NAME": "Золотая конфета",
+    "DESCRIPTION": "Получить !M! Золота. NL Мимолетность."
+  },
+  "anniv6:Cake": {
+    "NAME": "Торт",
+    "DESCRIPTION": "Получить !B! Защиты. NL Защита не исчезнет на старте следющих{@@}{!M!|1= turn|@= !M! ходов}. NL Мимолетность."
+  },
+  "anniv6:FrozenYoghurt": {
+    "NAME": "Замороженный Йогурт",
+    "DESCRIPTION": "Получить !M! anniv6:Металлизации. NL Получить !anniv6:m2! Уязвимости. NL Мимолетность."
+  },
+  "anniv6:JawBreaker": {
+    "NAME": "Зубодробилка",
+    "DESCRIPTION": "Нанести !D! урона. NL Мимолетность."
+  },
+  "anniv6:JellyBeans": {
+    "NAME": "Желейные бобы",
+    "DESCRIPTION": "Применить !M! Уязвимости на ВСЕХ врагов. NL Получить !anniv6:m2! Слабости. NL Мимолетность."
+  },
+  "anniv6:Milk": {
+    "NAME": "Молоко",
+    "DESCRIPTION": "Применить !anniv6:m2! Артефакт. NL Получить !M! Артефакт. NL Мимолетность."
+  },
+  "anniv6:Pepper": {
+    "NAME": "Перчик",
+    "DESCRIPTION": "Получить !M! Силы. NL Потерять !anniv6:m2! Ловкости. NL Мимолетность."
+  },
+  "anniv6:PoisonedApple": {
+    "NAME": "Отравленное яблоко",
+    "DESCRIPTION": "Наложить !M! Яда. NL Получить !anniv6:m2! урона. NL Мимолетность."
+  },
+  "anniv6:ChewingGum": {
+    "NAME": "Жевачка",
+    "DESCRIPTION": "Взять !M! карт и получить{@@}{!M!|1= [E] |2= [E] [E] |3= [E] [E] [E] |@= !M! [E] } . NL Добавить *Slime на верх стопки добора. NL Мимолетность."
+  }
+}
