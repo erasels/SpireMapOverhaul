@@ -15,12 +15,10 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.*;
 import spireMapOverhaul.SpireAnniversary6Mod;
-import spireMapOverhaul.abstracts.AbstractSMOCard;
 import spireMapOverhaul.zones.invasion.actions.ChangeMaxHpAction;
 import spireMapOverhaul.zones.invasion.actions.CustomTextChooseOneAction;
 import spireMapOverhaul.zones.invasion.cards.AbstractInvasionZoneCard;
 
-import java.text.MessageFormat;
 import java.util.*;
 import java.util.function.BiConsumer;
 
@@ -49,7 +47,7 @@ public class EvolvingPower extends AbstractInvasionPower {
 
     @Override
     public void updateDescription() {
-        this.description = MessageFormat.format(DESCRIPTIONS[0], this.amount);
+        this.description = DESCRIPTIONS[0].replace("{0}", this.amount + "");
     }
 
     private void showEvolutionChoice() {
@@ -130,7 +128,7 @@ public class EvolvingPower extends AbstractInvasionPower {
         }
 
         public String getDescription() {
-            return MessageFormat.format(text, this.amount);
+            return text.replace("{0}", this.amount + "");
         }
     }
 
