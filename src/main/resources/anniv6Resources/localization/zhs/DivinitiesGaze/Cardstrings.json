@@ -24,7 +24,7 @@
   },
   "${ModID}:Inevitability": {
     "NAME": "逃无可逃",
-    "DESCRIPTION": "不可打出 NL 保留 NL 在你回合结束时，对所有敌人造成 !D! 点伤害并获得 !B! 点格挡 NL 每过一回合，数值增加 !M! ",
+    "DESCRIPTION": "不可打出 NL 保留 NL 在你回合结束时，对所有敌人造成 !M! 点伤害并获得 !${ModID}:m2! 点格挡 NL 每过一回合，数值增加 1 ",
     "EXTENDED_DESCRIPTION": [
       "这便是终途",
       "让开！",
