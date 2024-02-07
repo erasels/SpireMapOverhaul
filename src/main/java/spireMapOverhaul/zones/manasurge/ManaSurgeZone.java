@@ -7,6 +7,7 @@ import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.ui.campfire.AbstractCampfireOption;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
@@ -30,6 +31,7 @@ import spireMapOverhaul.zones.manasurge.ui.campfire.EnchantOption;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Supplier;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 import static spireMapOverhaul.SpireAnniversary6Mod.makePath;
@@ -125,55 +127,41 @@ public class ManaSurgeZone extends AbstractZone implements
     }
 
     public static void applyRandomTemporaryModifier(AbstractCard card) {
-        if (AbstractDungeon.cardRandomRng.randomBoolean(COMMON_CHANCE)) {
-            if (AbstractDungeon.cardRandomRng.randomBoolean(ENCHANT_CHANCE)) {
-                CardModifierManager.addModifier(card, Wiz.getRandomItem(getPositiveCommonModifierList(false), AbstractDungeon.cardRandomRng));
-            } else {
-                CardModifierManager.addModifier(card, Wiz.getRandomItem(getNegativeCommonModifierList(false), AbstractDungeon.cardRandomRng));
-            }
-        } else {
-            if (AbstractDungeon.cardRandomRng.randomBoolean(ENCHANT_CHANCE)) {
-                CardModifierManager.addModifier(card, Wiz.getRandomItem(getPositiveUncommonModifierList(false), AbstractDungeon.cardRandomRng));
-            } else {
-                CardModifierManager.addModifier(card, Wiz.getRandomItem(getNegativeUncommonModifierList(false), AbstractDungeon.cardRandomRng));
-            }
-        }
+        applyRandomModifier(card, AbstractDungeon.cardRng, false, null);
     }
 
     public static void applyRandomPermanentModifier(AbstractCard card) {
-        if (AbstractDungeon.cardRng.randomBoolean(COMMON_CHANCE)) {
-            if (AbstractDungeon.cardRng.randomBoolean(ENCHANT_CHANCE)) {
-                CardModifierManager.addModifier(card, Wiz.getRandomItem(getPositiveCommonModifierList(true), AbstractDungeon.cardRng));
-            } else {
-                CardModifierManager.addModifier(card, Wiz.getRandomItem(getNegativeCommonModifierList(true), AbstractDungeon.cardRng));
-            }
-        } else {
-            if (AbstractDungeon.cardRng.randomBoolean(ENCHANT_CHANCE)) {
-                CardModifierManager.addModifier(card, Wiz.getRandomItem(getPositiveUncommonModifierList(true), AbstractDungeon.cardRng));
-            } else {
-                CardModifierManager.addModifier(card, Wiz.getRandomItem(getNegativeUncommonModifierList(true), AbstractDungeon.cardRng));
-            }
-        }
+        applyRandomModifier(card, AbstractDungeon.cardRng, true, null);
     }
 
     public static void applyPermanentPositiveModifier(AbstractCard card) {
-        if (AbstractDungeon.cardRng.randomBoolean(COMMON_CHANCE)) {
-            List<AbstractManaSurgeModifier> commonModifierList = new ArrayList<>(getPositiveCommonModifierList(true));
-            CardModifierManager.addModifier(card, Wiz.getRandomItem(commonModifierList, AbstractDungeon.cardRng));
-        } else {
-            List<AbstractManaSurgeModifier> uncommonModifierList = new ArrayList<>(getPositiveUncommonModifierList(true));
-            CardModifierManager.addModifier(card, Wiz.getRandomItem(uncommonModifierList, AbstractDungeon.cardRng));
-        }
+        applyRandomModifier(card, AbstractDungeon.cardRng, true, true);
     }
 
     public static void applyPermanentNegativeModifier(AbstractCard card) {
-        if (AbstractDungeon.cardRng.randomBoolean(COMMON_CHANCE)) {
-            List<AbstractManaSurgeModifier> commonModifierList = new ArrayList<>(getNegativeCommonModifierList(true));
-            CardModifierManager.addModifier(card, Wiz.getRandomItem(commonModifierList, AbstractDungeon.cardRng));
-        } else {
-            List<AbstractManaSurgeModifier> uncommonModifierList = new ArrayList<>(getNegativeUncommonModifierList(true));
-            CardModifierManager.addModifier(card, Wiz.getRandomItem(uncommonModifierList, AbstractDungeon.cardRng));
+        applyRandomModifier(card, AbstractDungeon.cardRng, true, false);
+    }
+
+    private static void applyRandomModifier(AbstractCard card, Random rng, boolean permanent, Boolean positiveNegative) {
+        boolean positive = Boolean.TRUE.equals(positiveNegative) || (positiveNegative == null && rng.randomBoolean(ENCHANT_CHANCE));
+        boolean allowUncommonModifiers = card.type == AbstractCard.CardType.POWER || (card.exhaust && cardUpgradeExhausts(card));
+        boolean common = !allowUncommonModifiers || rng.randomBoolean(COMMON_CHANCE);
+        List<AbstractManaSurgeModifier> modifiers =
+                positive && common ? getPositiveCommonModifierList(permanent)
+                : positive && !common ? getPositiveUncommonModifierList(permanent)
+                : !positive && common ? getNegativeCommonModifierList(permanent)
+                : getNegativeUncommonModifierList(permanent);
+        AbstractManaSurgeModifier modifier = modifiers.get(rng.random(modifiers.size() - 1));
+        CardModifierManager.addModifier(card, modifier);
+    }
+
+    private static boolean cardUpgradeExhausts(AbstractCard card) {
+        if (!card.canUpgrade()) {
+            return true;
         }
+        AbstractCard copy = card.makeStatEquivalentCopy();
+        copy.upgrade();
+        return copy.exhaust;
     }
 
     @Override
