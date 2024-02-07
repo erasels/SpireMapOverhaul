@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic
 import com.megacrit.cardcrawl.rooms.AbstractRoom
 import com.megacrit.cardcrawl.rooms.MonsterRoom
 import com.megacrit.cardcrawl.rooms.MonsterRoomElite
+import spireMapOverhaul.SpireAnniversary6Mod
 import spireMapOverhaul.abstracts.AbstractZone
 import spireMapOverhaul.util.Wiz
 import spireMapOverhaul.zoneInterfaces.OnTravelZone
@@ -49,8 +50,25 @@ class HumilityZone : AbstractZone(ID, Icons.MONSTER), OnTravelZone {
         placeRoomRandomly(rng, roomOrDefault(roomList, {it is MonsterRoom}, ::MonsterRoom))
     }
 
+    private fun isValidRelic(relic: AbstractRelic): Boolean {
+        // Relics that involve screens on pickup will softlock combats, so prevent giving them out here
+        // We do this by excluding every relic that declares its own update method. Might not be perfect,
+        // but it should get most things right.
+        try {
+            val method = relic.javaClass.getMethod("update")
+            return method.declaringClass.equals(AbstractRelic::class.java)
+        }
+        catch (e: NoSuchMethodException) {
+            SpireAnniversary6Mod.logger.info("Error in determining valid relics for Humility zone: Relic " + relic.relicId + " does not have an update method.")
+            return true
+        }
+    }
+
     override fun onEnter() {
-        val relic = AbstractDungeon.returnRandomRelicEnd(AbstractRelic.RelicTier.RARE)
+        var relic: AbstractRelic? = null
+        while (relic == null || !isValidRelic(relic)) {
+            relic = AbstractDungeon.returnRandomRelicEnd(AbstractRelic.RelicTier.RARE)
+        }
         AbstractDungeon.getCurrMapNode()?.getRoom()?.spawnRelicAndObtain(
             InputHelper.mX.toFloat(),
             InputHelper.mY.toFloat(),

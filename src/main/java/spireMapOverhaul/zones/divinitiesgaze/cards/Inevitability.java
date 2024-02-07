@@ -16,12 +16,12 @@ import spireMapOverhaul.zones.divinitiesgaze.DivinitiesGazeZone;
 public class Inevitability extends AbstractSMOCard {
   public static String ID = SpireAnniversary6Mod.makeID("Inevitability");
   private static boolean canTalk = true;
+  private static final int STAT_INCREMENT = 1;
 
   public Inevitability() {
     super(ID, DivinitiesGazeZone.ID, -2, CardType.SKILL, CardRarity.SPECIAL, CardTarget.ALL, CardColor.COLORLESS);
     this.magicNumber = this.baseMagicNumber = 5;
-    this.block = this.baseBlock = 3;
-    this.secondMagic = this.baseSecondMagic = 1;
+    this.secondMagic = this.baseSecondMagic = 3;
     this.isMultiDamage = true;
     this.selfRetain = true;
   }
@@ -29,7 +29,7 @@ public class Inevitability extends AbstractSMOCard {
   @Override
   public void upp() {
     upgradeMagicNumber(2);
-    upgradeBlock(1);
+    upgradeSecondMagic(2);
   }
 
   @Override
@@ -54,13 +54,13 @@ public class Inevitability extends AbstractSMOCard {
     }
     Wiz.atb(new DamageAllEnemiesAction(AbstractDungeon.player, DamageInfo.createDamageMatrix(this.magicNumber, true),
         DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE));
-    Wiz.atb(new GainBlockAction(AbstractDungeon.player, this.block));
+    Wiz.atb(new GainBlockAction(AbstractDungeon.player, this.secondMagic));
     Wiz.atb(new AbstractGameAction() {
       @Override
       public void update() {
         this.isDone = true;
-        Inevitability.this.baseMagicNumber += Inevitability.this.secondMagic;
-        Inevitability.this.baseBlock += Inevitability.this.secondMagic;
+        Inevitability.this.baseMagicNumber += STAT_INCREMENT;
+        Inevitability.this.baseBlock += STAT_INCREMENT;
       }
     });
   }
