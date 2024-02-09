@@ -60,7 +60,7 @@ public class FrostSlimeL extends CustomMonster {
     }
 
     public FrostSlimeL(final float x, final float y) {
-        super(NAME, ID, HP_MAX, -5.0F, -4.0F, 280.0F, 180.0F, IMG, x, y);
+        super(NAME, ID, HP_MAX, -5.0F, -4.0F, 280.0F, 195.0F, IMG, x, y);
         this.type = EnemyType.NORMAL;
         if (AbstractDungeon.ascensionLevel >= 7) {
             this.setHp(A_7_HP_MIN, A_7_HP_MAX);

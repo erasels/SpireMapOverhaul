@@ -2,7 +2,7 @@
   "${ModID}:Hailstorm": {
     "TEXT": [
       "Hailstorm",
-      "A never ending Hail is taking over the spire.",
+      "A #bnever #bending #bHail is taking over the spire. NL NL The Hailstorm caused campfires to die out, making it unable to rest. NL NL During combat, snow gives #yBlock to EVERYONE for the first #b3 turns, then hail deals damage to EVERYONE every turn. NL NL Encounter a new monster and a new event.",
       "Diamsword"
     ]
   },
@@ -10,6 +10,11 @@
     "TEXT": [
       "Rest twice",
       "use the Flint to light a greater fire and rest twice."
+    ]
+  },
+  "${ModID}:HailEffect": {
+    "TEXT": [
+      "At the start of the first #b3 turns, EVERYONE gains #b4 #yBlock. NL After these #b3 turns, at the end of each turn EVERYONE takes #b4 damage, increased by #b1 every turn."
     ]
   }
 }

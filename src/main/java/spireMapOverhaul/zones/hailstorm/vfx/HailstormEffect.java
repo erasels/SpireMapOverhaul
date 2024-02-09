@@ -20,7 +20,7 @@ public class HailstormEffect extends AbstractGameEffect {
     private static final int W = 32;
 
     public HailstormEffect() {
-        this.x = MathUtils.random(100.0F * Settings.scale, 2420.0F * Settings.scale);
+        this.x = MathUtils.random(100.0F * Settings.scale, 2920.0F * Settings.scale);
         this.y = (float) Settings.HEIGHT + MathUtils.random(20.0F, 300.0F) * Settings.scale;
         this.frame = MathUtils.random(3);
         this.rotation = MathUtils.random(35.0F, 50.0F);
@@ -86,6 +86,6 @@ public class HailstormEffect extends AbstractGameEffect {
         sb.draw(img, this.x, this.y, 16.0F, 16.0F, 32.0F, 32.0F, this.scale, this.scale * this.scaleY, this.rotation, 0, 0, 32, 32, flipH, flipV);
         //sb.setBlendFunction(770, 771);
         //this.color.a = MathUtils.random(0.8F, 1.0F);sb.setColor(Color.WHITE);
-        this.color.a = MathUtils.random(0.4F, 0.6F);
+        this.color.a = MathUtils.random(0.6F, 0.8F);
     }
 }

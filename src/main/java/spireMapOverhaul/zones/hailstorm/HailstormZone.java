@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
@@ -22,6 +23,7 @@ import spireMapOverhaul.BetterMapGenerator;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.zoneInterfaces.*;
+import spireMapOverhaul.zones.hailstorm.campfire.FlintOption;
 import spireMapOverhaul.zones.hailstorm.monsters.FrostSlimeL;
 import spireMapOverhaul.zones.hailstorm.monsters.FrostSlimeM;
 import spireMapOverhaul.zones.hailstorm.vfx.HailEffect;
@@ -31,6 +33,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 import static spireMapOverhaul.util.Wiz.adp;
 
 public class HailstormZone extends AbstractZone implements CombatModifyingZone, ModifiedEventRateZone, RenderableZone, EncounterModifyingZone, CampfireModifyingZone {
@@ -56,6 +59,10 @@ public class HailstormZone extends AbstractZone implements CombatModifyingZone, 
             AbstractDungeon.actionManager.addToBottom(new DamageAction(adp(), new DamageInfo((AbstractCreature) null, GameActionManager.turn, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
             AbstractDungeon.actionManager.addToBottom(new DamageAllEnemiesAction((AbstractCreature) null, DamageInfo.createDamageMatrix(GameActionManager.turn, true), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.BLUNT_LIGHT));
         }
+    }
+
+    public String getCombatText() {
+        return CardCrawlGame.languagePack.getUIString(makeID("HailEffect")).TEXT[0];
     }
 
     @Override

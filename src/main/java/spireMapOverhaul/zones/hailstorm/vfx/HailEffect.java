@@ -31,7 +31,7 @@ public class HailEffect extends AbstractGameEffect {
             this.renderBehind = true;
         }
 
-        this.vY = MathUtils.random(900.0F, 1200.0F) * this.scale * Settings.scale;
+        this.vY = MathUtils.random(600.0F, 900.0F) * this.scale * Settings.scale;
         this.vX = MathUtils.random(-300.0F, -50.0F) * this.scale * Settings.scale;
         this.scale *= Settings.scale;
         if (MathUtils.randomBoolean()) {
