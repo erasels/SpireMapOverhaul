@@ -21,7 +21,6 @@ import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.exordium.AcidSlime_M;
 import com.megacrit.cardcrawl.powers.*;
 import spireMapOverhaul.SpireAnniversary6Mod;
-
 public class FrostSlimeL extends CustomMonster {
     public static final String ID = SpireAnniversary6Mod.makeID(FrostSlimeL.class.getSimpleName());
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
@@ -61,7 +60,7 @@ public class FrostSlimeL extends CustomMonster {
     }
 
     public FrostSlimeL(final float x, final float y) {
-        super(NAME, ID, HP_MAX, -5.0F, -4.0F, 170.0F, 290.0F, IMG, x, y);
+        super(NAME, ID, HP_MAX, -5.0F, -4.0F, 280.0F, 180.0F, IMG, x, y);
         this.type = EnemyType.NORMAL;
         if (AbstractDungeon.ascensionLevel >= 7) {
             this.setHp(A_7_HP_MIN, A_7_HP_MAX);

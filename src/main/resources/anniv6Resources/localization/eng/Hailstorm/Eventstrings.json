@@ -3,17 +3,18 @@
     "NAME": "Abandoned Camp",
     "DESCRIPTIONS": [
       "You arrive at an abandoned camp. Looks like an adventurer has been there before you.",
-      "The #b~freezing #bcold~ is getting worse, you won't be able to stand it for long.",
-      "The #b@Hailstorm@ keeps growing behind you, your better move quick !",
+      "The #bfreezing #bcold is getting worse, you won't be able to stand it for long.",
       "You look around the camp quickly and notice few things you could bring with you.",
-      "Perhaps there is more to grab in this camp but the #btemperature is unbearable, pick one up and move !"
+      "Perhaps there is more to grab in this camp but the #btemperature is unbearable, pick one up and move !",
+      "The #b@Hailstorm@ keeps growing behind you, your better move quick !"
     ],
     "OPTIONS": [
       "[Campfire] Obtain #gDead #gBranch and a #rSpecial #rCurse",
       "[Tools] Obtain #gFlint and #rlose #r"," #rhp",
       "[Valuables] #gGain #g"," #gGold.",
       "[Leftovers] #gHeal #g"," #gHP.",
-      "[Leave] Nothing happens."
+      "[Leave] Nothing happens.",
+      "[Leave]"
     ]
   }
 }

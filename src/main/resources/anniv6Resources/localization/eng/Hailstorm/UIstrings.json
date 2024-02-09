@@ -8,8 +8,8 @@
   },
   "${ModID}:FlintOption": {
     "TEXT": [
-      "Light a fire and rest",
-      "Heal for 50% of your max HP."
+      "Rest twice",
+      "use the Flint to light a greater fire and rest twice."
     ]
   }
 }

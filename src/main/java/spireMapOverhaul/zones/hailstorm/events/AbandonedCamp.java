@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.events.AbstractEvent;
 import com.megacrit.cardcrawl.events.AbstractImageEvent;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.EventStrings;
@@ -19,21 +20,22 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.zones.hailstorm.cards.Freeze;
 import spireMapOverhaul.zones.hailstorm.relics.Flint;
-
+//TODO -- Find out why event opens map
 public class AbandonedCamp extends AbstractImageEvent {
     public static final String ID = SpireAnniversary6Mod.makeID(AbandonedCamp.class.getSimpleName());
     private static final EventStrings eventStrings = CardCrawlGame.languagePack.getEventString(ID);
     private static final String NAME = eventStrings.NAME;
     private static final String[] DESCRIPTIONS = eventStrings.DESCRIPTIONS;
     private static final String[] OPTIONS = eventStrings.OPTIONS;
-    public static final String IMG = SpireAnniversary6Mod.makeImagePath("events/Invasion/ThiefKing.png");
+    
+    public static final String IMG = SpireAnniversary6Mod.makeImagePath("events/Hailstorm/AbandonedCamp.png");
 
     private static final float FLINT_HP_LOSS = (float) 1 /24;
     private static final float A_15_FLINT_HP_LOSS = (float) 1 /16;
     private static final int GOLD = 90;
     private static final int A_15_GOLD = 60;
-    private static final float HEALING = (float) 1/4;
-    private static final float A_15_HEALING = (float) 1/6;
+    private static final float HEALING = (float) 1/6;
+    private static final float A_15_HEALING = (float) 1/9;
 
     private final boolean T_DEADBRANCH_F_FLINT;
     private final boolean T_GOLD_F_HEALING;
@@ -43,12 +45,14 @@ public class AbandonedCamp extends AbstractImageEvent {
     private int goldGain;
     private int healing;
 
+    private int screenNum = 0;
+
 
     public AbandonedCamp() {
         super(ID, NAME ,IMG );
         this.noCardsInRewards = true;
         this.title = NAME;
-        this.body = DESCRIPTIONS[0] + " NL " + DESCRIPTIONS[1] + " NL " + DESCRIPTIONS[2] + " NL " + DESCRIPTIONS[3] + " NL " + DESCRIPTIONS[4];
+        this.body = DESCRIPTIONS[0] + " NL " + DESCRIPTIONS[1] + " NL " + DESCRIPTIONS[2] + " NL " + DESCRIPTIONS[3];
 
         //Event randomly chooses one big reward between two, and one light reward between two
         T_DEADBRANCH_F_FLINT = AbstractDungeon.miscRng.randomBoolean();
@@ -106,41 +110,58 @@ public class AbandonedCamp extends AbstractImageEvent {
     }
 
     protected void buttonEffect(int buttonPressed) {
-        switch (buttonPressed) {
+        switch (screenNum) {
             case 0:
-                if (T_DEADBRANCH_F_FLINT)
-                    AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(curse, (float)Settings.WIDTH / 2.0F, (float)Settings.HEIGHT / 2.0F));
-                else {
-                    AbstractDungeon.player.damage(new DamageInfo((AbstractCreature) null, hpLoss));
+                switch (buttonPressed) {
+                    case 0:
+                        if (T_DEADBRANCH_F_FLINT)
+                            AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(curse, (float) Settings.WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F));
+                        else {
+                            AbstractDungeon.player.damage(new DamageInfo((AbstractCreature) null, hpLoss));
+                        }
+
+                        AbstractDungeon.getCurrRoom().rewards.clear();
+
+                        String targetRelicId = T_DEADBRANCH_F_FLINT ? DeadBranch.ID : Flint.ID;
+                        AbstractRelic relic = RelicLibrary.getRelic(targetRelicId).makeCopy();
+                        AbstractDungeon.getCurrRoom().spawnRelicAndObtain((float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2), relic);
+
+                        this.screenNum = 1;
+                        this.imageEventText.updateDialogOption(0, OPTIONS[8]);
+                        this.imageEventText.clearRemainingOptions();
+                        this.imageEventText.updateBodyText(DESCRIPTIONS[4]);
+
+                        break;
+                    case 1:
+                        if (T_GOLD_F_HEALING)
+                            AbstractDungeon.player.gainGold(goldGain);
+                        else {
+                            AbstractDungeon.player.heal(healing, true);
+                        }
+
+                        this.screenNum = 1;
+                        this.imageEventText.updateDialogOption(0, OPTIONS[8]);
+                        this.imageEventText.clearRemainingOptions();
+                        this.imageEventText.updateBodyText(DESCRIPTIONS[4]);
+
+                        break;
+                    case 2:
+                        AbstractDungeon.getCurrRoom().phase = AbstractRoom.RoomPhase.COMPLETE;
+
+                        this.screenNum = 1;
+                        this.imageEventText.updateDialogOption(0, OPTIONS[8]);
+                        this.imageEventText.clearRemainingOptions();
+                        this.imageEventText.updateBodyText(DESCRIPTIONS[4]);
+
+                        break;
+                    default:
+                        return;
                 }
-
-                AbstractDungeon.getCurrRoom().rewards.clear();
-                String targetRelicId = T_DEADBRANCH_F_FLINT ? DeadBranch.ID : Flint.ID;
-                AbstractRelic relic = RelicLibrary.getRelic(targetRelicId).makeCopy();
-                AbstractDungeon.getCurrRoom().rewards.add(new RewardItem(relic));
-
-                AbstractDungeon.getCurrRoom().phase = AbstractRoom.RoomPhase.COMPLETE;
-
-                AbstractDungeon.combatRewardScreen.open();
-                this.imageEventText.clearAllDialogs();
-                this.openMap();
-                break;
             case 1:
-                if (T_GOLD_F_HEALING)
-                    AbstractDungeon.player.gainGold(goldGain);
-                else {
-                    AbstractDungeon.player.heal(healing, true);
+                if (buttonPressed == 0) {
+                    this.openMap();
                 }
 
-                AbstractDungeon.getCurrRoom().phase = AbstractRoom.RoomPhase.COMPLETE;
-
-                this.openMap();
-                break;
-            case 2:
-                AbstractDungeon.getCurrRoom().phase = AbstractRoom.RoomPhase.COMPLETE;
-
-                this.openMap();
-                break;
             default:
                 this.openMap();
         }

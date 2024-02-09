@@ -4,6 +4,14 @@ import basemod.BaseMod;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.GameActionManager;
+import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
+import com.megacrit.cardcrawl.actions.common.GainBlockAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.random.Random;
@@ -13,26 +21,42 @@ import com.megacrit.cardcrawl.ui.campfire.RestOption;
 import spireMapOverhaul.BetterMapGenerator;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
-import spireMapOverhaul.zoneInterfaces.CampfireModifyingZone;
-import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
-import spireMapOverhaul.zoneInterfaces.ModifiedEventRateZone;
-import spireMapOverhaul.zoneInterfaces.RenderableZone;
+import spireMapOverhaul.zoneInterfaces.*;
 import spireMapOverhaul.zones.hailstorm.monsters.FrostSlimeL;
 import spireMapOverhaul.zones.hailstorm.monsters.FrostSlimeM;
+import spireMapOverhaul.zones.hailstorm.vfx.HailEffect;
+import spireMapOverhaul.zones.hailstorm.vfx.HailstormEffect;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class HailstormZone extends AbstractZone implements ModifiedEventRateZone, RenderableZone, EncounterModifyingZone, CampfireModifyingZone {
+import static spireMapOverhaul.util.Wiz.adp;
+
+public class HailstormZone extends AbstractZone implements CombatModifyingZone, ModifiedEventRateZone, RenderableZone, EncounterModifyingZone, CampfireModifyingZone {
     public static final String ID = "Hailstorm";
     public static final String Frost_Slime_L = SpireAnniversary6Mod.makeID("Frost_Slime_L");
     public static final String Frost_Slime_M = SpireAnniversary6Mod.makeID("Frost_Slime_M");
 
-    /*@Override
-    public AbstractEvent forceEvent() {
-        return ModifiedEventRateZone.returnIfUnseen(CoolExampleEvent.ID);
-    }*/
+    public static int damageFromFrost;
+    public static final int blockFromSnow = 4;
+    public static final int startingDamageFromFrost = 3;
+    public static final int turnSwitchBetweenSnowBlockAndHailDamage = 4;
+
+    public void atTurnStart() {
+        if (GameActionManager.turn < turnSwitchBetweenSnowBlockAndHailDamage) {
+            AbstractDungeon.actionManager.addToBottom(new GainBlockAction(adp(), blockFromSnow));
+            for (AbstractMonster q : AbstractDungeon.getCurrRoom().monsters.monsters) {
+                AbstractDungeon.actionManager.addToBottom(new GainBlockAction(q, blockFromSnow));
+            }
+        }
+    }
+    public void atTurnEnd() {
+        if (GameActionManager.turn > turnSwitchBetweenSnowBlockAndHailDamage) {
+            AbstractDungeon.actionManager.addToBottom(new DamageAction(adp(), new DamageInfo((AbstractCreature) null, GameActionManager.turn, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
+            AbstractDungeon.actionManager.addToBottom(new DamageAllEnemiesAction((AbstractCreature) null, DamageInfo.createDamageMatrix(GameActionManager.turn, true), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.BLUNT_LIGHT));
+        }
+    }
 
     @Override
     public float zoneSpecificEventRate() {
@@ -47,59 +71,28 @@ public class HailstormZone extends AbstractZone implements ModifiedEventRateZone
         this.maxHeight = 4;
     }
 
+
+    @Override
+    public void update() {
+        if (GameActionManager.turn <= turnSwitchBetweenSnowBlockAndHailDamage)
+            for (int i = 0; i < 7; i++) {
+                AbstractDungeon.effectsQueue.add(new HailEffect());
+            }
+        else
+            for (int i = 0; i < 20; i++) {
+                AbstractDungeon.effectsQueue.add(new HailstormEffect());
+            }
+    }
+
     @Override
     public AbstractZone copy() {
         return new HailstormZone();
     }
 
-    /*@Override
-    protected boolean allowAdditionalPaths() {
-        return false;
-    }
-
-    @Override
-    public boolean generateMapArea(BetterMapGenerator.MapPlanner planner) {
-        return generateNormalArea(planner, width, height);
-    }*/
     @Override
     public Color getColor() {
         return Color.CYAN.cpy();
     }
-
-    /*@Override
-    public void manualRoomPlacement(Random rng) {
-        //set all nodes to a specific room.
-        *//*for (MapRoomNode node : nodes) {
-            node.setRoom(new EventRoom());//new MonsterRoomElite());
-        }*//*
-    }*/
-
-    /*@Override
-    public void distributeRooms(Random rng, ArrayList<AbstractRoom> roomList) {
-        //Guarantee at least One Elite Room in zone. This method will do nothing if the zone is already full.
-        //placeRoomRandomly(rng, roomOrDefault(roomList, (room)->room instanceof MonsterRoomElite, MonsterRoomElite::new));
-    }*/
-
-    /*@Override
-    public void replaceRooms(Random rng) {
-        //Replace 100% of event rooms with treasure rooms.
-        //replaceRoomsRandomly(rng, TreasureRoom::new, (room)->room instanceof EventRoom, 1);
-    }*/
-
-    /*@Override
-    public void renderBackground(SpriteBatch sb) {
-        // Render things in the background when this zone is active.
-    }*/
-
-    /*@Override
-    public void renderForeground(SpriteBatch sb) {
-        // Render things in the foreground when this zone is active.
-    }*/
-
-    /*@Override
-    public void update() {
-        // Update things when this zone is active.
-    }*/
 
     @Override
     public boolean canSpawn() {
