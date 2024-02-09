@@ -1,5 +1,5 @@
 {
-  "anniv6:ConduitPower": {
+  "${ModID}:ConduitPower": {
     "NAME": "闪电",
     "DESCRIPTIONS": ["回合结束时，目标将受到 #b", " 点可被格挡的伤害"]
   }

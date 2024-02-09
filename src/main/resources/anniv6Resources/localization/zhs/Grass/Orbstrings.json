@@ -1,36 +1,36 @@
 
 {
-	"anniv6:BellPepper":
+	"${ModID}:BellPepper":
 	{
 		"DESCRIPTION": ["对随机一位敌人施加 {0} 层 #y中毒 {1} 次"],
 		"NAME": "甜椒"
 	},
-	"anniv6:Carrot":
+	"${ModID}:Carrot":
 	{
 		"DESCRIPTION": ["对随机一位敌人造成 {0} 点伤害 {1} 次"],
 		"NAME": "胡萝卜"
 	},
-	"anniv6:Leek":
+	"${ModID}:Leek":
 	{
 		"DESCRIPTION": ["对随机一位敌人施加 {0} 层 #y虚弱 {1} 次"],
 		"NAME": "韭葱"
 	},
-	"anniv6:Onion":
+	"${ModID}:Onion":
 	{
 		"DESCRIPTION": ["对随机一位敌人施加 {0} 层 #y脆弱 {1} 次"],
 		"NAME": "洋葱"
 	},
-	"anniv6:Pumpkin":
+	"${ModID}:Pumpkin":
 	{
 		"DESCRIPTION": ["获得 {0} 点 #y格挡"],
 		"NAME": "南瓜"
 	},
-	"anniv6:Radish":
+	"${ModID}:Radish":
 	{
 		"DESCRIPTION": ["对随机一位敌人造成 {0} 点伤害 {1} 次"],
 		"NAME": "白萝卜"
 	},
-	"anniv6:Tomato":
+	"${ModID}:Tomato":
 	{
 		"DESCRIPTION": ["获得 {0} 点 #y力量"],
 		"NAME": "番茄"

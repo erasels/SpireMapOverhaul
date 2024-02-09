@@ -1,5 +1,5 @@
 {
-  "anniv6:BanditLieutenant": {
+  "${ModID}:BanditLieutenant": {
     "MOVES": [
       "棍击",
       "毒烟",
@@ -7,7 +7,7 @@
     ],
     "NAME": "匪徒守卫"
   },
-  "anniv6:ThiefKing": {
+  "${ModID}:ThiefKing": {
     "MOVES": [
       "偷取活力",
       "窃取经验",

@@ -1,5 +1,5 @@
 {
-  "anniv6:Bargain": {
+  "${ModID}:Bargain": {
     "NAME": "一项交易",
     "DESCRIPTION": "购买一件小贩的精品！",
     "EXTENDED_DESCRIPTION": [

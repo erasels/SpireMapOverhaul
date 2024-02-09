@@ -1,5 +1,5 @@
 {
-  "anniv6:BrokenDataDisk": {
+  "${ModID}:BrokenDataDisk": {
     "NAME": "破碎的数据磁盘",
     "FLAVOR": "no",
     "DESCRIPTIONS": [
@@ -7,7 +7,7 @@
       " 点 #y集中。 每回合第一次 #y生成 一个充能球时，额外 #y生成 同类型的另一个充能球"
     ]
   },
-  "anniv6:BrokenSneckoSkull": {
+  "${ModID}:BrokenSneckoSkull": {
     "NAME": "破碎的异蛇头骨",
     "FLAVOR": "no",
     "DESCRIPTIONS": [
@@ -15,7 +15,7 @@
       " 层"
     ]
   },
-  "anniv6:BrokenRedSkull": {
+  "${ModID}:BrokenRedSkull": {
     "NAME": "破碎的红头骨",
     "FLAVOR": "no",
     "DESCRIPTIONS": [
@@ -24,7 +24,7 @@
       " 点 #y敏捷。"
     ]
   },
-  "anniv6:BrokenOmamori": {
+  "${ModID}:BrokenOmamori": {
     "NAME": "破碎的御守",
     "FLAVOR": "no",
     "DESCRIPTIONS": [
@@ -33,7 +33,7 @@
       " 张卡牌"
     ]
   },
-  "anniv6:BrokenDamaru": {
+  "${ModID}:BrokenDamaru": {
     "NAME": "破碎的摇鼓",
     "FLAVOR": "no",
     "DESCRIPTIONS": [
@@ -42,7 +42,7 @@
 
     ]
   },
-  "anniv6:BrokenWingBoots": {
+  "${ModID}:BrokenWingBoots": {
     "NAME": "破碎的羽翼之靴",
     "FLAVOR": "no",
     "DESCRIPTIONS": [
@@ -50,7 +50,7 @@
 
     ]
   },
-  "anniv6:BrokenSozu": {
+  "${ModID}:BrokenSozu": {
     "NAME": "破碎的添水",
     "FLAVOR": "no",
     "DESCRIPTIONS": [
@@ -58,7 +58,7 @@
       " 能量"
     ]
   },
-  "anniv6:BrokenSneckoEye": {
+  "${ModID}:BrokenSneckoEye": {
     "NAME": "破碎的异蛇之眼",
     "FLAVOR": "no",
     "DESCRIPTIONS": [
@@ -66,7 +66,7 @@
       " 卡牌复制进你的手牌中。此复制牌具有 #y消耗 、 #y虚无 和 #y难以辨认 的特性"
     ]
   },
-  "anniv6:BrokenMawBank": {
+  "${ModID}:BrokenMawBank": {
     "NAME": "破碎的巨口储蓄罐",
     "FLAVOR": "no",
     "DESCRIPTIONS": [
@@ -75,7 +75,7 @@
       " #y金币"
     ]
   },
-  "anniv6:BrokenPrayerWheel": {
+  "${ModID}:BrokenPrayerWheel": {
     "NAME": "破碎的转经轮",
     "FLAVOR": "no",
     "DESCRIPTIONS": [
@@ -84,7 +84,7 @@
       " 倍 #y金币 奖励"
     ]
   },
-  "anniv6:BrokenMatryoshka": {
+  "${ModID}:BrokenMatryoshka": {
     "NAME": "破碎的套娃",
     "FLAVOR": "no",
     "DESCRIPTIONS": [
@@ -93,7 +93,7 @@
       " 个宝箱将是空的。当你没有蓝钥匙时，它将会被链接到 #y遗物 中"
     ]
   },
-  "anniv6:BrokenSingingBowl": {
+  "${ModID}:BrokenSingingBowl": {
     "NAME": "破碎的颂钵",
     "FLAVOR": "no",
     "DESCRIPTIONS": [

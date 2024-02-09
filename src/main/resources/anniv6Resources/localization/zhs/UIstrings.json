@@ -1,5 +1,5 @@
 {
-  "anniv6:ConfigMenuText": {
+  "${ModID}:ConfigMenuText": {
     "TEXT": [
       "生态尖塔",
       "StS Modding Community",
@@ -10,46 +10,46 @@
       "开启着色器"
     ]
   },
-  "anniv6:SingleCardReward": {
+  "${ModID}:SingleCardReward": {
     "TEXT": [
       "[卡牌] ",
       "提示：右击查看详细卡牌信息！"
     ]
   },
-  "anniv6:HealReward": {
+  "${ModID}:HealReward": {
     "TEXT": [
       "回复 "
     ]
   },
-  "anniv6:AnyColorCardReward": {
+  "${ModID}:AnyColorCardReward": {
     "TEXT": [
       "添加一张任意颜色的卡牌",
       "选择一张卡牌"
     ]
   },
-  "anniv6:CombatExplainButton": {
+  "${ModID}:CombatExplainButton": {
     "TEXT": [
       "生态群落"
     ]
   },
-  "anniv6:RunHistoryScreen": {
+  "${ModID}:RunHistoryScreen": {
     "TEXT": [
       "生态群落: {0}"
     ]
   },
-  "anniv6:ZonePotionsPatch": {
+  "${ModID}:ZonePotionsPatch": {
     "TEXT": [
       "生态群落：",
       "只能在特定生态群落中获得的药水。"
     ]
   },
-  "anniv6:CharacterSelectScreen": {
+  "${ModID}:CharacterSelectScreen": {
     "TEXT": [
       "开启生态群落",
       "为尖塔添加各种生态群落，让地图拥有更加生动、有趣"
     ]
   },
-  "anniv6:ZoneTooltip": {
+  "${ModID}:ZoneTooltip": {
     "TEXT": [
       "#p作者: {0}"
     ]

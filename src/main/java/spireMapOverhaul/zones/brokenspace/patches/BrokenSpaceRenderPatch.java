@@ -17,6 +17,7 @@ import spireMapOverhaul.zones.brokenspace.BrokenSpaceZone;
 
 import java.util.logging.Logger;
 
+import static spireMapOverhaul.SpireAnniversary6Mod.getShaderConfig;
 import static spireMapOverhaul.SpireAnniversary6Mod.makeShaderPath;
 import static spireMapOverhaul.util.Wiz.adp;
 
@@ -24,7 +25,6 @@ public class BrokenSpaceRenderPatch {
     public static ShaderProgram brokenSpaceShader;
 
     private static final FrameBuffer fbo;
-
 
 
     private static final Logger logger = Logger.getLogger(BrokenSpaceRenderPatch.class.getName());
@@ -59,7 +59,6 @@ public class BrokenSpaceRenderPatch {
         @SpirePrefixPatch
         public static void addShader(AbstractCard __instance, SpriteBatch sb) {
             if (shouldRenderBrokenSpaceShader(__instance)) {
-
                 StartFbo(sb);
             }
         }
@@ -77,7 +76,6 @@ public class BrokenSpaceRenderPatch {
             }
         }
     }
-
 
 
     public static void StartFbo(SpriteBatch sb) {
@@ -103,6 +101,7 @@ public class BrokenSpaceRenderPatch {
     private static void StopFbo(SpriteBatch sb, float strength, float timerOffset, float chrAb) {
         StopFbo(sb, strength, timerOffset, chrAb, 1.0F);
     }
+
     public static void StopFbo(SpriteBatch sb, float strength, float timerOffset, float chrAb, float timeScale) {
         StopFbo(sb, strength, timerOffset, chrAb, timeScale, 1f);
     }
@@ -131,16 +130,12 @@ public class BrokenSpaceRenderPatch {
 
 
     private static boolean shouldRenderBrokenSpaceShader(RewardItem __instance) {
-        return inBrokenSpace() && (__instance.type == RewardItem.RewardType.CARD);
+        return getShaderConfig() && inBrokenSpace() && (__instance.type == RewardItem.RewardType.CARD);
 
     }
 
     private static boolean shouldRenderBrokenSpaceShader(AbstractCard __instance) {
-        return inBrokenSpace() && isUnnatural(__instance) && !adp().masterDeck.contains(__instance);
-    }
-
-    private static boolean shouldRenderBrokenSpaceShader(AbstractRelic __instance, boolean isShop) {
-        return inBrokenSpace() && isUnnatural(__instance, isShop) && !adp().relics.contains(__instance);
+        return getShaderConfig() && inBrokenSpace() && isUnnatural(__instance) && !adp().masterDeck.contains(__instance);
     }
 
     private static boolean isUnnatural(AbstractRelic __instance, boolean isShop) {
@@ -160,11 +155,8 @@ public class BrokenSpaceRenderPatch {
 
 
     private static boolean inBrokenSpace() {
-        return ZonePatches.currentZone() != null && ZonePatches.currentZone().id.equals("BrokenSpace");
+        return ZonePatches.currentZone() instanceof BrokenSpaceZone;
     }
-
-
-
 
 
     @SpirePatch2(
@@ -176,9 +168,8 @@ public class BrokenSpaceRenderPatch {
     }
 
 
-
     static {
-        brokenSpaceShader = new ShaderProgram(Gdx.files.internal(makeShaderPath("BrokenSpace/Glitch.vs")), Gdx.files.internal(makeShaderPath( "BrokenSpace/Glitch.fs")));
+        brokenSpaceShader = new ShaderProgram(Gdx.files.internal(makeShaderPath("BrokenSpace/Glitch.vs")), Gdx.files.internal(makeShaderPath("BrokenSpace/Glitch.fs")));
         if (!brokenSpaceShader.isCompiled()) {
             logger.warning("Broken Space shader: " + brokenSpaceShader.getLog());
         }

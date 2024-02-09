@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.localization.MonsterStrings;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.zones.invasion.cards.Necropotence;
 import spireMapOverhaul.zones.invasion.powers.DrawReductionSingleTurnPower;
-import spireMapOverhaul.zones.invasion.powers.PermanentDrawReductionPower;
+import spireMapOverhaul.zones.invasion.powers.FixedTextDrawPower;
 
 public class VoidReaper extends CustomMonster {
     public static final String ID = SpireAnniversary6Mod.makeID("VoidReaper");
@@ -107,7 +107,7 @@ public class VoidReaper extends CustomMonster {
                     AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, this, new DrawReductionSingleTurnPower(AbstractDungeon.player, temporaryDrawReduction)));
                 }
                 if (this.cutTheFutureCount > 0) {
-                    AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, this, new PermanentDrawReductionPower(AbstractDungeon.player, 1)));
+                    AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, this, new FixedTextDrawPower(AbstractDungeon.player, -1)));
                 }
                 this.cutTheFutureCount++;
                 break;

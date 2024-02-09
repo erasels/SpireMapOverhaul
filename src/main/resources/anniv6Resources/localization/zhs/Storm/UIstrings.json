@@ -1,17 +1,17 @@
 {
-  "anniv6:Storm": {
+  "${ModID}:Storm": {
     "TEXT": [
       "暴风雨",
       "据气象台最新消息，尖塔此区域将有一场雷暴雨，闪电可能会击中附近的玩家或怪物，会掉落特殊带“电”的卡牌，请确保自身安全，安全出行...",
       "EricB"
     ]
   },
-  "anniv6:Damp": {
+  "${ModID}:Damp": {
     "TEXT": [
       "潮湿 "
     ]
   },
-  "anniv6:Electric": {
+  "${ModID}:Electric": {
     "TEXT": [
       "电 "
     ]

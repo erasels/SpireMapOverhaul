@@ -1,5 +1,5 @@
 {
-  "anniv6:MirrorMove": {
+  "${ModID}:MirrorMove": {
     "NAME": "镜像模仿",
     "DESCRIPTION": "虚无 NL 消耗 NL （变为随机一位敌人的上一步行动）",
     "EXTENDED_DESCRIPTION": [

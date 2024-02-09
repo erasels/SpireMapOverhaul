@@ -70,13 +70,17 @@ public class GrassZone extends AbstractZone implements CombatModifyingZone, Rend
 
     public void atTurnEnd() {
         if (EnergyPanel.totalCount > 0 && !vegetables.isEmpty()) {
+            int upgrades = 0;
             for (int i = 0; i < EnergyPanel.totalCount; i++) {
                 AbstractVegetable veg = getRandom();
                 if (veg != null && veg.canUpgrade()) {
                     veg.upgrade(1);
+                    upgrades++;
                 }
             }
-            AbstractDungeon.player.energy.use(EnergyPanel.totalCount);
+            // Use only as much energy as was used for upgrading
+            if(upgrades > 0)
+                AbstractDungeon.player.energy.use(upgrades);
         }
     }
 
@@ -120,6 +124,9 @@ public class GrassZone extends AbstractZone implements CombatModifyingZone, Rend
                             && AbstractDungeon.relicRng.randomBoolean(getRelicChance())) {
                         rewardItem.relic = newRelic.makeCopy();
                         rewardItem.text = newRelic.name;
+                        if (relicPool != null) {
+                            relicPool.remove(relicID);
+                        }
                         // Add the old relic back in to the pool so that it can spawn again
                         Wiz.addRelicToPool(origRelic);
                         break;
@@ -145,6 +152,9 @@ public class GrassZone extends AbstractZone implements CombatModifyingZone, Rend
                             && (relicPool == null || relicPool.contains(relicID))
                             && AbstractDungeon.relicRng.randomBoolean(getRelicChance())) {
                         first.relic = newRelic.makeCopy();
+                        if (relicPool != null) {
+                            relicPool.remove(relicID);
+                        }
                         // Add the old relic back in to the pool so that it can spawn again
                         Wiz.addRelicToPool(origRelic);
                         break;

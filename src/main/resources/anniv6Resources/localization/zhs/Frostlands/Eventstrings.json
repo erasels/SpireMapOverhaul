@@ -1,5 +1,5 @@
 {
-  "anniv6:SnowmanMafiaEvent": {
+  "${ModID}:SnowmanMafiaEvent": {
     "NAME": "雪人一族",
     "DESCRIPTIONS": [
       "你走进房间，发现面前有个... 雪人？ NL NL #b\" #b哇偶， #b你是谁？ #b你看起来像是一个在这 #r~被诅咒的~ #b尖塔里能照顾好自己的人 \" NL NL #b\"你能陪我过几招吗？我和家人们已经好几周都没有遇到什么挑战了。来一场 #g友好的 #b决斗怎么样？\"",

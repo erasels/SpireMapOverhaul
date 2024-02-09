@@ -292,7 +292,7 @@ public class GremlinWheel extends AbstractImageEvent {
             }
         } else if (screen == CUR_SCREEN.PRE_FIGHT) {
             AbstractDungeon.getCurrRoom().monsters = MonsterHelper.getEncounter(GremlinTown.GREMLIN_JERK);
-            adRoom().rewardAllowed = false;
+            curRoom().rewardAllowed = false;
             screen = CUR_SCREEN.POST_COMBAT;
             AbstractDungeon.lastCombatMetricKey = GremlinTown.GREMLIN_JERK;
             enterCombatFromImage();

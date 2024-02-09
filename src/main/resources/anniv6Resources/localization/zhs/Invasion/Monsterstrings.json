@@ -1,5 +1,5 @@
 {
-  "anniv6:WhisperingWraith": {
+  "${ModID}:WhisperingWraith": {
     "MOVES": [
       "幽魂之躯体",
       "幽魂之触",
@@ -7,7 +7,7 @@
     ],
     "NAME": "低语幽魂"
   },
-  "anniv6:StygianBoar": {
+  "${ModID}:StygianBoar": {
     "MOVES": [
       "长牙攻击",
       "喷火",
@@ -15,7 +15,7 @@
     ],
     "NAME": "幽冥野猪"
   },
-  "anniv6:Hexasnake": {
+  "${ModID}:Hexasnake": {
     "MOVES": [
       "蛇之凝视",
       "剧毒噬咬",
@@ -23,20 +23,20 @@
     ],
     "NAME": "多头蛇"
   },
-  "anniv6:GraftedWorm": {
+  "${ModID}:GraftedWorm": {
     "MOVES": [
       "叶刃"
     ],
     "NAME": "毛毛虫"
   },
-  "anniv6:DreadMoth": {
+  "${ModID}:DreadMoth": {
     "MOVES": [
       "掩翅防御",
       "恐怖挥舞"
     ],
     "NAME": "恐惧蛾"
   },
-  "anniv6:OrbOfFire": {
+  "${ModID}:OrbOfFire": {
     "MOVES": [
       "火弹",
       "燃烧",
@@ -44,7 +44,7 @@
     ],
     "NAME": "火焰之球"
   },
-  "anniv6:LivingStormcloud": {
+  "${ModID}:LivingStormcloud": {
     "MOVES": [
       "迅击",
       "强风",
@@ -52,7 +52,7 @@
     ],
     "NAME": "活暴云"
   },
-  "anniv6:OpulentOffering": {
+  "${ModID}:OpulentOffering": {
     "MOVES": [
       "金杯猛砸",
       "硬币齐射",
@@ -61,7 +61,7 @@
     ],
     "NAME": "珠宝怪"
   },
-  "anniv6:ShimmeringMirage": {
+  "${ModID}:ShimmeringMirage": {
     "MOVES": [
       "闪耀",
       "发光",
@@ -69,7 +69,7 @@
     ],
     "NAME": "闪耀幻影"
   },
-  "anniv6:Hatchling": {
+  "${ModID}:Hatchling": {
     "MOVES": [
       "新近孵化",
       "啃食",
@@ -78,7 +78,7 @@
     ],
     "NAME": "跳虫"
   },
-  "anniv6:CroakingBrute": {
+  "${ModID}:CroakingBrute": {
     "MOVES": [
       "撕裂",
       "横冲直撞"
@@ -86,7 +86,7 @@
     "NAME": "蛙人暴徒",
     "DIALOG": ["*呱呱呱*"]
   },
-  "anniv6:CroakingPelter": {
+  "${ModID}:CroakingPelter": {
     "MOVES": [
       "撕裂",
       "投掷石头"
@@ -94,7 +94,7 @@
     "NAME": "蛙人投掷者",
     "DIALOG": ["呱呱呱"]
   },
-  "anniv6:CroakingSeer": {
+  "${ModID}:CroakingSeer": {
     "MOVES": [
       "撕裂",
       "防护"
@@ -102,7 +102,7 @@
     "NAME": "蛙人先知",
     "DIALOG": ["*呱呱呱*"]
   },
-  "anniv6:Hydra": {
+  "${ModID}:Hydra": {
     "MOVES": [
       "尾鞭",
       "挥击",
@@ -110,7 +110,7 @@
     ],
     "NAME": "多头龙"
   },
-  "anniv6:VoidReaper": {
+  "${ModID}:VoidReaper": {
     "MOVES": [
       "切断未来",
       "收割",
@@ -118,7 +118,7 @@
     ],
     "NAME": "虚空收割者"
   },
-  "anniv6:VoidCorruption": {
+  "${ModID}:VoidCorruption": {
     "MOVES": [
       "能量干涸",
       "腐蚀之触",
@@ -128,7 +128,7 @@
     ],
     "NAME": "虚空腐蚀"
   },
-  "anniv6:VoidBeast": {
+  "${ModID}:VoidBeast": {
     "MOVES": [
       "腐蚀噬咬",
       "虚空凝视",
@@ -136,7 +136,7 @@
     ],
     "NAME": "虚空异兽"
   },
-  "anniv6:WarGolem": {
+  "${ModID}:WarGolem": {
     "MOVES": [
       "破心",
       "碎盾",
@@ -144,7 +144,7 @@
     ],
     "NAME": "战斗傀儡"
   },
-  "anniv6:ElementalPortal": {
+  "${ModID}:ElementalPortal": {
     "MOVES": [
       "传送门",
       "强化恢复",
@@ -153,7 +153,7 @@
     ],
     "NAME": "元素传送门"
   },
-  "anniv6:UnboundAbyssal": {
+  "${ModID}:UnboundAbyssal": {
     "MOVES": [
       "泥泞",
       "不再回头",
@@ -162,7 +162,7 @@
     "NAME": "深渊解缚者",
     "DIALOG": ["不...会...再...回去了！"]
   },
-  "anniv6:PrimevalQueen": {
+  "${ModID}:PrimevalQueen": {
     "MOVES": [
       "镰爪攻击",
       "硬化甲壳",
@@ -170,7 +170,7 @@
     ],
     "NAME": "虫后"
   },
-  "anniv6:RoyalProtector": {
+  "${ModID}:RoyalProtector": {
     "MOVES": [
       "硬壳护体",
       "灼热喷吐",
@@ -179,7 +179,7 @@
     ],
     "NAME": "毒爆虫"
   },
-  "anniv6:Behemoth": {
+  "${ModID}:Behemoth": {
     "MOVES": [
       "撕咬",
       "进化",

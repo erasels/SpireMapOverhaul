@@ -51,7 +51,7 @@ public class AbstractVegetableData {
             return register(new AbstractVegetableData(c, id, getImagePath(sName)));
         }
         catch (Exception e) {
-            throw new RuntimeException("Failed to find constructor for class " + className.getSimpleName());
+            throw new RuntimeException("Failed to find no-parameter constructor for class " + className.getSimpleName(), e);
         }
     }
 
@@ -65,7 +65,7 @@ public class AbstractVegetableData {
             return constructor.newInstance();
         }
         catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
-            throw new RuntimeException("Failed to create vegetable with ID " + ID);
+            throw new RuntimeException("Failed to create vegetable with ID " + ID, e);
         }
     }
 

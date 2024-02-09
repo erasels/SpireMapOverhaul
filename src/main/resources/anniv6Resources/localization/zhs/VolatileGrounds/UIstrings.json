@@ -1,5 +1,5 @@
 {
-  "anniv6:VolatileGrounds": {
+  "${ModID}:VolatileGrounds": {
     "TEXT": [
       "爆炸地带",
       "其中包含各种具有爆炸能力的敌人。小心不要触发爆炸，或想办法格挡爆炸伤害。",

@@ -26,13 +26,6 @@
     ],
     "NAME": "Gremlin Rocker"
   },
-  "${ModID}:GremlinBrute": {
-    "MOVES": [
-      "Slam",
-      "Break"
-    ],
-    "NAME": "Gremlin Brute"
-  },
   "${ModID}:GremlinHealer": {
     "MOVES": [
       "Cure",
@@ -100,7 +93,8 @@
   },
   "${ModID}:GremlinCannon": {
     "MOVES": [
-      "Loading",
+      "Loading...",
+      "Fire!",
       "Fire!",
       "Fire!"
     ],

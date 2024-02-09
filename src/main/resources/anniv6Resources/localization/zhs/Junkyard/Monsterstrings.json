@@ -1,11 +1,11 @@
 {
-  "anniv6:Junkbot": {
+  "${ModID}:Junkbot": {
     "MOVES": [
       "抓取",
       "重启"
     ],
     "NAME": "回收机器人"
-  },"anniv6:Peddler": {
+  },"${ModID}:Peddler": {
   "MOVES": [
     "免费样品",
     "翻找东西",

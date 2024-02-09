@@ -21,14 +21,17 @@ import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
 import com.megacrit.cardcrawl.screens.DungeonMapScreen;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
+import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.zoneInterfaces.RenderableZone;
 import spireMapOverhaul.zoneInterfaces.RewardModifyingZone;
 import spireMapOverhaul.zoneInterfaces.ShopModifyingZone;
 import spireMapOverhaul.zones.brokenspace.patches.BrokenSpaceRenderPatch;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.cardRng;
+import static spireMapOverhaul.SpireAnniversary6Mod.getShaderConfig;
 import static spireMapOverhaul.util.Wiz.adp;
 
 public class BrokenSpaceZone extends AbstractZone implements RewardModifyingZone, ShopModifyingZone, RenderableZone {
@@ -203,23 +206,23 @@ public class BrokenSpaceZone extends AbstractZone implements RewardModifyingZone
     }
 
     public AbstractRelic getValidBrokenRelic() {
-        boolean playerHasAllBrokenRelics = true;
-        for (String relicID : BrokenRelics) {
-            if (!adp().hasRelic(relicID)) {
-                playerHasAllBrokenRelics = false;
-                break;
-            }
-        }
-        if (playerHasAllBrokenRelics) {
-            return new Circlet();
-        }
+        ArrayList<String> validRelics = BrokenRelics.stream()
+                .filter(id -> !adp().hasRelic(id)) // Filter out broken relics the player already has
+                .filter(id -> {
+                    AbstractRelic r = RelicLibrary.getRelic(id);
+                    return r != null && r.canSpawn();
+                }) //Filter out relics that can't spawn
+                .filter(id -> {
+                    for(RewardItem ri : AbstractDungeon.combatRewardScreen.rewards) {
+                        if(ri.type == RewardItem.RewardType.RELIC && ri.relic != null && id.equals(ri.relic.relicId)) {
+                            return false;
+                        }
+                    }
+                    return true;
+                }) //Filter out relics that are already in the reward screen (black star can cause this
+                .collect(Collectors.toCollection(ArrayList::new));
 
-        AbstractRelic r;
-        do {
-            r = RelicLibrary.getRelic(BrokenRelics.get(AbstractDungeon.relicRng.random(BrokenRelics.size() - 1))).makeCopy();
-        } while (!r.canSpawn() || adp().hasRelic(r.relicId));
-
-        return r;
+        return RelicLibrary.getRelic(Wiz.getRandomItem(validRelics, AbstractDungeon.relicRng)).makeCopy();
     }
 
     @Override
@@ -237,28 +240,26 @@ public class BrokenSpaceZone extends AbstractZone implements RewardModifyingZone
 
     }
 
-
-    @SpirePatch2(
-            clz = AbstractCard.class,
-            method = SpirePatch.CLASS
-    )
-    public static class UnnaturalCardField {
-        public static SpireField<Boolean> unnatural = new SpireField<>(() -> false);
-    }
-
     @Override
     public void renderBackground(SpriteBatch sb) {
-        BrokenSpaceRenderPatch.StartFbo(sb);
+        if(getShaderConfig())
+            BrokenSpaceRenderPatch.StartFbo(sb);
     }
 
     @Override
     public void postRenderBackground(SpriteBatch sb) {
-        BrokenSpaceRenderPatch.StopFbo(sb, 0.05F, 0.0f, 4f, 0.1f);
+        if(getShaderConfig())
+            BrokenSpaceRenderPatch.StopFbo(sb, 0.05F, 0.0f, 4f, 0.1f);
     }
 
     public static void addBrokenRelic(String relicID) {
         if (!BrokenRelics.contains(relicID)) {
             BrokenRelics.add(relicID);
         }
+    }
+
+    @SpirePatch2(clz = AbstractCard.class, method = SpirePatch.CLASS)
+    public static class UnnaturalCardField {
+        public static SpireField<Boolean> unnatural = new SpireField<>(() -> false);
     }
 }

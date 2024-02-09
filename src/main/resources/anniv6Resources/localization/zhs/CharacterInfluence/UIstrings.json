@@ -1,5 +1,5 @@
 {
-  "anniv6:CharacterInfluence": {
+  "${ModID}:CharacterInfluence": {
     "TEXT": [
       "另一位角色的家",
       "另一位角色在此处定居 NL 战斗奖励和商店将出现此角色相关的卡牌",
