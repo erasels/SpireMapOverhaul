@@ -41,9 +41,9 @@ public class HailstormZone extends AbstractZone implements CombatModifyingZone, 
     public static final String Frost_Slime_L = SpireAnniversary6Mod.makeID("Frost_Slime_L");
     public static final String Frost_Slime_M = SpireAnniversary6Mod.makeID("Frost_Slime_M");
 
-    public static int damageFromFrost;
+    //public static int damageFromFrost;
     public static final int blockFromSnow = 4;
-    public static final int startingDamageFromFrost = 3;
+    //public static final int startingDamageFromFrost = 3;
     public static final int turnSwitchBetweenSnowBlockAndHailDamage = 4;
 
     public void atTurnStart() {
@@ -63,6 +63,7 @@ public class HailstormZone extends AbstractZone implements CombatModifyingZone, 
 
     public String getCombatText() {
         return CardCrawlGame.languagePack.getUIString(makeID("HailEffect")).TEXT[0];
+        //I'd like to update text during combat so the player doesn't have to remind himself every single turn
     }
 
     @Override

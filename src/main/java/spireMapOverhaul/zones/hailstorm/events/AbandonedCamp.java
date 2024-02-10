@@ -20,7 +20,9 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.zones.hailstorm.cards.Freeze;
 import spireMapOverhaul.zones.hailstorm.relics.Flint;
-//TODO -- Find out why event opens map
+
+import static spireMapOverhaul.util.Wiz.adp;
+
 public class AbandonedCamp extends AbstractImageEvent {
     public static final String ID = SpireAnniversary6Mod.makeID(AbandonedCamp.class.getSimpleName());
     private static final EventStrings eventStrings = CardCrawlGame.languagePack.getEventString(ID);
@@ -55,7 +57,7 @@ public class AbandonedCamp extends AbstractImageEvent {
         this.body = DESCRIPTIONS[0] + " NL " + DESCRIPTIONS[1] + " NL " + DESCRIPTIONS[2] + " NL " + DESCRIPTIONS[3];
 
         //Event randomly chooses one big reward between two, and one light reward between two
-        T_DEADBRANCH_F_FLINT = AbstractDungeon.miscRng.randomBoolean();
+        T_DEADBRANCH_F_FLINT = AbstractDungeon.miscRng.randomBoolean() && !adp().hasRelic(DeadBranch.ID);
         T_GOLD_F_HEALING = AbstractDungeon.miscRng.randomBoolean();
 
         //Rewards
@@ -131,7 +133,7 @@ public class AbandonedCamp extends AbstractImageEvent {
                         this.imageEventText.clearRemainingOptions();
                         this.imageEventText.updateBodyText(DESCRIPTIONS[4]);
 
-                        break;
+                        return;
                     case 1:
                         if (T_GOLD_F_HEALING)
                             AbstractDungeon.player.gainGold(goldGain);
@@ -144,7 +146,7 @@ public class AbandonedCamp extends AbstractImageEvent {
                         this.imageEventText.clearRemainingOptions();
                         this.imageEventText.updateBodyText(DESCRIPTIONS[4]);
 
-                        break;
+                        return;
                     case 2:
                         AbstractDungeon.getCurrRoom().phase = AbstractRoom.RoomPhase.COMPLETE;
 
@@ -153,7 +155,7 @@ public class AbandonedCamp extends AbstractImageEvent {
                         this.imageEventText.clearRemainingOptions();
                         this.imageEventText.updateBodyText(DESCRIPTIONS[4]);
 
-                        break;
+                        return;
                     default:
                         return;
                 }
@@ -161,6 +163,7 @@ public class AbandonedCamp extends AbstractImageEvent {
                 if (buttonPressed == 0) {
                     this.openMap();
                 }
+                break;
 
             default:
                 this.openMap();
