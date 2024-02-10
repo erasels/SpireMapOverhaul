@@ -35,7 +35,7 @@
   },
   "${ModID}:GremlinNib": {
     "NAME": "Nib Power",
-    "DESCRIPTIONS": ["Every #b{0} Attacks you play, unleashes a powerful attack on its turn."]
+    "DESCRIPTIONS": ["Every #b{0} times it deals attack damage, it unleashes a powerful attack on its turn."]
   },
   "${ModID}:Bellow": {
     "NAME": "Gremlin Roar",
