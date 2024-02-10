@@ -1,43 +1,36 @@
 package spireMapOverhaul.actions;
 
-import com.evacipated.cardcrawl.mod.stslib.actions.common.DamageCallbackAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import com.megacrit.cardcrawl.actions.utility.WaitAction;
+import com.megacrit.cardcrawl.core.Settings;
 
 import java.util.function.Consumer;
-import java.util.function.Function;
 
-public class CallbackAction<T, U> extends AbstractGameAction {
-    private final Function<T, U> onAction;
-    private T param;
-    private Consumer<U> onComplete;
+public class CallbackAction<T extends AbstractGameAction> extends AbstractGameAction {
+    private final T action;
+    private final Consumer<T> onComplete;
 
-    public CallbackAction(Function<T, U> onAction, T param) {
-        this.onAction = onAction;
-        this.param = param;
+    public CallbackAction(T action, Consumer<T> onCompletion) {
+        this.action = action;
+        this.onComplete = onCompletion;
     }
 
-    public static <V> CallbackAction<Void, V> voidAction(Function<Void, V> onAction) {
-        return new CallbackAction<>(onAction, null);
+    public static CallbackAction<WaitAction> wait(Consumer<WaitAction> onComplete) {
+        return wait(onComplete, Settings.FAST_MODE ? Settings.ACTION_DUR_XFAST : Settings.ACTION_DUR_FASTER);
     }
 
-    public CallbackAction<T, U> setOnComplete(Consumer<U> onComplete) {
-        this.onComplete = onComplete;
-        return this;
-    }
-
-    public CallbackAction<T, U> setParam(T param) {
-        this.param = param;
-        return this;
+    public static CallbackAction<WaitAction> wait(Consumer<WaitAction> onComplete, float dur) {
+        return new CallbackAction<>(new WaitAction(dur), onComplete);
     }
 
     @Override
     public void update() {
-        isDone = true;
-        U res = onAction.apply(param);
-        if (onComplete != null) {
-            onComplete.accept(res);
+        if (!this.action.isDone) {
+            this.action.update();
+        }
+        else {
+            isDone = true;
+            onComplete.accept(this.action);
         }
     }
 }

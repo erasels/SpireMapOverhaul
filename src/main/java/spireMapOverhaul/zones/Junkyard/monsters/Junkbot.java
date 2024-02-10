@@ -43,10 +43,14 @@ public class Junkbot extends CustomMonster {
     private static final int A7_HP_MIN = 26;
     private static final int A7_HP_MAX = 31;
     private int grabDamage;
+    private int startActiveChance;
+    private int chanceToDeactivate;
     public boolean isActivated = true;
-    private int chanceToDeactivate = 20;
+    private int START_ACTIVE_CHANCE = 60;
+    private int A17_START_ACTIVE_CHANCE = 70;
+    private int DEACTIVATE_CHANCE = 20;
+    private int A17_DEACTIVATE_CHANCE = 10;
     public ArrayList<AbstractCard> cardsToPreview = new ArrayList<>();
-    private CardGroup g = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 
 
     public Junkbot() {
@@ -68,12 +72,21 @@ public class Junkbot extends CustomMonster {
             this.grabDamage = GRAB_DAMAGE;
         }
         this.damage.add(new DamageInfo(this, this.grabDamage));
+
+        if (AbstractDungeon.ascensionLevel >= 17) {
+            this.startActiveChance = A17_START_ACTIVE_CHANCE;
+            this.chanceToDeactivate = A17_DEACTIVATE_CHANCE;
+        }
+        else {
+            this.startActiveChance = START_ACTIVE_CHANCE;
+            this.chanceToDeactivate = DEACTIVATE_CHANCE;
+        }
     }
 
     @Override
     public void usePreBattleAction() {
         int rand = AbstractDungeon.cardRng.random(0, 100);
-        isActivated = (rand <= 60);
+        isActivated = (rand <= this.startActiveChance);
         if (!isActivated){
             setImage(TexLoader.getTexture(IMG_INACTIVE));
             addToBot(new GrabCardAction(this, new Wound()));
@@ -88,9 +101,6 @@ public class Junkbot extends CustomMonster {
                 AbstractDungeon.actionManager.addToBottom(new AnimateSlowAttackAction(this));
                 AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player, this.damage.get(0), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
                 AbstractDungeon.actionManager.addToBottom(new GrabCardAction(this));
-                if(AbstractDungeon.ascensionLevel >= 17) {
-                    AbstractDungeon.actionManager.addToBottom(new GrabCardAction(this));
-                }
                 AbstractDungeon.actionManager.addToBottom(new DeactivateAction(this, chanceToDeactivate));
                 break;
             case REBOOT_MOVE:

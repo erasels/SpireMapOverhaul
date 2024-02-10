@@ -111,13 +111,10 @@ public class GremlinCamp extends AbstractZone implements EncounterModifyingZone,
         gremlinPool.add(GremlinThief.ID);
         gremlinPool.add(GremlinFat.ID);
         gremlinPool.add(GremlinBodyguard.ID);
-        gremlinPool.add(GremlinDog.ID);
         gremlinPool.removeIf(id -> id.equals(prev));
         String id = Wiz.getRandomItem(gremlinPool, AbstractDungeon.miscRng);
         if (GremlinBodyguard.ID.equals(id)) {
             return new GremlinBodyguard(x, y);
-        } else if(GremlinDog.ID.equals(id)) {
-            return new GremlinDog(x, y);
         } else {
             return MonsterHelper.getGremlin(id, x, y);
         }
@@ -144,10 +141,17 @@ public class GremlinCamp extends AbstractZone implements EncounterModifyingZone,
                 }
             }
         } else if (WHO_LET_EM_COOK.equals(AbstractDungeon.lastCombatMetricKey)) {
-            //The bros have more HP
             for (AbstractMonster m : AbstractDungeon.getCurrRoom().monsters.monsters) {
                 if (!GremlinCook.ID.equals(m.id)) {
-                    Wiz.atb(new IncreaseMaxHpAction(m, 1f, false));
+                    // Calculate the increase to make the max HP double or up to 40
+                    int currentMaxHp = m.maxHealth;
+                    int desiredMaxHp = Math.min(currentMaxHp * 2, 40);
+                    int hpIncrease = desiredMaxHp - currentMaxHp;
+                    hpIncrease = Math.max(hpIncrease, 0);
+
+                    // Convert hpIncrease to float percentage of the current max HP
+                    float increasePercentage = ((float) hpIncrease / currentMaxHp);
+                    Wiz.atb(new IncreaseMaxHpAction(m, increasePercentage, false));
                 }
             }
         }
