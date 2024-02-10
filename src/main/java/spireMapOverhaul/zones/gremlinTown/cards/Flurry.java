@@ -12,6 +12,7 @@ import spireMapOverhaul.zones.gremlinTown.GremlinTown;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 import static spireMapOverhaul.util.Wiz.atb;
+import static spireMapOverhaul.util.Wiz.att;
 
 @NoPools
 public class Flurry extends AbstractSMOCard {
@@ -31,7 +32,7 @@ public class Flurry extends AbstractSMOCard {
         atb(new EasyXCostAction(this, (effect, params) -> {
             effect++;
             for (int i = 0; i < effect; i++)
-                atb(new AttackDamageRandomEnemyAction(this, AbstractGameAction.AttackEffect.SLASH_HEAVY));
+                att(new AttackDamageRandomEnemyAction(this, AbstractGameAction.AttackEffect.SLASH_HEAVY));
             return true;
         }));
     }
