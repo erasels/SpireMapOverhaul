@@ -2,7 +2,6 @@ package spireMapOverhaul.zones.hailstorm.monsters;
 
 import basemod.abstracts.CustomMonster;
 import com.badlogic.gdx.math.MathUtils;
-import com.esotericsoftware.spine.AnimationState;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.AnimateShakeAction;
 import com.megacrit.cardcrawl.actions.animations.AnimateSlowAttackAction;
@@ -18,7 +17,6 @@ import com.megacrit.cardcrawl.cards.status.Slimed;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
-import com.megacrit.cardcrawl.monsters.exordium.AcidSlime_M;
 import com.megacrit.cardcrawl.powers.*;
 import spireMapOverhaul.SpireAnniversary6Mod;
 public class FrostSlimeL extends CustomMonster {

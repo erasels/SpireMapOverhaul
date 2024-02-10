@@ -86,7 +86,6 @@ public class FrostSlimeM extends CustomMonster {
         this.slimeTackleSlimed = WOUND_COUNT;
         this.lickBlockPreventionTurns = BP_TURNS;
 
-        this.powers.add(new SplitPower(this));
         this.powers.add(new BarricadePower(this));
     }
 
@@ -99,6 +98,11 @@ public class FrostSlimeM extends CustomMonster {
             this.damage.add(new DamageInfo(this, W_TACKLE_DMG));
             this.damage.add(new DamageInfo(this, N_TACKLE_DMG));
         }
+
+        this.slimeTackleSlimed = WOUND_COUNT;
+        this.lickBlockPreventionTurns = BP_TURNS;
+
+        this.powers.add(new BarricadePower(this));
 
         this.img = ImageMaster.loadImage(IMG);
 
