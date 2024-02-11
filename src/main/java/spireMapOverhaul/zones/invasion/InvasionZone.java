@@ -16,6 +16,7 @@ import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.util.ActUtil;
+import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
 import spireMapOverhaul.zoneInterfaces.RewardModifyingZone;
 import spireMapOverhaul.zoneInterfaces.ShopModifyingZone;
@@ -104,7 +105,7 @@ public class InvasionZone extends AbstractZone implements EncounterModifyingZone
     @Override
     public void modifyRewards(ArrayList<RewardItem> rewards) {
         for (int i = 0; i < rewards.size(); i++) {
-            if (rewards.get(i).type == RewardItem.RewardType.RELIC) {
+            if (rewards.get(i).type == RewardItem.RewardType.RELIC && Wiz.isNormalRelicTier(rewards.get(i).relic.tier)) {
                 RewardItem rewardItem = new RewardItem();
                 rewardItem.cards = InvasionUtil.getRewardCards(this.getNumberOfCardsInReward());
                 //Note that this reward does not get the normal act-dependent chance of cards being upgraded

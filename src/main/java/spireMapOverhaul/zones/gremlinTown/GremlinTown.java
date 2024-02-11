@@ -398,7 +398,7 @@ public class GremlinTown extends AbstractZone
                 item.text = item.potion.name;
             }
 
-            if (item.type == RewardItem.RewardType.RELIC) {
+            if (item.type == RewardItem.RewardType.RELIC && Wiz.isNormalRelicTier(item.relic.tier)) {
                 item.relic = getRandomGRelic();
                 item.text = item.relic.name;
             }

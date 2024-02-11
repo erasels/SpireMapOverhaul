@@ -29,6 +29,7 @@ import spireMapOverhaul.actions.TimedVFXAction;
 import spireMapOverhaul.patches.ZonePatches;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
@@ -108,6 +109,12 @@ public class Wiz {
             default:
                 return null;
         }
+    }
+
+    public static boolean isNormalRelicTier(AbstractRelic.RelicTier tier) {
+        // To account for other mods trying to introduce new relic tiers, we check this by specifically looking for the five normal tiers that have pools (i.e. everything except special)
+        List<AbstractRelic.RelicTier> knownTiers = Arrays.asList(AbstractRelic.RelicTier.COMMON, AbstractRelic.RelicTier.UNCOMMON, AbstractRelic.RelicTier.RARE, AbstractRelic.RelicTier.BOSS, AbstractRelic.RelicTier.SHOP);
+        return knownTiers.contains(tier);
     }
 
     public static int asc() { return AbstractDungeon.ascensionLevel; }
