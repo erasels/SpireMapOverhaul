@@ -171,7 +171,7 @@ public class BrokenSpaceZone extends AbstractZone implements RewardModifyingZone
 
     @Override
     public void modifyReward(RewardItem rewardItem) {
-        if (rewardItem.type == RewardItem.RewardType.RELIC) {
+        if (rewardItem.type == RewardItem.RewardType.RELIC && Wiz.isNormalRelicTier(rewardItem.relic.tier)) {
             AbstractRelic origRelic = rewardItem.relic;
             AbstractRelic newRelic = getValidBrokenRelic();
 

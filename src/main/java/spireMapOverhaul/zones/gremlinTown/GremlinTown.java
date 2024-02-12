@@ -237,8 +237,8 @@ public class GremlinTown extends AbstractZone
         // These start in their combat positions instead of spawning off the screen and being animated
         encounters.add(new ZoneEncounter(SURPRISE, 2, () -> new MonsterGroup(
                 new AbstractMonster[]{
-                    new GremlinRiderRed((Settings.WIDTH * -0.22F)/Settings.scale, 40F),
-                    new GremlinRiderRed((Settings.WIDTH * -0.32F)/Settings.scale, -60F),
+                        new GremlinRiderRed((Settings.WIDTH * -0.32F)/Settings.scale, -60F),
+                        new GremlinRiderRed((Settings.WIDTH * -0.22F)/Settings.scale, 40F),
                         new GremlinCannon((Chest.CHEST_LOC_X - Settings.WIDTH*0.75F)/Settings.scale,
                                 (Chest.CHEST_LOC_Y - AbstractDungeon.floorY - 256.0F*Settings.scale)/Settings.yScale)
                 })));
@@ -398,7 +398,7 @@ public class GremlinTown extends AbstractZone
                 item.text = item.potion.name;
             }
 
-            if (item.type == RewardItem.RewardType.RELIC) {
+            if (item.type == RewardItem.RewardType.RELIC && Wiz.isNormalRelicTier(item.relic.tier)) {
                 item.relic = getRandomGRelic();
                 item.text = item.relic.name;
             }

@@ -35,11 +35,6 @@ public class UnreadableCardMod extends AbstractCardModifier {
         return ID;
     }
 
-    @Override
-    public boolean removeAtEndOfTurn(AbstractCard card) {
-        return true;
-    }
-
     public String randomText(int length) {
         String chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_+{}[];':\",./<>?\\|`~-=_+??????????????";
         StringBuilder builder = new StringBuilder();
