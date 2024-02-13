@@ -108,6 +108,8 @@ public class HordeHelper {
             groundQueue.add(new GremlinThief(Settings.WIDTH * 4, 0));
             groundQueue.add(new GremlinFat(Settings.WIDTH * 4, 0));
         }
+        groundQueue.add(new GremlinThief(Settings.WIDTH * 4, 0));
+        groundQueue.add(new GremlinFat(Settings.WIDTH * 4, 0));
 
         platformQueue.add(new GremlinRockTosser(Settings.WIDTH * 4, 0));
         platformQueue.add(new GremlinWizard(Settings.WIDTH * 4, 0));
@@ -119,9 +121,8 @@ public class HordeHelper {
 
         Collections.shuffle(groundQueue, AbstractDungeon.monsterRng.random);
 
-        groundQueue.add(4, new ArmoredGremlin(Settings.WIDTH * 4, 0));
-        groundQueue.add(8, new ChubbyGremlin(Settings.WIDTH * 4, 0));
-        groundQueue.add(12, new GremlinAssassin(Settings.WIDTH * 4, 0));
+        groundQueue.add(5, new ChubbyGremlin(Settings.WIDTH * 4, 0));
+        groundQueue.add(11, new GremlinNob(Settings.WIDTH * 4, 0));
 
         ArrayList<AbstractMonster> tempArray = new ArrayList<>(Wiz.getEnemies());
         tempArray.sort( (m1, m2) -> (int)(m1.hb.x - m2.hb.x) );

@@ -27,7 +27,9 @@ public class NobClub extends AbstractSMORelic {
         return DESCRIPTIONS[0].replace("{0}", Integer.toString(ATTACK_THRESHOLD));
     }
 
-    public void onUseCard(AbstractCard card, UseCardAction action) {
+
+
+    public void onAfterUseCard(AbstractCard card, UseCardAction action) {
         if (card.type == AbstractCard.CardType.ATTACK) {
             ++counter;
             if (counter % ATTACK_THRESHOLD == 0) {
