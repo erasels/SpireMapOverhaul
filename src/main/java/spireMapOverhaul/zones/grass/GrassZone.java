@@ -110,7 +110,7 @@ public class GrassZone extends AbstractZone implements CombatModifyingZone, Rend
 
     @Override
     public void modifyReward(RewardItem rewardItem) {
-        if (rewardItem.type == RewardItem.RewardType.RELIC) {
+        if (rewardItem.type == RewardItem.RewardType.RELIC && Wiz.isNormalRelicTier(rewardItem.relic.tier)) {
             AbstractRelic origRelic = rewardItem.relic;
             for (String relicID : GRASS_RELICS) {
                 AbstractRelic newRelic = RelicLibrary.getRelic(relicID);

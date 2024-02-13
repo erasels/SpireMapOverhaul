@@ -16,6 +16,7 @@ import com.megacrit.cardcrawl.ui.campfire.RestOption;
 import com.megacrit.cardcrawl.ui.campfire.SmithOption;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.rewards.HealReward;
+import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.zoneInterfaces.CampfireModifyingZone;
 import spireMapOverhaul.zoneInterfaces.RewardModifyingZone;
 import spireMapOverhaul.zoneInterfaces.ShopModifyingZone;
@@ -68,7 +69,7 @@ public class CandyLand extends AbstractZone implements RewardModifyingZone, Camp
 
     @Override
     public void modifyReward(RewardItem rewardItem) {
-        if(rewardItem.type == RewardItem.RewardType.RELIC && !(rewardItem.relic instanceof Mango || rewardItem.relic instanceof Pear || rewardItem.relic instanceof Strawberry || rewardItem.relic instanceof Waffle)){
+        if(rewardItem.type == RewardItem.RewardType.RELIC && !(rewardItem.relic instanceof Mango || rewardItem.relic instanceof Pear || rewardItem.relic instanceof Strawberry || rewardItem.relic instanceof Waffle) && Wiz.isNormalRelicTier(rewardItem.relic.tier)){
             switch(rewardItem.relic.tier){
                 case RARE:
                     rewardItem.relic = new Mango();

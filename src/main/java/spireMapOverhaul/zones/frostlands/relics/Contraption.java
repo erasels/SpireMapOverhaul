@@ -1,6 +1,8 @@
 package spireMapOverhaul.zones.frostlands.relics;
 
 import com.evacipated.cardcrawl.mod.stslib.relics.OnPlayerDeathRelic;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -75,13 +77,25 @@ public class Contraption extends AbstractSMORelic implements OnPlayerDeathRelic 
 
             AbstractDungeon.actionManager.currentAction.isDone = true;
             AbstractDungeon.getCurrRoom().smoked = true;
-            this.addToBot(new VFXAction(new SmokeBombEffect(target.hb.cX, target.hb.cY)));
-            Wiz.att(new WaitAction(.1f));
+            AbstractDungeon.actionManager.actions.clear();
+            AbstractDungeon.actionManager.monsterQueue.clear();
+            float escapeDuration = 2.5f;
+            Wiz.atb(new WaitAction(.1f));
+            Wiz.atb(new VFXAction(new SmokeBombEffect(target.hb.cX, target.hb.cY)));
+            Wiz.atb(new AbstractGameAction() {
+                {
+                    this.duration = escapeDuration;
+                }
+                @Override
+                public void update() {
+                    this.tickDuration();
+                }
+            });
             AbstractDungeon.player.hideHealthBar();
             AbstractDungeon.player.isEscaping = true;
             AbstractDungeon.player.flipHorizontal = !AbstractDungeon.player.flipHorizontal;
             AbstractDungeon.overlayMenu.endTurnButton.disable();
-            AbstractDungeon.player.escapeTimer = 2.5F;
+            AbstractDungeon.player.escapeTimer = escapeDuration;
         }
         if(AbstractDungeon.getCurrRoom().event instanceof SnowmanMafiaEvent)
             ((SnowmanMafiaEvent) AbstractDungeon.getCurrRoom().event).usedContraption();
