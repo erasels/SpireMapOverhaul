@@ -68,7 +68,9 @@ public class BurningMod extends AbstractCardModifier {
             } else {
                 for (int i = 0 ; i < times ; i++) {
                     AbstractMonster mon = AbstractDungeon.getRandomMonster();
-                    Wiz.applyToEnemy(mon, new BurningPower(mon, amount));
+                    if (mon != null) {
+                        Wiz.applyToEnemy(mon, new BurningPower(mon, amount));
+                    }
                 }
             }
         } else {
@@ -78,7 +80,9 @@ public class BurningMod extends AbstractCardModifier {
                 Wiz.forAllMonstersLiving(mon -> Wiz.applyToEnemy(mon, new BurningPower(mon, amount)));
             } else {
                 AbstractMonster mon = AbstractDungeon.getRandomMonster();
-                Wiz.applyToEnemy(mon, new BurningPower(mon, amount));
+                if (mon != null) {
+                    Wiz.applyToEnemy(mon, new BurningPower(mon, amount));
+                }
             }
         }
     }
