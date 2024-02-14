@@ -43,7 +43,9 @@ public class SharpModifier extends AbstractManaSurgeModifier {
             AbstractDungeon.actionManager.addToBottom(new DamageAction(target, info, AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
         } else {
             AbstractMonster mo = AbstractDungeon.getRandomMonster();
-            AbstractDungeon.actionManager.addToBottom(new DamageAction(mo, info,AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+            if (mo != null) {
+                AbstractDungeon.actionManager.addToBottom(new DamageAction(mo, info,AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+            }
         }
     }
 
