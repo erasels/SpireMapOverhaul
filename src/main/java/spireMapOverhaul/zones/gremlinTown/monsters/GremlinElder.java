@@ -43,10 +43,10 @@ public class GremlinElder extends CustomMonster
     private static final int HP_MAX = 231;
     private static final int HP_MIN_A8 = 242;
     private static final int HP_MAX_A8 = 251;
-    private static final int SLAM_DMG = 22;
-    private static final int SLAM_DMG_A3 = 24;
-    private static final int SLAP_DMG = 12;
-    private static final int SLAP_DMG_A3 = 13;
+    private static final int SLAM_DMG = 20;
+    private static final int SLAM_DMG_A3 = 22;
+    private static final int SLAP_DMG = 11;
+    private static final int SLAP_DMG_A3 = 12;
 
     private boolean firstTurn;
     private boolean curseTriggered;
@@ -155,7 +155,7 @@ public class GremlinElder extends CustomMonster
         else if (currentHealth > maxHealth/2f) {
             if (lastTwoMoves(SLAM))
                 setMove(SLAP, Intent.ATTACK_DEBUFF, damage.get(1).base);
-            else if (lastTwoMoves(SLAP))
+            else if (lastMove(SLAP))
                 setMove(SLAM, Intent.ATTACK, damage.get(0).base);
             else if (num < 50)
                 setMove(SLAM, Intent.ATTACK, damage.get(0).base);

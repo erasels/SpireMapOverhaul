@@ -16,7 +16,7 @@ import static spireMapOverhaul.util.Wiz.applyToSelf;
 public class FullPlate extends AbstractSMOCard {
     public final static String ID = makeID(FullPlate.class.getSimpleName());
     private final static int COST = 2;
-    private final static int MAGIC = 5;
+    private final static int MAGIC = 6;
     private final static int UPG_MAGIC = 2;
 
     public FullPlate() {
