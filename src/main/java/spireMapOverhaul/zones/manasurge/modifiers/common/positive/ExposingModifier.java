@@ -41,7 +41,9 @@ public class ExposingModifier extends AbstractManaSurgeModifier {
             AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(target, AbstractDungeon.player, new VulnerablePower(target,VULN_AMT,false),VULN_AMT));
         } else {
             AbstractMonster mo = AbstractDungeon.getRandomMonster();
-            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(mo, AbstractDungeon.player, new VulnerablePower(mo,VULN_AMT,false),VULN_AMT));
+            if (mo != null) {
+                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(mo, AbstractDungeon.player, new VulnerablePower(mo,VULN_AMT,false),VULN_AMT));
+            }
         }
     }
 
