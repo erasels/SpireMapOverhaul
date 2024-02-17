@@ -13,7 +13,6 @@ import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.actions.utility.TextAboveCreatureAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.curses.Decay;
-import com.megacrit.cardcrawl.cards.curses.Pain;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -118,17 +117,19 @@ public class GremlinElder extends CustomMonster
                             first[0] = false;
                             duration = 1.5f;
 
-                            AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(new Decay(),
-                                    (float)Settings.WIDTH * 0.3F, (float)Settings.HEIGHT / 2.0F));
                             if (asc() >= 18) {
-                                AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(new Pain(),
+                                AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(new Decay(),
+                                        (float) Settings.WIDTH * 0.3F, (float) Settings.HEIGHT / 2.0F));
+                                AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(new Decay(),
+                                        (float) Settings.WIDTH * 0.5F, (float) Settings.HEIGHT / 2.0F));
+                                AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(new Decay(),
                                         (float) Settings.WIDTH * 0.5F, (float) Settings.HEIGHT / 2.0F));
                             } else {
                                 AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(new Decay(),
-                                        (float) Settings.WIDTH * 0.5F, (float) Settings.HEIGHT / 2.0F));
+                                        (float) Settings.WIDTH * 0.4F, (float) Settings.HEIGHT / 2.0F));
+                                AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(new Decay(),
+                                        (float) Settings.WIDTH * 0.6F, (float) Settings.HEIGHT / 2.0F));
                             }
-                            AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(new Decay(),
-                                    (float)Settings.WIDTH * 0.7F, (float)Settings.HEIGHT / 2.0F));
                         }
 
                         tickDuration();

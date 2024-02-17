@@ -35,8 +35,8 @@ public class ArmoredGremlin extends CustomMonster
     private static final int MAX_HP = 39;
     private static final int MIN_HP_A7 = 38;
     private static final int MAX_HP_A7 = 42;
-    private static final int BLOCK_AMOUNT = 12;
-    private static final int BLOCK_AMOUNT_A17 = 15;
+    private static final int BLOCK_AMOUNT = 10;
+    private static final int BLOCK_AMOUNT_A17 = 12;
     private static final int RAGE_AMOUNT = 2;
 
     private final int attackDamage;
@@ -76,7 +76,6 @@ public class ArmoredGremlin extends CustomMonster
     public void usePreBattleAction() {
         atb(new ApplyPowerAction(this, this, new BarricadePower(this)));
         atb(new ApplyPowerAction(this, this, new RagingPower(this, RAGE_AMOUNT)));
-        SpireAnniversary6Mod.logger.info(name);
         atb(new GainBlockAction(this, blockAmount));
     }
 
