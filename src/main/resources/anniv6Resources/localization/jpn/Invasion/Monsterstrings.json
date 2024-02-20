@@ -1,0 +1,190 @@
+{
+  "anniv6:WhisperingWraith": {
+    "MOVES": [
+      "透明化",
+      "ゴーストタッチ",
+      "リーチライフ"
+    ],
+    "NAME": "ささやきのレイス"
+  },
+  "anniv6:StygianBoar": {
+    "MOVES": [
+      "噛みつき",
+      "炎の吐息",
+      "怒り"
+    ],
+    "NAME": "炎の猪"
+  },
+  "anniv6:Hexasnake": {
+    "MOVES": [
+      "睨む",
+      "群がる",
+      "からむ"
+    ],
+    "NAME": "ヤマタノオロチ"
+  },
+  "anniv6:GraftedWorm": {
+    "MOVES": [
+      "リーフカッター"
+    ],
+    "NAME": "パラサイト"
+  },
+  "anniv6:DreadMoth": {
+    "MOVES": [
+      "はばたき",
+      "恐怖の波"
+    ],
+    "NAME": "恐怖の蛾"
+  },
+  "anniv6:OrbOfFire": {
+    "MOVES": [
+      "灼熱の雷",
+      "フレア",
+      "シャイン"
+    ],
+    "NAME": "フレアオーブ"
+  },
+  "anniv6:LivingStormcloud": {
+    "MOVES": [
+      "ザップ",
+      "強風",
+      "降雨"
+    ],
+    "NAME": "ストームオーブ"
+  },
+  "anniv6:OpulentOffering": {
+    "MOVES": [
+      "金杯攻撃",
+      "硬貨弾幕",
+      "黄金の盾",
+      "高級な雫"
+    ],
+    "NAME": "ゴールデンオーブ"
+  },
+  "anniv6:ShimmeringMirage": {
+    "MOVES": [
+      "光沢",
+      "きらめき",
+      "光源"
+    ],
+    "NAME": "ブライトオーブ"
+  },
+  "anniv6:Hatchling": {
+    "MOVES": [
+      "生誕",
+      "齧る",
+      "腐食性の酸",
+      "頭突き"
+    ],
+    "NAME": "幼虫"
+  },
+  "anniv6:CroakingBrute": {
+    "MOVES": [
+      "爪",
+      "タックル"
+    ],
+    "NAME": "ハスキーブルート",
+    "DIALOG": ["カーカァ！"]
+  },
+  "anniv6:CroakingPelter": {
+    "MOVES": [
+      "爪",
+      "投石"
+    ],
+    "NAME": "ペルター",
+    "DIALOG": ["カーカァ！"]
+  },
+  "anniv6:CroakingSeer": {
+    "MOVES": [
+      "爪",
+      "バリア"
+    ],
+    "NAME": "呪術師",
+    "DIALOG": ["カーカァ！"]
+  },
+  "anniv6:Hydra": {
+    "MOVES": [
+      "テイルウィップ",
+      "スワイプ",
+      "貪欲な飢え"
+    ],
+    "NAME": "ハイドラ"
+  },
+  "anniv6:VoidReaper": {
+    "MOVES": [
+      "運命の切り開き",
+      "刈り取り",
+      "鎌の踊り"
+    ],
+    "NAME": "虚空の死神"
+  },
+  "anniv6:VoidCorruption": {
+    "MOVES": [
+      "エナジードレイン",
+      "リーチエナジー",
+      "パワードレイン",
+      "体当たり",
+      "残像"
+    ],
+    "NAME": "虚空の影"
+  },
+  "anniv6:VoidBeast": {
+    "MOVES": [
+      "噛みつき",
+      "虚空の圧力",
+      "引っ掻く"
+    ],
+    "NAME": "虚空の獣"
+  },
+  "anniv6:WarGolem": {
+    "MOVES": [
+      "探求者",
+      "シールドブレイク",
+      "脛壊し"
+    ],
+    "NAME": "戦闘用ゴーレム"
+  },
+  "anniv6:ElementalPortal": {
+    "MOVES": [
+      "ポータル",
+      "修復",
+      "混沌の魔力",
+      "エレメンタルブラスト"
+    ],
+    "NAME": "エレメンタルポータル"
+  },
+  "anniv6:UnboundAbyssal": {
+    "MOVES": [
+      "汚泥",
+      "不可逆",
+      "巻きつけ"
+    ],
+    "NAME": "果てしなき深淵",
+    "DIALOG": ["もう... 元には...!"]
+  },
+  "anniv6:PrimevalQueen": {
+    "MOVES": [
+      "死鎌",
+      "甲羅",
+      "招集"
+    ],
+    "NAME": "原始の女王"
+  },
+  "anniv6:RoyalProtector": {
+    "MOVES": [
+      "甲殻",
+      "燃える串",
+      "毒爆発",
+      "女王のために"
+    ],
+    "NAME": "ロイヤルガード"
+  },
+  "anniv6:Behemoth": {
+    "MOVES": [
+      "脱皮",
+      "進化",
+      "引っ掻く"
+    ],
+    "NAME": "ベヒモス"
+  }
+}

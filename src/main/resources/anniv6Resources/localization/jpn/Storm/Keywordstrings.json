@@ -1,0 +1,16 @@
+[
+  {
+    "PROPER_NAME": "濡れた",
+    "NAMES": [
+      "damp"
+    ],
+    "DESCRIPTION": "#y保留 と #y廃棄 を持つ。"
+  },
+  {
+    "PROPER_NAME": "帯電した",
+    "NAMES": [
+      "electric"
+    ],
+    "DESCRIPTION": "プレイしたとき、 [E] を得て、これを解除する。"
+  }
+]

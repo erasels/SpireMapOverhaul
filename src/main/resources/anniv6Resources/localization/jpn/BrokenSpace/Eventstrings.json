@@ -1,0 +1,11 @@
+{
+  "anniv6:WingBootEvent": {
+    "NAME": "Broken Wing Boot",
+    "DESCRIPTIONS": [
+      "目の前に2つのポータルがある。どちらにしようか。"
+    ],
+    "OPTIONS": [
+      "壊す"
+    ]
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "anniv6:Tenderizer": {
+    "NAME": "軟化",
+    "DESCRIPTIONS": ["このターン、「アタック」でダメージを与えるたび、 #y脱力 #b{0} を与える。"]
+  },
+  "anniv6:DelayedVigor": {
+    "NAME": "チャージ",
+    "DESCRIPTIONS": ["#b2 ターン後、 #y気力 #b{0} を得る。",
+      "#b1 ターン後、 #y気力 #b{0} を得る。"]
+  },
+  "anniv6:Sap": {
+    "NAME": "消耗",
+    "DESCRIPTIONS": ["次のターン開始時、 [E] を失う。",
+      "次のターン開始時、 #b{0} [E] を失う。"]
+  },
+  "anniv6:HeartImpairment": {
+    "NAME": "弱化",
+    "DESCRIPTIONS": ["#y死の鼓動 を得られない。1ターン目のデバフで負傷と火傷を混ぜず、さらに弱体も与えない。"]
+  },
+  "anniv6:NoxiousBrew": {
+    "NAME": "危ないビール",
+    "DESCRIPTIONS": ["ターン終了時、ランダムな敵に #y毒 #b{0} を与える。"]
+  },
+  "anniv6:MushroomSoup": {
+    "NAME": "キノコのスープ",
+    "DESCRIPTIONS": ["ターン終了時、 #y一時的な体力 #b{0} を得る。"]
+  },
+  "anniv6:GremsFire": {
+    "NAME": "グレムの炎",
+    "DESCRIPTIONS": ["ターン終了時、全ての敵に #b{0} ダメージを与える。"]
+  },
+  "anniv6:Raging": {
+    "NAME": "波瀾万丈",
+    "DESCRIPTIONS": ["ターン終了時、 #y筋力 #b{0} を得る。"]
+  },
+  "anniv6:GremlinNib": {
+    "NAME": "ペン先",
+    "DESCRIPTIONS": ["#b{0} 回攻撃するたび、 #r強力な攻撃 を使用する。"]
+  },
+  "anniv6:Bellow": {
+    "NAME": "咆哮",
+    "DESCRIPTIONS": ["このターン、敵が攻撃しなかった場合、 #y筋力 #b{0} を得る。"]
+  },
+  "anniv6:Critical": {
+    "NAME": "クリティカル",
+    "DESCRIPTIONS": ["次の攻撃は #b{0} 倍のダメージを与える。"]
+  },
+  "anniv6:OmegaCurse": {
+    "NAME": "オメガの呪い",
+    "DESCRIPTIONS": ["「アタック」から追加で {0} ダメージを受ける。"]
+  },
+  "anniv6:Horde": {
+    "NAME": "大群",
+    "DESCRIPTIONS": [
+      "ターン開始時、 #b1 枚のランダムな #yグレムリン カードを手札に加える。",
+      "ターン開始時、 #b{0} 枚のランダムな #yグレムリン カードを手札に加える。"
+    ]
+  },
+  "anniv6:Rig": {
+    "NAME": "コントロール",
+    "DESCRIPTIONS": [
+      "ターン開始時、追加で #b1 枚のカードを引き、 #b1 枚のカードを #y廃棄 する。",
+      "ターン開始時、追加で #b{0} 枚のカードを引き、 #b{0} 枚のカードを #y廃棄 する。"
+    ]
+  },
+  "anniv6:Inspired": {
+    "NAME": "ひらめき",
+    "DESCRIPTIONS": ["ターン開始時、 #b{0} [E] を得て、追加で #b{0} 枚のカードを引く。",
+      "ターン開始時、 #b{0} [E] を得て、追加で #b{0} 枚のカードを引く。"]
+  },
+  "anniv6:Spiteful": {
+    "NAME": "いじわる",
+    "DESCRIPTIONS": ["hpが #b50% 以下になると、2ターン攻撃をやめ、その後に #r強力な呪い を使用する。"]
+  }
+}

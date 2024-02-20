@@ -1,0 +1,57 @@
+{
+  "anniv6:ConfigMenuText": {
+    "TEXT": [
+      "Spire Biomes",
+      "StS Modding Community",
+      "マップをもっと面白くする。",
+      "有効",
+      "バイオームのアイコンを大きくし、バイオームの形状で切り取る。",
+      "同じランで同じバイオームが繰り返し出現しない。",
+      "シェーダーを有効にする。"
+    ]
+  },
+  "anniv6:SingleCardReward": {
+    "TEXT": [
+      "[カード] ",
+      "ヒント: 右クリックするとカードの詳細が表示されます。"
+    ]
+  },
+  "anniv6:HealReward": {
+    "TEXT": [
+      "hpを回復:"
+    ]
+  },
+  "anniv6:AnyColorCardReward": {
+    "TEXT": [
+      "ランダムな色のカードを入手",
+      "カードを選択"
+    ]
+  },
+  "anniv6:CombatExplainButton": {
+    "TEXT": [
+      "戦闘の特殊効果"
+    ]
+  },
+  "anniv6:RunHistoryScreen": {
+    "TEXT": [
+      "バイオーム: {0}"
+    ]
+  },
+  "anniv6:ZonePotionsPatch": {
+    "TEXT": [
+      "Biome:",
+      "特定のバイオームでのみ入手できるポーション。"
+    ]
+  },
+  "anniv6:CharacterSelectScreen": {
+    "TEXT": [
+      "バイオームの出現を有効にする。",
+      "マップにバイオームを追加し、新しい要素を追加する。"
+    ]
+  },
+  "anniv6:ZoneTooltip": {
+    "TEXT": [
+      "#p作者: {0}"
+    ]
+  }
+}

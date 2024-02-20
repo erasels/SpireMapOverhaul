@@ -1,0 +1,44 @@
+{
+  "anniv6:Clairvoyance": {
+    "NAME": "千里眼",
+    "DESCRIPTION": "保留 NL ターン開始時、このカードが手札にある場合、カードを !M! 枚引く。 NL この効果で引いたカードは、プレイするまで保留される。 NL 廃棄",
+    "EXTENDED_DESCRIPTION": [
+      "全てを見たんだ！",
+      "この贈り物は要らない…"
+    ]
+  },
+  "anniv6:Verdict": {
+    "NAME": "裁き",
+    "DESCRIPTION": "裁き !M! を与える。 NL 廃棄",
+    "EXTENDED_DESCRIPTION": [
+      "名誉のために、審判を受けろ！"
+    ]
+  },
+  "anniv6:GuidingLight": {
+    "NAME": "導きの光",
+    "DESCRIPTION": "使用不可。 NL このカードを引いた時、このカードを廃棄して、手札が一杯になるまでカードを引く。 NL このカードがアップグレード済の場合、さらに戦闘終了まで手札のカードすべてを アップグレード する。",
+    "EXTENDED_DESCRIPTION": [
+      "道は開いている。",
+      "このカードはプレイできない。"
+    ]
+  },
+  "anniv6:Inevitability": {
+    "NAME": "不可抗力",
+    "DESCRIPTION": "保留 NL 使用不可。 NL ターン終了時、全ての敵に !M! ダメージを与え、 !anniv6:m2! ブロックを得て、戦闘終了までこの2つの値を1増加する。",
+    "EXTENDED_DESCRIPTION": [
+      "これで終わりだ。",
+      "失せろ！",
+      "疲れた。",
+      "無駄だ…",
+      "虚無に向かって…"
+    ]
+  },
+  "anniv6:Mitosis": {
+    "NAME": "有糸分裂",
+    "DESCRIPTION": "*有糸分裂 もしくは状態異常1枚につき、 !M! ダメージを与える。 NL このカードを引いた時、山札にこのカードの複製を加える。 NL 廃棄",
+    "EXTENDED_DESCRIPTION": [
+      "成長している…",
+      " NL ( !D! ダメージ。)"
+    ]
+  }
+}

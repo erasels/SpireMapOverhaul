@@ -1,0 +1,30 @@
+{
+  "anniv6:Contraption": {
+    "NAME": "からくり",
+    "FLAVOR": "おかしな贈り物。",
+    "DESCRIPTIONS": [
+      "次に戦闘で死亡したとき、一度だけ #bhp1 で復活し、可能なら戦闘から離脱する。"
+    ]
+  },
+  "anniv6:OldHat": {
+    "NAME": "古い帽子",
+    "FLAVOR": "霜のおさがり。",
+    "DESCRIPTIONS": [
+      "ターン開始時、 #y活力 #b", " を得る。"
+    ]
+  },
+  "anniv6:Frostcoal": {
+    "NAME": "凍てつく石炭",
+    "FLAVOR": "古い石を削り取る。",
+    "DESCRIPTIONS": [
+      "1ターン目に敵が与えるダメージが #b", " 減少する。"
+    ]
+  },
+  "anniv6:SpruceCharm": {
+    "NAME": "トウヒ製のお守り",
+    "FLAVOR": "彼女の剣の柄頭から。",
+    "DESCRIPTIONS": [
+      "戦闘中最初のアタックは2回プレイされる。"
+    ]
+  }
+}

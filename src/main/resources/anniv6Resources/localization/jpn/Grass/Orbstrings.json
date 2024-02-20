@@ -1,0 +1,38 @@
+
+{
+	"anniv6:BellPepper":
+	{
+		"DESCRIPTION": ["ランダムな敵に #y毒 {0} を {1} 回与える。"],
+		"NAME": "ピーマン"
+	},
+	"anniv6:Carrot":
+	{
+		"DESCRIPTION": ["ランダムな敵に {0} ダメージを {1} 回与える。"],
+		"NAME": "人参"
+	},
+	"anniv6:Leek":
+	{
+		"DESCRIPTION": ["ランダムな敵に #y脱力 {0} を {1} 回与える。"],
+		"NAME": "長ネギ"
+	},
+	"anniv6:Onion":
+	{
+		"DESCRIPTION": ["ランダムな敵に #y弱体 {0} を {1} 回与える。"],
+		"NAME": "玉ねぎ"
+	},
+	"anniv6:Pumpkin":
+	{
+		"DESCRIPTION": [" {0} #yブロック を得る。"],
+		"NAME": "かぼちゃ"
+	},
+	"anniv6:Radish":
+	{
+		"DESCRIPTION": ["ランダムな敵に {0} ダメージを {1} 回与える。"],
+		"NAME": "大根"
+	},
+	"anniv6:Tomato":
+	{
+		"DESCRIPTION": ["#y筋力 {0} を得る。"],
+		"NAME": "トマト"
+	}
+}
