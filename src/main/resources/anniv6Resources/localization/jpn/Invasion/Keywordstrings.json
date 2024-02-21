@@ -31,9 +31,9 @@
     "DESCRIPTION": "次のhpの損失を防ぐ。"
   },
   {
-    "PROPER_NAME": "虚弱脈拍",
-    "NAMES": ["虚弱脈拍"],
-    "DESCRIPTION": "ターン開始時、 #y脆弱化 を受ける。"
+    "PROPER_NAME": "虚弱",
+    "NAMES": ["虚弱"],
+    "DESCRIPTION": "ターン開始時、 #y脆弱化 を与える。"
   },
   {
     "PROPER_NAME": "放心",
