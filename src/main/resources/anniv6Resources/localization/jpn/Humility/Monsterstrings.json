@@ -1,0 +1,22 @@
+{
+  "anniv6:Hexaghost": {
+    "NAME": "ペンタゴースト",
+    "MOVES": [],
+    "DIALOG": []
+  },
+  "anniv6:SlaverBlue": {
+    "MOVES": [
+      "つまずき"
+    ]
+  },
+  "anniv6:BanditBear": {
+    "DIALOG": [
+      "~ロメオーー！~"
+    ]
+  },
+  "anniv6:BookOfStabbing": {
+    "NAME": "打撲の本",
+    "MOVES": [],
+    "DIALOG": []
+  }
+}

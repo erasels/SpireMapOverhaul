@@ -1,0 +1,106 @@
+{
+  "anniv6:GremlinRiderRed": {
+    "MOVES": [
+      "チャージ",
+      "乗虫攻撃"
+    ],
+    "NAME": "乗虫グレムリン"
+  },
+  "anniv6:GremlinRiderBlue": {
+    "MOVES": [
+      "チャージ",
+      "乗虫攻撃"
+    ],
+    "NAME": "乗虫グレムリン"
+  },
+  "anniv6:GremlinRiderGreen": {
+    "MOVES": [
+      "チャージ",
+      "乗虫攻撃"
+    ],
+    "NAME": "乗虫グレムリン"
+  },
+  "anniv6:GremlinRockTosser": {
+    "MOVES": [
+      "投石"
+    ],
+    "NAME": "投石グレムリン"
+  },
+  "anniv6:GremlinHealer": {
+    "MOVES": [
+      "治療",
+      "アタック"
+    ],
+    "NAME": "ヒールグレムリン"
+  },
+  "anniv6:ChubbyGremlin": {
+    "MOVES": [
+      "座る"
+    ],
+    "NAME": "ぽっちゃりグレムリン"
+  },
+  "anniv6:ArmoredGremlin": {
+    "MOVES": [
+      "ボディスラム"
+    ],
+    "NAME": "アーマーグレムリン"
+  },
+  "anniv6:GremlinBarbarian": {
+    "MOVES": [
+      "激怒"
+    ],
+    "NAME": "バーバリアングレムリン"
+  },
+  "anniv6:GremlinAssassin": {
+    "MOVES": [
+      "挫折",
+      "気迫"
+    ],
+    "NAME": "アサシングレムリン"
+  },
+  "anniv6:GremlinJerk": {
+    "MOVES": [
+      "挫折",
+      "気迫"
+    ],
+    "NAME": "ぴくぴくグレムリン"
+  },
+  "anniv6:GremlinNib": {
+    "MOVES": [
+      "体当たり",
+      "2連続攻撃",
+      "激怒",
+      "クリティカル"
+    ],
+    "DIALOG": [
+      "ブルゥアアアァァァッ！！"
+    ],
+    "NAME": "ペン先グレムリン"
+  },
+  "anniv6:GremlinElder": {
+    "MOVES": [
+      "体当たり",
+      "平手打ち",
+      "チャージ",
+      "死の呪い"
+    ],
+    "DIALOG": [
+      "体が重い…",
+      "お前を呪うためになら命もを捧げる…",
+      "お前は2度と元には戻れない！"
+    ],
+    "NAME": "長老グレムリン"
+  },
+  "anniv6:GremlinCannon": {
+    "MOVES": [
+      "チャージ…",
+      "喰らえ！",
+      "喰らえ！",
+      "喰らえ！"
+    ],
+    "DIALOG": [
+      "チャージ…"
+    ],
+    "NAME": "大砲グレムリン"
+  }
+}

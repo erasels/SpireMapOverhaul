@@ -1,0 +1,86 @@
+{
+  "anniv6:GildedStrike": {
+    "NAME": "ギルドストライク",
+    "DESCRIPTION": "!D! ダメージを与える。 NL 弱体 !M! を与える。"
+  },
+  "anniv6:GildedDefend": {
+    "NAME": "ギルドディフェンド",
+    "DESCRIPTION": "!B! ブロックを得る。 NL 敏捷性 !M! を失う。"
+  },
+  "anniv6:GildedEssence": {
+    "NAME": "ギルドエッセンス",
+    "DESCRIPTION": "プレートアーマー !M! を得る。"
+  },
+  "anniv6:Necropotence": {
+    "NAME": "ネクロポーテンス",
+    "DESCRIPTION": "保留 NL カードを !M! 枚引く。 NL hp1を失う。 NL このカードを手札に戻す。",
+    "UPGRADE_DESCRIPTION": "保留 NL カードを !M! 枚引く。 NL hp1を失う。 NL このカードを手札に戻す。"
+  },
+  "anniv6:FireblessedBlade": {
+    "NAME": "炎の祝福",
+    "DESCRIPTION": "!D! ダメージを与える。 NL 筋力 !M! 、敏捷性1、集中力1を得る。 NL 廃棄"
+  },
+  "anniv6:WindblessedBlade": {
+    "NAME": "風の祝福",
+    "DESCRIPTION": "!D! ダメージを3回与える。 NL !B! ブロックを2回得る。 NL 脱力 !M! を与える。 NL 廃棄"
+  },
+  "anniv6:EarthblessedBlade": {
+    "NAME": "大地の祝福",
+    "DESCRIPTION": "全ての敵に !D! ダメージを与える。 NL プレートアーマー !B! を得る。 NL トゲ !M! を得る。 NL 廃棄"
+  },
+  "anniv6:IceblessedBlade": {
+    "NAME": "氷の祝福",
+    "DESCRIPTION": "!D! ダメージを与える。 NL アーティファクト !M! を得る。 NL anniv6:バッファー 1を得る。 NL 廃棄"
+  },
+  "anniv6:VoidblessedBlade": {
+    "NAME": "虚空の祝福",
+    "DESCRIPTION": "!D! ダメージを !M! 回与える。 NL 対象は筋力 !M! を失う。 NL ブラー1を得る。 NL 廃棄"
+  },
+  "anniv6:Languish": {
+    "NAME": "衰弱",
+    "DESCRIPTION": "このターン、全ての敵が筋力 !M! を失う。 NL 全ての敵がhp !M! を失う。 NL エセリアル NL 廃棄",
+    "UPGRADE_DESCRIPTION": "このターン、全ての敵が筋力 !M! を失う。 NL 全ての敵がhp !M! を失う。 NL 廃棄"
+  },
+  "anniv6:MirarisWake": {
+    "NAME": "ミラリの目覚め",
+    "DESCRIPTION": "筋力 !M! を得る。 NL 敏捷性 !M! を得る。 NL ターン開始時、 [E] を得る。 NL エセリアル",
+    "UPGRADE_DESCRIPTION": "筋力 !M! を得る。 NL 敏捷性 !M! を得る。 NL ターン開始時、 [E] を得る。"
+  },
+  "anniv6:WallOfBlossoms": {
+    "NAME": "花のカーテン",
+    "DESCRIPTION": "敏捷性 !M! を得る。 NL カードを1枚引く。"
+  },
+  "anniv6:DarkRitual": {
+    "NAME": "闇の儀式",
+    "DESCRIPTION": "[E] [E] [E] を得る。 NL 廃棄",
+    "UPGRADE_DESCRIPTION": "保留 NL [E] [E] [E] を得る。 NL 廃棄"
+  },
+  "anniv6:LightningHelix": {
+    "NAME": "螺旋雷",
+    "DESCRIPTION": "!D! ダメージを与える。 NL hp !M! を回復する。 NL 廃棄"
+  },
+  "anniv6:Foresee": {
+    "NAME": "予知",
+    "DESCRIPTION": "占術 !M! NL カードを2枚引く。"
+  },
+  "anniv6:SteelWall": {
+    "NAME": "鋼鉄の壁",
+    "DESCRIPTION": "!B! ブロックを得る。 NL anniv6:金属化 !M! を得る。 NL 廃棄"
+  },
+  "anniv6:LightningBolt": {
+    "NAME": "落雷",
+    "DESCRIPTION": "!D! ダメージを与える。 NL このカードを山札に加える。"
+  },
+  "anniv6:Staggershock": {
+    "NAME": "よろめきショック",
+    "DESCRIPTION": "全ての敵に !D! ダメージを与える。次のターン開始時、このカードをプレイする。"
+  },
+  "anniv6:HandOfTheAbyss": {
+    "NAME": "深淵の手",
+    "DESCRIPTION": "「アタック」でダメージを与えるたび、 anniv6:深淵の接触 !M! を与える。"
+  },
+  "anniv6:BrokenCrystal": {
+    "NAME": "壊れたクリスタル",
+    "DESCRIPTION": "このカードを引いたとき、このカードのコストをランダムに変化させ、カードを1枚引く。 NL 全ての敵が再生 !M! を失う。 NL 廃棄"
+  }
+}

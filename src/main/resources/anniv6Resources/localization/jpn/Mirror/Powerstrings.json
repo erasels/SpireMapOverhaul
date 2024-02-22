@@ -1,0 +1,20 @@
+{
+  "anniv6:MirrorZone": {
+    "NAME": "鏡の力",
+    "DESCRIPTIONS": [
+      "ターン開始時、「ランダムな敵の前ターンの行動」をモチーフとした #p物真似 カードを手札に加える。"
+    ]
+  },
+  "anniv6:Reflective": {
+    "NAME": "光沢",
+    "DESCRIPTIONS": [
+      "#y物真似 カードのダメージ量とブロック量が #b{0} 増加する。"
+    ]
+  },
+  "anniv6:Shattered": {
+    "NAME": "遮断",
+    "DESCRIPTIONS": [
+      "#y物真似 カードをプレイしたとき、hpの #b{0}% を失う。(切り上げ)"
+    ]
+  }
+}

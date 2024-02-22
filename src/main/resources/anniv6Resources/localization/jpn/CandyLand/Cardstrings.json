@@ -1,0 +1,70 @@
+{
+  "anniv6:Broccoli": {
+    "NAME": "ブロッコリー",
+    "DESCRIPTION": "筋力 !M! を得る。 NL 敏捷性 !M! を得る。 NL anniv6:抹消"
+  },
+  "anniv6:CandyCane": {
+    "NAME": "キャンディケイン",
+    "DESCRIPTION": "!D! ダメージを与える。 NL anniv6:抹消"
+  },
+  "anniv6:Cookie": {
+    "NAME": "クッキー",
+    "DESCRIPTION": "!B! ブロックを得る。 NL anniv6:抹消"
+  },
+  "anniv6:EnergyDrink": {
+    "NAME": "エナジードリンク",
+    "DESCRIPTION": "{@@}{!M!|1= [E] |2= [E] [E] |3= [E] [E] [E] |@= !M! [E] }を得る。 NL anniv6:抹消"
+  },
+  "anniv6:FastFood": {
+    "NAME": "ファストフード",
+    "DESCRIPTION": "カードを !M! 枚引く。 NL anniv6:抹消"
+  },
+  "anniv6:Banana": {
+    "NAME": "バナナ",
+    "DESCRIPTION": "最大hp !M! を得る。 NL anniv6:抹消"
+  },
+  "anniv6:ChocolateBar": {
+    "NAME": "板チョコ",
+    "DESCRIPTION": "再生 !M! を得る。 NL anniv6:抹消"
+  },
+  "anniv6:Cocktail": {
+    "NAME": "カクテル",
+    "DESCRIPTION": "ランダムな飲めるポーションを1つ入手する。 NL anniv6:抹消"
+  },
+  "anniv6:GoldCandy": {
+    "NAME": "金の飴",
+    "DESCRIPTION": "!M! ゴールドを得る。 NL anniv6:抹消"
+  },
+  "anniv6:Cake": {
+    "NAME": "ケーキ",
+    "DESCRIPTION": "!B! ブロックを得る。 NL あと{@@}{!M!|1= 1ターン|@= !M! ターン}の間、ターン開始時にブロックを失わない。 NL anniv6:抹消"
+  },
+  "anniv6:FrozenYoghurt": {
+    "NAME": "冷凍ヨーグルト",
+    "DESCRIPTION": "anniv6:金属化 !M! を得る。 NL 弱体 !anniv6:m2! を受ける。 NL anniv6:抹消"
+  },
+  "anniv6:JawBreaker": {
+    "NAME": "チョコスプレー",
+    "DESCRIPTION": "!D! ダメージを与える。 NL anniv6:抹消"
+  },
+  "anniv6:JellyBeans": {
+    "NAME": "ジェリービーンズ",
+    "DESCRIPTION": "全ての敵に 弱体 !M! を与える。 NL 脱力 !anniv6:m2! を得る。 NL anniv6:抹消"
+  },
+  "anniv6:Milk": {
+    "NAME": "牛乳",
+    "DESCRIPTION": "アーティファクト !anniv6:m2! を与える。 NL アーティファクト !M! を得る。 NL anniv6:抹消"
+  },
+  "anniv6:Pepper": {
+    "NAME": "唐辛子",
+    "DESCRIPTION": "筋力 !M! を得る。 NL 敏捷性 !anniv6:m2! を失う。 NL anniv6:抹消"
+  },
+  "anniv6:PoisonedApple": {
+    "NAME": "毒林檎",
+    "DESCRIPTION": "毒 !M! を与える。 NL !anniv6:m2! ダメージを受ける。 NL anniv6:抹消"
+  },
+  "anniv6:ChewingGum": {
+    "NAME": "チューインガム",
+    "DESCRIPTION": "カードを !M! 枚引く。 NL {@@}{!M!|1= [E] |2= [E] [E] |3= [E] [E] [E] |@= !M! [E] }を得る。 NL 山札の上に *粘液 を置く。 NL anniv6:抹消"
+  }
+}
