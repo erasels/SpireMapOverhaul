@@ -32,10 +32,10 @@ public class GremlinHealer extends CustomMonster
     private static final int DAMAGE_A2 = 11;
     private static final int HEAL = 12;
     private static final int HEAL_A17 = 15;
-    private static final int MIN_HP = 44;
-    private static final int MAX_HP = 49;
-    private static final int MIN_HP_A7 = 48;
-    private static final int MAX_HP_A7 = 53;
+    private static final int MIN_HP = 60;
+    private static final int MAX_HP = 64;
+    private static final int MIN_HP_A7 = 64;
+    private static final int MAX_HP_A7 = 69;
 
     private final int attackDamage;
     private final int heal;
@@ -88,7 +88,7 @@ public class GremlinHealer extends CustomMonster
 
     @Override
     protected void getMove(final int num) {
-        if (Wiz.getEnemies().size() > 1)
+        if (Wiz.getEnemies().size() > 1 || firstMove)
             setMove(MOVES[0], CURE, Intent.BUFF);
         else
             setMove(ATTACK, Intent.ATTACK, attackDamage);
