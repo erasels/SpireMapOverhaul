@@ -77,10 +77,10 @@
   },
   "anniv6:SummoningPortal": {
     "NAME": "召喚",
-    "DESCRIPTIONS": ["エレメンタルを #b{0} 個まで召喚する。あと #b{1} 個召喚すると #yこのバフが解除される。 #r攻撃しない。無敵。"]
+    "DESCRIPTIONS": ["#b{0} 個のエレメンタルを連れて戦闘を開始する。あと #b{1} 個召喚すると #yこのバフが解除される。 #r攻撃しない。無敵。"]
   },
   "anniv6:DurableMinion": {
-    "NAME": "不屈のミニオン",
+    "NAME": "不屈",
     "DESCRIPTIONS": ["ミニオン以外が倒されても戦闘から離脱しない。"]
   },
   "anniv6:MirarisWake": {
