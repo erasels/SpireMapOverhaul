@@ -10,7 +10,7 @@
     "NAME": "古い帽子",
     "FLAVOR": "霜のおさがり。",
     "DESCRIPTIONS": [
-      "ターン開始時、 #y活力 #b", " を得る。"
+      "ターン開始時、 #y気力 #b", " を得る。"
     ]
   },
   "anniv6:Frostcoal": {
