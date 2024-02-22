@@ -5,7 +5,8 @@
   },
   "${ModID}:MeatMallet": {
     "NAME": "肉槌",
-    "DESCRIPTION": "このターン、「アタック」でダメージを与えるたび、脱力 !M! を与える。 NL 廃棄"
+    "DESCRIPTION": "このターン、「アタック」でダメージを与えるたび、脱力 !M! を与える。 NL 廃棄",
+    "UPGRADE_DESCRIPTION": "このターン、「アタック」でダメージを与えるたび、脱力 !M! を与える。"
   },
   "${ModID}:AngryStrike": {
     "NAME": "マッドストライク",
