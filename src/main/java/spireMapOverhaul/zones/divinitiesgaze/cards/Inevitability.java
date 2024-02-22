@@ -60,7 +60,7 @@ public class Inevitability extends AbstractSMOCard {
       public void update() {
         this.isDone = true;
         Inevitability.this.baseMagicNumber += STAT_INCREMENT;
-        Inevitability.this.baseBlock += STAT_INCREMENT;
+        Inevitability.this.baseSecondMagic += STAT_INCREMENT;
       }
     });
   }
