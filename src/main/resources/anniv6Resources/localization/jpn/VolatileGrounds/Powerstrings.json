@@ -1,18 +1,18 @@
 {
-  "anniv6:volEruptPower": {
+  "${ModID}:volEruptPower": {
     "NAME": "噴火",
     "DESCRIPTIONS": ["あと #b{0} 枚のカードをプレイすると爆発し、 #r{1} ダメージを与える。",
       "あと #b{0} 枚のカードをプレイすると爆発し、 #r{1} ダメージを与える。"]
   },
-  "anniv6:volUnstablePower": {
+  "${ModID}:volUnstablePower": {
     "NAME": "不安定",
     "DESCRIPTIONS": ["ターン開始時、「全員」に #b{0} ダメージを与える。"]
   },
-  "anniv6:volChargedPower": {
+  "${ModID}:volChargedPower": {
     "NAME": "チャージ",
     "DESCRIPTIONS": ["死亡時、「全員」に #b{0} ダメージを与える。"]
   },
-  "anniv6:volExplodePlusPower": {
+  "${ModID}:volExplodePlusPower": {
     "NAME": "爆発",
     "DESCRIPTIONS": ["#r{1} ターン後に爆発し、 #b{0} ダメージを与える。",
       "#r{1} ターン後に爆発し、 #b{0} ダメージを与える。"]

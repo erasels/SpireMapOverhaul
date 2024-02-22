@@ -1,5 +1,5 @@
 {
-  "anniv6:PlayerPoisonPower": {
+  "${ModID}:PlayerPoisonPower": {
     "DESCRIPTIONS": [
       "ターン終了時、 #b%s ダメージを受け、数値を #b1減らす。"
     ]

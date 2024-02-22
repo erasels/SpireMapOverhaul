@@ -1,5 +1,5 @@
 {
-  "anniv6:GremlinCook": {
+  "${ModID}:GremlinCook": {
     "MOVES": [
       "料理",
       "畑の野菜",
@@ -11,7 +11,7 @@
       "食べな、坊や！"
     ]
   },
-  "anniv6:GremlinDog": {
+  "${ModID}:GremlinDog": {
     "MOVES": [
       "毒牙",
       "弱気なかじりつき"

@@ -1,5 +1,5 @@
 {
-  "anniv6:WhisperingWraith": {
+  "${ModID}:WhisperingWraith": {
     "MOVES": [
       "透明化",
       "ゴーストタッチ",
@@ -7,7 +7,7 @@
     ],
     "NAME": "ささやきのレイス"
   },
-  "anniv6:StygianBoar": {
+  "${ModID}:StygianBoar": {
     "MOVES": [
       "噛みつき",
       "炎の吐息",
@@ -15,7 +15,7 @@
     ],
     "NAME": "炎の猪"
   },
-  "anniv6:Hexasnake": {
+  "${ModID}:Hexasnake": {
     "MOVES": [
       "睨む",
       "群がる",
@@ -23,20 +23,20 @@
     ],
     "NAME": "ヤマタノオロチ"
   },
-  "anniv6:GraftedWorm": {
+  "${ModID}:GraftedWorm": {
     "MOVES": [
       "リーフカッター"
     ],
     "NAME": "パラサイト"
   },
-  "anniv6:DreadMoth": {
+  "${ModID}:DreadMoth": {
     "MOVES": [
       "はばたき",
       "恐怖の波"
     ],
     "NAME": "恐怖の蛾"
   },
-  "anniv6:OrbOfFire": {
+  "${ModID}:OrbOfFire": {
     "MOVES": [
       "灼熱の雷",
       "フレア",
@@ -44,7 +44,7 @@
     ],
     "NAME": "フレアオーブ"
   },
-  "anniv6:LivingStormcloud": {
+  "${ModID}:LivingStormcloud": {
     "MOVES": [
       "ザップ",
       "強風",
@@ -52,7 +52,7 @@
     ],
     "NAME": "ストームオーブ"
   },
-  "anniv6:OpulentOffering": {
+  "${ModID}:OpulentOffering": {
     "MOVES": [
       "金杯攻撃",
       "硬貨弾幕",
@@ -61,7 +61,7 @@
     ],
     "NAME": "ゴールデンオーブ"
   },
-  "anniv6:ShimmeringMirage": {
+  "${ModID}:ShimmeringMirage": {
     "MOVES": [
       "光沢",
       "きらめき",
@@ -69,7 +69,7 @@
     ],
     "NAME": "ブライトオーブ"
   },
-  "anniv6:Hatchling": {
+  "${ModID}:Hatchling": {
     "MOVES": [
       "生誕",
       "齧る",
@@ -78,7 +78,7 @@
     ],
     "NAME": "幼虫"
   },
-  "anniv6:CroakingBrute": {
+  "${ModID}:CroakingBrute": {
     "MOVES": [
       "爪",
       "タックル"
@@ -86,7 +86,7 @@
     "NAME": "ハスキーブルート",
     "DIALOG": ["カーカァ！"]
   },
-  "anniv6:CroakingPelter": {
+  "${ModID}:CroakingPelter": {
     "MOVES": [
       "爪",
       "投石"
@@ -94,7 +94,7 @@
     "NAME": "ペルター",
     "DIALOG": ["カーカァ！"]
   },
-  "anniv6:CroakingSeer": {
+  "${ModID}:CroakingSeer": {
     "MOVES": [
       "爪",
       "バリア"
@@ -102,7 +102,7 @@
     "NAME": "呪術師",
     "DIALOG": ["カーカァ！"]
   },
-  "anniv6:Hydra": {
+  "${ModID}:Hydra": {
     "MOVES": [
       "テイルウィップ",
       "スワイプ",
@@ -110,7 +110,7 @@
     ],
     "NAME": "ハイドラ"
   },
-  "anniv6:VoidReaper": {
+  "${ModID}:VoidReaper": {
     "MOVES": [
       "運命の切り開き",
       "刈り取り",
@@ -118,7 +118,7 @@
     ],
     "NAME": "虚空の死神"
   },
-  "anniv6:VoidCorruption": {
+  "${ModID}:VoidCorruption": {
     "MOVES": [
       "エナジードレイン",
       "リーチエナジー",
@@ -128,7 +128,7 @@
     ],
     "NAME": "虚空の影"
   },
-  "anniv6:VoidBeast": {
+  "${ModID}:VoidBeast": {
     "MOVES": [
       "噛みつき",
       "虚空の圧力",
@@ -136,7 +136,7 @@
     ],
     "NAME": "虚空の獣"
   },
-  "anniv6:WarGolem": {
+  "${ModID}:WarGolem": {
     "MOVES": [
       "探求者",
       "シールドブレイク",
@@ -144,7 +144,7 @@
     ],
     "NAME": "戦闘用ゴーレム"
   },
-  "anniv6:ElementalPortal": {
+  "${ModID}:ElementalPortal": {
     "MOVES": [
       "ポータル",
       "修復",
@@ -153,7 +153,7 @@
     ],
     "NAME": "エレメンタルポータル"
   },
-  "anniv6:UnboundAbyssal": {
+  "${ModID}:UnboundAbyssal": {
     "MOVES": [
       "汚泥",
       "不可逆",
@@ -162,7 +162,7 @@
     "NAME": "果てしなき深淵",
     "DIALOG": ["もう... 元には...!"]
   },
-  "anniv6:PrimevalQueen": {
+  "${ModID}:PrimevalQueen": {
     "MOVES": [
       "死鎌",
       "甲羅",
@@ -170,7 +170,7 @@
     ],
     "NAME": "原始の女王"
   },
-  "anniv6:RoyalProtector": {
+  "${ModID}:RoyalProtector": {
     "MOVES": [
       "甲殻",
       "燃える串",
@@ -179,7 +179,7 @@
     ],
     "NAME": "ロイヤルガード"
   },
-  "anniv6:Behemoth": {
+  "${ModID}:Behemoth": {
     "MOVES": [
       "脱皮",
       "進化",

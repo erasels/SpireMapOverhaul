@@ -1,12 +1,12 @@
 {
-  "anniv6:Junkyard": {
+  "${ModID}:Junkyard": {
     "TEXT": [
       "ゴミ捨て場",
       "拾うものが沢山！ #b2 つのカード報酬を獲得しますが、スキップはできません。",
       "Dayvig"
     ]
   },
-  "anniv6:Misc": {
+  "${ModID}:Misc": {
     "TEXT": [
       "カードを買え！"
     ]

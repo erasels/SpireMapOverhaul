@@ -1,61 +1,61 @@
 {
-  "anniv6:Duelity": {
+  "${ModID}:Duelity": {
     "NAME": "表裏の顔",
     "FLAVOR": "どうやらボスはスペルが苦手らしい。",
     "DESCRIPTIONS": [
       "スキルをプレイするたび、一時的な #y筋力 #b1 を得る。"
     ]
   },
-  "anniv6:GremlinClaw": {
+  "${ModID}:GremlinClaw": {
     "NAME": "グレムリンの爪",
     "FLAVOR": "グレムリンは武器を持っていなくても危ない。",
     "DESCRIPTIONS": [
       "ミニオンでない敵が死亡したとき、hp #b1 を回復する。"
     ]
   },
-  "anniv6:GremlinHood": {
+  "${ModID}:GremlinHood": {
     "NAME": "グレムリンの頭巾",
     "FLAVOR": "オレンジ色のマスク盗賊はまったく人気がなかった。",
     "DESCRIPTIONS": [
       "戦闘開始時、 #b3 枚のランダムな #yグレムリン カードから #b1 枚を選び、手札に加える。"
     ]
   },
-  "anniv6:NobClub": {
+  "${ModID}:NobClub": {
     "NAME": "ボスの棍棒",
     "FLAVOR": "かろうじて持ち上げられる。",
     "DESCRIPTIONS": [
       "#b{0} 枚のアタックをプレイするたび、ランダムな敵に #y弱体 #b1 を与える。"
     ]
   },
-  "anniv6:GremlinStaff": {
+  "${ModID}:GremlinStaff": {
     "NAME": "グレムリンの杖",
     "FLAVOR": "持つと手がピリピリする。",
     "DESCRIPTIONS": [
       "3ターン目開始時、 #y気力 #b{0} を得る。"
     ]
   },
-  "anniv6:WarHorn": {
+  "${ModID}:WarHorn": {
     "NAME": "戦の角笛",
     "FLAVOR": "この笛を吹くと、何でもできる気がする。",
     "DESCRIPTIONS": [
       "ボスとの戦闘開始時、 #y筋力 #b3 を得る。"
     ]
   },
-  "anniv6:Lockpicks": {
+  "${ModID}:Lockpicks": {
     "NAME": "小道具",
     "FLAVOR": "一般的なグレムリンの 「投資」。",
     "DESCRIPTIONS": [
       "休憩場所に入るたび、 #b{0} #yゴールドを得る。"
     ]
   },
-  "anniv6:Bowtie": {
+  "${ModID}:Bowtie": {
     "NAME": "ちょうネクタイ",
     "FLAVOR": "2倍プロっぽい。",
     "DESCRIPTIONS": [
       "ショップのカードが #yアップグレード 済みで出現する。"
     ]
   },
-  "anniv6:LousePlushie": {
+  "${ModID}:LousePlushie": {
     "NAME": "寄生虫のぬいぐるみ",
     "FLAVOR": "子供のグレムリンのおもちゃ。",
     "DESCRIPTIONS": [

@@ -1,12 +1,12 @@
 {
-  "anniv6:Eruptor": {
+  "${ModID}:Eruptor": {
     "MOVES": [
       "体当たり",
       "沸騰"
     ],
     "NAME": "噴火器"
   },
-  "anniv6:UnstableSunstone": {
+  "${ModID}:UnstableSunstone": {
     "MOVES": [
       "爆発寸前",
       "シアー",
@@ -14,7 +14,7 @@
     ],
     "NAME": "不安定な太陽の石"
   },
-  "anniv6:SunStoneShard": {
+  "${ModID}:SunStoneShard": {
     "MOVES": [
       "チャージ",
       "シアー",
@@ -22,14 +22,14 @@
     ],
     "NAME": "太陽の石の欠片"
   },
-  "anniv6:HeatBlister": {
+  "${ModID}:HeatBlister": {
     "MOVES": [
       "体当たり",
       "爆発予告"
     ],
     "NAME": "水脹れ"
   },
-  "anniv6:GremlinArchmage": {
+  "${ModID}:GremlinArchmage": {
     "MOVES": [
       "サモンボム",
       "火の玉",

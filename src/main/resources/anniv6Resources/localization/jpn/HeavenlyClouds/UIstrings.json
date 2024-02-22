@@ -1,17 +1,17 @@
 {
-  "anniv6:HeavenlyClouds": {
+  "${ModID}:HeavenlyClouds": {
     "TEXT": [
       "天の雲",
       "雲が近づいてきました。敵が #y飛行 のバフを得ます。カード報酬にドローの追加効果が付与されます。",
       "Darkglade"
     ]
   },
-  "anniv6:FlightMod": {
+  "${ModID}:FlightMod": {
     "TEXT": [
       "空飛ぶ"
     ]
   },
-  "anniv6:ByrdTalk": {
+  "${ModID}:ByrdTalk": {
     "TEXT": [
       "雲が俺らを見守ってるぜ！",
       "雲に抱かれているかのようだ！",

@@ -1,5 +1,5 @@
 {
-  "anniv6:CharacterInfluence": {
+  "${ModID}:CharacterInfluence": {
     "TEXT": [
       "他のキャラクターの住処",
       "このバイオームの戦闘報酬とショップでは、 #yあなたと違う色のカード を入手することができます。",

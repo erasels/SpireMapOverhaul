@@ -1,20 +1,20 @@
 {
-  "anniv6:Hexaghost": {
+  "${ModID}:Hexaghost": {
     "NAME": "ペンタゴースト",
     "MOVES": [],
     "DIALOG": []
   },
-  "anniv6:SlaverBlue": {
+  "${ModID}:SlaverBlue": {
     "MOVES": [
       "つまずき"
     ]
   },
-  "anniv6:BanditBear": {
+  "${ModID}:BanditBear": {
     "DIALOG": [
       "~ロメオーー！~"
     ]
   },
-  "anniv6:BookOfStabbing": {
+  "${ModID}:BookOfStabbing": {
     "NAME": "打撲の本",
     "MOVES": [],
     "DIALOG": []

@@ -1,71 +1,71 @@
 {
-  "anniv6:GremlinRiderRed": {
+  "${ModID}:GremlinRiderRed": {
     "MOVES": [
       "チャージ",
       "乗虫攻撃"
     ],
     "NAME": "乗虫グレムリン"
   },
-  "anniv6:GremlinRiderBlue": {
+  "${ModID}:GremlinRiderBlue": {
     "MOVES": [
       "チャージ",
       "乗虫攻撃"
     ],
     "NAME": "乗虫グレムリン"
   },
-  "anniv6:GremlinRiderGreen": {
+  "${ModID}:GremlinRiderGreen": {
     "MOVES": [
       "チャージ",
       "乗虫攻撃"
     ],
     "NAME": "乗虫グレムリン"
   },
-  "anniv6:GremlinRockTosser": {
+  "${ModID}:GremlinRockTosser": {
     "MOVES": [
       "投石"
     ],
     "NAME": "投石グレムリン"
   },
-  "anniv6:GremlinHealer": {
+  "${ModID}:GremlinHealer": {
     "MOVES": [
       "治療",
       "アタック"
     ],
     "NAME": "ヒールグレムリン"
   },
-  "anniv6:ChubbyGremlin": {
+  "${ModID}:ChubbyGremlin": {
     "MOVES": [
       "座る"
     ],
     "NAME": "ぽっちゃりグレムリン"
   },
-  "anniv6:ArmoredGremlin": {
+  "${ModID}:ArmoredGremlin": {
     "MOVES": [
       "ボディスラム"
     ],
     "NAME": "アーマーグレムリン"
   },
-  "anniv6:GremlinBarbarian": {
+  "${ModID}:GremlinBarbarian": {
     "MOVES": [
       "激怒"
     ],
     "NAME": "バーバリアングレムリン"
   },
-  "anniv6:GremlinAssassin": {
+  "${ModID}:GremlinAssassin": {
     "MOVES": [
       "挫折",
       "気迫"
     ],
     "NAME": "アサシングレムリン"
   },
-  "anniv6:GremlinJerk": {
+  "${ModID}:GremlinJerk": {
     "MOVES": [
       "挫折",
       "気迫"
     ],
     "NAME": "ぴくぴくグレムリン"
   },
-  "anniv6:GremlinNib": {
+  "${ModID}:GremlinNib": {
     "MOVES": [
       "体当たり",
       "2連続攻撃",
@@ -77,7 +77,7 @@
     ],
     "NAME": "ペン先グレムリン"
   },
-  "anniv6:GremlinElder": {
+  "${ModID}:GremlinElder": {
     "MOVES": [
       "体当たり",
       "平手打ち",
@@ -91,7 +91,7 @@
     ],
     "NAME": "長老グレムリン"
   },
-  "anniv6:GremlinCannon": {
+  "${ModID}:GremlinCannon": {
     "MOVES": [
       "チャージ…",
       "喰らえ！",

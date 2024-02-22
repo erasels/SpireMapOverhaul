@@ -1,5 +1,5 @@
 {
-  "anniv6:Steward": {
+  "${ModID}:Steward": {
     "MOVES": [
       "凍える吐息",
       "体当たり",
@@ -7,7 +7,7 @@
     ],
     "NAME": "巨大雪玉"
   },
-  "anniv6:Snowman": {
+  "${ModID}:Snowman": {
     "MOVES": [
       "挨拶",
       "2連パンチ",
@@ -15,7 +15,7 @@
     ],
     "NAME": "雪だるま"
   },
-  "anniv6:Hypothema": {
+  "${ModID}:Hypothema": {
     "MOVES": [
       "挨拶",
       "2連パンチ",
@@ -23,7 +23,7 @@
     ],
     "NAME": "霜"
   },
-  "anniv6:Spruce": {
+  "${ModID}:Spruce": {
     "MOVES": [
       "挨拶",
       "斬撃",
@@ -31,7 +31,7 @@
     ],
     "NAME": "トウヒ"
   },
-  "anniv6:Cole": {
+  "${ModID}:Cole": {
     "MOVES": [
       "挨拶",
       "防御",

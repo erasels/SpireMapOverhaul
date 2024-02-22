@@ -1,5 +1,5 @@
 {
-  "anniv6:BanditLieutenant": {
+  "${ModID}:BanditLieutenant": {
     "MOVES": [
       "こん棒ブロー",
       "有害な煙",
@@ -7,7 +7,7 @@
     ],
     "NAME": "盗賊中尉"
   },
-  "anniv6:ThiefKing": {
+  "${ModID}:ThiefKing": {
     "MOVES": [
       "武装解除",
       "略奪",

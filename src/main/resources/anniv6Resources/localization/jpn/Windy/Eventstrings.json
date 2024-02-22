@@ -1,5 +1,5 @@
 {
-  "anniv6:WindyBridge": {
+  "${ModID}:WindyBridge": {
     "NAME": "風吹く橋",
     "DESCRIPTIONS": [
       "intro1:橋を渡っていると、突然強い突風が起こり、倒れそうになった。",

@@ -1,5 +1,5 @@
 {
-  "anniv6:GremlinPerformance": {
+  "${ModID}:GremlinPerformance": {
     "NAME": "グレムリンのパフォーマンス",
     "DESCRIPTIONS": [
       "街を歩いていると、先にたくさんのグレムリンが集まっているのが見えた。ここからでは騒ぎの内容が見えない。",
@@ -21,7 +21,7 @@
       "削除するカードを選択。"
     ]
   },
-  "anniv6:GremlinWheel": {
+  "${ModID}:GremlinWheel": {
     "NAME": "変化のルーレット",
     "DESCRIPTIONS": [
       "上品で陽気なグレムリンに出くわした。 NL 「ルーレットを回す時間だ！準備はできてるかい？もちろんできてるよね！」",
@@ -44,7 +44,7 @@
       "[イェイ！] #y{0} #yゴールドを得る。"
     ]
   },
-  "anniv6:Surprise": {
+  "${ModID}:Surprise": {
     "NAME": "サプライズ！"
   }
 }

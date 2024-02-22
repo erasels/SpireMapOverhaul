@@ -1,5 +1,5 @@
 {
-  "anniv6:Bargain": {
+  "${ModID}:Bargain": {
     "NAME": "バーゲン",
     "DESCRIPTION": "商人の素晴らしい品物を購入してください。",
     "EXTENDED_DESCRIPTION": [

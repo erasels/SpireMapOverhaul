@@ -1,5 +1,5 @@
 {
-  "anniv6:CharacterVisit": {
+  "${ModID}:CharacterVisit": {
     "NAME": "激しい戦闘",
     "DESCRIPTIONS": [
       "近くで戦いが起きている。戦っている者の1人に信頼できそうなオーラを感じます。その名は #y",

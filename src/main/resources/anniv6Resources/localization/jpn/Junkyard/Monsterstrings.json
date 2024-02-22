@@ -1,11 +1,11 @@
 {
-  "anniv6:Junkbot": {
+  "${ModID}:Junkbot": {
     "MOVES": [
       "つかむ",
       "再起動"
     ],
     "NAME": "捨てられたロボット"
-  },"anniv6:Peddler": {
+  },"${ModID}:Peddler": {
   "MOVES": [
     "無料のサンプル",
     "かき回す",

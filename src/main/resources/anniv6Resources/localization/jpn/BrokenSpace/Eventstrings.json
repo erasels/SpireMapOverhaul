@@ -1,5 +1,5 @@
 {
-  "anniv6:WingBootEvent": {
+  "${ModID}:WingBootEvent": {
     "NAME": "Broken Wing Boot",
     "DESCRIPTIONS": [
       "目の前に2つのポータルがある。どちらにしようか。"

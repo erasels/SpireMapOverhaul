@@ -1,5 +1,5 @@
 {
-  "anniv6:DivineProtection": {
+  "${ModID}:DivineProtection": {
     "NAME": "スネッコの加護",
     "DESCRIPTIONS": [
       "このターン、hpを #b%d までしか失わない。",
@@ -7,86 +7,86 @@
       " NL %s が死ぬと解除される。"
     ]
   },
-  "anniv6:Split": {
+  "${ModID}:Split": {
     "NAME": "分裂",
     "DESCRIPTIONS": [
       "hpが #b75% 以下になると、hpが ",
       "	の #b2 体の小さなスライムに分裂する。"
     ]
   },
-  "anniv6:PainfulPunches": {
+  "${ModID}:PainfulPunches": {
     "NAME": "苦痛の一殴り",
     "DESCRIPTIONS": [
       "この敵からダメージを受けるたび、山札の上に #y負傷 を置く。"
     ]
   },
-  "anniv6:SneckoBot": {
+  "${ModID}:SneckoBot": {
     "NAME": "スネッコボット",
     "DESCRIPTIONS": [
       "カードをプレイするたび、 #b0 から #b3 のランダムな数字を言う。言った数字とプレイしたカードのコストが等しい場合、 #y筋力 #b",
       " を得る。"
     ]
   },
-  "anniv6:ExplodingSporeCloud": {
+  "${ModID}:ExplodingSporeCloud": {
     "NAME": "胞子爆弾",
     "DESCRIPTIONS": [
       "#b%2$d ターン後、 #y弱体 #b%1$d を与える。 NL 死亡時、 #y弱体 #b%1$d を与える。",
       "死亡時、 #y弱体 #b%1$d を与える。"
     ]
   },
-  "anniv6:DoubleTime": {
+  "${ModID}:DoubleTime": {
     "NAME": "ダブルタイム",
     "DESCRIPTIONS": [
       "#b%d 枚のカードをプレイするたび、 #y筋力 #b%d を得る。"
     ]
   },
-  "anniv6:DeathRattle": {
+  "${ModID}:DeathRattle": {
     "NAME": "断末魔",
     "DESCRIPTIONS": [
       "死亡時、 #b%d 枚の #yめまい を山札の上に置く。"
     ]
   },
-  "anniv6:Hex": {
+  "${ModID}:Hex": {
     "NAME": "第2の呪詛",
     "DESCRIPTIONS": [
       "カードをプレイするたび、 #b",
       " 枚の #yめまい を山札に混ぜる。"
     ]
   },
-  "anniv6:VenomStrikes": {
+  "${ModID}:VenomStrikes": {
     "NAME": "猛毒の仕込み",
     "DESCRIPTIONS": [
       "この敵からダメージを受けるたび、#y毒 #b%d を受ける。"
     ]
   },
-  "anniv6:Venom": {
+  "${ModID}:Venom": {
     "NAME": "毒",
     "DESCRIPTIONS": [
       "ターン終了時、 #b%d ダメージを受け、 #y毒 を #b%d 減らす。"
     ]
   },
-  "anniv6:EnergyDownPower": {
+  "${ModID}:EnergyDownPower": {
     "NAME": "ディスエナジー"
   },
-  "anniv6:SemiIntangible": {
+  "${ModID}:SemiIntangible": {
     "NAME": "半無形",
     "DESCRIPTIONS": [
       "このターン、全てのダメージとhpの損失を #b%d 減らす。 #y半無形 は2ターンに1回得る。"
     ]
   },
-  "anniv6:SlimeCoating": {
+  "${ModID}:SlimeCoating": {
     "NAME": "追加の粘液",
     "DESCRIPTIONS": [
       "ターン終了時、 #b%d 枚の #y粘液 を山札に混ぜる。"
     ]
   },
-  "anniv6:DemonFormMonster": {
+  "${ModID}:DemonFormMonster": {
     "NAME": "悪魔化",
     "DESCRIPTIONS": [
       "ターン開始時、 #y筋力 #b%d を得る。"
     ]
   },
-  "anniv6:FatedShapes": {
+  "${ModID}:FatedShapes": {
     "NAME": "運命の絆",
     "DESCRIPTIONS": [
       "%1$s と %2$s はhpを共有する。"

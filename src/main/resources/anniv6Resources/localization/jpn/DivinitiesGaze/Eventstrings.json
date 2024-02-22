@@ -1,5 +1,5 @@
 {
-  "anniv6:DivineVisitor": {
+  "${ModID}:DivineVisitor": {
     "NAME": "神聖な訪問者 %s",
     "DESCRIPTIONS": [
       "歩いていると心が ~うずくような感覚~ がする。訪問者が近くにいる。見つかったようだ。 NL NL #r~あなたはもう独りじゃない…~",

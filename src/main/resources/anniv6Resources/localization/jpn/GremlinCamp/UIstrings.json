@@ -1,12 +1,12 @@
 {
-  "anniv6:GremlinCamp": {
+  "${ModID}:GremlinCamp": {
     "TEXT": [
       "グレムリンのキャンプ",
       "大規模な #rグレムリン の集団がこの場所を占領しました。目を閉じないでください、そこでは眠れません。 NL NL ゴールドが散らばっているので、休憩場所では #yゴールドを漁る ことができます。また、イベントは全てグレムリン関連のものになります。",
       "(Gk) erasels"
     ]
   },
-  "anniv6:GCEncounterNames": {
+  "${ModID}:GCEncounterNames": {
     "TEXT": [
       "喧嘩っ早いグレムリン集団",
       "グレムリンのリーダーとその護衛",
@@ -14,7 +14,7 @@
       "野蛮なグレムリン集団"
     ]
   },
-  "anniv6:ScavengeOption": {
+  "${ModID}:ScavengeOption": {
     "TEXT": [
       "漁る",
       "%sから%sのゴールドを獲得。"

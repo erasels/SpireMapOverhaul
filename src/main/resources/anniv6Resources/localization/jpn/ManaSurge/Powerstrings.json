@@ -1,9 +1,9 @@
 {
 
-  "anniv6:ManaSurgePower": {
+  "${ModID}:ManaSurgePower": {
     "NAME": "マナサージ",
     "DESCRIPTIONS": [
-      "カードを引いたとき、 #b40% の確率で NL [#8c9cff]エンチャント[] [anniv6:ManaSurge:EnchantmentIcon] または [#ff8cd5]ディスエンチャント[] [anniv6:ManaSurge:BlightIcon] が付与される。"
+      "カードを引いたとき、 #b40% の確率で NL [#8c9cff]エンチャント[] [${ModID}:ManaSurge:EnchantmentIcon] または [#ff8cd5]ディスエンチャント[] [${ModID}:ManaSurge:BlightIcon] が付与される。"
     ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "anniv6:MirrorMove": {
+  "${ModID}:MirrorMove": {
     "NAME": "物真似",
     "DESCRIPTION": "エセリアル NL 廃棄 NL (ランダムな敵の前ターンの行動)",
     "EXTENDED_DESCRIPTION": [

@@ -5,7 +5,8 @@
   },
   "${ModID}:MeatMallet": {
     "NAME": "槌槌到肉",
-    "DESCRIPTION": "本回合每当你造成一次未被格挡的伤害，施加 !M! 层虚弱 NL 消耗"
+    "DESCRIPTION": "本回合每当你造成一次未被格挡的伤害，施加 !M! 层虚弱 NL 消耗",
+    "UPGRADE_DESCRIPTION": "本回合每当你造成一次未被格挡的伤害，施加 !M! 层虚弱"
   },
   "${ModID}:AngryStrike": {
     "NAME": "愤怒一击",

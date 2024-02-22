@@ -1,5 +1,5 @@
 {
-  "anniv6:BurningPower": {
+  "${ModID}:BurningPower": {
     "NAME": "炎上",
     "DESCRIPTIONS": [
       "ターン終了時、 #b"," ダメージを受ける。",

@@ -1,17 +1,17 @@
 {
-  "anniv6:Storm": {
+  "${ModID}:Storm": {
     "TEXT": [
       "嵐",
       "#y雷雨 が予想されています。稲妻がランダムに降り注ぎます。持ち物が #r濡れない ようご注意ください… NL NL 報酬のカードは #g帯電 している場合があります。",
       "EricB"
     ]
   },
-  "anniv6:Damp": {
+  "${ModID}:Damp": {
     "TEXT": [
       "濡れた"
     ]
   },
-  "anniv6:Electric": {
+  "${ModID}:Electric": {
     "TEXT": [
       "帯電した"
     ]

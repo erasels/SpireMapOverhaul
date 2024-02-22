@@ -1,85 +1,85 @@
 {
-  "anniv6:SneakAttack": {
+  "${ModID}:SneakAttack": {
     "NAME": "スニーキーアタック",
     "DESCRIPTION": "!D! ダメージを与える。"
   },
-  "anniv6:MeatMallet": {
+  "${ModID}:MeatMallet": {
     "NAME": "肉槌",
     "DESCRIPTION": "このターン、「アタック」でダメージを与えるたび、脱力 !M! を与える。 NL 廃棄"
   },
-  "anniv6:AngryStrike": {
+  "${ModID}:AngryStrike": {
     "NAME": "マッドストライク",
     "DESCRIPTION": "!D! ダメージを与える。 NL ランダムな1枚のアタック以外のカードを廃棄する。"
   },
-  "anniv6:Shield": {
+  "${ModID}:Shield": {
     "NAME": "シールド",
     "DESCRIPTION": "!B! ブロックを得る。 NL 廃棄"
   },
-  "anniv6:Charge": {
+  "${ModID}:Charge": {
     "NAME": "チャージ",
     "DESCRIPTION": "2ターン後、気力 !M! を得る。"
   },
-  "anniv6:Cure": {
+  "${ModID}:Cure": {
     "NAME": "治癒",
     "DESCRIPTION": "全てのデバフを解除する。 NL 廃棄",
     "UPGRADE_DESCRIPTION": "保留 NL 全てのデバフを解除する。 NL 廃棄"
   },
-  "anniv6:Sit": {
+  "${ModID}:Sit": {
     "NAME": "落ち着き",
     "DESCRIPTION": "このターン、対象は筋力 !M! を失う。"
   },
-  "anniv6:FullPlate": {
+  "${ModID}:FullPlate": {
     "NAME": "メッキ",
     "DESCRIPTION": "ターン終了時、 !M! ブロックを得る。"
   },
-  "anniv6:Frenzy": {
+  "${ModID}:Frenzy": {
     "NAME": "激怒",
     "DESCRIPTION": "!D! ダメージを2回与える。 NL 筋力 !M! を得る。"
   },
-  "anniv6:Assassinate": {
+  "${ModID}:Assassinate": {
     "NAME": "暗殺",
     "DESCRIPTION": "天賦 NL !D! ダメージを与える。 NL 廃棄"
   },
-  "anniv6:MountedCombat": {
+  "${ModID}:MountedCombat": {
     "NAME": "騎乗戦闘",
     "DESCRIPTION": "スローを与える。 NL エセリアル NL 廃棄",
     "UPGRADE_DESCRIPTION": "スローを与える。 NL 廃棄"
   },
-  "anniv6:RRrroohrrRGHHhhh": {
+  "${ModID}:RRrroohrrRGHHhhh": {
     "NAME": "ブルゥアアアァァァッ！！",
     "DESCRIPTION": "ターン開始時、敵が攻撃予定でない場合、筋力 !M! を得る。"
   },
-  "anniv6:CriticalHit": {
+  "${ModID}:CriticalHit": {
     "NAME": "クリティカル",
     "DESCRIPTION": "次の攻撃は2倍のダメージを与える。 NL 廃棄",
     "UPGRADE_DESCRIPTION": "次の攻撃は3倍のダメージを与える。 NL 廃棄"
   },
-  "anniv6:Flurry": {
+  "${ModID}:Flurry": {
     "NAME": "狼狽",
     "DESCRIPTION": "ランダムな敵に !D! ダメージをX+1回与える。"
   },
-  "anniv6:OmegaCurse": {
+  "${ModID}:OmegaCurse": {
     "NAME": "オメガの呪い",
-    "DESCRIPTION": "対象はアタックから !M! の追加ダメージを受ける。 NL hp !anniv6:m2! を失う。"
+    "DESCRIPTION": "対象はアタックから !M! の追加ダメージを受ける。 NL hp !${ModID}:m2! を失う。"
   },
-  "anniv6:TheHorde": {
+  "${ModID}:TheHorde": {
     "NAME": "大群",
     "DESCRIPTION": "ターン開始時、ランダムな *グレムリン カードを手札に加える。",
     "UPGRADE_DESCRIPTION": "天賦 NL ターン開始時、ランダムな *グレムリン カードを手札に加える。"
   },
-  "anniv6:Rig": {
+  "${ModID}:Rig": {
     "NAME": "操作",
     "DESCRIPTION": "ターン開始時、カードを1枚引き、1枚廃棄する。"
   },
-  "anniv6:ThrowRock": {
+  "${ModID}:ThrowRock": {
     "NAME": "投石",
     "DESCRIPTION": "!D! ダメージを与える。 NL 一時的な筋力 !M! を得る。"
   },
-  "anniv6:PoisonSpray": {
+  "${ModID}:PoisonSpray": {
     "NAME": "毒噴射",
     "DESCRIPTION": "!D! ダメージを与える。 NL 防御されなかったダメージに等しい毒を与える。"
   },
-  "anniv6:Inspire": {
+  "${ModID}:Inspire": {
     "NAME": "鼓舞",
     "DESCRIPTION": "ターン開始時、カードを1枚引き、 [E] を得る。 NL エセリアル",
     "UPGRADE_DESCRIPTION": "ターン開始時、カードを1枚引き、 [E] を得る。"

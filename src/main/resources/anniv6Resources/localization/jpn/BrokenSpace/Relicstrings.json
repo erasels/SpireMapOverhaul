@@ -1,5 +1,5 @@
 {
-  "anniv6:BrokenDataDisk": {
+  "${ModID}:BrokenDataDisk": {
     "NAME": "壊れたデータディスク",
     "FLAVOR": "",
     "DESCRIPTIONS": [
@@ -7,7 +7,7 @@
       " を失う。ターン中、初めてオーブを #y生成 したとき、同じオーブを再度 #y生成 する。"
     ]
   },
-  "anniv6:BrokenSneckoSkull": {
+  "${ModID}:BrokenSneckoSkull": {
     "NAME": "壊れたスネッコスカル",
     "FLAVOR": "",
     "DESCRIPTIONS": [
@@ -15,7 +15,7 @@
       " 追加で得る。"
     ]
   },
-  "anniv6:BrokenRedSkull": {
+  "${ModID}:BrokenRedSkull": {
     "NAME": "壊れたレッドスカル",
     "FLAVOR": "",
     "DESCRIPTIONS": [
@@ -24,7 +24,7 @@
       " を得る。"
     ]
   },
-  "anniv6:BrokenOmamori": {
+  "${ModID}:BrokenOmamori": {
     "NAME": "壊れたお守り",
     "FLAVOR": "",
     "DESCRIPTIONS": [
@@ -33,7 +33,7 @@
       " 枚のカードを #yアップグレード する。"
     ]
   },
-  "anniv6:BrokenDamaru": {
+  "${ModID}:BrokenDamaru": {
     "NAME": "壊れたダマル",
     "FLAVOR": "",
     "DESCRIPTIONS": [
@@ -42,7 +42,7 @@
 
     ]
   },
-  "anniv6:BrokenWingBoots": {
+  "${ModID}:BrokenWingBoots": {
     "NAME": "壊れた空飛ぶ靴",
     "FLAVOR": "",
     "DESCRIPTIONS": [
@@ -50,7 +50,7 @@
 
     ]
   },
-  "anniv6:BrokenSozu": {
+  "${ModID}:BrokenSozu": {
     "NAME": "壊れたししおどし",
     "FLAVOR": "",
     "DESCRIPTIONS": [
@@ -58,7 +58,7 @@
       " エナジー"
     ]
   },
-  "anniv6:BrokenSneckoEye": {
+  "${ModID}:BrokenSneckoEye": {
     "NAME": "壊れたスネッコアイ",
     "FLAVOR": "",
     "DESCRIPTIONS": [
@@ -66,7 +66,7 @@
       " 枚のカードがデッキからコピーされ、手札に加えられる。それは #y廃棄 と #yエセリアル を持ち、読むことができない。"
     ]
   },
-  "anniv6:BrokenMawBank": {
+  "${ModID}:BrokenMawBank": {
     "NAME": "壊れたモーバンク",
     "FLAVOR": "",
     "DESCRIPTIONS": [
@@ -75,7 +75,7 @@
       " #yゴールド を失う。"
     ]
   },
-  "anniv6:BrokenPrayerWheel": {
+  "${ModID}:BrokenPrayerWheel": {
     "NAME": "壊れた祈りのルーレット",
     "FLAVOR": "",
     "DESCRIPTIONS": [
@@ -84,7 +84,7 @@
       " 倍になる。"
     ]
   },
-  "anniv6:BrokenMatryoshka": {
+  "${ModID}:BrokenMatryoshka": {
     "NAME": "壊れたマトリョーシカ",
     "FLAVOR": "",
     "DESCRIPTIONS": [
@@ -93,7 +93,7 @@
       " 個の宝箱は空っぽ。サファイアの鍵を持っていなかった場合、報酬の #yレリック と交換できる。"
     ]
   },
-  "anniv6:BrokenSingingBowl": {
+  "${ModID}:BrokenSingingBowl": {
     "NAME": "壊れた歌うボウル",
     "FLAVOR": "",
     "DESCRIPTIONS": [

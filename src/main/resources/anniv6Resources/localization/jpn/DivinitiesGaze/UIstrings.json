@@ -1,12 +1,12 @@
 {
-  "anniv6:DivinitiesGaze": {
+  "${ModID}:DivinitiesGaze": {
     "TEXT": [
       "聖地",
       "強力な神々が降臨しました！彼らの注目を浴び、それに耐えることが出来ますか？ NL NL 戦闘開始時、ランダムな #g強力なカード と数枚の #r状態異常 を獲得します。",
       "Shammy, NoelleDevo, PitohuiArt"
     ]
   },
-  "anniv6:DivinitiesGaze_Divinity_Eclectic": {
+  "${ModID}:DivinitiesGaze_Divinity_Eclectic": {
     "TEXT": [
       "知識を通じて進歩できる。",
       "進歩を通じて知識を得られる。",
@@ -23,7 +23,7 @@
       "SELECT_TEXT": "獲得するカードを1枚選択。"
     }
   },
-  "anniv6:DivinitiesGaze_Divinity_End": {
+  "${ModID}:DivinitiesGaze_Divinity_End": {
     "TEXT": [
       "..."
     ],
@@ -38,7 +38,7 @@
       "SELECT_TEXT": "削除するカードを選択"
     }
   },
-  "anniv6:DivinitiesGaze_Divinity_Jurors": {
+  "${ModID}:DivinitiesGaze_Divinity_Jurors": {
     "TEXT": [
       "有罪だ。",
       "正義の名の下に！",
@@ -53,7 +53,7 @@
       "EVENT_REJECT_TEXT": "正義が行われ、天秤が傾く。陪審員たちは法廷から出ていく。有罪の判決は下されなかった。 NL NL 自分は #g無実 なのか…それとも #r有罪 なのか？もしかしたら彼らを騙したのかもしれない。 NL NL … NL NL もしかしたら彼らは知っているのかもしれない。"
     }
   },
-  "anniv6:DivinitiesGaze_Divinity_Primordial": {
+  "${ModID}:DivinitiesGaze_Divinity_Primordial": {
     "TEXT": [
       "...",
       "成長した…",
@@ -72,7 +72,7 @@
       "SELECT_TEXT": "複製するカードを選択"
     }
   },
-  "anniv6:DivinitiesGaze_Divinity_Torch": {
+  "${ModID}:DivinitiesGaze_Divinity_Torch": {
     "TEXT": [
       "あなたと一緒に！",
       "闇の中の光。",

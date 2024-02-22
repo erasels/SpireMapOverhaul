@@ -1,5 +1,5 @@
 {
-  "anniv6:StoneFragment": {
+  "${ModID}:StoneFragment": {
     "NAME": "立石の欠片",
     "FLAVOR": "破片は強力なオーラを醸し出しているが、届いていないようだ。",
     "DESCRIPTIONS": [

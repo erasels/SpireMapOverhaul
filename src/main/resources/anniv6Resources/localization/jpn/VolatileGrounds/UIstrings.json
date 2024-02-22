@@ -1,5 +1,5 @@
 {
-  "anniv6:VolatileGrounds": {
+  "${ModID}:VolatileGrounds": {
     "TEXT": [
       "火山",
       "#r爆発 に関連する能力を持つ敵が出現します。慎重に戦うか、爆発を防いでください。",

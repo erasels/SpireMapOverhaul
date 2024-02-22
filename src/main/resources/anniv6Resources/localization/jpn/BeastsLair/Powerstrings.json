@@ -1,12 +1,12 @@
 {
 
-  "anniv6:FuryPower": {
+  "${ModID}:FuryPower": {
     "NAME": "激怒",
     "DESCRIPTIONS": [
       "ターン終了時、与えるダメージが #b", "% 上昇する。"
     ]
   },
-  "anniv6:DamageUpPower": {
+  "${ModID}:DamageUpPower": {
     "NAME": "ダメージ上昇",
     "DESCRIPTIONS": [
       "与えるダメージが #b", "% 上昇する。"

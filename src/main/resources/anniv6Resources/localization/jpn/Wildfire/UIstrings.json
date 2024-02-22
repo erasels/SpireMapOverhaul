@@ -1,5 +1,5 @@
 {
-  "anniv6:Wildfire": {
+  "${ModID}:Wildfire": {
     "TEXT": [
       "猛烈な炎",
       "#y猛烈な炎 が塔を焼き尽くしています！ NL ターン終了時、全員が #b1 ダメージを受け、その値が #b1 増加します。 NL カードに #y炎上 を与える追加効果が付与されます。",
@@ -7,14 +7,14 @@
       "ターン開始時、全員が #y炎上 #b1 を受ける。"
     ]
   },
-  "anniv6:Wildfire:BurningMod": {
+  "${ModID}:Wildfire:BurningMod": {
     "TEXT": [
-      " NL anniv6:炎上 %d を与える。",
-      " NL 全ての敵に anniv6:炎上 %d を与える。",
-      " NL ランダムな敵に anniv6:炎上 %d を与える。",
-      " NL anniv6:炎上 %d をX回与える。",
-      " NL 全ての敵に anniv6:炎上 %d をX回与える。",
-      " NL ランダムな敵に anniv6:炎上 %d をX回与える。"
+      " NL ${ModID}:炎上 %d を与える。",
+      " NL 全ての敵に ${ModID}:炎上 %d を与える。",
+      " NL ランダムな敵に ${ModID}:炎上 %d を与える。",
+      " NL ${ModID}:炎上 %d をX回与える。",
+      " NL 全ての敵に ${ModID}:炎上 %d をX回与える。",
+      " NL ランダムな敵に ${ModID}:炎上 %d をX回与える。"
     ]
   }
 }
