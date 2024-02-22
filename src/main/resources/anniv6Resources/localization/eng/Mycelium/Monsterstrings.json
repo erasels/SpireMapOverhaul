@@ -9,5 +9,22 @@
     "DIALOG": [
       "HYurwrrrrggp!"
     ]
+  },
+  "${ModID}:InfectedSentry": {
+    "MOVES": [
+      "This is not a new enemy, moves do not need to be translated, only the name and dialog."
+    ],
+    "NAME": "Infected Sentry",
+    "DIALOG": [
+      "ERROR! UNKNOWN PATHOGEN DETECTED!"
+    ]
+  },
+  "${ModID}:FungalFriend": {
+    "MOVES": [
+      "Aid",
+      "Guard",
+      "Pounce"
+    ],
+    "NAME": "Fungal Friend"
   }
 }

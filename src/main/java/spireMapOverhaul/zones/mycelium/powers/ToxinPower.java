@@ -34,6 +34,7 @@ public class ToxinPower extends AbstractSMOPower {
     }
     public int onAttackedToChangeDamage(DamageInfo info, int damageAmount) {
         if (damageAmount > 0 && info.type == DamageInfo.DamageType.NORMAL) {
+            this.flash();
             damageAmount += amount;
         }
         

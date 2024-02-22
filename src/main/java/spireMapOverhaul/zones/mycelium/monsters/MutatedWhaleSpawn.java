@@ -101,7 +101,7 @@ public class MutatedWhaleSpawn extends AbstractSMOMonster {
             case SCRATCH:
                 AbstractDungeon.actionManager.addToBottom(new AnimateFastAttackAction(this));
                 for (int i = 0; i < SCRATCH_COUNT; i++) {
-                    AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player, this.damage.get(1), AbstractGameAction.AttackEffect.NONE));
+                    AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player, this.damage.get(1), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
                 }
                 break;
         }
