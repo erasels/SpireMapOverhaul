@@ -11,6 +11,6 @@
     "NAMES": [
       "electric"
     ],
-    "DESCRIPTION": "プレイしたとき、 [E] を得て、これを解除する。"
+    "DESCRIPTION": "戦闘中初めてプレイしたとき、 [E] を得る。"
   }
 ]
