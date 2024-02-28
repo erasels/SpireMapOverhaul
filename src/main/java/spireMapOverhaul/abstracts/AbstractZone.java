@@ -45,6 +45,7 @@ public abstract class AbstractZone {
     private static String[] GLOBAL_TEXT = null;
     private static final String[] NO_TEXT = new String[] { };
     private static final int NO_ELITES_BOUNDARY_ROW = 4;
+    private static final int DOWNFALL_NO_ELITES_BOUNDARY_ROW = 10;
     private static final int TREASURE_ROW = 8;
     private static final int FINAL_CAMPFIRE_ROW = 14;
 
@@ -288,7 +289,9 @@ public abstract class AbstractZone {
     protected List<Integer> forbiddenRows() {
         ArrayList<Integer> list = new ArrayList<>();
         if (!canIncludeEarlyRows()) {
-            for (int i = 0; i <= NO_ELITES_BOUNDARY_ROW; i++) {
+            int start = DownfallUtil.isDownfallMode() ? DOWNFALL_NO_ELITES_BOUNDARY_ROW : 0;
+            int end = DownfallUtil.isDownfallMode() ? 14 : NO_ELITES_BOUNDARY_ROW;
+            for (int i = start; i <= end; i++) {
                 list.add(i);
             }
         }
