@@ -2,13 +2,13 @@
   {
     "PROPER_NAME": "多重护甲",
     "NAMES": ["plated\u00a0armor", "多重护甲"],
-    "DESCRIPTION": "你的回合结束时，获得 #y格挡。受到未被格挡伤害而失去生命时降低层数"
+    "DESCRIPTION": "你的回合结束时，获得 #y格挡 。受到未被格挡伤害而失去生命时降低层数"
   },
   {
     "ID": "Abysstouched",
     "PROPER_NAME": "深渊之触",
     "NAMES": ["abysstouched", "深渊之触"],
-    "DESCRIPTION": "每回合增加受到的攻击伤害和造成的伤害"
+    "DESCRIPTION": "增加受到的攻击伤害，并且每回合受到伤害。"
   },
   {
     "PROPER_NAME": "激怒",
