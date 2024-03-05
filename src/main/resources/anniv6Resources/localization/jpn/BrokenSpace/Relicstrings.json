@@ -4,7 +4,9 @@
     "FLAVOR": "",
     "DESCRIPTIONS": [
       "戦闘開始時、 #y集中力 #b",
-      " を失う。ターン中、初めてオーブを #y生成 したとき、同じオーブを再度 #y生成 する。"
+      " を失う。ターン中、初めてオーブを #y生成 したとき、同じオーブを再度 #y生成 する。",
+      "Orbs channeled: {0}",
+      " NL Per combat: {0}"
     ]
   },
   "${ModID}:BrokenSneckoSkull": {

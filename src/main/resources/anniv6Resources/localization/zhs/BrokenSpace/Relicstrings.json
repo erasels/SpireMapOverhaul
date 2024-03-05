@@ -4,7 +4,9 @@
     "FLAVOR": "no",
     "DESCRIPTIONS": [
       "每场战斗开始时，失去 #b",
-      " 点 #y集中。 每回合第一次 #y生成 一个充能球时，额外 #y生成 同类型的另一个充能球。"
+      " 点 #y集中。 每回合第一次 #y生成 一个充能球时，额外 #y生成 同类型的另一个充能球。",
+      "Orbs channeled: {0}",
+      " NL Per combat: {0}"
     ]
   },
   "${ModID}:BrokenSneckoSkull": {

@@ -4,7 +4,9 @@
     "FLAVOR": "",
     "DESCRIPTIONS": [
       "At the start of each combat, lose #b",
-      " #yFocus. The first time you #yChannel an Orb each turn, #yChannel another Orb of the same type."
+      " #yFocus. The first time you #yChannel an Orb each turn, #yChannel another Orb of the same type.",
+      "Orbs channeled: {0}",
+      " NL Per combat: {0}"
     ]
   },
   "${ModID}:BrokenSneckoSkull": {
