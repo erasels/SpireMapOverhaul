@@ -76,7 +76,8 @@
     "DESCRIPTIONS": [
       "下次你进入商店时，获得 #b",
       " #y金币 ，但当你离开时失去 #b",
-      " #y金币 。"
+      " #y金币 。",
+      "Gold lost: {0}"
     ]
   },
   "${ModID}:BrokenPrayerWheel": {

@@ -75,7 +75,8 @@
     "DESCRIPTIONS": [
       "次にショップに入ったとき、 #b",
       " #yゴールド を得る。去ったとき、 #b",
-      " #yゴールド を失う。"
+      " #yゴールド を失う。",
+      "Gold lost: {0}"
     ]
   },
   "${ModID}:BrokenPrayerWheel": {

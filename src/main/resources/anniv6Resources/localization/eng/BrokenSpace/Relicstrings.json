@@ -76,7 +76,8 @@
     "DESCRIPTIONS": [
       "Gain #b",
       " #yGold next time you enter a shop, but lose #b",
-      " #yGold when you leave."
+      " #yGold when you leave.",
+      "Gold lost: {0}"
     ]
   },
   "${ModID}:BrokenPrayerWheel": {
