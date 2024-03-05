@@ -32,7 +32,8 @@
     "DESCRIPTIONS": [
       "向你的牌组中添加 #b",
       " 张 #r诅咒 。每当你休息时， #y升级 牌组中的随机 #b",
-      " 张卡牌。"
+      " 张卡牌。",
+      "Cards upgraded: {0}"
     ]
   },
   "${ModID}:BrokenDamaru": {

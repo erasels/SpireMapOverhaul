@@ -32,7 +32,8 @@
     "DESCRIPTIONS": [
       "Add #b",
       " #rCurses to your deck. Whenever you rest, #yUpgrade #b",
-      " random cards in your deck."
+      " random cards in your deck.",
+      "Cards upgraded: {0}"
     ]
   },
   "${ModID}:BrokenDamaru": {
