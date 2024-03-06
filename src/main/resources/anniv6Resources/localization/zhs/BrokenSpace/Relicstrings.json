@@ -14,7 +14,9 @@
     "FLAVOR": "no",
     "DESCRIPTIONS": [
       "每当你获得一层增益时，再获得额外 #b",
-      " 层。"
+      " 层。",
+      "Buffs gained: {0}",
+      " NL Per combat: {0}"
     ]
   },
   "${ModID}:BrokenRedSkull": {

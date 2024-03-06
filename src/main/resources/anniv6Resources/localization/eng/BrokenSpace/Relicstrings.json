@@ -14,7 +14,9 @@
     "FLAVOR": "",
     "DESCRIPTIONS": [
       "When you gain a buff, gain #b",
-      " more."
+      " more.",
+      "Buffs gained: {0}",
+      " NL Per combat: {0}"
     ]
   },
   "${ModID}:BrokenRedSkull": {
