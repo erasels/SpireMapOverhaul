@@ -105,7 +105,8 @@
     "FLAVOR": "no",
     "DESCRIPTIONS": [
       "每当你获得最大生命值时， #y升级 你牌组中随机 #b",
-        " 张卡牌。"
+        " 张卡牌。",
+      "Cards upgraded: {0}"
     ]
   }
 }

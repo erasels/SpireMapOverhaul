@@ -105,7 +105,8 @@
     "FLAVOR": "",
     "DESCRIPTIONS": [
       "Whenever you gain Max HP, #yUpgrade #b",
-        " random card in your deck."
+        " random card in your deck.",
+      "Cards upgraded: {0}"
     ]
   }
 }
