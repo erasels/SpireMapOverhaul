@@ -3,7 +3,9 @@
     "NAME": "决豆",
     "FLAVOR": "很显然，地精大块头把字写错了。",
     "DESCRIPTIONS": [
-      "每当你打出一张技能牌，获得 #b1 点 #y临时力量 。"
+      "每当你打出一张技能牌，获得 #b1 点 #y临时力量 。",
+      "Strength gained: {0}",
+      " NL Per turn: {0} NL Per combat: {1}"
     ]
   },
   "${ModID}:GremlinClaw": {

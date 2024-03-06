@@ -3,7 +3,9 @@
     "NAME": "表裏の顔",
     "FLAVOR": "どうやらボスはスペルが苦手らしい。",
     "DESCRIPTIONS": [
-      "スキルをプレイするたび、一時的な #y筋力 #b1 を得る。"
+      "スキルをプレイするたび、一時的な #y筋力 #b1 を得る。",
+      "Strength gained: {0}",
+      " NL Per turn: {0} NL Per combat: {1}"
     ]
   },
   "${ModID}:GremlinClaw": {
