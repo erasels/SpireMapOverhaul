@@ -66,7 +66,9 @@
     "NAME": "Louse Plushie",
     "FLAVOR": "A toy for Gremlin children.",
     "DESCRIPTIONS": [
-      "The first time you take unblocked Attack damage each combat, gain #b{0} #yBlock next turn."
+      "The first time you take unblocked Attack damage each combat, gain #b{0} #yBlock next turn.",
+      "Block gained: {0}",
+      " NL Per combat: {0}"
     ]
   }
 }
