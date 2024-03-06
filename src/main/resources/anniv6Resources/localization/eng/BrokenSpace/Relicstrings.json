@@ -62,7 +62,9 @@
     "FLAVOR": "",
     "DESCRIPTIONS": [
       "In-combat potions cost [E] to use. When you spend energy on a potion, use another random potion.",
-      " Energy"
+      " Energy",
+      "Extra potions: {0}",
+      "Per combat: {0}"
     ]
   },
   "${ModID}:BrokenSneckoEye": {
