@@ -14,7 +14,6 @@ import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.zones.gremlinTown.GremlinTown;
 
 import java.text.DecimalFormat;
-import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -65,7 +64,7 @@ public class NobClub extends AbstractSMORelic {
     private static final String VULNERABLE_STAT = "vulnerable";
 
     public String getStatsDescription() {
-        return MessageFormat.format(DESCRIPTIONS[1], stats.get(VULNERABLE_STAT));
+        return DESCRIPTIONS[1].replace("{0}", stats.get(VULNERABLE_STAT) + "");
     }
 
     public String getExtendedStatsDescription(int totalCombats, int totalTurns) {
@@ -73,7 +72,7 @@ public class NobClub extends AbstractSMORelic {
         float vulnerable = stats.get(VULNERABLE_STAT);
         String vulnerablePerTurn = format.format(vulnerable / Math.max(totalTurns, 1));
         String vulnerablePerCombat = format.format(vulnerable / Math.max(totalCombats, 1));
-        return getStatsDescription() + MessageFormat.format(DESCRIPTIONS[2], vulnerablePerTurn, vulnerablePerCombat);
+        return getStatsDescription() + DESCRIPTIONS[2].replace("{0}", vulnerablePerTurn).replace("{1}", vulnerablePerCombat);
     }
 
     public void resetStats() {

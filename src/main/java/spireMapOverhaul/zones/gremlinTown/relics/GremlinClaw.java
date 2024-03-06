@@ -11,7 +11,6 @@ import spireMapOverhaul.abstracts.AbstractSMORelic;
 import spireMapOverhaul.zones.gremlinTown.GremlinTown;
 
 import java.text.DecimalFormat;
-import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -41,14 +40,14 @@ public class GremlinClaw extends AbstractSMORelic {
     private static final String HEAL_STAT = "heal";
 
     public String getStatsDescription() {
-        return MessageFormat.format(DESCRIPTIONS[1], stats.get(HEAL_STAT));
+        return DESCRIPTIONS[1].replace("{0}", stats.get(HEAL_STAT) + "");
     }
 
     public String getExtendedStatsDescription(int totalCombats, int totalTurns) {
         DecimalFormat format = new DecimalFormat("#.###");
         float heal = stats.get(HEAL_STAT);
         String healPerCombat = format.format(heal / Math.max(totalCombats, 1));
-        return getStatsDescription() + MessageFormat.format(DESCRIPTIONS[2], healPerCombat);
+        return getStatsDescription() + DESCRIPTIONS[2].replace("{0}", healPerCombat);
     }
 
     public void resetStats() {

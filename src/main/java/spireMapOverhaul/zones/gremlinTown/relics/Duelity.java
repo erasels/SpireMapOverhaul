@@ -13,7 +13,6 @@ import spireMapOverhaul.abstracts.AbstractSMORelic;
 import spireMapOverhaul.zones.gremlinTown.GremlinTown;
 
 import java.text.DecimalFormat;
-import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -44,7 +43,7 @@ public class Duelity extends AbstractSMORelic {
     private static final String STRENGTH_STAT = "strength";
 
     public String getStatsDescription() {
-        return MessageFormat.format(DESCRIPTIONS[1], stats.get(STRENGTH_STAT));
+        return DESCRIPTIONS[1].replace("{0}", stats.get(STRENGTH_STAT) + "");
     }
 
     public String getExtendedStatsDescription(int totalCombats, int totalTurns) {
@@ -52,7 +51,7 @@ public class Duelity extends AbstractSMORelic {
         float strength = stats.get(STRENGTH_STAT);
         String strengthPerTurn = format.format(strength / Math.max(totalTurns, 1));
         String strengthPerCombat = format.format(strength / Math.max(totalCombats, 1));
-        return getStatsDescription() + MessageFormat.format(DESCRIPTIONS[2], strengthPerTurn, strengthPerCombat);
+        return getStatsDescription() + DESCRIPTIONS[2].replace("{0}", strengthPerTurn).replace("{1}", strengthPerCombat);
     }
 
     public void resetStats() {

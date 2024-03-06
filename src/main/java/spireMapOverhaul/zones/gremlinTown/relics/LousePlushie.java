@@ -12,7 +12,6 @@ import spireMapOverhaul.abstracts.AbstractSMORelic;
 import spireMapOverhaul.zones.gremlinTown.GremlinTown;
 
 import java.text.DecimalFormat;
-import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -69,14 +68,14 @@ public class LousePlushie extends AbstractSMORelic {
     private static final String BLOCK_STAT = "block";
 
     public String getStatsDescription() {
-        return MessageFormat.format(DESCRIPTIONS[1], stats.get(BLOCK_STAT));
+        return DESCRIPTIONS[1].replace("{0}", stats.get(BLOCK_STAT) + "");
     }
 
     public String getExtendedStatsDescription(int totalCombats, int totalTurns) {
         DecimalFormat format = new DecimalFormat("#.###");
         float block = stats.get(BLOCK_STAT);
         String blockPerCombat = format.format(block / Math.max(totalCombats, 1));
-        return getStatsDescription() + MessageFormat.format(DESCRIPTIONS[2], blockPerCombat);
+        return getStatsDescription() + DESCRIPTIONS[2].replace("{0}", blockPerCombat);
     }
 
     public void resetStats() {
