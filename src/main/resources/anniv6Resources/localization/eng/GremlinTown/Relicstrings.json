@@ -12,7 +12,9 @@
     "NAME": "Gremlin Claw",
     "FLAVOR": "Gremlins can be very dangerous even without a weapon.",
     "DESCRIPTIONS": [
-      "Whenever a non-minion enemy dies, heal #b1 HP."
+      "Whenever a non-minion enemy dies, heal #b1 HP.",
+      "HP healed: {0}",
+      " NL Per combat: {0}"
     ]
   },
   "${ModID}:GremlinHood": {

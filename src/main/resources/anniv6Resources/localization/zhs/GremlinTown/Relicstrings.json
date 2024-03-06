@@ -12,7 +12,9 @@
     "NAME": "地精之爪",
     "FLAVOR": "即使没有武器，地精也非常危险。",
     "DESCRIPTIONS": [
-      "每当一位非爪牙敌人死亡时，回复 #b1 点生命值。"
+      "每当一位非爪牙敌人死亡时，回复 #b1 点生命值。",
+      "HP healed: {0}",
+      " NL Per combat: {0}"
     ]
   },
   "${ModID}:GremlinHood": {

@@ -12,7 +12,9 @@
     "NAME": "グレムリンの爪",
     "FLAVOR": "グレムリンは武器を持っていなくても危ない。",
     "DESCRIPTIONS": [
-      "ミニオンでない敵が死亡したとき、hp #b1 を回復する。"
+      "ミニオンでない敵が死亡したとき、hp #b1 を回復する。",
+      "HP healed: {0}",
+      " NL Per combat: {0}"
     ]
   },
   "${ModID}:GremlinHood": {
