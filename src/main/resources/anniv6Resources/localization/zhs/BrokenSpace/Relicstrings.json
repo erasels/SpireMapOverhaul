@@ -54,8 +54,8 @@
     "NAME": "破碎的羽翼之靴",
     "FLAVOR": "no",
     "DESCRIPTIONS": [
-      "当你在 #y? 房间遭遇事件时，可以在两种事件中任选一种。"
-
+      "当你在 #y? 房间遭遇事件时，可以在两种事件中任选一种。",
+      "Event choices: {0}"
     ]
   },
   "${ModID}:BrokenSozu": {

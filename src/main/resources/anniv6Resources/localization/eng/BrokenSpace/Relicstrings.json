@@ -53,8 +53,8 @@
     "NAME": "Broken Wing Boots",
     "FLAVOR": "",
     "DESCRIPTIONS": [
-      "When you would enter an event in a #y? room, choose between two events."
-
+      "When you would enter an event in a #y? room, choose between two events.",
+      "Event choices: {0}"
     ]
   },
   "${ModID}:BrokenSozu": {

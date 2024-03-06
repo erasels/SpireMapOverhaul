@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.EventRoom;
 import com.megacrit.cardcrawl.rooms.RestRoom;
+import spireMapOverhaul.zones.brokenspace.relics.BrokenWingBoots;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -85,6 +86,7 @@ public class WingBootEvent extends AbstractImageEvent {
             abort = true;
         }
 
+        BrokenWingBoots.incrementChoicesStat(1);
         super.onEnterRoom();
     }
 
