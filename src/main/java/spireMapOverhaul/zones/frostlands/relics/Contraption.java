@@ -1,6 +1,9 @@
 package spireMapOverhaul.zones.frostlands.relics;
 
 import com.evacipated.cardcrawl.mod.stslib.relics.OnPlayerDeathRelic;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
@@ -17,6 +20,11 @@ import spireMapOverhaul.abstracts.AbstractSMORelic;
 import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.zones.frostlands.FrostlandsZone;
 import spireMapOverhaul.zones.frostlands.events.SnowmanMafiaEvent;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 
@@ -96,6 +104,7 @@ public class Contraption extends AbstractSMORelic implements OnPlayerDeathRelic 
             AbstractDungeon.player.flipHorizontal = !AbstractDungeon.player.flipHorizontal;
             AbstractDungeon.overlayMenu.endTurnButton.disable();
             AbstractDungeon.player.escapeTimer = escapeDuration;
+            incrementFledStat(1);
         }
         if(AbstractDungeon.getCurrRoom().event instanceof SnowmanMafiaEvent)
             ((SnowmanMafiaEvent) AbstractDungeon.getCurrRoom().event).usedContraption();
@@ -113,5 +122,40 @@ public class Contraption extends AbstractSMORelic implements OnPlayerDeathRelic 
                 pass = true;
         }
         return pass;
+    }
+
+    private static final Map<String, Integer> stats = new HashMap<>();
+    private static final String FLED_STAT = "fled";
+
+    public String getStatsDescription() {
+        return DESCRIPTIONS[1].replace("{0}", stats.get(FLED_STAT) + "");
+    }
+
+    public String getExtendedStatsDescription(int totalCombats, int totalTurns) {
+        return getStatsDescription();
+    }
+
+    public void resetStats() {
+        stats.put(FLED_STAT, 0);
+    }
+
+    public JsonElement onSaveStats() {
+        Gson gson = new Gson();
+        List<Integer> statsToSave = new ArrayList<>();
+        statsToSave.add(stats.get(FLED_STAT));
+        return gson.toJsonTree(statsToSave);
+    }
+
+    public void onLoadStats(JsonElement jsonElement) {
+        if (jsonElement != null) {
+            JsonArray jsonArray = jsonElement.getAsJsonArray();
+            stats.put(FLED_STAT, jsonArray.get(0).getAsInt());
+        } else {
+            resetStats();
+        }
+    }
+
+    public static void incrementFledStat(int amount) {
+        stats.put(FLED_STAT, stats.getOrDefault(FLED_STAT, 0) + amount);
     }
 }
