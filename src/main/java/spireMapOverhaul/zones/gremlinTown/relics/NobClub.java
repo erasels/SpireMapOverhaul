@@ -47,8 +47,10 @@ public class NobClub extends AbstractSMORelic {
                 flash();
                 addToBot(new RelicAboveCreatureAction(adp(), this));
                 AbstractMonster m = Wiz.getRandomEnemy();
-                applyToEnemy(m, new VulnerablePower(m, 1, false));
-                incrementVulnerableStat(1);
+                if (m != null) {
+                    applyToEnemy(m, new VulnerablePower(m, 1, false));
+                    incrementVulnerableStat(1);
+                }
             }
         }
     }
