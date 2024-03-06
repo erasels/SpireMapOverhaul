@@ -65,7 +65,7 @@
       "在战斗中，药水需消耗 [E] 来使用。当你在一种药水上消耗能量时，使用另一种随机药剂。",
       " 能量",
       "Extra potions: {0}",
-      "Per combat: {0}"
+      " NL Per combat: {0}"
     ]
   },
   "${ModID}:BrokenSneckoEye": {

@@ -63,7 +63,7 @@
       "戦闘中、ポーションを使用する為には [E] が必要となる。ポーションを使用したとき、別のランダムなポーションを使用する。",
       " エナジー",
       "Extra potions: {0}",
-      "Per combat: {0}"
+      " NL Per combat: {0}"
     ]
   },
   "${ModID}:BrokenSneckoEye": {
