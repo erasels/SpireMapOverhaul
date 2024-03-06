@@ -87,7 +87,8 @@
     "DESCRIPTIONS": [
       "Card rewards contain #b",
       " less card, but each #yGold reward is multiplied by #b",
-      "."
+      ".",
+      "Gold gained: {0}"
     ]
   },
   "${ModID}:BrokenMatryoshka": {

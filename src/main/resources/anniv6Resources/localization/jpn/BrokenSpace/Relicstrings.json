@@ -86,7 +86,8 @@
     "DESCRIPTIONS": [
       "報酬のカード選択画面で出現するカードの枚数が #b",
       " 枚減る。報酬のゴールドが #b",
-      " 倍になる。"
+      " 倍になる。",
+      "Gold gained: {0}"
     ]
   },
   "${ModID}:BrokenMatryoshka": {

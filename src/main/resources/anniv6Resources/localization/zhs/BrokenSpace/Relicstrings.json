@@ -23,7 +23,8 @@
     "DESCRIPTIONS": [
       "当你的生命值高于 #b",
       "% 时，你获得额外 #b",
-      " 点 #y敏捷 。"
+      " 点 #y敏捷 。",
+      "Gold gained: {0}"
     ]
   },
   "${ModID}:BrokenOmamori": {
