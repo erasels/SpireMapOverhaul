@@ -11,7 +11,9 @@
     "NAME": "Old Hat",
     "FLAVOR": "Hypothema's hand-me-down.",
     "DESCRIPTIONS": [
-      "At the start of your turn, gain #b", " #yVigor."
+      "At the start of your turn, gain #b",
+      " #yVigor.",
+      "Vigor gained: {0}"
     ]
   },
   "${ModID}:Frostcoal": {

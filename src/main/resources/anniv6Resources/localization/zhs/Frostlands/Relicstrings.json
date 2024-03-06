@@ -11,7 +11,9 @@
     "NAME": "老旧的帽子",
     "FLAVOR": "冷血祖传下来的旧帽子。",
     "DESCRIPTIONS": [
-      "回合开始时，获得 #b", " 层 #y活力 。"
+      "回合开始时，获得 #b",
+      " 层 #y活力 。",
+      "Vigor gained: {0}"
     ]
   },
   "${ModID}:Frostcoal": {
