@@ -3,6 +3,7 @@ package spireMapOverhaul.zones.gremlinTown.relics;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -21,7 +22,7 @@ import java.util.Map;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 import static spireMapOverhaul.util.Wiz.adp;
-import static spireMapOverhaul.util.Wiz.applyToEnemy;
+import static spireMapOverhaul.util.Wiz.applyToEnemyTop;
 
 public class NobClub extends AbstractSMORelic {
     public static final String ID = makeID(NobClub.class.getSimpleName());
@@ -45,11 +46,17 @@ public class NobClub extends AbstractSMORelic {
                 counter = 0;
                 flash();
                 addToBot(new RelicAboveCreatureAction(adp(), this));
-                AbstractMonster m = Wiz.getRandomEnemy();
-                if (m != null) {
-                    applyToEnemy(m, new VulnerablePower(m, 1, false));
-                    incrementVulnerableStat(1);
-                }
+                addToBot(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        AbstractMonster m = Wiz.getRandomEnemy();
+                        if (m != null) {
+                            applyToEnemyTop(m, new VulnerablePower(m, 1, false));
+                            incrementVulnerableStat(1);
+                        }
+                        isDone = true;
+                    }
+                });
             }
         }
     }
