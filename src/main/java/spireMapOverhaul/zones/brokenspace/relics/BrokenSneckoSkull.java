@@ -35,7 +35,7 @@ public class BrokenSneckoSkull extends BrokenRelic implements OnReceivePowerReli
     @Override
     public boolean onReceivePower(AbstractPower abstractPower, AbstractCreature abstractCreature) {
         flash();
-        if (abstractPower.type == AbstractPower.PowerType.BUFF) {
+        if (abstractPower.type == AbstractPower.PowerType.BUFF && abstractPower.amount > 0) {
             abstractPower.amount += AMOUNT;
         }
         return true;
@@ -44,7 +44,7 @@ public class BrokenSneckoSkull extends BrokenRelic implements OnReceivePowerReli
     @Override
     public int onReceivePowerStacks(AbstractPower power, AbstractCreature source, int stackAmount) {
         flash();
-        if (power.type == AbstractPower.PowerType.BUFF) {
+        if (power.type == AbstractPower.PowerType.BUFF && stackAmount > 0) {
             incrementBuffsStat(AMOUNT);
             return stackAmount + AMOUNT;
         }
