@@ -28,7 +28,9 @@
     "NAME": "ボスの棍棒",
     "FLAVOR": "かろうじて持ち上げられる。",
     "DESCRIPTIONS": [
-      "#b{0} 枚のアタックをプレイするたび、ランダムな敵に #y弱体 #b1 を与える。"
+      "#b{0} 枚のアタックをプレイするたび、ランダムな敵に #y弱体 #b1 を与える。",
+      "Vulnerable applied: {0}",
+      " NL Per turn: {0} NL Per combat: {1}"
     ]
   },
   "${ModID}:GremlinStaff": {

@@ -28,7 +28,9 @@
     "NAME": "大块头巨棒",
     "FLAVOR": "拿起来很费劲",
     "DESCRIPTIONS": [
-      "你每打出 #b{0} 攻击牌，对一位随机敌人施加 #b1 层 #y易伤 。"
+      "你每打出 #b{0} 攻击牌，对一位随机敌人施加 #b1 层 #y易伤 。",
+      "Vulnerable applied: {0}",
+      " NL Per turn: {0} NL Per combat: {1}"
     ]
   },
   "${ModID}:GremlinStaff": {

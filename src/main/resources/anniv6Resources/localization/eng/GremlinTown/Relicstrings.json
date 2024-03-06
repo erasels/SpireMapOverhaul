@@ -28,7 +28,9 @@
     "NAME": "Nob Club",
     "FLAVOR": "You can barely lift it.",
     "DESCRIPTIONS": [
-      "Every time you play #b{0} Attacks, apply #b1 #yVulnerable to a random enemy."
+      "Every time you play #b{0} Attacks, apply #b1 #yVulnerable to a random enemy.",
+      "Vulnerable applied: {0}",
+      " NL Per turn: {0} NL Per combat: {1}"
     ]
   },
   "${ModID}:GremlinStaff": {
