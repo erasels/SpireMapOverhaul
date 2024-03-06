@@ -45,7 +45,7 @@
       "At the end of your turn, you may #yExhaust a card in your hand. Gain #yMantra equal to its cost.",
       "Select a card to exhaust for Mantra.",
       "Mantra gained: {0}",
-      " NL Per combat: {0}"
+      " NL Per turn: {0} NL Per combat: {1}"
 
     ]
   },

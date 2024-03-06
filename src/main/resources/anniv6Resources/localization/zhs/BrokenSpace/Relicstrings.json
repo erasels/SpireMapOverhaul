@@ -46,7 +46,7 @@
       "在你的回合结束时，你可以 #y消耗 一张手牌，并获得等同其费用的 #y真言 层数。",
       "选择消耗一张卡牌获取真言",
       "Mantra gained: {0}",
-      " NL Per combat: {0}"
+      " NL Per turn: {0} NL Per combat: {1}"
 
     ]
   },

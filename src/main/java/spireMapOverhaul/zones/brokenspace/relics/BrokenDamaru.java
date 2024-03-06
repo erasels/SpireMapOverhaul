@@ -68,8 +68,9 @@ public class BrokenDamaru extends BrokenRelic {
     public String getExtendedStatsDescription(int totalCombats, int totalTurns) {
         DecimalFormat format = new DecimalFormat("#.###");
         float mantra = stats.get(MANTRA_STAT);
+        String mantraPerTurn = format.format(mantra / Math.max(totalTurns, 1));
         String mantraPerCombat = format.format(mantra / Math.max(totalCombats, 1));
-        return getStatsDescription() + DESCRIPTIONS[3].replace("{0}", mantraPerCombat);
+        return getStatsDescription() + DESCRIPTIONS[3].replace("{0}", mantraPerTurn).replace("{1}", mantraPerCombat);
     }
 
     public void resetStats() {
