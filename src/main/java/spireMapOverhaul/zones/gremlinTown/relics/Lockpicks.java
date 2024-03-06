@@ -42,7 +42,7 @@ public class Lockpicks extends AbstractSMORelic {
     private static final String GOLD_STAT = "gold";
 
     public String getStatsDescription() {
-        return DESCRIPTIONS[3].replace("{0}", stats.get(GOLD_STAT) + "");
+        return DESCRIPTIONS[1].replace("{0}", stats.get(GOLD_STAT) + "");
     }
 
     public String getExtendedStatsDescription(int totalCombats, int totalTurns) {
