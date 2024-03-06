@@ -51,7 +51,8 @@
     "NAME": "Lock Picks",
     "FLAVOR": "A common Gremlin \"Investment.\"",
     "DESCRIPTIONS": [
-      "Gain #b{0} #yGold upon entering a rest site."
+      "Gain #b{0} #yGold upon entering a rest site.",
+      "Gold gained: {0}"
     ]
   },
   "${ModID}:Bowtie": {

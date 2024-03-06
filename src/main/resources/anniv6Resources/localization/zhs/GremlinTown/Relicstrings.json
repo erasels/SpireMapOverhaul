@@ -51,7 +51,8 @@
     "NAME": "撬锁工具",
     "FLAVOR": "一种地精中常见的 \"玩意儿\" 。",
     "DESCRIPTIONS": [
-      "进入休息处时，获得 #b{0} #y金币"
+      "进入休息处时，获得 #b{0} #y金币",
+      "Gold gained: {0}"
     ]
   },
   "${ModID}:Bowtie": {
