@@ -3,14 +3,18 @@
     "NAME": "Duelity",
     "FLAVOR": "Apparently Gremlin Nobs are bad at spelling.",
     "DESCRIPTIONS": [
-      "Whenever you play a Skill, gain #b1 temporary #yStrength."
+      "Whenever you play a Skill, gain #b1 temporary #yStrength.",
+      "Strength gained: {0}",
+      " NL Per turn: {0} NL Per combat: {1}"
     ]
   },
   "${ModID}:GremlinClaw": {
     "NAME": "Gremlin Claw",
     "FLAVOR": "Gremlins can be very dangerous even without a weapon.",
     "DESCRIPTIONS": [
-      "Whenever a non-minion enemy dies, heal #b1 HP."
+      "Whenever a non-minion enemy dies, heal #b1 HP.",
+      "HP healed: {0}",
+      " NL Per combat: {0}"
     ]
   },
   "${ModID}:GremlinHood": {
@@ -24,7 +28,9 @@
     "NAME": "Nob Club",
     "FLAVOR": "You can barely lift it.",
     "DESCRIPTIONS": [
-      "Every time you play #b{0} Attacks, apply #b1 #yVulnerable to a random enemy."
+      "Every time you play #b{0} Attacks, apply #b1 #yVulnerable to a random enemy.",
+      "Vulnerable applied: {0}",
+      " NL Per turn: {0} NL Per combat: {1}"
     ]
   },
   "${ModID}:GremlinStaff": {
@@ -45,7 +51,8 @@
     "NAME": "Lock Picks",
     "FLAVOR": "A common Gremlin \"Investment.\"",
     "DESCRIPTIONS": [
-      "Gain #b{0} #yGold upon entering a rest site."
+      "Gain #b{0} #yGold upon entering a rest site.",
+      "Gold gained: {0}"
     ]
   },
   "${ModID}:Bowtie": {
@@ -59,7 +66,9 @@
     "NAME": "Louse Plushie",
     "FLAVOR": "A toy for Gremlin children.",
     "DESCRIPTIONS": [
-      "The first time you take unblocked Attack damage each combat, gain #b{0} #yBlock next turn."
+      "The first time you take unblocked Attack damage each combat, gain #b{0} #yBlock next turn.",
+      "Block gained: {0}",
+      " NL Per combat: {0}"
     ]
   }
 }

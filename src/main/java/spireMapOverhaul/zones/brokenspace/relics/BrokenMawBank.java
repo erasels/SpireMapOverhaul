@@ -2,12 +2,21 @@ package spireMapOverhaul.zones.brokenspace.relics;
 
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.MawBank;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.ShopRoom;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import spireMapOverhaul.SpireAnniversary6Mod;
+
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import static spireMapOverhaul.util.Wiz.adp;
 
@@ -52,10 +61,47 @@ public class BrokenMawBank extends BrokenRelic {
             if (brokenMawBank != null && brokenMawBank.active) {
                 brokenMawBank.active = false;
                 brokenMawBank.flash();
+                int goldLost = Math.min(AMOUNT, adp().gold);
                 adp().loseGold(AMOUNT);
+                incrementGoldLostStat(goldLost);
                 brokenMawBank.usedUp();
                 brokenMawBank.counter = -2;
             }
         }
+    }
+
+    private static final Map<String, Integer> stats = new HashMap<>();
+    private static final String GOLD_LOST_STAT = "goldLost";
+
+    public String getStatsDescription() {
+        return DESCRIPTIONS[3].replace("{0}", stats.get(GOLD_LOST_STAT) + "");
+    }
+
+    public String getExtendedStatsDescription(int totalCombats, int totalTurns) {
+        return getStatsDescription();
+    }
+
+    public void resetStats() {
+        stats.put(GOLD_LOST_STAT, 0);
+    }
+
+    public JsonElement onSaveStats() {
+        Gson gson = new Gson();
+        List<Integer> statsToSave = new ArrayList<>();
+        statsToSave.add(stats.get(GOLD_LOST_STAT));
+        return gson.toJsonTree(statsToSave);
+    }
+
+    public void onLoadStats(JsonElement jsonElement) {
+        if (jsonElement != null) {
+            JsonArray jsonArray = jsonElement.getAsJsonArray();
+            stats.put(GOLD_LOST_STAT, jsonArray.get(0).getAsInt());
+        } else {
+            resetStats();
+        }
+    }
+
+    public static void incrementGoldLostStat(int amount) {
+        stats.put(GOLD_LOST_STAT, stats.getOrDefault(GOLD_LOST_STAT, 0) + amount);
     }
 }

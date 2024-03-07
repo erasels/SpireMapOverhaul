@@ -3,14 +3,18 @@
     "NAME": "决豆",
     "FLAVOR": "很显然，地精大块头把字写错了。",
     "DESCRIPTIONS": [
-      "每当你打出一张技能牌，获得 #b1 点 #y临时力量 。"
+      "每当你打出一张技能牌，获得 #b1 点 #y临时力量 。",
+      "Strength gained: {0}",
+      " NL Per turn: {0} NL Per combat: {1}"
     ]
   },
   "${ModID}:GremlinClaw": {
     "NAME": "地精之爪",
     "FLAVOR": "即使没有武器，地精也非常危险。",
     "DESCRIPTIONS": [
-      "每当一位非爪牙敌人死亡时，回复 #b1 点生命值。"
+      "每当一位非爪牙敌人死亡时，回复 #b1 点生命值。",
+      "HP healed: {0}",
+      " NL Per combat: {0}"
     ]
   },
   "${ModID}:GremlinHood": {
@@ -24,7 +28,9 @@
     "NAME": "大块头巨棒",
     "FLAVOR": "拿起来很费劲",
     "DESCRIPTIONS": [
-      "你每打出 #b{0} 攻击牌，对一位随机敌人施加 #b1 层 #y易伤 。"
+      "你每打出 #b{0} 攻击牌，对一位随机敌人施加 #b1 层 #y易伤 。",
+      "Vulnerable applied: {0}",
+      " NL Per turn: {0} NL Per combat: {1}"
     ]
   },
   "${ModID}:GremlinStaff": {
@@ -45,7 +51,8 @@
     "NAME": "撬锁工具",
     "FLAVOR": "一种地精中常见的 \"玩意儿\" 。",
     "DESCRIPTIONS": [
-      "进入休息处时，获得 #b{0} #y金币"
+      "进入休息处时，获得 #b{0} #y金币",
+      "Gold gained: {0}"
     ]
   },
   "${ModID}:Bowtie": {
@@ -59,7 +66,9 @@
     "NAME": "破烂毛绒玩具",
     "FLAVOR": "一种给小地精的玩具。",
     "DESCRIPTIONS": [
-      "每场战斗你第一次受到未被格挡的伤害时，下回合获得 #b{0} 点 #y格挡。"
+      "每场战斗你第一次受到未被格挡的伤害时，下回合获得 #b{0} 点 #y格挡。",
+      "Block gained: {0}",
+      " NL Per combat: {0}"
     ]
   }
 }
