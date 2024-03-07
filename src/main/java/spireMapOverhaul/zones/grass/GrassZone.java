@@ -68,6 +68,11 @@ public class GrassZone extends AbstractZone implements CombatModifyingZone, Rend
         }
     }
 
+    @Override
+    public void onVictory() {
+        vegetables.clear();
+    }
+
     public void atTurnEnd() {
         if (EnergyPanel.totalCount > 0 && !vegetables.isEmpty()) {
             int upgrades = 0;
