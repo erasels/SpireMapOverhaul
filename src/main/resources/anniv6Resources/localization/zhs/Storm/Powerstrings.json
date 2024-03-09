@@ -1,6 +1,6 @@
 {
   "${ModID}:ConduitPower": {
-    "NAME": "闪电",
-    "DESCRIPTIONS": ["回合结束时，目标将受到 #b", " 点可被格挡的伤害"]
+    "NAME": "导电",
+    "DESCRIPTIONS": ["回合结束时，目标受到 #b", " 点可被格挡的伤害。"]
   }
 }

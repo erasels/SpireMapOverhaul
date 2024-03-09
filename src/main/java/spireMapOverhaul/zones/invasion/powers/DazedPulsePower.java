@@ -8,8 +8,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import spireMapOverhaul.SpireAnniversary6Mod;
 
-import java.text.MessageFormat;
-
 public class DazedPulsePower extends AbstractInvasionPower {
     public static final String POWER_ID = SpireAnniversary6Mod.makeID("DazedPulse");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
@@ -27,6 +25,6 @@ public class DazedPulsePower extends AbstractInvasionPower {
 
     @Override
     public void updateDescription() {
-        this.description = MessageFormat.format(DESCRIPTIONS[0], 1);
+        this.description = DESCRIPTIONS[0].replace("{0}", 1 + "");
     }
 }

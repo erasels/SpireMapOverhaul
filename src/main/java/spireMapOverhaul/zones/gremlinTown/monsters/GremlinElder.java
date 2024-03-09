@@ -13,7 +13,6 @@ import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.actions.utility.TextAboveCreatureAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.curses.Decay;
-import com.megacrit.cardcrawl.cards.curses.Pain;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -43,10 +42,10 @@ public class GremlinElder extends CustomMonster
     private static final int HP_MAX = 231;
     private static final int HP_MIN_A8 = 242;
     private static final int HP_MAX_A8 = 251;
-    private static final int SLAM_DMG = 22;
-    private static final int SLAM_DMG_A3 = 24;
-    private static final int SLAP_DMG = 12;
-    private static final int SLAP_DMG_A3 = 13;
+    private static final int SLAM_DMG = 20;
+    private static final int SLAM_DMG_A3 = 22;
+    private static final int SLAP_DMG = 11;
+    private static final int SLAP_DMG_A3 = 12;
 
     private boolean firstTurn;
     private boolean curseTriggered;
@@ -118,17 +117,19 @@ public class GremlinElder extends CustomMonster
                             first[0] = false;
                             duration = 1.5f;
 
-                            AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(new Decay(),
-                                    (float)Settings.WIDTH * 0.3F, (float)Settings.HEIGHT / 2.0F));
                             if (asc() >= 18) {
-                                AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(new Pain(),
+                                AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(new Decay(),
+                                        (float) Settings.WIDTH * 0.3F, (float) Settings.HEIGHT / 2.0F));
+                                AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(new Decay(),
+                                        (float) Settings.WIDTH * 0.5F, (float) Settings.HEIGHT / 2.0F));
+                                AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(new Decay(),
                                         (float) Settings.WIDTH * 0.5F, (float) Settings.HEIGHT / 2.0F));
                             } else {
                                 AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(new Decay(),
-                                        (float) Settings.WIDTH * 0.5F, (float) Settings.HEIGHT / 2.0F));
+                                        (float) Settings.WIDTH * 0.4F, (float) Settings.HEIGHT / 2.0F));
+                                AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(new Decay(),
+                                        (float) Settings.WIDTH * 0.6F, (float) Settings.HEIGHT / 2.0F));
                             }
-                            AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(new Decay(),
-                                    (float)Settings.WIDTH * 0.7F, (float)Settings.HEIGHT / 2.0F));
                         }
 
                         tickDuration();
@@ -155,7 +156,7 @@ public class GremlinElder extends CustomMonster
         else if (currentHealth > maxHealth/2f) {
             if (lastTwoMoves(SLAM))
                 setMove(SLAP, Intent.ATTACK_DEBUFF, damage.get(1).base);
-            else if (lastTwoMoves(SLAP))
+            else if (lastMove(SLAP))
                 setMove(SLAM, Intent.ATTACK, damage.get(0).base);
             else if (num < 50)
                 setMove(SLAM, Intent.ATTACK, damage.get(0).base);

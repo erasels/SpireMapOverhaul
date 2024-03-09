@@ -1,0 +1,38 @@
+{
+  "${ModID}:LouseMilk": {
+    "NAME": "寄生虫のミルク",
+    "DESCRIPTIONS": [
+      "カードを #b{0} 枚引き、 #b{1} エナジーを得る。"
+    ]
+  },
+  "${ModID}:PreerelxsBlueRibbon": {
+    "NAME": "プリレルクスのブルーリボン",
+    "DESCRIPTIONS": [
+      "#y気力 #b{0} を得る。"
+    ]
+  },
+  "${ModID}:RitualBlood": {
+    "NAME": "儀式の血",
+    "DESCRIPTIONS": [
+      "#r堕落の心臓 に対して使用した場合、 #y無敵 と #y死の鼓動 を解除し、それらを2度と得なくなり、最初のデバフで負傷と火傷を混ぜなくなり、弱体を与えなくなる。"
+    ]
+  },
+  "${ModID}:NoxiousBrew": {
+    "NAME": "危ないビール",
+    "DESCRIPTIONS": [
+      "ターン終了時、ランダムな敵に #y毒 #b{0} を与える。"
+    ]
+  },
+  "${ModID}:MushroomSoup": {
+    "NAME": "キノコのスープ",
+    "DESCRIPTIONS": [
+      "ターン終了時、 #y一時的な体力 #b{0} を得る。"
+    ]
+  },
+  "${ModID}:GremsFire": {
+    "NAME": "グレムの炎",
+    "DESCRIPTIONS": [
+      "ターン終了時、全ての敵に #b{0} ダメージを与える。"
+    ]
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "${ModID}:Tenderizer": {
+    "NAME": "軟化",
+    "DESCRIPTIONS": ["このターン、「アタック」でダメージを与えるたび、 #y脱力 #b{0} を与える。"]
+  },
+  "${ModID}:DelayedVigor": {
+    "NAME": "チャージ",
+    "DESCRIPTIONS": ["#b2 ターン後、 #y気力 #b{0} を得る。",
+      "#b1 ターン後、 #y気力 #b{0} を得る。"]
+  },
+  "${ModID}:Sap": {
+    "NAME": "消耗",
+    "DESCRIPTIONS": ["次のターン開始時、 [E] を失う。",
+      "次のターン開始時、 #b{0} [E] を失う。"]
+  },
+  "${ModID}:HeartImpairment": {
+    "NAME": "弱化",
+    "DESCRIPTIONS": ["#y死の鼓動 を得られない。1ターン目のデバフで負傷と火傷を混ぜず、さらに弱体も与えない。"]
+  },
+  "${ModID}:NoxiousBrew": {
+    "NAME": "危ないビール",
+    "DESCRIPTIONS": ["ターン終了時、ランダムな敵に #y毒 #b{0} を与える。"]
+  },
+  "${ModID}:MushroomSoup": {
+    "NAME": "キノコのスープ",
+    "DESCRIPTIONS": ["ターン終了時、 #y一時的な体力 #b{0} を得る。"]
+  },
+  "${ModID}:GremsFire": {
+    "NAME": "グレムの炎",
+    "DESCRIPTIONS": ["ターン終了時、全ての敵に #b{0} ダメージを与える。"]
+  },
+  "${ModID}:Raging": {
+    "NAME": "波瀾万丈",
+    "DESCRIPTIONS": ["ターン終了時、 #y筋力 #b{0} を得る。"]
+  },
+  "${ModID}:GremlinNib": {
+    "NAME": "ペン先",
+    "DESCRIPTIONS": ["#b{0} 回攻撃するたび、 #r強力な攻撃 を使用する。"]
+  },
+  "${ModID}:Bellow": {
+    "NAME": "咆哮",
+    "DESCRIPTIONS": ["このターン、敵が攻撃しなかった場合、 #y筋力 #b{0} を得る。"]
+  },
+  "${ModID}:Critical": {
+    "NAME": "クリティカル",
+    "DESCRIPTIONS": ["次の攻撃は #b{0} 倍のダメージを与える。"]
+  },
+  "${ModID}:OmegaCurse": {
+    "NAME": "オメガの呪い",
+    "DESCRIPTIONS": ["「アタック」から追加で {0} ダメージを受ける。"]
+  },
+  "${ModID}:Horde": {
+    "NAME": "大群",
+    "DESCRIPTIONS": [
+      "ターン開始時、 #b1 枚のランダムな #yグレムリン カードを手札に加える。",
+      "ターン開始時、 #b{0} 枚のランダムな #yグレムリン カードを手札に加える。"
+    ]
+  },
+  "${ModID}:Rig": {
+    "NAME": "コントロール",
+    "DESCRIPTIONS": [
+      "ターン開始時、追加で #b1 枚のカードを引き、 #b1 枚のカードを #y廃棄 する。",
+      "ターン開始時、追加で #b{0} 枚のカードを引き、 #b{0} 枚のカードを #y廃棄 する。"
+    ]
+  },
+  "${ModID}:Inspired": {
+    "NAME": "ひらめき",
+    "DESCRIPTIONS": ["ターン開始時、 #b{0} [E] を得て、追加で #b{0} 枚のカードを引く。",
+      "ターン開始時、 #b{0} [E] を得て、追加で #b{0} 枚のカードを引く。"]
+  },
+  "${ModID}:Spiteful": {
+    "NAME": "いじわる",
+    "DESCRIPTIONS": ["hpが #b50% 以下になると、2ターン攻撃をやめ、その後に #r強力な呪い を使用する。"]
+  }
+}

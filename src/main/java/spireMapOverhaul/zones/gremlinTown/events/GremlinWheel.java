@@ -72,8 +72,8 @@ public class GremlinWheel extends AbstractImageEvent {
 
     private static final int GOLD_BASE = 100;
     private static final int GOLD_VARIANCE = 25;
-    private static final float DECISION_TIME = 4.5F;
-    private static final float DECISION_TIME_A15 = 3.0F;
+    private static final float DECISION_TIME = 6.0F;
+    private static final float DECISION_TIME_A15 = 4.0F;
     private final int goldAmount;
 
     static {

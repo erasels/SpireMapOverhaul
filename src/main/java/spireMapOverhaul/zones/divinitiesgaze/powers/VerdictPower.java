@@ -39,7 +39,7 @@ public class VerdictPower extends AbstractSMOPower implements HealthBarRenderPow
 
   @Override
   public int getHealthBarAmount() {
-    return this.amount;
+    return this.amount - 1;
   }
 
   @Override

@@ -1,0 +1,11 @@
+{
+  "${ModID}:BeastsLairEvent": {
+    "NAME": "Beast's Lair",
+    "DESCRIPTIONS": [
+      "#r~腐肉のような悪臭~ が充満している洞窟が目の前に迫っている。 NL 中から血を求めるような #r@低いうなり声@ が聞こえる。体が #r血 を求めている。"
+    ],
+    "OPTIONS": [
+      "[乗り込む]"
+    ]
+  }
+}

@@ -68,6 +68,11 @@ public class GrassZone extends AbstractZone implements CombatModifyingZone, Rend
         }
     }
 
+    @Override
+    public void onVictory() {
+        vegetables.clear();
+    }
+
     public void atTurnEnd() {
         if (EnergyPanel.totalCount > 0 && !vegetables.isEmpty()) {
             int upgrades = 0;
@@ -110,7 +115,7 @@ public class GrassZone extends AbstractZone implements CombatModifyingZone, Rend
 
     @Override
     public void modifyReward(RewardItem rewardItem) {
-        if (rewardItem.type == RewardItem.RewardType.RELIC) {
+        if (rewardItem.type == RewardItem.RewardType.RELIC && Wiz.isNormalRelicTier(rewardItem.relic.tier)) {
             AbstractRelic origRelic = rewardItem.relic;
             for (String relicID : GRASS_RELICS) {
                 AbstractRelic newRelic = RelicLibrary.getRelic(relicID);
@@ -124,6 +129,9 @@ public class GrassZone extends AbstractZone implements CombatModifyingZone, Rend
                             && AbstractDungeon.relicRng.randomBoolean(getRelicChance())) {
                         rewardItem.relic = newRelic.makeCopy();
                         rewardItem.text = newRelic.name;
+                        if (relicPool != null) {
+                            relicPool.remove(relicID);
+                        }
                         // Add the old relic back in to the pool so that it can spawn again
                         Wiz.addRelicToPool(origRelic);
                         break;
@@ -149,6 +157,9 @@ public class GrassZone extends AbstractZone implements CombatModifyingZone, Rend
                             && (relicPool == null || relicPool.contains(relicID))
                             && AbstractDungeon.relicRng.randomBoolean(getRelicChance())) {
                         first.relic = newRelic.makeCopy();
+                        if (relicPool != null) {
+                            relicPool.remove(relicID);
+                        }
                         // Add the old relic back in to the pool so that it can spawn again
                         Wiz.addRelicToPool(origRelic);
                         break;

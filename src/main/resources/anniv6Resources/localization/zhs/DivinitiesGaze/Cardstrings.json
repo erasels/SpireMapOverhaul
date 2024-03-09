@@ -1,22 +1,22 @@
 {
   "${ModID}:Clairvoyance": {
-    "NAME": "预见",
-    "DESCRIPTION": "{@@}保留 NL 你的回合开始时，若这张牌在手中，抽 {!M!|1=!M! 张牌|@=!M! cards}。 {!M!|1=抽到的牌|@=They} 获得{!M!|1=保留|@=} ，直至打出 NL 消耗",
+    "NAME": "千里眼",
+    "DESCRIPTION": "保留 。NL 回合开始时，若本牌在手，额外抽 !M! 张牌，其打出前附带 保留 。 NL 消耗 。",
     "EXTENDED_DESCRIPTION": [
-      "我全看到了!",
+      "我看见了一切!",
       "我拒绝这份赠礼..."
     ]
   },
   "${ModID}:Verdict": {
     "NAME": "审判",
-    "DESCRIPTION": "施加 !M! 层判决 NL 消耗",
+    "DESCRIPTION": "施加 !M! 层 判决 。 NL 消耗 。",
     "EXTENDED_DESCRIPTION": [
       "以荣誉之名，审判你！"
     ]
   },
   "${ModID}:GuidingLight": {
     "NAME": "指引之光",
-    "DESCRIPTION": "{@@}不可打出 NL 抽到时，消耗此卡牌，然后抽牌直至手牌满为止。{!升级!|>0= NL 升级手牌中的所有牌|@=}",
+    "DESCRIPTION": "{@@}不能被打出 。 NL 抽到时，消耗此牌，然后抽牌直到手牌上限。{!Upgrades!|>0= NL 升级手牌中的所有牌|@=}",
     "EXTENDED_DESCRIPTION": [
       "这条道路颇为荒凉",
       "我不能打出这张牌"
@@ -24,7 +24,7 @@
   },
   "${ModID}:Inevitability": {
     "NAME": "逃无可逃",
-    "DESCRIPTION": "不可打出 NL 保留 NL 在你回合结束时，对所有敌人造成 !D! 点伤害并获得 !B! 点格挡 NL 每过一回合，数值增加 !M! ",
+    "DESCRIPTION": " 不能被打出 。 NL 保留 NL 在你回合结束时，对所有敌人造成 !M! 点伤害并获得 !${ModID}:m2! 点 格挡 。 NL 每回合数值提高1点。",
     "EXTENDED_DESCRIPTION": [
       "这便是终途",
       "让开！",
@@ -35,7 +35,7 @@
   },
   "${ModID}:Mitosis": {
     "NAME": "分裂",
-    "DESCRIPTION": "当你抽到此牌时，在抽牌堆中洗入一张复制。 每有一张此卡牌，其伤害增加!M! NL 消耗",
+    "DESCRIPTION": "当你抽到此牌，在抽牌堆中洗入一张复制品。 每有一张此牌或 *状态 牌，伤害提高 !M! 点。 NL 消耗 。",
     "EXTENDED_DESCRIPTION": [
       "分裂...",
       " NL (造成 !D! 点伤害)"

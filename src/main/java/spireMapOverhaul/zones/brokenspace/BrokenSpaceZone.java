@@ -21,12 +21,14 @@ import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
 import com.megacrit.cardcrawl.screens.DungeonMapScreen;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
+import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.zoneInterfaces.RenderableZone;
 import spireMapOverhaul.zoneInterfaces.RewardModifyingZone;
 import spireMapOverhaul.zoneInterfaces.ShopModifyingZone;
 import spireMapOverhaul.zones.brokenspace.patches.BrokenSpaceRenderPatch;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.cardRng;
 import static spireMapOverhaul.SpireAnniversary6Mod.getShaderConfig;
@@ -169,7 +171,7 @@ public class BrokenSpaceZone extends AbstractZone implements RewardModifyingZone
 
     @Override
     public void modifyReward(RewardItem rewardItem) {
-        if (rewardItem.type == RewardItem.RewardType.RELIC) {
+        if (rewardItem.type == RewardItem.RewardType.RELIC && Wiz.isNormalRelicTier(rewardItem.relic.tier)) {
             AbstractRelic origRelic = rewardItem.relic;
             AbstractRelic newRelic = getValidBrokenRelic();
 
@@ -204,23 +206,23 @@ public class BrokenSpaceZone extends AbstractZone implements RewardModifyingZone
     }
 
     public AbstractRelic getValidBrokenRelic() {
-        boolean playerHasAllBrokenRelics = true;
-        for (String relicID : BrokenRelics) {
-            if (!adp().hasRelic(relicID)) {
-                playerHasAllBrokenRelics = false;
-                break;
-            }
-        }
-        if (playerHasAllBrokenRelics) {
-            return new Circlet();
-        }
+        ArrayList<String> validRelics = BrokenRelics.stream()
+                .filter(id -> !adp().hasRelic(id)) // Filter out broken relics the player already has
+                .filter(id -> {
+                    AbstractRelic r = RelicLibrary.getRelic(id);
+                    return r != null && r.canSpawn();
+                }) //Filter out relics that can't spawn
+                .filter(id -> {
+                    for(RewardItem ri : AbstractDungeon.combatRewardScreen.rewards) {
+                        if(ri.type == RewardItem.RewardType.RELIC && ri.relic != null && id.equals(ri.relic.relicId)) {
+                            return false;
+                        }
+                    }
+                    return true;
+                }) //Filter out relics that are already in the reward screen (black star can cause this
+                .collect(Collectors.toCollection(ArrayList::new));
 
-        AbstractRelic r;
-        do {
-            r = RelicLibrary.getRelic(BrokenRelics.get(AbstractDungeon.relicRng.random(BrokenRelics.size() - 1))).makeCopy();
-        } while (!r.canSpawn() || adp().hasRelic(r.relicId));
-
-        return r;
+        return RelicLibrary.getRelic(Wiz.getRandomItem(validRelics, AbstractDungeon.relicRng)).makeCopy();
     }
 
     @Override

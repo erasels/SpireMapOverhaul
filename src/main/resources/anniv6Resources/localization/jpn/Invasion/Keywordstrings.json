@@ -1,0 +1,58 @@
+[
+  {
+    "PROPER_NAME": "プレートアーマー",
+    "NAMES": ["plated\u00a0armor"],
+    "DESCRIPTION": "ターン終了時、 #yブロック を得る。ダメージを受けると減少する。"
+  },
+  {
+    "ID": "Abysstouched",
+    "PROPER_NAME": "深淵の接触",
+    "NAMES": ["深淵の接触"],
+    "DESCRIPTION": "受けるダメージが数値分増加し、毎ターン数値分ダメージを受ける。"
+  },
+  {
+    "PROPER_NAME": "激怒",
+    "NAMES": ["激怒"],
+    "DESCRIPTION": "「スキル」をプレイする度、 #y筋力 を得る。"
+  },
+  {
+    "PROPER_NAME": "死の鼓動",
+    "NAMES": ["死の鼓動"],
+    "DESCRIPTION": "カードをプレイするたび、ダメージを受ける。"
+  },
+  {
+    "PROPER_NAME": "金属化",
+    "NAMES": ["金属化"],
+    "DESCRIPTION": "ターン終了時、 #yブロック を得る。"
+  },
+  {
+    "PROPER_NAME": "バッファー",
+    "NAMES": ["バッファー"],
+    "DESCRIPTION": "次のhpの損失を防ぐ。"
+  },
+  {
+    "PROPER_NAME": "虚弱",
+    "NAMES": ["虚弱"],
+    "DESCRIPTION": "ターン開始時、 #y脆弱化 を与える。"
+  },
+  {
+    "PROPER_NAME": "放心",
+    "NAMES": ["放心"],
+    "DESCRIPTION": "ターン開始時、 #yめまい を山札に混ぜる。"
+  },
+  {
+    "PROPER_NAME": "深淵の脈拍",
+    "NAMES": ["深淵の脈拍"],
+    "DESCRIPTION": "ターン開始時、 #y深淵の接触 を受ける。"
+  },
+  {
+    "PROPER_NAME": "ぬるぬるボディ",
+    "NAMES": ["ぬるぬるボディ"],
+    "DESCRIPTION": "ブロックできないダメージを受けたとき、捨て札に #y粘液 を混ぜる。"
+  },
+  {
+    "PROPER_NAME": "無敵",
+    "NAMES": ["無敵"],
+    "DESCRIPTION": "ターンに減らせるhpが制限される。"
+  }
+]

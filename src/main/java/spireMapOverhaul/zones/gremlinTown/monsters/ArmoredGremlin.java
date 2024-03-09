@@ -29,8 +29,8 @@ public class ArmoredGremlin extends CustomMonster
             "monsters/GremlinTown/ArmoredGremlin/skeleton.json");
     private boolean firstMove = true;
     private static final byte ATTACK = 1;
-    private static final int DAMAGE = 6;
-    private static final int DAMAGE_A2 = 7;
+    private static final int DAMAGE = 7;
+    private static final int DAMAGE_A2 = 8;
     private static final int MIN_HP = 35;
     private static final int MAX_HP = 39;
     private static final int MIN_HP_A7 = 38;
@@ -76,7 +76,6 @@ public class ArmoredGremlin extends CustomMonster
     public void usePreBattleAction() {
         atb(new ApplyPowerAction(this, this, new BarricadePower(this)));
         atb(new ApplyPowerAction(this, this, new RagingPower(this, RAGE_AMOUNT)));
-        SpireAnniversary6Mod.logger.info(name);
         atb(new GainBlockAction(this, blockAmount));
     }
 

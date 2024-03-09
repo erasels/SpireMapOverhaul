@@ -1,0 +1,126 @@
+{
+  "${ModID}:FixedTextIntangiblePower": {
+    "DESCRIPTIONS": ["あと #b{0} ターンの間、全てのダメージとhpの損失を #b1 まで減らす。"]
+  },
+  "${ModID}:SerpentsGaze": {
+    "NAME": "にらみつけ",
+    "DESCRIPTIONS": ["最初に引いたカードのコストがこのターン #b{0} 増加する。", "最初に引いた #b{0} 枚のカードのコストがこのターン #b{1} 増加する。"]
+  },
+  "${ModID}:LeafSpores": {
+    "NAME": "葉の胞子",
+    "DESCRIPTIONS": ["死亡時、 #y脱力 #b{0} と #y脆弱化 #b{0} を与える。"]
+  },
+  "${ModID}:Hover": {
+    "NAME": "浮遊",
+    "DESCRIPTIONS": ["アタックから受けるダメージが #b{0}% 減少する。"]
+  },
+  "${ModID}:MidasAura": {
+    "NAME": "ミダスのオーラ",
+    "DESCRIPTIONS": ["アップグレード済のカードをプレイしたとき、それを #y廃棄 し、 #b「アタック」 なら #yギルドストライク を、  #b「スキル」 なら #yギルドディフェンド を、 #b「パワー」 なら #yギルドエッセンス を、捨て札に加える。"]
+  },
+  "${ModID}:GoldenBulwark": {
+    "NAME": "黄金の防波堤",
+    "DESCRIPTIONS": ["戦闘開始時、あなたが所持しているゴールド #b{0} につき、 #b1 ブロックを得る。(切り上げ)"]
+  },
+  "${ModID}:Cleanse": {
+    "NAME": "祓い清め",
+    "DESCRIPTIONS": ["ターン終了時、全てのデバフを #b{0} 減らす。", "このターンで解除される。"]
+  },
+  "${ModID}:Abysstouched": {
+    "NAME": "深淵の接触",
+    "DESCRIPTIONS": ["アタックから受けるダメージが #b{0}% 増加する。ターン終了時、 #b{0} ダメージを受ける。", "アタックから受けるダメージが #b{0}% 増加する。ターン終了時、 #b{0} ダメージを受ける。"]
+  },
+  "${ModID}:DelayedAbysstouched": {
+    "NAME": "深淵の接触",
+    "DESCRIPTIONS": ["受けるダメージが #b{0}% 増加する。ターン終了時、 #b{0} ダメージを受ける。"]
+  },
+  "${ModID}:Wary": {
+    "NAME": "警戒",
+    "DESCRIPTIONS": ["#b「アタック」 をプレイするたび、 #y筋力 #b{0} を得る。"]
+  },
+  "${ModID}:HydraHeads": {
+    "NAME": "ハイドラの頭",
+    "DESCRIPTIONS": ["頭 #b1 つにつき、 #y筋力 #b1 を持つ。一度に #b{0} 以上のダメージを受けた時、頭を #b1 つ失う。頭は #b2 ターン後に再生する。"]
+  },
+  "${ModID}:HydraHeadRegrowth": {
+    "NAME": "再生",
+    "DESCRIPTIONS": ["2ターン後に #b{0} つの頭が再生する。"]
+  },
+  "${ModID}:DrawReductionSingleTurn": {
+    "NAME": "ドロー減少",
+    "DESCRIPTIONS": ["次のターン開始時のドロー枚数が #b1 枚減る。", "次のターン開始時のドロー枚数が #b{0} 枚減る。"]
+  },
+  "${ModID}:PermanentDrawReduction": {
+    "NAME": "ドロー低下",
+    "DESCRIPTIONS": [
+      "ターン開始時のドロー枚数が #b{0} 枚減る。",
+      "ターン開始時のドロー枚数が #b{0} 枚減る。"
+    ]
+  },
+  "${ModID}:EnergyLimit": {
+    "NAME": "エナジー制限",
+    "DESCRIPTIONS": ["ターン開始時、エナジーが #b3 に制限される。"]
+  },
+  "${ModID}:FixedTextDraw": {
+    "NAME": "ドロー",
+    "DESCRIPTIONS": [
+      "ターン開始時のドロー枚数が #b",
+      " 枚増える。",
+      " 枚減る。",
+      " 枚増える。",
+      " 枚減る。"
+    ]
+  },
+  "${ModID}:VoidPressure": {
+    "NAME": "虚空の圧力",
+    "DESCRIPTIONS": ["#p解除不可能 。カードを #y廃棄 するか、パワーをプレイするたび、 #{0} ダメージを受ける。ターン終了時、状態異常、呪い、エセリアルのカードを除く、手札のランダムなカードを #y廃棄 する。"]
+  },
+  "${ModID}:SummoningPortal": {
+    "NAME": "召喚",
+    "DESCRIPTIONS": ["#b{0} 個のエレメンタルを連れて戦闘を開始する。あと #b{1} 個召喚すると #yこのバフが解除される。 #r攻撃しない。無敵。"]
+  },
+  "${ModID}:DurableMinion": {
+    "NAME": "不屈",
+    "DESCRIPTIONS": ["ミニオン以外が倒されても戦闘から離脱しない。"]
+  },
+  "${ModID}:MirarisWake": {
+    "NAME": "ミラリの目覚め",
+    "DESCRIPTIONS": ["ターン開始時、 {0} を得る。"]
+  },
+  "${ModID}:StaggershockRebound": {
+    "NAME": "ネクストよろめきショック",
+    "DESCRIPTIONS": ["次のターン開始時、 #yよろめきショック をプレイする。"]
+  },
+  "${ModID}:HandOfTheAbyss": {
+    "NAME": "深淵の手",
+    "DESCRIPTIONS": ["#b「アタック」 でダメージを与えるたび、 #y深淵の接触 #b{0} を与える。"]
+  },
+  "${ModID}:BrokenCrystalSeal": {
+    "NAME": "壊れたクリスタル",
+    "DESCRIPTIONS": ["ターン開始時、 #b2 枚の #y壊れたクリスタル を山札に加える。 NL #gかつてこの敵を封印するために使用されたクリスタルの破片が地面に散らばっている。これを利用すれば、再生を弱めることができる！"]
+  },
+  "${ModID}:PrimevalCall": {
+    "NAME": "原始の呼び声",
+    "DESCRIPTIONS": ["ターン開始時、 #pロイヤルガード を召喚する。"]
+  },
+  "${ModID}:Evolving": {
+    "NAME": "進化",
+    "DESCRIPTIONS": ["ターン終了時、進化する。"]
+  },
+  "${ModID}:FrailPulse": {
+    "NAME": "虚弱",
+    "DESCRIPTIONS": ["ターン終了時、 #y脆弱化 #b{0} を与える。"]
+  },
+  "${ModID}:DazedPulse": {
+    "NAME": "放心",
+    "DESCRIPTIONS": ["ターン終了時、 #b{0} 枚の #yめまい を山札に混ぜる。"]
+  },
+  "${ModID}:AbysstouchedPulse": {
+    "NAME": "深淵",
+    "DESCRIPTIONS": ["ターン終了時、 #y深淵の接触 #b{0} を与える。"]
+  },
+  "${ModID}:SlimyBody": {
+    "NAME": "ぬるぬるボディ",
+    "DESCRIPTIONS": ["この敵がダメージを受けたとき、捨て札に #y粘液 を加える。"]
+  }
+}

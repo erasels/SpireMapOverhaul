@@ -9,7 +9,7 @@
       "Gain #b{0} #yVigor in #b1 turn."]
   },
   "${ModID}:Sap": {
-    "NAME": "Sapped",
+    "NAME": "Energy Drain",
     "DESCRIPTIONS": ["Lose [E] at the start of your next turn.",
       "Lose #b{0} [E] at the start of your next turn."]
   },
@@ -35,7 +35,7 @@
   },
   "${ModID}:GremlinNib": {
     "NAME": "Nib Power",
-    "DESCRIPTIONS": ["Every #b{0} Attacks you play, unleashes a powerful attack on its turn."]
+    "DESCRIPTIONS": ["Every #b{0} times it deals attack damage, it unleashes a powerful attack on its turn."]
   },
   "${ModID}:Bellow": {
     "NAME": "Gremlin Roar",

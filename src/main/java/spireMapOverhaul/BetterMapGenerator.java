@@ -261,7 +261,13 @@ public class BetterMapGenerator {
                     pathFinders.add(pathFinder);
             }
 
-            if (pathFinders.isEmpty() && !tryIgnoreReconnect)
+            if (!pathFinders.isEmpty()) {
+                PathFinder pathFinder = pathFinders.get(rng.random(pathFinders.size() - 1));
+                pathFinder.formPath(rng, false);
+                return true;
+            }
+
+            if (!tryIgnoreReconnect)
                 return false; //No valid paths.
 
             for (PlanningNode src : srcNodes) {
