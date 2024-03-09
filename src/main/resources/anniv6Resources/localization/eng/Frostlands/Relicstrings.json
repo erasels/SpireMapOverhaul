@@ -3,14 +3,17 @@
     "NAME": "Contraption",
     "FLAVOR": "A strange gift.",
     "DESCRIPTIONS": [
-      "The next time you would die in combat, heal to #b1 HP and flee combat if possible."
+      "The next time you would die in combat, heal to #b1 HP and flee combat if possible.",
+      "Times fled: {0}"
     ]
   },
   "${ModID}:OldHat": {
     "NAME": "Old Hat",
     "FLAVOR": "Hypothema's hand-me-down.",
     "DESCRIPTIONS": [
-      "At the start of your turn, gain #b", " #yVigor."
+      "At the start of your turn, gain #b",
+      " #yVigor.",
+      "Vigor gained: {0}"
     ]
   },
   "${ModID}:Frostcoal": {

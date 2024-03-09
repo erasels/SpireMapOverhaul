@@ -3,14 +3,18 @@
     "NAME": "表裏の顔",
     "FLAVOR": "どうやらボスはスペルが苦手らしい。",
     "DESCRIPTIONS": [
-      "スキルをプレイするたび、一時的な #y筋力 #b1 を得る。"
+      "スキルをプレイするたび、一時的な #y筋力 #b1 を得る。",
+      "Strength gained: {0}",
+      " NL Per turn: {0} NL Per combat: {1}"
     ]
   },
   "${ModID}:GremlinClaw": {
     "NAME": "グレムリンの爪",
     "FLAVOR": "グレムリンは武器を持っていなくても危ない。",
     "DESCRIPTIONS": [
-      "ミニオンでない敵が死亡したとき、hp #b1 を回復する。"
+      "ミニオンでない敵が死亡したとき、hp #b1 を回復する。",
+      "HP healed: {0}",
+      " NL Per combat: {0}"
     ]
   },
   "${ModID}:GremlinHood": {
@@ -24,7 +28,9 @@
     "NAME": "ボスの棍棒",
     "FLAVOR": "かろうじて持ち上げられる。",
     "DESCRIPTIONS": [
-      "#b{0} 枚のアタックをプレイするたび、ランダムな敵に #y弱体 #b1 を与える。"
+      "#b{0} 枚のアタックをプレイするたび、ランダムな敵に #y弱体 #b1 を与える。",
+      "Vulnerable applied: {0}",
+      " NL Per turn: {0} NL Per combat: {1}"
     ]
   },
   "${ModID}:GremlinStaff": {
@@ -45,7 +51,8 @@
     "NAME": "小道具",
     "FLAVOR": "一般的なグレムリンの 「投資」。",
     "DESCRIPTIONS": [
-      "休憩場所に入るたび、 #b{0} #yゴールドを得る。"
+      "休憩場所に入るたび、 #b{0} #yゴールドを得る。",
+      "Gold gained: {0}"
     ]
   },
   "${ModID}:Bowtie": {
@@ -59,7 +66,9 @@
     "NAME": "寄生虫のぬいぐるみ",
     "FLAVOR": "子供のグレムリンのおもちゃ。",
     "DESCRIPTIONS": [
-      "戦闘中初めてブロックできないダメージを受けた次のターン、 #b{0} #yブロックを得る。"
+      "戦闘中初めてブロックできないダメージを受けた次のターン、 #b{0} #yブロックを得る。",
+      "Block gained: {0}",
+      " NL Per combat: {0}"
     ]
   }
 }

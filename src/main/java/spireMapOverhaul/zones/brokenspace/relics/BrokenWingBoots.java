@@ -2,6 +2,9 @@ package spireMapOverhaul.zones.brokenspace.relics;
 
 import com.evacipated.cardcrawl.modthespire.lib.SpireInstrumentPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.WingBoots;
@@ -13,6 +16,11 @@ import javassist.expr.NewExpr;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.zones.brokenspace.events.FakeEventRoom;
 import spireMapOverhaul.zones.brokenspace.events.WingBootEvent;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class BrokenWingBoots extends BrokenRelic {
     public static final String ID = "BrokenWingBoots";
@@ -58,5 +66,40 @@ public class BrokenWingBoots extends BrokenRelic {
                 }
             };
         }
+    }
+
+    private static final Map<String, Integer> stats = new HashMap<>();
+    private static final String CHOICES_STAT = "choices";
+
+    public String getStatsDescription() {
+        return DESCRIPTIONS[1].replace("{0}", stats.get(CHOICES_STAT) + "");
+    }
+
+    public String getExtendedStatsDescription(int totalCombats, int totalTurns) {
+        return getStatsDescription();
+    }
+
+    public void resetStats() {
+        stats.put(CHOICES_STAT, 0);
+    }
+
+    public JsonElement onSaveStats() {
+        Gson gson = new Gson();
+        List<Integer> statsToSave = new ArrayList<>();
+        statsToSave.add(stats.get(CHOICES_STAT));
+        return gson.toJsonTree(statsToSave);
+    }
+
+    public void onLoadStats(JsonElement jsonElement) {
+        if (jsonElement != null) {
+            JsonArray jsonArray = jsonElement.getAsJsonArray();
+            stats.put(CHOICES_STAT, jsonArray.get(0).getAsInt());
+        } else {
+            resetStats();
+        }
+    }
+
+    public static void incrementChoicesStat(int amount) {
+        stats.put(CHOICES_STAT, stats.getOrDefault(CHOICES_STAT, 0) + amount);
     }
 }
