@@ -7,8 +7,7 @@
       "Enabled",
       "Make biome icons larger but cut off by the biome's shape.",
       "Don't repeat biomes during a run.",
-      "Enable shaders",
-      "Biomes per Act"
+      "Enable shaders"
     ]
   },
   "${ModID}:SingleCardReward": {
