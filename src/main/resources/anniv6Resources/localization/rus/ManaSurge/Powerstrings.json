@@ -1,0 +1,9 @@
+{
+
+  "${ModID}:ManaSurgePower": {
+    "NAME": "Всплеск маны",
+    "DESCRIPTIONS": [
+      "Карты имеют #b40% шанс получить случайное NL [#8c9cff]Зачарование[] [${ModID}:ManaSurge:EnchantmentIcon] или [#ff8cd5]Заговор[] [${ModID}:ManaSurge:BlightIcon] при розыгрыше."
+    ]
+  }
+}
