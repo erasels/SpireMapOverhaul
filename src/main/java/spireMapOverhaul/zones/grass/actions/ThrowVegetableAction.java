@@ -32,8 +32,10 @@ public class ThrowVegetableAction extends AbstractGameAction {
             this.addToTop(new CallbackAction<AbstractGameAction>(vegetable.getHitAction(target), __ -> {
                 if (this.amount > 1) {
                     AbstractCreature randomMonster = vegetable.getTarget();
-                    this.addToTop(new ThrowVegetableAction(vegetable, randomMonster, this.amount - 1));
-                    this.addToTop(new VFXAction(new ThrowVegetableEffect(vegetable, this.target.hb.cX, this.target.hb.cY, randomMonster.hb.cX, randomMonster.hb.cY), 0.4F));
+                    if (randomMonster != null) {
+                        this.addToTop(new ThrowVegetableAction(vegetable, randomMonster, this.amount - 1));
+                        this.addToTop(new VFXAction(new ThrowVegetableEffect(vegetable, this.target.hb.cX, this.target.hb.cY, randomMonster.hb.cX, randomMonster.hb.cY), 0.4F));
+                    }
                 }
             }));
 

@@ -41,7 +41,9 @@ public class CripplingModifier extends AbstractManaSurgeModifier {
             AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(target, AbstractDungeon.player, new WeakPower(target,WEAK_AMT,false),WEAK_AMT));
         } else {
             AbstractMonster mo = AbstractDungeon.getRandomMonster();
-            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(mo, AbstractDungeon.player, new WeakPower(mo,WEAK_AMT,false),WEAK_AMT));
+            if (mo != null) {
+                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(mo, AbstractDungeon.player, new WeakPower(mo,WEAK_AMT,false),WEAK_AMT));
+            }
         }
     }
 

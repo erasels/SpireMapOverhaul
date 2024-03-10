@@ -30,7 +30,7 @@ public class GremsFirePower extends AbstractSMOPower {
 
     @Override
     public void atEndOfTurn(boolean isPlayer) {
-        forAllMonstersLiving(m -> atb(new DamageAllEnemiesAction(adp(), amount, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE)));
+        atb(new DamageAllEnemiesAction(adp(), DamageInfo.createDamageMatrix(amount, true), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE));
     }
 }
 

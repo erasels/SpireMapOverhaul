@@ -1,0 +1,190 @@
+{
+  "${ModID}:WhisperingWraith": {
+    "MOVES": [
+      "透明化",
+      "ゴーストタッチ",
+      "リーチライフ"
+    ],
+    "NAME": "ささやきのレイス"
+  },
+  "${ModID}:StygianBoar": {
+    "MOVES": [
+      "噛みつき",
+      "炎の吐息",
+      "怒り"
+    ],
+    "NAME": "炎の猪"
+  },
+  "${ModID}:Hexasnake": {
+    "MOVES": [
+      "睨む",
+      "群がる",
+      "からむ"
+    ],
+    "NAME": "ヤマタノオロチ"
+  },
+  "${ModID}:GraftedWorm": {
+    "MOVES": [
+      "リーフカッター"
+    ],
+    "NAME": "パラサイト"
+  },
+  "${ModID}:DreadMoth": {
+    "MOVES": [
+      "はばたき",
+      "恐怖の波"
+    ],
+    "NAME": "恐怖の蛾"
+  },
+  "${ModID}:OrbOfFire": {
+    "MOVES": [
+      "灼熱の雷",
+      "フレア",
+      "シャイン"
+    ],
+    "NAME": "フレアオーブ"
+  },
+  "${ModID}:LivingStormcloud": {
+    "MOVES": [
+      "ザップ",
+      "強風",
+      "降雨"
+    ],
+    "NAME": "ストームオーブ"
+  },
+  "${ModID}:OpulentOffering": {
+    "MOVES": [
+      "金杯攻撃",
+      "硬貨弾幕",
+      "黄金の盾",
+      "高級な雫"
+    ],
+    "NAME": "ゴールデンオーブ"
+  },
+  "${ModID}:ShimmeringMirage": {
+    "MOVES": [
+      "光沢",
+      "きらめき",
+      "光源"
+    ],
+    "NAME": "ブライトオーブ"
+  },
+  "${ModID}:Hatchling": {
+    "MOVES": [
+      "生誕",
+      "齧る",
+      "腐食性の酸",
+      "頭突き"
+    ],
+    "NAME": "幼虫"
+  },
+  "${ModID}:CroakingBrute": {
+    "MOVES": [
+      "爪",
+      "タックル"
+    ],
+    "NAME": "ハスキーブルート",
+    "DIALOG": ["カーカァ！"]
+  },
+  "${ModID}:CroakingPelter": {
+    "MOVES": [
+      "爪",
+      "投石"
+    ],
+    "NAME": "ペルター",
+    "DIALOG": ["カーカァ！"]
+  },
+  "${ModID}:CroakingSeer": {
+    "MOVES": [
+      "爪",
+      "バリア"
+    ],
+    "NAME": "呪術師",
+    "DIALOG": ["カーカァ！"]
+  },
+  "${ModID}:Hydra": {
+    "MOVES": [
+      "テイルウィップ",
+      "スワイプ",
+      "貪欲な飢え"
+    ],
+    "NAME": "ハイドラ"
+  },
+  "${ModID}:VoidReaper": {
+    "MOVES": [
+      "運命の切り開き",
+      "刈り取り",
+      "鎌の踊り"
+    ],
+    "NAME": "虚空の死神"
+  },
+  "${ModID}:VoidCorruption": {
+    "MOVES": [
+      "エナジードレイン",
+      "リーチエナジー",
+      "パワードレイン",
+      "体当たり",
+      "残像"
+    ],
+    "NAME": "虚空の影"
+  },
+  "${ModID}:VoidBeast": {
+    "MOVES": [
+      "噛みつき",
+      "虚空の圧力",
+      "引っ掻く"
+    ],
+    "NAME": "虚空の獣"
+  },
+  "${ModID}:WarGolem": {
+    "MOVES": [
+      "探求者",
+      "シールドブレイク",
+      "脛壊し"
+    ],
+    "NAME": "戦闘用ゴーレム"
+  },
+  "${ModID}:ElementalPortal": {
+    "MOVES": [
+      "ポータル",
+      "修復",
+      "混沌の魔力",
+      "エレメンタルブラスト"
+    ],
+    "NAME": "エレメンタルポータル"
+  },
+  "${ModID}:UnboundAbyssal": {
+    "MOVES": [
+      "汚泥",
+      "不可逆",
+      "巻きつけ"
+    ],
+    "NAME": "果てしなき深淵",
+    "DIALOG": ["もう... 元には...!"]
+  },
+  "${ModID}:PrimevalQueen": {
+    "MOVES": [
+      "死鎌",
+      "甲羅",
+      "招集"
+    ],
+    "NAME": "原始の女王"
+  },
+  "${ModID}:RoyalProtector": {
+    "MOVES": [
+      "甲殻",
+      "燃える串",
+      "毒爆発",
+      "女王のために"
+    ],
+    "NAME": "ロイヤルガード"
+  },
+  "${ModID}:Behemoth": {
+    "MOVES": [
+      "脱皮",
+      "進化",
+      "引っ掻く"
+    ],
+    "NAME": "ベヒモス"
+  }
+}

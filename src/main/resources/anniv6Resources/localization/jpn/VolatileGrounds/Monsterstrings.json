@@ -1,0 +1,40 @@
+{
+  "${ModID}:Eruptor": {
+    "MOVES": [
+      "体当たり",
+      "沸騰"
+    ],
+    "NAME": "噴火器"
+  },
+  "${ModID}:UnstableSunstone": {
+    "MOVES": [
+      "爆発寸前",
+      "シアー",
+      "沸騰"
+    ],
+    "NAME": "不安定な太陽の石"
+  },
+  "${ModID}:SunStoneShard": {
+    "MOVES": [
+      "チャージ",
+      "シアー",
+      "バリア"
+    ],
+    "NAME": "太陽の石の欠片"
+  },
+  "${ModID}:HeatBlister": {
+    "MOVES": [
+      "体当たり",
+      "爆発予告"
+    ],
+    "NAME": "水脹れ"
+  },
+  "${ModID}:GremlinArchmage": {
+    "MOVES": [
+      "サモンボム",
+      "火の玉",
+      "メイジアーマー"
+    ],
+    "NAME": "大魔道士グレムリン"
+  }
+}

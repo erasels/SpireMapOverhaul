@@ -4,7 +4,9 @@
     "FLAVOR": "",
     "DESCRIPTIONS": [
       "At the start of each combat, lose #b",
-      " #yFocus. The first time you #yChannel an Orb each turn, #yChannel another Orb of the same type."
+      " #yFocus. The first time you #yChannel an Orb each turn, #yChannel another Orb of the same type.",
+      "Orbs channeled: {0}",
+      " NL Per combat: {0}"
     ]
   },
   "${ModID}:BrokenSneckoSkull": {
@@ -12,7 +14,9 @@
     "FLAVOR": "",
     "DESCRIPTIONS": [
       "When you gain a buff, gain #b",
-      " more."
+      " more.",
+      "Buffs gained: {0}",
+      " NL Per combat: {0}"
     ]
   },
   "${ModID}:BrokenRedSkull": {
@@ -30,7 +34,8 @@
     "DESCRIPTIONS": [
       "Add #b",
       " #rCurses to your deck. Whenever you rest, #yUpgrade #b",
-      " random cards in your deck."
+      " random cards in your deck.",
+      "Cards upgraded: {0}"
     ]
   },
   "${ModID}:BrokenDamaru": {
@@ -38,7 +43,9 @@
     "FLAVOR": "",
     "DESCRIPTIONS": [
       "At the end of your turn, you may #yExhaust a card in your hand. Gain #yMantra equal to its cost.",
-      "Select a card to exhaust for Mantra."
+      "Select a card to exhaust for Mantra.",
+      "Mantra gained: {0}",
+      " NL Per turn: {0} NL Per combat: {1}"
 
     ]
   },
@@ -46,8 +53,8 @@
     "NAME": "Broken Wing Boots",
     "FLAVOR": "",
     "DESCRIPTIONS": [
-      "When you would enter an event in a #y? room, choose between two events."
-
+      "When you would enter an event in a #y? room, choose between two events.",
+      "Event choices: {0}"
     ]
   },
   "${ModID}:BrokenSozu": {
@@ -55,7 +62,9 @@
     "FLAVOR": "",
     "DESCRIPTIONS": [
       "In-combat potions cost [E] to use. When you spend energy on a potion, use another random potion.",
-      " Energy"
+      " Energy",
+      "Extra potions: {0}",
+      " NL Per combat: {0}"
     ]
   },
   "${ModID}:BrokenSneckoEye": {
@@ -72,7 +81,8 @@
     "DESCRIPTIONS": [
       "Gain #b",
       " #yGold next time you enter a shop, but lose #b",
-      " #yGold when you leave."
+      " #yGold when you leave.",
+      "Gold lost: {0}"
     ]
   },
   "${ModID}:BrokenPrayerWheel": {
@@ -81,7 +91,8 @@
     "DESCRIPTIONS": [
       "Card rewards contain #b",
       " less card, but each #yGold reward is multiplied by #b",
-      "."
+      ".",
+      "Gold gained: {0}"
     ]
   },
   "${ModID}:BrokenMatryoshka": {
@@ -98,7 +109,8 @@
     "FLAVOR": "",
     "DESCRIPTIONS": [
       "Whenever you gain Max HP, #yUpgrade #b",
-        " random card in your deck."
+        " random card in your deck.",
+      "Cards upgraded: {0}"
     ]
   }
 }

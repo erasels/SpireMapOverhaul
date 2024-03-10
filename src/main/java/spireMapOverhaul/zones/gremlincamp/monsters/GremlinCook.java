@@ -68,7 +68,7 @@ public class GremlinCook extends AbstractSMOMonster {
 
         healAmt = calcAscensionSpecial(10);
         strAmt = AbstractDungeon.ascensionLevel >= 18? 3: 2;
-        poisonAmt = calcAscensionSpecial(6);
+        poisonAmt = calcAscensionSpecial(4);
 
         cauldron_x = hb.x;
     }

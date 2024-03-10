@@ -1,0 +1,70 @@
+{
+  "${ModID}:Broccoli": {
+    "NAME": "ブロッコリー",
+    "DESCRIPTION": "筋力 !M! を得る。 NL 敏捷性 !M! を得る。 NL ${ModID}:抹消"
+  },
+  "${ModID}:CandyCane": {
+    "NAME": "キャンディケイン",
+    "DESCRIPTION": "!D! ダメージを与える。 NL ${ModID}:抹消"
+  },
+  "${ModID}:Cookie": {
+    "NAME": "クッキー",
+    "DESCRIPTION": "!B! ブロックを得る。 NL ${ModID}:抹消"
+  },
+  "${ModID}:EnergyDrink": {
+    "NAME": "エナジードリンク",
+    "DESCRIPTION": "{@@}{!M!|1= [E] |2= [E] [E] |3= [E] [E] [E] |@= !M! [E] }を得る。 NL ${ModID}:抹消"
+  },
+  "${ModID}:FastFood": {
+    "NAME": "ファストフード",
+    "DESCRIPTION": "カードを !M! 枚引く。 NL ${ModID}:抹消"
+  },
+  "${ModID}:Banana": {
+    "NAME": "バナナ",
+    "DESCRIPTION": "最大hp !M! を得る。 NL ${ModID}:抹消"
+  },
+  "${ModID}:ChocolateBar": {
+    "NAME": "板チョコ",
+    "DESCRIPTION": "再生 !M! を得る。 NL ${ModID}:抹消"
+  },
+  "${ModID}:Cocktail": {
+    "NAME": "カクテル",
+    "DESCRIPTION": "ランダムな飲めるポーションを1つ入手する。 NL ${ModID}:抹消"
+  },
+  "${ModID}:GoldCandy": {
+    "NAME": "金の飴",
+    "DESCRIPTION": "!M! ゴールドを得る。 NL ${ModID}:抹消"
+  },
+  "${ModID}:Cake": {
+    "NAME": "ケーキ",
+    "DESCRIPTION": "!B! ブロックを得る。 NL あと{@@}{!M!|1= 1ターン|@= !M! ターン}の間、ターン開始時にブロックを失わない。 NL ${ModID}:抹消"
+  },
+  "${ModID}:FrozenYoghurt": {
+    "NAME": "冷凍ヨーグルト",
+    "DESCRIPTION": "${ModID}:金属化 !M! を得る。 NL 弱体 !${ModID}:m2! を受ける。 NL ${ModID}:抹消"
+  },
+  "${ModID}:JawBreaker": {
+    "NAME": "チョコスプレー",
+    "DESCRIPTION": "!D! ダメージを与える。 NL ${ModID}:抹消"
+  },
+  "${ModID}:JellyBeans": {
+    "NAME": "ジェリービーンズ",
+    "DESCRIPTION": "全ての敵に 弱体 !M! を与える。 NL 脱力 !${ModID}:m2! を得る。 NL ${ModID}:抹消"
+  },
+  "${ModID}:Milk": {
+    "NAME": "牛乳",
+    "DESCRIPTION": "アーティファクト !${ModID}:m2! を与える。 NL アーティファクト !M! を得る。 NL ${ModID}:抹消"
+  },
+  "${ModID}:Pepper": {
+    "NAME": "唐辛子",
+    "DESCRIPTION": "筋力 !M! を得る。 NL 敏捷性 !${ModID}:m2! を失う。 NL ${ModID}:抹消"
+  },
+  "${ModID}:PoisonedApple": {
+    "NAME": "毒林檎",
+    "DESCRIPTION": "毒 !M! を与える。 NL !${ModID}:m2! ダメージを受ける。 NL ${ModID}:抹消"
+  },
+  "${ModID}:ChewingGum": {
+    "NAME": "チューインガム",
+    "DESCRIPTION": "カードを !M! 枚引く。 NL {@@}{!M!|1= [E] |2= [E] [E] |3= [E] [E] [E] |@= !M! [E] }を得る。 NL 山札の上に *粘液 を置く。 NL ${ModID}:抹消"
+  }
+}

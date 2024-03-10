@@ -1,0 +1,24 @@
+{
+
+  "${ModID}:FrigidPower": {
+    "NAME": "極寒",
+    "DESCRIPTIONS": [
+      "各ターン、最初に引いたカードに #y凍傷 を付与する。",
+      "各ターン、最初に引いた #b",
+      " 枚のカードに #y凍傷 を付与する。"
+    ]
+  },
+  "${ModID}:LeavePower": {
+    "NAME": "撤退",
+    "DESCRIPTIONS": [
+      "hpが0になったとき、戦闘から離脱する。"
+    ]
+  },
+  "${ModID}:ChillPower": {
+  "NAME": "寒気",
+  "DESCRIPTIONS": [
+    "このターン、攻撃で与えるダメージが #b",
+    " 減少する。"
+  ]
+}
+}

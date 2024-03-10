@@ -3,6 +3,7 @@ package spireMapOverhaul.zones.gremlinTown.monsters;
 import basemod.abstracts.CustomMonster;
 import com.badlogic.gdx.math.MathUtils;
 import com.esotericsoftware.spine.AnimationState;
+import com.evacipated.cardcrawl.mod.stslib.patches.NeutralPowertypePatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.AnimateSlowAttackAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
@@ -11,6 +12,8 @@ import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
+import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.GainStrengthPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import spireMapOverhaul.SpireAnniversary6Mod;
 
@@ -85,10 +88,16 @@ public class GremlinRiderRed extends CustomMonster
                 atb(new AnimateSlowAttackAction(this));
                 atb(new DamageAction(adp(), damage.get(1), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
                 atb(new WaitAction(0.1f));
-                if (asc() < 17)
+                if (asc() < 17) {
                     applyToEnemy(this, new StrengthPower(this, TACTICAL_STRENGTH));
-                else
-                    forAllMonstersLiving(m -> applyToEnemy(m, new StrengthPower(m, TACTICAL_STRENGTH_A17)));
+                }
+                else {
+                    forAllMonstersLiving(m ->  {
+                        AbstractPower gainStrength = new GainStrengthPower(m, TACTICAL_STRENGTH_A17);
+                        gainStrength.type = NeutralPowertypePatch.NEUTRAL;
+                        applyToEnemy(m, gainStrength);
+                    });
+                }
         }
         atb(new RollMoveAction(this));
     }

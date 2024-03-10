@@ -2,11 +2,11 @@
   {
     "PROPER_NAME": "反射",
     "NAMES": ["reflective"],
-    "DESCRIPTION": "增加 #y镜像模仿 的 #y伤害 与 #y格挡"
+    "DESCRIPTION": "增加 #y镜像模仿 的 #y伤害 与 #y格挡 。"
   },
   {
     "PROPER_NAME": "破碎",
     "NAMES": ["shattered"],
-    "DESCRIPTION": "当你打出一张 #y镜像模仿 后， #y破碎的 生物失去 #b10% 的当前生命值（四舍五入）"
+    "DESCRIPTION": "当你打出一张 #y镜像模仿 后， #y破碎的 生物失去 #b10% 的当前生命值（四舍五入）。"
   }
 ]

@@ -2,15 +2,15 @@
   {
     "PROPER_NAME": "潮湿",
     "NAMES": [
-      "damp"
+      "潮湿"
     ],
-    "DESCRIPTION": "潮湿的卡牌具有 #y保留 和 #y消耗 的特点"
+    "DESCRIPTION": "潮湿的卡牌获得 #y保留 和 #y消耗 。"
   },
   {
-    "PROPER_NAME": "电",
+    "PROPER_NAME": "带电",
     "NAMES": [
-      "electric"
+      "带电"
     ],
-    "DESCRIPTION": "打出后，获得 [E] [REMOVE_SPACE] 并移除 #y电 特性"
+    "DESCRIPTION": "打出后，获得 [E] [REMOVE_SPACE] 并移除 #y带电 。"
   }
 ]

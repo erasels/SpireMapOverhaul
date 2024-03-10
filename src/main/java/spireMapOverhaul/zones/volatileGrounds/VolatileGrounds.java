@@ -46,15 +46,15 @@ public class VolatileGrounds extends AbstractZone implements EncounterModifyingZ
         return Arrays.asList(
                 new ZoneEncounter(EXPLOSIVE_SHAPES, 3, () -> new MonsterGroup(
                         new AbstractMonster[]{
-                                new Eruptor(0.0F, 0.0F),
                                 new Eruptor(-400.0F, 0.0F),
                                 new Exploder(-200.0F, 0.0F),
+                                new Eruptor(0.0F, 0.0F),
                                 new Exploder(200.0F, 0.0F)
                         })),
                 new ZoneEncounter(HEAT_BLISTER, 3, () -> new MonsterGroup(
                         new AbstractMonster[]{
-                                new HeatBlister(0.0F, 0.0F),
-                                new Eruptor(-320.0F, 0.0F)
+                                new Eruptor(-320.0F, 0.0F),
+                                new HeatBlister(0.0F, 0.0F)
                         })),
                 new ZoneEncounter(GREMLIN_ARCHMAGE, 3, () -> new MonsterGroup(
                         new AbstractMonster[]{

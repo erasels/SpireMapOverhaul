@@ -1,0 +1,6 @@
+{
+  "${ModID}:ConduitPower": {
+    "NAME": "落雷",
+    "DESCRIPTIONS": ["このターン終了時、 #b", " ダメージを受ける。"]
+  }
+}

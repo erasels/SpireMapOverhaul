@@ -9,16 +9,15 @@ import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.vfx.combat.PowerBuffEffect;
 import spireMapOverhaul.SpireAnniversary6Mod;
-import spireMapOverhaul.util.TexLoader;
 import spireMapOverhaul.zones.Junkyard.actions.DeactivateAction;
 import spireMapOverhaul.zones.Junkyard.actions.GrabCardAction;
 import spireMapOverhaul.zones.Junkyard.actions.RemoveHeldCardAction;
@@ -43,10 +42,14 @@ public class Junkbot extends CustomMonster {
     private static final int A7_HP_MIN = 26;
     private static final int A7_HP_MAX = 31;
     private int grabDamage;
+    private int startActiveChance;
+    private int chanceToDeactivate;
     public boolean isActivated = true;
-    private int chanceToDeactivate = 20;
+    private int START_ACTIVE_CHANCE = 60;
+    private int A17_START_ACTIVE_CHANCE = 70;
+    private int DEACTIVATE_CHANCE = 20;
+    private int A17_DEACTIVATE_CHANCE = 10;
     public ArrayList<AbstractCard> cardsToPreview = new ArrayList<>();
-    private CardGroup g = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 
 
     public Junkbot() {
@@ -68,14 +71,23 @@ public class Junkbot extends CustomMonster {
             this.grabDamage = GRAB_DAMAGE;
         }
         this.damage.add(new DamageInfo(this, this.grabDamage));
+
+        if (AbstractDungeon.ascensionLevel >= 17) {
+            this.startActiveChance = A17_START_ACTIVE_CHANCE;
+            this.chanceToDeactivate = A17_DEACTIVATE_CHANCE;
+        }
+        else {
+            this.startActiveChance = START_ACTIVE_CHANCE;
+            this.chanceToDeactivate = DEACTIVATE_CHANCE;
+        }
     }
 
     @Override
     public void usePreBattleAction() {
         int rand = AbstractDungeon.cardRng.random(0, 100);
-        isActivated = (rand <= 60);
+        isActivated = (rand <= this.startActiveChance);
         if (!isActivated){
-            setImage(TexLoader.getTexture(IMG_INACTIVE));
+            setImage(ImageMaster.loadImage(IMG_INACTIVE));
             addToBot(new GrabCardAction(this, new Wound()));
         }
         getMove(0);
@@ -88,14 +100,11 @@ public class Junkbot extends CustomMonster {
                 AbstractDungeon.actionManager.addToBottom(new AnimateSlowAttackAction(this));
                 AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player, this.damage.get(0), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
                 AbstractDungeon.actionManager.addToBottom(new GrabCardAction(this));
-                if(AbstractDungeon.ascensionLevel >= 17) {
-                    AbstractDungeon.actionManager.addToBottom(new GrabCardAction(this));
-                }
                 AbstractDungeon.actionManager.addToBottom(new DeactivateAction(this, chanceToDeactivate));
                 break;
             case REBOOT_MOVE:
                 isActivated = true;
-                this.img = TexLoader.getTexture(IMG);
+                this.img = ImageMaster.loadImage(IMG);
                 AbstractDungeon.actionManager.addToBottom(new VFXAction(new PowerBuffEffect(this.hb.cX, this.hb.cY, "Rebooted")));
                 AbstractDungeon.actionManager.addToBottom(new RemoveHeldCardAction(this, cardsToPreview.get(0)));
                 break;
