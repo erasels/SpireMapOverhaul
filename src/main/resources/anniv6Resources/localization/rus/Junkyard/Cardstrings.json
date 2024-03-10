@@ -1,5 +1,5 @@
 {
-  "anniv6:Bargain": {
+  "${ModID}:Bargain": {
     "NAME": "Выгодная сделка",
     "DESCRIPTION": "Приобретите один из чудесных товаров торговца!",
     "EXTENDED_DESCRIPTION": [

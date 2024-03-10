@@ -1,5 +1,5 @@
 {
-  "anniv6:BanditLieutenant": {
+  "${ModID}:BanditLieutenant": {
     "MOVES": [
       "Удар дубиной",
       "Вредный дым",
@@ -7,7 +7,7 @@
     ],
     "NAME": "Разбойник-лейтенант"
   },
-  "anniv6:ThiefKing": {
+  "${ModID}:ThiefKing": {
     "MOVES": [
       "Украсть здоровье",
       "Украсть опыт",

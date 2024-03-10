@@ -1,5 +1,5 @@
 {
-  "anniv6:WhisperingWraith": {
+  "${ModID}:WhisperingWraith": {
     "MOVES": [
       "Угасание",
       "Призрачное прикосновение",
@@ -7,7 +7,7 @@
     ],
     "NAME": "Шепчущий призрак"
   },
-  "anniv6:StygianBoar": {
+  "${ModID}:StygianBoar": {
     "MOVES": [
       "Удар клыком",
       "Дыхание огня",
@@ -15,7 +15,7 @@
     ],
     "NAME": "Стигийский вепрь"
   },
-  "anniv6:Hexasnake": {
+  "${ModID}:Hexasnake": {
     "MOVES": [
       "Змеиный взгляд",
       "Ядовитый укус",
@@ -23,20 +23,20 @@
     ],
     "NAME": "Гексазмей"
   },
-  "anniv6:GraftedWorm": {
+  "${ModID}:GraftedWorm": {
     "MOVES": [
       "Клинок из листьев"
     ],
     "NAME": "Привитый червь"
   },
-  "anniv6:DreadMoth": {
+  "${ModID}:DreadMoth": {
     "MOVES": [
       "Крылатая палата",
       "Грозная  волна"
     ],
     "NAME": "Ужасный мотылек"
   },
-  "anniv6:OrbOfFire": {
+  "${ModID}:OrbOfFire": {
     "MOVES": [
       "Огненный выстрел",
       "Вспышка",
@@ -44,7 +44,7 @@
     ],
     "NAME": "Сфера огня"
   },
-  "anniv6:LivingStormcloud": {
+  "${ModID}:LivingStormcloud": {
     "MOVES": [
       "Разряд",
       "Порыв ветра",
@@ -52,7 +52,7 @@
     ],
     "NAME": "Живая грозовая туча"
   },
-  "anniv6:OpulentOffering": {
+  "${ModID}:OpulentOffering": {
     "MOVES": [
       "Удар кубком",
       "Монетный шквал",
@@ -61,7 +61,7 @@
     ],
     "NAME": "Роскошное предложение"
   },
-  "anniv6:ShimmeringMirage": {
+  "${ModID}:ShimmeringMirage": {
     "MOVES": [
       "Сияние",
       "Свечение",
@@ -69,7 +69,7 @@
     ],
     "NAME": "Мерцающий мираж"
   },
-  "anniv6:Hatchling": {
+  "${ModID}:Hatchling": {
     "MOVES": [
       "Только что вылупился",
       "Клевать",
@@ -78,7 +78,7 @@
     ],
     "NAME": "Вылупление"
   },
-  "anniv6:CroakingBrute": {
+  "${ModID}:CroakingBrute": {
     "MOVES": [
       "Клевать",
       "Бычий натиск"
@@ -86,7 +86,7 @@
     "NAME": "Кричащий зверь",
     "DIALOG": [ "*КИИИК*" ]
   },
-  "anniv6:CroakingPelter": {
+  "${ModID}:CroakingPelter": {
     "MOVES": [
       "Клевать",
       "Бросок камня"
@@ -94,7 +94,7 @@
     "NAME": "Кричащий Пельтер",
     "DIALOG": [ "кИирК" ]
   },
-  "anniv6:CroakingSeer": {
+  "${ModID}:CroakingSeer": {
     "MOVES": [
       "Клевать",
       "Защитная оболочка"
@@ -102,7 +102,7 @@
     "NAME": "Кричащий сир",
     "DIALOG": [ "*треск*" ]
   },
-  "anniv6:Hydra": {
+  "${ModID}:Hydra": {
     "MOVES": [
       "Хвостовая плеть",
       "Смахнуть",
@@ -110,7 +110,7 @@
     ],
     "NAME": "Гидра"
   },
-  "anniv6:VoidReaper": {
+  "${ModID}:VoidReaper": {
     "MOVES": [
       "Вырезать будущее",
       "Жатва",
@@ -118,7 +118,7 @@
     ],
     "NAME": "Жнец пустоты"
   },
-  "anniv6:VoidCorruption": {
+  "${ModID}:VoidCorruption": {
     "MOVES": [
       "Иссушение энергии",
       "Испорченное прикосновение",
@@ -128,7 +128,7 @@
     ],
     "NAME": "Пустотное разложение"
   },
-  "anniv6:VoidBeast": {
+  "${ModID}:VoidBeast": {
     "MOVES": [
       "Развращающий укус",
       "Взгляд пустоты",
@@ -136,7 +136,7 @@
     ],
     "NAME": "Зверь пустоты"
   },
-  "anniv6:WarGolem": {
+  "${ModID}:WarGolem": {
     "MOVES": [
       " Ищущий сердца",
       " Щитолом",
@@ -144,7 +144,7 @@
     ],
     "NAME": "Голем войны"
   },
-  "anniv6:ElementalPortal": {
+  "${ModID}:ElementalPortal": {
     "MOVES": [
       "Портал",
       "Укрепляющее восстановление",
@@ -153,7 +153,7 @@
     ],
     "NAME": "Элементальный портал"
   },
-  "anniv6:UnboundAbyssal": {
+  "${ModID}:UnboundAbyssal": {
     "MOVES": [
       "Осадок",
       "Не вернусь",
@@ -162,7 +162,7 @@
     "NAME": "Несвязанный абиссал",
     "DIALOG": [ "Не... вернусь... назад...!" ]
   },
-  "anniv6:PrimevalQueen": {
+  "${ModID}:PrimevalQueen": {
     "MOVES": [
       "Коса",
       "Укрепить панцирь",
@@ -170,7 +170,7 @@
     ],
     "NAME": "Первобытная королева"
   },
-  "anniv6:RoyalProtector": {
+  "${ModID}:RoyalProtector": {
     "MOVES": [
       "Панцирь",
       "Горящий плевок",
@@ -179,7 +179,7 @@
     ],
     "NAME": "Королевский защитник"
   },
-  "anniv6:Behemoth": {
+  "${ModID}:Behemoth": {
     "MOVES": [
       "Выжидать",
       "Эволюционировать",

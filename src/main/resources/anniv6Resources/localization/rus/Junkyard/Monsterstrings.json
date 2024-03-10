@@ -1,12 +1,12 @@
 {
-  "anniv6:Junkbot": {
+  "${ModID}:Junkbot": {
     "MOVES": [
       "Захват",
       "Перезагрузка"
     ],
     "NAME": "Хламобот"
   },
-  "anniv6:Peddler": {
+  "${ModID}:Peddler": {
     "MOVES": [
       "Бесплатные образцы",
       "Рыться",

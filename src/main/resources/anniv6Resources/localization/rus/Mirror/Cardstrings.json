@@ -1,5 +1,5 @@
 {
-  "anniv6:MirrorMove": {
+  "${ModID}:MirrorMove": {
     "NAME": "Зеркальное Движение",
     "DESCRIPTION": "Эфирная. NL Сжигается. NL (Становится случайным предыдущим приемом противника)",
     "EXTENDED_DESCRIPTION": [

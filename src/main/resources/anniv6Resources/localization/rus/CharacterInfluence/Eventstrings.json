@@ -1,5 +1,5 @@
 {
-  "anniv6:CharacterVisit": {
+  "${ModID}:CharacterVisit": {
     "NAME": "Рядом бой",
     "DESCRIPTIONS": [
       "Неподалеку происходит драка. У одного из дерущихся есть #yвызывающая #yдоверия аура",

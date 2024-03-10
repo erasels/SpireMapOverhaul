@@ -1,18 +1,18 @@
 {
-  "anniv6:volEruptPower": {
+  "${ModID}:volEruptPower": {
     "NAME": "Подрыв",
     "DESCRIPTIONS": [ "После того, как вы сыграете еще #b{0} карты, этот противник умрет и нанесет #r{1} урона",
       "После того как вы сыграете еще #b{0} карт, этот противник умрет и нанесет #r{1} урона."]
   },
-  "anniv6:volUnstablePower": {
+  "${ModID}:volUnstablePower": {
     "NAME": "Нестабильный",
     "DESCRIPTIONS": [ "В свой ход наносит #b{0} урона ВСЕМ." ]
   },
-  "anniv6:volChargedPower": {
+  "${ModID}:volChargedPower": {
     "NAME": "Заряженный",
     "DESCRIPTIONS": [ "После смерти наносит #b{0} урона ВСЕМ." ]
   },
-  "anniv6:volExplodePlusPower": {
+  "${ModID}:volExplodePlusPower": {
     "NAME": "Взрыв+",
     "DESCRIPTIONS": ["Умирает и наносит #b{0} урона за #r{1} ходов",
       "Умирает и наносит #b{0} урона за #r{1} ход."]

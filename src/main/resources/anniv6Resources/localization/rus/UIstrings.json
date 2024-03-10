@@ -1,5 +1,5 @@
 {
-  "anniv6:ConfigMenuText": {
+  "${ModID}:ConfigMenuText": {
     "TEXT": [
       "Spire Biomes",
       "StS Modding Community",
@@ -10,46 +10,46 @@
       "Включить шейдеры"
     ]
   },
-  "anniv6:SingleCardReward": {
+  "${ModID}:SingleCardReward": {
     "TEXT": [
       "[Карта] ",
       "Подсказка: ПКМ для детального обозра карты!"
     ]
   },
-  "anniv6:HealReward": {
+  "${ModID}:HealReward": {
     "TEXT": [
       "Лечение "
     ]
   },
-  "anniv6:AnyColorCardReward": {
+  "${ModID}:AnyColorCardReward": {
     "TEXT": [
       "Добавьте карту любого цвета",
       "Выберите карту"
     ]
   },
-  "anniv6:CombatExplainButton": {
+  "${ModID}:CombatExplainButton": {
     "TEXT": [
       "Модификатор Сражения"
     ]
   },
-  "anniv6:RunHistoryScreen": {
+  "${ModID}:RunHistoryScreen": {
     "TEXT": [
       "Биом: {0}"
     ]
   },
-  "anniv6:ZonePotionsPatch": {
+  "${ModID}:ZonePotionsPatch": {
     "TEXT": [
       "Биом:",
       "Зелья, которые можно получить только в определенном биоме."
     ]
   },
-  "anniv6:CharacterSelectScreen": {
+  "${ModID}:CharacterSelectScreen": {
     "TEXT": [
       "Включить Спавн Биомов",
       "Добавляет биомы в Шпиль, которые изменяют части карты и наполняют ее новым содержанием."
     ]
   },
-  "anniv6:ZoneTooltip": {
+  "${ModID}:ZoneTooltip": {
     "TEXT": [
       "#pАвтор: {0}"
     ]

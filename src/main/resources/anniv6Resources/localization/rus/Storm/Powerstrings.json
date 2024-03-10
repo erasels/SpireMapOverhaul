@@ -1,5 +1,5 @@
 {
-  "anniv6:ConduitPower": {
+  "${ModID}:ConduitPower": {
     "NAME": "Трубопровод",
     "DESCRIPTIONS": [ "В конце своего хода цель получает #b", " блокируемый урон." ]
   }

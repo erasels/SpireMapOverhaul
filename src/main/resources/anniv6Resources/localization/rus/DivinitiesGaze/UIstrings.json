@@ -1,12 +1,12 @@
 {
-  "anniv6:DivinitiesGaze": {
+  "${ModID}:DivinitiesGaze": {
     "TEXT": [
       "Взгляд божеств",
       "К вам спустились могущественные божества! Достойны ли вы их внимания и сможете ли выстоять? NL NL В начале боя получите #gсильную #gкарту и некоторые #rстатусы от случайного божества",
       "Shammy, NoelleDevo, PitohuiArt"
     ]
   },
-  "anniv6:DivinitiesGaze_Divinity_Eclectic": {
+  "${ModID}:DivinitiesGaze_Divinity_Eclectic": {
     "TEXT": [
       "Благодаря знаниям, прогресс.",
       "Благодаря прогрессу, знания.",
@@ -23,7 +23,7 @@
       "SELECT_TEXT": "Выберите карту для добавления в колоду."
     }
   },
-  "anniv6:DivinitiesGaze_Divinity_End": {
+  "${ModID}:DivinitiesGaze_Divinity_End": {
     "TEXT": [
       "..."
     ],
@@ -38,7 +38,7 @@
       "SELECT_TEXT": "Выберите карту для удалия из колоды."
     }
   },
-  "anniv6:DivinitiesGaze_Divinity_Jurors": {
+  "${ModID}:DivinitiesGaze_Divinity_Jurors": {
     "TEXT": [
       "Вы осуждены.",
       "Во имя справедливости!",
@@ -53,7 +53,7 @@
       "EVENT_REJECT_TEXT": " Правосудие свершилось, и чаша весов склонилась. Присяжные покидают зал суда. Приговор не был вынесен. NL NL Вы #gневиновный... или #rковарный? Возможно вам удалось обмануть их. NL NL ... NL NL Возможно они знают."
     }
   },
-  "anniv6:DivinitiesGaze_Divinity_Primordial": {
+  "${ModID}:DivinitiesGaze_Divinity_Primordial": {
     "TEXT": [
       "...",
       "Рости...",
@@ -72,7 +72,7 @@
       "SELECT_TEXT": "Выбери карту для копирования."
     }
   },
-  "anniv6:DivinitiesGaze_Divinity_Torch": {
+  "${ModID}:DivinitiesGaze_Divinity_Torch": {
     "TEXT": [
       "Я с тобой!",
       "Свет во тьме.",

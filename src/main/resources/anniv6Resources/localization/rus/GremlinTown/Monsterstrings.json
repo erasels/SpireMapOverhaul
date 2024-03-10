@@ -1,78 +1,78 @@
 {
-  "anniv6:GremlinRiderRed": {
+  "${ModID}:GremlinRiderRed": {
     "MOVES": [
       "Подготовка",
       "Тактическая атака"
     ],
     "NAME": "Гремлин-наездник"
   },
-  "anniv6:GremlinRiderBlue": {
+  "${ModID}:GremlinRiderBlue": {
     "MOVES": [
       "Подготовка",
       "Тактическая атака"
     ],
     "NAME": "Гремлин-наездник"
   },
-  "anniv6:GremlinRiderGreen": {
+  "${ModID}:GremlinRiderGreen": {
     "MOVES": [
       "Подготовка",
       "Тактическая атака"
     ],
     "NAME": "Гремлин-наездник"
   },
-  "anniv6:GremlinRockTosser": {
+  "${ModID}:GremlinRockTosser": {
     "MOVES": [
       "Бросить"
     ],
     "NAME": "Гремлин Рокер"
   },
-  "anniv6:GremlinBrute": {
+  "${ModID}:GremlinBrute": {
     "MOVES": [
       "Хлопок",
       "Сломать"
     ],
     "NAME": "Брутальный Гремлин"
   },
-  "anniv6:GremlinHealer": {
+  "${ModID}:GremlinHealer": {
     "MOVES": [
       "Лечить",
       "Атаковать"
     ],
     "NAME": "Гремлин-целитель"
   },
-  "anniv6:ChubbyGremlin": {
+  "${ModID}:ChubbyGremlin": {
     "MOVES": [
       "Сесть"
     ],
     "NAME": "Пухлый гремлин"
   },
-  "anniv6:ArmoredGremlin": {
+  "${ModID}:ArmoredGremlin": {
     "MOVES": [
       "Удар Телом"
     ],
     "NAME": "Бронированный гремлин"
   },
-  "anniv6:GremlinBarbarian": {
+  "${ModID}:GremlinBarbarian": {
     "MOVES": [
       "Ажиотаж"
     ],
     "NAME": "Гремлин Варвар"
   },
-  "anniv6:GremlinAssassin": {
+  "${ModID}:GremlinAssassin": {
     "MOVES": [
       "Сухожилие",
       "Подрыв"
     ],
     "NAME": "Гремлин-ассасин"
   },
-  "anniv6:GremlinJerk": {
+  "${ModID}:GremlinJerk": {
     "MOVES": [
       "Сухожилие",
       "Подрыв"
     ],
     "NAME": "Гремлин Придурок"
   },
-  "anniv6:GremlinNib": {
+  "${ModID}:GremlinNib": {
     "MOVES": [
       "Шлепок",
       "Двойной удар",
@@ -84,7 +84,7 @@
     ],
     "NAME": "Гремлин Ниб"
   },
-  "anniv6:GremlinElder": {
+  "${ModID}:GremlinElder": {
     "MOVES": [
       "Шлепок",
       "Пощечина",
@@ -98,7 +98,7 @@
     ],
     "NAME": "Гремлин Старейшина"
   },
-  "anniv6:GremlinCannon": {
+  "${ModID}:GremlinCannon": {
     "MOVES": [
       "Перезарядка",
       "Огонь!",

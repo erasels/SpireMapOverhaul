@@ -1,12 +1,12 @@
 {
-  "anniv6:Eruptor": {
+  "${ModID}:Eruptor": {
     "MOVES": [
       "Синяк",
       "Нарыв"
     ],
     "NAME": "Изверг"
   },
-  "anniv6:UnstableSunstone": {
+  "${ModID}:UnstableSunstone": {
     "MOVES": [
       "Дестабилизация",
       "Прижечь",
@@ -14,7 +14,7 @@
     ],
     "NAME": "Нестабильный солнечный камень"
   },
-  "anniv6:SunStoneShard": {
+  "${ModID}:SunStoneShard": {
     "MOVES": [
       "Заряд",
       "Прижечь",
@@ -22,14 +22,14 @@
     ],
     "NAME": "Осколок солнечного камня"
   },
-  "anniv6:HeatBlister": {
+  "${ModID}:HeatBlister": {
     "MOVES": [
       "Раздавить",
       "Фосфорная желчь"
     ],
     "NAME": "Тепловой волдырь"
   },
-  "anniv6:GremlinArchmage": {
+  "${ModID}:GremlinArchmage": {
     "MOVES": [
       "Призыв фигур",
       "Огненный шар",

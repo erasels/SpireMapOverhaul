@@ -1,35 +1,35 @@
 {
-  "anniv6:LouseMilk": {
+  "${ModID}:LouseMilk": {
     "NAME": "Вшивое молоко",
     "DESCRIPTIONS": [
       "Возьмите #b{0} карт и получите #b{1} Энергии."
     ]
   },
-  "anniv6:PreerelxsBlueRibbon": {
+  "${ModID}:PreerelxsBlueRibbon": {
     "NAME": "Голубая лента Преерелкса",
     "DESCRIPTIONS": [
       "Получить #b{0} #yБодрости."
     ]
   },
-  "anniv6:RitualBlood": {
+  "${ModID}:RitualBlood": {
     "NAME": "Ритуальная кровь",
     "DESCRIPTIONS": [
       "#rОслабляет развращенное сердце."
     ]
   },
-  "anniv6:NoxiousBrew": {
+  "${ModID}:NoxiousBrew": {
     "NAME": "Вредное варево",
     "DESCRIPTIONS": [
       "Наложить #b{0} #yЯда случайному врагу в конце вашего хода."
     ]
   },
-  "anniv6:MushroomSoup": {
+  "${ModID}:MushroomSoup": {
     "NAME": "Мухоморовый суп",
     "DESCRIPTIONS": [
       "Получить #b{0} #yВременного #yHP в конце вашего хода."
     ]
   },
-  "anniv6:GremsFire": {
+  "${ModID}:GremsFire": {
     "NAME": "Гремлинский огонь",
     "DESCRIPTIONS": [
       "Нанести #b{0} урона ВСЕМ врагам в конце вашего хода."

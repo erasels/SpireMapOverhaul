@@ -1,5 +1,5 @@
 {
-  "anniv6:StoneFragment": {
+  "${ModID}:StoneFragment": {
     "NAME": "Фрагмент стоячего камня",
     "FLAVOR": "Его фрагмент излучает мощную ауру, но кажется, что он просто недосягаем.",
     "DESCRIPTIONS": [

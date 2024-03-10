@@ -1,12 +1,12 @@
 {
-  "anniv6:GremlinCamp": {
+  "${ModID}:GremlinCamp": {
     "TEXT": [
       "Лагерь Гремлинов",
       "Большая группа #rгремлинов захватила это место. Смотрите в оба, вы не сможете здесь заснуть.",
       "(Gk) erasels"
     ]
   },
-  "anniv6:GCEncounterNames": {
+  "${ModID}:GCEncounterNames": {
     "TEXT": [
       "Гремлинские драчуны",
       "Гремлин Президент и гвардейцы",
@@ -14,7 +14,7 @@
       "Стая одичавших гремлинов"
     ]
   },
-  "anniv6:ScavengeOption": {
+  "${ModID}:ScavengeOption": {
     "TEXT": [
       "Утилизировать",
       "Получить %s-%s золота."

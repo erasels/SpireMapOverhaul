@@ -1,5 +1,5 @@
 {
-  "anniv6:GremlinCook": {
+  "${ModID}:GremlinCook": {
     "MOVES": [
       "Пускай готовит",
       "Полевой паек",
@@ -11,7 +11,7 @@
       "Ешьте, ребята!"
     ]
   },
-  "anniv6:GremlinDog": {
+  "${ModID}:GremlinDog": {
     "MOVES": [
       "Ядовитый клык",
       "Защитный кусь"
