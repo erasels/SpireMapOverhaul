@@ -7,7 +7,8 @@
       "Enabled",
       "Make biome icons larger but cut off by the biome's shape.",
       "Don't repeat biomes during a run.",
-      "Enable shaders"
+      "Enable shaders",
+      "Biomes per Act"
     ]
   },
   "${ModID}:SingleCardReward": {
@@ -46,8 +47,7 @@
   "${ModID}:CharacterSelectScreen": {
     "TEXT": [
       "Enable Spawning Biomes",
-      "Adds biomes to the Spire, which change parts of the map to have new content.",
-      "Biomes per Act"
+      "Adds biomes to the Spire, which change parts of the map to have new content."
     ]
   },
   "${ModID}:ZoneTooltip": {
