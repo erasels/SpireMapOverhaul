@@ -120,6 +120,7 @@ public class SpireAnniversary6Mod implements
         public static AbstractCard.CardTags GREMLIN;
     }
 
+    private static final String[] ZONE_OPTIONS = {"0-1", "1-2", "2-3", "3-4", "4-5"};
     public static SpireAnniversary6Mod thismod;
     public static SpireConfig modConfig = null;
     public static boolean currentRunActive = false;
@@ -202,6 +203,7 @@ public class SpireAnniversary6Mod implements
         try {
             Properties defaults = new Properties();
             defaults.put("active", "TRUE");
+            defaults.put("zoneCountIndex", "3");
             defaults.put("noRepeatZones", "TRUE");
             defaults.put("largeIconsMode", "FALSE");
             defaults.put("enableShaders", "TRUE");
@@ -815,6 +817,33 @@ public class SpireAnniversary6Mod implements
                 e.printStackTrace();
             }
         }
+    }
+
+    public static int getZoneCountIndex() {
+        return modConfig == null ? 3 : modConfig.getInt("zoneCountIndex");
+    }
+
+    public static void setZoneCountIndex(int index) {
+        if (modConfig != null) {
+            modConfig.setInt("zoneCountIndex", index);
+            try {
+                modConfig.save();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static void incrementZoneCountIndex() {
+        int currentIndex = getZoneCountIndex();
+        int newIndex = (currentIndex + 1) % ZONE_OPTIONS.length;
+        setZoneCountIndex(newIndex);
+    }
+
+    public static void decrementZoneCountIndex() {
+        int currentIndex = getZoneCountIndex();
+        int newIndex = (currentIndex - 1 + ZONE_OPTIONS.length) % ZONE_OPTIONS.length;
+        setZoneCountIndex(newIndex);
     }
 
     public static boolean getNoRepeatZonesConfig() {

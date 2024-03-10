@@ -46,7 +46,8 @@
   "${ModID}:CharacterSelectScreen": {
     "TEXT": [
       "Enable Spawning Biomes",
-      "Adds biomes to the Spire, which change parts of the map to have new content."
+      "Adds biomes to the Spire, which change parts of the map to have new content.",
+      "Biomes per Act"
     ]
   },
   "${ModID}:ZoneTooltip": {
