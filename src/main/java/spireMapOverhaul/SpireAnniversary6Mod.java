@@ -28,6 +28,8 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.AbstractEvent;
 import com.megacrit.cardcrawl.helpers.FontHelper;
+import com.megacrit.cardcrawl.helpers.ImageMaster;
+import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
@@ -120,6 +122,7 @@ public class SpireAnniversary6Mod implements
         public static AbstractCard.CardTags GREMLIN;
     }
 
+    private static final String[] ZONE_OPTIONS = {"0-1", "1-2", "2-3", "3-4", "4-5"};
     public static SpireAnniversary6Mod thismod;
     public static SpireConfig modConfig = null;
     public static boolean currentRunActive = false;
@@ -202,6 +205,7 @@ public class SpireAnniversary6Mod implements
         try {
             Properties defaults = new Properties();
             defaults.put("active", "TRUE");
+            defaults.put("zoneCountIndex", "3");
             defaults.put("noRepeatZones", "TRUE");
             defaults.put("largeIconsMode", "FALSE");
             defaults.put("enableShaders", "TRUE");
@@ -630,6 +634,8 @@ public class SpireAnniversary6Mod implements
     private ModLabeledToggleButton shaderCheckbox;
     private static final float SHADER_CHECKBOX_X = 400f;
     private static final float SHADER_CHECKBOX_Y = 440f;
+    private static final float BIOME_AMOUNT_X = 405f;
+    private static final float BIOME_AMOUNT_Y = 395f;
 
     private void initializeConfig() {
         UIStrings configStrings = CardCrawlGame.languagePack.getUIString(makeID("ConfigMenuText"));
@@ -678,6 +684,66 @@ public class SpireAnniversary6Mod implements
                 (label) -> {},
                 (button) -> setShaderConfig(button.enabled));
         settingsPanel.addUIElement(shaderCheckbox);
+        IUIElement biomeAmountOption = new IUIElement() {
+            @Override
+            public void render(SpriteBatch sb) {
+                // Render the biome amount option label
+                FontHelper.renderFontLeft(sb, FontHelper.tipBodyFont, configStrings.TEXT[7], BIOME_AMOUNT_X * Settings.xScale, BIOME_AMOUNT_Y * Settings.yScale, Settings.CREAM_COLOR);
+
+                float leftArrowX = BIOME_AMOUNT_X;
+                float rightArrowX = BIOME_AMOUNT_X + 95f;
+                float arrowY = BIOME_AMOUNT_Y - 64;
+                float arrowWidth = 48f * Settings.scale;
+                float arrowHeight = 48f * Settings.scale;
+
+                if (InputHelper.mX >= leftArrowX && InputHelper.mX <= leftArrowX + arrowWidth && InputHelper.mY >= arrowY && InputHelper.mY <= arrowY + arrowHeight) {
+                    sb.setColor(Color.WHITE);
+                } else {
+                    sb.setColor(Color.LIGHT_GRAY);
+                }
+                sb.draw(ImageMaster.CF_LEFT_ARROW, leftArrowX, arrowY, 24f, 24f, 48f, 48f, Settings.scale, Settings.scale, 0f, 0, 0, 48, 48, false, false);
+
+                // Render the current biome amount
+                FontHelper.renderFontCentered(sb, FontHelper.tipBodyFont, ZONE_OPTIONS[getZoneCountIndex()], BIOME_AMOUNT_X + 70f, BIOME_AMOUNT_Y - 40f, Settings.BLUE_TEXT_COLOR);
+
+                // Render the right arrow
+                if (InputHelper.mX >= rightArrowX && InputHelper.mX <= rightArrowX + arrowWidth && InputHelper.mY >= arrowY && InputHelper.mY <= arrowY + arrowHeight) {
+                    sb.setColor(Color.WHITE);
+                } else {
+                    sb.setColor(Color.LIGHT_GRAY);
+                }
+                sb.draw(ImageMaster.CF_RIGHT_ARROW, rightArrowX, arrowY, 24f, 24f, 48f, 48f, Settings.scale, Settings.scale, 0f, 0, 0, 48, 48, false, false);
+            }
+
+            @Override
+            public void update() {
+                // Handle input for changing the biome amount
+                float leftArrowX = BIOME_AMOUNT_X;
+                float rightArrowX = BIOME_AMOUNT_X + 95f;
+                float arrowY = BIOME_AMOUNT_Y - 64;
+                float arrowWidth = 48f * Settings.scale;
+                float arrowHeight = 48f * Settings.scale;
+
+                if (InputHelper.justClickedLeft) {
+                    if (InputHelper.mX >= leftArrowX && InputHelper.mX <= leftArrowX + arrowWidth && InputHelper.mY >= arrowY && InputHelper.mY <= arrowY + arrowHeight) {
+                        decrementZoneCountIndex();
+                    } else if (InputHelper.mX >= rightArrowX && InputHelper.mX <= rightArrowX + arrowWidth && InputHelper.mY >= arrowY && InputHelper.mY <= arrowY + arrowHeight) {
+                        incrementZoneCountIndex();
+                    }
+                }
+            }
+
+            @Override
+            public int renderLayer() {
+                return 2;
+            }
+
+            @Override
+            public int updateOrder() {
+                return 0;
+            }
+        };
+        settingsPanel.addUIElement(biomeAmountOption);
 
         BaseMod.registerModBadge(badge, configStrings.TEXT[0], configStrings.TEXT[1], configStrings.TEXT[2], settingsPanel);
     }
@@ -815,6 +881,33 @@ public class SpireAnniversary6Mod implements
                 e.printStackTrace();
             }
         }
+    }
+
+    public static int getZoneCountIndex() {
+        return modConfig == null ? 3 : modConfig.getInt("zoneCountIndex");
+    }
+
+    public static void setZoneCountIndex(int index) {
+        if (modConfig != null) {
+            modConfig.setInt("zoneCountIndex", index);
+            try {
+                modConfig.save();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static void incrementZoneCountIndex() {
+        int currentIndex = getZoneCountIndex();
+        int newIndex = (currentIndex + 1) % ZONE_OPTIONS.length;
+        setZoneCountIndex(newIndex);
+    }
+
+    public static void decrementZoneCountIndex() {
+        int currentIndex = getZoneCountIndex();
+        int newIndex = (currentIndex - 1 + ZONE_OPTIONS.length) % ZONE_OPTIONS.length;
+        setZoneCountIndex(newIndex);
     }
 
     public static boolean getNoRepeatZonesConfig() {
