@@ -13,9 +13,7 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.random.Random;
-import com.megacrit.cardcrawl.rooms.EventRoom;
-import com.megacrit.cardcrawl.rooms.MonsterRoom;
-import com.megacrit.cardcrawl.rooms.ShopRoom;
+import com.megacrit.cardcrawl.rooms.*;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.zoneInterfaces.CombatModifyingZone;
@@ -107,12 +105,16 @@ public class Wildfire extends AbstractZone implements CombatModifyingZone, Rewar
     }
 
     @Override
-    public void replaceRooms(Random rng) {
-        //Replace all event and shop rooms with monster rooms
-        for (MapRoomNode node : this.nodes) {
-            if (node.room != null && (EventRoom.class.equals(node.room.getClass()) || ShopRoom.class.equals(node.room.getClass()))) {
-                node.setRoom(new MonsterRoom());
-            }
+    public void distributeRooms(Random rng, ArrayList<AbstractRoom> roomList) {
+        // This makes all rooms in the zone either monster rooms (which could be elites) or campfires.
+        // See the comment in Monster Zoo's distributeRooms method for a more detailed explanation of this approach.
+        int half = nodes.size() / 2;
+        int i;
+        for (i = 0; i < half; ++i) {
+            nodes.get(i).setRoom(roomOrDefault(roomList, (room) -> room instanceof MonsterRoom || room instanceof RestRoom, MonsterRoom::new));
+        }
+        for (; i < nodes.size(); ++i) {
+            nodes.get(i).setRoom(new MonsterRoom());
         }
     }
 
