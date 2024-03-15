@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.events.shrines.AccursedBlacksmith;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.MetallicizePower;
@@ -135,10 +136,10 @@ public class SmithsFolly extends AbstractZone implements CombatModifyingZone, On
 
         // Define the rarity order
         List<AbstractCard.CardRarity> rarityOrder = Arrays.asList(
-                AbstractCard.CardRarity.SPECIAL,
                 AbstractCard.CardRarity.RARE,
                 AbstractCard.CardRarity.UNCOMMON,
                 AbstractCard.CardRarity.COMMON,
+                AbstractCard.CardRarity.SPECIAL,
                 AbstractCard.CardRarity.BASIC
         );
 
@@ -174,6 +175,13 @@ public class SmithsFolly extends AbstractZone implements CombatModifyingZone, On
     @Override
     public float zoneSpecificEventRate() {
         return 0.4f;
+    }
+
+    @Override
+    public Set<String> addSpecificEvents() {
+        Set<String> baseGameEvents = new HashSet<>();
+        baseGameEvents.add(AccursedBlacksmith.ID);
+        return baseGameEvents;
     }
 
 }
