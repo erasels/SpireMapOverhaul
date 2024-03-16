@@ -38,13 +38,13 @@ public class RansackedForge extends AbstractImageEvent {
             this.imageEventText.setDialogOption(OPTIONS[0]);
         } else if (AbstractDungeon.actNum == 3 && hasStrike) {
             SearingBlow upgradedSearingBlow = new SearingBlow();
-            for (int i = 0; i < 4; i++) {
+            for (int i = 0; i < 2; i++) {
                 upgradedSearingBlow.upgrade();
             }
             this.imageEventText.setDialogOption(OPTIONS[1], upgradedSearingBlow);
         } else {
             SearingBlow upgradedSearingBlow = new SearingBlow();
-            for (int i = 0; i < 4; i++) {
+            for (int i = 0; i < 2; i++) {
                 upgradedSearingBlow.upgrade();
             }
             this.imageEventText.setDialogOption(OPTIONS[2], upgradedSearingBlow);
@@ -105,7 +105,7 @@ public class RansackedForge extends AbstractImageEvent {
     }
     private void handleSearingBlowOption() {
         if (AbstractDungeon.player.masterDeck.findCardById(SearingBlow.ID) != null) {
-            // Upgrade Searing Blow four times
+            // Upgrade Searing Blow two times
             upgradeSearingBlow(2);
             this.imageEventText.updateBodyText(DESCRIPTIONS[1]);
         } else if (AbstractDungeon.actNum == 3 && hasStrike) {
