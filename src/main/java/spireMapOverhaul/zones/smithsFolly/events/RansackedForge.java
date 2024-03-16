@@ -106,17 +106,15 @@ public class RansackedForge extends AbstractImageEvent {
     private void handleSearingBlowOption() {
         if (AbstractDungeon.player.masterDeck.findCardById(SearingBlow.ID) != null) {
             // Upgrade Searing Blow four times
-            upgradeSearingBlow(4);
+            upgradeSearingBlow(2);
             this.imageEventText.updateBodyText(DESCRIPTIONS[1]);
         } else if (AbstractDungeon.actNum == 3 && hasStrike) {
-            // Replace all Strikes with Searing Blow+4
+            // Replace all Strikes with Searing Blow+2
             replaceStrikesWithSearingBlow();
             this.imageEventText.updateBodyText(DESCRIPTIONS[4]);
         } else {
-            // Obtain Searing Blow+4
+            // Obtain Searing Blow+2
             AbstractCard searingBlow = CardLibrary.getCard(SearingBlow.ID).makeCopy();
-            searingBlow.upgrade();
-            searingBlow.upgrade();
             searingBlow.upgrade();
             searingBlow.upgrade();
             AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(searingBlow, (float)Settings.WIDTH / 2.0F, (float)Settings.HEIGHT / 2.0F));
@@ -147,11 +145,9 @@ public class RansackedForge extends AbstractImageEvent {
         // Remove all Strike cards
         AbstractDungeon.player.masterDeck.group.removeIf(card -> card.tags.contains(AbstractCard.CardTags.STARTER_STRIKE));
 
-        // Add the same number of Searing Blow+4 cards
+        // Add the same number of Searing Blow+2 cards
         for (int i = 0; i < strikeCount; i++) {
             AbstractCard searingBlow = CardLibrary.getCard(SearingBlow.ID).makeCopy();
-            searingBlow.upgrade();
-            searingBlow.upgrade();
             searingBlow.upgrade();
             searingBlow.upgrade();
             AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(searingBlow, (float)Settings.WIDTH / 2.0F, (float)Settings.HEIGHT / 2.0F));
