@@ -87,10 +87,13 @@ public class BetterMapGenerator {
 
                 while (!possibleZones.isEmpty() && activeZones.size() < targetZoneCount) {
                     zone = possibleZones.remove(rng.random(possibleZones.size() - 1)).copy();
+
                     if (zone.generateMapArea(planner)) {
                         activeZones.add(zone);
+                        zoneRate = activeZones.size() < 3 ? 1.0f : activeZones.size() == 3 ? 0.5f : 0.0f;
                         continue outer;
-                    } else {
+                    }
+                    else {
                         mapGenLogger.info("Failed to place zone.");
                     }
                 }
