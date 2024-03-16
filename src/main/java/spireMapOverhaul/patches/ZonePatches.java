@@ -77,24 +77,6 @@ public class ZonePatches {
             }
         }
 
-        @SpireInsertPatch(locator = PostRenderCombatBackgroundLocator.class, localvars = {"sb"})
-        public static void PostRenderCombatBackground(SpriteBatch sb) {
-            if (AbstractDungeon.rs == AbstractDungeon.RenderScene.NORMAL) {
-                AbstractZone zone = Fields.zone.get(AbstractDungeon.currMapNode);
-                if (zone instanceof RenderableZone) {
-                    ((RenderableZone) zone).postRenderCombatBackground(sb);
-                }
-            }
-        }
-
-        private static class PostRenderCombatBackgroundLocator extends SpireInsertLocator {
-            @Override
-            public int[] Locate(CtBehavior ctBehavior) throws Exception {
-                Matcher finalMatcher = new Matcher.MethodCallMatcher(AbstractRoom.class, "render");
-                return LineFinder.findInOrder(ctBehavior, finalMatcher);
-            }
-        }
-
     }
 
     @SuppressWarnings("unused")
