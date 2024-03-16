@@ -2,9 +2,12 @@ package spireMapOverhaul.zones.candyland;
 
 import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.colorless.Bite;
 import com.megacrit.cardcrawl.cards.red.Feed;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.*;
 import com.megacrit.cardcrawl.rewards.RewardItem;
@@ -17,9 +20,7 @@ import com.megacrit.cardcrawl.ui.campfire.SmithOption;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.rewards.HealReward;
 import spireMapOverhaul.util.Wiz;
-import spireMapOverhaul.zoneInterfaces.CampfireModifyingZone;
-import spireMapOverhaul.zoneInterfaces.RewardModifyingZone;
-import spireMapOverhaul.zoneInterfaces.ShopModifyingZone;
+import spireMapOverhaul.zoneInterfaces.*;
 import spireMapOverhaul.zones.candyland.consumables.AbstractConsumable;
 import spireMapOverhaul.zones.candyland.consumables.common.*;
 import spireMapOverhaul.zones.candyland.consumables.rare.Banana;
@@ -28,12 +29,12 @@ import spireMapOverhaul.zones.candyland.consumables.rare.Cocktail;
 import spireMapOverhaul.zones.candyland.consumables.rare.GoldCandy;
 import spireMapOverhaul.zones.candyland.consumables.uncommon.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
-public class CandyLand extends AbstractZone implements RewardModifyingZone, CampfireModifyingZone, ShopModifyingZone {
+public class CandyLand extends AbstractZone implements RewardModifyingZone, RenderableZone, CampfireModifyingZone, ShopModifyingZone {
     public static final String ID = "CandyLand";
+    private Texture CandylandBackground = new Texture("anniv6Resources/images/backgrounds/candyland/CandyLandBackground.png");
+    private Texture pink = new Texture("anniv6Resources/images/backgrounds/candyland/Pink.png");
 
     public CandyLand() {
         super(ID, Icons.REST, Icons.SHOP);
@@ -145,6 +146,20 @@ public class CandyLand extends AbstractZone implements RewardModifyingZone, Camp
         colorlessCards.clear();
         colorlessCards.add(new Bite());
         colorlessCards.add(new Feed());
+    }
+
+    @Override
+    public void postRenderCombatBackground(SpriteBatch sb) {
+        float opacity1 = 0.1f;
+        float opacity2 = 1.0f;
+
+        sb.setColor(1, 1, 1, opacity1);
+        sb.draw(pink, 0, 0, (float) Settings.WIDTH, (float) Settings.HEIGHT);
+
+        sb.setColor(1, 1, 1, opacity2);
+        sb.draw(CandylandBackground, 0, 0, (float) Settings.WIDTH, (float) Settings.HEIGHT);
+
+        sb.setColor(1, 1, 1, 1); // Reset the SpriteBatch color to default
     }
 
     @Override
