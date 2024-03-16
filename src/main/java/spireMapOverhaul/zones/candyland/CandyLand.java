@@ -17,8 +17,10 @@ import com.megacrit.cardcrawl.shop.StoreRelic;
 import com.megacrit.cardcrawl.ui.campfire.AbstractCampfireOption;
 import com.megacrit.cardcrawl.ui.campfire.RestOption;
 import com.megacrit.cardcrawl.ui.campfire.SmithOption;
+import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.rewards.HealReward;
+import spireMapOverhaul.util.TexLoader;
 import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.zoneInterfaces.*;
 import spireMapOverhaul.zones.candyland.consumables.AbstractConsumable;
@@ -33,9 +35,8 @@ import java.util.*;
 
 public class CandyLand extends AbstractZone implements RewardModifyingZone, RenderableZone, CampfireModifyingZone, ShopModifyingZone {
     public static final String ID = "CandyLand";
-    private Texture CandylandBackground = new Texture("anniv6Resources/images/backgrounds/candyland/CandyLandBackground.png");
-    private Texture pink = new Texture("anniv6Resources/images/backgrounds/candyland/Pink.png");
-
+    private Texture CandylandBackground = TexLoader.getTexture(SpireAnniversary6Mod.makeImagePath("backgrounds/candyland/CandyLandBackground.png"));
+    private Texture pink = TexLoader.getTexture(SpireAnniversary6Mod.makeImagePath("backgrounds/candyland/Pink.png"));
     public CandyLand() {
         super(ID, Icons.REST, Icons.SHOP);
         this.width = 2;
@@ -159,7 +160,7 @@ public class CandyLand extends AbstractZone implements RewardModifyingZone, Rend
         sb.setColor(1, 1, 1, opacity2);
         sb.draw(CandylandBackground, 0, 0, (float) Settings.WIDTH, (float) Settings.HEIGHT);
 
-        sb.setColor(1, 1, 1, 1); // Reset the SpriteBatch color to default
+        sb.setColor(Color.WHITE); // Reset the SpriteBatch color to default
     }
 
     @Override
