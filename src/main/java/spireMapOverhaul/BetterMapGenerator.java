@@ -80,8 +80,12 @@ public class BetterMapGenerator {
 
             outer:
             while (rng.randomBoolean(zoneRate) && activeZones.size() < pathDensity) {
-                //zoneRate *= ZONE_FALLOFF_RATE;
-                while (!possibleZones.isEmpty()) {
+                int zoneCountIndex = SpireAnniversary6Mod.getZoneCountIndex();
+                int minZones = zoneCountIndex;
+                int maxZones = zoneCountIndex + 1;
+                int targetZoneCount = rng.random(minZones, maxZones);
+
+                while (!possibleZones.isEmpty() && activeZones.size() < targetZoneCount) {
                     zone = possibleZones.remove(rng.random(possibleZones.size() - 1)).copy();
 
                     if (zone.generateMapArea(planner)) {

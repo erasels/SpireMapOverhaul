@@ -11,12 +11,15 @@ import com.megacrit.cardcrawl.monsters.city.Byrd;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.rewards.RewardItem;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoom;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.zoneInterfaces.CombatModifyingZone;
 import spireMapOverhaul.zoneInterfaces.RenderableZone;
 import spireMapOverhaul.zoneInterfaces.RewardModifyingZone;
+
+import java.util.ArrayList;
 
 public class MonsterZooZone extends AbstractZone implements RewardModifyingZone, CombatModifyingZone, RenderableZone {
     public static final String ID = "MonsterZoo";
@@ -39,12 +42,18 @@ public class MonsterZooZone extends AbstractZone implements RewardModifyingZone,
     }
 
     @Override
-    public void replaceRooms(Random rng) {
-        //Replace all non monster rooms with monster rooms
-        for (MapRoomNode node : this.nodes) {
-            if(!(node.room instanceof MonsterRoom)) { //Replaces shop/rest/event with normal monster room
-                node.setRoom(new MonsterRoom());
-            }
+    public void distributeRooms(Random rng, ArrayList<AbstractRoom> roomList) {
+        // This fills the zone with monster rooms, with half taken from the room distribution list (which means they
+        // could be elite rooms instead of normal monster rooms, and that it uses up some of the expected distribution
+        // of those room types), and half simply set directly (which means they are always normal monster rooms and do
+        // not use up any of the expected distribution of those room types)
+        int half = nodes.size() / 2;
+        int i;
+        for (i = 0; i < half; ++i) {
+            nodes.get(i).setRoom(roomOrDefault(roomList, (room) -> room instanceof MonsterRoom, MonsterRoom::new));
+        }
+        for (; i < nodes.size(); ++i) {
+            nodes.get(i).setRoom(new MonsterRoom());
         }
     }
 
