@@ -78,7 +78,8 @@ public class BetterMapGenerator {
                 }
             }
 
-            outer: while (rng.randomBoolean(zoneRate) && activeZones.size() < pathDensity) {
+            outer:
+            while (rng.randomBoolean(zoneRate) && activeZones.size() < pathDensity) {
                 int zoneCountIndex = SpireAnniversary6Mod.getZoneCountIndex();
                 int minZones = zoneCountIndex;
                 int maxZones = zoneCountIndex + 1;
