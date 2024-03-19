@@ -158,7 +158,7 @@ public class BrokenSpaceZone extends AbstractZone implements RewardModifyingZone
 
 
         for (int i = 0; i < amount; i++) {
-            AbstractCard c = getTrulyRandomCard(AbstractDungeon.cardRandomRng);
+            AbstractCard c = getTrulyRandomCard(AbstractDungeon.cardRng);
             cards.add(c);
             UnnaturalCardField.unnatural.set(c, true);
 
@@ -231,7 +231,7 @@ public class BrokenSpaceZone extends AbstractZone implements RewardModifyingZone
         cards.clear();
 
         for (int i = 0; i < amount; i++) {
-            AbstractCard c = getTrulyRandomCard(AbstractDungeon.cardRandomRng);
+            AbstractCard c = getTrulyRandomCard(AbstractDungeon.cardRng);
             cards.add(c);
             UnnaturalCardField.unnatural.set(c, true);
 
