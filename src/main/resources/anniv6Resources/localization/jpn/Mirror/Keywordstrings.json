@@ -1,12 +1,12 @@
 [
   {
     "PROPER_NAME": "光沢",
-    "NAMES": ["光沢"],
+    "NAMES": ["reflective"],
     "DESCRIPTION": "#y物真似 カードのダメージ量とブロック量が増加する"
   },
   {
     "PROPER_NAME": "遮断",
-    "NAMES": ["遮断"],
+    "NAMES": ["shattered"],
     "DESCRIPTION": "#y物真似 カードをプレイしたとき、hpを一定割合で失う。(切り上げ)"
   }
 ]
