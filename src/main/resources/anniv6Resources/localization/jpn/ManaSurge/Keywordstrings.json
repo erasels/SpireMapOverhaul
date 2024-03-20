@@ -3,7 +3,7 @@
     "ID": "${ModID}:ManaSurge:Sharp",
     "PROPER_NAME": "[#8c9cff]先鋭[]",
     "NAMES": [
-      "先鋭"
+      "sharp"
     ],
     "DESCRIPTION": "対象に #b5 ダメージを与える。対象が1体でない場合はランダムに与える。"
   },
@@ -11,15 +11,15 @@
     "ID": "${ModID}:ManaSurge:Tough",
     "PROPER_NAME": "[#8c9cff]頑丈[]",
     "NAMES": [
-      "頑丈"
+      "tough"
     ],
     "DESCRIPTION": "#b4 #yブロック を得る。"
   },
   {
     "ID": "${ModID}:ManaSurge:Powerful",
-    "PROPER_NAME": "[#8c9cff]強化[]",
+    "PROPER_NAME": "[#8c9cff]発火[]",
     "NAMES": [
-      "強化"
+      "powerful"
     ],
     "DESCRIPTION": "#y筋力 #b1 を得る。"
   },
@@ -27,7 +27,7 @@
     "ID": "${ModID}:ManaSurge:Protective",
     "PROPER_NAME": "[#8c9cff]保護[]",
     "NAMES": [
-      "保護"
+      "protective"
     ],
     "DESCRIPTION": "#y敏捷性 #b1 を得る。"
   },
@@ -35,7 +35,7 @@
     "ID": "${ModID}:ManaSurge:Exposing",
     "PROPER_NAME": "[#8c9cff]分析[]",
     "NAMES": [
-      "分析"
+      "exposing"
     ],
     "DESCRIPTION": "対象に #y弱体 #b1 を与える。対象が1体でない場合はランダムに与える。"
   },
@@ -43,7 +43,7 @@
     "ID": "${ModID}:ManaSurge:Crippling",
     "PROPER_NAME": "[#8c9cff]警戒[]",
     "NAMES": [
-      "警戒"
+      "crippling"
     ],
     "DESCRIPTION": "対象に #y脱力 #b1 を与える。対象が1体でない場合はランダムに与える。"
   },
@@ -51,7 +51,7 @@
     "ID": "${ModID}:ManaSurge:Harmful",
     "PROPER_NAME": "[#ff8cd5]有害[]",
     "NAMES": [
-      "有害"
+      "harmful"
     ],
     "DESCRIPTION": "#b5 ダメージを受ける。"
   },
@@ -59,7 +59,7 @@
     "ID": "${ModID}:ManaSurge:Fragile",
     "PROPER_NAME": "[#ff8cd5]弱化[]",
     "NAMES": [
-      "弱化"
+      "fragile"
     ],
     "DESCRIPTION": "#y弱体 #b1 を受ける。"
   },
@@ -67,7 +67,7 @@
     "ID": "${ModID}:ManaSurge:Feeble",
     "PROPER_NAME": "[#ff8cd5]脆弱[]",
     "NAMES": [
-      "脆弱"
+      "feeble"
     ],
     "DESCRIPTION": "#y脆弱化 #b1 を受ける。"
   },
@@ -75,15 +75,15 @@
     "ID": "${ModID}:ManaSurge:Flawed",
     "PROPER_NAME": "[#ff8cd5]鈍化[]",
     "NAMES": [
-      "鈍化"
+      "flawed"
     ],
     "DESCRIPTION": "#y脱力 #b1 を受ける。"
   },
   {
     "ID": "${ModID}:ManaSurge:Powerless",
-    "PROPER_NAME": "[#ff8cd5]繊弱[]",
+    "PROPER_NAME": "[#ff8cd5]消火[]",
     "NAMES": [
-      "繊弱"
+      "powerless"
     ],
     "DESCRIPTION": "#y筋力 #b1 を失う。"
   },
@@ -91,7 +91,7 @@
     "ID": "${ModID}:ManaSurge:Brittle",
     "PROPER_NAME": "[#ff8cd5]軟弱[]",
     "NAMES": [
-      "軟弱"
+      "brittle"
     ],
     "DESCRIPTION": "#y敏捷性 #b1 を失う。"
   },
@@ -99,7 +99,7 @@
     "ID": "${ModID}:ManaSurge:Blight",
     "PROPER_NAME": "[#ff8cd5]ディスエンチャント[]",
     "NAMES": [
-      "ディスエンチャント"
+      "blight"
     ],
     "DESCRIPTION": "カードを弱くする追加効果。"
   },
@@ -107,7 +107,7 @@
     "ID": "${ModID}:ManaSurge:Enchantment",
     "PROPER_NAME": "[#8c9cff]エンチャント[]",
     "NAMES": [
-      "エンチャント"
+      "enchantment"
     ],
     "DESCRIPTION": "カードを強くする追加効果。"
   },
@@ -115,7 +115,7 @@
     "ID": "${ModID}:ManaSurge:Blighted",
     "PROPER_NAME": "[#ff8cd5]ディスエンチャント[]",
     "NAMES": [
-      "ディスエンチャント"
+      "blighted"
     ],
     "DESCRIPTION": "カードを弱くする追加効果。"
   },
@@ -123,7 +123,7 @@
     "ID": "${ModID}:ManaSurge:Enchant",
     "PROPER_NAME": "[#8c9cff]エンチャント[]",
     "NAMES": [
-      "エンチャント"
+      "enchant"
     ],
     "DESCRIPTION": "カードを強くする追加効果。"
   }
