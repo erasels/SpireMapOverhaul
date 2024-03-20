@@ -1,6 +1,7 @@
 package spireMapOverhaul.zoneInterfaces;
 
 import basemod.ReflectionHacks;
+import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.SpawnModificationCard;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.daily.mods.Binary;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -182,7 +183,11 @@ public interface RewardModifyingZone {
     }
 
     default void applyStandardUpgradeLogic(ArrayList<AbstractCard> cards) {
-        for(AbstractCard c : cards)
+        for(AbstractCard c : cards) {
             applyStandardUpgradeLogic(c);
+            if (c instanceof SpawnModificationCard) {
+                ((SpawnModificationCard) c).onRewardListCreated(cards);
+            }
+        }
     }
 }
