@@ -690,9 +690,9 @@ public class SpireAnniversary6Mod implements
                 // Render the biome amount option label
                 FontHelper.renderFontLeft(sb, FontHelper.tipBodyFont, configStrings.TEXT[7], BIOME_AMOUNT_X * Settings.xScale, BIOME_AMOUNT_Y * Settings.yScale, Settings.CREAM_COLOR);
 
-                float leftArrowX = BIOME_AMOUNT_X;
-                float rightArrowX = BIOME_AMOUNT_X + 95f;
-                float arrowY = BIOME_AMOUNT_Y - 64;
+                float leftArrowX = (BIOME_AMOUNT_X + 2) * Settings.xScale;
+                float rightArrowX = (BIOME_AMOUNT_X + 95) * Settings.xScale;
+                float arrowY = (BIOME_AMOUNT_Y - 60) * Settings.yScale;
                 float arrowWidth = 48f * Settings.scale;
                 float arrowHeight = 48f * Settings.scale;
 
@@ -701,10 +701,10 @@ public class SpireAnniversary6Mod implements
                 } else {
                     sb.setColor(Color.LIGHT_GRAY);
                 }
-                sb.draw(ImageMaster.CF_LEFT_ARROW, leftArrowX, arrowY, 24f, 24f, 48f, 48f, Settings.scale, Settings.scale, 0f, 0, 0, 48, 48, false, false);
+                sb.draw(ImageMaster.CF_LEFT_ARROW, leftArrowX, arrowY, 0, 0, 48f, 48f, Settings.scale, Settings.scale, 0f, 0, 0, 48, 48, false, false);
 
                 // Render the current biome amount
-                FontHelper.renderFontCentered(sb, FontHelper.tipBodyFont, ZONE_OPTIONS[getZoneCountIndex()], BIOME_AMOUNT_X + 70f, BIOME_AMOUNT_Y - 40f, Settings.BLUE_TEXT_COLOR);
+                FontHelper.renderFontLeft(sb, FontHelper.tipBodyFont, ZONE_OPTIONS[getZoneCountIndex()], leftArrowX + 57 * Settings.xScale, arrowY + 24 * Settings.yScale, Settings.BLUE_TEXT_COLOR);
 
                 // Render the right arrow
                 if (InputHelper.mX >= rightArrowX && InputHelper.mX <= rightArrowX + arrowWidth && InputHelper.mY >= arrowY && InputHelper.mY <= arrowY + arrowHeight) {
@@ -712,15 +712,15 @@ public class SpireAnniversary6Mod implements
                 } else {
                     sb.setColor(Color.LIGHT_GRAY);
                 }
-                sb.draw(ImageMaster.CF_RIGHT_ARROW, rightArrowX, arrowY, 24f, 24f, 48f, 48f, Settings.scale, Settings.scale, 0f, 0, 0, 48, 48, false, false);
+                sb.draw(ImageMaster.CF_RIGHT_ARROW, rightArrowX, arrowY, 0, 0, 48f, 48f, Settings.scale, Settings.scale, 0f, 0, 0, 48, 48, false, false);
             }
 
             @Override
             public void update() {
                 // Handle input for changing the biome amount
-                float leftArrowX = BIOME_AMOUNT_X;
-                float rightArrowX = BIOME_AMOUNT_X + 95f;
-                float arrowY = BIOME_AMOUNT_Y - 64;
+                float leftArrowX = BIOME_AMOUNT_X * Settings.xScale;
+                float rightArrowX = (BIOME_AMOUNT_X + 95f) * Settings.xScale;
+                float arrowY = (BIOME_AMOUNT_Y - 64) * Settings.yScale;
                 float arrowWidth = 48f * Settings.scale;
                 float arrowHeight = 48f * Settings.scale;
 
