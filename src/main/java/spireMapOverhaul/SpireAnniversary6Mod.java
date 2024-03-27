@@ -675,16 +675,64 @@ public class SpireAnniversary6Mod implements
             public int updateOrder() {return 0;}
         };
         settingsPanel.addUIElement(wrapperDropdown);
+
         filterCheckbox = new FixedModLabeledToggleButton(configStrings.TEXT[3], CHECKBOX_X, CHECKBOX_Y, Color.WHITE, FontHelper.tipBodyFont, true, null,
                 (label) -> {},
                 (button) -> setFilterConfig(filterViewedZone.id, button.enabled));
-        settingsPanel.addUIElement(filterCheckbox);
+        IUIElement wrapperFilterCheckbox = new IUIElement() {
+            @Override
+            public void render(SpriteBatch sb) {
+                filterCheckbox.render(sb);
+            }
+
+            @Override
+            public void update() {
+                if (!filterDropdown.isOpen) {
+                    filterCheckbox.update();
+                }
+            }
+
+            @Override
+            public int renderLayer() {
+                return filterCheckbox.renderLayer();
+            }
+
+            @Override
+            public int updateOrder() {
+                return 1;
+            }
+        };
+        settingsPanel.addUIElement(wrapperFilterCheckbox);
         filterSetViewedZone(0);
 
         shaderCheckbox = new FixedModLabeledToggleButton(configStrings.TEXT[6], SHADER_CHECKBOX_X, SHADER_CHECKBOX_Y, Color.WHITE, FontHelper.tipBodyFont, getShaderConfig(), null,
                 (label) -> {},
                 (button) -> setShaderConfig(button.enabled));
-        settingsPanel.addUIElement(shaderCheckbox);
+        IUIElement wrapperShaderCheckbox = new IUIElement() {
+            @Override
+            public void render(SpriteBatch sb) {
+                shaderCheckbox.render(sb);
+            }
+
+            @Override
+            public void update() {
+                if (!filterDropdown.isOpen) {
+                    shaderCheckbox.update();
+                }
+            }
+
+            @Override
+            public int renderLayer() {
+                return shaderCheckbox.renderLayer();
+            }
+
+            @Override
+            public int updateOrder() {
+                return 1;
+            }
+        };
+        settingsPanel.addUIElement(wrapperShaderCheckbox);
+
         IUIElement biomeAmountOption = new IUIElement() {
             @Override
             public void render(SpriteBatch sb) {
@@ -718,6 +766,9 @@ public class SpireAnniversary6Mod implements
 
             @Override
             public void update() {
+                if (filterDropdown.isOpen) {
+                    return;
+                }
                 // Handle input for changing the biome amount
                 float leftArrowX = BIOME_AMOUNT_X * Settings.xScale;
                 float rightArrowX = (BIOME_AMOUNT_X + 95f) * Settings.xScale;
@@ -741,7 +792,7 @@ public class SpireAnniversary6Mod implements
 
             @Override
             public int updateOrder() {
-                return 0;
+                return 1;
             }
         };
         settingsPanel.addUIElement(biomeAmountOption);
