@@ -739,7 +739,7 @@ public class SpireAnniversary6Mod implements
                 // Render the biome amount option label
                 FontHelper.renderFontLeft(sb, FontHelper.tipBodyFont, configStrings.TEXT[7], BIOME_AMOUNT_X * Settings.xScale, BIOME_AMOUNT_Y * Settings.yScale, Settings.CREAM_COLOR);
 
-                float leftArrowX = (BIOME_AMOUNT_X + 2) * Settings.xScale;
+                float leftArrowX = BIOME_AMOUNT_X * Settings.xScale;
                 float rightArrowX = (BIOME_AMOUNT_X + 95) * Settings.xScale;
                 float arrowY = (BIOME_AMOUNT_Y - 60) * Settings.yScale;
                 float arrowWidth = 48f * Settings.scale;
@@ -771,8 +771,8 @@ public class SpireAnniversary6Mod implements
                 }
                 // Handle input for changing the biome amount
                 float leftArrowX = BIOME_AMOUNT_X * Settings.xScale;
-                float rightArrowX = (BIOME_AMOUNT_X + 95f) * Settings.xScale;
-                float arrowY = (BIOME_AMOUNT_Y - 64) * Settings.yScale;
+                float rightArrowX = (BIOME_AMOUNT_X + 95) * Settings.xScale;
+                float arrowY = (BIOME_AMOUNT_Y - 60) * Settings.yScale;
                 float arrowWidth = 48f * Settings.scale;
                 float arrowHeight = 48f * Settings.scale;
 
