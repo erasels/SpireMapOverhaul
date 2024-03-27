@@ -56,6 +56,7 @@ import spireMapOverhaul.rewards.AnyColorCardReward;
 import spireMapOverhaul.rewards.HealReward;
 import spireMapOverhaul.rewards.SingleCardReward;
 import spireMapOverhaul.ui.*;
+import spireMapOverhaul.ui.FixedModLabeledToggleButton.FixedModLabeledToggleButton;
 import spireMapOverhaul.util.QueueZoneCommand;
 import spireMapOverhaul.util.TexLoader;
 import spireMapOverhaul.util.Wiz;
@@ -625,13 +626,13 @@ public class SpireAnniversary6Mod implements
     private DropdownMenu filterDropdown;
     private static final float DROPDOWN_X = 400f;
     private static final float DROPDOWN_Y = 600f;
-    private ModLabeledToggleButton filterCheckbox;
+    private FixedModLabeledToggleButton filterCheckbox;
     private static final float CHECKBOX_X = 400f;
     private static final float CHECKBOX_Y = 520f;
     private AbstractZone filterViewedZone;
     private static final float DESC_X = 760f;
     private static final float DESC_Y = 575f;
-    private ModLabeledToggleButton shaderCheckbox;
+    private FixedModLabeledToggleButton shaderCheckbox;
     private static final float SHADER_CHECKBOX_X = 400f;
     private static final float SHADER_CHECKBOX_Y = 440f;
     private static final float BIOME_AMOUNT_X = 405f;
@@ -644,12 +645,12 @@ public class SpireAnniversary6Mod implements
 
         settingsPanel = new ModPanel();
 
-        ModLabeledToggleButton noRepeatZonesToggle = new ModLabeledToggleButton(configStrings.TEXT[5], NOREPEATZONES_CHECKBOX_X, NOREPEATZONES_CHECKBOX_Y, Color.WHITE, FontHelper.tipBodyFont, getNoRepeatZonesConfig(), null,
+        FixedModLabeledToggleButton noRepeatZonesToggle = new FixedModLabeledToggleButton(configStrings.TEXT[5], NOREPEATZONES_CHECKBOX_X, NOREPEATZONES_CHECKBOX_Y, Color.WHITE, FontHelper.tipBodyFont, getNoRepeatZonesConfig(), null,
                 (label) -> {},
                 (button) -> setNoRepeatZonesConfig(button.enabled));
         settingsPanel.addUIElement(noRepeatZonesToggle);
 
-        ModLabeledToggleButton largeIconsModeToggle = new ModLabeledToggleButton(configStrings.TEXT[4], LARGEICONS_CHECKBOX_X, LARGEICONS_CHECKBOX_Y, Color.WHITE, FontHelper.tipBodyFont, getLargeIconsModeConfig(), null,
+        FixedModLabeledToggleButton largeIconsModeToggle = new FixedModLabeledToggleButton(configStrings.TEXT[4], LARGEICONS_CHECKBOX_X, LARGEICONS_CHECKBOX_Y, Color.WHITE, FontHelper.tipBodyFont, getLargeIconsModeConfig(), null,
                 (label) -> {},
                 (button) -> setLargeIconsModeConfig(button.enabled));
         settingsPanel.addUIElement(largeIconsModeToggle);
@@ -674,13 +675,13 @@ public class SpireAnniversary6Mod implements
             public int updateOrder() {return 0;}
         };
         settingsPanel.addUIElement(wrapperDropdown);
-        filterCheckbox = new ModLabeledToggleButton(configStrings.TEXT[3], CHECKBOX_X, CHECKBOX_Y, Color.WHITE, FontHelper.tipBodyFont, true, null,
+        filterCheckbox = new FixedModLabeledToggleButton(configStrings.TEXT[3], CHECKBOX_X, CHECKBOX_Y, Color.WHITE, FontHelper.tipBodyFont, true, null,
                 (label) -> {},
                 (button) -> setFilterConfig(filterViewedZone.id, button.enabled));
         settingsPanel.addUIElement(filterCheckbox);
         filterSetViewedZone(0);
 
-        shaderCheckbox = new ModLabeledToggleButton(configStrings.TEXT[6], SHADER_CHECKBOX_X, SHADER_CHECKBOX_Y, Color.WHITE, FontHelper.tipBodyFont, getShaderConfig(), null,
+        shaderCheckbox = new FixedModLabeledToggleButton(configStrings.TEXT[6], SHADER_CHECKBOX_X, SHADER_CHECKBOX_Y, Color.WHITE, FontHelper.tipBodyFont, getShaderConfig(), null,
                 (label) -> {},
                 (button) -> setShaderConfig(button.enabled));
         settingsPanel.addUIElement(shaderCheckbox);
