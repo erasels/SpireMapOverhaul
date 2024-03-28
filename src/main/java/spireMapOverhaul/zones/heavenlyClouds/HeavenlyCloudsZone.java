@@ -121,14 +121,16 @@ public class HeavenlyCloudsZone extends AbstractZone implements CombatModifyingZ
     @Override
     public void postRenderCombatBackground(SpriteBatch sb) {
         if (!initialCloudSpawned) {
-            spawnInitialClouds();
+            for (int i = 0; i < initialCloudCount; i++) {
+                spawnCloud(true);
+            }
             initialCloudSpawned = true;
         }
 
         cloudSpawnTimer += Gdx.graphics.getDeltaTime();
         if (cloudSpawnTimer >= cloudSpawnInterval) {
             cloudSpawnTimer = 0;
-            spawnCloud();
+            spawnCloud(false);
         }
 
         Iterator<Cloud> iter = clouds.iterator();
@@ -145,9 +147,7 @@ public class HeavenlyCloudsZone extends AbstractZone implements CombatModifyingZ
 
         sb.setColor(Color.WHITE);
     }
-
-
-    private void spawnCloud() {
+    private void spawnCloud(boolean initialSpawn) {
         Texture cloudTexture;
         boolean isSpecialCloud = MathUtils.random() < 0.01f; // 1% chance to spawn a special cloud
         if (isSpecialCloud) {
@@ -156,48 +156,29 @@ public class HeavenlyCloudsZone extends AbstractZone implements CombatModifyingZ
             Texture[] cloudTextures = {Cloud1, Cloud2, Cloud3, Cloud4, Cloud5};
             cloudTexture = cloudTextures[MathUtils.random(cloudTextures.length - 1)];
         }
-        float x = -cloudTexture.getWidth() - 5;
-        float y = MathUtils.random(cloudMinY, cloudMaxY - cloudTexture.getHeight());
-        float speed = MathUtils.random(50, 125); // Random speed between 50 and 125 pixels per second
-        float scale = MathUtils.random(0.5f, 1.0f); // Random scale between 0.5 and 1.0
-        Color color;
+        float x, y;
+        if (initialSpawn) {
+            x = MathUtils.random(-cloudTexture.getWidth(), Settings.WIDTH);
+            y = MathUtils.random(cloudMinY, cloudMaxY - cloudTexture.getHeight());
+        } else {
+            x = -cloudTexture.getWidth() - 5;
+            y = MathUtils.random(cloudMinY, cloudMaxY - cloudTexture.getHeight());
+        }
+        float speed = MathUtils.random(50, initialSpawn ? 100 : 125);
+        float scale = MathUtils.random(0.5f, 1.0f);
+        Color color = generateCloudColor(isSpecialCloud);
+        clouds.add(new Cloud(cloudTexture, x, y, speed, scale, color));
+    }
+
+    private Color generateCloudColor(boolean isSpecialCloud) {
         if (isSpecialCloud) {
-            color = Color.WHITE; // Special clouds retain their original appearance
+            return Color.WHITE;
         } else {
             float r = MathUtils.random(0.9f, 1.0f);
             float g = MathUtils.random(0.9f, 1.0f);
             float b = MathUtils.random(0.7f, 0.9f);
-            float a = MathUtils.random(0.85f, 1.0f);
-            color = new Color(r, g, b, a);
-        }
-        clouds.add(new Cloud(cloudTexture, x, y, speed, scale, color));
-    }
-
-    private void spawnInitialClouds() {
-        for (int i = 0; i < initialCloudCount; i++) {
-            Texture cloudTexture;
-            boolean isSpecialCloud = MathUtils.random() < 0.01f; // 1% chance to spawn a special cloud
-            if (isSpecialCloud) {
-                cloudTexture = specialClouds[MathUtils.random(specialClouds.length - 1)];
-            } else {
-                Texture[] cloudTextures = {Cloud1, Cloud2, Cloud3, Cloud4, Cloud5};
-                cloudTexture = cloudTextures[MathUtils.random(cloudTextures.length - 1)];
-            }
-            float x = MathUtils.random(-cloudTexture.getWidth(), Settings.WIDTH);
-            float y = MathUtils.random(cloudMinY, cloudMaxY - cloudTexture.getHeight());
-            float speed = MathUtils.random(50, 100); // Random speed between 50 and 100 pixels per second
-            float scale = MathUtils.random(0.5f, 1.0f); // Random scale between 0.5 and 1.0
-            Color color;
-            if (isSpecialCloud) {
-                color = Color.WHITE; // Special clouds retain their original appearance
-            } else {
-                float r = MathUtils.random(0.9f, 1.0f);
-                float g = MathUtils.random(0.9f, 1.0f);
-                float b = MathUtils.random(0.7f, 0.9f);
-                float a = MathUtils.random(0.85f, 1.0f);
-                color = new Color(r, g, b, a);
-            }
-            clouds.add(new Cloud(cloudTexture, x, y, speed, scale, color));
+            float a = MathUtils.random(0.8f, 1.0f);
+            return new Color(r, g, b, a);
         }
     }
 
