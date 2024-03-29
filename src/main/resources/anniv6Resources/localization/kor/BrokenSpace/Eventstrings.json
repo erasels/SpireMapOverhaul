@@ -1,0 +1,11 @@
+{
+  "${ModID}:WingBootEvent": {
+    "NAME": "뒤틀린 윙 부츠",
+    "DESCRIPTIONS": [
+      "두 포탈 중 하나를 선택하십시오."
+    ],
+    "OPTIONS": [
+      "뒤틀린"
+    ]
+  }
+}

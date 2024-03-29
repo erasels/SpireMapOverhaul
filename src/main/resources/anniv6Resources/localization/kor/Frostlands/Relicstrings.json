@@ -1,0 +1,33 @@
+{
+  "${ModID}:Contraption": {
+    "NAME": "기묘한 장치",
+    "FLAVOR": "이상한 선물.",
+    "DESCRIPTIONS": [
+      "전투에서 사망할 시, #b1 체력을 회복하고 가능하다면 도망칩니다.",
+      "Times fled: {0}"
+    ]
+  },
+  "${ModID}:OldHat": {
+    "NAME": "오래된 모자",
+    "FLAVOR": "마피아의 기성복 모자.",
+    "DESCRIPTIONS": [
+      "턴 시작 시, #y활력을 #b",
+      " 얻습니다.",
+      "Vigor gained: {0}"
+    ]
+  },
+  "${ModID}:Frostcoal": {
+    "NAME": "서리탄",
+    "FLAVOR": "오래된 토막을 잘라냅니다.",
+    "DESCRIPTIONS": [
+      "적들이 전투의 첫 턴에 #b", " 적은 피해를 줍니다."
+    ]
+  },
+  "${ModID}:SpruceCharm": {
+    "NAME": "스프르스의 매력",
+    "FLAVOR": "그녀의 칼자루 끝에서 나옵니다.",
+    "DESCRIPTIONS": [
+      "전투 중 처음으로 사용하는 공격 카드가 두 번 사용됩니다."
+    ]
+  }
+}

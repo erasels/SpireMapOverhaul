@@ -1,0 +1,20 @@
+{
+  "${ModID}:MirrorZone": {
+    "NAME": "거울의 힘",
+    "DESCRIPTIONS": [
+      "매 턴, 이전 턴의 적 행동을 담은 #p거울 #p행동 카드를 얻습니다. 대신 카드를 #b1 장 적게 뽑습니다."
+    ]
+  },
+  "${ModID}:Reflective": {
+    "NAME": "반사",
+    "DESCRIPTIONS": [
+      "#y거울 #y행동의 피해와 방어도를 #b{0} 증가시킵니다."
+    ]
+  },
+  "${ModID}:Shattered": {
+    "NAME": "Shattered",
+    "DESCRIPTIONS": [
+      "#y거울 #y행동을 사용할 경우, #y산산조각난 대상은 현재 체력의 #b{0}% 만큼 피해를 입습니다."
+    ]
+  }
+}

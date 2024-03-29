@@ -1,0 +1,22 @@
+{
+  "${ModID}:Hexaghost": {
+    "NAME": "팔각령",
+    "MOVES": [],
+    "DIALOG": []
+  },
+  "${ModID}:SlaverBlue": {
+    "MOVES": [
+      "방해"
+    ]
+  },
+  "${ModID}:BanditBear": {
+    "DIALOG": [
+      "~로미오!!!!~"
+    ]
+  },
+  "${ModID}:BookOfStabbing": {
+    "NAME": "주먹질의 책",
+    "MOVES": [],
+    "DIALOG": []
+  }
+}

@@ -1,0 +1,10 @@
+[
+  {
+    "ID": "frostbite",
+    "PROPER_NAME": "서리",
+    "NAMES": [
+      "서리"
+    ],
+    "DESCRIPTION": "턴 종료 시, 이 카드가 손에 있다면 피해를 #b4 입습니다."
+  }
+]

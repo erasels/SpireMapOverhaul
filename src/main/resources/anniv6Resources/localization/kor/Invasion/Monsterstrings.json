@@ -1,0 +1,190 @@
+{
+  "${ModID}:WhisperingWraith": {
+    "MOVES": [
+      "희미해짐",
+      "유령의 손길",
+      "생명 흡수"
+    ],
+    "NAME": "속삭이는 망령"
+  },
+  "${ModID}:StygianBoar": {
+    "MOVES": [
+      "상아 베기",
+      "화염 브레스",
+      "분노의 돌진"
+    ],
+    "NAME": "잿빛 멧돼지"
+  },
+  "${ModID}:Hexasnake": {
+    "MOVES": [
+      "뱀의 눈빛",
+      "독성 이빨",
+      "포박"
+    ],
+    "NAME": "육면뱀"
+  },
+  "${ModID}:GraftedWorm": {
+    "MOVES": [
+      "잎날"
+    ],
+    "NAME": "접목벌레"
+  },
+  "${ModID}:DreadMoth": {
+    "MOVES": [
+      "날개짓",
+      "악몽의 음파"
+    ],
+    "NAME": "악몽 나방"
+  },
+  "${ModID}:OrbOfFire": {
+    "MOVES": [
+      "파이어볼트",
+      "불씨",
+      "방사선"
+    ],
+    "NAME": "화염의 오브"
+  },
+  "${ModID}:LivingStormcloud": {
+    "MOVES": [
+      "파지직",
+      "돌풍",
+      "강우"
+    ],
+    "NAME": "살아있는 번개구름"
+  },
+  "${ModID}:OpulentOffering": {
+    "MOVES": [
+      "유리잔 강타",
+      "동전 탄막",
+      "호화의 장벽",
+      "과열된 호화로움"
+    ],
+    "NAME": "호화로운 제물"
+  },
+  "${ModID}:ShimmeringMirage": {
+    "MOVES": [
+      "반짝임",
+      "빛",
+      "고동"
+    ],
+    "NAME": "반짝이는 신기루"
+  },
+  "${ModID}:Hatchling": {
+    "MOVES": [
+      "깨어남",
+      "베어물기",
+      "부식성 산",
+      "박치기"
+    ],
+    "NAME": "저글링"
+  },
+  "${ModID}:CroakingBrute": {
+    "MOVES": [
+      "찢기",
+      "난폭한 돌진"
+    ],
+    "NAME": "개골 투사",
+    "DIALOG": ["*개굴!!*"]
+  },
+  "${ModID}:CroakingPelter": {
+    "MOVES": [
+      "찢기",
+      "돌 던지기"
+    ],
+    "NAME": "개골 투척병",
+    "DIALOG": ["개굴?"]
+  },
+  "${ModID}:CroakingSeer": {
+    "MOVES": [
+      "찢기",
+      "보호형 토템"
+    ],
+    "NAME": "개골 예언자",
+    "DIALOG": ["*개굴*"]
+  },
+  "${ModID}:Hydra": {
+    "MOVES": [
+      "꼬리 흔들기",
+      "후려치기",
+      "엄청난 굶주림"
+    ],
+    "NAME": "히드라"
+  },
+  "${ModID}:VoidReaper": {
+    "MOVES": [
+      "미래 절단",
+      "수확",
+      "낫 춤"
+    ],
+    "NAME": "공허 사신"
+  },
+  "${ModID}:VoidCorruption": {
+    "MOVES": [
+      "에너지 흡수",
+      "부정의 손길",
+      "활력 흡수",
+      "공허 박치기",
+      "공허 토스"
+    ],
+    "NAME": "공허로 타락한 자"
+  },
+  "${ModID}:VoidBeast": {
+    "MOVES": [
+      "부패의 입질",
+      "공허의 눈빛",
+      "그림자 발톱"
+    ],
+    "NAME": "공허 야수"
+  },
+  "${ModID}:WarGolem": {
+    "MOVES": [
+      "심장 적출",
+      "방패 격파",
+      "다리 파괴"
+    ],
+    "NAME": "전쟁 골렘"
+  },
+  "${ModID}:ElementalPortal": {
+    "MOVES": [
+      "포탈",
+      "복원력 강화",
+      "카오틱 에너지",
+      "정령 폭발"
+    ],
+    "NAME": "정령들의 포탈"
+  },
+  "${ModID}:UnboundAbyssal": {
+    "MOVES": [
+      "진흙더미",
+      "돌아가지 않는다",
+      "줄기"
+    ],
+    "NAME": "해방된 심해의 생명체",
+    "DIALOG": ["절대로... 돌아가지... 않으리라...!"]
+  },
+  "${ModID}:PrimevalQueen": {
+    "MOVES": [
+      "낫",
+      "갑각 강화",
+      "호위충 호출"
+    ],
+    "NAME": "원시 여왕"
+  },
+  "${ModID}:RoyalProtector": {
+    "MOVES": [
+      "갑각",
+      "불타오르는 타액",
+      "산성 폭발",
+      "여왕을 위하여"
+    ],
+    "NAME": "정예 호위충"
+  },
+  "${ModID}:Behemoth": {
+    "MOVES": [
+      "기다림",
+      "진화",
+      "발톱 휘두르기"
+    ],
+    "NAME": "베히모스"
+  }
+}

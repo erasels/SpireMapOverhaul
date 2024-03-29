@@ -1,0 +1,9 @@
+{
+
+  "${ModID}:ManaSurgePower": {
+    "NAME": "마력 홍수",
+    "DESCRIPTIONS": [
+      "카드는 뽑을 때 #b40% 확률로 NL [#8c9cff]마법[] [${ModID}:ManaSurge:EnchantmentIcon] or [#ff8cd5]역병[] [${ModID}:ManaSurge:BlightIcon] 이 부여됩니다."
+    ]
+  }
+}

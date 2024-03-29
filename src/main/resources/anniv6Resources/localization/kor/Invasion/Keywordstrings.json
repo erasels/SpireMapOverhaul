@@ -1,0 +1,58 @@
+[
+  {
+    "PROPER_NAME": "판금\u00a0갑옷",
+    "NAMES": ["판금\u00a0갑옷"],
+    "DESCRIPTION": "턴 종료 시 #y방어도를 얻습니다. 막히지 않은 공격 피해를 입을 때마다 감소됩니다."
+  },
+  {
+    "ID": "Abysstouched",
+    "PROPER_NAME": "심연의 표식",
+    "NAMES": ["심연의\u00a0표식", "심연의_표식을"],
+    "DESCRIPTION": "턴 종료시 이 수치만큼 피해를 입고, 표식 수치만큼 받는 피해량이 증가합니다."
+  },
+  {
+    "PROPER_NAME": "격노",
+    "NAMES": ["격노"],
+    "DESCRIPTION": "스킬 카드를 사용할 때마다, #y힘을 얻습니다."
+  },
+  {
+    "PROPER_NAME": "죽음의 고동",
+    "NAMES": ["죽음의\u00a0고동"],
+    "DESCRIPTION": "카드를 사용할 때마다, 플레이어가 피해를 받습니다."
+  },
+  {
+    "PROPER_NAME": "금속화",
+    "NAMES": ["금속화"],
+    "DESCRIPTION": "턴 종료시 #y방어도를 얻습니다."
+  },
+  {
+    "PROPER_NAME": "버퍼",
+    "NAMES": ["버퍼"],
+    "DESCRIPTION": "다음 번에 체력을 잃는 효과를 무효화합니다.."
+  },
+  {
+    "PROPER_NAME": "손상의 고동",
+    "NAMES": ["손상의\u00a0고동"],
+    "DESCRIPTION": "매 턴마다 손상을 부여합니다."
+  },
+  {
+    "PROPER_NAME": "어지러움의 고동",
+    "NAMES": ["어지러움의\u00a0고동"],
+    "DESCRIPTION": "매 턴마다 뽑을 카드 더미에 #y어지러움을 넣습니다."
+  },
+  {
+    "PROPER_NAME": "심연의 고통",
+    "NAMES": ["심연의\u00a0고통"],
+    "DESCRIPTION": "매 턴마다 #y심연의 #y표식 을 부여합니다."
+  },
+  {
+    "PROPER_NAME": "끈적한 육체",
+    "NAMES": ["끈적한\u00a0육체"],
+    "DESCRIPTION": "이 적에게 막히지 않은 피해를 입힐때마다, #y점액덩어리 1장을 버린 카드 더미에 넣습니다."
+  },
+  {
+    "PROPER_NAME": "천하무적",
+    "NAMES": ["천하무적"],
+    "DESCRIPTION": "매 턴 마다 일정 체력 이상을 잃지 않습니다."
+  }
+]

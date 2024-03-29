@@ -1,0 +1,88 @@
+{
+  "${ModID}:SneakAttack": {
+    "NAME": "교활한 공격",
+    "DESCRIPTION": "피해를 !D! 줍니다."
+  },
+  "${ModID}:MeatMallet": {
+    "NAME": "고기 망치",
+    "DESCRIPTION": "이번 턴에 막히지 않은 공격 피해를 줄 경우 약화를 !M! 부여합니다. NL 소멸.",
+    "UPGRADE_DESCRIPTION": "이번 턴에 막히지 않은 공격 피해를 줄 경우 약화를 !M! 부여합니다."
+  },
+  "${ModID}:AngryStrike": {
+    "NAME": "화난 타격",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 공격 카드가 아닌 무작위 카드 한 장을 소멸시킵니다."
+  },
+  "${ModID}:Shield": {
+    "NAME": "방패",
+    "DESCRIPTION": "방어도를 !B! 얻습니다. NL 소멸."
+  },
+  "${ModID}:Charge": {
+    "NAME": "충전",
+    "DESCRIPTION": "2턴 뒤, !M! ${ModID}:Vigor 를 얻습니다."
+  },
+  "${ModID}:Cure": {
+    "NAME": "치료",
+    "DESCRIPTION": "모든 해로운 효과를 제거합니다. NL 소멸.",
+    "UPGRADE_DESCRIPTION": "보존. NL 모든 해로운 효과를 제거합니다. NL 소멸."
+  },
+  "${ModID}:Sit": {
+    "NAME": "앉기",
+    "DESCRIPTION": "적이 이번 턴 동안 힘을 !M! 잃습니다."
+  },
+  "${ModID}:FullPlate": {
+    "NAME": "갑주",
+    "DESCRIPTION": "턴 종료 시, 방어도를 !M! 얻습니다."
+  },
+  "${ModID}:Frenzy": {
+    "NAME": "광란",
+    "DESCRIPTION": "피해를 !D! 2번 줍니다. NL 힘을 !M! 얻습니다."
+  },
+  "${ModID}:Assassinate": {
+    "NAME": "암살",
+    "DESCRIPTION": "선천성. NL 피해를 !D! 줍니다. NL Exhaust."
+  },
+  "${ModID}:MountedCombat": {
+    "NAME": "탑승 전투",
+    "DESCRIPTION": "휘발성. NL ${ModID}:Slow 를 부여합니다. NL 소멸.",
+    "UPGRADE_DESCRIPTION": "${ModID}:Slow 를 부여합니다. NL Exhaust."
+  },
+  "${ModID}:RRrroohrrRGHHhhh": {
+    "NAME": "그뤄어어어어어어!!",
+    "DESCRIPTION": "적이 공격하지 않을 때마다, 힘을 !M! 얻습니다."
+  },
+  "${ModID}:CriticalHit": {
+    "NAME": "치명타",
+    "DESCRIPTION": "다음 공격이 두 배의 피해를 줍니다. NL 소멸.",
+    "UPGRADE_DESCRIPTION": "다음 공격이 세 배의 피해를 줍니다. NL 소멸."
+  },
+  "${ModID}:Flurry": {
+    "NAME": "강풍",
+    "DESCRIPTION": "무작위 적에게 !D! 피해를 X+1 번 줍니다."
+  },
+  "${ModID}:OmegaCurse": {
+    "NAME": "오메가 저주",
+    "DESCRIPTION": "적이 공격 피해를 !M! 더 입습니다. NL 체력을 !${ModID}:m2! 잃습니다."
+  },
+  "${ModID}:TheHorde": {
+    "NAME": "무리",
+    "DESCRIPTION": "턴 시작 시, 무작위 *그렘린 카드를 손에 넣습니다.",
+    "UPGRADE_DESCRIPTION": "선천성. NL 턴 시작 시, 무작위 *그렘린 카드를 손에 넣습니다."
+  },
+  "${ModID}:Rig": {
+    "NAME": "준비",
+    "DESCRIPTION": "턴 시작 시 카드를 1 장 뽑고 1 장 소멸시킵니다."
+  },
+  "${ModID}:ThrowRock": {
+    "NAME": "돌 던지기",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 힘을 !M! 얻습니다. NL 이번 턴이 끝날 때, 힘을 !M! 잃습니다."
+  },
+  "${ModID}:PoisonSpray": {
+    "NAME": "독 스프레이",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 막히지 않은 피해만큼 중독을 부여합니다."
+  },
+  "${ModID}:Inspire": {
+    "NAME": "영감",
+    "DESCRIPTION": "휘발성. NL 턴 시작 시, [E] 를 얻고 카드를 1장 뽑습니다.",
+    "UPGRADE_DESCRIPTION": "턴 시작 시, [E] 를 얻고 카드를 1장 뽑습니다."
+  }
+}
