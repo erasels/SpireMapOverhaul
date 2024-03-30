@@ -194,14 +194,6 @@ public class FrostSlimeL extends CustomMonster {
 
     }
 
-    /*@Override
-    public void changeState(String key) {
-        if (key != null && key.equals("MAUL")) {
-            this.state.setAnimation(0, "Attack", false);
-            this.state.addAnimation(0, "Idle", true, 0.0F);
-        }
-    }*/
-
     static {
         WOUND_NAME = MOVES[0];
         SPLIT_NAME = MOVES[1];

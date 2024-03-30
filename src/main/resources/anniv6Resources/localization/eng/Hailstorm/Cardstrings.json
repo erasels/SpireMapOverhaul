@@ -7,9 +7,5 @@
   "${ModID}:IceBurn": {
     "NAME": "Ice Burn",
     "DESCRIPTION": "Unplayable. NL At the end of your turn, take !M! damage."
-  },
-  "${ModID}:IcicleSpear": {
-    "NAME": "Icicle Spear",
-    "DESCRIPTION": "Deal !D! damage. NL Fleeting."
   }
 }

@@ -83,10 +83,7 @@ public class HailEffect extends AbstractGameEffect {
 
     private void renderImg(SpriteBatch sb, Texture img, boolean flipH, boolean flipV) {
         sb.setColor(this.color);
-        //sb.setBlendFunction(770, 1);
         sb.draw(img, this.x, this.y, 16.0F, 16.0F, 32.0F, 32.0F, this.scale, this.scale * this.scaleY, this.rotation, 0, 0, 32, 32, flipH, flipV);
-        //sb.setBlendFunction(770, 771);
-        //this.color.a = MathUtils.random(0.8F, 1.0F);sb.setColor(Color.WHITE);
         this.color.a = MathUtils.random(0.4F, 0.6F);
     }
 }

@@ -18,7 +18,7 @@ public class IceBurn extends AbstractSMOCard {
     private static final int COST = -2;
 
     public IceBurn() {
-        super(ID, HailstormZone.ID, COST, CardType.STATUS, CardRarity.COMMON, CardTarget.NONE, CardColor.COLORLESS);
+        super(ID, HailstormZone.ID, COST, CardType.STATUS, CardRarity.SPECIAL, CardTarget.NONE, CardColor.COLORLESS);
         this.selfRetain = false;
         this.magicNumber = 2;
         this.baseMagicNumber = 2;
@@ -42,14 +42,6 @@ public class IceBurn extends AbstractSMOCard {
         AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(this, true));
     }
 
-//    public void upgrade() {
-//        if (!this.upgraded) {
-//            this.upgradeName();
-//            this.upgradeMagicNumber(2);
-//            this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
-//            this.initializeDescription();
-//        }
-//    }
     public void upp() {
         upgradeMagicNumber(2);
     }

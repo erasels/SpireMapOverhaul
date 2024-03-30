@@ -12,11 +12,10 @@ import java.util.ArrayList;
 import static spireMapOverhaul.SpireAnniversary6Mod.*;
 
 public class Flint extends AbstractSMORelic {
-    public static final String ID =  makeID("Flint"); //Flint.class.getSimpleName();
+    public static final String ID =  makeID("Flint");
 
     public Flint() {
         super(ID, HailstormZone.ID, RelicTier.SPECIAL, LandingSound.HEAVY);
-               //AbstractRelic.LandingSound.CLINK
     }
 
     public void addCampfireOption(ArrayList<AbstractCampfireOption> options) {

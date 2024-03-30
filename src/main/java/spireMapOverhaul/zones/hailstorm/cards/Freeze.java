@@ -9,7 +9,6 @@ import spireMapOverhaul.zones.hailstorm.HailstormZone;
 
 //Can be renamed Freezing if needed
 public class Freeze extends AbstractSMOCard {
-    //public static final String ID = SpireAnniversary6Mod.makeID(Freeze.class.getSimpleName());
     public static final String ID = SpireAnniversary6Mod.makeID("Freeze");
     private static final int COST = -2;
 
@@ -20,14 +19,9 @@ public class Freeze extends AbstractSMOCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-//        if (this.dontTriggerOnUseCard) {
-//            this.addToTop((new MakeTempCardInDiscardAction(new IceBurn(upgraded), 1)));
-//        }
     }
 
     public void triggerOnEndOfTurnForPlayingCard() {
-//        this.dontTriggerOnUseCard = true;
-//        AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(this, true));
         this.addToTop((new MakeTempCardInDiscardAction(new IceBurn(upgraded), 1)));
     }
     public void upp() {

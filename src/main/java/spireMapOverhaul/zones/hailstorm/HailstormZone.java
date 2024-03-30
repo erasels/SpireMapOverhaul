@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
+import com.megacrit.cardcrawl.monsters.exordium.Looter;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.ui.campfire.AbstractCampfireOption;
@@ -24,12 +25,14 @@ import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.zoneInterfaces.*;
 import spireMapOverhaul.zones.hailstorm.campfire.FlintOption;
+import spireMapOverhaul.zones.hailstorm.events.AbandonedCamp;
 import spireMapOverhaul.zones.hailstorm.monsters.FrostSlimeL;
 import spireMapOverhaul.zones.hailstorm.monsters.FrostSlimeM;
 import spireMapOverhaul.zones.hailstorm.vfx.HailEffect;
 import spireMapOverhaul.zones.hailstorm.vfx.HailstormEffect;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -40,10 +43,9 @@ public class HailstormZone extends AbstractZone implements CombatModifyingZone, 
     public static final String ID = "Hailstorm";
     public static final String Frost_Slime_L = SpireAnniversary6Mod.makeID("Frost_Slime_L");
     public static final String Frost_Slime_M = SpireAnniversary6Mod.makeID("Frost_Slime_M");
+    public static final String Exordium_Thugs_FrostSlime = SpireAnniversary6Mod.makeID("Exordium_Thugs_FrostSlime");
 
-    //public static int damageFromFrost;
     public static final int blockFromSnow = 4;
-    //public static final int startingDamageFromFrost = 3;
     public static final int turnSwitchBetweenSnowBlockAndHailDamage = 4;
 
     public void atTurnStart() {
@@ -67,8 +69,8 @@ public class HailstormZone extends AbstractZone implements CombatModifyingZone, 
     }
 
     @Override
-    public float zoneSpecificEventRate() {
-        return 1;
+    public String forceEvent() {
+        return ModifiedEventRateZone.returnIfUnseen(AbandonedCamp.ID);
     }
 
     public HailstormZone() {
@@ -113,22 +115,18 @@ public class HailstormZone extends AbstractZone implements CombatModifyingZone, 
     }
 
     @Override
-    public void registerEncounters() {
-        EncounterModifyingZone.super.registerEncounters();
-        BaseMod.addMonster(Frost_Slime_M, () -> new MonsterGroup(
-                new AbstractMonster[] {
-                        new FrostSlimeM(0.0f, 0.0f),
-                }
-        ));
-    }
-
-    @Override
     public List<ZoneEncounter> getNormalEncounters() {
-        return Collections.singletonList(
+        return Arrays.asList(
                 new ZoneEncounter(Frost_Slime_L, 1, () -> new MonsterGroup(
                         new AbstractMonster[]{
                                 new FrostSlimeL(0.0f, 0.0f),
+                        })),
+                new ZoneEncounter(Exordium_Thugs_FrostSlime, 1, () -> new MonsterGroup(
+                        new AbstractMonster[]{
+                                new Looter(200.0f, 0.0f),
+                                new FrostSlimeM(-100.0f, 0.0f),
                         }))
+
         );
     }
 
