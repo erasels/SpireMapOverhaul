@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.helpers.ModHelper;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import spireMapOverhaul.SpireAnniversary6Mod;
+import spireMapOverhaul.util.ChimeraUtil;
 import spireMapOverhaul.util.Wiz;
 
 import java.util.ArrayList;
@@ -188,6 +189,7 @@ public interface RewardModifyingZone {
             if (c instanceof SpawnModificationCard) {
                 ((SpawnModificationCard) c).onRewardListCreated(cards);
             }
+            ChimeraUtil.rollCardAugment(c);
         }
     }
 }
