@@ -9,12 +9,12 @@
   },
   "${ModID}:Wildfire:BurningMod": {
     "TEXT": [
-      " NL ${ModID}:Burning 을 %d 부여합니다.",
-      " NL 모든 적에게 ${ModID}:Burning 을 %d 부여합니다.",
-      " NL 무작위 적에게 ${ModID}:Burning 을 %d 부여합니다.",
-      " NL %d ${ModID}:Burning X 번 부여합니다.",
-      " NL 모든 적에게 %d ${ModID}:Burning X 번 부여합니다.",
-      " NL 무작위 적에게 %d ${ModID}:Burning  X 번 부여합니다."
+      " NL ${ModID}:화염 을 %d 부여합니다.",
+      " NL 모든 적에게 ${ModID}:화염 을 %d 부여합니다.",
+      " NL 무작위 적에게 ${ModID}:화염 을 %d 부여합니다.",
+      " NL %d ${ModID}:화염 을 X 번 부여합니다.",
+      " NL 모든 적에게 %d ${ModID}:화염 을 X 번 부여합니다.",
+      " NL 무작위 적에게 %d ${ModID}:화염 을 X 번 부여합니다."
     ]
   }
 }

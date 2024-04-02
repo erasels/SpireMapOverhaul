@@ -18,7 +18,7 @@
   },
   "${ModID}:Charge": {
     "NAME": "충전",
-    "DESCRIPTION": "2턴 뒤, !M! ${ModID}:Vigor 를 얻습니다."
+    "DESCRIPTION": "2턴 뒤, !M! ${ModID}:활력 을 얻습니다."
   },
   "${ModID}:Cure": {
     "NAME": "치료",
@@ -39,12 +39,12 @@
   },
   "${ModID}:Assassinate": {
     "NAME": "암살",
-    "DESCRIPTION": "선천성. NL 피해를 !D! 줍니다. NL Exhaust."
+    "DESCRIPTION": "선천성. NL 피해를 !D! 줍니다. NL 소멸."
   },
   "${ModID}:MountedCombat": {
     "NAME": "탑승 전투",
-    "DESCRIPTION": "휘발성. NL ${ModID}:Slow 를 부여합니다. NL 소멸.",
-    "UPGRADE_DESCRIPTION": "${ModID}:Slow 를 부여합니다. NL Exhaust."
+    "DESCRIPTION": "휘발성. NL ${ModID}:둔화 를 부여합니다. NL 소멸.",
+    "UPGRADE_DESCRIPTION": "${ModID}:둔화 를 부여합니다. NL 소멸."
   },
   "${ModID}:RRrroohrrRGHHhhh": {
     "NAME": "그뤄어어어어어어!!",

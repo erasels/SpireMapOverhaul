@@ -7,7 +7,7 @@
 	},
 	"${ModID}:Carrot":
 	{
-		"DESCRIPTION": ["무작위 적에게 {0} damage to a random enemy {1} time(s)."],
+		"DESCRIPTION": ["무작위 적에게 {0} 피해를 {1} 번 줍니다."],
 		"NAME": "당근"
 	},
 	"${ModID}:Leek":

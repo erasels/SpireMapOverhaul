@@ -8,18 +8,18 @@
   },
   "${ModID}:ShopBanter": {
     "TEXT": [
-      "Hi! NL Buy something! NL Buy buy buy!",
+      "안녕! NL 뭐 좀 사세요! NL 사, 사, 사!",
       "헤어스타일 멋진데요. 우리 그렘린들은 머리가 없죠.",
-      "Do you have the time?",
-      "당신 빈털털이?(Are you louse people? 맞나?)",
-      "You look ~dangerous,~ NL hehe...",
-      "Do you like this rug? NL 이건 파는 게 아니에요",
-      "Support Gremlin Town!",
-      "What mask?  That's my face.",
-      "Stay awhile and listen!",
+      "시간 좀 있나요?",
+      "당신은 거지인가요?",
+      "당신은 ~위험해보여요,~ NL 헤헤...",
+      "당신도 이 깔개가 마음에 드나요? NL 이건 파는 게 아니에요.",
+      "그렘린 마을을 도와주세요!",
+      "무슨 가면? 그건 내 얼굴이에요.",
+      "잠시 멈춰서서 들어보세요!",
       "그렘린 마을은 위험해요! 돈을 모두 주고 가세요!",
-      "Buy somethin'",
-      "I like gold."
+      "무언갈 사세요'",
+      "난 골드가 좋아요."
     ]
   },
   "${ModID}:Horde": {
