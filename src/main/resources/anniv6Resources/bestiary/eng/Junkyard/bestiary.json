@@ -1,0 +1,392 @@
+{
+	"monsters": [
+		{
+			"name": "Junkbot",
+			"id": "${ModID}:Junkbot",
+			"ai": [
+				{
+					"min_asc": 0,
+					"desc": "If active, uses #wGrab. If deactivated, uses #wReboot. NL NL Starts active 60% of the time. Starts with a #dWound already stolen if deactivated.",
+					"hp": "(21 - 27 HP)",
+					"notes": "#wGrab steals a random card from your draw pile (or discard pile, if the draw pile is empty).",
+					"moves": [
+						{
+							"name": "Grab",
+							"effects": [
+								{
+									"name": "7",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Steal Card",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Deactivate 20%",
+									"color": "SPECIAL"
+								}
+							]
+						},
+						{
+							"name": "Reboot",
+							"effects": [
+								{
+									"name": "Return Card",
+									"color": "BUFF"
+								},
+								{
+									"name": "Activate",
+									"color": "SPECIAL"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 2,
+					"desc": "If active, uses #wGrab. If deactivated, uses #wReboot. NL NL Starts active 60% of the time. Starts with a #dWound already stolen if deactivated.",
+					"hp": "(21 - 27 HP)",
+					"notes": "#wGrab steals a random card from your draw pile (or discard pile, if the draw pile is empty).",
+					"moves": [
+						{
+							"name": "Grab",
+							"effects": [
+								{
+									"name": "8",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Steal Card",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Deactivate 20%",
+									"color": "SPECIAL"
+								}
+							]
+						},
+						{
+							"name": "Reboot",
+							"effects": [
+								{
+									"name": "Return Card",
+									"color": "BUFF"
+								},
+								{
+									"name": "Activate",
+									"color": "SPECIAL"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 7,
+					"desc": "If active, uses #wGrab. If deactivated, uses #wReboot. NL NL Starts active 60% of the time. Starts with a #dWound already stolen if deactivated.",
+					"hp": "(26 - 31 HP)",
+					"notes": "#wGrab steals a random card from your draw pile (or discard pile, if the draw pile is empty).",
+					"moves": [
+						{
+							"name": "Grab",
+							"effects": [
+								{
+									"name": "8",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Steal Card",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Deactivate 20%",
+									"color": "SPECIAL"
+								}
+							]
+						},
+						{
+							"name": "Reboot",
+							"effects": [
+								{
+									"name": "Return Card",
+									"color": "BUFF"
+								},
+								{
+									"name": "Activate",
+									"color": "SPECIAL"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 17,
+					"desc": "If active, uses #wGrab. If deactivated, uses #wReboot. NL NL Starts active 70% of the time. Starts with a #dWound already stolen if deactivated.",
+					"hp": "(26 - 31 HP)",
+					"notes": "#wGrab steals a random card from your draw pile (or discard pile, if the draw pile is empty).",
+					"moves": [
+						{
+							"name": "Grab",
+							"effects": [
+								{
+									"name": "8",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Steal Card",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Deactivate 10%",
+									"color": "SPECIAL"
+								}
+							]
+						},
+						{
+							"name": "Reboot",
+							"effects": [
+								{
+									"name": "Return Card",
+									"color": "BUFF"
+								},
+								{
+									"name": "Activate",
+									"color": "SPECIAL"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Peddler",
+			"id": "${ModID}:Peddler",
+			"ai": [
+				{
+					"min_asc": 0,
+					"desc": "Cycles #wFree #wSamples -> #wRummage -> #wHaggle -> #wPayup.",
+					"hp": "(72 - 76 HP)",
+					"notes": "#wFree #wSamples cards go into your draw pile. NL NL #wHaggle gives strength equal to a third of the combined size of your draw, discard, and hand (rounded down), then gives you a special card that can be used to buy something from the Peddler and end the fight.",
+					"moves": [
+						{
+							"name": "Free Samples",
+							"effects": [
+								{
+									"name": "Random Commons 4",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Random Uncommon 1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Rummage",
+							"effects": [
+								{
+									"name": "6",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "10",
+									"color": "BLOCK"
+								}
+							]
+						},
+						{
+							"name": "Haggle",
+							"effects": [
+								{
+									"name": "Strength X",
+									"color": "BUFF"
+								},
+								{
+									"name": "Bargain",
+									"color": "SPECIAL"
+								}
+							]
+						},
+						{
+							"name": "Pay Up",
+							"effects": [
+								{
+									"name": "12",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 2,
+					"desc": "Cycles #wFree #wSamples -> #wRummage -> #wHaggle -> #wPayup.",
+					"hp": "(72 - 76 HP)",
+					"notes": "#wFree #wSamples cards go into your draw pile. NL NL #wHaggle gives strength equal to a third of the combined size of your draw, discard, and hand (rounded down), then gives you a special card that can be used to buy something from the Peddler and end the fight.",
+					"moves": [
+						{
+							"name": "Free Samples",
+							"effects": [
+								{
+									"name": "Random Commons 4",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Random Uncommon 1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Rummage",
+							"effects": [
+								{
+									"name": "9",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "10",
+									"color": "BLOCK"
+								}
+							]
+						},
+						{
+							"name": "Haggle",
+							"effects": [
+								{
+									"name": "Strength X",
+									"color": "BUFF"
+								},
+								{
+									"name": "Bargain",
+									"color": "SPECIAL"
+								}
+							]
+						},
+						{
+							"name": "Pay Up",
+							"effects": [
+								{
+									"name": "15",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 7,
+					"desc": "Cycles #wFree #wSamples -> #wRummage -> #wHaggle -> #wPayup.",
+					"hp": "(75 - 80 HP)",
+					"notes": "#wFree #wSamples cards go into your draw pile. NL NL #wHaggle gives strength equal to a third of the combined size of your draw, discard, and hand (rounded down), then gives you a special card that can be used to buy something from the Peddler and end the fight.",
+					"moves": [
+						{
+							"name": "Free Samples",
+							"effects": [
+								{
+									"name": "Random Commons 4",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Random Uncommon 1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Rummage",
+							"effects": [
+								{
+									"name": "9",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "12",
+									"color": "BLOCK"
+								}
+							]
+						},
+						{
+							"name": "Haggle",
+							"effects": [
+								{
+									"name": "Strength X",
+									"color": "BUFF"
+								},
+								{
+									"name": "Bargain",
+									"color": "SPECIAL"
+								}
+							]
+						},
+						{
+							"name": "Pay Up",
+							"effects": [
+								{
+									"name": "15",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 17,
+					"desc": "Cycles #wFree #wSamples -> #wRummage -> #wHaggle -> #wPayup.",
+					"hp": "(75 - 80 HP)",
+					"notes": "#wFree #wSamples cards go into your draw pile. NL NL #wHaggle gives strength equal to a third of the combined size of your draw, discard, and hand (rounded down), then gives you a special card that can be used to buy something from the Peddler and end the fight.",
+					"moves": [
+						{
+							"name": "Free Samples",
+							"effects": [
+								{
+									"name": "Random Commons 4",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Random Curse 1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Rummage",
+							"effects": [
+								{
+									"name": "9",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "12",
+									"color": "BLOCK"
+								}
+							]
+						},
+						{
+							"name": "Haggle",
+							"effects": [
+								{
+									"name": "Strength X",
+									"color": "BUFF"
+								},
+								{
+									"name": "Bargain",
+									"color": "SPECIAL"
+								}
+							]
+						},
+						{
+							"name": "Pay Up",
+							"effects": [
+								{
+									"name": "15",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}
