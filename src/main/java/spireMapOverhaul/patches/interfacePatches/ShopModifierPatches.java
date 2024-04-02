@@ -16,6 +16,7 @@ import javassist.CtBehavior;
 import javassist.expr.ExprEditor;
 import javassist.expr.MethodCall;
 import org.apache.commons.lang3.math.NumberUtils;
+import spireMapOverhaul.util.ChimeraUtil;
 import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.zoneInterfaces.ShopModifyingZone;
 
@@ -29,6 +30,8 @@ public class ShopModifierPatches {
         public static void patch(Merchant __instance, ArrayList<AbstractCard> ___cards1, ArrayList<AbstractCard> ___cards2, ArrayList<String> ___idleMessages) {
             Wiz.forCurZone(ShopModifyingZone.class, z -> {
                 z.postCreateShopCards(___cards1, ___cards2);
+                applyStandardShopCardLogic(___cards1);
+                applyStandardShopCardLogic(___cards2);
                 z.postAddIdleMessages(___idleMessages);
             });
         }
@@ -39,6 +42,16 @@ public class ShopModifierPatches {
                 return LineFinder.findInOrder(ctMethodToPatch, finalMatcher);
             }
         }
+    }
+
+    private static void applyStandardShopCardLogic(ArrayList<AbstractCard> cards) {
+        for (AbstractCard c : cards) {
+            applyStandardShopCardLogic(c);
+        }
+    }
+
+    private static void applyStandardShopCardLogic(AbstractCard c) {
+        ChimeraUtil.rollCardAugmentForShop(c);
     }
 
     @SpirePatch2(clz = ShopScreen.class, method = "init")
@@ -129,6 +142,7 @@ public class ShopModifierPatches {
                     for (AbstractRelic r : AbstractDungeon.player.relics) {
                         r.onPreviewObtainCard(zoneReplacementCard);
                     }
+                    applyStandardShopCardLogic(zoneReplacementCard);
                     card = zoneReplacementCard;
 
                     card.current_x = purchasedCard.current_x;

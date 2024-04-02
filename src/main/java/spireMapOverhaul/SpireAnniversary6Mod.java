@@ -56,6 +56,7 @@ import spireMapOverhaul.rewards.AnyColorCardReward;
 import spireMapOverhaul.rewards.HealReward;
 import spireMapOverhaul.rewards.SingleCardReward;
 import spireMapOverhaul.ui.*;
+import spireMapOverhaul.ui.FixedModLabeledToggleButton.FixedModLabeledToggleButton;
 import spireMapOverhaul.util.QueueZoneCommand;
 import spireMapOverhaul.util.TexLoader;
 import spireMapOverhaul.util.Wiz;
@@ -625,13 +626,13 @@ public class SpireAnniversary6Mod implements
     private DropdownMenu filterDropdown;
     private static final float DROPDOWN_X = 400f;
     private static final float DROPDOWN_Y = 600f;
-    private ModLabeledToggleButton filterCheckbox;
+    private FixedModLabeledToggleButton filterCheckbox;
     private static final float CHECKBOX_X = 400f;
     private static final float CHECKBOX_Y = 520f;
     private AbstractZone filterViewedZone;
     private static final float DESC_X = 760f;
     private static final float DESC_Y = 575f;
-    private ModLabeledToggleButton shaderCheckbox;
+    private FixedModLabeledToggleButton shaderCheckbox;
     private static final float SHADER_CHECKBOX_X = 400f;
     private static final float SHADER_CHECKBOX_Y = 440f;
     private static final float BIOME_AMOUNT_X = 405f;
@@ -644,12 +645,12 @@ public class SpireAnniversary6Mod implements
 
         settingsPanel = new ModPanel();
 
-        ModLabeledToggleButton noRepeatZonesToggle = new ModLabeledToggleButton(configStrings.TEXT[5], NOREPEATZONES_CHECKBOX_X, NOREPEATZONES_CHECKBOX_Y, Color.WHITE, FontHelper.tipBodyFont, getNoRepeatZonesConfig(), null,
+        FixedModLabeledToggleButton noRepeatZonesToggle = new FixedModLabeledToggleButton(configStrings.TEXT[5], NOREPEATZONES_CHECKBOX_X, NOREPEATZONES_CHECKBOX_Y, Color.WHITE, FontHelper.tipBodyFont, getNoRepeatZonesConfig(), null,
                 (label) -> {},
                 (button) -> setNoRepeatZonesConfig(button.enabled));
         settingsPanel.addUIElement(noRepeatZonesToggle);
 
-        ModLabeledToggleButton largeIconsModeToggle = new ModLabeledToggleButton(configStrings.TEXT[4], LARGEICONS_CHECKBOX_X, LARGEICONS_CHECKBOX_Y, Color.WHITE, FontHelper.tipBodyFont, getLargeIconsModeConfig(), null,
+        FixedModLabeledToggleButton largeIconsModeToggle = new FixedModLabeledToggleButton(configStrings.TEXT[4], LARGEICONS_CHECKBOX_X, LARGEICONS_CHECKBOX_Y, Color.WHITE, FontHelper.tipBodyFont, getLargeIconsModeConfig(), null,
                 (label) -> {},
                 (button) -> setLargeIconsModeConfig(button.enabled));
         settingsPanel.addUIElement(largeIconsModeToggle);
@@ -674,25 +675,73 @@ public class SpireAnniversary6Mod implements
             public int updateOrder() {return 0;}
         };
         settingsPanel.addUIElement(wrapperDropdown);
-        filterCheckbox = new ModLabeledToggleButton(configStrings.TEXT[3], CHECKBOX_X, CHECKBOX_Y, Color.WHITE, FontHelper.tipBodyFont, true, null,
+
+        filterCheckbox = new FixedModLabeledToggleButton(configStrings.TEXT[3], CHECKBOX_X, CHECKBOX_Y, Color.WHITE, FontHelper.tipBodyFont, true, null,
                 (label) -> {},
                 (button) -> setFilterConfig(filterViewedZone.id, button.enabled));
-        settingsPanel.addUIElement(filterCheckbox);
+        IUIElement wrapperFilterCheckbox = new IUIElement() {
+            @Override
+            public void render(SpriteBatch sb) {
+                filterCheckbox.render(sb);
+            }
+
+            @Override
+            public void update() {
+                if (!filterDropdown.isOpen) {
+                    filterCheckbox.update();
+                }
+            }
+
+            @Override
+            public int renderLayer() {
+                return filterCheckbox.renderLayer();
+            }
+
+            @Override
+            public int updateOrder() {
+                return 1;
+            }
+        };
+        settingsPanel.addUIElement(wrapperFilterCheckbox);
         filterSetViewedZone(0);
 
-        shaderCheckbox = new ModLabeledToggleButton(configStrings.TEXT[6], SHADER_CHECKBOX_X, SHADER_CHECKBOX_Y, Color.WHITE, FontHelper.tipBodyFont, getShaderConfig(), null,
+        shaderCheckbox = new FixedModLabeledToggleButton(configStrings.TEXT[6], SHADER_CHECKBOX_X, SHADER_CHECKBOX_Y, Color.WHITE, FontHelper.tipBodyFont, getShaderConfig(), null,
                 (label) -> {},
                 (button) -> setShaderConfig(button.enabled));
-        settingsPanel.addUIElement(shaderCheckbox);
+        IUIElement wrapperShaderCheckbox = new IUIElement() {
+            @Override
+            public void render(SpriteBatch sb) {
+                shaderCheckbox.render(sb);
+            }
+
+            @Override
+            public void update() {
+                if (!filterDropdown.isOpen) {
+                    shaderCheckbox.update();
+                }
+            }
+
+            @Override
+            public int renderLayer() {
+                return shaderCheckbox.renderLayer();
+            }
+
+            @Override
+            public int updateOrder() {
+                return 1;
+            }
+        };
+        settingsPanel.addUIElement(wrapperShaderCheckbox);
+
         IUIElement biomeAmountOption = new IUIElement() {
             @Override
             public void render(SpriteBatch sb) {
                 // Render the biome amount option label
                 FontHelper.renderFontLeft(sb, FontHelper.tipBodyFont, configStrings.TEXT[7], BIOME_AMOUNT_X * Settings.xScale, BIOME_AMOUNT_Y * Settings.yScale, Settings.CREAM_COLOR);
 
-                float leftArrowX = BIOME_AMOUNT_X;
-                float rightArrowX = BIOME_AMOUNT_X + 95f;
-                float arrowY = BIOME_AMOUNT_Y - 64;
+                float leftArrowX = BIOME_AMOUNT_X * Settings.xScale;
+                float rightArrowX = (BIOME_AMOUNT_X + 95) * Settings.xScale;
+                float arrowY = (BIOME_AMOUNT_Y - 60) * Settings.yScale;
                 float arrowWidth = 48f * Settings.scale;
                 float arrowHeight = 48f * Settings.scale;
 
@@ -701,10 +750,10 @@ public class SpireAnniversary6Mod implements
                 } else {
                     sb.setColor(Color.LIGHT_GRAY);
                 }
-                sb.draw(ImageMaster.CF_LEFT_ARROW, leftArrowX, arrowY, 24f, 24f, 48f, 48f, Settings.scale, Settings.scale, 0f, 0, 0, 48, 48, false, false);
+                sb.draw(ImageMaster.CF_LEFT_ARROW, leftArrowX, arrowY, 0, 0, 48f, 48f, Settings.scale, Settings.scale, 0f, 0, 0, 48, 48, false, false);
 
                 // Render the current biome amount
-                FontHelper.renderFontCentered(sb, FontHelper.tipBodyFont, ZONE_OPTIONS[getZoneCountIndex()], BIOME_AMOUNT_X + 70f, BIOME_AMOUNT_Y - 40f, Settings.BLUE_TEXT_COLOR);
+                FontHelper.renderFontLeft(sb, FontHelper.tipBodyFont, ZONE_OPTIONS[getZoneCountIndex()], leftArrowX + 57 * Settings.xScale, arrowY + 24 * Settings.yScale, Settings.BLUE_TEXT_COLOR);
 
                 // Render the right arrow
                 if (InputHelper.mX >= rightArrowX && InputHelper.mX <= rightArrowX + arrowWidth && InputHelper.mY >= arrowY && InputHelper.mY <= arrowY + arrowHeight) {
@@ -712,15 +761,18 @@ public class SpireAnniversary6Mod implements
                 } else {
                     sb.setColor(Color.LIGHT_GRAY);
                 }
-                sb.draw(ImageMaster.CF_RIGHT_ARROW, rightArrowX, arrowY, 24f, 24f, 48f, 48f, Settings.scale, Settings.scale, 0f, 0, 0, 48, 48, false, false);
+                sb.draw(ImageMaster.CF_RIGHT_ARROW, rightArrowX, arrowY, 0, 0, 48f, 48f, Settings.scale, Settings.scale, 0f, 0, 0, 48, 48, false, false);
             }
 
             @Override
             public void update() {
+                if (filterDropdown.isOpen) {
+                    return;
+                }
                 // Handle input for changing the biome amount
-                float leftArrowX = BIOME_AMOUNT_X;
-                float rightArrowX = BIOME_AMOUNT_X + 95f;
-                float arrowY = BIOME_AMOUNT_Y - 64;
+                float leftArrowX = BIOME_AMOUNT_X * Settings.xScale;
+                float rightArrowX = (BIOME_AMOUNT_X + 95) * Settings.xScale;
+                float arrowY = (BIOME_AMOUNT_Y - 60) * Settings.yScale;
                 float arrowWidth = 48f * Settings.scale;
                 float arrowHeight = 48f * Settings.scale;
 
@@ -740,7 +792,7 @@ public class SpireAnniversary6Mod implements
 
             @Override
             public int updateOrder() {
-                return 0;
+                return 1;
             }
         };
         settingsPanel.addUIElement(biomeAmountOption);
