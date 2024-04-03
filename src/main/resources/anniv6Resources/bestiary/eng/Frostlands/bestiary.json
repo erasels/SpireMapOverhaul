@@ -1,0 +1,166 @@
+{
+	"monsters": [
+		{
+			"name": "Steward",
+			"id": "${ModID}:Steward",
+			"ai": [
+				{
+					"min_asc": 0,
+					"desc": "Uses #wRoll #wUp, then #wRoll #wOut, then the newly spawned copies repeat #wSlam.",
+					"hp": "(48 - 56 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Roll Up",
+							"effects": [
+								{
+									"name": "Frigid 1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Roll Out",
+							"effects": [
+								{
+									"name": "16",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Split",
+									"color": "SPECIAL"
+								}
+							]
+						},
+						{
+							"name": "Slam",
+							"effects": [
+								{
+									"name": "12",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 2,
+					"desc": "Uses #wRoll #wUp, then #wRoll #wOut, then the newly spawned copies repeat #wSlam.",
+					"hp": "(48 - 56 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Roll Up",
+							"effects": [
+								{
+									"name": "Frigid 1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Roll Out",
+							"effects": [
+								{
+									"name": "17",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Split",
+									"color": "SPECIAL"
+								}
+							]
+						},
+						{
+							"name": "Slam",
+							"effects": [
+								{
+									"name": "13",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 7,
+					"desc": "Uses #wRoll #wUp, then #wRoll #wOut, then the newly spawned copies repeat #wSlam.",
+					"hp": "(60 - 68 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Roll Up",
+							"effects": [
+								{
+									"name": "Frigid 1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Roll Out",
+							"effects": [
+								{
+									"name": "17",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Split",
+									"color": "SPECIAL"
+								}
+							]
+						},
+						{
+							"name": "Slam",
+							"effects": [
+								{
+									"name": "13",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 17,
+					"desc": "Uses #wRoll #wUp, then #wRoll #wOut, then the newly spawned copies repeat #wSlam.",
+					"hp": "(60 - 68 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Roll Up",
+							"effects": [
+								{
+									"name": "Frigid 1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Roll Out",
+							"effects": [
+								{
+									"name": "20",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Split",
+									"color": "SPECIAL"
+								}
+							]
+						},
+						{
+							"name": "Slam",
+							"effects": [
+								{
+									"name": "16",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}
