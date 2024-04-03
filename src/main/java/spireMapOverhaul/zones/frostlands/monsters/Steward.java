@@ -125,6 +125,6 @@ public class Steward extends CustomMonster
         else if(!spawned)
             setMove(MOVES[1], ATTACK, Intent.ATTACK_BUFF, damage.get(damage.size()-1).base);
         else
-            setMove(MOVES[1], ATTACK, Intent.ATTACK, damage.get(damage.size()-1).base);
+            setMove(MOVES[2], ATTACK, Intent.ATTACK, damage.get(damage.size()-1).base);
     }
 }
