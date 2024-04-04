@@ -1,0 +1,114 @@
+{
+	"monsters": [
+		{
+			"name": "Eruptor",
+			"id": "${ModID}:Eruptor",
+			"ai": [
+				{
+					"min_asc": 0,
+					"desc": "Cycles #wBruise -> #wBoil.",
+					"hp": "(22 - 26 HP)",
+					"notes": "Innate #uErupt #u15 for #r15 damage. #dBurn status cards go into the draw pile.",
+					"moves": [
+						{
+							"name": "Bruise",
+							"effects": [
+								{
+									"name": "6",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Boil",
+							"effects": [
+								{
+									"name": "Burn 1",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 2,
+					"desc": "Cycles #wBruise -> #wBoil.",
+					"hp": "(22 - 26 HP)",
+					"notes": "Innate #uErupt #u15 for #r20 damage. #dBurn status cards go into the draw pile.",
+					"moves": [
+						{
+							"name": "Bruise",
+							"effects": [
+								{
+									"name": "8",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Boil",
+							"effects": [
+								{
+									"name": "Burn 1",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 7,
+					"desc": "Cycles #wBruise -> #wBoil.",
+					"hp": "(25 - 30 HP)",
+					"notes": "Innate #uErupt #u15 for #r20 damage. #dBurn status cards go into the draw pile.",
+					"moves": [
+						{
+							"name": "Bruise",
+							"effects": [
+								{
+									"name": "8",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Boil",
+							"effects": [
+								{
+									"name": "Burn 1",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 17,
+					"desc": "Cycles #wBruise -> #wBoil.",
+					"hp": "(25 - 30 HP)",
+					"notes": "Innate #uErupt #u10 for #r20 damage. #dBurn status cards go into the draw pile.",
+					"moves": [
+						{
+							"name": "Bruise",
+							"effects": [
+								{
+									"name": "8",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Boil",
+							"effects": [
+								{
+									"name": "Burn 1",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}
