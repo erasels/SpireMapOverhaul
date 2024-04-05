@@ -118,7 +118,7 @@
 					"min_asc": 0,
 					"desc": "Starts with #wBuff, then repeats a 50% chance to use #wAttack or #wAttack #wand #wDebuff. Cannot use the same move three times in a row.",
 					"hp": "(100 - 110 HP)",
-					"notes": "Innate #uExplode+ #u5 for #r40 damage.",
+					"notes": "Innate #uExplode+ #u5 for #r40 damage. #dSlimed and #dBurn status cards go into the discard pile.",
 					"moves": [
 						{
 							"name": "Buff",
@@ -161,7 +161,7 @@
 					"min_asc": 2,
 					"desc": "Starts with #wBuff, then repeats a 50% chance to use #wAttack or #wAttack #wand #wDebuff. Cannot use the same move three times in a row.",
 					"hp": "(100 - 110 HP)",
-					"notes": "Innate #uExplode+ #u5 for #r50 damage.",
+					"notes": "Innate #uExplode+ #u5 for #r50 damage. #dSlimed and #dBurn status cards go into the discard pile.",
 					"moves": [
 						{
 							"name": "Buff",
@@ -204,7 +204,7 @@
 					"min_asc": 7,
 					"desc": "Starts with #wBuff, then repeats a 50% chance to use #wAttack or #wAttack #wand #wDebuff. Cannot use the same move three times in a row.",
 					"hp": "(110 - 120 HP)",
-					"notes": "Innate #uExplode+ #u5 for #r50 damage.",
+					"notes": "Innate #uExplode+ #u5 for #r50 damage. #dSlimed and #dBurn status cards go into the discard pile.",
 					"moves": [
 						{
 							"name": "Buff",
@@ -247,7 +247,7 @@
 					"min_asc": 17,
 					"desc": "Starts with #wBuff, then repeats a 50% chance to use #wAttack or #wAttack #wand #wDebuff. Cannot use the same move three times in a row.",
 					"hp": "(110 - 120 HP)",
-					"notes": "Innate #uExplode+ #u4 for #r50 damage.",
+					"notes": "Innate #uExplode+ #u4 for #r50 damage. #dSlimed and #dBurn status cards go into the discard pile.",
 					"moves": [
 						{
 							"name": "Buff",
