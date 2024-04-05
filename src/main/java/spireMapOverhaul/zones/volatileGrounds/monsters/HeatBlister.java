@@ -81,8 +81,10 @@ public class HeatBlister extends CustomMonster {
                         new ExplodePlusPower(this, A17_EXPLOSION_COUNTDOWN,
                         A2_EXPLOSION_DAMAGE)));
             }
-            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new ExplodePlusPower(this, EXPLOSION_COUNTDOWN,
-                    A2_EXPLOSION_DAMAGE)));
+            else {
+                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new ExplodePlusPower(this, EXPLOSION_COUNTDOWN,
+                        A2_EXPLOSION_DAMAGE)));
+            }
         }
         else
         {
