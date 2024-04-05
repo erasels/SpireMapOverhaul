@@ -32,7 +32,7 @@ public class SmithsFolly extends AbstractZone implements CombatModifyingZone, On
     public SmithsFolly() {
         super(ID, Icons.MONSTER);
         this.width = 2;
-        this.height = 4;
+        this.height = 5;
     }
 
     @Override
@@ -48,11 +48,6 @@ public class SmithsFolly extends AbstractZone implements CombatModifyingZone, On
     @Override
     public boolean canSpawn() {
         return !this.isAct(2);
-    }
-
-    @Override
-    public void distributeRooms(com.megacrit.cardcrawl.random.Random rng, ArrayList<AbstractRoom> roomList) {
-        placeRoomRandomly(rng, roomOrDefault(roomList, (room)->room instanceof EventRoom, EventRoom::new));
     }
 
     @Override
