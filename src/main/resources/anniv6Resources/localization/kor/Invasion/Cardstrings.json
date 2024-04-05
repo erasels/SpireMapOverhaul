@@ -26,11 +26,11 @@
   },
   "${ModID}:EarthblessedBlade": {
     "NAME": "대지 축복의 검",
-    "DESCRIPTION": "적 전체에게 피해를 !D! 줍니다. NL ${ModID}:판금\u00a0갑옷 을 !B! 얻습니다. NL 가시를 !M! 얻습니다. NL 소멸."
+    "DESCRIPTION": "적 전체에게 피해를 !D! 줍니다. NL ${ModID}:판금\u00a0갑옷을 !B! 얻습니다. NL 가시를 !M! 얻습니다. NL 소멸."
   },
   "${ModID}:IceblessedBlade": {
     "NAME": "냉기 축복의 검",
-    "DESCRIPTION": "피해를 !D! 줍니다. NL 인공물을 !M! 얻습니다. NL ${ModID}:버퍼 를 얻습니다. NL 소멸."
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 인공물을 !M! 얻습니다. NL ${ModID}:버퍼를 얻습니다. NL 소멸."
   },
   "${ModID}:VoidblessedBlade": {
     "NAME": "공허 축복의 검",
@@ -65,7 +65,7 @@
   },
   "${ModID}:SteelWall": {
     "NAME": "강철의 벽",
-    "DESCRIPTION": "방어도를 !B! 얻습니다. NL !M! ${ModID}:금속화 를 얻습니다. NL 소멸."
+    "DESCRIPTION": "방어도를 !B! 얻습니다. NL !M! ${ModID}:금속화를 얻습니다. NL 소멸."
   },
   "${ModID}:LightningBolt": {
     "NAME": "라이트닝 볼트",

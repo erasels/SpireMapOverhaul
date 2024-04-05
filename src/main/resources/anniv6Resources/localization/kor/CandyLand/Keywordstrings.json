@@ -1,9 +1,9 @@
 [
     {
-      "PROPER_NAME": "일회용",
+      "PROPER_NAME": "일회성",
       "NAMES": [
-        "일회용"
+        "일회성"
       ],
-      "DESCRIPTION": "사용하면 덱에서 영구히 제거되는 카드입니다."
+      "DESCRIPTION": "사용시 파괴되며 덱에서도 제거됩니다."
     }
 ]

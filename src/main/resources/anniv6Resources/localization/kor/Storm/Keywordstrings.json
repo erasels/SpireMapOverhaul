@@ -2,14 +2,14 @@
   {
     "PROPER_NAME": "축축한",
     "NAMES": [
-      "damp"
+      "축축한"
     ],
     "DESCRIPTION": "축축한 카드는 #y보존과 #y소멸이 추가됩니다."
   },
   {
     "PROPER_NAME": "전기적",
     "NAMES": [
-      "electric"
+      "전기적"
     ],
     "DESCRIPTION": "전투 중 처음 사용될 때 [E] 를 얻고 [REMOVE_SPACE] #y전기적을 제거합니다."
   }
