@@ -63,8 +63,16 @@ public class CandyLand extends AbstractZone implements RewardModifyingZone, Rend
             List<AbstractCard.CardRarity> validRarities = Arrays.asList(AbstractCard.CardRarity.COMMON, AbstractCard.CardRarity.UNCOMMON, AbstractCard.CardRarity.RARE);
             AbstractCard.CardRarity rarity = validRarities.contains(card.rarity) ? card.rarity : AbstractCard.CardRarity.COMMON;
             consumables.removeIf(c -> c.rarity != rarity || cards.stream().anyMatch(listCard -> c.cardID.equals(listCard.cardID)));
-            AbstractCard c = consumables.get(AbstractDungeon.cardRng.random(0, consumables.size()-1));
-            cards.add(c);
+            // If there are no consumables of the same rarity, allow any rarity
+            if (consumables.isEmpty()) {
+                consumables = getConsumables();
+                consumables.removeIf(c -> cards.stream().anyMatch(listCard -> c.cardID.equals(listCard.cardID)));
+            }
+            // If there are so many reward cards that all Candyland cards are already present, stop adding more cards
+            if (!consumables.isEmpty()) {
+                AbstractCard c = consumables.get(AbstractDungeon.cardRng.random(0, consumables.size()-1));
+                cards.add(c);
+            }
         }
         this.applyStandardUpgradeLogic(cards);
     }
