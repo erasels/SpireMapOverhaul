@@ -32,7 +32,7 @@ public class SmithsFolly extends AbstractZone implements CombatModifyingZone, On
     public SmithsFolly() {
         super(ID, Icons.MONSTER);
         this.width = 2;
-        this.height = 5;
+        this.height = 4;
     }
 
     @Override
