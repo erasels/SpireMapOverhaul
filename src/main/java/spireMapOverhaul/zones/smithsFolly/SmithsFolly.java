@@ -51,11 +51,6 @@ public class SmithsFolly extends AbstractZone implements CombatModifyingZone, On
     }
 
     @Override
-    public void distributeRooms(com.megacrit.cardcrawl.random.Random rng, ArrayList<AbstractRoom> roomList) {
-        placeRoomRandomly(rng, roomOrDefault(roomList, (room)->room instanceof EventRoom, EventRoom::new));
-    }
-
-    @Override
     public void replaceRooms(com.megacrit.cardcrawl.random.Random rng) {
         //Replace all shop rooms with monster rooms
         for (MapRoomNode node : this.nodes) {
