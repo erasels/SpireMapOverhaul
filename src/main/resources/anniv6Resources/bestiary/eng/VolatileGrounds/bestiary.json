@@ -287,6 +287,152 @@
 					]
 				}
 			]
+		},
+		{
+			"name": "Gremlin Archmage",
+			"id": "${ModID}:GremlinArchmage",
+			"ai": [
+				{
+					"min_asc": 0,
+					"desc": "Starts with #wBlock. Then, if there are zero or one Exploders left and the last move wasn't #wSummon, uses #wSummon. Otherwise, 50% chance to use #wAttack or #wBlock. Cannot use the same move three times in a row.",
+					"hp": "(95 - 98 HP)",
+					"notes": "Exploders start with 75% HP.",
+					"moves": [
+						{
+							"name": "Summon",
+							"effects": [
+								{
+									"name": "Spawn Exploders (up to 2 total)",
+									"color": "SPECIAL"
+								}
+							]
+						},
+						{
+							"name": "Attack",
+							"effects": [
+								{
+									"name": "12",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Block",
+							"effects": [
+								{
+									"name": "Party Block 8",
+									"color": "BLOCK"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 2,
+					"desc": "Starts with #wBlock. Then, if there are zero or one Exploders left and the last move wasn't #wSummon, uses #wSummon. Otherwise, 50% chance to use #wAttack or #wBlock. Cannot use the same move three times in a row.",
+					"hp": "(95 - 98 HP)",
+					"notes": "Exploders start with 75% HP.",
+					"moves": [
+						{
+							"name": "Summon",
+							"effects": [
+								{
+									"name": "Spawn Exploders (up to 2 total)",
+									"color": "SPECIAL"
+								}
+							]
+						},
+						{
+							"name": "Attack",
+							"effects": [
+								{
+									"name": "14",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Block",
+							"effects": [
+								{
+									"name": "Party Block 8",
+									"color": "BLOCK"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 7,
+					"desc": "Starts with #wBlock. Then, if there are zero or one Exploders left and the last move wasn't #wSummon, uses #wSummon. Otherwise, 50% chance to use #wAttack or #wBlock. Cannot use the same move three times in a row.",
+					"hp": "(110 - 115 HP)",
+					"notes": "Exploders start with 75% HP.",
+					"moves": [
+						{
+							"name": "Summon",
+							"effects": [
+								{
+									"name": "Spawn Exploders (up to 2 total)",
+									"color": "SPECIAL"
+								}
+							]
+						},
+						{
+							"name": "Attack",
+							"effects": [
+								{
+									"name": "14",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Block",
+							"effects": [
+								{
+									"name": "Party Block 8",
+									"color": "BLOCK"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 17,
+					"desc": "Starts with #wBlock. Then, if there are zero or one Exploders left and the last move wasn't #wSummon, uses #wSummon. Otherwise, 50% chance to use #wAttack or #wBlock. Cannot use the same move three times in a row.",
+					"hp": "(110 - 115 HP)",
+					"notes": "Exploders start with 75% HP and 3 strength.",
+					"moves": [
+						{
+							"name": "Summon",
+							"effects": [
+								{
+									"name": "Spawn Exploders (up to 2 total)",
+									"color": "SPECIAL"
+								}
+							]
+						},
+						{
+							"name": "Attack",
+							"effects": [
+								{
+									"name": "14",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Block",
+							"effects": [
+								{
+									"name": "Party Block 12",
+									"color": "BLOCK"
+								}
+							]
+						}
+					]
+				}
+			]
 		}
 	]
 }
