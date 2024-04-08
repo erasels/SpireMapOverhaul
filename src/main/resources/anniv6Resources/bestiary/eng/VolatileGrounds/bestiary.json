@@ -433,6 +433,168 @@
 					]
 				}
 			]
+		},
+		{
+			"name": "Sun Stone Shard",
+			"id": "${ModID}:SunStoneShard",
+			"ai": [
+				{
+					"min_asc": 0,
+					"desc": "Cycles #wCharge -> #wSear or #wBarrier -> the other.",
+					"hp": "(60 - 65 HP)",
+					"notes": "Innate #uCharged #u5.",
+					"moves": [
+						{
+							"name": "Charge",
+							"effects": [
+								{
+									"name": "Charge 3",
+									"color": "BUFF"
+								}
+							]
+						},
+						{
+							"name": "Sear",
+							"effects": [
+								{
+									"name": "7",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Barrier",
+							"effects": [
+								{
+									"name": "5",
+									"color": "BLOCK"
+								},
+								{
+									"name": "Flame Barrier 5",
+									"color": "BUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 3,
+					"desc": "Cycles #wCharge -> #wSear or #wBarrier -> the other.",
+					"hp": "(60 - 65 HP)",
+					"notes": "Innate #uCharged #u8.",
+					"moves": [
+						{
+							"name": "Charge",
+							"effects": [
+								{
+									"name": "Charge 3",
+									"color": "BUFF"
+								}
+							]
+						},
+						{
+							"name": "Sear",
+							"effects": [
+								{
+									"name": "9",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Barrier",
+							"effects": [
+								{
+									"name": "5",
+									"color": "BLOCK"
+								},
+								{
+									"name": "Flame Barrier 5",
+									"color": "BUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 8,
+					"desc": "Cycles #wCharge -> #wSear or #wBarrier -> the other.",
+					"hp": "(75 - 85 HP)",
+					"notes": "Innate #uCharged #u8.",
+					"moves": [
+						{
+							"name": "Charge",
+							"effects": [
+								{
+									"name": "Charge 3",
+									"color": "BUFF"
+								}
+							]
+						},
+						{
+							"name": "Sear",
+							"effects": [
+								{
+									"name": "9",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Barrier",
+							"effects": [
+								{
+									"name": "5",
+									"color": "BLOCK"
+								},
+								{
+									"name": "Flame Barrier 5",
+									"color": "BUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 18,
+					"desc": "Cycles #wCharge -> #wSear or #wBarrier -> the other.",
+					"hp": "(75 - 85 HP)",
+					"notes": "Innate #uCharged #u8.",
+					"moves": [
+						{
+							"name": "Charge",
+							"effects": [
+								{
+									"name": "Charge 5",
+									"color": "BUFF"
+								}
+							]
+						},
+						{
+							"name": "Sear",
+							"effects": [
+								{
+									"name": "9",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Barrier",
+							"effects": [
+								{
+									"name": "5",
+									"color": "BLOCK"
+								},
+								{
+									"name": "Flame Barrier 8",
+									"color": "BUFF"
+								}
+							]
+						}
+					]
+				}
+			]
 		}
 	]
 }
