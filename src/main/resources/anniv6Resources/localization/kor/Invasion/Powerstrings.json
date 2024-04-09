@@ -1,0 +1,126 @@
+{
+  "${ModID}:FixedTextIntangiblePower": {
+    "DESCRIPTIONS": ["#b{0} 턴 동안 받는 피해와 체력 손실을 #b1 으로 감소시킵니다."]
+  },
+  "${ModID}:SerpentsGaze": {
+    "NAME": "뱀의 눈빛",
+    "DESCRIPTIONS": ["처음 뽑는 카드의 비용이 이번 턴 동안 #b{0} 증가합니다.", "처음 뽑는 카드 #b{0} 장의 비용이 이번 턴 동안 #b{1} 증가합니다."]
+  },
+  "${ModID}:LeafSpores": {
+    "NAME": "잎사귀 포자",
+    "DESCRIPTIONS": ["사망 시, #b{0} #y약화 와 #b{0} #y손상 을 부여합니다."]
+  },
+  "${ModID}:Hover": {
+    "NAME": "호버링",
+    "DESCRIPTIONS": ["이 적에게 입히는 공격 카드의 피해량이 #b{0}% 감소합니다."]
+  },
+  "${ModID}:MidasAura": {
+    "NAME": "미다스 오라",
+    "DESCRIPTIONS": ["강화된 공격, 스킬, 파워 카드를 사용할때마다, 그 카드를 #y소멸시키고, 소멸시킨 카드 타입에 따른 도금 타격, 도금 수비, 도금 정수 를 버린 카드 더미에 넣습니다."]
+  },
+  "${ModID}:GoldenBulwark": {
+    "NAME": "황금 방벽",
+    "DESCRIPTIONS": ["매 턴 시작시 당신이 소유한 #b{0} 골드당 이 적이 방어도를 #b1 얻습니다."]
+  },
+  "${ModID}:Cleanse": {
+    "NAME": "정화",
+    "DESCRIPTIONS": ["턴 종료시 이 적에게 부여된 모든 해로운 효과가 #b{0} 만큼 제거됩니다.", "이 턴 후에 효과가 제거됩니다."]
+  },
+  "${ModID}:Abysstouched": {
+    "NAME": "심연의 표식",
+    "DESCRIPTIONS": ["#y공격으로 받는 피해가 #b{0}% 증가합니다. 턴 종료시, 피해를 #b{0} 받습니다.", "#y공격으로 받는 피해가 #b{0}% 증가합니다. 턴 종료시, 피해를 #b{0} 받습니다."]
+  },
+  "${ModID}:DelayedAbysstouched": {
+    "NAME": "심연의 표식",
+    "DESCRIPTIONS": ["#y공격으로 받는 피해가 #b{0}% 증가합니다. 턴 종료시, 피해를 #b{0} 받습니다."]
+  },
+  "${ModID}:Wary": {
+    "NAME": "경계",
+    "DESCRIPTIONS": ["#y공격 카드를 사용할 때마다, 힘을 #b{0} 얻습니다."]
+  },
+  "${ModID}:HydraHeads": {
+    "NAME": "히드라 머리",
+    "DESCRIPTIONS": ["머리 하나당 #y힘을 #b1 얻습니다. 이 적에게 한번의 공격으로 #b{0} 또는 그 이상의 피해를 입히면, 이 적이 머리를 잃습니다. 2턴 후 머리 2개가 다시 재생됩니다."]
+  },
+  "${ModID}:HydraHeadRegrowth": {
+    "NAME": "머리 재생",
+    "DESCRIPTIONS": ["2턴 후 머리 #b{0} 개가 다시 재생됩니다."]
+  },
+  "${ModID}:DrawReductionSingleTurn": {
+    "NAME": "드로우 감소",
+    "DESCRIPTIONS": ["카드를 #b1 장 적게 뽑습니다.", "카드를 #b{0} 장 적게 뽑습니다."]
+  },
+  "${ModID}:PermanentDrawReduction": {
+    "NAME": "드로우 감소",
+    "DESCRIPTIONS": [
+      "턴 시작 시, 카드를 #b{0} 장 적게 뽑습니다.",
+      "턴 시작 시, 카드를 #b{0} 장 적게 뽑습니다."
+    ]
+  },
+  "${ModID}:EnergyLimit": {
+    "NAME": "에너지 제한",
+    "DESCRIPTIONS": ["매 턴 최대 3 에너지로 시작합니다."]
+  },
+  "${ModID}:FixedTextDraw": {
+    "NAME": "드로우",
+    "DESCRIPTIONS": [
+      "턴 시작 시, 카드를 #b",
+      " 장 추가로 뽑습니다.",
+      " 장 적게 뽑습니다.",
+      " 장 추가로 뽑습니다.",
+      " 장 적게 뽑습니다."
+    ]
+  },
+  "${ModID}:VoidPressure": {
+    "NAME": "공허 압력",
+    "DESCRIPTIONS": ["#p이 #p효과는 #p제거되지 #p않습니다. 카드가 #y소멸되거나 파워 카드를 사용할 때마다, 플레이어가 피해를 #b{0} 받습니다. 당신의 턴 종료시 손 안에 있는 저주, 상태이상, 휘발성을 제외한 카드를 1장 소멸시킵니다."]
+  },
+  "${ModID}:SummoningPortal": {
+    "NAME": "소환형 포탈",
+    "DESCRIPTIONS": ["전장에 정령 하수인을 최대 #b{0} 마리까지 소환합니다. 정령을 #b{1} 마리 더 소환하기 전에는 이 적은 공격하지 않고, 피해도 받지 않습니다."]
+  },
+  "${ModID}:DurableMinion": {
+    "NAME": "지속형 하수인",
+    "DESCRIPTIONS": ["이 하수인은 리더가 죽더라도 전투에서 도주하지 않습니다."]
+  },
+  "${ModID}:MirarisWake": {
+    "NAME": "미라리의 각성",
+    "DESCRIPTIONS": ["턴 시작시, {0} 를 얻습니다."]
+  },
+  "${ModID}:StaggershockRebound": {
+    "NAME": "스태거쇼크 재활용",
+    "DESCRIPTIONS": ["다음 턴 시작 시, 스태거쇼크 카드를 재사용합니다."]
+  },
+  "${ModID}:HandOfTheAbyss": {
+    "NAME": "공허의 손",
+    "DESCRIPTIONS": ["적에게 막히지 않은 피해를 입히면, #y심연의 #y표식을 #b{0} 부여합니다."]
+  },
+  "${ModID}:BrokenCrystalSeal": {
+    "NAME": "부서진 수정의 봉인",
+    "DESCRIPTIONS": ["매 턴마다 #y부서진 수정 #b2 장을 뽑을 카드 더미에 넣습니다. NL 해당 카드를 사용하여 이 적의 재생을 감소시키십시오!"]
+  },
+  "${ModID}:PrimevalCall": {
+    "NAME": "원시의 메아리",
+    "DESCRIPTIONS": ["매 턴마다 #p정예 #p호위충을 소환합니다."]
+  },
+  "${ModID}:Evolving": {
+    "NAME": "진화중",
+    "DESCRIPTIONS": ["매 턴 종료 시 진화합니다."]
+  },
+  "${ModID}:FrailPulse": {
+    "NAME": "손상의 고동",
+    "DESCRIPTIONS": ["턴 종료시, #y손상을 #b{0} 부여합니다."]
+  },
+  "${ModID}:DazedPulse": {
+    "NAME": "어지러움의 고동",
+    "DESCRIPTIONS": ["턴 종료시, #y어지러움 #b{0} 장을 뽑을 카드 더미에 넣습니다."]
+  },
+  "${ModID}:AbysstouchedPulse": {
+    "NAME": "심연의 고통",
+    "DESCRIPTIONS": ["턴 종료시, #y심연의 #y표식을 #b{0} 부여합니다."]
+  },
+  "${ModID}:SlimyBody": {
+    "NAME": "끈적한 육체",
+    "DESCRIPTIONS": ["이 적에게 막히지 않은 피해를 입히면, #y점액덩어리 1장을 버린 카드 더미에 넣습니다."]
+  }
+}

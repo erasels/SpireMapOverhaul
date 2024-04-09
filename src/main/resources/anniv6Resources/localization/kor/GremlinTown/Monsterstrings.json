@@ -1,0 +1,106 @@
+{
+  "${ModID}:GremlinRiderRed": {
+    "MOVES": [
+      "충전",
+      "전술 공격"
+    ],
+    "NAME": "라이더 그렘린"
+  },
+  "${ModID}:GremlinRiderBlue": {
+    "MOVES": [
+      "충전",
+      "전술 공격"
+    ],
+    "NAME": "라이더 그렘린"
+  },
+  "${ModID}:GremlinRiderGreen": {
+    "MOVES": [
+      "충전",
+      "전술 공격"
+    ],
+    "NAME": "라이더 그렘린"
+  },
+  "${ModID}:GremlinRockTosser": {
+    "MOVES": [
+      "던지기"
+    ],
+    "NAME": "돌 그렘린"
+  },
+  "${ModID}:GremlinHealer": {
+    "MOVES": [
+      "치료",
+      "공격"
+    ],
+    "NAME": "힐러 그렘린"
+  },
+  "${ModID}:ChubbyGremlin": {
+    "MOVES": [
+      "앉기"
+    ],
+    "NAME": "뚱뚱한 그렘린"
+  },
+  "${ModID}:ArmoredGremlin": {
+    "MOVES": [
+      "몸통 박치기"
+    ],
+    "NAME": "무장한 그렘린"
+  },
+  "${ModID}:GremlinBarbarian": {
+    "MOVES": [
+      "격분"
+    ],
+    "NAME": "야만적인 그렘린"
+  },
+  "${ModID}:GremlinAssassin": {
+    "MOVES": [
+      "드로우 감소",
+      "에너지 감소"
+    ],
+    "NAME": "암살자 그렘린"
+  },
+  "${ModID}:GremlinJerk": {
+    "MOVES": [
+      "햄스트링",
+      "활기"
+    ],
+    "NAME": "얼간이 그렘린"
+  },
+  "${ModID}:GremlinNib": {
+    "MOVES": [
+      "강타",
+      "연타",
+      "격분",
+      "치명타"
+    ],
+    "DIALOG": [
+      "그르뤄어어어어어어어어!!"
+    ],
+    "NAME": "펜 촉 그렘린"
+  },
+  "${ModID}:GremlinElder": {
+    "MOVES": [
+      "박치기",
+      "찰싹",
+      "충전",
+      "죽음의 저주"
+    ],
+    "DIALOG": [
+      "내 몸이 피해를 입는다...",
+      "저 영혼을 저주하기 위해 내 생명을 바치겠다...",
+      "너는 결코 완전해질 수 없다!"
+    ],
+    "NAME": "장로 그렘린"
+  },
+  "${ModID}:GremlinCannon": {
+    "MOVES": [
+      "준비중...",
+      "발사!",
+      "발사!",
+      "발사!"
+    ],
+    "DIALOG": [
+      "준비중..."
+    ],
+    "NAME": "대포 그렘린"
+  }
+}

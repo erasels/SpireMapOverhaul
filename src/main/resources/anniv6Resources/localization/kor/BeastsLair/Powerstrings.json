@@ -1,0 +1,15 @@
+{
+
+  "${ModID}:FuryPower": {
+    "NAME": "분노",
+    "DESCRIPTIONS": [
+      "적의 턴 종료 시, #b", "% 나머지 전투 동안 주는 피해가 증가합니다."
+    ]
+  },
+  "${ModID}:DamageUpPower": {
+    "NAME": "피해 증가",
+    "DESCRIPTIONS": [
+      "#b", "% 피해를 더 줍니다."
+    ]
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "${ModID}:DivineProtection": {
+    "NAME": "스네코의 보호",
+    "DESCRIPTIONS": [
+      "이번 턴에 #b%d 만큼의 체력만 잃습니다.",
+      "더 이상 피해를 입지 않습니다.",
+      " NL %s 가 죽을 때 제거됩니다."
+    ]
+  },
+  "${ModID}:Split": {
+    "NAME": "Split",
+    "DESCRIPTIONS": [
+      "When its HP is at or below #b75%, will split into #b2 smaller slimes with ",
+      "'s current HP."
+    ]
+  },
+  "${ModID}:PainfulPunches": {
+    "NAME": "고통스러운 펀치",
+    "DESCRIPTIONS": [
+      "이 적에게 공격 피해를 입을 때마다, #y부상을 뽑을 카드 맨 위에 넣습니다."
+    ]
+  },
+  "${ModID}:SneckoBot": {
+    "NAME": "Snecko Bot",
+    "DESCRIPTIONS": [
+      "Whenever you play a card, chooses a random number from #b0 to #b3. If the number is equal to the cost of the card played, gains #b",
+      " #yStrength."
+    ]
+  },
+  "${ModID}:ExplodingSporeCloud": {
+    "NAME": "폭발하는 포자 구름",
+    "DESCRIPTIONS": [
+      "#b%2$d 턴 뒤, 당신에게 #y취약을 #b%1$d 부여합니다. NL 사망 시, 당신에게 #y취약을 #b%1$d 부여합니다.",
+      "사망 시, 당신에게 #y취약을 #b%1$d 부여합니다."
+    ]
+  },
+  "${ModID}:DoubleTime": {
+    "NAME": "Double Time",
+    "DESCRIPTIONS": [
+      "Whenever you play #b%d cards, gains #b%d #yStrength."
+    ]
+  },
+  "${ModID}:DeathRattle": {
+    "NAME": "Death Rattle",
+    "DESCRIPTIONS": [
+      "On death, puts #b%d #yDazed on top of your draw pile."
+    ]
+  },
+  "${ModID}:Hex": {
+    "NAME": "주술",
+    "DESCRIPTIONS": [
+      "카드를 사용할 시, #b",
+      " #y어지러움을 뽑을 카드 더미에 섞어 넣습니다."
+    ]
+  },
+  "${ModID}:VenomStrikes": {
+    "NAME": "악의 타격",
+    "DESCRIPTIONS": [
+      "이 적으로부터 공격 피해를 입을 때마다, #y악의를 #b%d 얻습니다."
+    ]
+  },
+  "${ModID}:Venom": {
+    "NAME": "악의",
+    "DESCRIPTIONS": [
+      "턴 종료 시 피해를 #b%d 입고, #y악의가 by #b%d 감소합니다."
+    ]
+  },
+  "${ModID}:EnergyDownPower": {
+    "NAME": "에너지 감소"
+  },
+  "${ModID}:SemiIntangible": {
+    "NAME": "반무형",
+    "DESCRIPTIONS": [
+      "이번 턴에 받는 피해와 체력 손실을 #b%d 감소시킵니다. #y반무형은 다른 턴에 다시 부여됩니다."
+    ]
+  },
+  "${ModID}:SlimeCoating": {
+    "NAME": "끈적임 추가",
+    "DESCRIPTIONS": [
+      "이 적의 턴 종료시, #b%d #y점액투성이를 버린 카드 더미에 추가합니다."
+    ]
+  },
+  "${ModID}:DemonFormMonster": {
+    "NAME": "악마화",
+    "DESCRIPTIONS": [
+      "대상의 턴 시작 시, #y힘을 #b%d 얻습니다."
+    ]
+  },
+  "${ModID}:FatedShapes": {
+    "NAME": "운명의 형상",
+    "DESCRIPTIONS": [
+      "%1$s , %2$s 는 체력을 공유합니다."
+    ]
+  }
+}

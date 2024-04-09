@@ -1,0 +1,40 @@
+{
+  "${ModID}:Eruptor": {
+    "MOVES": [
+      "흠집",
+      "증기"
+    ],
+    "NAME": "분출기"
+  },
+  "${ModID}:UnstableSunstone": {
+    "MOVES": [
+      "불안정화",
+      "그슬리기",
+      "뜨거운 감자"
+    ],
+    "NAME": "불안정한 일장석"
+  },
+  "${ModID}:SunStoneShard": {
+    "MOVES": [
+      "충전",
+      "그슬리기",
+      "배리어"
+    ],
+    "NAME": "일장석 조각"
+  },
+  "${ModID}:HeatBlister": {
+    "MOVES": [
+      "으깨기",
+      "인산 담즙"
+    ],
+    "NAME": "화염 물집"
+  },
+  "${ModID}:GremlinArchmage": {
+    "MOVES": [
+      "덩어리 소환",
+      "파이어볼",
+      "마법 갑주"
+    ],
+    "NAME": "대마법사 그렘린"
+  }
+}
