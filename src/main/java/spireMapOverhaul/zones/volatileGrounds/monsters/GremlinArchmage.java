@@ -152,13 +152,13 @@ public class GremlinArchmage extends CustomMonster {
     protected void getMove(final int num) {
         if(canSpawn() && !lastMove(SUMMON))
         {
-            this.setMove(SUMMON, Intent.UNKNOWN);
+            this.setMove(MOVES[0], SUMMON, Intent.UNKNOWN);
         }
         else if ((num < 50 && !lastTwoMoves(ATTACK) && !firstTurn) || lastTwoMoves(BLOCK)) {
-            this.setMove(ATTACK, Intent.ATTACK, damage1);
+            this.setMove(MOVES[1], ATTACK, Intent.ATTACK, damage1);
         
         } else {
-            this.setMove(BLOCK, Intent.DEFEND);
+            this.setMove(MOVES[2], BLOCK, Intent.DEFEND);
         }
         firstTurn = false;
     }
