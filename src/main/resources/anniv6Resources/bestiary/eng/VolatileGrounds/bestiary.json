@@ -299,7 +299,7 @@
 					"notes": "Exploders start with 75% HP.",
 					"moves": [
 						{
-							"name": "Summon",
+							"name": "Summon Shapes",
 							"effects": [
 								{
 									"name": "Spawn Exploders (up to 2 total)",
@@ -308,7 +308,7 @@
 							]
 						},
 						{
-							"name": "Attack",
+							"name": "Fireball",
 							"effects": [
 								{
 									"name": "12",
@@ -317,7 +317,7 @@
 							]
 						},
 						{
-							"name": "Block",
+							"name": "Mage Armor",
 							"effects": [
 								{
 									"name": "Party Block 8",
