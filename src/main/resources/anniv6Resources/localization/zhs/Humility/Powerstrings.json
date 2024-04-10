@@ -1,6 +1,6 @@
 {
   "${ModID}:DivineProtection": {
-    "NAME": "异蛇防护",
+    "NAME": "神圣防护",
     "DESCRIPTIONS": [
       "本回合最多失去 #b%d 生命值。",
       "之后本回合将不再受到伤害。",
