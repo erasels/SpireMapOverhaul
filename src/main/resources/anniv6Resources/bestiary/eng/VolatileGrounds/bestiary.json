@@ -1,0 +1,753 @@
+{
+	"monsters": [
+		{
+			"name": "Eruptor",
+			"id": "${ModID}:Eruptor",
+			"ai": [
+				{
+					"min_asc": 0,
+					"desc": "Cycles #wBruise -> #wBoil.",
+					"hp": "(22 - 26 HP)",
+					"notes": "Innate #uErupt #u15 for #r15 damage. #dBurn status cards go into the draw pile.",
+					"moves": [
+						{
+							"name": "Bruise",
+							"effects": [
+								{
+									"name": "6",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Boil",
+							"effects": [
+								{
+									"name": "Burn 1",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 2,
+					"desc": "Cycles #wBruise -> #wBoil.",
+					"hp": "(22 - 26 HP)",
+					"notes": "Innate #uErupt #u15 for #r20 damage. #dBurn status cards go into the draw pile.",
+					"moves": [
+						{
+							"name": "Bruise",
+							"effects": [
+								{
+									"name": "8",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Boil",
+							"effects": [
+								{
+									"name": "Burn 1",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 7,
+					"desc": "Cycles #wBruise -> #wBoil.",
+					"hp": "(25 - 30 HP)",
+					"notes": "Innate #uErupt #u15 for #r20 damage. #dBurn status cards go into the draw pile.",
+					"moves": [
+						{
+							"name": "Bruise",
+							"effects": [
+								{
+									"name": "8",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Boil",
+							"effects": [
+								{
+									"name": "Burn 1",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 17,
+					"desc": "Cycles #wBruise -> #wBoil.",
+					"hp": "(25 - 30 HP)",
+					"notes": "Innate #uErupt #u10 for #r20 damage. #dBurn status cards go into the draw pile.",
+					"moves": [
+						{
+							"name": "Bruise",
+							"effects": [
+								{
+									"name": "8",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Boil",
+							"effects": [
+								{
+									"name": "Burn 1",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Heat Blister",
+			"id": "${ModID}:HeatBlister",
+			"ai": [
+				{
+					"min_asc": 0,
+					"desc": "Starts with #wBuff, then repeats a 50% chance to use #wAttack or #wAttack #wand #wDebuff. Cannot use the same move three times in a row.",
+					"hp": "(100 - 110 HP)",
+					"notes": "Innate #uExplode+ #u5 for #r40 damage. #dSlimed and #dBurn status cards go into the discard pile.",
+					"moves": [
+						{
+							"name": "Buff",
+							"effects": [
+								{
+									"name": "Malleable 3",
+									"color": "BUFF"
+								}
+							]
+						},
+						{
+							"name": "Attack",
+							"effects": [
+								{
+									"name": "15",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Attack and Debuff",
+							"effects": [
+								{
+									"name": "5",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Slimed 1",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Burn 1",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 2,
+					"desc": "Starts with #wBuff, then repeats a 50% chance to use #wAttack or #wAttack #wand #wDebuff. Cannot use the same move three times in a row.",
+					"hp": "(100 - 110 HP)",
+					"notes": "Innate #uExplode+ #u5 for #r50 damage. #dSlimed and #dBurn status cards go into the discard pile.",
+					"moves": [
+						{
+							"name": "Buff",
+							"effects": [
+								{
+									"name": "Malleable 3",
+									"color": "BUFF"
+								}
+							]
+						},
+						{
+							"name": "Attack",
+							"effects": [
+								{
+									"name": "18",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Attack and Debuff",
+							"effects": [
+								{
+									"name": "8",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Slimed 1",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Burn 1",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 7,
+					"desc": "Starts with #wBuff, then repeats a 50% chance to use #wAttack or #wAttack #wand #wDebuff. Cannot use the same move three times in a row.",
+					"hp": "(110 - 120 HP)",
+					"notes": "Innate #uExplode+ #u5 for #r50 damage. #dSlimed and #dBurn status cards go into the discard pile.",
+					"moves": [
+						{
+							"name": "Buff",
+							"effects": [
+								{
+									"name": "Malleable 3",
+									"color": "BUFF"
+								}
+							]
+						},
+						{
+							"name": "Attack",
+							"effects": [
+								{
+									"name": "18",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Attack and Debuff",
+							"effects": [
+								{
+									"name": "8",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Slimed 1",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Burn 1",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 17,
+					"desc": "Starts with #wBuff, then repeats a 50% chance to use #wAttack or #wAttack #wand #wDebuff. Cannot use the same move three times in a row.",
+					"hp": "(110 - 120 HP)",
+					"notes": "Innate #uExplode+ #u4 for #r50 damage. #dSlimed and #dBurn status cards go into the discard pile.",
+					"moves": [
+						{
+							"name": "Buff",
+							"effects": [
+								{
+									"name": "Malleable 3",
+									"color": "BUFF"
+								}
+							]
+						},
+						{
+							"name": "Attack",
+							"effects": [
+								{
+									"name": "18",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Attack and Debuff",
+							"effects": [
+								{
+									"name": "8",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Slimed 1",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Burn+ 1",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Gremlin Archmage",
+			"id": "${ModID}:GremlinArchmage",
+			"ai": [
+				{
+					"min_asc": 0,
+					"desc": "Starts with #wBlock. Then, if there are zero or one Exploders left and the last move wasn't #wSummon, uses #wSummon. Otherwise, 50% chance to use #wAttack or #wBlock. Cannot use the same move three times in a row.",
+					"hp": "(95 - 98 HP)",
+					"notes": "Exploders start with 75% HP.",
+					"moves": [
+						{
+							"name": "Summon Shapes",
+							"effects": [
+								{
+									"name": "Spawn Exploders (up to 2 total)",
+									"color": "SPECIAL"
+								}
+							]
+						},
+						{
+							"name": "Fireball",
+							"effects": [
+								{
+									"name": "12",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Mage Armor",
+							"effects": [
+								{
+									"name": "Party Block 8",
+									"color": "BLOCK"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 2,
+					"desc": "Starts with #wBlock. Then, if there are zero or one Exploders left and the last move wasn't #wSummon, uses #wSummon. Otherwise, 50% chance to use #wAttack or #wBlock. Cannot use the same move three times in a row.",
+					"hp": "(95 - 98 HP)",
+					"notes": "Exploders start with 75% HP.",
+					"moves": [
+						{
+							"name": "Summon",
+							"effects": [
+								{
+									"name": "Spawn Exploders (up to 2 total)",
+									"color": "SPECIAL"
+								}
+							]
+						},
+						{
+							"name": "Attack",
+							"effects": [
+								{
+									"name": "14",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Block",
+							"effects": [
+								{
+									"name": "Party Block 8",
+									"color": "BLOCK"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 7,
+					"desc": "Starts with #wBlock. Then, if there are zero or one Exploders left and the last move wasn't #wSummon, uses #wSummon. Otherwise, 50% chance to use #wAttack or #wBlock. Cannot use the same move three times in a row.",
+					"hp": "(110 - 115 HP)",
+					"notes": "Exploders start with 75% HP.",
+					"moves": [
+						{
+							"name": "Summon",
+							"effects": [
+								{
+									"name": "Spawn Exploders (up to 2 total)",
+									"color": "SPECIAL"
+								}
+							]
+						},
+						{
+							"name": "Attack",
+							"effects": [
+								{
+									"name": "14",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Block",
+							"effects": [
+								{
+									"name": "Party Block 8",
+									"color": "BLOCK"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 17,
+					"desc": "Starts with #wBlock. Then, if there are zero or one Exploders left and the last move wasn't #wSummon, uses #wSummon. Otherwise, 50% chance to use #wAttack or #wBlock. Cannot use the same move three times in a row.",
+					"hp": "(110 - 115 HP)",
+					"notes": "Exploders start with 75% HP and 3 strength.",
+					"moves": [
+						{
+							"name": "Summon",
+							"effects": [
+								{
+									"name": "Spawn Exploders (up to 2 total)",
+									"color": "SPECIAL"
+								}
+							]
+						},
+						{
+							"name": "Attack",
+							"effects": [
+								{
+									"name": "14",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Block",
+							"effects": [
+								{
+									"name": "Party Block 12",
+									"color": "BLOCK"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Sun Stone Shard",
+			"id": "${ModID}:SunStoneShard",
+			"ai": [
+				{
+					"min_asc": 0,
+					"desc": "Cycles #wCharge -> #wSear or #wBarrier -> the other.",
+					"hp": "(60 - 65 HP)",
+					"notes": "Innate #uCharged #u5.",
+					"moves": [
+						{
+							"name": "Charge",
+							"effects": [
+								{
+									"name": "Charge 3",
+									"color": "BUFF"
+								}
+							]
+						},
+						{
+							"name": "Sear",
+							"effects": [
+								{
+									"name": "7",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Barrier",
+							"effects": [
+								{
+									"name": "5",
+									"color": "BLOCK"
+								},
+								{
+									"name": "Flame Barrier 5",
+									"color": "BUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 3,
+					"desc": "Cycles #wCharge -> #wSear or #wBarrier -> the other.",
+					"hp": "(60 - 65 HP)",
+					"notes": "Innate #uCharged #u8.",
+					"moves": [
+						{
+							"name": "Charge",
+							"effects": [
+								{
+									"name": "Charge 3",
+									"color": "BUFF"
+								}
+							]
+						},
+						{
+							"name": "Sear",
+							"effects": [
+								{
+									"name": "9",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Barrier",
+							"effects": [
+								{
+									"name": "5",
+									"color": "BLOCK"
+								},
+								{
+									"name": "Flame Barrier 5",
+									"color": "BUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 8,
+					"desc": "Cycles #wCharge -> #wSear or #wBarrier -> the other.",
+					"hp": "(75 - 85 HP)",
+					"notes": "Innate #uCharged #u8.",
+					"moves": [
+						{
+							"name": "Charge",
+							"effects": [
+								{
+									"name": "Charge 3",
+									"color": "BUFF"
+								}
+							]
+						},
+						{
+							"name": "Sear",
+							"effects": [
+								{
+									"name": "9",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Barrier",
+							"effects": [
+								{
+									"name": "5",
+									"color": "BLOCK"
+								},
+								{
+									"name": "Flame Barrier 5",
+									"color": "BUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 18,
+					"desc": "Cycles #wCharge -> #wSear or #wBarrier -> the other.",
+					"hp": "(75 - 85 HP)",
+					"notes": "Innate #uCharged #u8.",
+					"moves": [
+						{
+							"name": "Charge",
+							"effects": [
+								{
+									"name": "Charge 5",
+									"color": "BUFF"
+								}
+							]
+						},
+						{
+							"name": "Sear",
+							"effects": [
+								{
+									"name": "9",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Barrier",
+							"effects": [
+								{
+									"name": "5",
+									"color": "BLOCK"
+								},
+								{
+									"name": "Flame Barrier 8",
+									"color": "BUFF"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Unstable Sunstone",
+			"id": "${ModID}:UnstableSunstone",
+			"ai": [
+				{
+					"min_asc": 0,
+					"desc": "Starts with #wHot #wPotato, then cycles #wSear -> #wDestabilize.",
+					"hp": "(110 - 120 HP)",
+					"notes": "#dBurn status cards go into the hand.",
+					"moves": [
+						{
+							"name": "Destabilize",
+							"effects": [
+								{
+									"name": "10",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Sear",
+							"effects": [
+								{
+									"name": "5",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Burn 1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Hot Potato",
+							"effects": [
+								{
+									"name": "Unstable 6",
+									"color": "BUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 3,
+					"desc": "Starts with #wHot #wPotato, then cycles #wSear -> #wDestabilize.",
+					"hp": "(110 - 120 HP)",
+					"notes": "#dBurn status cards go into the hand.",
+					"moves": [
+						{
+							"name": "Destabilize",
+							"effects": [
+								{
+									"name": "12",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Sear",
+							"effects": [
+								{
+									"name": "6",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Burn 1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Hot Potato",
+							"effects": [
+								{
+									"name": "Unstable 10",
+									"color": "BUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 8,
+					"desc": "Starts with #wHot #wPotato, then cycles #wSear -> #wDestabilize.",
+					"hp": "(140 - 155 HP)",
+					"notes": "#dBurn status cards go into the hand.",
+					"moves": [
+						{
+							"name": "Destabilize",
+							"effects": [
+								{
+									"name": "12",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Sear",
+							"effects": [
+								{
+									"name": "6",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Burn 1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Hot Potato",
+							"effects": [
+								{
+									"name": "Unstable 10",
+									"color": "BUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 18,
+					"desc": "Cycles #wDestabilize -> #wSear.",
+					"hp": "(140 - 155 HP)",
+					"notes": "Innate #uUnstable #u10. #dBurn status cards go into the draw pile.",
+					"moves": [
+						{
+							"name": "Destabilize",
+							"effects": [
+								{
+									"name": "12",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Sear",
+							"effects": [
+								{
+									"name": "6",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Burn 1",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}

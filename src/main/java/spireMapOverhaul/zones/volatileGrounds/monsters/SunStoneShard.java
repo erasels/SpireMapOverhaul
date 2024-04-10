@@ -108,12 +108,12 @@ public class SunStoneShard extends CustomMonster {
     @Override
     protected void getMove(final int num) {
         if (!lastMove(BUFF) && !lastMoveBefore(BUFF)) {
-            this.setMove(BUFF, Intent.BUFF);
+            this.setMove(MOVES[0], BUFF, Intent.BUFF);
         } else {
             if ((num > 50 && lastMove(BUFF)) || lastMove(BARRIER)) {
-                this.setMove(ATTACK, Intent.ATTACK, attackDamage);
+                this.setMove(MOVES[1], ATTACK, Intent.ATTACK, attackDamage);
             } else {
-                this.setMove(BARRIER, Intent.DEFEND_BUFF);
+                this.setMove(MOVES[2], BARRIER, Intent.DEFEND_BUFF);
             }
         }
     }
