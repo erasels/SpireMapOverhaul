@@ -2,8 +2,8 @@
   {
     "PROPER_NAME": "浮空",
     "NAMES": [
-	    "flighty",
-      "浮空"
+	"flighty",
+	"浮空"
     ],
     "DESCRIPTION": "抽到时，抽 #b1 张牌并移除 #y浮空 。"
   }
