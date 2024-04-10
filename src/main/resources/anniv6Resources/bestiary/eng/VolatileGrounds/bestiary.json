@@ -595,6 +595,159 @@
 					]
 				}
 			]
+		},
+		{
+			"name": "Unstable Sunstone",
+			"id": "${ModID}:UnstableSunstone",
+			"ai": [
+				{
+					"min_asc": 0,
+					"desc": "Starts with #wHot #wPotato, then cycles #wSear -> #wDestabilize.",
+					"hp": "(110 - 120 HP)",
+					"notes": "#dBurn status cards go into the hand.",
+					"moves": [
+						{
+							"name": "Destabilize",
+							"effects": [
+								{
+									"name": "10",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Sear",
+							"effects": [
+								{
+									"name": "5",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Burn 1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Hot Potato",
+							"effects": [
+								{
+									"name": "Unstable 6",
+									"color": "BUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 3,
+					"desc": "Starts with #wHot #wPotato, then cycles #wSear -> #wDestabilize.",
+					"hp": "(110 - 120 HP)",
+					"notes": "#dBurn status cards go into the hand.",
+					"moves": [
+						{
+							"name": "Destabilize",
+							"effects": [
+								{
+									"name": "12",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Sear",
+							"effects": [
+								{
+									"name": "6",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Burn 1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Hot Potato",
+							"effects": [
+								{
+									"name": "Unstable 10",
+									"color": "BUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 8,
+					"desc": "Starts with #wHot #wPotato, then cycles #wSear -> #wDestabilize.",
+					"hp": "(140 - 155 HP)",
+					"notes": "#dBurn status cards go into the hand.",
+					"moves": [
+						{
+							"name": "Destabilize",
+							"effects": [
+								{
+									"name": "12",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Sear",
+							"effects": [
+								{
+									"name": "6",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Burn 1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Hot Potato",
+							"effects": [
+								{
+									"name": "Unstable 10",
+									"color": "BUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 18,
+					"desc": "Cycles #wDestabilize -> #wSear.",
+					"hp": "(140 - 155 HP)",
+					"notes": "Innate #uUnstable #u10. #dBurn status cards go into the draw pile.",
+					"moves": [
+						{
+							"name": "Destabilize",
+							"effects": [
+								{
+									"name": "12",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Sear",
+							"effects": [
+								{
+									"name": "6",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Burn 1",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				}
+			]
 		}
 	]
 }
