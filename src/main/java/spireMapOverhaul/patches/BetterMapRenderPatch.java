@@ -11,7 +11,7 @@ import spireMapOverhaul.abstracts.AbstractZone;
 
 @SpirePatch(
         clz = DungeonMap.class,
-        method = "renderMapBlender"
+        method = "renderNormalMap"
 )
 public class BetterMapRenderPatch {
     @SpirePostfixPatch
