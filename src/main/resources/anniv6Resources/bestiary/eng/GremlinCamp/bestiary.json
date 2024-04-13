@@ -1,0 +1,130 @@
+{
+	"monsters": [
+		{
+			"name": "Shield Gremlin (Bodyguard)",
+			"id": "${ModID}:GremlindBodyGuard",
+			"ai": [
+				{
+					"min_asc": 0,
+					"desc": "#wProtects random allies (except other Shield Gremlins) until none remain, and then uses #wShield #wBash.",
+					"hp": "(18 - 21 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Protect",
+							"effects": [
+								{
+									"name": "Ally Block 7",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Shield Bash",
+							"effects": [
+								{
+									"name": "6",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Strength 5",
+									"color": "BUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 2,
+					"desc": "#wProtects random allies (except other Shield Gremlins) until none remain, and then uses #wShield #wBash.",
+					"hp": "(18 - 21 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Protect",
+							"effects": [
+								{
+									"name": "Ally Block 7",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Shield Bash",
+							"effects": [
+								{
+									"name": "8",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Strength 5",
+									"color": "BUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 7,
+					"desc": "#wProtects random allies (except other Shield Gremlins) until none remain, and then uses #wShield #wBash.",
+					"hp": "(19 - 23 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Protect",
+							"effects": [
+								{
+									"name": "Ally Block 8",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Shield Bash",
+							"effects": [
+								{
+									"name": "8",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Strength 5",
+									"color": "BUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 17,
+					"desc": "#wProtects random allies (except other Shield Gremlins) until none remain, and then uses #wShield #wBash.",
+					"hp": "(19 - 23 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Protect",
+							"effects": [
+								{
+									"name": "Ally Block 11",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Shield Bash",
+							"effects": [
+								{
+									"name": "8",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Strength 5",
+									"color": "BUFF"
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}
