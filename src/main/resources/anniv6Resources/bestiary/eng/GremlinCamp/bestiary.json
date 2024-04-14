@@ -15,7 +15,7 @@
 							"effects": [
 								{
 									"name": "Ally Block 7",
-									"color": "DAMAGE"
+									"color": "BLOCK"
 								}
 							]
 						},
@@ -45,7 +45,7 @@
 							"effects": [
 								{
 									"name": "Ally Block 7",
-									"color": "DAMAGE"
+									"color": "BLOCK"
 								}
 							]
 						},
@@ -75,7 +75,7 @@
 							"effects": [
 								{
 									"name": "Ally Block 8",
-									"color": "DAMAGE"
+									"color": "BLOCK"
 								}
 							]
 						},
@@ -105,7 +105,7 @@
 							"effects": [
 								{
 									"name": "Ally Block 11",
-									"color": "DAMAGE"
+									"color": "BLOCK"
 								}
 							]
 						},
@@ -119,6 +119,148 @@
 								{
 									"name": "Strength 5",
 									"color": "BUFF"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Feral Gremlin",
+			"id": "${ModID}:GremlinDog",
+			"ai": [
+				{
+					"min_asc": 0,
+					"desc": "Starts with #wPoison #wFang or #wDefensive #wNibble (using a different move from other Feral Gremlins if possible) and then alternates between the two moves.",
+					"hp": "(21 - 27 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Poison Fang",
+							"effects": [
+								{
+									"name": "4",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Poison 4",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Defensive Nibble",
+							"effects": [
+								{
+									"name": "8",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "6",
+									"color": "BLOCK"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 2,
+					"desc": "Starts with #wPoison #wFang or #wDefensive #wNibble (using a different move from other Feral Gremlins if possible) and then alternates between the two moves.",
+					"hp": "(21 - 27 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Poison Fang",
+							"effects": [
+								{
+									"name": "4",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Poison 4",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Defensive Nibble",
+							"effects": [
+								{
+									"name": "9",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "6",
+									"color": "BLOCK"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 7,
+					"desc": "Starts with #wPoison #wFang or #wDefensive #wNibble (using a different move from other Feral Gremlins if possible) and then alternates between the two moves.",
+					"hp": "(23 - 29 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Poison Fang",
+							"effects": [
+								{
+									"name": "4",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Poison 4",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Defensive Nibble",
+							"effects": [
+								{
+									"name": "9",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "6",
+									"color": "BLOCK"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 17,
+					"desc": "Starts with #wPoison #wFang or #wDefensive #wNibble (using a different move from other Feral Gremlins if possible) and then alternates between the two moves.",
+					"hp": "(23 - 29 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Poison Fang",
+							"effects": [
+								{
+									"name": "4",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Poison 6",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Defensive Nibble",
+							"effects": [
+								{
+									"name": "9",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "9",
+									"color": "BLOCK"
 								}
 							]
 						}
