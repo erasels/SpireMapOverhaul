@@ -14,7 +14,7 @@
   "${ModID}:GremlinDog": {
     "MOVES": [
       "Poison Fang",
-      "Defensive nibble"
+      "Defensive Nibble"
     ],
     "NAME": "Feral Gremlin"
   }
