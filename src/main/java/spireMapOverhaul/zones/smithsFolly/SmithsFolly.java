@@ -1,6 +1,8 @@
 package spireMapOverhaul.zones.smithsFolly;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.unique.IncreaseMaxHpAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -17,17 +19,17 @@ import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.*;
 import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
+import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
-import spireMapOverhaul.zoneInterfaces.CombatModifyingZone;
-import spireMapOverhaul.zoneInterfaces.ModifiedEventRateZone;
-import spireMapOverhaul.zoneInterfaces.OnTravelZone;
-import spireMapOverhaul.zoneInterfaces.RewardModifyingZone;
+import spireMapOverhaul.util.TexLoader;
+import spireMapOverhaul.zoneInterfaces.*;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class SmithsFolly extends AbstractZone implements CombatModifyingZone, OnTravelZone, RewardModifyingZone, ModifiedEventRateZone {
+public class SmithsFolly extends AbstractZone implements CombatModifyingZone, OnTravelZone, RewardModifyingZone, ModifiedEventRateZone, RenderableZone {
     public static final String ID = "SmithsFolly";
+    private Texture bg = TexLoader.getTexture(SpireAnniversary6Mod.makeBackgroundPath("smithsFolly/bg.png"));
 
     public SmithsFolly() {
         super(ID, Icons.MONSTER);
@@ -179,4 +181,8 @@ public class SmithsFolly extends AbstractZone implements CombatModifyingZone, On
         return baseGameEvents;
     }
 
+    @Override
+    public void postRenderCombatBackground(SpriteBatch sb) {
+        sb.draw(bg, 0, 0, Settings.WIDTH, Settings.HEIGHT);
+    }
 }

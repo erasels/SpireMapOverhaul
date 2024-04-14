@@ -1,5 +1,6 @@
 package spireMapOverhaul.patches;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -82,6 +83,7 @@ public class ZonePatches {
             if (AbstractDungeon.rs == AbstractDungeon.RenderScene.NORMAL) {
                 AbstractZone zone = Fields.zone.get(AbstractDungeon.currMapNode);
                 if (zone instanceof RenderableZone) {
+                    sb.setColor(Color.WHITE);
                     ((RenderableZone) zone).postRenderCombatBackground(sb);
                 }
             }

@@ -3,14 +3,20 @@ package spireMapOverhaul.zones.keymaster;
 import basemod.BaseMod;
 import basemod.abstracts.CustomSavable;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.powers.FocusPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
+import spireMapOverhaul.util.TexLoader;
 import spireMapOverhaul.zoneInterfaces.CombatModifyingZone;
+import spireMapOverhaul.zoneInterfaces.RenderableZone;
 import spireMapOverhaul.zoneInterfaces.RewardModifyingZone;
 import spireMapOverhaul.zoneInterfaces.ShopModifyingZone;
 
@@ -19,8 +25,9 @@ import java.util.ArrayList;
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 import static spireMapOverhaul.util.Wiz.atb;
 
-public class KeymasterZone extends AbstractZone implements CombatModifyingZone, RewardModifyingZone, ShopModifyingZone {
+public class KeymasterZone extends AbstractZone implements CombatModifyingZone, RewardModifyingZone, ShopModifyingZone, RenderableZone {
     public static final String ID = "Keymaster";
+    private Texture bg = TexLoader.getTexture(SpireAnniversary6Mod.makeBackgroundPath("keymaster/bg.png"));
     public static final String SaveID = makeID("KeymasterStartOfActHasKeys");
     public static boolean startOfActHasKeys = false;
 
@@ -109,4 +116,8 @@ public class KeymasterZone extends AbstractZone implements CombatModifyingZone, 
         });
     }
 
+    @Override
+    public void postRenderCombatBackground(SpriteBatch sb) {
+        sb.draw(bg, 0, 0, Settings.WIDTH, Settings.HEIGHT);
+    }
 }

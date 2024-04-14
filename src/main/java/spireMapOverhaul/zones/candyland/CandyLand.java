@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.cards.colorless.Bite;
 import com.megacrit.cardcrawl.cards.red.Feed;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.relics.*;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.shop.ShopScreen;
@@ -35,8 +36,7 @@ import java.util.*;
 
 public class CandyLand extends AbstractZone implements RewardModifyingZone, RenderableZone, CampfireModifyingZone, ShopModifyingZone {
     public static final String ID = "CandyLand";
-    private Texture CandylandBackground = TexLoader.getTexture(SpireAnniversary6Mod.makeImagePath("backgrounds/candyland/CandyLandBackground.png"));
-    private Texture pink = TexLoader.getTexture(SpireAnniversary6Mod.makeImagePath("backgrounds/candyland/Pink.png"));
+    private Texture bg = TexLoader.getTexture(SpireAnniversary6Mod.makeBackgroundPath("candyland/CandyLandBackground.png"));
     public CandyLand() {
         super(ID, Icons.REST, Icons.SHOP);
         this.width = 2;
@@ -157,18 +157,13 @@ public class CandyLand extends AbstractZone implements RewardModifyingZone, Rend
         colorlessCards.add(new Feed());
     }
 
+    private static final Color saturationCol = new Color(1f, 0.02f, 0.96f, 0.1f);
     @Override
     public void postRenderCombatBackground(SpriteBatch sb) {
-        float opacity1 = 0.1f;
-        float opacity2 = 1.0f;
-
-        sb.setColor(1, 1, 1, opacity1);
-        sb.draw(pink, 0, 0, (float) Settings.WIDTH, (float) Settings.HEIGHT);
-
-        sb.setColor(1, 1, 1, opacity2);
-        sb.draw(CandylandBackground, 0, 0, (float) Settings.WIDTH, (float) Settings.HEIGHT);
-
-        sb.setColor(Color.WHITE); // Reset the SpriteBatch color to default
+        sb.setColor(saturationCol);
+        sb.draw(ImageMaster.WHITE_SQUARE_IMG, 0, 0, Settings.WIDTH, Settings.HEIGHT);
+        sb.setColor(Color.WHITE);
+        sb.draw(bg, 0, 0, Settings.WIDTH, Settings.HEIGHT);
     }
 
     @Override

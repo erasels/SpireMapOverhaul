@@ -1,11 +1,18 @@
 package spireMapOverhaul.zones.gravewoodGrove;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.ui.campfire.AbstractCampfireOption;
+import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
+import spireMapOverhaul.util.TexLoader;
 import spireMapOverhaul.zoneInterfaces.CampfireModifyingZone;
 import spireMapOverhaul.zoneInterfaces.CombatModifyingZone;
+import spireMapOverhaul.zoneInterfaces.RenderableZone;
 import spireMapOverhaul.zones.gravewoodGrove.powers.DeadBranchPower;
 import spireMapOverhaul.zones.invasion.powers.FixedTextDrawPower;
 
@@ -14,8 +21,9 @@ import java.util.ArrayList;
 import static spireMapOverhaul.util.Wiz.atb;
 import static spireMapOverhaul.util.Wiz.adp;
 
-public class GravewoodGroveZone extends AbstractZone implements CombatModifyingZone, CampfireModifyingZone {
+public class GravewoodGroveZone extends AbstractZone implements CombatModifyingZone, CampfireModifyingZone, RenderableZone {
     public static final String ID = "GravewoodGrove";
+    private Texture bg = TexLoader.getTexture(SpireAnniversary6Mod.makeBackgroundPath("gravewoodGrove/bg.png"));
 
 
     public GravewoodGroveZone() {
@@ -48,5 +56,14 @@ public class GravewoodGroveZone extends AbstractZone implements CombatModifyingZ
     @Override
     public Color getColor() {
         return new Color(0.25f, 0.3f, 0.2f, 1f);
+    }
+
+    private static final Color desaturationCol = new Color(0.5f, 0.5f, 0.5f, 0.2f);
+    @Override
+    public void postRenderCombatBackground(SpriteBatch sb) {
+        sb.setColor(desaturationCol);
+        sb.draw(ImageMaster.WHITE_SQUARE_IMG, 0, 0, Settings.WIDTH, Settings.HEIGHT);
+        sb.setColor(Color.WHITE);
+        sb.draw(bg, 0, 0, Settings.WIDTH, Settings.HEIGHT);
     }
 }

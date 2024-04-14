@@ -1,8 +1,11 @@
 package spireMapOverhaul.zones.frostlands;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -13,6 +16,7 @@ import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.*;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
+import spireMapOverhaul.util.TexLoader;
 import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.zoneInterfaces.*;
 import spireMapOverhaul.zones.frostlands.monsters.*;
@@ -34,9 +38,8 @@ import static spireMapOverhaul.SpireAnniversary6Mod.modID;
 
 public class FrostlandsZone extends AbstractZone implements CombatModifyingZone, EncounterModifyingZone, RewardModifyingZone, ShopModifyingZone, RenderableZone, ModifiedEventRateZone{
     public static final String ID = "Frostlands";
-    private static final String STEWARD = SpireAnniversary6Mod.makeID("STEWARD");
+    private Texture bg = TexLoader.getTexture(SpireAnniversary6Mod.makeBackgroundPath("frostlands/bg.png"));
     java.util.Random rand;
-    private static final int ELITE_EXTRA_GOLD = 100;
 
     public FrostlandsZone() {
         super(ID, Icons.MONSTER, Icons.EVENT);
@@ -124,5 +127,10 @@ public class FrostlandsZone extends AbstractZone implements CombatModifyingZone,
     @Override
     public float zoneSpecificEventRate() {
         return 1f;
+    }
+
+    @Override
+    public void postRenderCombatBackground(SpriteBatch sb) {
+        sb.draw(bg, 0, 0, Settings.WIDTH, Settings.HEIGHT);
     }
 }

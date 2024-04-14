@@ -1,6 +1,9 @@
 package spireMapOverhaul.zones.Junkyard;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.events.exordium.ScrapOoze;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
@@ -8,16 +11,19 @@ import com.megacrit.cardcrawl.monsters.exordium.*;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
+import spireMapOverhaul.util.TexLoader;
 import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
 import spireMapOverhaul.zoneInterfaces.ModifiedEventRateZone;
+import spireMapOverhaul.zoneInterfaces.RenderableZone;
 import spireMapOverhaul.zoneInterfaces.RewardModifyingZone;
 import spireMapOverhaul.zones.Junkyard.monsters.Junkbot;
 import spireMapOverhaul.zones.Junkyard.monsters.Peddler;
 
 import java.util.*;
 
-public class Junkyard extends AbstractZone implements RewardModifyingZone, EncounterModifyingZone, ModifiedEventRateZone {
+public class Junkyard extends AbstractZone implements RewardModifyingZone, EncounterModifyingZone, ModifiedEventRateZone, RenderableZone {
     public static final String ID = "Junkyard";
+    private Texture bg = TexLoader.getTexture(SpireAnniversary6Mod.makeBackgroundPath("Junkyard/bg.png"));
     private static final String JUNKBOTS = SpireAnniversary6Mod.makeID("Junkbots");
     private static final String CULTIST_JUNKBOT = SpireAnniversary6Mod.makeID("Cultist_Junkbot");
     private static final String MUGGER_JUNKBOT = SpireAnniversary6Mod.makeID("Mugger_Junkbot");
@@ -94,5 +100,8 @@ public class Junkyard extends AbstractZone implements RewardModifyingZone, Encou
         return 0.4f;
     }
 
-
+    @Override
+    public void postRenderCombatBackground(SpriteBatch sb) {
+        sb.draw(bg, 0, 0, Settings.WIDTH, Settings.HEIGHT);
+    }
 }

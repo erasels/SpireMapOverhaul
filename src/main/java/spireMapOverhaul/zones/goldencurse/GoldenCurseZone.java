@@ -1,20 +1,27 @@
 package spireMapOverhaul.zones.goldencurse;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rewards.RewardItem;
+import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.patches.CustomRewardTypes;
 import spireMapOverhaul.rewards.SingleCardReward;
+import spireMapOverhaul.util.TexLoader;
+import spireMapOverhaul.zoneInterfaces.RenderableZone;
 import spireMapOverhaul.zoneInterfaces.RewardModifyingZone;
 
 import java.util.ArrayList;
 
 import static spireMapOverhaul.patches.CustomRewardTypes.SMO_SINGLECARDREWARD;
 
-public class GoldenCurseZone extends AbstractZone implements RewardModifyingZone {
+public class GoldenCurseZone extends AbstractZone implements RewardModifyingZone, RenderableZone {
     public static final String ID = "GoldenCurse";
+    private Texture bg = TexLoader.getTexture(SpireAnniversary6Mod.makeBackgroundPath("goldencurse/bg.png"));
 
     public static final int BASE_CARD_COST = 30;
     public static final int BASE_HEAL_COST = 10;
@@ -113,6 +120,11 @@ public class GoldenCurseZone extends AbstractZone implements RewardModifyingZone
     @Override
     public Color getColor() {
         return color;
+    }
+
+    @Override
+    public void postRenderCombatBackground(SpriteBatch sb) {
+        sb.draw(bg, 0, 0, Settings.WIDTH, Settings.HEIGHT);
     }
 
 }

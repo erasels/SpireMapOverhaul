@@ -1,7 +1,10 @@
 package spireMapOverhaul.zones.humility
 
 import com.badlogic.gdx.graphics.Color
+import com.badlogic.gdx.graphics.Texture
+import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.evacipated.cardcrawl.modthespire.Loader
+import com.megacrit.cardcrawl.core.Settings
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon
 import com.megacrit.cardcrawl.dungeons.Exordium
 import com.megacrit.cardcrawl.dungeons.TheBeyond
@@ -14,10 +17,13 @@ import com.megacrit.cardcrawl.rooms.MonsterRoom
 import com.megacrit.cardcrawl.rooms.MonsterRoomElite
 import spireMapOverhaul.SpireAnniversary6Mod
 import spireMapOverhaul.abstracts.AbstractZone
+import spireMapOverhaul.util.TexLoader
 import spireMapOverhaul.util.Wiz
 import spireMapOverhaul.zoneInterfaces.OnTravelZone
+import spireMapOverhaul.zoneInterfaces.RenderableZone
 
-class HumilityZone : AbstractZone(ID, Icons.MONSTER), OnTravelZone {
+
+class HumilityZone : AbstractZone(ID, Icons.MONSTER), OnTravelZone, RenderableZone {
     init {
         width = 2
         height = 4
@@ -76,9 +82,17 @@ class HumilityZone : AbstractZone(ID, Icons.MONSTER), OnTravelZone {
         )
     }
 
+    override fun postRenderCombatBackground(sb: SpriteBatch) {
+        if(bg == null) {
+            bg = TexLoader.getTexture(SpireAnniversary6Mod.makeBackgroundPath("humility/bg.png"))
+        }
+        sb.draw(bg, 0f, 0f, Settings.WIDTH.toFloat(), Settings.HEIGHT.toFloat())
+    }
+
     companion object {
         const val ID = "Humility"
         private val color = Color.valueOf("3498db")
+        private var bg: Texture? = null
 
         @JvmStatic
         fun isInZone(): Boolean =

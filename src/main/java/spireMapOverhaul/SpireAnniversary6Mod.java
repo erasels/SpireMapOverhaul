@@ -200,6 +200,10 @@ public class SpireAnniversary6Mod implements
         return modID + "Resources/images/events/" + resourcePath;
     }
 
+    public static String makeBackgroundPath(String resourcePath) {
+        return modID + "Resources/images/backgrounds/" + resourcePath;
+    }
+
     public static void initialize() {
         thismod = new SpireAnniversary6Mod();
 
