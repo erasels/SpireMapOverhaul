@@ -267,6 +267,204 @@
 					]
 				}
 			]
+		},
+		{
+			"name": "Gremlin Cook",
+			"id": "${ModID}:GremlinCook",
+			"ai": [
+				{
+					"min_asc": 0,
+					"desc": "Starts with #wLet #wHim #wCook or #wField #wRations, then uses #wRotten #wFood. Afterwards, picks a move from the following: #wLet #wHim #wCook if there are allies alive or it is after turn 5, #wField #wRations if there are exactly 2 allies alive, #wRotten #wFood, and #wTackle if there are no allies alive. Moves other than #wTackle cannot be used twice in a row.",
+					"hp": "(56 - 62 HP)",
+					"notes": "#dDazed status cards go into the discard pile.",
+					"moves": [
+						{
+							"name": "Let Him Cook",
+							"effects": [
+								{
+									"name": "Party Strength 2",
+									"color": "BUFF"
+								}
+							]
+						},
+						{
+							"name": "Field Rations",
+							"effects": [
+								{
+									"name": "Allies Max HP 10",
+									"color": "BUFF"
+								}
+							]
+						},
+						{
+							"name": "Rotten Food",
+							"effects": [
+								{
+									"name": "Poison 4",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Tackle",
+							"effects": [
+								{
+									"name": "10",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Dazed 2",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 3,
+					"desc": "Starts with #wLet #wHim #wCook or #wField #wRations, then uses #wRotten #wFood. Afterwards, picks a move from the following: #wLet #wHim #wCook if there are allies alive or it is after turn 5, #wField #wRations if there are exactly 2 allies alive, #wRotten #wFood, and #wTackle if there are no allies alive. Moves other than #wTackle cannot be used twice in a row.",
+					"hp": "(56 - 62 HP)",
+					"notes": "#dDazed status cards go into the discard pile.",
+					"moves": [
+						{
+							"name": "Let Him Cook",
+							"effects": [
+								{
+									"name": "Party Strength 2",
+									"color": "BUFF"
+								}
+							]
+						},
+						{
+							"name": "Field Rations",
+							"effects": [
+								{
+									"name": "Allies Max HP 10",
+									"color": "BUFF"
+								}
+							]
+						},
+						{
+							"name": "Rotten Food",
+							"effects": [
+								{
+									"name": "Poison 4",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Tackle",
+							"effects": [
+								{
+									"name": "11",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Dazed 2",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 8,
+					"desc": "Starts with #wLet #wHim #wCook or #wField #wRations, then uses #wRotten #wFood. Afterwards, picks a move from the following: #wLet #wHim #wCook if there are allies alive or it is after turn 5, #wField #wRations if there are exactly 2 allies alive, #wRotten #wFood, and #wTackle if there are no allies alive. Moves other than #wTackle cannot be used twice in a row.",
+					"hp": "(61 - 68 HP)",
+					"notes": "#dDazed status cards go into the discard pile.",
+					"moves": [
+						{
+							"name": "Let Him Cook",
+							"effects": [
+								{
+									"name": "Party Strength 2",
+									"color": "BUFF"
+								}
+							]
+						},
+						{
+							"name": "Field Rations",
+							"effects": [
+								{
+									"name": "Allies Max HP 10",
+									"color": "BUFF"
+								}
+							]
+						},
+						{
+							"name": "Rotten Food",
+							"effects": [
+								{
+									"name": "Poison 4",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Tackle",
+							"effects": [
+								{
+									"name": "11",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Dazed 2",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 18,
+					"desc": "Starts with #wLet #wHim #wCook or #wField #wRations, then uses #wRotten #wFood. Afterwards, picks a move from the following: #wLet #wHim #wCook if there are allies alive or it is after turn 5, #wField #wRations if there are exactly 2 allies alive, #wRotten #wFood, and #wTackle if there are no allies alive. Moves other than #wTackle cannot be used twice in a row.",
+					"hp": "(61 - 68 HP)",
+					"notes": "#dDazed status cards go into the discard pile.",
+					"moves": [
+						{
+							"name": "Let Him Cook",
+							"effects": [
+								{
+									"name": "Party Strength 3",
+									"color": "BUFF"
+								}
+							]
+						},
+						{
+							"name": "Field Rations",
+							"effects": [
+								{
+									"name": "Allies Max HP 15",
+									"color": "BUFF"
+								}
+							]
+						},
+						{
+							"name": "Rotten Food",
+							"effects": [
+								{
+									"name": "Poison 6",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Tackle",
+							"effects": [
+								{
+									"name": "11",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Dazed 3",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				}
+			]
 		}
 	]
 }
