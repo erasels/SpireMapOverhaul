@@ -15,26 +15,26 @@ import static spireMapOverhaul.SpireAnniversary6Mod.hasDarkmap;
 public class BetterMapRenderPatch {
     @SpirePatch(
             clz = DungeonMap.class,
-            method = "renderMapBlender",
-            requiredModId = "ojb_DarkMap"
+            method = "renderMapBlender"
     )
     public static class NormalMapPatch {
-        @SpirePostfixPatch
-        public static void render(DungeonMap __instance, SpriteBatch sb) {
-            renderZones(sb);
-        }
-    }
-
-    @SpirePatch(
-            clz = DungeonMap.class,
-            method = "renderNormalMap"
-    )
-    public static class DarkMapPatch {
         @SpirePostfixPatch
         public static void render(DungeonMap __instance, SpriteBatch sb) {
             if (!hasDarkmap) {
                 renderZones(sb);
             }
+        }
+    }
+
+    @SpirePatch(
+            clz = DungeonMap.class,
+            method = "renderNormalMap",
+            requiredModId = "ojb_DarkMap"
+    )
+    public static class DarkMapPatch {
+        @SpirePostfixPatch
+        public static void render(DungeonMap __instance, SpriteBatch sb) {
+            renderZones(sb);
         }
     }
 
