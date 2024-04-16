@@ -126,6 +126,9 @@ public class MonsterZooZone extends AbstractZone implements RewardModifyingZone,
     // All monsters gain an amount of strength
     @Override
     public void atPreBattle() {
+        if (AbstractDungeon.getCurrRoom().monsters == null) {
+            return;
+        }
         Wiz.forAllMonstersLiving(m -> Wiz.atb(new ApplyPowerAction(m, null, new StrengthPower(m, getStrAmt(m)))));
     }
 

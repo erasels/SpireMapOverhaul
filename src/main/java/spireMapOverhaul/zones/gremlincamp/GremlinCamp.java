@@ -122,6 +122,9 @@ public class GremlinCamp extends AbstractZone implements EncounterModifyingZone,
 
     @Override
     public void atPreBattle() {
+        if (AbstractDungeon.getCurrRoom().monsters == null) {
+            return;
+        }
         if (GET_DOWN_MR_PRESIDENT.equals(AbstractDungeon.lastCombatMetricKey)) {
             // President starts with 1 Buffer
             for (AbstractMonster m : AbstractDungeon.getCurrRoom().monsters.monsters) {

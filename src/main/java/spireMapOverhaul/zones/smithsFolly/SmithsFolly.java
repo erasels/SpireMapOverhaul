@@ -84,6 +84,9 @@ public class SmithsFolly extends AbstractZone implements CombatModifyingZone, On
 
     @Override
     public void atPreBattle() {
+        if (AbstractDungeon.getCurrRoom().monsters == null) {
+            return;
+        }
         if (!AbstractDungeon.getCurrMapNode().hasEmeraldKey) {
             AbstractRoom abstractRoom = AbstractDungeon.getCurrRoom();
 
