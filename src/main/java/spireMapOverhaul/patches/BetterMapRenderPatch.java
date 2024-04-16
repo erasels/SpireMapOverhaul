@@ -10,17 +10,18 @@ import com.megacrit.cardcrawl.map.DungeonMap;
 import spireMapOverhaul.BetterMapGenerator;
 import spireMapOverhaul.abstracts.AbstractZone;
 
+import static spireMapOverhaul.SpireAnniversary6Mod.hasDarkmap;
+
 public class BetterMapRenderPatch {
     @SpirePatch(
             clz = DungeonMap.class,
-            method = "renderMapBlender"
+            method = "renderMapBlender",
+            requiredModId = "ojb_DarkMap"
     )
     public static class NormalMapPatch {
         @SpirePostfixPatch
         public static void render(DungeonMap __instance, SpriteBatch sb) {
-            if (!Loader.isModLoaded("ojb_DarkMap")) {
-                renderZones(sb);
-            }
+            renderZones(sb);
         }
     }
 
@@ -31,7 +32,7 @@ public class BetterMapRenderPatch {
     public static class DarkMapPatch {
         @SpirePostfixPatch
         public static void render(DungeonMap __instance, SpriteBatch sb) {
-            if (Loader.isModLoaded("ojb_DarkMap")) {
+            if (!hasDarkmap) {
                 renderZones(sb);
             }
         }

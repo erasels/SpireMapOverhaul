@@ -111,6 +111,12 @@ public class SpireAnniversary6Mod implements
 
     public static final Logger logger = LogManager.getLogger("Zonemaster");
 
+    public static final boolean hasDarkmap;
+
+    static {
+        hasDarkmap = Loader.isModLoaded("ojb_DarkMap");
+    }
+
     public static Settings.GameLanguage[] SupportedLanguages = {
             Settings.GameLanguage.ENG,
             Settings.GameLanguage.ZHS
