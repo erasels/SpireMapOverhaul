@@ -27,4 +27,9 @@ public class SlimyBodyPower extends AbstractInvasionPower {
         }
         return damageAmount;
     }
+
+    @Override
+    public void updateDescription() {
+        this.description = DESCRIPTIONS[0];
+    }
 }
