@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.ui.campfire.AbstractCampfireOption;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
@@ -58,12 +57,8 @@ public class GravewoodGroveZone extends AbstractZone implements CombatModifyingZ
         return new Color(0.25f, 0.3f, 0.2f, 1f);
     }
 
-    private static final Color desaturationCol = new Color(0.5f, 0.5f, 0.5f, 0.2f);
     @Override
     public void postRenderCombatBackground(SpriteBatch sb) {
-        sb.setColor(desaturationCol);
-        sb.draw(ImageMaster.WHITE_SQUARE_IMG, 0, 0, Settings.WIDTH, Settings.HEIGHT);
-        sb.setColor(Color.WHITE);
         sb.draw(bg, 0, 0, Settings.WIDTH, Settings.HEIGHT);
     }
 }
