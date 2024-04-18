@@ -11,5 +11,5 @@ void main() {
     float average = (texColor.r + texColor.g + texColor.b) / 3.0;
     vec4 grayColor = vec4(average, average, average, texColor.a);
 
-    gl_FragColor = mix(texColor, grayColor, 0.65);
+    gl_FragColor = mix(texColor, grayColor, 0.55);
 }
