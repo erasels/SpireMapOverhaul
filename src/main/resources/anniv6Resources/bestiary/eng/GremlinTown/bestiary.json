@@ -251,6 +251,132 @@
 					]
 				}
 			]
+		},
+		{
+			"name": "Gremlin Rider",
+			"id": "${ModID}:GremlinRiderBlue",
+			"ai": [
+				{
+					"min_asc": 0,
+					"desc": "Uses #wCharge or #wTactical #wAttack. Cannot use the same move three times in a row.",
+					"hp": "(45 - 50 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Charge",
+							"effects": [
+								{
+									"name": "7",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Tactical Attack",
+							"effects": [
+								{
+									"name": "4",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Frail 2",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 2,
+					"desc": "Uses #wCharge or #wTactical #wAttack. Cannot use the same move three times in a row.",
+					"hp": "(45 - 50 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Charge",
+							"effects": [
+								{
+									"name": "8",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Tactical Attack",
+							"effects": [
+								{
+									"name": "5",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Frail 2",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 7,
+					"desc": "Uses #wCharge or #wTactical #wAttack. Cannot use the same move three times in a row.",
+					"hp": "(49 - 54 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Charge",
+							"effects": [
+								{
+									"name": "8",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Tactical Attack",
+							"effects": [
+								{
+									"name": "5",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Frail 2",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 17,
+					"desc": "Uses #wCharge or #wTactical #wAttack. Cannot use the same move three times in a row.",
+					"hp": "(49 - 54 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Charge",
+							"effects": [
+								{
+									"name": "8",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Tactical Attack",
+							"effects": [
+								{
+									"name": "5",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Frail 3",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				}
+			]
 		}
 	]
 }
