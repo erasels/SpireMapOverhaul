@@ -377,6 +377,96 @@
 					]
 				}
 			]
+		},
+		{
+			"name": "Armored Gremlin",
+			"id": "${ModID}:ArmoredGremlin",
+			"ai": [
+				{
+					"min_asc": 0,
+					"desc": "Repeats #wBody #wSlam.",
+					"hp": "(35 - 39 HP)",
+					"notes": "Innate #uBarricade, #uRaging #u2, #bBlock #b10.",
+					"moves": [
+						{
+							"name": "Body Slam",
+							"effects": [
+								{
+									"name": "7",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "10",
+									"color": "BLOCK"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 2,
+					"desc": "Repeats #wBody #wSlam.",
+					"hp": "(35 - 39 HP)",
+					"notes": "Innate #uBarricade, #uRaging #u2, #bBlock #b10.",
+					"moves": [
+						{
+							"name": "Body Slam",
+							"effects": [
+								{
+									"name": "8",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "10",
+									"color": "BLOCK"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 7,
+					"desc": "Repeats #wBody #wSlam.",
+					"hp": "(38 - 42 HP)",
+					"notes": "Innate #uBarricade, #uRaging #u2, #bBlock #b10.",
+					"moves": [
+						{
+							"name": "Body Slam",
+							"effects": [
+								{
+									"name": "8",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "10",
+									"color": "BLOCK"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 17,
+					"desc": "Repeats #wBody #wSlam.",
+					"hp": "(38 - 42 HP)",
+					"notes": "Innate #uBarricade, #uRaging #u2, #bBlock #b12.",
+					"moves": [
+						{
+							"name": "Body Slam",
+							"effects": [
+								{
+									"name": "8",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "12",
+									"color": "BLOCK"
+								}
+							]
+						}
+					]
+				}
+			]
 		}
 	]
 }
