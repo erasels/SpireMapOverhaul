@@ -467,6 +467,63 @@
 					]
 				}
 			]
+		},
+		{
+			"name": "Gremlin Barbarian",
+			"id": "${ModID}:GremlinBarbarian",
+			"ai": [
+				{
+					"min_asc": 0,
+					"desc": "Repeats #wFrenzy.",
+					"hp": "(50 - 54 HP)",
+					"notes": "Innate #uRaging #u2.",
+					"moves": [
+						{
+							"name": "Frenzy",
+							"effects": [
+								{
+									"name": "3x2",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 2,
+					"desc": "Repeats #wFrenzy.",
+					"hp": "(50 - 54 HP)",
+					"notes": "Innate #uRaging #u2.",
+					"moves": [
+						{
+							"name": "Frenzy",
+							"effects": [
+								{
+									"name": "4x2",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 7,
+					"desc": "Repeats #wFrenzy.",
+					"hp": "(54 - 58 HP)",
+					"notes": "Innate #uRaging #u2.",
+					"moves": [
+						{
+							"name": "Frenzy",
+							"effects": [
+								{
+									"name": "4x2",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				}
+			]
 		}
 	]
 }
