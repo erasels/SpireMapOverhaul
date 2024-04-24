@@ -524,6 +524,148 @@
 					]
 				}
 			]
+		},
+		{
+			"name": "Gremlin Assassin",
+			"id": "${ModID}:GremlinAssassin",
+			"ai": [
+				{
+					"min_asc": 0,
+					"desc": "Cycles #wHamstring -> #wSap.",
+					"hp": "(35 - 39 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Hamstring",
+							"effects": [
+								{
+									"name": "8",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Draw Reduction 1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Sap",
+							"effects": [
+								{
+									"name": "6",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Energy Reduction 1",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 2,
+					"desc": "Cycles #wHamstring -> #wSap.",
+					"hp": "(35 - 39 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Hamstring",
+							"effects": [
+								{
+									"name": "9",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Draw Reduction 1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Sap",
+							"effects": [
+								{
+									"name": "7",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Energy Reduction 1",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 7,
+					"desc": "Cycles #wHamstring -> #wSap.",
+					"hp": "(38 - 42 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Hamstring",
+							"effects": [
+								{
+									"name": "9",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Draw Reduction 1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Sap",
+							"effects": [
+								{
+									"name": "7",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Energy Reduction 1",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 17,
+					"desc": "Cycles #wSap -> #wHamstring.",
+					"hp": "(38 - 42 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Hamstring",
+							"effects": [
+								{
+									"name": "9",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Draw Reduction 1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Sap",
+							"effects": [
+								{
+									"name": "7",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Energy Reduction 1",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				}
+			]
 		}
 	]
 }
