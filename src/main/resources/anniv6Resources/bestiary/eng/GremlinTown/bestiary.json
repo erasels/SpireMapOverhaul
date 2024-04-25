@@ -666,6 +666,204 @@
 					]
 				}
 			]
+		},
+		{
+			"name": "Gremlin Nib",
+			"id": "${ModID}:GremlinNib",
+			"ai": [
+				{
+					"min_asc": 0,
+					"desc": "If #uNib is 7, uses #wDouble #wHit. If #uNib is 8, uses #wSlam. If #uNib is 9, uses #wCrit. Otherwise, uses #wSlam, #wDouble #wHit, or #wFrenzy, but cannot use the same move twice in a row.",
+					"hp": "(171 - 180 HP)",
+					"notes": "Innate #uNib #u0.",
+					"moves": [
+						{
+							"name": "Slam",
+							"effects": [
+								{
+									"name": "25",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Double Hit",
+							"effects": [
+								{
+									"name": "10x2",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Frenzy",
+							"effects": [
+								{
+									"name": "5x3",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Crit",
+							"effects": [
+								{
+									"name": "45",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Vulnerable 3",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 2,
+					"desc": "If #uNib is 7, uses #wDouble #wHit. If #uNib is 8, uses #wSlam. If #uNib is 9, uses #wCrit. Otherwise, uses #wSlam, #wDouble #wHit, or #wFrenzy, but cannot use the same move twice in a row.",
+					"hp": "(171 - 180 HP)",
+					"notes": "Innate #uNib #u0.",
+					"moves": [
+						{
+							"name": "Slam",
+							"effects": [
+								{
+									"name": "27",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Double Hit",
+							"effects": [
+								{
+									"name": "11x2",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Frenzy",
+							"effects": [
+								{
+									"name": "6x3",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Crit",
+							"effects": [
+								{
+									"name": "50",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Vulnerable 3",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 7,
+					"desc": "If #uNib is 7, uses #wDouble #wHit. If #uNib is 8, uses #wSlam. If #uNib is 9, uses #wCrit. Otherwise, uses #wSlam, #wDouble #wHit, or #wFrenzy, but cannot use the same move twice in a row.",
+					"hp": "(185 - 195 HP)",
+					"notes": "Innate #uNib #u0.",
+					"moves": [
+						{
+							"name": "Slam",
+							"effects": [
+								{
+									"name": "27",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Double Hit",
+							"effects": [
+								{
+									"name": "11x2",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Frenzy",
+							"effects": [
+								{
+									"name": "6x3",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Crit",
+							"effects": [
+								{
+									"name": "50",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Vulnerable 3",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 17,
+					"desc": "If #uNib is 7, uses #wDouble #wHit. If #uNib is 8, uses #wSlam. If #uNib is 9, uses #wCrit. Otherwise, uses #wSlam, #wDouble #wHit, or #wFrenzy, but cannot use the same move twice in a row.",
+					"hp": "(185 - 195 HP)",
+					"notes": "Innate #uNib #u1.",
+					"moves": [
+						{
+							"name": "Slam",
+							"effects": [
+								{
+									"name": "27",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Double Hit",
+							"effects": [
+								{
+									"name": "11x2",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Frenzy",
+							"effects": [
+								{
+									"name": "6x3",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Crit",
+							"effects": [
+								{
+									"name": "50",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Vulnerable 3",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				}
+			]
 		}
 	]
 }
