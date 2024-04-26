@@ -307,9 +307,6 @@ public class AmbushedZone extends AbstractZone implements CombatModifyingZone, E
             // Store the rarity before clearing the existing potion
             AbstractPotion.PotionRarity potionRarity = rewardItem.potion.rarity;
 
-            // Clearing the existing potion
-            rewardItem.potion = null;
-
             AbstractPotion replacementPotion;
             switch (potionRarity) {
                 case COMMON:
