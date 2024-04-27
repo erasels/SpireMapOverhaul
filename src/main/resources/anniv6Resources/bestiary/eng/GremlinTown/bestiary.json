@@ -864,6 +864,220 @@
 					]
 				}
 			]
+		},
+		{
+			"name": "Gremlin Elder",
+			"id": "${ModID}:GremlinElder",
+			"ai": [
+				{
+					"min_asc": 0,
+					"desc": "Starts with #wSlam. Afterwards, repeats a 50-50 chance of using #wSlam or #wSlap, but cannot use #wSlam three times in a row or #wSlap twice in a row. Upon reaching 50% HP, uses #wCharging twice, then uses #wDying #wCurse.",
+					"hp": "(223 - 231 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Slam",
+							"effects": [
+								{
+									"name": "20",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Slap",
+							"effects": [
+								{
+									"name": "11",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Strength -1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Charging",
+							"effects": [
+								{
+									"name": "Skip Turn",
+									"color": "SKIP"
+								}
+							]
+						},
+						{
+							"name": "Dying Curse",
+							"effects": [
+								{
+									"name": "Permanently add 2 Decay to the player's deck",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Suicide",
+									"color": "SPECIAL"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 3,
+					"desc": "Starts with #wSlam. Afterwards, repeats a 50-50 chance of using #wSlam or #wSlap, but cannot use #wSlam three times in a row or #wSlap twice in a row. Upon reaching 50% HP, uses #wCharging twice, then uses #wDying #wCurse.",
+					"hp": "(223 - 231 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Slam",
+							"effects": [
+								{
+									"name": "22",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Slap",
+							"effects": [
+								{
+									"name": "12",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Strength -1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Charging",
+							"effects": [
+								{
+									"name": "Skip Turn",
+									"color": "SKIP"
+								}
+							]
+						},
+						{
+							"name": "Dying Curse",
+							"effects": [
+								{
+									"name": "Permanently add 2 Decay to the player's deck",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Suicide",
+									"color": "SPECIAL"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 8,
+					"desc": "Starts with #wSlam. Afterwards, repeats a 50-50 chance of using #wSlam or #wSlap, but cannot use #wSlam three times in a row or #wSlap twice in a row. Upon reaching 50% HP, uses #wCharging twice, then uses #wDying #wCurse.",
+					"hp": "(242 - 251 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Slam",
+							"effects": [
+								{
+									"name": "22",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Slap",
+							"effects": [
+								{
+									"name": "12",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Strength -1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Charging",
+							"effects": [
+								{
+									"name": "Skip Turn",
+									"color": "SKIP"
+								}
+							]
+						},
+						{
+							"name": "Dying Curse",
+							"effects": [
+								{
+									"name": "Permanently add 2 Decay to the player's deck",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Suicide",
+									"color": "SPECIAL"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 18,
+					"desc": "Starts with #wSlam. Afterwards, repeats a 50-50 chance of using #wSlam or #wSlap, but cannot use #wSlam three times in a row or #wSlap twice in a row. Upon reaching 50% HP, uses #wCharging twice, then uses #wDying #wCurse.",
+					"hp": "(242 - 251 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Slam",
+							"effects": [
+								{
+									"name": "22",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Slap",
+							"effects": [
+								{
+									"name": "12",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Strength -1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Charging",
+							"effects": [
+								{
+									"name": "Skip Turn",
+									"color": "SKIP"
+								}
+							]
+						},
+						{
+							"name": "Dying Curse",
+							"effects": [
+								{
+									"name": "Permanently add 3 Decay to the player's deck",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Suicide",
+									"color": "SPECIAL"
+								}
+							]
+						}
+					]
+				}
+			]
 		}
 	]
 }
