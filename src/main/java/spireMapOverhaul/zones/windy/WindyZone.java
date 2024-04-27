@@ -48,6 +48,9 @@ public class WindyZone extends AbstractZone implements CombatModifyingZone, Modi
         return Color.WHITE.cpy();
     }
 
+    @Override
+    public Color getDarkMapColor() { return new Color(0.95f, 0.90f, 0.85f, 1.0f); }
+
     public String getCombatText() {
         return CardCrawlGame.languagePack.getUIString(SpireAnniversary6Mod.makeID(ID)).TEXT[1];
     }
