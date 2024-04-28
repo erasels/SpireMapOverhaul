@@ -1078,6 +1078,75 @@
 					]
 				}
 			]
+		},
+		{
+			"name": "Chubby Gremlin",
+			"id": "${ModID}:ChubbyGremlin",
+			"ai": [
+				{
+					"min_asc": 0,
+					"desc": "Repeats #wSit.",
+					"hp": "(40 - 45 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Sit",
+							"effects": [
+								{
+									"name": "5",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Strength -1",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 2,
+					"desc": "Repeats #wSit.",
+					"hp": "(40 - 45 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Sit",
+							"effects": [
+								{
+									"name": "6",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Strength -1",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 7,
+					"desc": "Repeats #wSit.",
+					"hp": "(43 - 48 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Sit",
+							"effects": [
+								{
+									"name": "6",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Strength -1",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				}
+			]
 		}
 	]
 }
