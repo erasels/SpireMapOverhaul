@@ -1147,6 +1147,63 @@
 					]
 				}
 			]
+		},
+		{
+			"name": "Gremlin Rocker",
+			"id": "${ModID}:GremlinRockTosser",
+			"ai": [
+				{
+					"min_asc": 0,
+					"desc": "Repeats #wThrow.",
+					"hp": "(19 - 23 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Throw",
+							"effects": [
+								{
+									"name": "6",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 2,
+					"desc": "Repeats #wThrow.",
+					"hp": "(19 - 23 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Throw",
+							"effects": [
+								{
+									"name": "7",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 7,
+					"desc": "Repeats #wThrow.",
+					"hp": "(21 - 25 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Throw",
+							"effects": [
+								{
+									"name": "7",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				}
+			]
 		}
 	]
 }
