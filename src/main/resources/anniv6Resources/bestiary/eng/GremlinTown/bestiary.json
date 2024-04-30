@@ -1204,6 +1204,116 @@
 					]
 				}
 			]
+		},
+		{
+			"name": "Gremlin Healer",
+			"id": "${ModID}:GremlinHealer",
+			"ai": [
+				{
+					"min_asc": 0,
+					"desc": "Starts with #wCure. Afterwards, uses #wCure if any other enemies are alive, and otherwise uses #wAttack.",
+					"hp": "(60 - 64 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Cure",
+							"effects": [
+								{
+									"name": "Party Heal 12",
+									"color": "BLOCK"
+								}
+							]
+						},
+						{
+							"name": "Attack",
+							"effects": [
+								{
+									"name": "10",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 2,
+					"desc": "Starts with #wCure. Afterwards, uses #wCure if any other enemies are alive, and otherwise uses #wAttack.",
+					"hp": "(60 - 64 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Cure",
+							"effects": [
+								{
+									"name": "Party Heal 12",
+									"color": "BLOCK"
+								}
+							]
+						},
+						{
+							"name": "Attack",
+							"effects": [
+								{
+									"name": "11",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 7,
+					"desc": "Starts with #wCure. Afterwards, uses #wCure if any other enemies are alive, and otherwise uses #wAttack.",
+					"hp": "(64 - 69 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Cure",
+							"effects": [
+								{
+									"name": "Party Heal 12",
+									"color": "BLOCK"
+								}
+							]
+						},
+						{
+							"name": "Attack",
+							"effects": [
+								{
+									"name": "11",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 17,
+					"desc": "Starts with #wCure. Afterwards, uses #wCure if any other enemies are alive, and otherwise uses #wAttack.",
+					"hp": "(64 - 69 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Cure",
+							"effects": [
+								{
+									"name": "Party Heal 15",
+									"color": "BLOCK"
+								}
+							]
+						},
+						{
+							"name": "Attack",
+							"effects": [
+								{
+									"name": "11",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				}
+			]
 		}
 	]
 }
