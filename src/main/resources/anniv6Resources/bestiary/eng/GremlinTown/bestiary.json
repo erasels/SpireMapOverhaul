@@ -1314,6 +1314,188 @@
 					]
 				}
 			]
+		},
+		{
+			"name": "Gremlin Cannon",
+			"id": "${ModID}:GremlinCannon",
+			"ai": [
+				{
+					"min_asc": 0,
+					"desc": "Starts with #wLoad and uses it every second turn. On other turns, uses #wFire #w(Explode) if there are no other enemies left, #wFire #w(Vulnerable) if it used #wFire #w(Weak) two turns ago, and #wFire #w(Weak) otherwise. ",
+					"hp": "(48 - 53 HP)",
+					"notes": "Applies #dVulnerable #d3 to the player at the start of combat.",
+					"moves": [
+						{
+							"name": "Load",
+							"effects": [
+								{
+									"name": "Skip Turn",
+									"color": "SKIP"
+								}
+							]
+						},
+						{
+							"name": "Fire (Explode)",
+							"effects": [
+								{
+									"name": "13",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Fire (Vulnerable)",
+							"effects": [
+								{
+									"name": "Vulnerable 3",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Fire (Weak)",
+							"effects": [
+								{
+									"name": "Weak 3",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 2,
+					"desc": "Starts with #wLoad and uses it every second turn. On other turns, uses #wFire #w(Explode) if there are no other enemies left, #wFire #w(Vulnerable) if it used #wFire #w(Weak) two turns ago, and #wFire #w(Weak) otherwise. ",
+					"hp": "(48 - 53 HP)",
+					"notes": "Applies #dVulnerable #d3 to the player at the start of combat.",
+					"moves": [
+						{
+							"name": "Load",
+							"effects": [
+								{
+									"name": "Skip Turn",
+									"color": "SKIP"
+								}
+							]
+						},
+						{
+							"name": "Fire (Explode)",
+							"effects": [
+								{
+									"name": "15",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Fire (Vulnerable)",
+							"effects": [
+								{
+									"name": "Vulnerable 3",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Fire (Weak)",
+							"effects": [
+								{
+									"name": "Weak 3",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 7,
+					"desc": "Starts with #wLoad and uses it every second turn. On other turns, uses #wFire #w(Explode) if there are no other enemies left, #wFire #w(Vulnerable) if it used #wFire #w(Weak) two turns ago, and #wFire #w(Weak) otherwise. ",
+					"hp": "(52 - 58 HP)",
+					"notes": "Applies #dVulnerable #d3 to the player at the start of combat.",
+					"moves": [
+						{
+							"name": "Load",
+							"effects": [
+								{
+									"name": "Skip Turn",
+									"color": "SKIP"
+								}
+							]
+						},
+						{
+							"name": "Fire (Explode)",
+							"effects": [
+								{
+									"name": "15",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Fire (Vulnerable)",
+							"effects": [
+								{
+									"name": "Vulnerable 3",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Fire (Weak)",
+							"effects": [
+								{
+									"name": "Weak 3",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 17,
+					"desc": "Starts with #wLoad and uses it every second turn. On other turns, uses #wFire #w(Explode) if there are no other enemies left, #wFire #w(Vulnerable) if it used #wFire #w(Weak) two turns ago, and #wFire #w(Weak) otherwise. ",
+					"hp": "(52 - 58 HP)",
+					"notes": "Applies #dVulnerable #d3 to the player at the start of combat.",
+					"moves": [
+						{
+							"name": "Load",
+							"effects": [
+								{
+									"name": "Skip Turn",
+									"color": "SKIP"
+								}
+							]
+						},
+						{
+							"name": "Fire (Explode)",
+							"effects": [
+								{
+									"name": "15",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Fire (Vulnerable)",
+							"effects": [
+								{
+									"name": "Vulnerable 4",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Fire (Weak)",
+							"effects": [
+								{
+									"name": "Weak 4",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				}
+			]
 		}
 	]
 }
