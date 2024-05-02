@@ -1,22 +1,27 @@
 package spireMapOverhaul.zones.monsterZoo;
 
+import basemod.ReflectionHacks;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.map.MapRoomNode;
+import com.megacrit.cardcrawl.map.RoomTypeAssigner;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.city.Byrd;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.rewards.RewardItem;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoom;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.zoneInterfaces.CombatModifyingZone;
 import spireMapOverhaul.zoneInterfaces.RenderableZone;
 import spireMapOverhaul.zoneInterfaces.RewardModifyingZone;
+
+import java.util.ArrayList;
 
 public class MonsterZooZone extends AbstractZone implements RewardModifyingZone, CombatModifyingZone, RenderableZone {
     public static final String ID = "MonsterZoo";
@@ -39,12 +44,20 @@ public class MonsterZooZone extends AbstractZone implements RewardModifyingZone,
     }
 
     @Override
-    public void replaceRooms(Random rng) {
-        //Replace all non monster rooms with monster rooms
-        for (MapRoomNode node : this.nodes) {
-            if(!(node.room instanceof MonsterRoom)) { //Replaces shop/rest/event with normal monster room
-                node.setRoom(new MonsterRoom());
-            }
+    public void distributeRooms(Random rng, ArrayList<AbstractRoom> roomList) {
+        // This fills the zone with monster rooms, with half taken from the room distribution list (which means they
+        // could be elite rooms instead of normal monster rooms, and that it uses up some of the expected distribution
+        // of those room types), and half simply set directly (which means they are always normal monster rooms and do
+        // not use up any of the expected distribution of those room types)
+        int half = nodes.size() / 2;
+        int i;
+        ReflectionHacks.RMethod isValidRoomType = ReflectionHacks.privateMethod(RoomTypeAssigner.class, "ruleAssignableToRow", MapRoomNode.class, AbstractRoom.class);
+        for (i = 0; i < half; ++i) {
+            MapRoomNode node = nodes.get(i);
+            node.setRoom(roomOrDefault(roomList, (room) -> room instanceof MonsterRoom && (boolean)isValidRoomType.invoke(null, node, room), MonsterRoom::new));
+        }
+        for (; i < nodes.size(); ++i) {
+            nodes.get(i).setRoom(new MonsterRoom());
         }
     }
 
@@ -113,6 +126,9 @@ public class MonsterZooZone extends AbstractZone implements RewardModifyingZone,
     // All monsters gain an amount of strength
     @Override
     public void atPreBattle() {
+        if (AbstractDungeon.getCurrRoom().monsters == null) {
+            return;
+        }
         Wiz.forAllMonstersLiving(m -> Wiz.atb(new ApplyPowerAction(m, null, new StrengthPower(m, getStrAmt(m)))));
     }
 

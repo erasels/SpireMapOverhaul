@@ -1,0 +1,10 @@
+{
+  "${ModID}:CharacterInfluence": {
+    "TEXT": [
+      "다른 캐릭터의 집",
+      "다른 캐릭터가 이 바이옴에 살고 있습니다. NL 전투와 상점에서는 그 캐릭터의 색상 카드가 나옵니다.",
+      "(Flowers) HugYouTwenty",
+      "등반자의 집 - "
+    ]
+  }
+}

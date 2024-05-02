@@ -1,0 +1,20 @@
+{
+  "${ModID}:volEruptPower": {
+    "NAME": "분출",
+    "DESCRIPTIONS": ["#b{0} 장 이상의 카드를 사용할 경우, 이 적은 죽고 #r{1} 피해를 줍니다.",
+    "#b{0} 장 이상의 카드를 사용할 경우, 이 적은 죽고 #r{1} 피해를 줍니다."]
+  },
+  "${ModID}:volUnstablePower": {
+    "NAME": "불안정",
+    "DESCRIPTIONS": ["대상의 턴에, 모두에게 #b{0} 피해를 줍니다."]
+  },
+  "${ModID}:volChargedPower": {
+    "NAME": "충전됨",
+    "DESCRIPTIONS": ["사망 시, 모두에게 #b{0} 피해를 줍니다."]
+  },
+  "${ModID}:volExplodePlusPower": {
+    "NAME": "폭발+",
+    "DESCRIPTIONS": ["#r{1} 턴 뒤, 사망하고 피해를 #b{0} 줍니다.",
+      "#r{1} 턴 뒤, 사망하고 피해를 #b{0} 줍니다."]
+  }
+}

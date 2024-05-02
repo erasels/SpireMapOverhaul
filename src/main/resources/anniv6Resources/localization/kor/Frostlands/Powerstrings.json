@@ -1,0 +1,24 @@
+{
+
+  "${ModID}:FrigidPower": {
+    "NAME": "싸늘함",
+    "DESCRIPTIONS": [
+      "#y서리를 매 턴 뽑는 첫 카드에 추가합니다.",
+      "#y서리를 매 턴 뽑는 첫 #b",
+      " 카드에 추가합니다."
+    ]
+  },
+  "${ModID}:LeavePower": {
+    "NAME": "떠나기",
+    "DESCRIPTIONS": [
+      "이 대상이 전투에서 사망할 경우, 대신 이탈합니다."
+    ]
+  },
+  "${ModID}:ChillPower": {
+  "NAME": "오한",
+  "DESCRIPTIONS": [
+    "이번 턴에 공격 피해를 #b",
+    " 감소시킵니다."
+  ]
+}
+}

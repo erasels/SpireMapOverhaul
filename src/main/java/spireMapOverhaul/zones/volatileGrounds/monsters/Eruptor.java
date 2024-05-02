@@ -92,13 +92,13 @@ public class Eruptor extends CustomMonster {
     @Override
     protected void getMove(final int num) {
         if (this.firstMove) {
-            this.setMove(BRUISE, Intent.ATTACK, attackDamage);
+            this.setMove(MOVES[0], BRUISE, Intent.ATTACK, attackDamage);
             this.firstMove = false;
         } else {
             if (this.lastMove(BRUISE)) {
-                this.setMove(BOIL, Intent.DEBUFF);
+                this.setMove(MOVES[1], BOIL, Intent.DEBUFF);
             } else {
-                this.setMove(BRUISE, Intent.ATTACK, attackDamage);
+                this.setMove(MOVES[0], BRUISE, Intent.ATTACK, attackDamage);
             }
         }
     }

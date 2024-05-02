@@ -4,14 +4,18 @@ import basemod.abstracts.CustomCard;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
+import spireMapOverhaul.util.TexLoader;
 import spireMapOverhaul.zoneInterfaces.CombatModifyingZone;
 import spireMapOverhaul.zoneInterfaces.ModifiedEventRateZone;
+import spireMapOverhaul.zoneInterfaces.RenderableZone;
 import spireMapOverhaul.zones.mirror.cards.MirrorMove;
 import spireMapOverhaul.zones.mirror.events.WeirdMirrorsEvent;
 import spireMapOverhaul.zones.mirror.powers.MirrorZonePower;
@@ -20,8 +24,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MirrorZone extends AbstractZone implements CombatModifyingZone, ModifiedEventRateZone {
+public class MirrorZone extends AbstractZone implements CombatModifyingZone, ModifiedEventRateZone, RenderableZone {
     public static final String ID = "Mirror";
+    private Texture bg = TexLoader.getTexture(SpireAnniversary6Mod.makeBackgroundPath("mirror/bg.png"));
 
     public static ArrayList<MirrorMoveData> previousMoveData = new ArrayList<>();
     public static MirrorMoveData chosenMoveData = null;
@@ -143,5 +148,10 @@ public class MirrorZone extends AbstractZone implements CombatModifyingZone, Mod
     @Override
     public String forceEvent() {
         return ModifiedEventRateZone.returnIfUnseen(WeirdMirrorsEvent.ID);
+    }
+
+    @Override
+    public void postRenderCombatBackground(SpriteBatch sb) {
+        sb.draw(bg, 0, 0, Settings.WIDTH, Settings.HEIGHT);
     }
 }

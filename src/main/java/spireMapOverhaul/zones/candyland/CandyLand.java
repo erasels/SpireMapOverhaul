@@ -2,10 +2,14 @@ package spireMapOverhaul.zones.candyland;
 
 import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.colorless.Bite;
 import com.megacrit.cardcrawl.cards.red.Feed;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.relics.*;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.shop.ShopScreen;
@@ -14,12 +18,12 @@ import com.megacrit.cardcrawl.shop.StoreRelic;
 import com.megacrit.cardcrawl.ui.campfire.AbstractCampfireOption;
 import com.megacrit.cardcrawl.ui.campfire.RestOption;
 import com.megacrit.cardcrawl.ui.campfire.SmithOption;
+import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.rewards.HealReward;
+import spireMapOverhaul.util.TexLoader;
 import spireMapOverhaul.util.Wiz;
-import spireMapOverhaul.zoneInterfaces.CampfireModifyingZone;
-import spireMapOverhaul.zoneInterfaces.RewardModifyingZone;
-import spireMapOverhaul.zoneInterfaces.ShopModifyingZone;
+import spireMapOverhaul.zoneInterfaces.*;
 import spireMapOverhaul.zones.candyland.consumables.AbstractConsumable;
 import spireMapOverhaul.zones.candyland.consumables.common.*;
 import spireMapOverhaul.zones.candyland.consumables.rare.Banana;
@@ -28,13 +32,11 @@ import spireMapOverhaul.zones.candyland.consumables.rare.Cocktail;
 import spireMapOverhaul.zones.candyland.consumables.rare.GoldCandy;
 import spireMapOverhaul.zones.candyland.consumables.uncommon.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
-public class CandyLand extends AbstractZone implements RewardModifyingZone, CampfireModifyingZone, ShopModifyingZone {
+public class CandyLand extends AbstractZone implements RewardModifyingZone, RenderableZone, CampfireModifyingZone, ShopModifyingZone {
     public static final String ID = "CandyLand";
-
+    private Texture bg = TexLoader.getTexture(SpireAnniversary6Mod.makeBackgroundPath("candyland/CandyLandBackground.png"));
     public CandyLand() {
         super(ID, Icons.REST, Icons.SHOP);
         this.width = 2;
@@ -61,10 +63,18 @@ public class CandyLand extends AbstractZone implements RewardModifyingZone, Camp
             List<AbstractCard.CardRarity> validRarities = Arrays.asList(AbstractCard.CardRarity.COMMON, AbstractCard.CardRarity.UNCOMMON, AbstractCard.CardRarity.RARE);
             AbstractCard.CardRarity rarity = validRarities.contains(card.rarity) ? card.rarity : AbstractCard.CardRarity.COMMON;
             consumables.removeIf(c -> c.rarity != rarity || cards.stream().anyMatch(listCard -> c.cardID.equals(listCard.cardID)));
-            AbstractCard c = consumables.get(AbstractDungeon.cardRng.random(0, consumables.size()-1));
-            this.applyStandardUpgradeLogic(c);
-            cards.add(c);
+            // If there are no consumables of the same rarity, allow any rarity
+            if (consumables.isEmpty()) {
+                consumables = getConsumables();
+                consumables.removeIf(c -> cards.stream().anyMatch(listCard -> c.cardID.equals(listCard.cardID)));
+            }
+            // If there are so many reward cards that all Candyland cards are already present, stop adding more cards
+            if (!consumables.isEmpty()) {
+                AbstractCard c = consumables.get(AbstractDungeon.cardRng.random(0, consumables.size()-1));
+                cards.add(c);
+            }
         }
+        this.applyStandardUpgradeLogic(cards);
     }
 
     @Override
@@ -145,6 +155,15 @@ public class CandyLand extends AbstractZone implements RewardModifyingZone, Camp
         colorlessCards.clear();
         colorlessCards.add(new Bite());
         colorlessCards.add(new Feed());
+    }
+
+    private static final Color saturationCol = new Color(1f, 0.02f, 0.96f, 0.1f);
+    @Override
+    public void postRenderCombatBackground(SpriteBatch sb) {
+        sb.setColor(saturationCol);
+        sb.draw(ImageMaster.WHITE_SQUARE_IMG, 0, 0, Settings.WIDTH, Settings.HEIGHT);
+        sb.setColor(Color.WHITE);
+        sb.draw(bg, 0, 0, Settings.WIDTH, Settings.HEIGHT);
     }
 
     @Override

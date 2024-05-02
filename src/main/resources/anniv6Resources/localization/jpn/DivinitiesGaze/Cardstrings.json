@@ -9,7 +9,7 @@
   },
   "${ModID}:Verdict": {
     "NAME": "裁き",
-    "DESCRIPTION": "裁き !M! を与える。 NL 廃棄",
+    "DESCRIPTION": "${ModID}:裁き !M! を与える。 NL 廃棄",
     "EXTENDED_DESCRIPTION": [
       "名誉のために、審判を受けろ！"
     ]

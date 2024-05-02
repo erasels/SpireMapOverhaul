@@ -1,0 +1,21 @@
+{
+  "${ModID}:RansackedForge": {
+    "NAME": "Ransacked Forge",
+    "DESCRIPTIONS": [
+      "While wandering the Spire, you find a Forge, presumably ~ransacked~ by #rmonsters. While they did an adequate job of raiding the place, you notice there are still some things here that can be of use to you. NL NL A #rdying #rfire ~sputters~ across the room, though you wonder what else you can find...",
+      "Harnessing the #rintense #rheat of the fire, you make your burning blade even...burn-ier. Neat!",
+      "You manage to find a gremlin-sized #ypotion #ybelt! It's a bit too small for your liking, but you manage to fit one potion in there; one you found lying under a dusty cabinet. Gross.",
+      "Meh. Loot is for nerds anyway.",
+      "You haphazardly insert all of your outdated #yStrikes into the fire. NL NL They suck up the flames like a young #pGremlin #pWizard's brain sucks up wizardry lessons, and before you know it, the fire is ~extinguished~ and you are left with a #rsearing arsenal.",
+      "You spy with your little spire-slaying eye a #yblade stuck in the fire! NL NL Quickly grabbing it, you take it out of the mini inferno and add it to your collection as you cry just a little bit from the pain of the flames."
+    ],
+    "OPTIONS": [
+      "[Harness Fire] #gUpgrade #gALL #gcopies #gof #gSearing #gBlow #g2 #gtimes.",
+      "[Utilize Fire] #gReplace #gALL #gStrikes #gwith #gSearing #gBlow+2.",
+      "[Observe Fire] #gObtain #gSearing #gBlow+2.",
+      "[Gear Up] #gGain #g1 #gpotion #gslot and a #gBlessing #gof #gthe #gForge.",
+      "[Leave]",
+      "[Leave]"
+    ]
+  }
+}

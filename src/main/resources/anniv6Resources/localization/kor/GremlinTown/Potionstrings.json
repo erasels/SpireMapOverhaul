@@ -1,0 +1,38 @@
+{
+  "${ModID}:LouseMilk": {
+    "NAME": "우유",
+    "DESCRIPTIONS": [
+      "카드를 #b{0} 장 뽑고 에너지를 #b{1} 얻습니다."
+    ]
+  },
+  "${ModID}:PreerelxsBlueRibbon": {
+    "NAME": "프리렐렉스의 파란 리본",
+    "DESCRIPTIONS": [
+      "#y활력을 #b{0} 얻습니다."
+    ]
+  },
+  "${ModID}:RitualBlood": {
+    "NAME": "의식용 피",
+    "DESCRIPTIONS": [
+      "타락한 심장의 버프를 #r제거합니다."
+    ]
+  },
+  "${ModID}:NoxiousBrew": {
+    "NAME": "독이 든 양조주",
+    "DESCRIPTIONS": [
+      "턴 종료 시 #b{0} #y중독을 무작위 적에게 부여합니다."
+    ]
+  },
+  "${ModID}:MushroomSoup": {
+    "NAME": "버섯 수프",
+    "DESCRIPTIONS": [
+      "턴 종료 시 #b{0} #y임시 #y체력을 얻습니다."
+    ]
+  },
+  "${ModID}:GremsFire": {
+    "NAME": "그렘 불",
+    "DESCRIPTIONS": [
+      "턴 종료 시 모든 적에게 피해를 #b{0} 줍니다."
+    ]
+  }
+}

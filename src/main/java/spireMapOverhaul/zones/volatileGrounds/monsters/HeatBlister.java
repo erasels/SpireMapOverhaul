@@ -81,8 +81,10 @@ public class HeatBlister extends CustomMonster {
                         new ExplodePlusPower(this, A17_EXPLOSION_COUNTDOWN,
                         A2_EXPLOSION_DAMAGE)));
             }
-            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new ExplodePlusPower(this, EXPLOSION_COUNTDOWN,
-                    A2_EXPLOSION_DAMAGE)));
+            else {
+                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new ExplodePlusPower(this, EXPLOSION_COUNTDOWN,
+                        A2_EXPLOSION_DAMAGE)));
+            }
         }
         else
         {
@@ -100,7 +102,7 @@ public class HeatBlister extends CustomMonster {
                 break;
             case ATTACK_AND_DEBUFF:
                 AbstractDungeon.actionManager.addToBottom(new AnimateFastAttackAction(this));
-                AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player, this.damage.get(0), AbstractGameAction.AttackEffect.FIRE));
+                AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player, this.damage.get(1), AbstractGameAction.AttackEffect.FIRE));
                 AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDiscardAction(new Slimed(), 1));
                 Burn burn = new Burn();
                 if(AbstractDungeon.ascensionLevel >= 17) {

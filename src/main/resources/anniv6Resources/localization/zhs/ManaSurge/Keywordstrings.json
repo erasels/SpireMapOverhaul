@@ -33,7 +33,7 @@
   },
   {
     "ID": "${ModID}:ManaSurge:Exposing",
-    "PROPER_NAME": "[#8c9cff]施加脆弱[]",
+    "PROPER_NAME": "[#8c9cff]施加易伤[]",
     "NAMES": [
       "暴露"
     ],
