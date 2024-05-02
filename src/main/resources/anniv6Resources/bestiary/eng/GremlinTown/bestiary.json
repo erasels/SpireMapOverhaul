@@ -1,0 +1,1643 @@
+{
+	"monsters": [
+		{
+			"name": "Gremlin Rider",
+			"id": "${ModID}:GremlinRiderGreen",
+			"ai": [
+				{
+					"min_asc": 0,
+					"desc": "Uses #wCharge or #wTactical #wAttack. Cannot use the same move three times in a row.",
+					"hp": "(45 - 50 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Charge",
+							"effects": [
+								{
+									"name": "7",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Tactical Attack",
+							"effects": [
+								{
+									"name": "4",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Weak 2",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 2,
+					"desc": "Uses #wCharge or #wTactical #wAttack. Cannot use the same move three times in a row.",
+					"hp": "(45 - 50 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Charge",
+							"effects": [
+								{
+									"name": "8",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Tactical Attack",
+							"effects": [
+								{
+									"name": "5",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Weak 2",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 7,
+					"desc": "Uses #wCharge or #wTactical #wAttack. Cannot use the same move three times in a row.",
+					"hp": "(49 - 54 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Charge",
+							"effects": [
+								{
+									"name": "8",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Tactical Attack",
+							"effects": [
+								{
+									"name": "5",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Weak 2",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 17,
+					"desc": "Uses #wCharge or #wTactical #wAttack. Cannot use the same move three times in a row.",
+					"hp": "(49 - 54 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Charge",
+							"effects": [
+								{
+									"name": "8",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Tactical Attack",
+							"effects": [
+								{
+									"name": "5",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Weak 3",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Gremlin Rider",
+			"id": "${ModID}:GremlinRiderRed",
+			"ai": [
+				{
+					"min_asc": 0,
+					"desc": "Uses #wCharge or #wTactical #wAttack. Cannot use the same move three times in a row.",
+					"hp": "(45 - 50 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Charge",
+							"effects": [
+								{
+									"name": "7",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Tactical Attack",
+							"effects": [
+								{
+									"name": "4",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Strength 3",
+									"color": "BUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 2,
+					"desc": "Uses #wCharge or #wTactical #wAttack. Cannot use the same move three times in a row.",
+					"hp": "(45 - 50 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Charge",
+							"effects": [
+								{
+									"name": "8",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Tactical Attack",
+							"effects": [
+								{
+									"name": "5",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Strength 3",
+									"color": "BUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 7,
+					"desc": "Uses #wCharge or #wTactical #wAttack. Cannot use the same move three times in a row.",
+					"hp": "(49 - 54 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Charge",
+							"effects": [
+								{
+									"name": "8",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Tactical Attack",
+							"effects": [
+								{
+									"name": "5",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Strength 3",
+									"color": "BUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 17,
+					"desc": "Uses #wCharge or #wTactical #wAttack. Cannot use the same move three times in a row.",
+					"hp": "(49 - 54 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Charge",
+							"effects": [
+								{
+									"name": "8",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Tactical Attack",
+							"effects": [
+								{
+									"name": "5",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Party Strength 2",
+									"color": "BUFF"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Gremlin Rider",
+			"id": "${ModID}:GremlinRiderBlue",
+			"ai": [
+				{
+					"min_asc": 0,
+					"desc": "Uses #wCharge or #wTactical #wAttack. Cannot use the same move three times in a row.",
+					"hp": "(45 - 50 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Charge",
+							"effects": [
+								{
+									"name": "7",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Tactical Attack",
+							"effects": [
+								{
+									"name": "4",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Frail 2",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 2,
+					"desc": "Uses #wCharge or #wTactical #wAttack. Cannot use the same move three times in a row.",
+					"hp": "(45 - 50 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Charge",
+							"effects": [
+								{
+									"name": "8",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Tactical Attack",
+							"effects": [
+								{
+									"name": "5",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Frail 2",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 7,
+					"desc": "Uses #wCharge or #wTactical #wAttack. Cannot use the same move three times in a row.",
+					"hp": "(49 - 54 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Charge",
+							"effects": [
+								{
+									"name": "8",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Tactical Attack",
+							"effects": [
+								{
+									"name": "5",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Frail 2",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 17,
+					"desc": "Uses #wCharge or #wTactical #wAttack. Cannot use the same move three times in a row.",
+					"hp": "(49 - 54 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Charge",
+							"effects": [
+								{
+									"name": "8",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Tactical Attack",
+							"effects": [
+								{
+									"name": "5",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Frail 3",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Armored Gremlin",
+			"id": "${ModID}:ArmoredGremlin",
+			"ai": [
+				{
+					"min_asc": 0,
+					"desc": "Repeats #wBody #wSlam.",
+					"hp": "(35 - 39 HP)",
+					"notes": "Innate #uBarricade, #uRaging #u2, #bBlock #b10.",
+					"moves": [
+						{
+							"name": "Body Slam",
+							"effects": [
+								{
+									"name": "7",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "10",
+									"color": "BLOCK"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 2,
+					"desc": "Repeats #wBody #wSlam.",
+					"hp": "(35 - 39 HP)",
+					"notes": "Innate #uBarricade, #uRaging #u2, #bBlock #b10.",
+					"moves": [
+						{
+							"name": "Body Slam",
+							"effects": [
+								{
+									"name": "8",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "10",
+									"color": "BLOCK"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 7,
+					"desc": "Repeats #wBody #wSlam.",
+					"hp": "(38 - 42 HP)",
+					"notes": "Innate #uBarricade, #uRaging #u2, #bBlock #b10.",
+					"moves": [
+						{
+							"name": "Body Slam",
+							"effects": [
+								{
+									"name": "8",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "10",
+									"color": "BLOCK"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 17,
+					"desc": "Repeats #wBody #wSlam.",
+					"hp": "(38 - 42 HP)",
+					"notes": "Innate #uBarricade, #uRaging #u2, #bBlock #b12.",
+					"moves": [
+						{
+							"name": "Body Slam",
+							"effects": [
+								{
+									"name": "8",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "12",
+									"color": "BLOCK"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Gremlin Barbarian",
+			"id": "${ModID}:GremlinBarbarian",
+			"ai": [
+				{
+					"min_asc": 0,
+					"desc": "Repeats #wFrenzy.",
+					"hp": "(50 - 54 HP)",
+					"notes": "Innate #uRaging #u2.",
+					"moves": [
+						{
+							"name": "Frenzy",
+							"effects": [
+								{
+									"name": "3x2",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 2,
+					"desc": "Repeats #wFrenzy.",
+					"hp": "(50 - 54 HP)",
+					"notes": "Innate #uRaging #u2.",
+					"moves": [
+						{
+							"name": "Frenzy",
+							"effects": [
+								{
+									"name": "4x2",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 7,
+					"desc": "Repeats #wFrenzy.",
+					"hp": "(54 - 58 HP)",
+					"notes": "Innate #uRaging #u2.",
+					"moves": [
+						{
+							"name": "Frenzy",
+							"effects": [
+								{
+									"name": "4x2",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Gremlin Assassin",
+			"id": "${ModID}:GremlinAssassin",
+			"ai": [
+				{
+					"min_asc": 0,
+					"desc": "Cycles #wHamstring -> #wSap.",
+					"hp": "(35 - 39 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Hamstring",
+							"effects": [
+								{
+									"name": "8",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Draw Reduction 1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Sap",
+							"effects": [
+								{
+									"name": "6",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Energy Reduction 1",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 2,
+					"desc": "Cycles #wHamstring -> #wSap.",
+					"hp": "(35 - 39 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Hamstring",
+							"effects": [
+								{
+									"name": "9",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Draw Reduction 1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Sap",
+							"effects": [
+								{
+									"name": "7",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Energy Reduction 1",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 7,
+					"desc": "Cycles #wHamstring -> #wSap.",
+					"hp": "(38 - 42 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Hamstring",
+							"effects": [
+								{
+									"name": "9",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Draw Reduction 1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Sap",
+							"effects": [
+								{
+									"name": "7",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Energy Reduction 1",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 17,
+					"desc": "Cycles #wSap -> #wHamstring.",
+					"hp": "(38 - 42 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Hamstring",
+							"effects": [
+								{
+									"name": "9",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Draw Reduction 1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Sap",
+							"effects": [
+								{
+									"name": "7",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Energy Reduction 1",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Gremlin Nib",
+			"id": "${ModID}:GremlinNib",
+			"ai": [
+				{
+					"min_asc": 0,
+					"desc": "If #uNib is 7, uses #wDouble #wHit. If #uNib is 8, uses #wSlam. If #uNib is 9, uses #wCrit. Otherwise, uses #wSlam, #wDouble #wHit, or #wFrenzy, but cannot use the same move twice in a row.",
+					"hp": "(171 - 180 HP)",
+					"notes": "Innate #uNib #u0.",
+					"moves": [
+						{
+							"name": "Slam",
+							"effects": [
+								{
+									"name": "25",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Double Hit",
+							"effects": [
+								{
+									"name": "10x2",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Frenzy",
+							"effects": [
+								{
+									"name": "5x3",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Crit",
+							"effects": [
+								{
+									"name": "45",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Vulnerable 3",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 2,
+					"desc": "If #uNib is 7, uses #wDouble #wHit. If #uNib is 8, uses #wSlam. If #uNib is 9, uses #wCrit. Otherwise, uses #wSlam, #wDouble #wHit, or #wFrenzy, but cannot use the same move twice in a row.",
+					"hp": "(171 - 180 HP)",
+					"notes": "Innate #uNib #u0.",
+					"moves": [
+						{
+							"name": "Slam",
+							"effects": [
+								{
+									"name": "27",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Double Hit",
+							"effects": [
+								{
+									"name": "11x2",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Frenzy",
+							"effects": [
+								{
+									"name": "6x3",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Crit",
+							"effects": [
+								{
+									"name": "50",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Vulnerable 3",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 7,
+					"desc": "If #uNib is 7, uses #wDouble #wHit. If #uNib is 8, uses #wSlam. If #uNib is 9, uses #wCrit. Otherwise, uses #wSlam, #wDouble #wHit, or #wFrenzy, but cannot use the same move twice in a row.",
+					"hp": "(185 - 195 HP)",
+					"notes": "Innate #uNib #u0.",
+					"moves": [
+						{
+							"name": "Slam",
+							"effects": [
+								{
+									"name": "27",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Double Hit",
+							"effects": [
+								{
+									"name": "11x2",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Frenzy",
+							"effects": [
+								{
+									"name": "6x3",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Crit",
+							"effects": [
+								{
+									"name": "50",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Vulnerable 3",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 17,
+					"desc": "If #uNib is 7, uses #wDouble #wHit. If #uNib is 8, uses #wSlam. If #uNib is 9, uses #wCrit. Otherwise, uses #wSlam, #wDouble #wHit, or #wFrenzy, but cannot use the same move twice in a row.",
+					"hp": "(185 - 195 HP)",
+					"notes": "Innate #uNib #u1.",
+					"moves": [
+						{
+							"name": "Slam",
+							"effects": [
+								{
+									"name": "27",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Double Hit",
+							"effects": [
+								{
+									"name": "11x2",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Frenzy",
+							"effects": [
+								{
+									"name": "6x3",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Crit",
+							"effects": [
+								{
+									"name": "50",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Vulnerable 3",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Gremlin Elder",
+			"id": "${ModID}:GremlinElder",
+			"ai": [
+				{
+					"min_asc": 0,
+					"desc": "Starts with #wSlam. Afterwards, repeats a 50-50 chance of using #wSlam or #wSlap, but cannot use #wSlam three times in a row or #wSlap twice in a row. Upon reaching 50% HP, uses #wCharging twice, then uses #wDying #wCurse.",
+					"hp": "(223 - 231 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Slam",
+							"effects": [
+								{
+									"name": "20",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Slap",
+							"effects": [
+								{
+									"name": "11",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Strength -1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Charging",
+							"effects": [
+								{
+									"name": "Skip Turn",
+									"color": "SKIP"
+								}
+							]
+						},
+						{
+							"name": "Dying Curse",
+							"effects": [
+								{
+									"name": "Permanently add 2 Decay to the player's deck",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Suicide",
+									"color": "SPECIAL"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 3,
+					"desc": "Starts with #wSlam. Afterwards, repeats a 50-50 chance of using #wSlam or #wSlap, but cannot use #wSlam three times in a row or #wSlap twice in a row. Upon reaching 50% HP, uses #wCharging twice, then uses #wDying #wCurse.",
+					"hp": "(223 - 231 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Slam",
+							"effects": [
+								{
+									"name": "22",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Slap",
+							"effects": [
+								{
+									"name": "12",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Strength -1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Charging",
+							"effects": [
+								{
+									"name": "Skip Turn",
+									"color": "SKIP"
+								}
+							]
+						},
+						{
+							"name": "Dying Curse",
+							"effects": [
+								{
+									"name": "Permanently add 2 Decay to the player's deck",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Suicide",
+									"color": "SPECIAL"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 8,
+					"desc": "Starts with #wSlam. Afterwards, repeats a 50-50 chance of using #wSlam or #wSlap, but cannot use #wSlam three times in a row or #wSlap twice in a row. Upon reaching 50% HP, uses #wCharging twice, then uses #wDying #wCurse.",
+					"hp": "(242 - 251 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Slam",
+							"effects": [
+								{
+									"name": "22",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Slap",
+							"effects": [
+								{
+									"name": "12",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Strength -1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Charging",
+							"effects": [
+								{
+									"name": "Skip Turn",
+									"color": "SKIP"
+								}
+							]
+						},
+						{
+							"name": "Dying Curse",
+							"effects": [
+								{
+									"name": "Permanently add 2 Decay to the player's deck",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Suicide",
+									"color": "SPECIAL"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 18,
+					"desc": "Starts with #wSlam. Afterwards, repeats a 50-50 chance of using #wSlam or #wSlap, but cannot use #wSlam three times in a row or #wSlap twice in a row. Upon reaching 50% HP, uses #wCharging twice, then uses #wDying #wCurse.",
+					"hp": "(242 - 251 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Slam",
+							"effects": [
+								{
+									"name": "22",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Slap",
+							"effects": [
+								{
+									"name": "12",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Strength -1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Charging",
+							"effects": [
+								{
+									"name": "Skip Turn",
+									"color": "SKIP"
+								}
+							]
+						},
+						{
+							"name": "Dying Curse",
+							"effects": [
+								{
+									"name": "Permanently add 3 Decay to the player's deck",
+									"color": "DEBUFF"
+								},
+								{
+									"name": "Suicide",
+									"color": "SPECIAL"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Chubby Gremlin",
+			"id": "${ModID}:ChubbyGremlin",
+			"ai": [
+				{
+					"min_asc": 0,
+					"desc": "Repeats #wSit.",
+					"hp": "(40 - 45 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Sit",
+							"effects": [
+								{
+									"name": "5",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Strength -1",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 2,
+					"desc": "Repeats #wSit.",
+					"hp": "(40 - 45 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Sit",
+							"effects": [
+								{
+									"name": "6",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Strength -1",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 7,
+					"desc": "Repeats #wSit.",
+					"hp": "(43 - 48 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Sit",
+							"effects": [
+								{
+									"name": "6",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Strength -1",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Gremlin Rocker",
+			"id": "${ModID}:GremlinRockTosser",
+			"ai": [
+				{
+					"min_asc": 0,
+					"desc": "Repeats #wThrow.",
+					"hp": "(19 - 23 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Throw",
+							"effects": [
+								{
+									"name": "6",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 2,
+					"desc": "Repeats #wThrow.",
+					"hp": "(19 - 23 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Throw",
+							"effects": [
+								{
+									"name": "7",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 7,
+					"desc": "Repeats #wThrow.",
+					"hp": "(21 - 25 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Throw",
+							"effects": [
+								{
+									"name": "7",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Gremlin Healer",
+			"id": "${ModID}:GremlinHealer",
+			"ai": [
+				{
+					"min_asc": 0,
+					"desc": "Starts with #wCure. Afterwards, uses #wCure if any other enemies are alive, and otherwise uses #wAttack.",
+					"hp": "(60 - 64 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Cure",
+							"effects": [
+								{
+									"name": "Party Heal 12",
+									"color": "BLOCK"
+								}
+							]
+						},
+						{
+							"name": "Attack",
+							"effects": [
+								{
+									"name": "10",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 2,
+					"desc": "Starts with #wCure. Afterwards, uses #wCure if any other enemies are alive, and otherwise uses #wAttack.",
+					"hp": "(60 - 64 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Cure",
+							"effects": [
+								{
+									"name": "Party Heal 12",
+									"color": "BLOCK"
+								}
+							]
+						},
+						{
+							"name": "Attack",
+							"effects": [
+								{
+									"name": "11",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 7,
+					"desc": "Starts with #wCure. Afterwards, uses #wCure if any other enemies are alive, and otherwise uses #wAttack.",
+					"hp": "(64 - 69 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Cure",
+							"effects": [
+								{
+									"name": "Party Heal 12",
+									"color": "BLOCK"
+								}
+							]
+						},
+						{
+							"name": "Attack",
+							"effects": [
+								{
+									"name": "11",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 17,
+					"desc": "Starts with #wCure. Afterwards, uses #wCure if any other enemies are alive, and otherwise uses #wAttack.",
+					"hp": "(64 - 69 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Cure",
+							"effects": [
+								{
+									"name": "Party Heal 15",
+									"color": "BLOCK"
+								}
+							]
+						},
+						{
+							"name": "Attack",
+							"effects": [
+								{
+									"name": "11",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Gremlin Cannon",
+			"id": "${ModID}:GremlinCannon",
+			"ai": [
+				{
+					"min_asc": 0,
+					"desc": "Starts with #wLoad and uses it every second turn. On other turns, uses #wFire #w(Explode) if there are no other enemies left, #wFire #w(Vulnerable) if it used #wFire #w(Weak) two turns ago, and #wFire #w(Weak) otherwise. ",
+					"hp": "(48 - 53 HP)",
+					"notes": "Applies #dVulnerable #d3 to the player at the start of combat.",
+					"moves": [
+						{
+							"name": "Load",
+							"effects": [
+								{
+									"name": "Skip Turn",
+									"color": "SKIP"
+								}
+							]
+						},
+						{
+							"name": "Fire (Explode)",
+							"effects": [
+								{
+									"name": "13",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Fire (Vulnerable)",
+							"effects": [
+								{
+									"name": "Vulnerable 3",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Fire (Weak)",
+							"effects": [
+								{
+									"name": "Weak 3",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 2,
+					"desc": "Starts with #wLoad and uses it every second turn. On other turns, uses #wFire #w(Explode) if there are no other enemies left, #wFire #w(Vulnerable) if it used #wFire #w(Weak) two turns ago, and #wFire #w(Weak) otherwise. ",
+					"hp": "(48 - 53 HP)",
+					"notes": "Applies #dVulnerable #d3 to the player at the start of combat.",
+					"moves": [
+						{
+							"name": "Load",
+							"effects": [
+								{
+									"name": "Skip Turn",
+									"color": "SKIP"
+								}
+							]
+						},
+						{
+							"name": "Fire (Explode)",
+							"effects": [
+								{
+									"name": "15",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Fire (Vulnerable)",
+							"effects": [
+								{
+									"name": "Vulnerable 3",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Fire (Weak)",
+							"effects": [
+								{
+									"name": "Weak 3",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 7,
+					"desc": "Starts with #wLoad and uses it every second turn. On other turns, uses #wFire #w(Explode) if there are no other enemies left, #wFire #w(Vulnerable) if it used #wFire #w(Weak) two turns ago, and #wFire #w(Weak) otherwise. ",
+					"hp": "(52 - 58 HP)",
+					"notes": "Applies #dVulnerable #d3 to the player at the start of combat.",
+					"moves": [
+						{
+							"name": "Load",
+							"effects": [
+								{
+									"name": "Skip Turn",
+									"color": "SKIP"
+								}
+							]
+						},
+						{
+							"name": "Fire (Explode)",
+							"effects": [
+								{
+									"name": "15",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Fire (Vulnerable)",
+							"effects": [
+								{
+									"name": "Vulnerable 3",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Fire (Weak)",
+							"effects": [
+								{
+									"name": "Weak 3",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 17,
+					"desc": "Starts with #wLoad and uses it every second turn. On other turns, uses #wFire #w(Explode) if there are no other enemies left, #wFire #w(Vulnerable) if it used #wFire #w(Weak) two turns ago, and #wFire #w(Weak) otherwise. ",
+					"hp": "(52 - 58 HP)",
+					"notes": "Applies #dVulnerable #d3 to the player at the start of combat.",
+					"moves": [
+						{
+							"name": "Load",
+							"effects": [
+								{
+									"name": "Skip Turn",
+									"color": "SKIP"
+								}
+							]
+						},
+						{
+							"name": "Fire (Explode)",
+							"effects": [
+								{
+									"name": "15",
+									"color": "DAMAGE"
+								}
+							]
+						},
+						{
+							"name": "Fire (Vulnerable)",
+							"effects": [
+								{
+									"name": "Vulnerable 4",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Fire (Weak)",
+							"effects": [
+								{
+									"name": "Weak 4",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Gremlin Jerk",
+			"id": "${ModID}:GremlinJerk",
+			"ai": [
+				{
+					"min_asc": 0,
+					"desc": "Cycles #wHamstring -> #wSap.",
+					"hp": "(48 - 53 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Hamstring",
+							"effects": [
+								{
+									"name": "14",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Draw Reduction 1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Sap",
+							"effects": [
+								{
+									"name": "10",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Energy Reduction 1",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 2,
+					"desc": "Cycles #wHamstring -> #wSap.",
+					"hp": "(48 - 53 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Hamstring",
+							"effects": [
+								{
+									"name": "15",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Draw Reduction 1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Sap",
+							"effects": [
+								{
+									"name": "11",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Energy Reduction 1",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 7,
+					"desc": "Cycles #wHamstring -> #wSap.",
+					"hp": "(52 - 58 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Hamstring",
+							"effects": [
+								{
+									"name": "15",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Draw Reduction 1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Sap",
+							"effects": [
+								{
+									"name": "11",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Energy Reduction 1",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 17,
+					"desc": "Cycles #wSap -> #wHamstring.",
+					"hp": "(52 - 58 HP)",
+					"notes": "",
+					"moves": [
+						{
+							"name": "Hamstring",
+							"effects": [
+								{
+									"name": "15",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Draw Reduction 1",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Sap",
+							"effects": [
+								{
+									"name": "11",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Energy Reduction 1",
+									"color": "DEBUFF"
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}
