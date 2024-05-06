@@ -106,7 +106,9 @@ public class Junkbot extends CustomMonster {
                 isActivated = true;
                 this.img = ImageMaster.loadImage(IMG);
                 AbstractDungeon.actionManager.addToBottom(new VFXAction(new PowerBuffEffect(this.hb.cX, this.hb.cY, "Rebooted")));
-                AbstractDungeon.actionManager.addToBottom(new RemoveHeldCardAction(this, cardsToPreview.get(0)));
+                if (!cardsToPreview.isEmpty()) {
+                    AbstractDungeon.actionManager.addToBottom(new RemoveHeldCardAction(this, cardsToPreview.get(0)));
+                }
                 break;
         }
         AbstractDungeon.actionManager.addToBottom(new RollMoveAction(this));
