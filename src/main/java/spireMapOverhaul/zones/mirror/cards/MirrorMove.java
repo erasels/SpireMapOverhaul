@@ -451,7 +451,7 @@ public class MirrorMove extends AbstractSMOCard {
                         desc.add(buffDesc(AngerPower.NAME, amount, false));
                         break;
                     case IntangiblePower.POWER_ID:
-                        desc.add(buffDesc(GameDictionary.INTANGIBLE.NAMES[0], amount, false));
+                        desc.add(buffDesc(GameDictionary.INTANGIBLE.NAMES[0], amount, true));
                         break;
                     case BufferPower.POWER_ID:
                         desc.add(buffDesc(BufferPower.NAME, amount, false));
