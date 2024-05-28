@@ -2,26 +2,22 @@ package spireMapOverhaul.zones.beastslair;
 
 import basemod.BaseMod;
 import basemod.abstracts.CustomSavable;
+import basemod.eventUtil.EventUtils;
+import basemod.patches.com.megacrit.cardcrawl.events.AbstractEvent.AdditionalEventParameters;
 import com.badlogic.gdx.graphics.Color;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.AbstractEvent;
-import com.megacrit.cardcrawl.events.city.Colosseum;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
-import com.megacrit.cardcrawl.helpers.MonsterHelper;
 import com.megacrit.cardcrawl.map.MapRoomNode;
-import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.rewards.RewardItem;
-import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
 import spireMapOverhaul.zoneInterfaces.RewardModifyingZone;
 import spireMapOverhaul.zones.thieveshideout.rooms.ForcedEventRoom;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Supplier;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 
@@ -79,7 +75,20 @@ public class BeastsLairZone extends AbstractZone implements EncounterModifyingZo
     @Override
     public void manualRoomPlacement(Random rng) {
         for (MapRoomNode node : nodes) {
-            node.setRoom(new ForcedEventRoom(() -> new BeastsLairEvent(bossList.get(rng.random(bossList.size() - 1)))));
+            node.setRoom(new ForcedEventRoom(() -> {
+                // Because Beast's Lair needs a constructor parameter, we can't use the event we get back from EventUtils
+                // directly (since it instantiates a new instance with the parameterless constructor)
+                // It also isn't enough to make a new instance ourselves, since the only good way to properly set the
+                // additionalParameters SpireField that PhasedEvent relies on is to go through EventUtils
+                // So we grab the additionalParameters from the EventUtils instance, then attach them to our own instance
+                // Maybe there's a way to refactor BeastsLairEvent to not need a constructor parameter, but PhasedEvent
+                // makes it hard. The alternative would be to abandon PhasedEvent entirely and just extend Colosseum, like
+                // ThiefKingEvent does (which avoided all these problems).
+                AbstractEvent eventInfo = EventUtils.getEvent(BeastsLairEvent.ID);
+                BeastsLairEvent event = new BeastsLairEvent(bossList.get(rng.random(bossList.size() - 1)));
+                AdditionalEventParameters.additionalParameters.set(event, AdditionalEventParameters.additionalParameters.get(eventInfo));
+                return event;
+            }));
         }
     }
 
