@@ -34,7 +34,7 @@
   },
   "${ModID}:VoidblessedBlade": {
     "NAME": "空眷之刃",
-    "DESCRIPTION": "造成 !D! 点伤害。 !M! 次 NL 敌人失去 !M! 点 力量 。 NL 获得 1 层 *缓冲 。 NL 消耗 。"
+    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。 NL 敌人失去 !M! 点 力量 。 NL 获得 1 层 *残影 。 NL 消耗 。"
   },
   "${ModID}:Languish": {
     "NAME": "衰弱",
