@@ -1,7 +1,5 @@
 package spireMapOverhaul.zones.humility.patches.beyond
 
-import spireMapOverhaul.zones.humility.patches.utils.addPreBattleAction
-import spireMapOverhaul.zones.humility.powers.SemiIntangiblePower
 import com.evacipated.cardcrawl.modthespire.lib.*
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction
 import com.megacrit.cardcrawl.actions.common.RollMoveAction
@@ -9,6 +7,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon
 import com.megacrit.cardcrawl.monsters.beyond.Nemesis
 import javassist.CtBehavior
 import spireMapOverhaul.zones.humility.HumilityZone
+import spireMapOverhaul.zones.humility.patches.utils.addPreBattleAction
+import spireMapOverhaul.zones.humility.powers.SemiIntangiblePower
 
 class NemesisSemiIntangible {
     @SpirePatch(

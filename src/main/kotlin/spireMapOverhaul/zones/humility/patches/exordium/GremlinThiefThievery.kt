@@ -1,6 +1,5 @@
 package spireMapOverhaul.zones.humility.patches.exordium
 
-import spireMapOverhaul.zones.humility.patches.utils.addPreBattleAction
 import com.evacipated.cardcrawl.modthespire.lib.*
 import com.megacrit.cardcrawl.actions.AbstractGameAction
 import com.megacrit.cardcrawl.actions.animations.VFXAction
@@ -17,6 +16,7 @@ import javassist.CtBehavior
 import javassist.expr.ExprEditor
 import javassist.expr.NewExpr
 import spireMapOverhaul.zones.humility.HumilityZone
+import spireMapOverhaul.zones.humility.patches.utils.addPreBattleAction
 import kotlin.math.min
 
 class GremlinThiefThievery {

@@ -2,7 +2,6 @@ package spireMapOverhaul.zones.humility.patches.exordium
 
 import basemod.ReflectionHacks
 import com.badlogic.gdx.math.MathUtils
-import spireMapOverhaul.zones.humility.patches.utils.addToMethod
 import com.evacipated.cardcrawl.modthespire.lib.*
 import com.megacrit.cardcrawl.actions.common.EscapeAction
 import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction
@@ -14,6 +13,7 @@ import com.megacrit.cardcrawl.powers.AngerPower
 import com.megacrit.cardcrawl.powers.MinionPower
 import javassist.CtBehavior
 import spireMapOverhaul.zones.humility.HumilityZone
+import spireMapOverhaul.zones.humility.patches.utils.addToMethod
 import kotlin.random.asKotlinRandom
 
 class NobMinions {

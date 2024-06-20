@@ -1,6 +1,9 @@
 package spireMapOverhaul;
 
-import basemod.*;
+import basemod.AutoAdd;
+import basemod.BaseMod;
+import basemod.IUIElement;
+import basemod.ModPanel;
 import basemod.abstracts.CustomSavable;
 import basemod.devcommands.ConsoleCommand;
 import basemod.eventUtil.AddEventParams;

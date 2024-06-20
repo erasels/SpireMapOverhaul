@@ -1,7 +1,5 @@
 package spireMapOverhaul.zones.humility.patches.beyond
 
-import spireMapOverhaul.zones.humility.patches.utils.addPreBattleAction
-import spireMapOverhaul.zones.humility.powers.VenomStrikesPower
 import com.evacipated.cardcrawl.modthespire.lib.*
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction
 import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction
@@ -11,6 +9,8 @@ import com.megacrit.cardcrawl.monsters.beyond.Reptomancer
 import com.megacrit.cardcrawl.monsters.beyond.SnakeDagger
 import javassist.CtBehavior
 import spireMapOverhaul.zones.humility.HumilityZone
+import spireMapOverhaul.zones.humility.patches.utils.addPreBattleAction
+import spireMapOverhaul.zones.humility.powers.VenomStrikesPower
 
 class ReptomancerVenom {
     companion object {

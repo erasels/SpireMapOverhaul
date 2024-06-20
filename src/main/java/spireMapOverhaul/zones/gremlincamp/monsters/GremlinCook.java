@@ -1,6 +1,5 @@
 package spireMapOverhaul.zones.gremlincamp.monsters;
 
-import basemod.ReflectionHacks;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -18,14 +17,10 @@ import com.megacrit.cardcrawl.cards.status.Dazed;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import com.megacrit.cardcrawl.vfx.ExhaustEmberEffect;
 import com.megacrit.cardcrawl.vfx.SpeechBubble;
-import com.megacrit.cardcrawl.vfx.combat.FlameParticleEffect;
 import com.megacrit.cardcrawl.vfx.combat.HealEffect;
-import com.megacrit.cardcrawl.vfx.combat.SmokeBlurEffect;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractSMOMonster;
 import spireMapOverhaul.util.TexLoader;
@@ -37,7 +32,8 @@ import spireMapOverhaul.zones.gremlincamp.SmokeEffect;
 
 import java.util.ArrayList;
 
-import static spireMapOverhaul.SpireAnniversary6Mod.*;
+import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
+import static spireMapOverhaul.SpireAnniversary6Mod.makeMonsterPath;
 
 public class GremlinCook extends AbstractSMOMonster {
     public static final String ID = makeID(GremlinCook.class.getSimpleName());

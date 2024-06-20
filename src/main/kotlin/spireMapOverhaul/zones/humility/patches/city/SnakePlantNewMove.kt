@@ -1,8 +1,5 @@
 package spireMapOverhaul.zones.humility.patches.city
 
-import spireMapOverhaul.zones.humility.patches.utils.isFirstMove
-import spireMapOverhaul.zones.humility.patches.utils.lastMove
-import spireMapOverhaul.zones.humility.patches.utils.lastTwoMoves
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch
 import com.evacipated.cardcrawl.modthespire.lib.SpireReturn
 import com.megacrit.cardcrawl.actions.AbstractGameAction
@@ -18,6 +15,9 @@ import com.megacrit.cardcrawl.powers.ArtifactPower
 import com.megacrit.cardcrawl.powers.GainStrengthPower
 import com.megacrit.cardcrawl.powers.StrengthPower
 import spireMapOverhaul.zones.humility.HumilityZone
+import spireMapOverhaul.zones.humility.patches.utils.isFirstMove
+import spireMapOverhaul.zones.humility.patches.utils.lastMove
+import spireMapOverhaul.zones.humility.patches.utils.lastTwoMoves
 
 class SnakePlantNewMove {
     companion object {

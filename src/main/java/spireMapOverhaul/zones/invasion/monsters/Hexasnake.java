@@ -17,7 +17,7 @@ import com.megacrit.cardcrawl.powers.ConstrictedPower;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.zones.invasion.powers.SerpentsGazePower;
 
-import static spireMapOverhaul.util.Wiz.*;
+import static spireMapOverhaul.util.Wiz.atb;
 
 public class Hexasnake extends CustomMonster {
     public static final String ID = SpireAnniversary6Mod.makeID("Hexasnake");

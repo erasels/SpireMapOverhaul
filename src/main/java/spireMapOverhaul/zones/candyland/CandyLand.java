@@ -10,7 +10,10 @@ import com.megacrit.cardcrawl.cards.red.Feed;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
-import com.megacrit.cardcrawl.relics.*;
+import com.megacrit.cardcrawl.relics.Mango;
+import com.megacrit.cardcrawl.relics.Pear;
+import com.megacrit.cardcrawl.relics.Strawberry;
+import com.megacrit.cardcrawl.relics.Waffle;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.shop.ShopScreen;
 import com.megacrit.cardcrawl.shop.StorePotion;
@@ -23,7 +26,10 @@ import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.rewards.HealReward;
 import spireMapOverhaul.util.TexLoader;
 import spireMapOverhaul.util.Wiz;
-import spireMapOverhaul.zoneInterfaces.*;
+import spireMapOverhaul.zoneInterfaces.CampfireModifyingZone;
+import spireMapOverhaul.zoneInterfaces.RenderableZone;
+import spireMapOverhaul.zoneInterfaces.RewardModifyingZone;
+import spireMapOverhaul.zoneInterfaces.ShopModifyingZone;
 import spireMapOverhaul.zones.candyland.consumables.AbstractConsumable;
 import spireMapOverhaul.zones.candyland.consumables.common.*;
 import spireMapOverhaul.zones.candyland.consumables.rare.Banana;
@@ -32,7 +38,9 @@ import spireMapOverhaul.zones.candyland.consumables.rare.Cocktail;
 import spireMapOverhaul.zones.candyland.consumables.rare.GoldCandy;
 import spireMapOverhaul.zones.candyland.consumables.uncommon.*;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class CandyLand extends AbstractZone implements RewardModifyingZone, RenderableZone, CampfireModifyingZone, ShopModifyingZone {
     public static final String ID = "CandyLand";

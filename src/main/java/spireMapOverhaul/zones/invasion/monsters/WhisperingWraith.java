@@ -18,7 +18,8 @@ import spireMapOverhaul.abstracts.AbstractSMOMonster;
 import spireMapOverhaul.zones.invasion.powers.FixedTextIntangiblePower;
 
 import java.util.Random;
-import static spireMapOverhaul.util.Wiz.*;
+
+import static spireMapOverhaul.util.Wiz.atb;
 
 public class WhisperingWraith extends AbstractSMOMonster
 {

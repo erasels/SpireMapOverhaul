@@ -1,6 +1,5 @@
 package spireMapOverhaul.zones.humility.patches.exordium
 
-import spireMapOverhaul.zones.humility.powers.DemonFormMonsterPower
 import com.evacipated.cardcrawl.modthespire.lib.*
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction
@@ -9,6 +8,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon
 import com.megacrit.cardcrawl.monsters.exordium.Lagavulin
 import javassist.CtBehavior
 import spireMapOverhaul.zones.humility.HumilityZone
+import spireMapOverhaul.zones.humility.powers.DemonFormMonsterPower
 
 class LagavulinDemonForm {
     @SpirePatch(

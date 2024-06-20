@@ -3,8 +3,6 @@ package spireMapOverhaul.zoneInterfaces;
 import basemod.eventUtil.EventUtils;
 import basemod.patches.com.megacrit.cardcrawl.characters.AbstractPlayer.SeenEvents;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.events.AbstractEvent;
-import com.megacrit.cardcrawl.helpers.EventHelper;
 import spireMapOverhaul.SpireAnniversary6Mod;
 
 import java.util.Set;

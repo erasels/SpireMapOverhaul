@@ -35,7 +35,6 @@ import spireMapOverhaul.zones.manasurge.ui.campfire.EnchantOption;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Supplier;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 import static spireMapOverhaul.SpireAnniversary6Mod.makePath;

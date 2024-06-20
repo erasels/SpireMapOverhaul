@@ -5,15 +5,9 @@
 
 package spireMapOverhaul.zones.Junkyard.powers;
 
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInDiscardAction;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.StasisPower;
-import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.zones.Junkyard.monsters.Junkbot;
 

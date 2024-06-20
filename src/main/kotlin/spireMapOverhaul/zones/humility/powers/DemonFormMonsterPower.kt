@@ -1,9 +1,9 @@
 package spireMapOverhaul.zones.humility.powers
 
-import spireMapOverhaul.SpireAnniversary6Mod
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction
 import com.megacrit.cardcrawl.core.AbstractCreature
 import com.megacrit.cardcrawl.powers.StrengthPower
+import spireMapOverhaul.SpireAnniversary6Mod
 
 class DemonFormMonsterPower(
     owner: AbstractCreature,

@@ -17,8 +17,8 @@ import spireMapOverhaul.zones.invasion.powers.FixedTextDrawPower;
 
 import java.util.ArrayList;
 
-import static spireMapOverhaul.util.Wiz.atb;
 import static spireMapOverhaul.util.Wiz.adp;
+import static spireMapOverhaul.util.Wiz.atb;
 
 public class GravewoodGroveZone extends AbstractZone implements CombatModifyingZone, CampfireModifyingZone, RenderableZone {
     public static final String ID = "GravewoodGrove";

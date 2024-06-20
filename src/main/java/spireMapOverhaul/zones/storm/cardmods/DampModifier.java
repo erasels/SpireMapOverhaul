@@ -6,7 +6,6 @@ import basemod.helpers.CardModifierManager;
 import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import spireMapOverhaul.SpireAnniversary6Mod;
 
 import java.util.ArrayList;
 import java.util.List;

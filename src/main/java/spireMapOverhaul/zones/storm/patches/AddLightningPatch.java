@@ -15,7 +15,8 @@ import spireMapOverhaul.zones.storm.StormUtil;
 import spireMapOverhaul.zones.storm.vfx.AlwaysBehindLightningEffect;
 
 import static spireMapOverhaul.util.Wiz.atb;
-import static spireMapOverhaul.zones.storm.StormUtil.*;
+import static spireMapOverhaul.zones.storm.StormUtil.timeSinceStrike;
+import static spireMapOverhaul.zones.storm.StormUtil.timeToStrike;
 import static spireMapOverhaul.zones.storm.StormZone.THUNDER_KEY;
 
 

@@ -1,12 +1,12 @@
 package spireMapOverhaul.zones.humility.powers
 
-import spireMapOverhaul.SpireAnniversary6Mod
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction
 import com.megacrit.cardcrawl.cards.DamageInfo
 import com.megacrit.cardcrawl.core.AbstractCreature
 import com.megacrit.cardcrawl.monsters.AbstractMonster
 import com.megacrit.cardcrawl.monsters.beyond.Nemesis
+import spireMapOverhaul.SpireAnniversary6Mod
 import kotlin.math.max
 
 class SemiIntangiblePower(

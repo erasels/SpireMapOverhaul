@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.cards.colorless.Mayhem;
 import com.megacrit.cardcrawl.cards.colorless.SecretTechnique;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.relics.AbstractRelic;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.util.ActUtil;
 import spireMapOverhaul.zones.invasion.cards.*;

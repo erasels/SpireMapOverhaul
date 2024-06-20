@@ -2,7 +2,8 @@ package spireMapOverhaul.zones.divinitiesgaze.events;
 
 import basemod.ReflectionHacks;
 import basemod.abstracts.events.PhasedEvent;
-import basemod.abstracts.events.phases.*;
+import basemod.abstracts.events.phases.CombatPhase;
+import basemod.abstracts.events.phases.TextPhase;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;

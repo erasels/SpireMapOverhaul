@@ -1,8 +1,5 @@
 package spireMapOverhaul.zones.humility.patches.city
 
-import spireMapOverhaul.zones.humility.patches.utils.addEscape
-import spireMapOverhaul.zones.humility.patches.utils.addPreBattleAction
-import spireMapOverhaul.zones.humility.powers.DivineProtectionPower
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction
 import com.megacrit.cardcrawl.actions.common.ChangeStateAction
@@ -12,6 +9,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon
 import com.megacrit.cardcrawl.monsters.city.Healer
 import javassist.CtBehavior
 import spireMapOverhaul.zones.humility.HumilityZone
+import spireMapOverhaul.zones.humility.patches.utils.addEscape
+import spireMapOverhaul.zones.humility.patches.utils.addPreBattleAction
+import spireMapOverhaul.zones.humility.powers.DivineProtectionPower
 
 class CenturionDivineProtection {
     @SpirePatch(

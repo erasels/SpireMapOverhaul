@@ -12,7 +12,6 @@ import com.megacrit.cardcrawl.rooms.ShopRoom;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import spireMapOverhaul.SpireAnniversary6Mod;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

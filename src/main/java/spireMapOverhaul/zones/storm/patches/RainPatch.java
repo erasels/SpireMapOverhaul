@@ -14,7 +14,6 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.scenes.AbstractScene;
 import javassist.*;
 import org.clapper.util.classutil.*;
-import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.zones.storm.StormUtil;
 
 import java.io.File;

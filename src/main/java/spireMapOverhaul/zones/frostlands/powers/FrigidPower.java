@@ -1,14 +1,12 @@
 package spireMapOverhaul.zones.frostlands.powers;
 
 import basemod.helpers.CardModifierManager;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import spireMapOverhaul.abstracts.AbstractSMOPower;
-import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.zones.frostlands.cardmods.FrostbiteModifier;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;

@@ -2,26 +2,27 @@ package spireMapOverhaul.zones.grass;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.RelicLibrary;
-import com.megacrit.cardcrawl.localization.UIStrings;
-import com.megacrit.cardcrawl.relics.*;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.Ginger;
+import com.megacrit.cardcrawl.relics.HappyFlower;
+import com.megacrit.cardcrawl.relics.Turnip;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoom;
 import com.megacrit.cardcrawl.shop.ShopScreen;
 import com.megacrit.cardcrawl.shop.StoreRelic;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
-import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.util.Wiz;
-import spireMapOverhaul.zoneInterfaces.*;
+import spireMapOverhaul.zoneInterfaces.CombatModifyingZone;
+import spireMapOverhaul.zoneInterfaces.RenderableZone;
+import spireMapOverhaul.zoneInterfaces.RewardModifyingZone;
+import spireMapOverhaul.zoneInterfaces.ShopModifyingZone;
 import spireMapOverhaul.zones.grass.vegetables.*;
-import spireMapOverhaul.zones.mirror.powers.MirrorZonePower;
 
 import java.util.ArrayList;
-import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class GrassZone extends AbstractZone implements CombatModifyingZone, RenderableZone, RewardModifyingZone, ShopModifyingZone {
     public static final int SPAWN_VEGS = 3;

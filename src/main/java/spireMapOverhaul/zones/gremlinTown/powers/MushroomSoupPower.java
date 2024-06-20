@@ -8,7 +8,7 @@ import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractSMOPower;
 import spireMapOverhaul.zones.gremlinTown.GremlinTown;
 
-import static spireMapOverhaul.util.Wiz.*;
+import static spireMapOverhaul.util.Wiz.atb;
 
 public class MushroomSoupPower extends AbstractSMOPower {
     public static final String POWER_ID = SpireAnniversary6Mod.makeID("MushroomSoup");

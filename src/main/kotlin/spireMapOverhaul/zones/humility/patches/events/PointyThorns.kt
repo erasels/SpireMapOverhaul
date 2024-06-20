@@ -1,6 +1,5 @@
 package spireMapOverhaul.zones.humility.patches.events
 
-import spireMapOverhaul.zones.humility.patches.utils.addPreBattleAction
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon
@@ -8,6 +7,7 @@ import com.megacrit.cardcrawl.monsters.city.BanditPointy
 import com.megacrit.cardcrawl.powers.ThornsPower
 import javassist.CtBehavior
 import spireMapOverhaul.zones.humility.HumilityZone
+import spireMapOverhaul.zones.humility.patches.utils.addPreBattleAction
 
 @SpirePatch(
     clz = BanditPointy::class,

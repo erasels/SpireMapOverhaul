@@ -26,7 +26,9 @@ import com.megacrit.cardcrawl.vfx.SpeechBubble;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.actions.WaitMoreAction;
 import spireMapOverhaul.util.Wiz;
-import spireMapOverhaul.zones.gremlinTown.monsters.*;
+import spireMapOverhaul.zones.gremlinTown.monsters.ChubbyGremlin;
+import spireMapOverhaul.zones.gremlinTown.monsters.GremlinHealer;
+import spireMapOverhaul.zones.gremlinTown.monsters.GremlinRockTosser;
 import spireMapOverhaul.zones.gremlinTown.patches.HordePatches;
 
 import java.util.ArrayList;

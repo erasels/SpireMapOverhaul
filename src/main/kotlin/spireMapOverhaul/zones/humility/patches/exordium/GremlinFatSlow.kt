@@ -1,6 +1,5 @@
 package spireMapOverhaul.zones.humility.patches.exordium
 
-import spireMapOverhaul.zones.humility.patches.utils.addPreBattleAction
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon
@@ -8,6 +7,7 @@ import com.megacrit.cardcrawl.monsters.exordium.GremlinFat
 import com.megacrit.cardcrawl.powers.SlowPower
 import javassist.CtBehavior
 import spireMapOverhaul.zones.humility.HumilityZone
+import spireMapOverhaul.zones.humility.patches.utils.addPreBattleAction
 
 class GremlinFatSlow {
     @SpirePatch(
