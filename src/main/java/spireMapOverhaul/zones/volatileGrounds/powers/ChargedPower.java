@@ -34,7 +34,7 @@ public class ChargedPower extends AbstractSMOPower {
     @Override
     public void onDeath() {
         this.addToBot(new VFXAction(new ExplosionSmallEffect(this.owner.hb.cX, this.owner.hb.cY), 0.1F));
-        AbstractDungeon.actionManager.addToBottom(new AbstractGameAction() {
+        AbstractGameAction Action = new AbstractGameAction() {
             @Override
             public void update() {
                 AbstractDungeon.player.damage(new DamageInfo(owner, ChargedPower.this.amount, DamageInfo.DamageType.THORNS));
@@ -48,6 +48,8 @@ public class ChargedPower extends AbstractSMOPower {
                 }
                 isDone = true;
             }
-        });
+        };
+        Action.actionType = AbstractGameAction.ActionType.DAMAGE;
+        AbstractDungeon.actionManager.addToBottom(Action);
     }
 }

@@ -76,9 +76,9 @@ public class VolatileGrounds extends AbstractZone implements EncounterModifyingZ
         return Arrays.asList(
                 new ZoneEncounter(SUNSTONE_ELITE, 3, () -> new MonsterGroup(
                         new AbstractMonster[]{
-                                new SunStoneShard(-300.0F, 0.0f),
-                                new UnstableSunstone(0.0F, 0.0F),
-                                new SunStoneShard(300.0F, 0.0f),
+                                new SunStoneShard(-400.0F, 0.0f),
+                                new UnstableSunstone(-100.0F, 0.0F),
+                                new SunStoneShard(200.0F, 0.0f),
                         }))
         );
     }
