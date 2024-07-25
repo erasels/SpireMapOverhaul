@@ -131,8 +131,8 @@ class GremlinLeaderMoreSummons {
                 if (HumilityZone.isNotInZone()) return
 
                 if (slot == 3) {
-                    x[0] = GremlinLeader.POSX[3]
-                    y[0] = GremlinLeader.POSY[3]
+                    x[0] = -690f
+                    y[0] = 2f
                 }
             }
         }
