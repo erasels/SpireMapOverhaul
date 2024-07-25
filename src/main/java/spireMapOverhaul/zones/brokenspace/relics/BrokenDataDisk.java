@@ -24,6 +24,7 @@ public class BrokenDataDisk extends BrokenRelic implements OnChannelRelic {
     public static final String ID = "BrokenDataDisk";
     public static final int AMOUNT = 1;
     private boolean usedThisTurn = false;
+    private boolean firstTurnJank = true;
 
     public BrokenDataDisk() {
         super(ID, RelicTier.SPECIAL, LandingSound.CLINK, DataDisk.ID);
@@ -36,16 +37,18 @@ public class BrokenDataDisk extends BrokenRelic implements OnChannelRelic {
         }
         addToBot(new ChannelAction(abstractOrb.makeCopy()));
         incrementOrbsStat(1);
-        this.flash();
+        flash();
         usedThisTurn = true;
-
     }
 
 
     @Override
     public void atTurnStart() {
-        super.atTurnStart();
-        usedThisTurn = false;
+        if(!firstTurnJank) {
+            usedThisTurn = false;
+        } else {
+            firstTurnJank = false; // GameActionManager.turn is 1 on the first two turns of combat
+        }
     }
 
     @Override
@@ -53,7 +56,12 @@ public class BrokenDataDisk extends BrokenRelic implements OnChannelRelic {
         flash();
         addToBot(new ApplyPowerAction(adp(), adp(), new FocusPower(adp(), -AMOUNT), -AMOUNT));
         addToBot(new RelicAboveCreatureAction(adp(), BrokenDataDisk.this));
+    }
+
+    @Override
+    public void onVictory() {
         usedThisTurn = false;
+        firstTurnJank = true;
     }
 
     @Override
