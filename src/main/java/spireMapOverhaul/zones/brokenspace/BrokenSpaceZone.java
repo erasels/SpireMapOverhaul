@@ -72,14 +72,16 @@ public class BrokenSpaceZone extends AbstractZone implements RewardModifyingZone
 
     @Override
     public void renderOnMap(SpriteBatch sb, float alpha) {
-        BrokenSpaceRenderPatch.StartFbo(sb);
-        super.renderOnMap(sb, alpha);
-        BrokenSpaceRenderPatch.StopFbo(sb, 1.0f, 0.0f, 0.03f, 0.2f, 0.5f);
-        if (alpha > 0) {
+        if (getShaderConfig() && alpha > 0) {
+            BrokenSpaceRenderPatch.StartFbo(sb);
+            super.renderOnMap(sb, alpha);
+            BrokenSpaceRenderPatch.StopFbo(sb, 1.0f, 0.0f, 0.03f, 0.2f, 0.5f);
             FontHelper.renderFontCentered(sb, FontHelper.menuBannerFont, name,
                     labelX * SPACING_X + OFFSET_X, labelY * Settings.MAP_DST_Y + OFFSET_Y + DungeonMapScreen.offsetY,
                     Color.WHITE.cpy(), 0.8f
             );
+        } else {
+            super.renderOnMap(sb, alpha);
         }
     }
 
@@ -131,9 +133,7 @@ public class BrokenSpaceZone extends AbstractZone implements RewardModifyingZone
 
         }
 
-
         AbstractCard c = CardLibrary.getAnyColorCard(rarity).makeCopy();
-
         float upgradeChance = ReflectionHacks.getPrivateStatic(AbstractDungeon.class, "cardUpgradedChance");
 
         if (c.rarity != AbstractCard.CardRarity.RARE && cardRng.randomBoolean(upgradeChance) && c.canUpgrade()) {// 1857
@@ -143,11 +143,7 @@ public class BrokenSpaceZone extends AbstractZone implements RewardModifyingZone
                 r.onPreviewObtainCard(c);
             }
         }
-
-
         return c;
-
-
     }
 
     @Override
@@ -155,15 +151,11 @@ public class BrokenSpaceZone extends AbstractZone implements RewardModifyingZone
         ArrayList<AbstractCard> cards = new ArrayList<>();
         int amount = getNumberOfCardsInReward();
 
-
         for (int i = 0; i < amount; i++) {
             AbstractCard c = getTrulyRandomCard(AbstractDungeon.cardRng);
             cards.add(c);
             UnnaturalCardField.unnatural.set(c, true);
-
-
         }
-
         applyStandardUpgradeLogic(cards);
         return cards;
     }
@@ -200,7 +192,6 @@ public class BrokenSpaceZone extends AbstractZone implements RewardModifyingZone
 
                 }
             }
-
         }
     }
 
@@ -212,8 +203,8 @@ public class BrokenSpaceZone extends AbstractZone implements RewardModifyingZone
                     return r != null && r.canSpawn();
                 }) //Filter out relics that can't spawn
                 .filter(id -> {
-                    for(RewardItem ri : AbstractDungeon.combatRewardScreen.rewards) {
-                        if(ri.type == RewardItem.RewardType.RELIC && ri.relic != null && id.equals(ri.relic.relicId)) {
+                    for (RewardItem ri : AbstractDungeon.combatRewardScreen.rewards) {
+                        if (ri.type == RewardItem.RewardType.RELIC && ri.relic != null && id.equals(ri.relic.relicId)) {
                             return false;
                         }
                     }
@@ -236,18 +227,17 @@ public class BrokenSpaceZone extends AbstractZone implements RewardModifyingZone
 
         }
         applyStandardUpgradeLogic(cards);
-
     }
 
     @Override
     public void renderBackground(SpriteBatch sb) {
-        if(getShaderConfig())
+        if (getShaderConfig())
             BrokenSpaceRenderPatch.StartFbo(sb);
     }
 
     @Override
     public void postRenderBackground(SpriteBatch sb) {
-        if(getShaderConfig())
+        if (getShaderConfig())
             BrokenSpaceRenderPatch.StopFbo(sb, 0.05F, 0.0f, 4f, 0.1f);
     }
 
