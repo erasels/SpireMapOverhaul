@@ -2,7 +2,6 @@ package spireMapOverhaul.zones.humility.powers
 
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
-import spireMapOverhaul.SpireAnniversary6Mod
 import com.megacrit.cardcrawl.actions.AbstractGameAction
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction
 import com.megacrit.cardcrawl.core.AbstractCreature
@@ -11,6 +10,7 @@ import com.megacrit.cardcrawl.core.Settings
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon
 import com.megacrit.cardcrawl.helpers.FontHelper
 import com.megacrit.cardcrawl.powers.VulnerablePower
+import spireMapOverhaul.SpireAnniversary6Mod
 
 class ExplodingSporeCloudPower(
     owner: AbstractCreature,

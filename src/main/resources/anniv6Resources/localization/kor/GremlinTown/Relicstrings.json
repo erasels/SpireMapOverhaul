@@ -1,0 +1,74 @@
+{
+  "${ModID}:Duelity": {
+    "NAME": "결튜",
+    "FLAVOR": "분명히 그렘린 귀족은 맞춤법을 잘 모릅니다.",
+    "DESCRIPTIONS": [
+      "스킬 카드를 사용할 대마다, 임시 #y힘을 #b1 얻습니다.",
+      "Strength gained: {0}",
+      " NL Per turn: {0} NL Per combat: {1}"
+    ]
+  },
+  "${ModID}:GremlinClaw": {
+    "NAME": "그렘린 갈고리",
+    "FLAVOR": "그렘린들은 무기 없이도 매우 위협적일 수 있습니다.",
+    "DESCRIPTIONS": [
+      "하수인이 아닌 적을 처치할 때, 체력을 #b1 회복합니다.",
+      "HP healed: {0}",
+      " NL Per combat: {0}"
+    ]
+  },
+  "${ModID}:GremlinHood": {
+    "NAME": "그렘린 후드",
+    "FLAVOR": "주황 가면 도적들은 전혀 인기가 없었습니다.",
+    "DESCRIPTIONS": [
+      "전투 시작 시, 세 그렘린 카드 중 하나를 선택해 손에 추가합니다."
+    ]
+  },
+  "${ModID}:NobClub": {
+    "NAME": "귀족 곤봉",
+    "FLAVOR": "겨우 들 수 있습니다.",
+    "DESCRIPTIONS": [
+      "공격 카드를 #b{0} 번 사용할 때마다, 무작위 적에게 #y취약을 #b1 부여합니다.",
+      "Vulnerable applied: {0}",
+      " NL Per turn: {0} NL Per combat: {1}"
+    ]
+  },
+  "${ModID}:GremlinStaff": {
+    "NAME": "그렘린 지팡이",
+    "FLAVOR": "들고 있을 때 손이 따끔따끔합니다.",
+    "DESCRIPTIONS": [
+      "3번째 턴 시작 시, #y활력을 #b{0} 얻습니다."
+    ]
+  },
+  "${ModID}:WarHorn": {
+    "NAME": "전투 뿔",
+    "FLAVOR": "이 뿔을 불면, 당신은 무엇이든 맡을 수 있다고 생각합니다.",
+    "DESCRIPTIONS": [
+      "보스 전투 동안 #y힘을 #b3 얻습니다."
+    ]
+  },
+  "${ModID}:Lockpicks": {
+    "NAME": "락픽",
+    "FLAVOR": "평범한 그렘린 \"투자 상품.\"",
+    "DESCRIPTIONS": [
+      "모닥불에 진입할 때 #b{0} #y골드를 얻습니다.",
+      "Gold gained: {0}"
+    ]
+  },
+  "${ModID}:Bowtie": {
+    "NAME": "나비넥타이",
+    "FLAVOR": "두 배로 전문적으로 보입니다.",
+    "DESCRIPTIONS": [
+      "상점 카드가 #y강화된 채로 등장합니다."
+    ]
+  },
+  "${ModID}:LousePlushie": {
+    "NAME": "플러시",
+    "FLAVOR": "그렘린 아이들을 위한 장난감.",
+    "DESCRIPTIONS": [
+      "막히지 않은 피해를 줄 때마다, 다음 턴에 #y방어도를 #b{0} 얻습니다.",
+      "Block gained: {0}",
+      " NL Per combat: {0}"
+    ]
+  }
+}

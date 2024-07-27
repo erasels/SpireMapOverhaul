@@ -84,8 +84,11 @@ public abstract class AbstractVegetable {
         if (level > 0) {
             sj.add(getDescription());
             sj.add(STRINGS.TEXT[5]);
-        }
-        else {
+        } else {
+            int levelHack = level;
+            level = 1;
+            sj.add(getDescription());
+            level = levelHack;
             sj.add(STRINGS.TEXT[6]);
         }
         return sj.toString();

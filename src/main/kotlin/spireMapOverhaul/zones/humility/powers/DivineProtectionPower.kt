@@ -1,9 +1,9 @@
 package spireMapOverhaul.zones.humility.powers
 
-import spireMapOverhaul.SpireAnniversary6Mod
 import com.megacrit.cardcrawl.cards.DamageInfo
 import com.megacrit.cardcrawl.core.AbstractCreature
 import com.megacrit.cardcrawl.helpers.FontHelper
+import spireMapOverhaul.SpireAnniversary6Mod
 
 class DivineProtectionPower(
     owner: AbstractCreature,

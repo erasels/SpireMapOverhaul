@@ -1,14 +1,11 @@
 package spireMapOverhaul.zones.frostlands.relics;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DoubleTapPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import spireMapOverhaul.abstracts.AbstractSMORelic;
 import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.zones.frostlands.FrostlandsZone;
-import spireMapOverhaul.zones.frostlands.powers.ChillPower;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 

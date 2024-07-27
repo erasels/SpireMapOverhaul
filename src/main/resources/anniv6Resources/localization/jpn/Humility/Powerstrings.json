@@ -1,0 +1,95 @@
+{
+  "${ModID}:DivineProtection": {
+    "NAME": "スネッコの加護",
+    "DESCRIPTIONS": [
+      "このターン、hpを #b%d までしか失わない。",
+      "これ以上hpを失わない。",
+      " NL %s が死ぬと解除される。"
+    ]
+  },
+  "${ModID}:Split": {
+    "NAME": "分裂",
+    "DESCRIPTIONS": [
+      "hpが #b75% 以下になると、hpが ",
+      "	の #b2 体の小さなスライムに分裂する。"
+    ]
+  },
+  "${ModID}:PainfulPunches": {
+    "NAME": "苦痛の一殴り",
+    "DESCRIPTIONS": [
+      "この敵からダメージを受けるたび、山札の上に #y負傷 を置く。"
+    ]
+  },
+  "${ModID}:SneckoBot": {
+    "NAME": "スネッコボット",
+    "DESCRIPTIONS": [
+      "カードをプレイするたび、 #b0 から #b3 のランダムな数字を言う。言った数字とプレイしたカードのコストが等しい場合、 #y筋力 #b",
+      " を得る。"
+    ]
+  },
+  "${ModID}:ExplodingSporeCloud": {
+    "NAME": "胞子爆弾",
+    "DESCRIPTIONS": [
+      "#b%2$d ターン後、 #y弱体 #b%1$d を与える。 NL 死亡時、 #y弱体 #b%1$d を与える。",
+      "死亡時、 #y弱体 #b%1$d を与える。"
+    ]
+  },
+  "${ModID}:DoubleTime": {
+    "NAME": "ダブルタイム",
+    "DESCRIPTIONS": [
+      "#b%d 枚のカードをプレイするたび、 #y筋力 #b%d を得る。"
+    ]
+  },
+  "${ModID}:DeathRattle": {
+    "NAME": "断末魔",
+    "DESCRIPTIONS": [
+      "死亡時、 #b%d 枚の #yめまい を山札の上に置く。"
+    ]
+  },
+  "${ModID}:Hex": {
+    "NAME": "第2の呪詛",
+    "DESCRIPTIONS": [
+      "カードをプレイするたび、 #b",
+      " 枚の #yめまい を山札に混ぜる。"
+    ]
+  },
+  "${ModID}:VenomStrikes": {
+    "NAME": "猛毒の仕込み",
+    "DESCRIPTIONS": [
+      "この敵からダメージを受けるたび、#y毒 #b%d を受ける。"
+    ]
+  },
+  "${ModID}:Venom": {
+    "NAME": "毒",
+    "DESCRIPTIONS": [
+      "ターン終了時、 #b%d ダメージを受け、 #y毒 を #b%d 減らす。"
+    ]
+  },
+  "${ModID}:EnergyDownPower": {
+    "NAME": "ディスエナジー"
+  },
+  "${ModID}:SemiIntangible": {
+    "NAME": "半無形",
+    "DESCRIPTIONS": [
+      "このターン、全てのダメージとhpの損失を #b%d 減らす。 #y半無形 は2ターンに1回得る。"
+    ]
+  },
+  "${ModID}:SlimeCoating": {
+    "NAME": "追加の粘液",
+    "DESCRIPTIONS": [
+      "ターン終了時、 #b%d 枚の #y粘液 を山札に混ぜる。"
+    ]
+  },
+  "${ModID}:DemonFormMonster": {
+    "NAME": "悪魔化",
+    "DESCRIPTIONS": [
+      "ターン開始時、 #y筋力 #b%d を得る。"
+    ]
+  },
+  "${ModID}:FatedShapes": {
+    "NAME": "運命の絆",
+    "DESCRIPTIONS": [
+      "%1$s と %2$s はhpを共有する。"
+    ]
+  }
+}

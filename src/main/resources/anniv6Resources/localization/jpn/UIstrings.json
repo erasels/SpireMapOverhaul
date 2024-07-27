@@ -1,0 +1,58 @@
+{
+  "${ModID}:ConfigMenuText": {
+    "TEXT": [
+      "Spire Biomes",
+      "StS Modding Community",
+      "マップをもっと面白くする。",
+      "有効",
+      "バイオームのアイコンを大きくし、バイオームの形状で切り取る。",
+      "同じランで同じバイオームが繰り返し出現しない。",
+      "シェーダーを有効にする。",
+      "Biomes per Act"
+    ]
+  },
+  "${ModID}:SingleCardReward": {
+    "TEXT": [
+      "[カード] ",
+      "ヒント: 右クリックするとカードの詳細が表示されます。"
+    ]
+  },
+  "${ModID}:HealReward": {
+    "TEXT": [
+      "hpを回復:"
+    ]
+  },
+  "${ModID}:AnyColorCardReward": {
+    "TEXT": [
+      "ランダムな色のカードを入手",
+      "カードを選択"
+    ]
+  },
+  "${ModID}:CombatExplainButton": {
+    "TEXT": [
+      "戦闘の特殊効果"
+    ]
+  },
+  "${ModID}:RunHistoryScreen": {
+    "TEXT": [
+      "バイオーム: {0}"
+    ]
+  },
+  "${ModID}:ZonePotionsPatch": {
+    "TEXT": [
+      "Biome:",
+      "特定のバイオームでのみ入手できるポーション。"
+    ]
+  },
+  "${ModID}:CharacterSelectScreen": {
+    "TEXT": [
+      "バイオームの出現を有効にする。",
+      "マップにバイオームを追加し、新しい要素を追加する。"
+    ]
+  },
+  "${ModID}:ZoneTooltip": {
+    "TEXT": [
+      "#p作者: {0}"
+    ]
+  }
+}

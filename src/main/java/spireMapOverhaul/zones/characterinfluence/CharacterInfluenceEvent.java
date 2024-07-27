@@ -22,7 +22,7 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import java.util.ArrayList;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
-import static spireMapOverhaul.zones.characterinfluence.CharacterInfluenceZone.*;
+import static spireMapOverhaul.zones.characterinfluence.CharacterInfluenceZone.getCurrentZoneCharacter;
 
 @SuppressWarnings("unused")
 public class CharacterInfluenceEvent extends PhasedEvent {

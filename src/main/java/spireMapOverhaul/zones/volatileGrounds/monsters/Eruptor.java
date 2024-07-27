@@ -1,7 +1,6 @@
 package spireMapOverhaul.zones.volatileGrounds.monsters;
 
 import basemod.abstracts.CustomMonster;
-import basemod.animations.SpineAnimation;
 import com.badlogic.gdx.math.MathUtils;
 import com.esotericsoftware.spine.AnimationState;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -15,9 +14,7 @@ import com.megacrit.cardcrawl.cards.status.Burn;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
-import com.megacrit.cardcrawl.powers.StrengthPower;
 import spireMapOverhaul.SpireAnniversary6Mod;
-import spireMapOverhaul.zones.invasion.monsters.Hydra;
 import spireMapOverhaul.zones.volatileGrounds.powers.EruptPower;
 
 public class Eruptor extends CustomMonster {
@@ -92,13 +89,13 @@ public class Eruptor extends CustomMonster {
     @Override
     protected void getMove(final int num) {
         if (this.firstMove) {
-            this.setMove(BRUISE, Intent.ATTACK, attackDamage);
+            this.setMove(MOVES[0], BRUISE, Intent.ATTACK, attackDamage);
             this.firstMove = false;
         } else {
             if (this.lastMove(BRUISE)) {
-                this.setMove(BOIL, Intent.DEBUFF);
+                this.setMove(MOVES[1], BOIL, Intent.DEBUFF);
             } else {
-                this.setMove(BRUISE, Intent.ATTACK, attackDamage);
+                this.setMove(MOVES[0], BRUISE, Intent.ATTACK, attackDamage);
             }
         }
     }

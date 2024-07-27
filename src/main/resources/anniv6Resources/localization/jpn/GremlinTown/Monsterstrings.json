@@ -1,0 +1,106 @@
+{
+  "${ModID}:GremlinRiderRed": {
+    "MOVES": [
+      "チャージ",
+      "乗虫攻撃"
+    ],
+    "NAME": "乗虫グレムリン"
+  },
+  "${ModID}:GremlinRiderBlue": {
+    "MOVES": [
+      "チャージ",
+      "乗虫攻撃"
+    ],
+    "NAME": "乗虫グレムリン"
+  },
+  "${ModID}:GremlinRiderGreen": {
+    "MOVES": [
+      "チャージ",
+      "乗虫攻撃"
+    ],
+    "NAME": "乗虫グレムリン"
+  },
+  "${ModID}:GremlinRockTosser": {
+    "MOVES": [
+      "投石"
+    ],
+    "NAME": "投石グレムリン"
+  },
+  "${ModID}:GremlinHealer": {
+    "MOVES": [
+      "治療",
+      "アタック"
+    ],
+    "NAME": "ヒールグレムリン"
+  },
+  "${ModID}:ChubbyGremlin": {
+    "MOVES": [
+      "座る"
+    ],
+    "NAME": "ぽっちゃりグレムリン"
+  },
+  "${ModID}:ArmoredGremlin": {
+    "MOVES": [
+      "ボディスラム"
+    ],
+    "NAME": "アーマーグレムリン"
+  },
+  "${ModID}:GremlinBarbarian": {
+    "MOVES": [
+      "激怒"
+    ],
+    "NAME": "バーバリアングレムリン"
+  },
+  "${ModID}:GremlinAssassin": {
+    "MOVES": [
+      "挫折",
+      "気迫"
+    ],
+    "NAME": "アサシングレムリン"
+  },
+  "${ModID}:GremlinJerk": {
+    "MOVES": [
+      "挫折",
+      "気迫"
+    ],
+    "NAME": "ぴくぴくグレムリン"
+  },
+  "${ModID}:GremlinNib": {
+    "MOVES": [
+      "体当たり",
+      "2連続攻撃",
+      "激怒",
+      "クリティカル"
+    ],
+    "DIALOG": [
+      "ブルゥアアアァァァッ！！"
+    ],
+    "NAME": "ペン先グレムリン"
+  },
+  "${ModID}:GremlinElder": {
+    "MOVES": [
+      "体当たり",
+      "平手打ち",
+      "チャージ",
+      "死の呪い"
+    ],
+    "DIALOG": [
+      "体が重い…",
+      "お前を呪うためになら命もを捧げる…",
+      "お前は2度と元には戻れない！"
+    ],
+    "NAME": "長老グレムリン"
+  },
+  "${ModID}:GremlinCannon": {
+    "MOVES": [
+      "チャージ…",
+      "喰らえ！",
+      "喰らえ！",
+      "喰らえ！"
+    ],
+    "DIALOG": [
+      "チャージ…"
+    ],
+    "NAME": "大砲グレムリン"
+  }
+}

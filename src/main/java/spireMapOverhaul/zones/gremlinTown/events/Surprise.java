@@ -21,8 +21,8 @@ import spireMapOverhaul.zones.gremlinTown.monsters.GremlinCannon;
 import spireMapOverhaul.zones.gremlinTown.monsters.GremlinRiderRed;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
-import static spireMapOverhaul.util.Wiz.curRoom;
 import static spireMapOverhaul.util.Wiz.adp;
+import static spireMapOverhaul.util.Wiz.curRoom;
 
 public class Surprise extends AbstractEvent {
     public static final String ID = makeID(Surprise.class.getSimpleName());

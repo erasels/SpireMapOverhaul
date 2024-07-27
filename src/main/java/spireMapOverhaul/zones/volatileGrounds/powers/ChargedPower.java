@@ -3,10 +3,6 @@ package spireMapOverhaul.zones.volatileGrounds.powers;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
-import com.megacrit.cardcrawl.actions.common.SuicideAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -15,7 +11,6 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
 import spireMapOverhaul.abstracts.AbstractSMOPower;
-import spireMapOverhaul.zones.manasurge.ManaSurgeZone;
 import spireMapOverhaul.zones.volatileGrounds.VolatileGrounds;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
@@ -39,7 +34,7 @@ public class ChargedPower extends AbstractSMOPower {
     @Override
     public void onDeath() {
         this.addToBot(new VFXAction(new ExplosionSmallEffect(this.owner.hb.cX, this.owner.hb.cY), 0.1F));
-        AbstractDungeon.actionManager.addToBottom(new AbstractGameAction() {
+        AbstractGameAction Action = new AbstractGameAction() {
             @Override
             public void update() {
                 AbstractDungeon.player.damage(new DamageInfo(owner, ChargedPower.this.amount, DamageInfo.DamageType.THORNS));
@@ -53,6 +48,8 @@ public class ChargedPower extends AbstractSMOPower {
                 }
                 isDone = true;
             }
-        });
+        };
+        Action.actionType = AbstractGameAction.ActionType.DAMAGE;
+        AbstractDungeon.actionManager.addToBottom(Action);
     }
 }

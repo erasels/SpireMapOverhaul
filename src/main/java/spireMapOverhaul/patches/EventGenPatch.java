@@ -1,6 +1,5 @@
 package spireMapOverhaul.patches;
 
-import basemod.ReflectionHacks;
 import basemod.eventUtil.EventUtils;
 import basemod.patches.com.megacrit.cardcrawl.characters.AbstractPlayer.SeenEvents;
 import com.evacipated.cardcrawl.modthespire.lib.*;

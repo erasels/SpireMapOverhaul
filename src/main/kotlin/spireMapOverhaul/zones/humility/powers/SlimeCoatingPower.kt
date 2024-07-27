@@ -1,10 +1,10 @@
 package spireMapOverhaul.zones.humility.powers
 
-import spireMapOverhaul.SpireAnniversary6Mod
 import com.megacrit.cardcrawl.actions.AbstractGameAction
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDiscardAction
 import com.megacrit.cardcrawl.cards.status.Slimed
 import com.megacrit.cardcrawl.core.AbstractCreature
+import spireMapOverhaul.SpireAnniversary6Mod
 
 class SlimeCoatingPower(
     owner: AbstractCreature,

@@ -1,10 +1,10 @@
 package spireMapOverhaul.zones.humility.powers
 
-import spireMapOverhaul.SpireAnniversary6Mod
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction
 import com.megacrit.cardcrawl.cards.DamageInfo
 import com.megacrit.cardcrawl.cards.status.Wound
 import com.megacrit.cardcrawl.core.AbstractCreature
+import spireMapOverhaul.SpireAnniversary6Mod
 
 class PainfulPunchesPower(
     owner: AbstractCreature

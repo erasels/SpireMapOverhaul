@@ -1,0 +1,9 @@
+{
+  "${ModID}:BurningPower": {
+    "NAME": "炎上",
+    "DESCRIPTIONS": [
+      "ターン終了時、 #b"," ダメージを受ける。",
+      "ターン開始時、hp #b"," を失う。"
+    ]
+  }
+}

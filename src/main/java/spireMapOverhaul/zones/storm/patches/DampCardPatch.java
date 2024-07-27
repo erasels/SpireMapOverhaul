@@ -10,7 +10,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.utils.BufferUtils;
-import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -21,13 +20,11 @@ import javassist.CtBehavior;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.zones.storm.StormUtil;
 import spireMapOverhaul.zones.storm.cardmods.DampModifier;
-import spireMapOverhaul.zones.storm.cardmods.ElectricModifier;
 
 import java.nio.IntBuffer;
 import java.util.ArrayList;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.getShaderConfig;
-import static spireMapOverhaul.SpireAnniversary6Mod.makeShaderPath;
 import static spireMapOverhaul.zones.storm.StormUtil.initDripShader;
 
 public class DampCardPatch {

@@ -1,7 +1,5 @@
 package spireMapOverhaul.zones.humility.patches.exordium
 
-import spireMapOverhaul.SpireAnniversary6Mod
-import spireMapOverhaul.zones.humility.patches.utils.lastMove
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch
 import com.evacipated.cardcrawl.modthespire.lib.SpireReturn
 import com.megacrit.cardcrawl.actions.animations.VFXAction
@@ -13,7 +11,9 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster
 import com.megacrit.cardcrawl.monsters.exordium.SlaverBlue
 import com.megacrit.cardcrawl.powers.NoBlockPower
 import com.megacrit.cardcrawl.vfx.combat.EntangleEffect
+import spireMapOverhaul.SpireAnniversary6Mod
 import spireMapOverhaul.zones.humility.HumilityZone
+import spireMapOverhaul.zones.humility.patches.utils.lastMove
 
 class BlueSlaverNoBlockMove {
     companion object {

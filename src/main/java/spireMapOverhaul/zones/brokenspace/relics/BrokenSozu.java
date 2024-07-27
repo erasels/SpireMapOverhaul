@@ -3,6 +3,9 @@ package spireMapOverhaul.zones.brokenspace.relics;
 import com.evacipated.cardcrawl.mod.stslib.relics.BetterOnUsePotionRelic;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
@@ -17,6 +20,11 @@ import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.zones.brokenspace.actions.BetterTextCenteredAction;
 
 import java.lang.reflect.Method;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 import static spireMapOverhaul.util.Wiz.adp;
@@ -50,6 +58,7 @@ public class BrokenSozu extends BrokenRelic implements BetterOnUsePotionRelic {
             }
             secondPotion.use(AbstractDungeon.getRandomMonster());
             addToBot(new BetterTextCenteredAction(adp(), secondPotion.name, 0.5F));
+            incrementPotionsStat(1);
         }
     }
 
@@ -113,5 +122,43 @@ public class BrokenSozu extends BrokenRelic implements BetterOnUsePotionRelic {
     @Override
     public String getUpdatedDescription() {
         return DESCRIPTIONS[0];
+    }
+
+    private static final Map<String, Integer> stats = new HashMap<>();
+    private static final String POTIONS_STAT = "potions";
+
+    public String getStatsDescription() {
+        return DESCRIPTIONS[2].replace("{0}", stats.get(POTIONS_STAT) + "");
+    }
+
+    public String getExtendedStatsDescription(int totalCombats, int totalTurns) {
+        DecimalFormat format = new DecimalFormat("#.###");
+        float potions = stats.get(POTIONS_STAT);
+        String potionsPerCombat = format.format(potions / Math.max(totalCombats, 1));
+        return getStatsDescription() + DESCRIPTIONS[3].replace("{0}", potionsPerCombat);
+    }
+
+    public void resetStats() {
+        stats.put(POTIONS_STAT, 0);
+    }
+
+    public JsonElement onSaveStats() {
+        Gson gson = new Gson();
+        List<Integer> statsToSave = new ArrayList<>();
+        statsToSave.add(stats.get(POTIONS_STAT));
+        return gson.toJsonTree(statsToSave);
+    }
+
+    public void onLoadStats(JsonElement jsonElement) {
+        if (jsonElement != null) {
+            JsonArray jsonArray = jsonElement.getAsJsonArray();
+            stats.put(POTIONS_STAT, jsonArray.get(0).getAsInt());
+        } else {
+            resetStats();
+        }
+    }
+
+    public static void incrementPotionsStat(int amount) {
+        stats.put(POTIONS_STAT, stats.getOrDefault(POTIONS_STAT, 0) + amount);
     }
 }

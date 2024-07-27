@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.cards.status.Dazed;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
@@ -37,6 +38,9 @@ public class TheFogZone extends AbstractZone implements CombatModifyingZone, Mod
 
     @Override
     public void atPreBattle() {
+        if (AbstractDungeon.getCurrRoom().monsters == null) {
+            return;
+        }
         forAllMonstersLiving(m -> {
             atb(new ApplyPowerAction(m, null, new WeakPower(m, 1, false)));
             atb(new ApplyPowerAction(m, null, new VulnerablePower(m, 1, false)));

@@ -1,0 +1,22 @@
+{
+  "${ModID}:Hexaghost": {
+    "NAME": "Пятидух",
+    "MOVES": [],
+    "DIALOG": []
+  },
+  "${ModID}:SlaverBlue": {
+    "MOVES": [
+      "Путешествие"
+    ]
+  },
+  "${ModID}:BanditBear": {
+    "DIALOG": [
+      "~РОМЕЕЕЕЕЕОООО!!!!~"
+    ]
+  },
+  "${ModID}:BookOfStabbing": {
+    "NAME": "Книга Ударов",
+    "MOVES": [],
+    "DIALOG": []
+  }
+}

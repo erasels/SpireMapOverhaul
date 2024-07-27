@@ -9,7 +9,7 @@
       "Gain #b{0} #yVigor in #b1 turn."]
   },
   "${ModID}:Sap": {
-    "NAME": "Sapped",
+    "NAME": "Energy Drain",
     "DESCRIPTIONS": ["Lose [E] at the start of your next turn.",
       "Lose #b{0} [E] at the start of your next turn."]
   },

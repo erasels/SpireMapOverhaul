@@ -1,0 +1,116 @@
+{
+  "${ModID}:BrokenDataDisk": {
+    "NAME": "뒤틀린 데이터 디스크",
+    "FLAVOR": "",
+    "DESCRIPTIONS": [
+      "전투 시작 시 #y밀집을 #b",
+      " 잃습니다. 매 턴 처음으로 구체를 #y영창할 때, 같은 구체를 한 번 더 #y영창합니다.",
+      "Orbs channeled: {0}",
+      " NL Per combat: {0}"
+    ]
+  },
+  "${ModID}:BrokenSneckoSkull": {
+    "NAME": "뒤틀린 스네코의 해골",
+    "FLAVOR": "",
+    "DESCRIPTIONS": [
+      "버프를 얻을 때 #b",
+      " 더 얻습니다.",
+      "Buffs gained: {0}",
+      " NL Per combat: {0}"
+    ]
+  },
+  "${ModID}:BrokenRedSkull": {
+    "NAME": "뒤틀린 붉은 해골",
+    "FLAVOR": "",
+    "DESCRIPTIONS": [
+      "#y체력이 #b",
+      " % 이상일 때, #y민첩을 #b",
+      "얻습니다."
+    ]
+  },
+  "${ModID}:BrokenOmamori": {
+    "NAME": "뒤틀린 부적",
+    "FLAVOR": "",
+    "DESCRIPTIONS": [
+      "#r저주를 #b",
+      " 장 덱에 추가합니다. 휴식할 때마다 #b",
+      " 장의 무작위 카드를 #y강화합니다.",
+      "Cards upgraded: {0}"
+    ]
+  },
+  "${ModID}:BrokenDamaru": {
+    "NAME": "뒤틀린 다마루",
+    "FLAVOR": "",
+    "DESCRIPTIONS": [
+      "내 턴 종료 시 손의 카드 한 장을 #y소멸시킬 수 있습니다. 그 카드의 코스트만큼 #y만트라를 얻습니다.",
+      "만트라를 위해 소멸시킬 카드를 선택하십시오",
+      "Mantra gained: {0}",
+      " NL Per turn: {0} NL Per combat: {1}"
+
+    ]
+  },
+  "${ModID}:BrokenWingBoots": {
+    "NAME": "뒤틀린 윙 부츠",
+    "FLAVOR": "",
+    "DESCRIPTIONS": [
+      "#y? 방에 들어갈 시, 두 이벤트 중 하나를 선택합니다.",
+      "Event choices: {0}"
+    ]
+  },
+  "${ModID}:BrokenSozu": {
+    "NAME": "뒤틀린 소주",
+    "FLAVOR": "",
+    "DESCRIPTIONS": [
+      "전투 도중 포션은 [E] 를 쓰고 사용하게 됩니다. 포션을 사용한다면, 무작위 포션을 하나 사용합니다.",
+      " Energy",
+      "Extra potions: {0}",
+      " NL Per combat: {0}"
+    ]
+  },
+  "${ModID}:BrokenSneckoEye": {
+    "NAME": "뒤틀린 스네코의 눈",
+    "FLAVOR": "",
+    "DESCRIPTIONS": [
+      "전투 시작 시, 덱의 무작위 카드를 #b ",
+      " 장 복사해서 얻습니다. 복사한 카드는 #y파괴 , #y휘발성을 가지며 읽을 수 없습니다."
+    ]
+  },
+  "${ModID}:BrokenMawBank": {
+    "NAME": "뒤틀린 아귀 저금통",
+    "FLAVOR": "",
+    "DESCRIPTIONS": [
+      "다음 상점에 방문할 시 #y골드를 #b",
+      " 얻지만, 떠날 때 #y골드를 #b",
+      " 잃습니다.",
+      "Gold lost: {0}"
+    ]
+  },
+  "${ModID}:BrokenPrayerWheel": {
+    "NAME": "뒤틀린 전경기",
+    "FLAVOR": "",
+    "DESCRIPTIONS": [
+      "카드 보상이 카드를 #b",
+      " 장 적게 포함하지만, #y골드 보상이 #b",
+      " 배로 늘어납니다.",
+      "Gold gained: {0}"
+    ]
+  },
+  "${ModID}:BrokenMatryoshka": {
+    "NAME": "뒤틀린 마트료시카",
+    "FLAVOR": "",
+    "DESCRIPTIONS": [
+      "유물 보상에 #b",
+      " #y유물을 추가하지만, 다음으로 열게 될 #b",
+      " 개의 상자는 비어있습니다. 사파이어 키를 가지고 있지 않다면 #y유물에 연결되어 나타납니다."
+    ]
+  },
+  "${ModID}:BrokenSingingBowl": {
+    "NAME": "뒤틀린 노래하는 그릇",
+    "FLAVOR": "",
+    "DESCRIPTIONS": [
+      "최대 체력이 증가할 때, #b",
+      " 장의 무작위 카드를 #y강화합니다.",
+      "Cards upgraded: {0}"
+    ]
+  }
+}

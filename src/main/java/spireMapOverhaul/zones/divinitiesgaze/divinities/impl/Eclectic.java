@@ -22,12 +22,12 @@ public class Eclectic extends BaseDivineBeing {
 
   @Override
   public Consumer<Integer> doEventButtonAction() {
-    // [Learn] Choose 1 of 20 upgraded cards to add to your deck.
+    // [Learn] Choose 1 of 10 upgraded cards to add to your deck.
     return x -> {
       CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
       Set<UUID> cardUUIDs = new HashSet<>();
       while (group.size() < 10) {
-        AbstractCard card = AbstractDungeon.getCard(AbstractDungeon.rollRarity());
+        AbstractCard card = AbstractDungeon.getCard(AbstractDungeon.rollRarity()).makeCopy();
         if(!cardUUIDs.contains(card.uuid)) {
           cardUUIDs.add(card.uuid);
           card.upgrade();

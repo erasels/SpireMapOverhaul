@@ -1,0 +1,22 @@
+{
+  "${ModID}:Hexaghost": {
+    "NAME": "ペンタゴースト",
+    "MOVES": [],
+    "DIALOG": []
+  },
+  "${ModID}:SlaverBlue": {
+    "MOVES": [
+      "つまずき"
+    ]
+  },
+  "${ModID}:BanditBear": {
+    "DIALOG": [
+      "~ロメオーー！~"
+    ]
+  },
+  "${ModID}:BookOfStabbing": {
+    "NAME": "打撲の本",
+    "MOVES": [],
+    "DIALOG": []
+  }
+}

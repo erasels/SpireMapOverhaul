@@ -1,7 +1,6 @@
 package spireMapOverhaul.util;
 
 import com.evacipated.cardcrawl.modthespire.Loader;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.*;
 import spireMapOverhaul.SpireAnniversary6Mod;
 

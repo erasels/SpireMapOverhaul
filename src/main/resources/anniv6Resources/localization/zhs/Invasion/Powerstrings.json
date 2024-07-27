@@ -4,11 +4,11 @@
   },
   "${ModID}:SerpentsGaze": {
     "NAME": "蛇之凝视",
-    "DESCRIPTIONS": ["本回合你抽到的第一张卡牌多耗费 #b{0} 点能量", "本回合你抽到的第一张 #b{0} 卡牌多耗费 #b{1} 点能量"]
+    "DESCRIPTIONS": ["本回合你抽到的第一张牌多耗费 #b{0} 点能量", "本回合你抽到的前 #b{0} 张牌多耗费 #b{1} 点能量"]
   },
   "${ModID}:LeafSpores": {
     "NAME": "残留孢子",
-    "DESCRIPTIONS": ["在死亡时，添加 #b{0} 层 #y虚弱 与 #b{0} 层 #y脆弱"]
+    "DESCRIPTIONS": ["死亡时，施加 #b{0} 层 #y虚弱 与 #b{0} 层 #y脆弱"]
   },
   "${ModID}:Hover": {
     "NAME": "悬浮",

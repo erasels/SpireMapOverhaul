@@ -1,7 +1,5 @@
 package spireMapOverhaul.zones.humility.patches.events
 
-import spireMapOverhaul.SpireAnniversary6Mod
-import spireMapOverhaul.zones.humility.patches.utils.addToMethod
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch
 import com.megacrit.cardcrawl.actions.animations.TalkAction
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction
@@ -13,7 +11,9 @@ import com.megacrit.cardcrawl.monsters.city.BanditLeader
 import com.megacrit.cardcrawl.powers.AngerPower
 import com.megacrit.cardcrawl.powers.StrengthPower
 import javassist.CtBehavior
+import spireMapOverhaul.SpireAnniversary6Mod
 import spireMapOverhaul.zones.humility.HumilityZone
+import spireMapOverhaul.zones.humility.patches.utils.addToMethod
 
 class RomeoDeadBuffs {
     @SpirePatch(

@@ -16,8 +16,7 @@ import static spireMapOverhaul.util.Wiz.applyToSelf;
 public class MeatMallet extends AbstractSMOCard {
     public final static String ID = makeID(MeatMallet.class.getSimpleName());
     private final static int MAGIC = 1;
-    private final static int COST = 1;
-    private final static int UPGRADED_COST = 0;
+    private final static int COST = 0;
 
     public MeatMallet() {
         super(ID, GremlinTown.ID, COST, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF, CardColor.COLORLESS);
@@ -32,6 +31,6 @@ public class MeatMallet extends AbstractSMOCard {
     }
 
     public void upp() {
-        upgradeBaseCost(UPGRADED_COST);
+        exhaust = false;
     }
 }

@@ -1,7 +1,6 @@
 package spireMapOverhaul.zones.humility.powers
 
 import com.badlogic.gdx.math.MathUtils
-import spireMapOverhaul.SpireAnniversary6Mod
 import com.evacipated.cardcrawl.modthespire.lib.*
 import com.megacrit.cardcrawl.actions.AbstractGameAction
 import com.megacrit.cardcrawl.actions.GameActionManager
@@ -15,6 +14,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster
 import com.megacrit.cardcrawl.monsters.beyond.Darkling
 import com.megacrit.cardcrawl.powers.RegrowPower
 import javassist.CtBehavior
+import spireMapOverhaul.SpireAnniversary6Mod
 
 class BetterLifeLinkPower(
     owner: AbstractCreature

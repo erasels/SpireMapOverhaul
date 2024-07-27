@@ -17,7 +17,6 @@ import com.megacrit.cardcrawl.powers.BufferPower;
 import com.megacrit.cardcrawl.powers.RitualPower;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.rooms.EventRoom;
-import com.megacrit.cardcrawl.rooms.RestRoom;
 import com.megacrit.cardcrawl.rooms.ShopRoom;
 import com.megacrit.cardcrawl.ui.campfire.AbstractCampfireOption;
 import com.megacrit.cardcrawl.ui.campfire.RestOption;
@@ -122,6 +121,9 @@ public class GremlinCamp extends AbstractZone implements EncounterModifyingZone,
 
     @Override
     public void atPreBattle() {
+        if (AbstractDungeon.getCurrRoom().monsters == null) {
+            return;
+        }
         if (GET_DOWN_MR_PRESIDENT.equals(AbstractDungeon.lastCombatMetricKey)) {
             // President starts with 1 Buffer
             for (AbstractMonster m : AbstractDungeon.getCurrRoom().monsters.monsters) {

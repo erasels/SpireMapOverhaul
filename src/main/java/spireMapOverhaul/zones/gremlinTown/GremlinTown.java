@@ -12,6 +12,8 @@ import com.megacrit.cardcrawl.helpers.PotionHelper;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
+import com.megacrit.cardcrawl.monsters.exordium.GremlinFat;
+import com.megacrit.cardcrawl.monsters.exordium.GremlinThief;
 import com.megacrit.cardcrawl.monsters.exordium.GremlinWarrior;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
@@ -35,7 +37,6 @@ import java.util.Collections;
 import java.util.List;
 
 import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.*;
-import static com.megacrit.cardcrawl.helpers.MonsterHelper.getGremlin;
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 import static spireMapOverhaul.SpireAnniversary6Mod.makePath;
 
@@ -134,51 +135,14 @@ public class GremlinTown extends AbstractZone
                                 new GremlinRiderRed(-100.0F, -30.0F),
                                 new GremlinRiderBlue(150.0F, 15.0F)
                         })),
-                new ZoneEncounter(GREMLIN_GANG_TWO, 2, GremlinTown::getGremlinGangGroup),
+                new ZoneEncounter(GREMLIN_GANG_TWO, 2, () -> new MonsterGroup(
+                        new AbstractMonster[] {
+                                new ArmoredGremlin(-430.0F, -25.0F),
+                                new GremlinBarbarian(-170.0F, -21.0F),
+                                new GremlinAssassin(115.0F, -30.0F)
+                        })),
                 new ZoneEncounter(NIB, 2, () -> new MonsterGroup(new GremlinNib(0f, 0f)))
         );
-    }
-
-    private static MonsterGroup getGremlinGangGroup() {
-        ArrayList<String> gremlinPool = new ArrayList<>();
-        gremlinPool.add("ArmoredGremlin");
-        gremlinPool.add("ChubbyGremlin");
-        gremlinPool.add("GremlinAssassin");
-        gremlinPool.add("GremlinBarbarian");
-        gremlinPool.add("GremlinHealer");
-
-        AbstractMonster[] retVal = new AbstractMonster[3];
-        int index = AbstractDungeon.miscRng.random(gremlinPool.size() - 1);
-        String key = gremlinPool.get(index);
-        gremlinPool.remove(index);
-        retVal[0] = getAdvancedGremlin(key, -430.0F, -25.0F);
-        index = AbstractDungeon.miscRng.random(gremlinPool.size() - 1);
-        key = gremlinPool.get(index);
-        gremlinPool.remove(index);
-        retVal[1] = getAdvancedGremlin(key, -170.0F, 21.0F);
-        index = AbstractDungeon.miscRng.random(gremlinPool.size() - 1);
-        key = gremlinPool.get(index);
-        gremlinPool.remove(index);
-        retVal[2] = getAdvancedGremlin(key, 115.0F, -30.0F);
-
-        return new MonsterGroup(retVal);
-    }
-
-    public static AbstractMonster getAdvancedGremlin(String key, float xPos, float yPos) {
-        switch (key) {
-            case "GremlinAssassin":
-                return new GremlinAssassin(xPos, yPos);
-            case "GremlinBarbarian":
-                return new GremlinBarbarian(xPos, yPos);
-            case "GremlinHealer":
-                return new GremlinHealer(xPos, yPos);
-            case "ChubbyGremlin":
-                return new ChubbyGremlin(xPos, yPos);
-            case "ArmoredGremlin":
-                return new ArmoredGremlin(xPos, yPos);
-            default:
-                return new GremlinWarrior(xPos, yPos);
-        }
     }
 
     @Override
@@ -192,28 +156,12 @@ public class GremlinTown extends AbstractZone
     }
 
     private static MonsterGroup getHordeStartGroup() {
-        ArrayList<String> gremlinPool = new ArrayList<>();
-        gremlinPool.add("GremlinWarrior");
-        gremlinPool.add("GremlinThief");
-        gremlinPool.add("GremlinFat");
-        gremlinPool.add("GremlinWarrior");
 
         AbstractMonster[] retVal = new AbstractMonster[4];
-        int index = AbstractDungeon.miscRng.random(gremlinPool.size() - 1);
-        String key = gremlinPool.get(index);
-        gremlinPool.remove(index);
-        retVal[0] = getGremlin(key, -320.0F, 25.0F);
-        index = AbstractDungeon.miscRng.random(gremlinPool.size() - 1);
-        key = gremlinPool.get(index);
-        gremlinPool.remove(index);
-        retVal[1] = getGremlin(key, -160.0F, -12.0F);
-        index = AbstractDungeon.miscRng.random(gremlinPool.size() - 1);
-        key = gremlinPool.get(index);
-        gremlinPool.remove(index);
-        retVal[2] = getGremlin(key, 25.0F, -35.0F);
-        key = gremlinPool.get(0);
-        gremlinPool.remove(0);
-        retVal[3] = getGremlin(key, 205.0F, 40.0F);
+        retVal[0] = new GremlinWarrior(-320.0F, 25.0F);
+        retVal[1] = new GremlinFat(-160.0F, -12.0F);
+        retVal[2] = new GremlinThief(25.0F, -35.0F);
+        retVal[3] = new GremlinWarrior(205.0F, 40.0F);
 
         return new MonsterGroup(retVal);
     }

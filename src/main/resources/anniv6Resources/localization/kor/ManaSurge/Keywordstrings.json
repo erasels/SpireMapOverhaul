@@ -1,0 +1,130 @@
+[
+  {
+    "ID": "${ModID}:ManaSurge:Sharp",
+    "PROPER_NAME": "[#8c9cff]날카로움[]",
+    "NAMES": [
+      "날카로움"
+    ],
+    "DESCRIPTION": "대상에게 피해를 #b5 주고, 대상 지정이 아니라면 무작위 적에게 줍니다."
+  },
+  {
+    "ID": "${ModID}:ManaSurge:Tough",
+    "PROPER_NAME": "[#8c9cff]불굴[]",
+    "NAMES": [
+      "불굴"
+    ],
+    "DESCRIPTION": "#y방어도를 #b4 얻습니다."
+  },
+  {
+    "ID": "${ModID}:ManaSurge:Powerful",
+    "PROPER_NAME": "[#8c9cff]강력함[]",
+    "NAMES": [
+      "강력함"
+    ],
+    "DESCRIPTION": "#y힘을 #b1 얻습니다."
+  },
+  {
+    "ID": "${ModID}:ManaSurge:Protective",
+    "PROPER_NAME": "[#8c9cff]보호[]",
+    "NAMES": [
+      "보호"
+    ],
+    "DESCRIPTION": "#y민첩을 #b1 얻습니다."
+  },
+  {
+    "ID": "${ModID}:ManaSurge:Exposing",
+    "PROPER_NAME": "[#8c9cff]폭로[]",
+    "NAMES": [
+      "폭로"
+    ],
+    "DESCRIPTION": "대상에게 #y취약을 #b1 부여하고, 대상 지정이 아니라면 무작위 적에게 부여합니다."
+  },
+  {
+    "ID": "${ModID}:ManaSurge:Crippling",
+    "PROPER_NAME": "[#8c9cff]상실[]",
+    "NAMES": [
+      "상실"
+    ],
+    "DESCRIPTION": "대상에게 #y약화를 #b1 부여하고, 대상 지정이 아니라면 무작위 적에게 부여합니다."
+  },
+  {
+    "ID": "${ModID}:ManaSurge:Harmful",
+    "PROPER_NAME": "[#ff8cd5]해로움[]",
+    "NAMES": [
+      "해로움"
+    ],
+    "DESCRIPTION": "피해를 #b5 입습니다."
+  },
+  {
+    "ID": "${ModID}:ManaSurge:Fragile",
+    "PROPER_NAME": "[#ff8cd5]연약함[]",
+    "NAMES": [
+      "연약함"
+    ],
+    "DESCRIPTION": "#y취약을 #b1 얻습니다."
+  },
+  {
+    "ID": "${ModID}:ManaSurge:Feeble",
+    "PROPER_NAME": "[#ff8cd5]나약[]",
+    "NAMES": [
+      "나약"
+    ],
+    "DESCRIPTION": "#y손상을 #b1 얻습니다."
+  },
+  {
+    "ID": "${ModID}:ManaSurge:Flawed",
+    "PROPER_NAME": "[#ff8cd5]결함[]",
+    "NAMES": [
+      "결함"
+    ],
+    "DESCRIPTION": "#y약화를 #b1 얻습니다."
+  },
+  {
+    "ID": "${ModID}:ManaSurge:Powerless",
+    "PROPER_NAME": "[#ff8cd5]무력함[]",
+    "NAMES": [
+      "무력함"
+    ],
+    "DESCRIPTION": "#y힘을 #b1 잃습니다."
+  },
+  {
+    "ID": "${ModID}:ManaSurge:Brittle",
+    "PROPER_NAME": "[#ff8cd5]불안정[]",
+    "NAMES": [
+      "불안정"
+    ],
+    "DESCRIPTION": "#y민첩을 #b1 잃습니다."
+  },
+  {
+    "ID": "${ModID}:ManaSurge:Blight",
+    "PROPER_NAME": "[#ff8cd5]역병[]",
+    "NAMES": [
+      "역병"
+    ],
+    "DESCRIPTION": "부정적인 효과입니다."
+  },
+  {
+    "ID": "${ModID}:ManaSurge:Enchantment",
+    "PROPER_NAME": "[#8c9cff]마법[]",
+    "NAMES": [
+      "마법"
+    ],
+    "DESCRIPTION": "긍정적인 효과입니다."
+  },
+  {
+    "ID": "${ModID}:ManaSurge:Blighted",
+    "PROPER_NAME": "[#ff8cd5]역병 부여[]",
+    "NAMES": [
+      "역병 부여"
+    ],
+    "DESCRIPTION": "부정적인 효과가 적용되었습니다."
+  },
+  {
+    "ID": "${ModID}:ManaSurge:Enchant",
+    "PROPER_NAME": "[#8c9cff]마법 부여[]",
+    "NAMES": [
+      "마법 부여"
+    ],
+    "DESCRIPTION": "긍정적인 효과가 적용되었습니다."
+  }
+]

@@ -1,25 +1,21 @@
 package spireMapOverhaul.zones.volatileGrounds.monsters;
 
 import basemod.abstracts.CustomMonster;
-import com.badlogic.gdx.math.MathUtils;
-import com.esotericsoftware.spine.AnimationState;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.AnimateFastAttackAction;
-import com.megacrit.cardcrawl.actions.animations.AnimateJumpAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.cards.status.Burn;
-import com.megacrit.cardcrawl.cards.status.Slimed;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.beyond.Exploder;
-import com.megacrit.cardcrawl.monsters.beyond.SnakeDagger;
-import com.megacrit.cardcrawl.powers.*;
+import com.megacrit.cardcrawl.powers.ExplosivePower;
+import com.megacrit.cardcrawl.powers.FlameBarrierPower;
+import com.megacrit.cardcrawl.powers.MinionPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import spireMapOverhaul.SpireAnniversary6Mod;
-import spireMapOverhaul.zones.volatileGrounds.powers.ExplodePlusPower;
 
 import java.util.Iterator;
 
@@ -62,14 +58,14 @@ public class GremlinArchmage extends CustomMonster {
         } else {
             this.setHp(HP_MIN, HP_MAX);
         }
-        if(AbstractDungeon.ascensionLevel <= 3) {
+        if(AbstractDungeon.ascensionLevel >= 2) {
             this.damage.add(new DamageInfo(this, ATTACK_DAMAGE_1));
-            damage1 = A2_ATTACK_DAMAGE_1;
+            damage1 = ATTACK_DAMAGE_1;
         }
         else
         {
             this.damage.add(new DamageInfo(this, A2_ATTACK_DAMAGE_1));
-            damage1 = ATTACK_DAMAGE_1;
+            damage1 = A2_ATTACK_DAMAGE_1;
         }
         if(AbstractDungeon.ascensionLevel >= 17)
         {
@@ -152,13 +148,13 @@ public class GremlinArchmage extends CustomMonster {
     protected void getMove(final int num) {
         if(canSpawn() && !lastMove(SUMMON))
         {
-            this.setMove(SUMMON, Intent.UNKNOWN);
+            this.setMove(MOVES[0], SUMMON, Intent.UNKNOWN);
         }
         else if ((num < 50 && !lastTwoMoves(ATTACK) && !firstTurn) || lastTwoMoves(BLOCK)) {
-            this.setMove(ATTACK, Intent.ATTACK, damage1);
+            this.setMove(MOVES[1], ATTACK, Intent.ATTACK, damage1);
         
         } else {
-            this.setMove(BLOCK, Intent.DEFEND);
+            this.setMove(MOVES[2], BLOCK, Intent.DEFEND);
         }
         firstTurn = false;
     }

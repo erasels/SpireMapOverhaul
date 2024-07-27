@@ -1,5 +1,6 @@
 package spireMapOverhaul.patches;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -74,6 +75,25 @@ public class ZonePatches {
             public int[] Locate(CtBehavior ctBehavior) throws Exception {
                 Matcher finalMatcher = new Matcher.MethodCallMatcher(AbstractRoom.class, "render");
                 return new int[]{LineFinder.findInOrder(ctBehavior, finalMatcher)[0] - 1};
+            }
+        }
+
+        @SpireInsertPatch(locator = PostRenderCombatBackgroundLocator.class, localvars = {"sb"})
+        public static void PostRenderCombatBackground(SpriteBatch sb) {
+            if (AbstractDungeon.rs == AbstractDungeon.RenderScene.NORMAL) {
+                AbstractZone zone = Fields.zone.get(AbstractDungeon.currMapNode);
+                if (zone instanceof RenderableZone) {
+                    sb.setColor(Color.WHITE);
+                    ((RenderableZone) zone).postRenderCombatBackground(sb);
+                }
+            }
+        }
+
+        private static class PostRenderCombatBackgroundLocator extends SpireInsertLocator {
+            @Override
+            public int[] Locate(CtBehavior ctBehavior) throws Exception {
+                Matcher finalMatcher = new Matcher.MethodCallMatcher(AbstractRoom.class, "render");
+                return LineFinder.findInOrder(ctBehavior, finalMatcher);
             }
         }
 

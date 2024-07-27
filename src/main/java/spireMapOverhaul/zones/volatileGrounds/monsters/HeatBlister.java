@@ -6,17 +6,18 @@ import com.esotericsoftware.spine.AnimationState;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.AnimateFastAttackAction;
 import com.megacrit.cardcrawl.actions.animations.AnimateJumpAction;
-import com.megacrit.cardcrawl.actions.common.*;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.MakeTempCardInDiscardAction;
+import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.status.Burn;
 import com.megacrit.cardcrawl.cards.status.Slimed;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
-import com.megacrit.cardcrawl.powers.FlameBarrierPower;
 import com.megacrit.cardcrawl.powers.MalleablePower;
 import spireMapOverhaul.SpireAnniversary6Mod;
-import spireMapOverhaul.zones.volatileGrounds.powers.ChargedPower;
 import spireMapOverhaul.zones.volatileGrounds.powers.ExplodePlusPower;
 
 public class HeatBlister extends CustomMonster {
@@ -81,8 +82,10 @@ public class HeatBlister extends CustomMonster {
                         new ExplodePlusPower(this, A17_EXPLOSION_COUNTDOWN,
                         A2_EXPLOSION_DAMAGE)));
             }
-            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new ExplodePlusPower(this, EXPLOSION_COUNTDOWN,
-                    A2_EXPLOSION_DAMAGE)));
+            else {
+                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new ExplodePlusPower(this, EXPLOSION_COUNTDOWN,
+                        A2_EXPLOSION_DAMAGE)));
+            }
         }
         else
         {
@@ -100,7 +103,7 @@ public class HeatBlister extends CustomMonster {
                 break;
             case ATTACK_AND_DEBUFF:
                 AbstractDungeon.actionManager.addToBottom(new AnimateFastAttackAction(this));
-                AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player, this.damage.get(0), AbstractGameAction.AttackEffect.FIRE));
+                AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player, this.damage.get(1), AbstractGameAction.AttackEffect.FIRE));
                 AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDiscardAction(new Slimed(), 1));
                 Burn burn = new Burn();
                 if(AbstractDungeon.ascensionLevel >= 17) {

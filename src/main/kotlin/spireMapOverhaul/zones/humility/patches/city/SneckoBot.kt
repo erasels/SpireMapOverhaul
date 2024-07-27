@@ -1,7 +1,5 @@
 package spireMapOverhaul.zones.humility.patches.city
 
-import spireMapOverhaul.zones.humility.patches.utils.addPreBattleAction
-import spireMapOverhaul.zones.humility.powers.SneckoBotPower
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction
 import com.megacrit.cardcrawl.core.Settings
@@ -9,6 +7,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon
 import com.megacrit.cardcrawl.monsters.city.Snecko
 import javassist.CtBehavior
 import spireMapOverhaul.zones.humility.HumilityZone
+import spireMapOverhaul.zones.humility.patches.utils.addPreBattleAction
+import spireMapOverhaul.zones.humility.powers.SneckoBotPower
 
 class SneckoBot {
     @SpirePatch(

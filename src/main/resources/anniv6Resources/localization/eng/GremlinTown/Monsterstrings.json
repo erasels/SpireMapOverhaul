@@ -53,8 +53,8 @@
   },
   "${ModID}:GremlinAssassin": {
     "MOVES": [
-      "Hamstring",
-      "Sap"
+      "Draw Down",
+      "Energy Down"
     ],
     "NAME": "Gremlin Assassin"
   },

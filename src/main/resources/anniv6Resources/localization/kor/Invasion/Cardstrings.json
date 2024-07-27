@@ -1,0 +1,86 @@
+{
+  "${ModID}:GildedStrike": {
+    "NAME": "도금 타격",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 취약을 !M! 부여합니다."
+  },
+  "${ModID}:GildedDefend": {
+    "NAME": "도금 수비",
+    "DESCRIPTION": "방어도를 !B! 얻습니다. NL 민첩을 !M! 잃습니다."
+  },
+  "${ModID}:GildedEssence": {
+    "NAME": "도금 정수",
+    "DESCRIPTION": "${ModID}:판금\u00a0갑옷 을 !M! 얻습니다."
+  },
+  "${ModID}:Necropotence": {
+    "NAME": "죽음의 권세",
+    "DESCRIPTION": "보존. NL 카드를 !M! 장 뽑습니다. NL 체력을 1 잃습니다. NL 사용 후 이 카드를 다시 손으로 가져옵니다.",
+    "UPGRADE_DESCRIPTION": "보존. NL 카드를 !M! 장 뽑습니다. NL 체력을 1 잃습니다. NL 사용 후 이 카드를 다시 손으로 가져옵니다."
+  },
+  "${ModID}:FireblessedBlade": {
+    "NAME": "화염 축복의 검",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 힘을 !M! 얻고, 민첩과 밀집을 1 얻습니다. NL 소멸."
+  },
+  "${ModID}:WindblessedBlade": {
+    "NAME": "바람 축복의 검",
+    "DESCRIPTION": "!D! 피해를 3번 줍니다. NL  !B! 방어도를 2 번 얻습니다. NL 약화를 !M! 부여합니다. NL 소멸."
+  },
+  "${ModID}:EarthblessedBlade": {
+    "NAME": "대지 축복의 검",
+    "DESCRIPTION": "적 전체에게 피해를 !D! 줍니다. NL ${ModID}:판금\u00a0갑옷을 !B! 얻습니다. NL 가시를 !M! 얻습니다. NL 소멸."
+  },
+  "${ModID}:IceblessedBlade": {
+    "NAME": "냉기 축복의 검",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 인공물을 !M! 얻습니다. NL ${ModID}:버퍼를 얻습니다. NL 소멸."
+  },
+  "${ModID}:VoidblessedBlade": {
+    "NAME": "공허 축복의 검",
+    "DESCRIPTION": "!D! 피해를 !M! 번 줍니다. NL 대상 적의 힘을 !M! 감소시킵니다. NL ${ModID}:흐릿함 을 1 얻습니다. NL 소멸."
+  },
+  "${ModID}:Languish": {
+    "NAME": "쇠퇴",
+    "DESCRIPTION": "휘발성. NL 이번 턴 동안 모든 적이 힘을 !M! 잃고 체력을 !M! 잃습니다. NL 소멸.",
+    "UPGRADE_DESCRIPTION": "이번 턴 동안 모든 적이 힘을 !M! 잃고 체력을 !M! 잃습니다. NL 소멸."
+  },
+  "${ModID}:MirarisWake": {
+    "NAME": "미라리의 각성",
+    "DESCRIPTION": "휘발성. NL 힘을 !M! 얻습니다. NL 민첩을 !M! 얻습니다. NL 매 턴 시작시 [E] 를 얻습니다.",
+    "UPGRADE_DESCRIPTION": "힘을 !M! 얻습니다. NL 민첩을 !M! 얻습니다. NL 매 턴 시작시 [E] 를 얻습니다."
+  },
+  "${ModID}:WallOfBlossoms": {
+    "NAME": "꽃의 벽",
+    "DESCRIPTION": "민첩을 !M! 얻습니다. NL 카드를 1 장 뽑습니다."
+  },
+  "${ModID}:DarkRitual": {
+    "NAME": "어둠의 의식",
+    "DESCRIPTION": "[E] [E] [E] 를 얻습니다. NL 소멸.",
+    "UPGRADE_DESCRIPTION": "보존. NL [E] [E] [E] 를 얻습니다. NL 소멸."
+  },
+  "${ModID}:LightningHelix": {
+    "NAME": "나선 번개",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 체력을 !M! 회복합니다. NL 소멸."
+  },
+  "${ModID}:Foresee": {
+    "NAME": "예견",
+    "DESCRIPTION": "예지 !M!. NL 카드를 2장 뽑습니다."
+  },
+  "${ModID}:SteelWall": {
+    "NAME": "강철의 벽",
+    "DESCRIPTION": "방어도를 !B! 얻습니다. NL !M! ${ModID}:금속화를 얻습니다. NL 소멸."
+  },
+  "${ModID}:LightningBolt": {
+    "NAME": "라이트닝 볼트",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 이 카드를 뽑을 카드 더미에 넣습니다."
+  },
+  "${ModID}:Staggershock": {
+    "NAME": "스태거 쇼크",
+    "DESCRIPTION": "적 전체에게 피해를 !D! 줍니다. 다음 턴 시작시, 이 카드를 다시 사용합니다."
+  },
+  "${ModID}:HandOfTheAbyss": {
+    "NAME": "공허의 손",
+    "DESCRIPTION": "공격으로 막히지 않은 피해를 주면, ${ModID}:심연의_표식을 !M! 부여합니다."
+  },
+  "${ModID}:BrokenCrystal": {
+    "NAME": "파괴된 수정",
+    "DESCRIPTION": "이 카드를 뽑으면, 비용이 무작위로 결정되고 카드 1장을 뽑습니다. NL 모든 적의 재생을 !M! 감소시킵니다. NL 소멸."
+  }
+}

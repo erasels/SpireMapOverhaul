@@ -1,0 +1,58 @@
+{
+  "${ModID}:ConfigMenuText": {
+    "TEXT": [
+      "Spire Biomes",
+      "StS Modding Community",
+      "맵을 더 흥미롭게 만듭니다.",
+      "활성화",
+      "바이옴 아이콘이 커지지만 경계를 넘어간 부분은 잘립니다.",
+      "게임 도중 바이옴이 중복해서 나타나지 않습니다.",
+      "셰이더 활성화",
+      "막 당 바이옴 수"
+    ]
+  },
+  "${ModID}:SingleCardReward": {
+    "TEXT": [
+      "[카드] ",
+      "팁: 우클릭으로 카드의 자세한 정보를 확인하세요!"
+    ]
+  },
+  "${ModID}:HealReward": {
+    "TEXT": [
+      "회복 "
+    ]
+  },
+  "${ModID}:AnyColorCardReward": {
+    "TEXT": [
+      "아무 색의 카드를 추가합니다",
+      "카드를 선택하십시오"
+    ]
+  },
+  "${ModID}:CombatExplainButton": {
+    "TEXT": [
+      "전투 변경점"
+    ]
+  },
+  "${ModID}:RunHistoryScreen": {
+    "TEXT": [
+      "바이옴: {0}"
+    ]
+  },
+  "${ModID}:ZonePotionsPatch": {
+    "TEXT": [
+      "바이옴:",
+      "특정 바이옴에서만 얻을 수 있는 포션입니다."
+    ]
+  },
+  "${ModID}:CharacterSelectScreen": {
+    "TEXT": [
+      "바이옴 출현 활성화",
+      "첨탑에 새로운 컨텐츠를 주는 바이옴을 추가합니다."
+    ]
+  },
+  "${ModID}:ZoneTooltip": {
+    "TEXT": [
+      "#p제작자: {0}"
+    ]
+  }
+}

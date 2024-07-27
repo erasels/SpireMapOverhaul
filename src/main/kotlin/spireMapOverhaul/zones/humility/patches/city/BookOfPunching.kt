@@ -1,7 +1,5 @@
 package spireMapOverhaul.zones.humility.patches.city
 
-import spireMapOverhaul.SpireAnniversary6Mod
-import spireMapOverhaul.zones.humility.powers.PainfulPunchesPower
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch
 import com.megacrit.cardcrawl.core.CardCrawlGame
 import com.megacrit.cardcrawl.localization.MonsterStrings
@@ -9,7 +7,9 @@ import com.megacrit.cardcrawl.monsters.city.BookOfStabbing
 import com.megacrit.cardcrawl.powers.PainfulStabsPower
 import javassist.expr.ExprEditor
 import javassist.expr.NewExpr
+import spireMapOverhaul.SpireAnniversary6Mod
 import spireMapOverhaul.zones.humility.HumilityZone
+import spireMapOverhaul.zones.humility.powers.PainfulPunchesPower
 
 class BookOfPunching {
     companion object {

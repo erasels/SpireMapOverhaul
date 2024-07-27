@@ -1,0 +1,115 @@
+{
+  "${ModID}:BrokenDataDisk": {
+    "NAME": "壊れたデータディスク",
+    "FLAVOR": "",
+    "DESCRIPTIONS": [
+      "戦闘開始時、 #y集中力 #b",
+      " を失う。ターン中、初めてオーブを #y生成 したとき、同じオーブを再度 #y生成 する。",
+      "Orbs channeled: {0}",
+      " NL Per combat: {0}"
+    ]
+  },
+  "${ModID}:BrokenSneckoSkull": {
+    "NAME": "壊れたスネッコスカル",
+    "FLAVOR": "",
+    "DESCRIPTIONS": [
+      "あなたがバフを得たとき、 #b",
+      " 追加で得る。",
+      "Buffs gained: {0}",
+      " NL Per combat: {0}"
+    ]
+  },
+  "${ModID}:BrokenRedSkull": {
+    "NAME": "壊れたレッドスカル",
+    "FLAVOR": "",
+    "DESCRIPTIONS": [
+      "#yhp が最大hpの #b",
+      "% 以上のとき、 #y敏捷性 #b",
+      " を得る。"
+    ]
+  },
+  "${ModID}:BrokenOmamori": {
+    "NAME": "壊れたお守り",
+    "FLAVOR": "",
+    "DESCRIPTIONS": [
+      "入手時デッキに #b",
+      " 枚の #r呪い を加える。休憩したとき、ランダムな #b",
+      " 枚のカードを #yアップグレード する。",
+      "Cards upgraded: {0}"
+    ]
+  },
+  "${ModID}:BrokenDamaru": {
+    "NAME": "壊れたダマル",
+    "FLAVOR": "",
+    "DESCRIPTIONS": [
+      "ターン終了時、手札を1枚 #y廃棄 することができる。廃棄した場合、そのコストに等しい #yマントラ を得る。",
+      "廃棄するカードを選択(そのコストに等しいマントラを得る)",
+      "Mantra gained: {0}",
+      " NL Per turn: {0} NL Per combat: {1}"
+    ]
+  },
+  "${ModID}:BrokenWingBoots": {
+    "NAME": "壊れた空飛ぶ靴",
+    "FLAVOR": "",
+    "DESCRIPTIONS": [
+      "#y? 部屋に入ったとき、2つのイベントから1つを選ぶことができる。.",
+      "Event choices: {0}"
+    ]
+  },
+  "${ModID}:BrokenSozu": {
+    "NAME": "壊れたししおどし",
+    "FLAVOR": "",
+    "DESCRIPTIONS": [
+      "戦闘中、ポーションを使用する為には [E] が必要となる。ポーションを使用したとき、別のランダムなポーションを使用する。",
+      " エナジー",
+      "Extra potions: {0}",
+      " NL Per combat: {0}"
+    ]
+  },
+  "${ModID}:BrokenSneckoEye": {
+    "NAME": "壊れたスネッコアイ",
+    "FLAVOR": "",
+    "DESCRIPTIONS": [
+      "ターン開始時、 #b",
+      " 枚のカードがデッキからコピーされ、手札に加えられる。それは #y廃棄 と #yエセリアル を持ち、読むことができない。"
+    ]
+  },
+  "${ModID}:BrokenMawBank": {
+    "NAME": "壊れたモーバンク",
+    "FLAVOR": "",
+    "DESCRIPTIONS": [
+      "次にショップに入ったとき、 #b",
+      " #yゴールド を得る。去ったとき、 #b",
+      " #yゴールド を失う。",
+      "Gold lost: {0}"
+    ]
+  },
+  "${ModID}:BrokenPrayerWheel": {
+    "NAME": "壊れた祈りのルーレット",
+    "FLAVOR": "",
+    "DESCRIPTIONS": [
+      "報酬のカード選択画面で出現するカードの枚数が #b",
+      " 枚減る。報酬のゴールドが #b",
+      " 倍になる。",
+      "Gold gained: {0}"
+    ]
+  },
+  "${ModID}:BrokenMatryoshka": {
+    "NAME": "壊れたマトリョーシカ",
+    "FLAVOR": "",
+    "DESCRIPTIONS": [
+      "#b",
+      " 個の #yレリック を報酬に加える。次に開く #b",
+      " 個の宝箱は空っぽ。サファイアの鍵を持っていなかった場合、報酬の #yレリック と交換できる。"
+    ]
+  },
+  "${ModID}:BrokenSingingBowl": {
+    "NAME": "壊れた歌うボウル",
+    "FLAVOR": "",
+    "DESCRIPTIONS": [
+      "最大hpを得たとき、 #b",
+        " 枚のランダムなカードを #yアップグレード する。",
+      "Cards upgraded: {0}"
+    ]
+  }
+}

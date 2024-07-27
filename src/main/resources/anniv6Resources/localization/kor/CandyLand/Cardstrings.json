@@ -1,0 +1,70 @@
+{
+  "${ModID}:Broccoli": {
+    "NAME": "브로콜리",
+    "DESCRIPTION": "힘 을 !M! 얻습니다. NL 민첩 을 !M! 얻습니다. NL 일회성 ."
+  },
+  "${ModID}:CandyCane": {
+    "NAME": "막대 사탕",
+    "DESCRIPTION": "피해 를 !D! 줍니다. NL 일회성 ."
+  },
+  "${ModID}:Cookie": {
+    "NAME": "쿠키",
+    "DESCRIPTION": "방어도 를 !B! 얻습니다. NL 일회성 ."
+  },
+  "${ModID}:EnergyDrink": {
+    "NAME": "에너지 드링크",
+    "DESCRIPTION": "{@@}{!M!|1= [E] |2= [E] [E] |3= [E] [E] [E] |@= !M! [E] }를 얻습니다. NL 일회성 ."
+  },
+  "${ModID}:FastFood": {
+    "NAME": "패스트 푸드",
+    "DESCRIPTION": "카드를 !M! 장 뽑습니다. NL 일회성 ."
+  },
+  "${ModID}:Banana": {
+    "NAME": "바나나",
+    "DESCRIPTION": "최대 체력이 !M! 증가합니다. NL 일회성 ."
+  },
+  "${ModID}:ChocolateBar": {
+    "NAME": "초콜릿 바",
+    "DESCRIPTION": "재생 을 !M! 얻습니다. NL 일회성 ."
+  },
+  "${ModID}:Cocktail": {
+    "NAME": "칵테일",
+    "DESCRIPTION": "마실 수 있는 무작위 포션을 얻습니다. NL 일회성 ."
+  },
+  "${ModID}:GoldCandy": {
+    "NAME": "황금 사탕",
+    "DESCRIPTION": "골드를 !M! 얻습니다. NL 일회성 ."
+  },
+  "${ModID}:Cake": {
+    "NAME": "케이크",
+    "DESCRIPTION": "방어도를 !B! 얻습니다. NL {@@}{!M!|1= turn|@= !M! turns} 턴 동안 다음 턴 시작 시 방어도가 사라지지 않습니다. NL 일회성 ."
+  },
+  "${ModID}:FrozenYoghurt": {
+    "NAME": "프로즌 요거트",
+    "DESCRIPTION": "${ModID}:Metallicize 를 !M! 얻습니다. NL 취약을 !${ModID}:m2! 받습니다. NL 일회성 ."
+  },
+  "${ModID}:JawBreaker": {
+    "NAME": "돌사탕",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 일회성 ."
+  },
+  "${ModID}:JellyBeans": {
+    "NAME": "젤리빈",
+    "DESCRIPTION": "적 전체에게 취약을 !M! 부여합니다. NL 약화를 !${ModID}:m2! 얻습니다. NL 일회성 ."
+  },
+  "${ModID}:Milk": {
+    "NAME": "우유",
+    "DESCRIPTION": "인공물을 !${ModID}:m2! 부여합니다. NL 인공물을 !M! 얻습니다. NL 일회성 ."
+  },
+  "${ModID}:Pepper": {
+    "NAME": "고추",
+    "DESCRIPTION": "힘을 !M! 얻습니다. NL 민첩을 !${ModID}:m2! 잃습니다. NL 일회성 ."
+  },
+  "${ModID}:PoisonedApple": {
+    "NAME": "독사과",
+    "DESCRIPTION": "중독을 !M! 부여합니다. NL 피해를 !${ModID}:m2! 입습니다. NL 일회성 ."
+  },
+  "${ModID}:ChewingGum": {
+    "NAME": "껌",
+    "DESCRIPTION": "카드를 !M! 장 뽑고 {@@}{!M!|1= [E] |2= [E] [E] |3= [E] [E] [E] |@= !M! [E] }를 얻습니다. NL *점액투성이 를 뽑을 카드 더미에 한 장 추가합니다. NL 일회성 ."
+  }
+}

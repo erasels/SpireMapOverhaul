@@ -117,7 +117,13 @@ public interface EncounterModifyingZone {
         }
 
         for (ZoneEncounter ze : encounters) {
-            BaseMod.addMonster(ze.getID(), ze.getName(), () -> ze.getMonsterSupplier().get());
+            String name = ze.getName();
+            if (name == null) {
+                BaseMod.addMonster(ze.getID(), () -> ze.getMonsterSupplier().get());
+            }
+            else {
+                BaseMod.addMonster(ze.getID(), ze.getName(), () -> ze.getMonsterSupplier().get());
+            }
         }
     }
 }

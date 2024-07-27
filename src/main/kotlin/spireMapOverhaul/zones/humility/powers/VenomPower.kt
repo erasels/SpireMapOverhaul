@@ -1,12 +1,12 @@
 package spireMapOverhaul.zones.humility.powers
 
 import com.badlogic.gdx.graphics.Color
-import spireMapOverhaul.SpireAnniversary6Mod
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.HealthBarRenderPower
 import com.megacrit.cardcrawl.actions.common.DamageAction
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction
 import com.megacrit.cardcrawl.cards.DamageInfo
 import com.megacrit.cardcrawl.core.AbstractCreature
+import spireMapOverhaul.SpireAnniversary6Mod
 import kotlin.math.max
 
 class VenomPower(

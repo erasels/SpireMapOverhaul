@@ -10,7 +10,8 @@ import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractSMOPower;
 import spireMapOverhaul.zones.gremlinTown.GremlinTown;
 
-import static spireMapOverhaul.util.Wiz.*;
+import static spireMapOverhaul.util.Wiz.adp;
+import static spireMapOverhaul.util.Wiz.atb;
 
 public class GremsFirePower extends AbstractSMOPower {
     public static final String POWER_ID = SpireAnniversary6Mod.makeID("GremsFire");
@@ -30,7 +31,7 @@ public class GremsFirePower extends AbstractSMOPower {
 
     @Override
     public void atEndOfTurn(boolean isPlayer) {
-        forAllMonstersLiving(m -> atb(new DamageAllEnemiesAction(adp(), amount, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE)));
+        atb(new DamageAllEnemiesAction(adp(), DamageInfo.createDamageMatrix(amount, true), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE));
     }
 }
 

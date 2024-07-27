@@ -2,7 +2,6 @@ package spireMapOverhaul.zones.frostlands.monsters;
 
 import basemod.abstracts.CustomMonster;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.AnimateShakeAction;
 import com.megacrit.cardcrawl.actions.animations.AnimateSlowAttackAction;
@@ -10,13 +9,11 @@ import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.actions.unique.CanLoseAction;
 import com.megacrit.cardcrawl.actions.unique.CannotLoseAction;
 import com.megacrit.cardcrawl.actions.utility.HideHealthBarAction;
-import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
-import com.megacrit.cardcrawl.monsters.exordium.SpikeSlime_M;
 import com.megacrit.cardcrawl.vfx.combat.LightFlareParticleEffect;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.util.Wiz;
@@ -125,6 +122,6 @@ public class Steward extends CustomMonster
         else if(!spawned)
             setMove(MOVES[1], ATTACK, Intent.ATTACK_BUFF, damage.get(damage.size()-1).base);
         else
-            setMove(MOVES[1], ATTACK, Intent.ATTACK, damage.get(damage.size()-1).base);
+            setMove(MOVES[2], ATTACK, Intent.ATTACK, damage.get(damage.size()-1).base);
     }
 }

@@ -2,8 +2,8 @@
   {
     "PROPER_NAME": "着火",
     "NAMES": [
-      "burning"
+      "着火"
     ],
-    "DESCRIPTION": "在回合开始时，着火的生物会失去生命值。"
+    "DESCRIPTION": "在回合开始时，着火的生物会受到伤害。"
   }
 ]

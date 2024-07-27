@@ -28,32 +28,6 @@ class GremlinLeaderMoreSummons {
     }
 
     @SpirePatch(
-        clz = GremlinLeader::class,
-        method = SpirePatch.STATICINITIALIZER
-    )
-    class MoreSummonPositions {
-        companion object {
-            @JvmStatic
-            fun Postfix() {
-                if (HumilityZone.isNotInZone()) return
-
-                ReflectionHacks.setPrivateStaticFinal(
-                    GremlinLeader::class.java,
-                    "POSX",
-                    GremlinLeader.POSX.copyOf(GremlinLeader.POSX.size + 1)
-                )
-                ReflectionHacks.setPrivateStaticFinal(
-                    GremlinLeader::class.java,
-                    "POSY",
-                    GremlinLeader.POSY.copyOf(GremlinLeader.POSY.size + 1)
-                )
-                GremlinLeader.POSX[3] = -690f
-                GremlinLeader.POSY[3] = 2f
-            }
-        }
-    }
-
-    @SpirePatch(
         clz = MonsterHelper::class,
         method = "getEncounter"
     )
@@ -131,8 +105,8 @@ class GremlinLeaderMoreSummons {
                 if (HumilityZone.isNotInZone()) return
 
                 if (slot == 3) {
-                    x[0] = GremlinLeader.POSX[3]
-                    y[0] = GremlinLeader.POSY[3]
+                    x[0] = -690f
+                    y[0] = 2f
                 }
             }
         }

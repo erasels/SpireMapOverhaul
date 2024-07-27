@@ -1,6 +1,5 @@
 package spireMapOverhaul.zones.humility.patches.exordium
 
-import spireMapOverhaul.zones.humility.powers.ExplodingSporeCloudPower
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon
 import com.megacrit.cardcrawl.monsters.exordium.FungiBeast
@@ -8,6 +7,7 @@ import com.megacrit.cardcrawl.powers.SporeCloudPower
 import javassist.expr.ExprEditor
 import javassist.expr.NewExpr
 import spireMapOverhaul.zones.humility.HumilityZone
+import spireMapOverhaul.zones.humility.powers.ExplodingSporeCloudPower
 
 @SpirePatch(
     clz = FungiBeast::class,

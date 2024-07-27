@@ -1,0 +1,38 @@
+
+{
+	"${ModID}:BellPepper":
+	{
+		"DESCRIPTION": ["ランダムな敵に #y毒 {0} を {1} 回与える。"],
+		"NAME": "ピーマン"
+	},
+	"${ModID}:Carrot":
+	{
+		"DESCRIPTION": ["ランダムな敵に {0} ダメージを {1} 回与える。"],
+		"NAME": "人参"
+	},
+	"${ModID}:Leek":
+	{
+		"DESCRIPTION": ["ランダムな敵に #y脱力 {0} を {1} 回与える。"],
+		"NAME": "長ネギ"
+	},
+	"${ModID}:Onion":
+	{
+		"DESCRIPTION": ["ランダムな敵に #y弱体 {0} を {1} 回与える。"],
+		"NAME": "玉ねぎ"
+	},
+	"${ModID}:Pumpkin":
+	{
+		"DESCRIPTION": [" {0} #yブロック を得る。"],
+		"NAME": "かぼちゃ"
+	},
+	"${ModID}:Radish":
+	{
+		"DESCRIPTION": ["ランダムな敵に {0} ダメージを {1} 回与える。"],
+		"NAME": "大根"
+	},
+	"${ModID}:Tomato":
+	{
+		"DESCRIPTION": ["#y筋力 {0} を得る。"],
+		"NAME": "トマト"
+	}
+}

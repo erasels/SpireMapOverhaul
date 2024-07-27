@@ -1,9 +1,9 @@
 package spireMapOverhaul.zones.humility.powers
 
-import spireMapOverhaul.SpireAnniversary6Mod
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction
 import com.megacrit.cardcrawl.cards.status.Dazed
 import com.megacrit.cardcrawl.core.AbstractCreature
+import spireMapOverhaul.SpireAnniversary6Mod
 
 class DeathRattlePower(
     owner: AbstractCreature,

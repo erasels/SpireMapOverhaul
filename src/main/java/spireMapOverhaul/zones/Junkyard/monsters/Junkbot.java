@@ -9,16 +9,15 @@ import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.vfx.combat.PowerBuffEffect;
 import spireMapOverhaul.SpireAnniversary6Mod;
-import spireMapOverhaul.util.TexLoader;
 import spireMapOverhaul.zones.Junkyard.actions.DeactivateAction;
 import spireMapOverhaul.zones.Junkyard.actions.GrabCardAction;
 import spireMapOverhaul.zones.Junkyard.actions.RemoveHeldCardAction;
@@ -88,7 +87,7 @@ public class Junkbot extends CustomMonster {
         int rand = AbstractDungeon.cardRng.random(0, 100);
         isActivated = (rand <= this.startActiveChance);
         if (!isActivated){
-            setImage(TexLoader.getTexture(IMG_INACTIVE));
+            setImage(ImageMaster.loadImage(IMG_INACTIVE));
             addToBot(new GrabCardAction(this, new Wound()));
         }
         getMove(0);
@@ -105,9 +104,11 @@ public class Junkbot extends CustomMonster {
                 break;
             case REBOOT_MOVE:
                 isActivated = true;
-                this.img = TexLoader.getTexture(IMG);
+                this.img = ImageMaster.loadImage(IMG);
                 AbstractDungeon.actionManager.addToBottom(new VFXAction(new PowerBuffEffect(this.hb.cX, this.hb.cY, "Rebooted")));
-                AbstractDungeon.actionManager.addToBottom(new RemoveHeldCardAction(this, cardsToPreview.get(0)));
+                if (!cardsToPreview.isEmpty()) {
+                    AbstractDungeon.actionManager.addToBottom(new RemoveHeldCardAction(this, cardsToPreview.get(0)));
+                }
                 break;
         }
         AbstractDungeon.actionManager.addToBottom(new RollMoveAction(this));

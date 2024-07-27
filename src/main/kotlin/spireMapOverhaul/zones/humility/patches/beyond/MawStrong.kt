@@ -1,6 +1,5 @@
 package spireMapOverhaul.zones.humility.patches.beyond
 
-import spireMapOverhaul.zones.humility.patches.utils.addPreBattleAction
 import com.evacipated.cardcrawl.modthespire.lib.ByRef
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction
@@ -9,6 +8,7 @@ import com.megacrit.cardcrawl.monsters.beyond.Maw
 import com.megacrit.cardcrawl.powers.StrengthPower
 import javassist.CtBehavior
 import spireMapOverhaul.zones.humility.HumilityZone
+import spireMapOverhaul.zones.humility.patches.utils.addPreBattleAction
 
 class MawStrong {
     @SpirePatch(

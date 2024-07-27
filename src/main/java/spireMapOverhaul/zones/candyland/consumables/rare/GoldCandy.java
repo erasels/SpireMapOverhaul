@@ -2,11 +2,8 @@ package spireMapOverhaul.zones.candyland.consumables.rare;
 
 import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
 import com.megacrit.cardcrawl.actions.common.GainGoldAction;
-import com.megacrit.cardcrawl.actions.common.ObtainPotionAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.potions.AbstractPotion;
 import spireMapOverhaul.zones.candyland.consumables.AbstractConsumable;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;

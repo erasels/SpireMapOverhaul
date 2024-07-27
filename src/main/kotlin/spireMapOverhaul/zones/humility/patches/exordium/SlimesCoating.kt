@@ -1,7 +1,5 @@
 package spireMapOverhaul.zones.humility.patches.exordium
 
-import spireMapOverhaul.zones.humility.patches.utils.addPreBattleAction
-import spireMapOverhaul.zones.humility.powers.SlimeCoatingPower
 import com.evacipated.cardcrawl.modthespire.lib.*
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction
 import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction
@@ -13,6 +11,8 @@ import com.megacrit.cardcrawl.monsters.exordium.SpikeSlime_M
 import com.megacrit.cardcrawl.monsters.exordium.SpikeSlime_S
 import javassist.CtBehavior
 import spireMapOverhaul.zones.humility.HumilityZone
+import spireMapOverhaul.zones.humility.patches.utils.addPreBattleAction
+import spireMapOverhaul.zones.humility.powers.SlimeCoatingPower
 
 class SlimesCoating {
     @SpirePatches(

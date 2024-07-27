@@ -16,7 +16,6 @@ import com.megacrit.cardcrawl.monsters.exordium.*;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
 import javassist.CtBehavior;
 import spireMapOverhaul.util.Wiz;
-import spireMapOverhaul.zones.beastslair.powers.DamageUpPower;
 import spireMapOverhaul.zones.beastslair.powers.FuryPower;
 
 import java.util.ArrayList;

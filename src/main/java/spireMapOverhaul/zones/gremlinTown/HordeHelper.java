@@ -26,7 +26,9 @@ import com.megacrit.cardcrawl.vfx.SpeechBubble;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.actions.WaitMoreAction;
 import spireMapOverhaul.util.Wiz;
-import spireMapOverhaul.zones.gremlinTown.monsters.*;
+import spireMapOverhaul.zones.gremlinTown.monsters.ChubbyGremlin;
+import spireMapOverhaul.zones.gremlinTown.monsters.GremlinHealer;
+import spireMapOverhaul.zones.gremlinTown.monsters.GremlinRockTosser;
 import spireMapOverhaul.zones.gremlinTown.patches.HordePatches;
 
 import java.util.ArrayList;
@@ -102,26 +104,25 @@ public class HordeHelper {
 
         groundQueue = new ArrayList<>();
         platformQueue = new ArrayList<>();
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 2; i++) {
             groundQueue.add(new GremlinWarrior(Settings.WIDTH * 4, 0));
             groundQueue.add(new GremlinWarrior(Settings.WIDTH * 4, 0));
             groundQueue.add(new GremlinThief(Settings.WIDTH * 4, 0));
             groundQueue.add(new GremlinFat(Settings.WIDTH * 4, 0));
         }
+        groundQueue.add(new GremlinThief(Settings.WIDTH * 4, 0));
+        groundQueue.add(new GremlinFat(Settings.WIDTH * 4, 0));
 
         platformQueue.add(new GremlinRockTosser(Settings.WIDTH * 4, 0));
         platformQueue.add(new GremlinWizard(Settings.WIDTH * 4, 0));
-        platformQueue.add(new GremlinRockTosser(Settings.WIDTH * 4, 0));
         platformQueue.add(new GremlinHealer(Settings.WIDTH * 4, 0));
-        platformQueue.add(new GremlinRockTosser(Settings.WIDTH * 4, 0));
         platformQueue.add(new GremlinWizard(Settings.WIDTH * 4, 0));
         platformQueue.add(new GremlinRockTosser(Settings.WIDTH * 4, 0));
 
         Collections.shuffle(groundQueue, AbstractDungeon.monsterRng.random);
 
-        groundQueue.add(4, new ArmoredGremlin(Settings.WIDTH * 4, 0));
-        groundQueue.add(8, new ChubbyGremlin(Settings.WIDTH * 4, 0));
-        groundQueue.add(12, new GremlinAssassin(Settings.WIDTH * 4, 0));
+        groundQueue.add(3, new ChubbyGremlin(Settings.WIDTH * 4, 0));
+        groundQueue.add(9, new GremlinNob(Settings.WIDTH * 4, 0));
 
         ArrayList<AbstractMonster> tempArray = new ArrayList<>(Wiz.getEnemies());
         tempArray.sort( (m1, m2) -> (int)(m1.hb.x - m2.hb.x) );

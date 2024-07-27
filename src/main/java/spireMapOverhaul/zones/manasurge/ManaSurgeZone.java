@@ -3,14 +3,18 @@ package spireMapOverhaul.zones.manasurge;
 import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.ui.campfire.AbstractCampfireOption;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
+import spireMapOverhaul.util.TexLoader;
 import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.zoneInterfaces.*;
 import spireMapOverhaul.zones.manasurge.modifiers.AbstractManaSurgeModifier;
@@ -31,7 +35,6 @@ import spireMapOverhaul.zones.manasurge.ui.campfire.EnchantOption;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Supplier;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 import static spireMapOverhaul.SpireAnniversary6Mod.makePath;
@@ -41,8 +44,10 @@ public class ManaSurgeZone extends AbstractZone implements
         RewardModifyingZone,
         CampfireModifyingZone,
         ShopModifyingZone,
-        ModifiedEventRateZone {
+        ModifiedEventRateZone,
+        RenderableZone {
     public static final String ID = "ManaSurge";
+    private Texture bg = TexLoader.getTexture(SpireAnniversary6Mod.makeBackgroundPath("manasurge/bg.png"));
     public static final String NEGATIVE_MOD = SpireAnniversary6Mod.makeID("ManaSurge:Blight");
     public static final String POSITIVE_MOD = SpireAnniversary6Mod.makeID("ManaSurge:Enchantment");
     public static final String ENCHANTBLIGHT_KEY = makeID("ManaSurge:EnchantBlight");
@@ -51,7 +56,7 @@ public class ManaSurgeZone extends AbstractZone implements
     public static final float ENCHANT_CHANCE = 0.65f;
 
     public ManaSurgeZone() {
-        super(ID,Icons.MONSTER,Icons.SHOP,Icons.EVENT,Icons.REST);
+        super(ID, Icons.MONSTER, Icons.SHOP, Icons.EVENT, Icons.REST);
         this.width = 3;
         this.height = 3;
         this.maxHeight = 4;
@@ -148,9 +153,9 @@ public class ManaSurgeZone extends AbstractZone implements
         boolean common = !allowUncommonModifiers || rng.randomBoolean(COMMON_CHANCE);
         List<AbstractManaSurgeModifier> modifiers =
                 positive && common ? getPositiveCommonModifierList(permanent)
-                : positive && !common ? getPositiveUncommonModifierList(permanent)
-                : !positive && common ? getNegativeCommonModifierList(permanent)
-                : getNegativeUncommonModifierList(permanent);
+                        : positive && !common ? getPositiveUncommonModifierList(permanent)
+                        : !positive && common ? getNegativeCommonModifierList(permanent)
+                        : getNegativeUncommonModifierList(permanent);
         AbstractManaSurgeModifier modifier = modifiers.get(rng.random(modifiers.size() - 1));
         CardModifierManager.addModifier(card, modifier);
     }
@@ -171,7 +176,7 @@ public class ManaSurgeZone extends AbstractZone implements
 
     @Override
     public void atBattleStartPreDraw() {
-        Wiz.applyToSelf(new ManaSurgePower(AbstractDungeon.player,0));
+        Wiz.applyToSelf(new ManaSurgePower(AbstractDungeon.player, 0));
     }
 
     @Override
@@ -229,6 +234,11 @@ public class ManaSurgeZone extends AbstractZone implements
 
     @Override
     public Color getColor() {
-        return new Color(0.3f,0.15f, 0.85f, 0.55f);
+        return new Color(0.3f, 0.15f, 0.85f, 0.55f);
+    }
+
+    @Override
+    public void postRenderCombatBackground(SpriteBatch sb) {
+        sb.draw(bg, 0, 0, Settings.WIDTH, Settings.HEIGHT);
     }
 }

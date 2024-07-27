@@ -1,0 +1,38 @@
+
+{
+	"${ModID}:BellPepper":
+	{
+		"DESCRIPTION": ["무작위 적에게 {0} 중독을 {1} 번 부여합니다."],
+		"NAME": "피망"
+	},
+	"${ModID}:Carrot":
+	{
+		"DESCRIPTION": ["무작위 적에게 {0} 피해를 {1} 번 줍니다."],
+		"NAME": "당근"
+	},
+	"${ModID}:Leek":
+	{
+		"DESCRIPTION": ["무작위 적에게 {0} #y약화를 {1} 번 부여합니다."],
+		"NAME": "대파"
+	},
+	"${ModID}:Onion":
+	{
+		"DESCRIPTION": ["무작위 적에게 {0} #y취약을 {1} 번 부여합니다."],
+		"NAME": "양파"
+	},
+	"${ModID}:Pumpkin":
+	{
+		"DESCRIPTION": ["#y방어도를 {0} 얻습니다."],
+		"NAME": "호박"
+	},
+	"${ModID}:Radish":
+	{
+		"DESCRIPTION": ["무작위 적에게 {0} 피해를 {1} 번 줍니다."],
+		"NAME": "순무"
+	},
+	"${ModID}:Tomato":
+	{
+		"DESCRIPTION": ["#y힘을 {0} 얻습니다."],
+		"NAME": "토마토"
+	}
+}

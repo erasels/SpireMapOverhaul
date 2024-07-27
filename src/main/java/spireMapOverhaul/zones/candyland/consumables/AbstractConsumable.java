@@ -1,10 +1,6 @@
 package spireMapOverhaul.zones.candyland.consumables;
 
-import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.FleetingField;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.rooms.MonsterRoom;
 import spireMapOverhaul.abstracts.AbstractSMOCard;
 
 abstract public class AbstractConsumable extends AbstractSMOCard {

@@ -4,7 +4,8 @@ import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.*;
+import com.megacrit.cardcrawl.powers.MetallicizePower;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
 import spireMapOverhaul.zones.candyland.consumables.AbstractConsumable;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
