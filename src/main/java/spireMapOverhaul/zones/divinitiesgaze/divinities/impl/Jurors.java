@@ -19,10 +19,13 @@ import spireMapOverhaul.zones.divinitiesgaze.powers.VerdictPower;
 
 import java.util.function.Consumer;
 
+@SuppressWarnings("unused")
 public class Jurors extends BaseDivineBeing {
 
+  public static final String ID = "Jurors";
+
   public Jurors() {
-    super(Verdict.ID, Wound.ID);
+    super(ID, Verdict.ID, Wound.ID);
   }
 
   @Override
@@ -70,7 +73,8 @@ public class Jurors extends BaseDivineBeing {
     Wiz.atb(new AbstractGameAction() {
       @Override
       public void update() {
-        AbstractDungeon.getMonsters().monsters.forEach(m -> Wiz.att(new ApplyPowerAction(m, AbstractDungeon.player, new VerdictPower(m,  10), 10)));
+        Wiz.att(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new VerdictPower(AbstractDungeon.player, 3), 3));
+        AbstractDungeon.getMonsters().monsters.forEach(m -> Wiz.att(new ApplyPowerAction(m, AbstractDungeon.player, new VerdictPower(m,  3), 3)));
         this.isDone = true;
       }
     });

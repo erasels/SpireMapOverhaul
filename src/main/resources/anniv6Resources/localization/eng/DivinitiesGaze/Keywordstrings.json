@@ -3,6 +3,6 @@
     "ID": "${ModID}:Verdict",
     "PROPER_NAME": "Verdict",
     "NAMES": ["verdict"],
-    "DESCRIPTION": "A creature with #yVerdict dies at the start of its turn if its current HP is less than its #yVerdict. Otherwise, it gains #b5 #yVerdict."
+    "DESCRIPTION": "A creature with #yVerdict dies at the start of its turn if its current HP is less than its #yVerdict. Otherwise, it gains #b3 #yVerdict."
   }
 ]

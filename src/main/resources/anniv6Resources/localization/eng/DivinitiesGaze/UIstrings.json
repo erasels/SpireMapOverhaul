@@ -17,7 +17,7 @@
       "NAME": "Ken",
       "TITLE": "The Eclectic",
       "EVENT_TEXT": "Sounds of pages turning and the stale smell of old tomes surrounds you. You make eye contact with them, among their #yEclectic collection. NL NL In their eyes, you see every thought that has ever #rbeen, and all those that will #gbe. NL NL They speak: \"Another... You, too... #y@learn@ as we have...\"",
-      "EVENT_BUTTON_TEXT": "[Learn] #gChoose #g1 #gof #g10 #gupgraded #gcards #gto #gadd #gto #gyour #gdeck.",
+      "EVENT_BUTTON_TEXT": "[Learn] #gChoose #g1 #gof #g5 #gupgraded #gcards #gto #gadd #gto #gyour #gdeck.",
       "EVENT_ACCEPT_TEXT": "~Quiet...~ NL NL Like a library at night, no sound can be heard as they leave. You have #glearned... but what you have seen will not soon be forgotten.",
       "EVENT_REJECT_TEXT": "~Quiet...~ NL NL Like a library at night, no sound can be heard as they leave. What could they have taught you, had you listened? NL NL Have you made the right choice?",
       "SELECT_TEXT": "Choose a card to add to your deck."
@@ -31,10 +31,10 @@
       "NAME": "Nihilo",
       "TITLE": "The End",
       "EVENT_TEXT": "The world around you plunges into darkness, dragging your mind with it. The abyss ~swallows~ you, body and soul, until nothing remains of what you once were. NL NL You see them. Who are they? You know, but cannot recall. Is this #rThe #rEnd? NL NL ~Moments~ stretch into eons... then #r@vanish@ in the blink of an eye.",
-      "EVENT_BUTTON_TEXT": "[Forget] #gChoose #g1 #gof #g3 #gcards #gto #gremove #gfrom #gyour #gdeck. #gDo #gthis #gtwice.",
+      "EVENT_BUTTON_TEXT": "[Forget] #gChoose #ga #gcard #gto #gremove #gfrom #gyour #gdeck.",
       "EVENT_ACCEPT_TEXT": "The light returns to your eyes and mind... but it feels... dim? Why are you even here? NL NL You are #y@alone@ now. NL NL You feel #r@empty@ inside.",
       "EVENT_REJECT_TEXT": "The light returns to your eyes and mind. It is blinding. The End's empty presence howls within you, but it will not swallow you.",
-      "EVENT_BUTTON_UNAVAILABLE_TEXT": "[Locked] Requires at least 3 cards in your deck.",
+      "EVENT_BUTTON_UNAVAILABLE_TEXT": "[Locked] Requires at least 1 card in your deck.",
       "SELECT_TEXT": "Choose a card to remove from your deck."
     }
   },
@@ -48,7 +48,7 @@
       "NAME": "Bouquet",
       "TITLE": "The Jurors",
       "EVENT_TEXT": "A chorus of voices ~rings~ out. You are surrounded. Cornered. At their mercy. NL NL \"Guilty, guilty, #r@guilty!\",@ a voice cries. NL NL \"You judge too #g~harshly,~ too swiftly...\", echoes another. NL NL \"Perhaps, for a #ycriminal, an eye for an eye?\"... Their faces gaze upon you. Your #r~Judgment~ is nigh.",
-      "EVENT_BUTTON_TEXT": "[Judge] Enter an Elite Combat. #gApply #g10 #gVerdict #gto #gall #genemies.",
+      "EVENT_BUTTON_TEXT": "[Judge] Enter an Elite Combat. #yApply #y3 #yVerdict #yto #yEVERYONE.",
       "EVENT_ACCEPT_TEXT": "Justice is passed, and the scales tip. The Jurors shuffle out of the courtroom. Your conviction is made, and now your conviction will be tested. NL NL The #rwrongs of the world are yours to #gright.",
       "EVENT_REJECT_TEXT": "Justice is passed, and the scales tip. The Jurors shuffle out of the courtroom. No conviction was made. NL NL Are you #ginnocent... or #rdeceitful? Perhaps you tricked them. NL NL ... NL NL Perhaps they know."
     }
@@ -65,7 +65,7 @@
       "NAME": "Myxamykes",
       "TITLE": "The Primordial",
       "EVENT_TEXT": "You take a step, and your foot sinks into a puddle of ooze. You are #r~stuck.~ NL NL Each time you blink, it multiplies, spreading up your body rapidly. It covers your mouth... your nose... your ears... your @eyes...@ NL NL You feel #r~death~ as your ooze-addled lungs ~speak~ with a voice not their own... #g@\"Propagate...\"@",
-      "EVENT_BUTTON_TEXT": "[Propagate] #gDuplicate #ga #gcard #gin #gyour #gdeck #gtwice.",
+      "EVENT_BUTTON_TEXT": "[Propagate] #gDuplicate #ga #gcard #gin #gyour #gdeck. Duplicate another card at random.",
       "EVENT_BUTTON_UNAVAILABLE_TEXT": "[Locked] Requires at least 1 card in your deck.",
       "EVENT_ACCEPT_TEXT": "Your body is your own again. You are no longer consumed by their will. But you are one of many. Others will join you. NL NL You will #ggrow together. You must.",
       "EVENT_REJECT_TEXT": "Your body is your own. You are no longer consumed by their will. You are unique. NL NL You can't help but feel a bit... #r@isolated.@",
