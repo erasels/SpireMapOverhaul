@@ -1,0 +1,9 @@
+{
+  "${ModID}:Flint": {
+    "NAME": "Flint",
+    "FLAVOR": "Sharp and pointy.",
+    "DESCRIPTIONS": [
+      "You can now light a greater fire to Rest twice at Rest Sites. NL Usable once."
+    ]
+  }
+}
