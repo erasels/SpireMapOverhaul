@@ -1,7 +1,7 @@
 {
   "${ModID}:Clairvoyance": {
     "NAME": "Clairvoyance",
-    "DESCRIPTION": "{@@}Draw {!M!|1=a card|@=!M! cards}. {!M!|1=It|@=They} gain{!M!|1=s|@=} Retain until played. NL Exhaust.",
+    "DESCRIPTION": "{@@}Draw !M! card{!M!|1=|@=s}. {!M!|1=It|@=They} gain{!M!|1=s|@=} Retain until played. NL Exhaust.",
     "EXTENDED_DESCRIPTION": [
       "I see ALL!"
     ]
@@ -15,7 +15,7 @@
   },
   "${ModID}:GuidingLight": {
     "NAME": "Guiding Light",
-    "DESCRIPTION": "{@@}Ethereal. NL Draw {!M!|1=a card|@=!M! cards}. NL Upgrade your hand.",
+    "DESCRIPTION": "{@@}Ethereal. NL Draw !M! card{!M!|1=|@=s}. NL Upgrade your hand.",
     "EXTENDED_DESCRIPTION": [
       "The path is laid bare."
     ]

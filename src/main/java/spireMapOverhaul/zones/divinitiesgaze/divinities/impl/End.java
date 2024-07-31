@@ -21,7 +21,8 @@ public class End extends BaseDivineBeing {
 
   @Override
   public Consumer<Integer> doEventButtonAction() {
-    return (i) -> AbstractDungeon.gridSelectScreen.open(AbstractDungeon.player.masterDeck, 1, getDivinityStrings().getMiscText().get(SELECT_TEXT), false);
+    return (i) -> AbstractDungeon.gridSelectScreen.open(AbstractDungeon.player.masterDeck.getPurgeableCards(), 1,
+        getDivinityStrings().getMiscText().get(SELECT_TEXT), false);
   }
 
   @Override
