@@ -1,28 +1,26 @@
 package spireMapOverhaul.zones.divinitiesgaze.divinities;
 
+import basemod.AutoAdd;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.random.Random;
-import spireMapOverhaul.zones.divinitiesgaze.divinities.impl.*;
+import spireMapOverhaul.SpireAnniversary6Mod;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class DivineBeingManager {
-  // TODO add a denylist to config maybe?
-  private static final List<DivineBeing> DIVINITIES = new ArrayList<>();
+  private static final Map<String, DivineBeing> DIVINITIES = new LinkedHashMap<>();
+  private static final List<String> DIVINITY_IDS = new ArrayList<>();
+  private static DivineBeing override = null;
 
   static {
-    register(new Eclectic());
-    register(new End());
-    register(new Jurors());
-    register(new Primordial());
-    register(new Torch());
+    new AutoAdd(SpireAnniversary6Mod.modID)
+        .packageFilter(SpireAnniversary6Mod.class)
+        .any(BaseDivineBeing.class, (info, divinity) -> register(divinity));
   }
 
-  public static void register(DivineBeing divinity) {
-    if(!DIVINITIES.contains(divinity)) {
-      DIVINITIES.add(divinity);
-    }
+  public static void register(BaseDivineBeing divineBeing) {
+    DIVINITIES.put(divineBeing.getDivinityId(), divineBeing);
+    DIVINITY_IDS.add(divineBeing.getDivinityId());
   }
 
   public static DivineBeing getDivinityForEvent() {
@@ -34,6 +32,20 @@ public class DivineBeingManager {
   }
 
   private static DivineBeing getDivinity(Random rng) {
-    return DIVINITIES.size() > 0 ? DIVINITIES.get(rng.random(0, DIVINITIES.size() - 1)) : null;
+    if(override != null) {
+      return override;
+    }
+
+    return DIVINITIES.size() > 0
+        ? DIVINITIES.get(DIVINITY_IDS.get(rng.random(0, DIVINITIES.size() - 1)))
+        : null;
+  }
+
+  public static void setOverrideDivinity(String id) {
+    override = DIVINITIES.get(id);
+  }
+
+  public static List<String> getDivinityIds() {
+    return DIVINITY_IDS;
   }
 }

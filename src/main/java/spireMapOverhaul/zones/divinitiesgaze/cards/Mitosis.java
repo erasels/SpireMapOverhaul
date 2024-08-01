@@ -23,13 +23,13 @@ public class Mitosis extends AbstractSMOCard {
   public Mitosis() {
     super(ID, DivinitiesGazeZone.ID, 1, CardType.ATTACK, CardRarity.SPECIAL, CardTarget.ENEMY, CardColor.COLORLESS);
     this.baseDamage = this.damage = 0;
-    this.baseMagicNumber = this.magicNumber = 2;
+    this.baseMagicNumber = this.magicNumber = 3;
     this.exhaust = true;
   }
 
   @Override
   public void upp() {
-    upgradeMagicNumber(1);
+    upgradeBaseCost(0);
   }
 
   @Override

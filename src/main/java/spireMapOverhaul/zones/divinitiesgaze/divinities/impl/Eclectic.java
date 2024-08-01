@@ -14,19 +14,22 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.function.Consumer;
 
+@SuppressWarnings("unused")
 public class Eclectic extends BaseDivineBeing {
 
+  public static final String ID = "Eclectic";
+
   public Eclectic() {
-    super(Clairvoyance.ID, Dazed.ID);
+    super(ID, Clairvoyance.ID, Dazed.ID);
   }
 
   @Override
   public Consumer<Integer> doEventButtonAction() {
-    // [Learn] Choose 1 of 10 upgraded cards to add to your deck.
+    // [Learn] Choose 1 of 5 upgraded cards to add to your deck.
     return x -> {
       CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
       Set<UUID> cardUUIDs = new HashSet<>();
-      while (group.size() < 10) {
+      while (group.size() < 5) {
         AbstractCard card = AbstractDungeon.getCard(AbstractDungeon.rollRarity()).makeCopy();
         if(!cardUUIDs.contains(card.uuid)) {
           cardUUIDs.add(card.uuid);
@@ -42,7 +45,8 @@ public class Eclectic extends BaseDivineBeing {
   @Override
   public boolean doUpdate() {
     if (!AbstractDungeon.isScreenUp && !AbstractDungeon.gridSelectScreen.selectedCards.isEmpty()) {
-      AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(AbstractDungeon.gridSelectScreen.selectedCards.get(0).makeStatEquivalentCopy(), (float) Settings.WIDTH / 2.0F, (float)Settings.HEIGHT / 2.0F));
+      AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(AbstractDungeon.gridSelectScreen.selectedCards.get(0).makeStatEquivalentCopy(),
+          (float) Settings.WIDTH / 2.0F, (float)Settings.HEIGHT / 2.0F));
       AbstractDungeon.gridSelectScreen.selectedCards.clear();
       return true;
     }

@@ -1,10 +1,9 @@
 {
   "${ModID}:Clairvoyance": {
     "NAME": "Clairvoyance",
-    "DESCRIPTION": "{@@}Retain. NL If this card is in your hand at the start of your turn, draw {!M!|1=a card|@=!M! cards}. {!M!|1=It|@=They} gain{!M!|1=s|@=} Retain until played. NL Exhaust.",
+    "DESCRIPTION": "{@@}Draw !M! card{!M!|1=|@=s}. {!M!|1=It|@=They} gain{!M!|1=s|@=} Retain until played. NL Exhaust.",
     "EXTENDED_DESCRIPTION": [
-      "I see ALL!",
-      "I reject this gift..."
+      "I see ALL!"
     ]
   },
   "${ModID}:Verdict": {
@@ -16,15 +15,14 @@
   },
   "${ModID}:GuidingLight": {
     "NAME": "Guiding Light",
-    "DESCRIPTION": "{@@}Unplayable. When drawn, Exhaust this, then draw cards until your hand is full.{!Upgrades!|>0= NL Upgrade all cards in your hand.|@=}",
+    "DESCRIPTION": "{@@}Ethereal. NL Draw !M! card{!M!|1=|@=s}. NL Upgrade your hand.",
     "EXTENDED_DESCRIPTION": [
-      "The path is laid bare.",
-      "I can't play this card."
+      "The path is laid bare."
     ]
   },
   "${ModID}:Inevitability": {
     "NAME": "Inevitability",
-    "DESCRIPTION": "Unplayable. Retain. At the end of your turn, deal !M! damage to ALL enemies and gain !${ModID}:m2! Block. NL Increase these amounts by 1 this combat.",
+    "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage. NL Increase these amounts by !M! this combat. NL Shuffle a *Void into your draw pile.",
     "EXTENDED_DESCRIPTION": [
       "This is The End.",
       "Begone!",

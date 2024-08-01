@@ -61,12 +61,13 @@ public class DivinitiesGazeZone extends AbstractZone implements ModifiedEventRat
     AbstractCard boon = CardLibrary.getCard(being.getDivinityStrings().getBoonCardId());
     AbstractCard status = CardLibrary.getCard(being.getDivinityStrings().getStatusCardId());
     Wiz.atb(new MakeTempCardInDrawPileAction(boon, 1, true, true));
-    Wiz.atb(new MakeTempCardInDrawPileAction(status, AbstractDungeon.actNum, true, true));
+    Wiz.atb(new MakeTempCardInDrawPileAction(status, AbstractDungeon.actNum + 1, true, true));
     String[] quotes = being.getDivinityStrings().getPreCombatQuotes();
     Wiz.atb(new AbstractGameAction() {
       @Override
       public void update() {
-        AbstractDungeon.effectList.add(new SpeechBubble(Settings.WIDTH / 2f, Settings.HEIGHT * 3f / 4f, 3, quotes[MathUtils.random(quotes.length - 1)], false));
+        AbstractDungeon.effectList.add(new SpeechBubble(Settings.WIDTH / 2f, Settings.HEIGHT * 3f / 4f, 3,
+            quotes[MathUtils.random(quotes.length - 1)], false));
         isDone = true;
       }
     });

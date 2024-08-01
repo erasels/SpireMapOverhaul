@@ -16,12 +16,10 @@ import spireMapOverhaul.zones.divinitiesgaze.DivinitiesGazeZone;
 public class Clairvoyance extends AbstractSMOCard {
 
   public static String ID = SpireAnniversary6Mod.makeID("Clairvoyance");
-  private static boolean canTalk = false;
 
   public Clairvoyance() {
     super(ID, DivinitiesGazeZone.ID, 0, CardType.SKILL, CardRarity.SPECIAL, CardTarget.NONE, CardColor.COLORLESS);
-    this.baseMagicNumber = this.magicNumber = 1;
-    this.selfRetain = true;
+    this.baseMagicNumber = this.magicNumber = 3;
     this.exhaust = true;
   }
 
@@ -32,30 +30,15 @@ public class Clairvoyance extends AbstractSMOCard {
 
   @Override
   public void use(AbstractPlayer abstractPlayer, AbstractMonster abstractMonster) {
-    Wiz.atb(new TalkAction(true, cardStrings.EXTENDED_DESCRIPTION[1], 2.0F, 3.0F));
-  }
-
-  @Override
-  public void triggerWhenDrawn() {
-    if(canTalk) {
-      Wiz.atb(new TalkAction(true, cardStrings.EXTENDED_DESCRIPTION[0], 2.0F, 3.0F));
-    }
-    canTalk = false;
-  }
-
-  @Override
-  public void atTurnStart() {
-    canTalk = true;
-    if(Wiz.hand().contains(this)) {
-      Wiz.atb(new DrawCardAction(this.magicNumber, new AbstractGameAction() {
-        @Override
-        public void update() {
-          for(AbstractCard c: DrawCardAction.drawnCards) {
-            CardModifierManager.addModifier(c, new RetainMod(true));
-          }
-          this.isDone = true;
+    Wiz.atb(new TalkAction(true, cardStrings.EXTENDED_DESCRIPTION[0], 2.0F, 3.0F));
+    Wiz.atb(new DrawCardAction(this.magicNumber, new AbstractGameAction() {
+      @Override
+      public void update() {
+        for(AbstractCard c: DrawCardAction.drawnCards) {
+          CardModifierManager.addModifier(c, new RetainMod(true));
         }
-      }));
-    }
+        this.isDone = true;
+      }
+    }));
   }
 }

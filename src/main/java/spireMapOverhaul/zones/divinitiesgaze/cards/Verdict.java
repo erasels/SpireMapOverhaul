@@ -15,8 +15,8 @@ public class Verdict extends AbstractSMOCard {
   private static boolean canTalk = true;
 
   public Verdict() {
-    super(ID, DivinitiesGazeZone.ID, 2, CardType.SKILL, CardRarity.SPECIAL, CardTarget.ENEMY, CardColor.COLORLESS);
-    this.magicNumber = this.baseMagicNumber = 10;
+    super(ID, DivinitiesGazeZone.ID, 1, CardType.SKILL, CardRarity.SPECIAL, CardTarget.ENEMY, CardColor.COLORLESS);
+    this.magicNumber = this.baseMagicNumber = 12;
     this.exhaust = true;
   }
 
