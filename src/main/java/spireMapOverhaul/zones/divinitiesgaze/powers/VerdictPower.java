@@ -5,6 +5,7 @@ import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.HealthBarRenderPowe
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.InstantKillAction;
+import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -13,6 +14,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.vfx.combat.WeightyImpactEffect;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractSMOPower;
+import spireMapOverhaul.actions.YeetPlayerAction;
 import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.zones.divinitiesgaze.DivinitiesGazeZone;
 
@@ -42,7 +44,11 @@ public class VerdictPower extends AbstractSMOPower implements HealthBarRenderPow
     if (owner.currentHealth < this.amount) {
       Wiz.atb(new VFXAction(new WeightyImpactEffect(this.owner.hb.cX, this.owner.hb.cY, Color.WHITE.cpy())));
       Wiz.atb(new WaitAction(0.8F));
-      Wiz.atb(new InstantKillAction(owner));
+      if (this.owner.isPlayer) {
+        Wiz.atb(new YeetPlayerAction());
+      } else {
+        Wiz.atb(new InstantKillAction(owner));
+      }
     } else {
       Wiz.atb(new ApplyPowerAction(this.owner, this.owner, new VerdictPower(this.owner, 3), 3));
     }
