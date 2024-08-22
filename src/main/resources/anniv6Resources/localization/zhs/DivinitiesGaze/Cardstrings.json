@@ -2,6 +2,7 @@
   "${ModID}:Clairvoyance": {
     "NAME": "千里眼",
     "DESCRIPTION": "抽 !M! 张牌，抽到的牌获得 保留 。 NL 消耗 。",
+    "EXTENDED_DESCRIPTION": [
       "我看见了一切!"
     ]
   },
