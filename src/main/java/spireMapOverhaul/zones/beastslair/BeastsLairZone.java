@@ -122,7 +122,7 @@ public class BeastsLairZone extends AbstractZone implements EncounterModifyingZo
 
     @Override
     public boolean canSpawn() {
-        return AbstractDungeon.actNum >= 2;
+        return AbstractDungeon.actNum >= 2 && !bossList.isEmpty();
     }
 
     @SpirePatch2(clz = AbstractDungeon.class, method = "dungeonTransitionSetup")
