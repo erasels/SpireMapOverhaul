@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.cards.status.Slimed;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
+import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.zones.divinitiesgaze.cards.Mitosis;
 import spireMapOverhaul.zones.divinitiesgaze.divinities.BaseDivineBeing;
 
@@ -43,11 +44,12 @@ public class Primordial extends BaseDivineBeing {
       targets.remove(card);
       targets.removeIf(x -> x.type == AbstractCard.CardType.CURSE);
 
-      AbstractCard randomCard = targets.get(AbstractDungeon.eventRng.random(targets.size()));
+      AbstractCard randomCard = Wiz.getRandomItem(targets);
 
       AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(card.makeStatEquivalentCopy(),
           (float) Settings.WIDTH * 0.33f, (float)Settings.HEIGHT / 2.0F));
-      AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(randomCard.makeStatEquivalentCopy(),
+      if(randomCard != null)
+        AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(randomCard.makeStatEquivalentCopy(),
           (float) Settings.WIDTH * 0.66f, (float)Settings.HEIGHT / 2.0F));
 
       AbstractDungeon.gridSelectScreen.selectedCards.clear();
@@ -63,6 +65,6 @@ public class Primordial extends BaseDivineBeing {
 
   @Override
   public Supplier<Boolean> isEventOptionEnabled() {
-    return () -> AbstractDungeon.player.masterDeck.size() > 0;
+    return () -> !AbstractDungeon.player.masterDeck.isEmpty();
   }
 }
