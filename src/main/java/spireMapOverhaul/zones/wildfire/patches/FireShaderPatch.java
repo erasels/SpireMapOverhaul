@@ -19,6 +19,7 @@ import java.nio.charset.StandardCharsets;
 import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.rs;
 import static spireMapOverhaul.SpireAnniversary6Mod.*;
 import static spireMapOverhaul.util.Wiz.getCurZone;
+import static spireMapOverhaul.zones.wildfire.Wildfire.isNvidiaCard;
 
 @SuppressWarnings("unused")
 public class FireShaderPatch {
@@ -36,14 +37,14 @@ public class FireShaderPatch {
     public static class RenderFogInCombat {
         @SpirePrefixPatch
         public static void addShader(AbstractDungeon __instance, SpriteBatch sb) {
-            if (rs == AbstractDungeon.RenderScene.NORMAL && getCurZone() instanceof Wildfire && getShaderConfig()) {
+            if (rs == AbstractDungeon.RenderScene.NORMAL && isNvidiaCard && getCurZone() instanceof Wildfire && getShaderConfig()) {
                 StartFbo(sb);
             }
         }
 
         @SpireInsertPatch(rloc=26) // 46 if you want the player's hand to be covered
         public static void removeShader(AbstractDungeon __instance, SpriteBatch sb) {
-            if (rs == AbstractDungeon.RenderScene.NORMAL && getCurZone() instanceof Wildfire && getShaderConfig()) {
+            if (rs == AbstractDungeon.RenderScene.NORMAL && isNvidiaCard && getCurZone() instanceof Wildfire && getShaderConfig()) {
                 StopFbo(sb);
             }
         }

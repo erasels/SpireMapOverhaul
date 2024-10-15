@@ -30,6 +30,15 @@ import static spireMapOverhaul.SpireAnniversary6Mod.*;
 //Credit for zone icon: https://game-icons.net/1x1/lorc/burning-tree.html
 public class Wildfire extends AbstractZone implements CombatModifyingZone, RewardModifyingZone {
     public static final String ID = "Wildfire";
+    static {
+        String renderer = Gdx.gl.glGetString(GL20.GL_RENDERER).toLowerCase();
+        String vendor = Gdx.gl.glGetString(GL20.GL_VENDOR).toLowerCase();
+        // This shader doesn't seem to work on most non-nvidia cards so we disable it for them
+        isNvidiaCard = vendor.contains("nvidia") || renderer.contains("nvidia");
+    }
+
+    public static Boolean isNvidiaCard;
+
     public static ShaderProgram mapShader = new ShaderProgram(SpriteBatch.createDefaultShader().getVertexShaderSource(), Gdx.files.internal(makeShaderPath("wildfire/mapShader.frag")).readString(String.valueOf(StandardCharsets.UTF_8)));
     static FrameBuffer fbo = new FrameBuffer(Pixmap.Format.RGBA8888, Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), false, false);
     public Wildfire() {
@@ -52,7 +61,7 @@ public class Wildfire extends AbstractZone implements CombatModifyingZone, Rewar
 
     @Override
     public void renderOnMap(SpriteBatch sb, float alpha) {
-        if(getShaderConfig() && alpha > 0) {
+        if(isNvidiaCard && getShaderConfig() && alpha > 0) {
             sb.flush();
             fbo.begin();
 
