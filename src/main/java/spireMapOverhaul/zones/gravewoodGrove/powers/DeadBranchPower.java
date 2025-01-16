@@ -1,5 +1,6 @@
 package spireMapOverhaul.zones.gravewoodGrove.powers;
 
+import com.evacipated.cardcrawl.mod.stslib.patches.NeutralPowertypePatch;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
@@ -9,7 +10,6 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.RelicLibrary;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.DeadBranch;
 import spireMapOverhaul.SpireAnniversary6Mod;
 
@@ -22,9 +22,8 @@ public class DeadBranchPower extends AbstractGravewoodGrovePower {
 
     private int cardsExhaustedThisTurn = 0;
 
-
     public DeadBranchPower(AbstractCreature owner) {
-        super(POWER_ID, NAME, AbstractPower.PowerType.DEBUFF, false, owner, 0);
+        super(POWER_ID, NAME, NeutralPowertypePatch.NEUTRAL, false, owner, 0);
     }
 
     public void onExhaust(AbstractCard card) {
