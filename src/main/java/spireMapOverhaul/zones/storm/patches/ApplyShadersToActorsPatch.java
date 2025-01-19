@@ -12,6 +12,7 @@ import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
@@ -40,7 +41,7 @@ public class ApplyShadersToActorsPatch {
 
         @SpireInsertPatch(locator = Locator.class)
         public static void startBuffer(AbstractPlayer __instance, SpriteBatch sb) {
-            if(StormUtil.isInStormZone() || StormUtil.activePlayerLightning) {
+            if(!__instance.hasRelic("anniv7:MissingnoRelic") && (StormUtil.isInStormZone() || StormUtil.activePlayerLightning)) {
                 sb.flush();
                 if (buffer == null) {
                     buffer = new FrameBuffer(Pixmap.Format.RGBA8888, Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), false);
@@ -61,7 +62,7 @@ public class ApplyShadersToActorsPatch {
 
         @SpireInsertPatch(locator = LocatorTwo.class)
         public static void endBufferAndDraw(AbstractPlayer __instance, SpriteBatch sb) {
-            if (StormUtil.activePlayerLightning || StormUtil.isInStormZone()) {
+            if (!__instance.hasRelic("anniv7:MissingnoRelic") && (StormUtil.activePlayerLightning || StormUtil.isInStormZone())) {
                 sb.flush();
                 buffer.end();
                 if (playerTexture == null) {
@@ -103,7 +104,7 @@ public class ApplyShadersToActorsPatch {
 
         @SpireInsertPatch(locator = Locator.class)
         public static void startBuffer(AbstractMonster __instance, SpriteBatch sb) {
-            if (StormUtil.isInStormZone()) {
+            if (StormUtil.isInStormZone() && !AbstractDungeon.player.hasRelic("anniv7:MissingnoRelic")) {
                 sb.flush();
                 if (buffer == null) {
                     buffer = new FrameBuffer(Pixmap.Format.RGBA8888, Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), false);
@@ -124,7 +125,7 @@ public class ApplyShadersToActorsPatch {
 
         @SpireInsertPatch(locator = LocatorTwo.class)
         public static void endBufferAndDraw(AbstractMonster __instance, SpriteBatch sb) {
-            if (StormUtil.isInStormZone()) {
+            if (StormUtil.isInStormZone() && !AbstractDungeon.player.hasRelic("anniv7:MissingnoRelic")) {
                 sb.flush();
                 buffer.end();
                 if (playerTexture == null) {
