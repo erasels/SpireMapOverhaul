@@ -17,7 +17,7 @@ import spireMapOverhaul.zones.ambushed.AmbushedUtil;
         method = "die",
         paramtypez = {}
 )
-public class NewSurroundedMonstersPatch {
+public class MonsterDeathPatch {
 
     @SpireInsertPatch(locator = Locator.class)
     public static void Insert(AbstractMonster __instance) {
