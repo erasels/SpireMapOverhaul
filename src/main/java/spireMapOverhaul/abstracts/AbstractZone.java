@@ -77,7 +77,7 @@ public abstract class AbstractZone {
     protected float labelX = 0, labelY = 0;
 
     public FrameBuffer zoneFb = null;
-    private TextureRegion shapeRegion = null;
+    public TextureRegion shapeRegion = null;
     public Texture iconTexture;
 
     public List<Hitbox> hitboxes;
@@ -211,8 +211,12 @@ public abstract class AbstractZone {
             }
             float anchorX = x * SPACING_X + OFFSET_X - ZoneShapeMaker.FB_OFFSET;
             float anchorY = y * Settings.MAP_DST_Y + OFFSET_Y + DungeonMapScreen.offsetY - ZoneShapeMaker.FB_OFFSET;
-            sb.setColor(getAdjustedColor().cpy().mul(1f, 1f, 1f, alpha*0.5f));
+
+            Color oldColor = sb.getColor();
+            sb.setColor(getAdjustedColor().cpy().mul(1f, 1f, 1f, alpha * 0.5f));
             sb.draw(shapeRegion, anchorX, anchorY);
+            sb.setColor(oldColor);
+
             boolean showTooltip = false;
             for (Hitbox hb : hitboxes) {
                 hb.move(hitboxRelativePositions.get(hb).getKey() + anchorX, hitboxRelativePositions.get(hb).getValue() + anchorY);
@@ -226,13 +230,10 @@ public abstract class AbstractZone {
                 float tooltipWidth = 280.0F * Settings.scale;
                 float lineHeight = 26.0F * Settings.scale;
                 float tooltipHeight = -FontHelper.getSmartHeight(FontHelper.tipBodyFont, tooltipBody, tooltipWidth, lineHeight) -7f * Settings.scale;
-
                 float tooltipY = InputHelper.mY - 65f * Settings.scale;
-
                 if (tooltipY - tooltipHeight < 0) {
                     tooltipY = tooltipHeight;
                 }
-
                 TipHelper.renderGenericTip(InputHelper.mX + 40f * Settings.scale, tooltipY, name, tooltipBody);
             }
         }
