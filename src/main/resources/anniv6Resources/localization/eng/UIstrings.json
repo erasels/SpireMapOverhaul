@@ -54,5 +54,10 @@
     "TEXT": [
       "#pAuthor: {0}"
     ]
+  },
+  "${ModID}:SayTheSpireCompatibilityPatch": {
+    "TEXT": [
+      "Biome: {0}"
+    ]
   }
 }
