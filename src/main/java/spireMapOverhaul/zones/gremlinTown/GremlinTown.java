@@ -611,17 +611,17 @@ public class GremlinTown extends AbstractZone
         commonGremlinRelics.add(new NobClub());
         commonGremlinRelics.add(new Bowtie());
         commonGremlinRelics.add(new Lockpicks());
-        Collections.shuffle(commonGremlinRelics, relicRng.random);
+        Collections.shuffle(commonGremlinRelics, new java.util.Random(relicRng.randomLong()));
 
         uncommonGremlinRelics = new ArrayList<>();
         uncommonGremlinRelics.add(new GremlinHood());
         uncommonGremlinRelics.add(new Duelity());
         uncommonGremlinRelics.add(new LousePlushie());
-        Collections.shuffle(uncommonGremlinRelics, relicRng.random);
+        Collections.shuffle(uncommonGremlinRelics, new java.util.Random(relicRng.randomLong()));
 
         rareGremlinRelics = new ArrayList<>();
         rareGremlinRelics.add(new WarHorn());
         rareGremlinRelics.add(new GremlinStaff());
-        Collections.shuffle(rareGremlinRelics, relicRng.random);
+        Collections.shuffle(rareGremlinRelics, new java.util.Random(relicRng.randomLong()));
     }
 }

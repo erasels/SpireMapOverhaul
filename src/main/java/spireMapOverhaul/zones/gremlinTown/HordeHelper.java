@@ -119,7 +119,7 @@ public class HordeHelper {
         platformQueue.add(new GremlinWizard(Settings.WIDTH * 4, 0));
         platformQueue.add(new GremlinRockTosser(Settings.WIDTH * 4, 0));
 
-        Collections.shuffle(groundQueue, AbstractDungeon.monsterRng.random);
+        Collections.shuffle(groundQueue, new java.util.Random(AbstractDungeon.monsterRng.randomLong()));
 
         groundQueue.add(3, new ChubbyGremlin(Settings.WIDTH * 4, 0));
         groundQueue.add(9, new GremlinNob(Settings.WIDTH * 4, 0));

@@ -130,7 +130,7 @@ public class ThiefKing extends CustomMonster {
                         else {
                             AbstractCard.CardRarity rarity = cards.get(0).rarity;
                             cards.removeIf(c -> c.rarity != rarity);
-                            Collections.shuffle(cards);
+                            Collections.shuffle(cards, new java.util.Random(AbstractDungeon.cardRandomRng.randomLong()));
                             cardToRemove = cards.get(0);
                         }
                         if (cardToRemove != null) {
