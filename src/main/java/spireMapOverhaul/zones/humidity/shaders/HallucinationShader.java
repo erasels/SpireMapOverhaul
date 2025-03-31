@@ -10,20 +10,17 @@ import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInsertPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.scenes.AbstractScene;
 import spireMapOverhaul.SpireAnniversary6Mod;
-import spireMapOverhaul.zones.humidity.HumidityZone;
 import spireMapOverhaul.zones.humidity.powers.HallucinatingPower;
 import spireMapOverhaul.zones.thefog.util.MouseInfo;
 
 import java.util.LinkedList;
 
 import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.rs;
-import static spireMapOverhaul.SpireAnniversary6Mod.*;
+import static spireMapOverhaul.SpireAnniversary6Mod.getShaderConfig;
+import static spireMapOverhaul.SpireAnniversary6Mod.makeShaderPath;
 
 @SuppressWarnings("unused")
 public class HallucinationShader {

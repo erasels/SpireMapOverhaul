@@ -2,7 +2,6 @@ package spireMapOverhaul.zones.humidity.encounters;
 
 import basemod.ReflectionHacks;
 import com.evacipated.cardcrawl.modthespire.lib.*;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.AnimateSlowAttackAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
@@ -128,7 +127,7 @@ public class ThievesThrowMoney_Looter {
         }
     }
 
-    private static MonsterStrings monsterStrings;
+    private static final MonsterStrings monsterStrings;
     public static String NAME;
     public static String[] MOVES;
     public static String[] DIALOG;

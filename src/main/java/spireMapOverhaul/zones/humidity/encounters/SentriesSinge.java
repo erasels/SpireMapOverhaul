@@ -1,4 +1,4 @@
-package spireMapOverhaul.zones.humidity.monsters;
+package spireMapOverhaul.zones.humidity.encounters;
 
 import com.evacipated.cardcrawl.modthespire.lib.SpireInstrumentPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;

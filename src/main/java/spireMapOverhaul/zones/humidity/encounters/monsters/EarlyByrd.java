@@ -4,7 +4,6 @@ import basemod.ReflectionHacks;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.modthespire.lib.*;
-import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -14,32 +13,20 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.dungeons.Exordium;
-import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.monsters.city.Byrd;
 import com.megacrit.cardcrawl.monsters.exordium.JawWorm;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.BackAttackPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
-import com.megacrit.cardcrawl.powers.VulnerablePower;
-import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.relics.PaperFrog;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import com.megacrit.cardcrawl.screens.runHistory.RunPathElement;
 import com.megacrit.cardcrawl.stances.AbstractStance;
 import com.megacrit.cardcrawl.stances.NeutralStance;
-import com.megacrit.cardcrawl.vfx.combat.SmokeBombEffect;
 import javassist.CannotCompileException;
-import javassist.CtBehavior;
 import javassist.expr.ExprEditor;
-import javassist.expr.MethodCall;
 import javassist.expr.NewExpr;
-import spireMapOverhaul.patches.BestiaryIntegrationPatch;
 import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.zones.humidity.HumidityZone;
 import spireMapOverhaul.zones.humidity.powers.EarlyByrdMinionPower;
-import spireMapOverhaul.zones.storm.patches.ElectricCardPatch;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 
@@ -117,10 +104,8 @@ public class EarlyByrd {
             if(!(jawWorm instanceof JawWorm))return SpireReturn.Continue();
             for(DamageInfo dmg : __instance.damage) {
                 dmg.applyPowers(__instance, jawWorm);
-                int x=0;x+=1;
                 if (true) {//always apply BackAttack
                     dmg.output = (int)((float)dmg.output * 1.5F);
-                    int y=0;y+=1;
                 }
             }
             EnemyMoveInfo move = ReflectionHacks.getPrivate(__instance,AbstractMonster.class,"move");

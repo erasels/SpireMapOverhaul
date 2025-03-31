@@ -2,12 +2,9 @@ package spireMapOverhaul.zones.humidity.relics;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.PlatedArmorPower;
 import spireMapOverhaul.abstracts.AbstractSMORelic;
-import spireMapOverhaul.zones.gremlinTown.GremlinTown;
 import spireMapOverhaul.zones.humidity.HumidityZone;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
