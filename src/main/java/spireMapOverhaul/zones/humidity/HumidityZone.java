@@ -1,6 +1,10 @@
 package spireMapOverhaul.zones.humidity;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.modthespire.Loader;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
@@ -10,7 +14,9 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.FrozenEgg2;
 import com.megacrit.cardcrawl.rooms.MonsterRoom;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
+import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.abstracts.AbstractZone;
+import spireMapOverhaul.util.TexLoader;
 import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.zoneInterfaces.CombatModifyingZone;
 import spireMapOverhaul.zoneInterfaces.OnTravelZone;
@@ -26,6 +32,8 @@ public class HumidityZone extends AbstractZone implements OnTravelZone, CombatMo
 
     public static final boolean DEBUG_PLAYER_IS_ALWAYS_IN_ZONE = false;
     public static final String DEBUG_FORCE_EVENT_ID = "";
+
+    private Texture humidibot = TexLoader.getTexture(SpireAnniversary6Mod.makeBackgroundPath("humidity/humidibot.png"));
 
     public HumidityZone() {
         super(ID, Icons.MONSTER);
@@ -134,5 +142,41 @@ public class HumidityZone extends AbstractZone implements OnTravelZone, CombatMo
         return HumidityZone.class.getName()+".isNotInZone() ? ";
     }
 
+    public static float frameTimer=1/60f;
+    public static int humidibotShakeFrameCounter=0;
+    public static float humidibotShakePatternTimer=3.3f;
+    public static int humidibotShakeRate=2;
+    public static float humidibotShakeOffset=-1.0f;
+    @Override
+    public void postRenderCombatBackground(SpriteBatch sb) {
+        float humidibotX=Settings.WIDTH/2f-350*Settings.scale;
+        float humidibotY=375*Settings.scale;
+
+        humidibotShakePatternTimer-=Gdx.graphics.getDeltaTime();
+        if(humidibotShakePatternTimer<0f)humidibotShakePatternTimer+=1.0f+ MathUtils.random(10.0f);
+        frameTimer -= Gdx.graphics.getDeltaTime();
+        if(frameTimer<0.0f){
+            frameTimer+=1/60f;
+            if(frameTimer<0.0f)frameTimer=0.0f;
+
+            if(humidibotShakePatternTimer<0.25f) {
+                humidibotShakeFrameCounter -= 1;
+                if (humidibotShakeFrameCounter < 0) {
+                    humidibotShakeFrameCounter += humidibotShakeRate;
+                    humidibotShakeOffset *= -1;
+                }
+            }else{
+                humidibotShakeOffset=-Math.abs(humidibotShakeOffset);
+            }
+            float steamX=humidibotX+160/2f*Settings.scale;
+            float steamY=humidibotY+205/2f*Settings.scale;
+            for(int i=0;i<20;i+=1) {
+                AbstractDungeon.effectsQueue.add(new SteamBlurEffect(steamX, steamY));
+            }
+        }
+
+        sb.draw(humidibot, humidibotX, humidibotY+humidibotShakeOffset*Settings.scale, humidibot.getWidth()/2f*Settings.scale, humidibot.getHeight()/2f*Settings.scale);
+
+    }
 
 }
