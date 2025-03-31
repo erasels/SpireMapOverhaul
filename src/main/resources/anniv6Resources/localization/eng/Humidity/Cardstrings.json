@@ -1,0 +1,14 @@
+{
+  "${ModID}:Singe": {
+    "NAME": "Singe",
+    "DESCRIPTION": "Unplayable. NL At the end of your turn, take !M! damage and Exhaust."
+  },
+  "${ModID}:PowerelicCard": {
+    "NAME": "Powerelic",
+    "DESCRIPTION": "Gain the listed relic until the start of next combat."
+  },
+  "${ModID}:PowerelicTemporaryDuplicateCard": {
+    "NAME": "Powerelic Duplicate",
+    "DESCRIPTION": "[DNT] You REALLY shouldn't be able to see this message."
+  }
+}
