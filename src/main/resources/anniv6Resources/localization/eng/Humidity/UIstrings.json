@@ -1,0 +1,9 @@
+{
+  "${ModID}:Humidity": {
+    "TEXT": [
+      "Humidity",
+      "Oh no! Some #pvandal has scribbled all over this biome! The description now reads: NL NL \"All enemies are #rdebuffed in new and #rdangeresque ways. NL Upon entry, obtain a carded #grare #grelic [REMOVE_SPACE]. NL Author: The Ooik [REMOVE_SPACE]\" NL NL It sounds like combats in this area will be #geasier than usual, so... what's the catch?",
+      "Lua Viper"
+    ]
+  }
+}

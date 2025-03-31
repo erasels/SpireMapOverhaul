@@ -1,0 +1,55 @@
+{
+  "${ModID}:EarlyByrd": {
+    "NAME": "Early Byrd",
+    "MOVES": [],
+    "DIALOG": []
+  },
+  "${ModID}:Looter": {
+    "MOVES": [
+      "Toss",
+      "Dent"
+    ],
+    "NAME": "Looter",
+    "DIALOG": [
+      "Take this!",
+      "@Rude...@",
+      "Where's my smoke bomb... Let's see here...",
+      "Bye now."
+    ]
+  },
+  "${ModID}:CustomGremlinNob": {
+    "NAME": "Gremlin Nob",
+    "DIALOG": [
+      "~rrrroohrrrghhhhh...~"
+    ]
+  },
+  "${ModID}:Mugger": {
+    "MOVES": [
+      "Toss",
+      "Dent"
+    ],
+    "NAME": "Mugger",
+    "DIALOG": [
+      "Ancient shinobi technique!",
+      "I'm outta here!"
+    ]
+  },
+  "${ModID}:Sleevers": {
+    "DIALOG": [
+      "Sleever",
+      "Sleever",
+      "I'm busy sleeving these cards. Come back later.",
+      "@AAAAHHHH!@ NL @My@ @cards!@"
+    ]
+  },
+  "${ModID}:BanditBear": {
+    "DIALOG": [
+      "~Group~ ~hug,~ ~everybody!!~"
+    ]
+  },
+  "${ModID}:BookOfStabbing": {
+    "NAME": "Book of Punching",
+    "MOVES": [],
+    "DIALOG": []
+  }
+}

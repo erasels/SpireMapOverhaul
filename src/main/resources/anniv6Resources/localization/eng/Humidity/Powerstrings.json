@@ -1,0 +1,78 @@
+{
+  "${ModID}:EarlyByrdMinionPower": {
+    "NAME": "Friendly",
+    "DESCRIPTIONS": [
+      "But the second mouse gets the cheese."
+    ]
+  },
+  "${ModID}:ScrapOozePower": {
+    "NAME": "Scrappy",
+    "DESCRIPTIONS": [
+      "Whenever you receive attack damage from this enemy, you have a #b",
+      "% chance to find a #yRelic. (Once per combat)"
+    ]
+  },
+  "${ModID}:AcidicPower": {
+    "NAME": "Acidic",
+    "DESCRIPTIONS": [
+      "Whenever you play a #yBasic card, loses #b",
+      " #yStrength until the end of the turn. NL NL (It is a chemistry joke.)"
+    ]
+  },
+  "${ModID}:SpikyPower": {
+    "NAME": "Spiky",
+    "DESCRIPTIONS": [
+      "Whenever you play a #yCommon, #yUncommon, or #yRare card, loses #b",
+      " #yStrength until the end of the turn. NL NL (It is not a chemistry joke.)"
+    ]
+  },
+  "${ModID}:SplatPower": {
+    "NAME": "Splat",
+    "DESCRIPTIONS": [
+      "When its HP is at or below #b50%, will be stunned for #b1 turn."
+    ]
+  },
+  "${ModID}:HallucinationCloudPower": {
+    "NAME": "Spore Cloud",
+    "DESCRIPTIONS": [
+      "On death, applies #b",
+      " #yHallucinating."
+    ]
+  },
+  "${ModID}:HallucinatingPower": {
+    "NAME": "Hallucinating",
+    "DESCRIPTIONS": [
+      "#r+15 Mult NL #g1 #gin #g6 chance this card is destroyed at end of round",
+      "If shaders were enabled, something interesting would have happened."
+    ]
+  },
+  "${ModID}:GilTossPower": {
+    "NAME": "Zeninage",
+    "DESCRIPTIONS": [
+      " attacks by throwing #yGold at you."
+    ]
+  },
+  "${ModID}:CustomExplosivePower": {
+    "NAME": "Explosive",
+    "DESCRIPTIONS": []
+  },
+  "${ModID}:SleevingPower": {
+    "NAME": "Brand-New Card Sleeves",
+    "DESCRIPTIONS": [
+      "On receiving attack damage, drops #b3 random cards. Choose #b1 to add into your hand. It costs #b0 this turn. (Once per combat)"
+    ]
+  },
+  "${ModID}:CustomAngryPower": {
+    "NAME": "Mildly Annoyed",
+    "DESCRIPTIONS": [
+      "Whenever you play a #ySkill, gains #b",
+      " #yStrength until the end of the turn."
+    ]
+  },
+  "${ModID}:PowerelicPower": {
+    "NAME": "Powerelic",
+    "DESCRIPTIONS": [
+      "[DNT] You shouldn't see this message."
+    ]
+  }
+}

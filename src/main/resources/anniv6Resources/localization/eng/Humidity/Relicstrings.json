@@ -1,0 +1,10 @@
+{
+  "${ModID}:Pants": {
+    "NAME": "Pants",
+    "FLAVOR": "Comfy.",
+    "DESCRIPTIONS": [
+      "Start each combat with #b",
+      " #yPlated #yArmor."
+    ]
+  }
+}
