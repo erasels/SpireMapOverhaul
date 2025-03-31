@@ -63,15 +63,6 @@ public class PowerelicPower extends AbstractSMOPower {
             sb.setColor(c);
             sb.draw(this.img, x - 43F*Settings.scale, y - 43F*Settings.scale, 0F, 0F, 128F, 128F, 1.25F*48/128F*Settings.scale * 1.5F, 1.25F*48/128F*Settings.scale * 1.5F, 0.0F, 0, 0, 128, 128, false, false);
         }
-//        } else {
-//            sb.setColor(c);
-//
-//            if (Settings.isMobile) {
-//                sb.draw(this.region48, x - (float)this.region48.packedWidth / 2.0F, y - (float)this.region48.packedHeight / 2.0F, (float)this.region48.packedWidth / 2.0F, (float)this.region48.packedHeight / 2.0F, (float)this.region48.packedWidth, (float)this.region48.packedHeight, Settings.scale * 1.17F, Settings.scale * 1.17F, 0.0F);
-//            } else {
-//                sb.draw(this.region48, x - (float)this.region48.packedWidth / 2.0F, y - (float)this.region48.packedHeight / 2.0F, (float)this.region48.packedWidth / 2.0F, (float)this.region48.packedHeight / 2.0F, (float)this.region48.packedWidth, (float)this.region48.packedHeight, Settings.scale, Settings.scale, 0.0F);
-//            }
-//        }
         ArrayList<AbstractGameEffect> effect = ReflectionHacks.getPrivate(this, AbstractPower.class,"effect");
         Iterator var5 = effect.iterator();
         while(var5.hasNext()) {

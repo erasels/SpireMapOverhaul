@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.powers.ArtifactPower;
 import com.megacrit.cardcrawl.powers.GainStrengthPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import spireMapOverhaul.SpireAnniversary6Mod;
@@ -30,7 +31,7 @@ public class AcidicPower extends AbstractSMOPower {
     public void onUseCard(AbstractCard card, UseCardAction action) {
         if (card.rarity == AbstractCard.CardRarity.BASIC) {
             this.addToTop(new ApplyPowerAction(this.owner, this.owner, new StrengthPower(this.owner, -amount), -amount));// 27
-            if (!this.owner.hasPower("Artifact")) {// 29
+            if (!this.owner.hasPower(ArtifactPower.POWER_ID)) {// 29
                 this.addToTop(new ApplyPowerAction(this.owner, this.owner, new GainStrengthPower(this.owner, amount), amount));// 30
             }
             this.flash();
