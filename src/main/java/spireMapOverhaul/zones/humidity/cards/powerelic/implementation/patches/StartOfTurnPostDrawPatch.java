@@ -1,5 +1,6 @@
 package spireMapOverhaul.zones.humidity.cards.powerelic.implementation.patches;
 
+import com.evacipated.cardcrawl.modthespire.Loader;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -18,7 +19,8 @@ import java.util.ArrayList;
 public class StartOfTurnPostDrawPatch {
     @SpireInsertPatch(locator = Locator.class)
     public static void Patch() {
-        Wiz.adp().applyStartOfTurnPostDrawPowers();
+        if(!Loader.isModLoaded("anniv7"))
+            Wiz.adp().applyStartOfTurnPostDrawPowers();
     }
     static class Locator extends SpireInsertLocator {
         @Override
