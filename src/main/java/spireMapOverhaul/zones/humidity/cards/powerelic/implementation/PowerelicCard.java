@@ -219,7 +219,7 @@ public class PowerelicCard extends AbstractSMOCard implements OnObtainCard, Cust
             //Any other card: if the card is removed from the deck, run loseRelic (which will automatically onUnequip it for us)
             //      note that for those cards, we call loseRelic even if the relic isn't currently activated
             if (!PowerelicAllowlist.isEssentialEquipRelic(capturedRelic)
-                    || Wiz.adp().relics.contains(capturedRelic)) {
+                || Wiz.adp().relics.contains(capturedRelic)) {
                 boolean success = Wiz.adp().loseRelic(capturedRelic.relicId);
                 if(!success){
                     //if we're here, then loseRelic failed because the relic wasn't in the player relic list
@@ -367,8 +367,6 @@ public class PowerelicCard extends AbstractSMOCard implements OnObtainCard, Cust
         }
         return new CardedRelicSaveData(this.capturedRelic.relicId,this.capturedRelic.counter,Wiz.adp().relics.contains(this.capturedRelic));
     }
-
-    //TODO: this does not yet account for temporary *duplicate* relics!
 
     @Override
     public void onLoad(CardedRelicSaveData cardedRelicSaveData) {
