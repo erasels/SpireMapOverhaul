@@ -237,7 +237,7 @@ public class GremlinWheel extends AbstractImageEvent {
         ops.add(2);
         ops.add(3);
         ops.add(4);
-        Collections.shuffle(ops, AbstractDungeon.miscRng.random);
+        Collections.shuffle(ops, new java.util.Random(AbstractDungeon.miscRng.randomLong()));
 
         imageEventText.setDialogOption(OPTIONS[ops.get(0)]);
         imageEventText.setDialogOption(OPTIONS[ops.get(1)]);
