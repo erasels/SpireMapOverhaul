@@ -69,8 +69,8 @@ public class CultistDagger {
         }
         card.damage = MathUtils.floor(tmp);
         AbstractStance actualStance = Wiz.adp().stance;
-        ArrayList<AbstractPower> actualPowers = Wiz.adp().powers;
-        ArrayList<AbstractRelic> actualRelics = Wiz.adp().relics;
+        ArrayList<AbstractPower> actualPowers = new ArrayList<>(Wiz.adp().powers);
+        ArrayList<AbstractRelic> actualRelics = new ArrayList<>(Wiz.adp().relics);
         Wiz.adp().stance = new NeutralStance();
         Wiz.adp().powers.clear();
         Wiz.adp().relics.clear();
