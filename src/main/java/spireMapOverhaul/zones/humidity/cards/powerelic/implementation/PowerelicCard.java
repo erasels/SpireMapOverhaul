@@ -3,15 +3,20 @@ package spireMapOverhaul.zones.humidity.cards.powerelic.implementation;
 import basemod.ReflectionHacks;
 import basemod.abstracts.CustomSavable;
 import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.OnObtainCard;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.RelicLibrary;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -303,6 +308,12 @@ public class PowerelicCard extends AbstractSMOCard implements OnObtainCard, Cust
                 img = this.capturedRelic.img;
                 sb.draw(img, drawX, drawY + 72.0F, 125.0F, 23.0F, 250.0F, 190.0F, 2*this.drawScale * Settings.scale, 2*this.drawScale * Settings.scale, this.angle, -60, -64, 250, 190, false, false);
             }
+            if(this.capturedRelic.counter>-1){
+                String text=Integer.toString(this.capturedRelic.counter);
+                topPanelInfoFont_L.getData().setScale(this.drawScale);
+                FontHelper.renderRotatedText(sb, topPanelInfoFont_L, text,
+                        this.current_x, this.current_y, 87.0F * Settings.scale * this.drawScale / 2.0F, 90.0F * Settings.scale * this.drawScale / 2.0F, this.angle, true, Color.WHITE);
+            }
         }
     }
 
@@ -328,6 +339,15 @@ public class PowerelicCard extends AbstractSMOCard implements OnObtainCard, Cust
                     }else{
                         img = prCard.capturedRelic.img;
                         sb.draw(img, drawX+125F, drawY + 72.0F, 125.0F, 23.0F, 250.0F, 190.0F, 4 * Settings.scale, 4 * Settings.scale, 0.0F, -60, -64, 250, 190, false, false);
+                    }
+                    if(prCard.capturedRelic.counter>-1){
+                        String text=Integer.toString(prCard.capturedRelic.counter);
+                        float current_x = ReflectionHacks.getPrivate(__instance, SingleCardViewPopup.class,"current_x");
+                        float current_y = ReflectionHacks.getPrivate(__instance, SingleCardViewPopup.class,"current_y");
+                        float drawScale = ReflectionHacks.getPrivate(__instance, SingleCardViewPopup.class,"drawScale");
+                        topPanelInfoFont_L.getData().setScale(drawScale);
+                        FontHelper.renderRotatedText(sb, topPanelInfoFont_L, text,
+                                current_x, current_y, 82.0F * Settings.scale * drawScale / 2.0F, 385.0F * Settings.scale * drawScale / 2.0F, 0.0F, true, Color.WHITE);
                     }
                 }
             }
@@ -417,5 +437,62 @@ public class PowerelicCard extends AbstractSMOCard implements OnObtainCard, Cust
         PowerelicCard copy = PowerelicCard.fromCopy(capturedRelic);
         copy.cardIsFromCardReward = this.cardIsFromCardReward;
         return copy;
+    }
+
+    public static BitmapFont topPanelInfoFont_L;
+    static{
+        FileHandle fontFile;
+        float fontScale=1.0f;
+        switch (Settings.language) {
+            case ZHS:
+                fontFile = Gdx.files.internal("font/zhs/SourceHanSerifSC-Bold.otf");
+                break;
+            case ZHT:
+                fontFile = Gdx.files.internal("font/zht/NotoSansCJKtc-Bold.otf");
+                break;
+            case EPO:
+                fontFile = Gdx.files.internal("font/epo/Andada-Bold.otf");
+                break;
+            case GRE:
+                fontFile = Gdx.files.internal("font/gre/Roboto-Bold.ttf");
+                break;
+            case JPN:
+                fontFile = Gdx.files.internal("font/jpn/NotoSansCJKjp-Bold.otf");
+                break;
+            case KOR:
+                fontFile = Gdx.files.internal("font/kor/GyeonggiCheonnyeonBatangBold.ttf");
+                break;
+            case POL:
+            case RUS:
+            case UKR:
+                fontFile = Gdx.files.internal("font/rus/FiraSansExtraCondensed-Bold.ttf");
+                break;
+            case SRP:
+            case SRB:
+                fontFile = Gdx.files.internal("font/srb/InfluBG-Bold.otf");
+                break;
+            case THA:
+                fontScale = 0.95F;
+                fontFile = Gdx.files.internal("font/tha/CSChatThaiUI.ttf");
+                break;
+            case VIE:
+                fontFile = Gdx.files.internal("font/vie/Grenze-SemiBold.ttf");
+                break;
+            default:
+                fontFile = Gdx.files.internal("font/Kreon-Bold.ttf");
+        }
+        ReflectionHacks.setPrivateStatic(FontHelper.class,"fontFile",fontFile);
+        ReflectionHacks.setPrivateStatic(FontHelper.class,"fontScale",fontScale);
+
+        FreeTypeFontGenerator.FreeTypeFontParameter param = ReflectionHacks.getPrivateStatic(FontHelper.class,"param");
+        param.shadowColor = new Color(0.0F, 0.0F, 0.0F, 0.33F);// 454
+        param.gamma = 2.0F;
+        param.borderGamma = 2.0F;
+        param.borderStraight = true;
+        param.borderColor = Color.DARK_GRAY;
+        param.borderWidth = 4.0F * Settings.scale;
+        param.shadowOffsetX = 2;
+        param.shadowOffsetY = 2;
+        topPanelInfoFont_L= FontHelper.prepFont(42.0F, true);
     }
 }
