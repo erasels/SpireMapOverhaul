@@ -362,6 +362,7 @@ public class PowerelicCard extends AbstractSMOCard implements OnObtainCard, Cust
 
     @Override
     public CardedRelicSaveData onSave() {
+        logger.info("PowerelicCard.onSave "+this.capturedRelic);
         if(this.capturedRelic==null){
             return new CardedRelicSaveData("EMPTY",0,false);
         }
@@ -370,7 +371,11 @@ public class PowerelicCard extends AbstractSMOCard implements OnObtainCard, Cust
 
     @Override
     public void onLoad(CardedRelicSaveData cardedRelicSaveData) {
-        logger.info("PowerelicCard.onLoad "+cardedRelicSaveData.relicID," "+cardedRelicSaveData.counter," "+cardedRelicSaveData.active);
+        if(cardedRelicSaveData==null){
+            logger.info("PowerelicCard.onLoad, but savedata is null");
+            return;
+        }
+        logger.info("PowerelicCard.onLoad "+cardedRelicSaveData.relicID+" "+cardedRelicSaveData.counter+" "+cardedRelicSaveData.active);
         boolean matchFound=false;
         AbstractRelic relic=null;
         if(cardedRelicSaveData.active){
