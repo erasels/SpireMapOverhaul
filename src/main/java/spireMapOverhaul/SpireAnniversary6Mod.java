@@ -75,6 +75,7 @@ import spireMapOverhaul.zones.divinitiesgaze.commands.SetDivinityCommand;
 import spireMapOverhaul.zones.gremlinTown.GremlinTown;
 import spireMapOverhaul.zones.gremlinTown.HordeHelper;
 import spireMapOverhaul.zones.gremlinTown.potions.*;
+import spireMapOverhaul.zones.humidity.cards.powerelic.implementation.patches.PowerelicSavePatches2;
 import spireMapOverhaul.zones.keymaster.KeymasterZone;
 import spireMapOverhaul.zones.manasurge.ui.extraicons.BlightIcon;
 import spireMapOverhaul.zones.manasurge.ui.extraicons.EnchantmentIcon;
@@ -347,6 +348,7 @@ public class SpireAnniversary6Mod implements
         BaseMod.addSaveField(EncounterModifierPatches.LastZoneNormalEncounter.SaveKey, new EncounterModifierPatches.LastZoneNormalEncounter());
         BaseMod.addSaveField(EncounterModifierPatches.LastZoneEliteEncounter.SaveKey, new EncounterModifierPatches.LastZoneEliteEncounter());
         BaseMod.addSaveField(GoldRewardReductionPatch.SavableCombatGoldReduction.SaveKey, new GoldRewardReductionPatch.SavableCombatGoldReduction()); //windy zone
+        BaseMod.addSaveField(PowerelicSavePatches2.HumidityPowerelicTemporaryDuplicateRelics.SaveKey, new PowerelicSavePatches2.HumidityPowerelicTemporaryDuplicateRelics()); //humidity zone
     }
 
     private static Consumer<String> getWidePotionsWhitelistMethod() {
