@@ -70,6 +70,7 @@ import spireMapOverhaul.zoneInterfaces.EncounterModifyingZone;
 import spireMapOverhaul.zoneInterfaces.ModifiedEventRateZone;
 import spireMapOverhaul.zones.beastslair.BeastsLairZone;
 import spireMapOverhaul.zones.brokenspace.BrokenSpaceZone;
+import spireMapOverhaul.zones.cafemerchant.CafeMerchantZone;
 import spireMapOverhaul.zones.divinitiesgaze.commands.ClearSetDivinityCommand;
 import spireMapOverhaul.zones.divinitiesgaze.commands.SetDivinityCommand;
 import spireMapOverhaul.zones.gremlinTown.GremlinTown;
