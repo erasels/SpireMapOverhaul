@@ -14,7 +14,8 @@ public class MintySpireMinimapPatches {
 
     @SpirePatch(
             clz = AbstractDungeon.class,
-            method = "dungeonTransitionSetup"
+            method = "dungeonTransitionSetup",
+            requiredModId = "mintyspire"
     )
     public static class TransitionPatch {
         @SpirePostfixPatch
@@ -25,9 +26,9 @@ public class MintySpireMinimapPatches {
     }
 
     @SpirePatch(
-            optional = true,
             cls = "mintySpire.patches.map.MiniMapDisplay",
-            method = "renderMinimap"
+            method = "renderMinimap",
+            requiredModId = "mintyspire"
     )
     public static class MinimapPatch {
         @SpirePostfixPatch
