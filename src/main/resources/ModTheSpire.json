@@ -28,7 +28,8 @@
     "Mindbomber",
     "NoelleDevo",
     "PitohuiArt",
-    "Mistress Autumn"
+    "Mistress Autumn",
+    "coda"
   ],
   "description": "${project.description}",
   "version": "${project.version}",
