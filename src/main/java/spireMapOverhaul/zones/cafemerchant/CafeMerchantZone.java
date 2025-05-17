@@ -86,7 +86,17 @@ public class CafeMerchantZone extends AbstractZone implements ModifiedEventRateZ
 
     @Override
     public boolean canSpawn() {
-        return Loader.isModLoaded("anniv7");
+        if (!Loader.isModLoaded("anniv7")) {
+            return false;
+        }
+        // Looking for the needed CafeUtil class in Spire Cafe to ensure mod is updated
+        try {
+            @SuppressWarnings("unused")
+            Class<?> test = Class.forName("spireCafe.util.CafeUtil");
+            return true;
+        } catch (ClassNotFoundException e) {
+            return false;
+        }
     }
 
     @Override
@@ -114,6 +124,10 @@ public class CafeMerchantZone extends AbstractZone implements ModifiedEventRateZ
         List<String> merchantIDList = null;
         try {
             merchantIDList = (List<String>) cafeUtil.getMethod("getValidMerchantIDs").invoke(null);
+            if (merchantIDList.isEmpty()) {
+                cafeUtil.getMethod("clearRunSeenInteractables").invoke(null);
+                merchantIDList = (List<String>) cafeUtil.getMethod("getValidMerchantIDs").invoke(null);
+            }
         } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
             e.printStackTrace();
             throw new RuntimeException("Error loading merchants from Spire Cafe", e);
