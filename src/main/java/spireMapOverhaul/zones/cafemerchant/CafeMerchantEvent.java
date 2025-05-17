@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.events.AbstractEvent;
 import com.megacrit.cardcrawl.events.RoomEventDialog;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.ShopRoom;
+import com.megacrit.cardcrawl.shop.Merchant;
 
 import basemod.ReflectionHacks;
 import spireMapOverhaul.SpireAnniversary6Mod;
@@ -26,7 +27,7 @@ public class CafeMerchantEvent extends AbstractEvent {
     private static Class<?> cafeUtil;
     private static Class<?> abstractCafeInteractable;
     private static Class<?> cafeRoom;
-
+    
     private Object merchant;
     private String merchantID;
 
@@ -73,7 +74,11 @@ public class CafeMerchantEvent extends AbstractEvent {
             e.printStackTrace();
             throw new RuntimeException("Error updating Cafe merchant", e);
         }
-        // We only have one interactable here, so no need to have this flag set to check for conflicts.
+        // We check to see if the player is interacting with the merchant to update the label.
+        if ((boolean) ReflectionHacks.getPrivateStatic(cafeRoom, "isInteracting")) {
+            AbstractDungeon.overlayMenu.proceedButton.setLabel(Merchant.NAMES[0]);
+        }
+        // However, we only have one interactable here, so no need to have this flag set to check for conflicts.
         ReflectionHacks.setPrivateStatic(cafeRoom, "isInteracting", false);
 
         if (AbstractDungeon.screen == CurrentScreen.NONE) {
