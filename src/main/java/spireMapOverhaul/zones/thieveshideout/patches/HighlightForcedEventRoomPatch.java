@@ -28,7 +28,7 @@ public class HighlightForcedEventRoomPatch {
     public static class RenderPatch {
         @SpirePrefixPatch
         public static void render(MapRoomNode __instance, SpriteBatch sb) {
-            if (__instance.room instanceof ForcedEventRoom) {
+            if (__instance.room.getClass() == ForcedEventRoom.class) {
                 for (FlameAnimationEffect e : EffectsField.effects.get(__instance)) {
                     e.render(sb, ReflectionHacks.getPrivate(__instance, MapRoomNode.class, "scale"));
                 }
@@ -40,7 +40,7 @@ public class HighlightForcedEventRoomPatch {
     public static class UpdatePatch {
         @SpirePrefixPatch
         public static void update(MapRoomNode __instance) {
-            if (__instance.room instanceof ForcedEventRoom) {
+            if (__instance.room.getClass() == ForcedEventRoom.class) {
                 TimerField.timer.set(__instance, TimerField.timer.get(__instance) - Gdx.graphics.getDeltaTime());
                 if (TimerField.timer.get(__instance) < 0.0F) {
                     TimerField.timer.set(__instance, MathUtils.random(0.2F, 0.4F));

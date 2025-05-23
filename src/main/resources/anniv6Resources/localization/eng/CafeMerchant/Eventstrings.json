@@ -1,0 +1,9 @@
+{
+  "${ModID}:CafeMerchantEvent": {
+    "NAME": "Merchant Event",
+    "DESCRIPTIONS": [
+    ],
+    "OPTIONS": [
+    ]
+  }
+}

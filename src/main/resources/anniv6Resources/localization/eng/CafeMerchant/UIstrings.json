@@ -1,0 +1,9 @@
+{
+  "${ModID}:CafeMerchant": {
+    "TEXT": [
+      "Café Merchant",
+      "Business at the Spire Café has been so good that some of the merchants have opened their own independent locations! Come here to peruse some of the unique wares this shopkeeper has to offer.",
+      "coda"
+    ]
+  }
+}
