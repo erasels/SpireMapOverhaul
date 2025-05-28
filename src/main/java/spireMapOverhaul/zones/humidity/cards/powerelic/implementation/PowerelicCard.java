@@ -33,6 +33,9 @@ import spireMapOverhaul.zones.humidity.cards.powerelic.implementation.patches.Ca
 
 import java.util.Objects;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 
 @NoCompendium
@@ -177,7 +180,12 @@ public class PowerelicCard extends AbstractSMOCard implements OnObtainCard, Cust
                 }
             }
             __instance.relics.removeIf(relic -> PowerelicRelicContainmentFields.isContained.get(relic));
+            // If any relics were just obtained at the start of the battle (like what the Humility zone does), they'll
+            // have isDone set to false, and we have to preserve that for the relic gaining process to work correctly
+            // (reorganizeRelics sets isDone to true, which would result in onEquip being skipped for new relics).
+            List<AbstractRelic> justObtainedRelics = __instance.relics.stream().filter(r -> !r.isDone).collect(Collectors.toList());
             Wiz.adp().reorganizeRelics();
+            justObtainedRelics.forEach(r -> r.isDone = false);
         }
     }
 
