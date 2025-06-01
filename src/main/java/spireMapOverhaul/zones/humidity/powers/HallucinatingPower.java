@@ -163,7 +163,16 @@ public class HallucinatingPower extends AbstractSMOPower {
         }
     }
 
+    public static boolean canScale(AbstractCreature creature) {
+        Skeleton skeleton = ReflectionHacks.getPrivate(creature, AbstractCreature.class, "skeleton");
+        return skeleton != null;
+    }
+
     public static void scaleCreature(AbstractCreature __instance){
+        if (!canScale(__instance)) {
+            return;
+        }
+
         float multiplier = getCreatureMultiplier(__instance);
         Skeleton skeleton = ReflectionHacks.getPrivate(__instance,AbstractCreature.class,"skeleton");
 
@@ -184,6 +193,10 @@ public class HallucinatingPower extends AbstractSMOPower {
 
     }
     public static void unscaleCreature(AbstractCreature __instance){
+        if (!canScale(__instance)) {
+            return;
+        }
+
         float multiplier = getCreatureMultiplier(__instance);
         Skeleton skeleton = ReflectionHacks.getPrivate(__instance,AbstractCreature.class,"skeleton");
         {
