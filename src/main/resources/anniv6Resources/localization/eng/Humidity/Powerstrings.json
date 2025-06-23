@@ -74,5 +74,39 @@
     "DESCRIPTIONS": [
       "[DNT] You shouldn't see this message."
     ]
+  },
+  "${ModID}:BaseballPower": {
+    "NAME": "Bottom of the Ninth",
+    "DESCRIPTIONS": [
+      "Instantly defeated if you play #b",
+      " more card",
+      " more cards",
+      " cards",
+      " containing \"Strike\".",
+      "",
+      "OUT",
+      "Strike One",
+      "Strike Two",
+      "Strike Three",
+      "+1 Strike"
+    ]
+  },
+  "${ModID}:BemusementPower": {
+    "NAME": "Puzzled",
+    "DESCRIPTIONS": [
+      "Whenever you draw a card, randomize its cost...?"
+    ]
+  },
+  "${ModID}:SneckoPlantPower": {
+    "NAME": "Snecko Plant",
+    "DESCRIPTIONS": [
+      "Attacks a random number of times between 0 and 3."
+    ]
+  },
+  "${ModID}:GremlinNobMinionPower": {
+    "NAME": "Disobedient",
+    "DESCRIPTIONS": [
+      "Somebody in this room has been starving him for days and it wasn't you."
+    ]
   }
 }

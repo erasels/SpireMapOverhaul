@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.dungeons.Exordium;
+import com.megacrit.cardcrawl.dungeons.TheCity;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.FrozenEgg2;
 import com.megacrit.cardcrawl.rooms.MonsterRoom;
@@ -22,6 +23,7 @@ import spireMapOverhaul.zoneInterfaces.CombatModifyingZone;
 import spireMapOverhaul.zoneInterfaces.OnTravelZone;
 import spireMapOverhaul.zoneInterfaces.RenderableZone;
 import spireMapOverhaul.zones.humidity.cards.powerelic.implementation.PowerelicCard;
+import spireMapOverhaul.zones.humidity.encounters.SlaversBecomeSleevers;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -46,7 +48,7 @@ public class HumidityZone extends AbstractZone implements OnTravelZone, CombatMo
     @Override
     public boolean canSpawn() {
         //return !Loader.isModLoadedOrSideloaded("humility") && Arrays.asList(Exordium.ID, TheCity.ID, TheBeyond.ID).contains(AbstractDungeon.id);
-        return !Loader.isModLoadedOrSideloaded("humility") && Arrays.asList(Exordium.ID).contains(AbstractDungeon.id);
+        return !Loader.isModLoadedOrSideloaded("humility") && Arrays.asList(Exordium.ID, TheCity.ID).contains(AbstractDungeon.id);
     }
 
     @Override
@@ -140,6 +142,10 @@ public class HumidityZone extends AbstractZone implements OnTravelZone, CombatMo
 
     public static String instrumentTerniary(){
         return HumidityZone.class.getName()+".isNotInZone() ? ";
+    }
+
+    public static String gremlinNobTerniary(){
+        return "("+ SlaversBecomeSleevers.class.getName()+".colosseumInProgress() || "+HumidityZone.class.getName()+".isNotInZone()) ? ";
     }
 
     public static float frameTimer=1/60f;

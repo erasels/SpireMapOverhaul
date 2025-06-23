@@ -41,7 +41,7 @@ public class GremlinNobDemotivated {
         @SpirePostfixPatch
         public static void Foo(AngerPower __instance) {
             if(HumidityZone.isNotInZone())return;
-            if(Wiz.curRoom()!=null && Wiz.curRoom().event!=null && Wiz.curRoom().event instanceof Colosseum)return;
+            if(SlaversBecomeSleevers.colosseumInProgress())return;
             __instance.name = POWERNAME;
             __instance.description = DESCRIPTIONS[0] + __instance.amount + DESCRIPTIONS[1];
         }
@@ -55,12 +55,15 @@ public class GremlinNobDemotivated {
                 @Override
                 public void edit(NewExpr n) throws CannotCompileException {
                     if (n.getClassName().equals(TalkAction.class.getName())) {
-                        n.replace("{$2 = " + HumidityZone.instrumentTerniary() + " $2 : "+GremlinNobDemotivated.class.getName()+".getCustomMessage(); $_ = $proceed($$);}");
+                        //We have to define gremlinNobTerniary in a different class.
+                        // Defining it in GremlinNobDemotivated will cause a NPE due to "CardCrawlGame.languagePack.getPowerStrings(ID);" breaking in the static block below.
+                        n.replace("{$2 = " + HumidityZone.gremlinNobTerniary() + " $2 : "+GremlinNobDemotivated.class.getName()+".getCustomMessage(); $_ = $proceed($$);}");
                     }
                 }
             };
         }
     }
+
 
     public static String getCustomMessage(){
         return ROAR;

@@ -4,5 +4,31 @@
     "DESCRIPTIONS": [
       "You come across a #rdead #radventurer on the floor. NL ...You quickly steal his #bpants. Also, "
     ]
+  },
+  "${ModID}:JoustHumidity": {
+    "NAME": "",
+    "DESCRIPTIONS": [
+      "@\"Halt!\"@",
+      "\"Today is the day I must settle the score with the #rmurderer of my other beloved pet, #yTortellini. Until then, you may not pass. NL Fellow witness, why don't you #bbet on who you think will emerge victorious?\"",
+      "\"I can't believe you're betting against #yTortellini!\" NL Furious, he clamps down his helmet and rushes towards his nemesis.",
+      "\"Give me strength, #yTortellini!\" NL Clamping down his helmet, the knight charges forward.",
+      "Murderer",
+      "Owner",
+      "The nemesis was slain. NL ",
+      "The owner was slain. NL ",
+      "You #gwin the bet. Unsure what to think, you grab your winnings and leave.",
+      "You #rlost the bet, but at least you weren't bludgeoned by a mace.",
+      "You're not quite sure what happened, but at least you weren't bludgeoned by a mace."
+
+    ],
+    "OPTIONS": [
+      "[Halt]",
+      "[Murderer] #yBet #y",
+      " #yGold - #g??%: #gwin #g100 #gGold.",
+      "[Owner] #yBet #y",
+      " #yGold - #g??%: #gwin #g250 #gGold.",
+      "[Watch]",
+      "[Leave]"
+    ]
   }
 }

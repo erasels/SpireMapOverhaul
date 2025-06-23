@@ -77,6 +77,7 @@ import spireMapOverhaul.zones.gremlinTown.GremlinTown;
 import spireMapOverhaul.zones.gremlinTown.HordeHelper;
 import spireMapOverhaul.zones.gremlinTown.potions.*;
 import spireMapOverhaul.zones.humidity.cards.powerelic.implementation.patches.PowerelicSavePatches2;
+import spireMapOverhaul.zones.humidity.relics.AvocadoReward;
 import spireMapOverhaul.zones.keymaster.KeymasterZone;
 import spireMapOverhaul.zones.manasurge.ui.extraicons.BlightIcon;
 import spireMapOverhaul.zones.manasurge.ui.extraicons.EnchantmentIcon;
@@ -614,6 +615,15 @@ public class SpireAnniversary6Mod implements
                         s.append(c.cardID).append("|").append(c.timesUpgraded).append("|").append(c.misc).append("#");
                     }
                     return new RewardSave(CustomRewardTypes.SMO_ANYCOLORCARDREWARD.toString(), s.toString());
+                }
+        );
+
+        BaseMod.registerCustomReward(CustomRewardTypes.SMO_AVOCADOREWARD,
+                rewardSave -> new AvocadoReward(rewardSave.amount),
+                reward -> {
+                    StringBuilder s = new StringBuilder();
+                    int i = ((AvocadoReward) reward).amount;
+                    return new RewardSave(CustomRewardTypes.SMO_AVOCADOREWARD.toString(), "", i,0);
                 }
         );
     }

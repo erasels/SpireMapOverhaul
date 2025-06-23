@@ -68,6 +68,9 @@ public class JawWormAct1 {
                     r.onMonsterDeath(__instance);
                 }
 
+                //if the only enemies in the room are jawworm and earlybyrd, the gold drop will be removed when they Escape. so add it back here.
+                if(AbstractDungeon.getMonsters().monsters.size()<3)
+                    Wiz.curRoom().addGoldToRewards(AbstractDungeon.treasureRng.random(10, 20));
                 CardCrawlGame.sound.play("JAW_WORM_DEATH");
             }
             return SpireReturn.Return();

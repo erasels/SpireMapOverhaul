@@ -57,7 +57,7 @@ public class SlimesPatches {
         public static void Foo(AbstractMonster __instance){
             if(HumidityZone.isNotInZone())return;
             if(!Objects.equals(AbstractDungeon.id, Exordium.ID))return;
-            __instance.powers.add(new SpikyPower(__instance, 1));
+            __instance.powers.add(new SpikyPower(__instance, 2));
         }
     }
 

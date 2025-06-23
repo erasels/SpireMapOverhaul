@@ -79,6 +79,8 @@ public class HallucinatingPower extends AbstractSMOPower {
             cycleTime+=Gdx.graphics.getDeltaTime();
             boolean shouldBeActive=Wiz.adp()!=null && Wiz.adp().hasPower(HallucinatingPower.POWER_ID);
             if(!getShaderConfig())shouldBeActive=false;
+            if(Wiz.curRoom()==null || Wiz.curRoom().monsters==null || Wiz.getEnemies().size()==0 || Wiz.curRoom().isBattleOver)shouldBeActive=false;
+
             //if(true)shouldBeActive=true;
 
             if(shouldBeActive){

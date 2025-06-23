@@ -6,5 +6,15 @@
       "Start each combat with #b",
       " #yPlated #yArmor."
     ]
+  },
+  "${ModID}:Avocado": {
+    "NAME": "Avocado",
+    "FLAVOR": "These fruits have inexplicably thrived even post-blight.",
+    "DESCRIPTIONS": [
+      "Upon pickup, raise your Max HP by half of the unblocked damage it dealt to you ",
+      "(minimum of #b",
+      "(gain #b",
+      " Max HP)."
+    ]
   }
 }

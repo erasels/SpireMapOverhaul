@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.events.city.Colosseum;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.exordium.SlaverBlue;
 import com.megacrit.cardcrawl.monsters.exordium.SlaverRed;
+import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.zones.humidity.HumidityZone;
 import spireMapOverhaul.zones.humidity.powers.SleeverPower;
@@ -56,13 +57,18 @@ public class SlaversBecomeSleevers {
             if(!(__instance instanceof SlaverBlue || __instance instanceof SlaverRed))return;
             if(HumidityZone.isNotInZone())return;
             if(AbstractDungeon.id!=null && !AbstractDungeon.id.equals(Exordium.ID) && !colosseumInProgress())return;
-            if (Wiz.getEnemies().get(0) == __instance || Objects.equals(AbstractDungeon.id, Exordium.ID)) {
-                Wiz.atb(new TalkAction(__instance, SLEEVER_GREETING));
+            if(!Wiz.getEnemies().isEmpty()) {
+                if (Wiz.getEnemies().get(0) == __instance || Objects.equals(AbstractDungeon.id, Exordium.ID)) {
+                    Wiz.atb(new TalkAction(__instance, SLEEVER_GREETING));
+                }
             }
         }
     }
 
     public static boolean colosseumInProgress(){
+        SpireAnniversary6Mod.logger.info("room:",Wiz.curRoom());
+        SpireAnniversary6Mod.logger.info("event:",Wiz.curRoom().event);
+        SpireAnniversary6Mod.logger.info(Wiz.curRoom()!=null && Wiz.curRoom().event!=null && Wiz.curRoom().event instanceof Colosseum);
         return Wiz.curRoom()!=null && Wiz.curRoom().event!=null && Wiz.curRoom().event instanceof Colosseum;
     }
 

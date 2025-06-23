@@ -1,6 +1,7 @@
 package spireMapOverhaul.zones.humidity;
 
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.dungeons.Exordium;
 import com.megacrit.cardcrawl.helpers.RelicLibrary;
 import com.megacrit.cardcrawl.relics.*;
 import spireMapOverhaul.util.Wiz;
@@ -8,9 +9,6 @@ import spireMapOverhaul.util.Wiz;
 import java.util.*;
 
 public class CardedRareRelicList {
-
-    //Chance that B-tier relics will appear in the pool alongside C- and D-tier relics.
-    public static float chanceToGetSlightlyBetterRelic=1/3.0f;
 
     public static final ArrayList<String> dTierRareRelics;
     public static final ArrayList<String> cTierRareRelics;
@@ -40,31 +38,23 @@ public class CardedRareRelicList {
     }
 
     public static AbstractRelic fetchRelicForCarding(){
-        ArrayList<String> uselessRelics=new ArrayList<>();
-        uselessRelics.addAll(dTierRareRelics);
-        uselessRelics.addAll(cTierRareRelics);
-        ArrayList<String> slightlyBetterRelics=new ArrayList<>();
+        //Balance change:
+        // because entering Humidity is typically a net loss,
+        // the player can now receive ANY rare relic with equal chance.
+        // Let's see how this goes and make further changes later if necessary.
 
-        if(AbstractDungeon.cardRng.randomBoolean(chanceToGetSlightlyBetterRelic)){
-            uselessRelics.addAll(bTierRareRelics);
-        }else{
-            slightlyBetterRelics.addAll(bTierRareRelics);
-        }
+        ArrayList<String> standardRelics=new ArrayList<>();
+        standardRelics.addAll(dTierRareRelics);
+        standardRelics.addAll(cTierRareRelics);
+        standardRelics.addAll(bTierRareRelics);
+        standardRelics.addAll(aTierRareRelics);
+        standardRelics.addAll(sTierRareRelics);
 
         String relicID="";
-        relicID= getUncollectedRelicFromPool(uselessRelics);
+        relicID= getUncollectedRelicFromPool(standardRelics);
         if(relicID.isEmpty()) {
-            relicID = getUncollectedRelicFromPool(slightlyBetterRelics);
-            if(relicID.isEmpty()) {
-                relicID = getUncollectedRelicFromPool(aTierRareRelics);
-                if (relicID.isEmpty()) {
-                    relicID = getUncollectedRelicFromPool(sTierRareRelics);
-                    if (relicID.isEmpty()) {
-                        //if we have somehow exhausted the entire rare relic pool, return another Turnip. it won't break anything.
-                        return new Turnip();
-                    }
-                }
-            }
+            //if we have somehow exhausted the entire rare relic pool, return another Turnip. it won't break anything.
+            return new Turnip();
         }
         Wiz.getRelicPool(AbstractRelic.RelicTier.RARE).remove(relicID);
         AbstractRelic finalRelic = RelicLibrary.getRelic(relicID).makeCopy();
