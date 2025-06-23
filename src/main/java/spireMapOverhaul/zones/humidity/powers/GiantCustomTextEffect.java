@@ -3,12 +3,13 @@
 // (powered by FernFlower decompiler)
 //
 
-package com.megacrit.cardcrawl.vfx.combat;
+package spireMapOverhaul.zones.humidity.powers;
 
 import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.helpers.FontHelper;
+import com.megacrit.cardcrawl.vfx.combat.GiantTextEffect;
 
 public class GiantCustomTextEffect extends GiantTextEffect {
     private StringBuilder sBuilder = new StringBuilder("");

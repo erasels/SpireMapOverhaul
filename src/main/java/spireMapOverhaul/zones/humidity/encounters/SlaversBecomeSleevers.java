@@ -66,9 +66,6 @@ public class SlaversBecomeSleevers {
     }
 
     public static boolean colosseumInProgress(){
-        SpireAnniversary6Mod.logger.info("room:",Wiz.curRoom());
-        SpireAnniversary6Mod.logger.info("event:",Wiz.curRoom().event);
-        SpireAnniversary6Mod.logger.info(Wiz.curRoom()!=null && Wiz.curRoom().event!=null && Wiz.curRoom().event instanceof Colosseum);
         return Wiz.curRoom()!=null && Wiz.curRoom().event!=null && Wiz.curRoom().event instanceof Colosseum;
     }
 
