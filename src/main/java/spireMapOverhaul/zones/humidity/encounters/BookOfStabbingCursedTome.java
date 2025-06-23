@@ -2,8 +2,6 @@ package spireMapOverhaul.zones.humidity.encounters;
 
 import basemod.ReflectionHacks;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
-import com.esotericsoftware.spine.Bone;
 import com.esotericsoftware.spine.BoneData;
 import com.esotericsoftware.spine.Skeleton;
 import com.evacipated.cardcrawl.modthespire.lib.*;
@@ -22,7 +20,6 @@ import com.megacrit.cardcrawl.relics.Necronomicon;
 import com.megacrit.cardcrawl.relics.NilrysCodex;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import com.megacrit.cardcrawl.rooms.MonsterRoom;
 import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.zones.humidity.HumidityZone;
 import spireMapOverhaul.zones.humidity.encounters.monsters.cursedtomeimplementation.CursedTomeManagerPower;

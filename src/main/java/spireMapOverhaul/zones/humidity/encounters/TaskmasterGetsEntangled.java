@@ -1,7 +1,6 @@
 package spireMapOverhaul.zones.humidity.encounters;
 
 import basemod.ReflectionHacks;
-import com.evacipated.cardcrawl.mod.stslib.actions.common.StunMonsterAction;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
@@ -12,15 +11,12 @@ import com.megacrit.cardcrawl.actions.common.SetMoveAction;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.MonsterHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.monsters.city.Taskmaster;
 import com.megacrit.cardcrawl.monsters.exordium.SlaverBlue;
 import com.megacrit.cardcrawl.monsters.exordium.SlaverRed;
-import com.megacrit.cardcrawl.powers.EntanglePower;
-import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 import com.megacrit.cardcrawl.vfx.combat.EntangleEffect;
 import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.zones.humidity.HumidityZone;

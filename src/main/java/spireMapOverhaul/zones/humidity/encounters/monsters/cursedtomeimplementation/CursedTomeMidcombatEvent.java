@@ -2,7 +2,6 @@ package spireMapOverhaul.zones.humidity.encounters.monsters.cursedtomeimplementa
 
 import basemod.AutoAdd;
 import com.badlogic.gdx.Gdx;
-import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.AbstractEvent;
@@ -12,10 +11,8 @@ import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.SpeechBubble;
-import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.zones.humidity.encounters.BookOfStabbingCursedTome;
-import spireMapOverhaul.zones.humidity.encounters.monsters.joustimplementation.JoustManagerPower;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 

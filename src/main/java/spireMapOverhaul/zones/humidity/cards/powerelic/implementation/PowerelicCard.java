@@ -31,9 +31,8 @@ import spireMapOverhaul.zones.humidity.HumidityZone;
 import spireMapOverhaul.zones.humidity.cards.powerelic.PowerelicAllowlist;
 import spireMapOverhaul.zones.humidity.cards.powerelic.implementation.patches.CardedRelicSaveData;
 
-import java.util.Objects;
-
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;

@@ -1,33 +1,24 @@
 package spireMapOverhaul.zones.humidity.encounters;
 
 import com.evacipated.cardcrawl.modthespire.lib.*;
-import com.megacrit.cardcrawl.actions.animations.TalkAction;
+import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.unique.SummonGremlinAction;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.dungeons.Exordium;
 import com.megacrit.cardcrawl.dungeons.TheCity;
-import com.megacrit.cardcrawl.helpers.MonsterHelper;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.monsters.city.GremlinLeader;
-import com.megacrit.cardcrawl.monsters.city.Taskmaster;
 import com.megacrit.cardcrawl.monsters.exordium.*;
 import com.megacrit.cardcrawl.powers.MinionPower;
-import com.megacrit.cardcrawl.rooms.EventRoom;
 import javassist.CannotCompileException;
+import javassist.CtBehavior;
 import javassist.expr.ExprEditor;
 import javassist.expr.NewExpr;
-import spireMapOverhaul.SpireAnniversary6Mod;
-import spireMapOverhaul.util.Wiz;
-import spireMapOverhaul.zones.brokenspace.events.FakeEventRoom;
-import spireMapOverhaul.zones.brokenspace.events.WingBootEvent;
-import spireMapOverhaul.zones.brokenspace.relics.BrokenWingBoots;
+import spireMapOverhaul.patches.FontCreationPatches;
 import spireMapOverhaul.zones.humidity.HumidityZone;
 import spireMapOverhaul.zones.humidity.powers.GremlinLavosCorePower;
-import spireMapOverhaul.zones.humidity.powers.SleeverPower;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 
@@ -81,7 +72,7 @@ public class GremlinLeaderIsMinion {
         public static SpireReturn<Void> Foo(GremlinLeader __instance) {
             if(HumidityZone.isNotInZone()) return SpireReturn.Continue();
 
-            __instance.gremlins[0] = (AbstractMonster) AbstractDungeon.getMonsters().monsters.get(0);
+            __instance.gremlins[0] = (AbstractMonster)AbstractDungeon.getMonsters().monsters.get(0);
             __instance.gremlins[1] = (AbstractMonster)AbstractDungeon.getMonsters().monsters.get(1);
             __instance.gremlins[2] = null;
 
@@ -112,25 +103,20 @@ public class GremlinLeaderIsMinion {
         }
     }
 
-
-
-
-    @SpirePatch(
-            clz = GremlinLeader.class,
-            method = "die"
-    )
+    @SpirePatch2(clz = GremlinLeader.class,method="die")
     public static class GremlinLeaderDiesNormally {
-        @SpirePostfixPatch
+        //Break out after calling super.die() so the summoned gremlins don't flee
+        @SpireInsertPatch(locator = Locator.class)
         public static SpireReturn<Void> Foo() {
             if(HumidityZone.isNotInZone()) return SpireReturn.Continue();
             return SpireReturn.Return();
         }
+        private static class Locator extends SpireInsertLocator {
+            public int[] Locate(CtBehavior ctMethodToPatch) throws CannotCompileException, PatchingException {
+                Matcher finalMatcher = new Matcher.MethodCallMatcher(AbstractDungeon.class, "getCurrRoom");
+                return LineFinder.findInOrder(ctMethodToPatch, finalMatcher);
+            }
+        }
     }
-
-
-
-
-
-
 
 }

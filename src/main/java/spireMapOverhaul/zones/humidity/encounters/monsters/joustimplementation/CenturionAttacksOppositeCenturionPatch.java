@@ -3,14 +3,11 @@ package spireMapOverhaul.zones.humidity.encounters.monsters.joustimplementation;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.city.Centurion;
-import com.megacrit.cardcrawl.monsters.city.Healer;
 import javassist.CannotCompileException;
 import javassist.expr.ExprEditor;
 import javassist.expr.NewExpr;
-import spireMapOverhaul.abstracts.AbstractZone;
 import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.zones.humidity.HumidityZone;
 

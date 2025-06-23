@@ -1,12 +1,9 @@
 package spireMapOverhaul.zones.humidity.encounters.monsters.joustimplementation;
 
-import com.evacipated.cardcrawl.modthespire.lib.SpireInsertPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInstrumentPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
-import com.megacrit.cardcrawl.actions.unique.GainBlockRandomMonsterAction;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.city.Healer;
 import com.megacrit.cardcrawl.powers.FrailPower;
@@ -14,7 +11,6 @@ import javassist.CannotCompileException;
 import javassist.expr.ExprEditor;
 import javassist.expr.FieldAccess;
 import javassist.expr.NewExpr;
-import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.util.Wiz;
 
 public class BuffForAlliesOnlyPatch {

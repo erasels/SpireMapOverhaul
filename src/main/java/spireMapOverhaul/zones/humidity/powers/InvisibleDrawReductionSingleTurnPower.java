@@ -1,14 +1,11 @@
 package spireMapOverhaul.zones.humidity.powers;
 
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.InvisiblePower;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.zones.humidity.encounters.monsters.joustimplementation.JoustManagerPower;
-import spireMapOverhaul.zones.humidity.encounters.monsters.joustimplementation.JoustMidcombatEvent;
 import spireMapOverhaul.zones.invasion.powers.DrawReductionSingleTurnPower;
 
 public class InvisibleDrawReductionSingleTurnPower extends DrawReductionSingleTurnPower implements InvisiblePower {

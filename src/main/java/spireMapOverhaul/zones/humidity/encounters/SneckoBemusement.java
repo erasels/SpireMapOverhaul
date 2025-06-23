@@ -2,18 +2,12 @@ package spireMapOverhaul.zones.humidity.encounters;
 
 import com.evacipated.cardcrawl.modthespire.lib.SpireInstrumentPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.monsters.city.Healer;
 import com.megacrit.cardcrawl.monsters.city.Snecko;
 import com.megacrit.cardcrawl.powers.ConfusionPower;
 import javassist.CannotCompileException;
 import javassist.expr.ExprEditor;
 import javassist.expr.NewExpr;
-import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.zones.humidity.HumidityZone;
-import spireMapOverhaul.zones.humidity.cards.Singe;
-import spireMapOverhaul.zones.humidity.encounters.monsters.joustimplementation.JoustManagerPower;
 import spireMapOverhaul.zones.humidity.powers.BemusementPower;
 
 public class SneckoBemusement {

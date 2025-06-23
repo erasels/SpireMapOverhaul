@@ -3,18 +3,10 @@ package spireMapOverhaul.zones.humidity.relics;
 import basemod.abstracts.CustomReward;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.PowerTip;
-import com.megacrit.cardcrawl.helpers.TipHelper;
-import com.megacrit.cardcrawl.helpers.input.InputHelper;
-import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.rewards.RewardItem;
 import spireMapOverhaul.SpireAnniversary6Mod;
 import spireMapOverhaul.patches.CustomRewardTypes;
 import spireMapOverhaul.util.TexLoader;
-
-import java.util.ArrayList;
 
 public class AvocadoReward extends CustomReward {
     public static final String zoneID="Humidity";

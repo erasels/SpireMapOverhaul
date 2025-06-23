@@ -3,15 +3,11 @@ package spireMapOverhaul.zones.humidity.encounters;
 import basemod.ReflectionHacks;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.dungeons.Exordium;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.monsters.city.SnakePlant;
-import com.megacrit.cardcrawl.monsters.exordium.SlaverBlue;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import spireMapOverhaul.zones.humidity.HumidityZone;
-import spireMapOverhaul.zones.humidity.powers.SleeverPower;
 import spireMapOverhaul.zones.humidity.powers.SneckoPlantPower;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;

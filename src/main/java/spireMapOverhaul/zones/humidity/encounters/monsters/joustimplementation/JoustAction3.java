@@ -1,7 +1,6 @@
 package spireMapOverhaul.zones.humidity.encounters.monsters.joustimplementation;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.EscapeAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
@@ -15,7 +14,6 @@ import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.city.Healer;
 import com.megacrit.cardcrawl.monsters.exordium.ApologySlime;
-import com.megacrit.cardcrawl.vfx.combat.SmokeBombEffect;
 import spireMapOverhaul.util.Wiz;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;

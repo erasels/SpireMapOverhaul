@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.AbstractEvent;
 import com.megacrit.cardcrawl.events.RoomEventDialog;
 import spireMapOverhaul.util.Wiz;
-import spireMapOverhaul.zones.humidity.encounters.monsters.joustimplementation.*;
+import spireMapOverhaul.zones.humidity.encounters.monsters.joustimplementation.EventTextRenderEffect;
 
 public class CursedTomeAction extends AbstractGameAction {
 
