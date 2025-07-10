@@ -21,10 +21,11 @@ public class FakeDivinityStancePower extends AbstractSMOPower implements Invisib
     public static String ZONE_ID = HumidityZone.ID;
     protected float particleTimer;
     protected float particleTimer2;
+
     public FakeDivinityStancePower(AbstractCreature owner) {
-        super(POWER_ID,NAME,ZONE_ID, PowerType.BUFF, false, owner,0);
-        particleTimer=0.0F;
-        particleTimer2=0.0F;
+        super(POWER_ID, NAME, ZONE_ID, PowerType.BUFF, false, owner, 0);
+        particleTimer = 0.0F;
+        particleTimer2 = 0.0F;
     }
 
     public float atDamageGive(float damage, DamageInfo.DamageType type) {
@@ -32,18 +33,18 @@ public class FakeDivinityStancePower extends AbstractSMOPower implements Invisib
     }
 
     @Override
-    public void updateParticles(){
+    public void updateParticles() {
         if (!Settings.DISABLE_EFFECTS) {
             this.particleTimer -= Gdx.graphics.getDeltaTime();
             if (this.particleTimer < 0.0F) {
                 this.particleTimer = 0.2F;
-                DivinityParticleEffect dpe=new DivinityParticleEffect();
-                float x = ReflectionHacks.getPrivate(dpe,DivinityParticleEffect.class,"x");
-                float y = ReflectionHacks.getPrivate(dpe,DivinityParticleEffect.class,"y");
-                x+=(owner.hb.cX - Wiz.adp().hb.cX);
-                y+=(owner.hb.cY - Wiz.adp().hb.cY);
-                ReflectionHacks.setPrivate(dpe,DivinityParticleEffect.class,"x",x);
-                ReflectionHacks.setPrivate(dpe,DivinityParticleEffect.class,"y",y);
+                DivinityParticleEffect dpe = new DivinityParticleEffect();
+                float x = ReflectionHacks.getPrivate(dpe, DivinityParticleEffect.class, "x");
+                float y = ReflectionHacks.getPrivate(dpe, DivinityParticleEffect.class, "y");
+                x += (owner.hb.cX - Wiz.adp().hb.cX);
+                y += (owner.hb.cY - Wiz.adp().hb.cY);
+                ReflectionHacks.setPrivate(dpe, DivinityParticleEffect.class, "x", x);
+                ReflectionHacks.setPrivate(dpe, DivinityParticleEffect.class, "y", y);
                 AbstractDungeon.effectsQueue.add(dpe);
             }
         }
@@ -51,13 +52,13 @@ public class FakeDivinityStancePower extends AbstractSMOPower implements Invisib
         this.particleTimer2 -= Gdx.graphics.getDeltaTime();
         if (this.particleTimer2 < 0.0F) {
             this.particleTimer2 = MathUtils.random(0.45F, 0.55F);
-            StanceAuraEffect sae=new StanceAuraEffect("Divinity");
-            float x = ReflectionHacks.getPrivate(sae,StanceAuraEffect.class,"x");
-            float y = ReflectionHacks.getPrivate(sae,StanceAuraEffect.class,"y");
-            x+=(owner.hb.cX - Wiz.adp().hb.cX);
-            y+=(owner.hb.cY - Wiz.adp().hb.cY);
-            ReflectionHacks.setPrivate(sae,StanceAuraEffect.class,"x",x);
-            ReflectionHacks.setPrivate(sae,StanceAuraEffect.class,"y",y);
+            StanceAuraEffect sae = new StanceAuraEffect("Divinity");
+            float x = ReflectionHacks.getPrivate(sae, StanceAuraEffect.class, "x");
+            float y = ReflectionHacks.getPrivate(sae, StanceAuraEffect.class, "y");
+            x += (owner.hb.cX - Wiz.adp().hb.cX);
+            y += (owner.hb.cY - Wiz.adp().hb.cY);
+            ReflectionHacks.setPrivate(sae, StanceAuraEffect.class, "x", x);
+            ReflectionHacks.setPrivate(sae, StanceAuraEffect.class, "y", y);
             AbstractDungeon.effectsQueue.add(sae);
         }
     }

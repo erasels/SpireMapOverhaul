@@ -6,14 +6,15 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 public class UpdateIntentAction extends AbstractGameAction {
 
     AbstractMonster monster;
-    public UpdateIntentAction(AbstractMonster monster){
-        this.monster=monster;
+
+    public UpdateIntentAction(AbstractMonster monster) {
+        this.monster = monster;
     }
 
     @Override
     public void update() {
         //monster.rollMove();
         monster.createIntent();
-        isDone=true;
+        isDone = true;
     }
 }

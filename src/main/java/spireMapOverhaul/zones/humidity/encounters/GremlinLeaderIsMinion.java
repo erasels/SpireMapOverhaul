@@ -25,40 +25,65 @@ public class GremlinLeaderIsMinion {
     public static final String ID = makeID("GremlinLavos");
     public static final String NAME = CardCrawlGame.languagePack.getMonsterStrings(ID).NAME;
 
-    public static boolean HumidityGremlinLeaderCheck(){
-        if(HumidityZone.isNotInZone())return false;
+    public static boolean HumidityGremlinLeaderCheck() {
+        if (HumidityZone.isNotInZone()) return false;
         //can't check for a GremlinLeader at this point because room's monstergroup has not been initialized yet.
         //just check current act instead.
         return (AbstractDungeon.id.equals(TheCity.ID));
     }
 
-    @SpirePatch2(clz=GremlinLeader.class,method=SpirePatch.CONSTRUCTOR)
-    public static class RenameLeader{
+    @SpirePatch2(clz = GremlinLeader.class, method = SpirePatch.CONSTRUCTOR)
+    public static class RenameLeader {
         @SpirePostfixPatch
-        public static void Foo(GremlinLeader __instance){
-            if(!HumidityGremlinLeaderCheck())return;
-            __instance.name=NAME;
+        public static void Foo(GremlinLeader __instance) {
+            if (!HumidityGremlinLeaderCheck()) return;
+            __instance.name = NAME;
         }
     }
-    @SpirePatch2(clz= GremlinFat.class,method=SpirePatch.CONSTRUCTOR)
-    public static class RenameFat{
-        @SpirePostfixPatch public static void Foo(GremlinFat __instance){if(!HumidityGremlinLeaderCheck())return;__instance.name=NAME;}
+
+    @SpirePatch2(clz = GremlinFat.class, method = SpirePatch.CONSTRUCTOR)
+    public static class RenameFat {
+        @SpirePostfixPatch
+        public static void Foo(GremlinFat __instance) {
+            if (!HumidityGremlinLeaderCheck()) return;
+            __instance.name = NAME;
+        }
     }
-    @SpirePatch2(clz= GremlinThief.class,method=SpirePatch.CONSTRUCTOR)
-    public static class RenameThief{
-        @SpirePostfixPatch public static void Foo(GremlinThief __instance){if(!HumidityGremlinLeaderCheck())return;__instance.name=NAME;}
+
+    @SpirePatch2(clz = GremlinThief.class, method = SpirePatch.CONSTRUCTOR)
+    public static class RenameThief {
+        @SpirePostfixPatch
+        public static void Foo(GremlinThief __instance) {
+            if (!HumidityGremlinLeaderCheck()) return;
+            __instance.name = NAME;
+        }
     }
-    @SpirePatch2(clz= GremlinTsundere.class,method=SpirePatch.CONSTRUCTOR)
-    public static class RenameTsundere{
-        @SpirePostfixPatch public static void Foo(GremlinTsundere __instance){if(!HumidityGremlinLeaderCheck())return;__instance.name=NAME;}
+
+    @SpirePatch2(clz = GremlinTsundere.class, method = SpirePatch.CONSTRUCTOR)
+    public static class RenameTsundere {
+        @SpirePostfixPatch
+        public static void Foo(GremlinTsundere __instance) {
+            if (!HumidityGremlinLeaderCheck()) return;
+            __instance.name = NAME;
+        }
     }
-    @SpirePatch2(clz= GremlinWarrior.class,method=SpirePatch.CONSTRUCTOR)
-    public static class RenameWarrior{
-        @SpirePostfixPatch public static void Foo(GremlinWarrior __instance){if(!HumidityGremlinLeaderCheck())return;__instance.name=NAME;}
+
+    @SpirePatch2(clz = GremlinWarrior.class, method = SpirePatch.CONSTRUCTOR)
+    public static class RenameWarrior {
+        @SpirePostfixPatch
+        public static void Foo(GremlinWarrior __instance) {
+            if (!HumidityGremlinLeaderCheck()) return;
+            __instance.name = NAME;
+        }
     }
-    @SpirePatch2(clz= GremlinWizard.class,method=SpirePatch.CONSTRUCTOR)
-    public static class RenameWizard{
-        @SpirePostfixPatch public static void Foo(GremlinWizard __instance){if(!HumidityGremlinLeaderCheck())return;__instance.name=NAME;}
+
+    @SpirePatch2(clz = GremlinWizard.class, method = SpirePatch.CONSTRUCTOR)
+    public static class RenameWizard {
+        @SpirePostfixPatch
+        public static void Foo(GremlinWizard __instance) {
+            if (!HumidityGremlinLeaderCheck()) return;
+            __instance.name = NAME;
+        }
     }
 
     @SpirePatch(
@@ -68,13 +93,13 @@ public class GremlinLeaderIsMinion {
     public static class ReassignMinionStatus1 {
         @SpirePrefixPatch
         public static SpireReturn<Void> Foo(GremlinLeader __instance) {
-            if(HumidityZone.isNotInZone()) return SpireReturn.Continue();
+            if (HumidityZone.isNotInZone()) return SpireReturn.Continue();
 
-            __instance.gremlins[0] = (AbstractMonster)AbstractDungeon.getMonsters().monsters.get(0);
-            __instance.gremlins[1] = (AbstractMonster)AbstractDungeon.getMonsters().monsters.get(1);
+            __instance.gremlins[0] = AbstractDungeon.getMonsters().monsters.get(0);
+            __instance.gremlins[1] = AbstractDungeon.getMonsters().monsters.get(1);
             __instance.gremlins[2] = null;
 
-            for(AbstractMonster m : __instance.gremlins) {
+            for (AbstractMonster m : __instance.gremlins) {
                 AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(m, m, new GremlinLavosCorePower(__instance)));
             }
             AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(__instance, __instance, new MinionPower(__instance)));
@@ -94,21 +119,22 @@ public class GremlinLeaderIsMinion {
                 @Override
                 public void edit(NewExpr n) throws CannotCompileException {
                     if (n.getClassName().equals(MinionPower.class.getName())) {
-                        n.replace("{$_ = " + HumidityZone.instrumentTerniary() + " $proceed($$) : new "+GremlinLavosCorePower.class.getName()+"($$);}");
+                        n.replace("{$_ = " + HumidityZone.instrumentTerniary() + " $proceed($$) : new " + GremlinLavosCorePower.class.getName() + "($$);}");
                     }
                 }
             };
         }
     }
 
-    @SpirePatch2(clz = GremlinLeader.class,method="die")
+    @SpirePatch2(clz = GremlinLeader.class, method = "die")
     public static class GremlinLeaderDiesNormally {
         //Break out after calling super.die() so the summoned gremlins don't flee
         @SpireInsertPatch(locator = Locator.class)
         public static SpireReturn<Void> Foo() {
-            if(HumidityZone.isNotInZone()) return SpireReturn.Continue();
+            if (HumidityZone.isNotInZone()) return SpireReturn.Continue();
             return SpireReturn.Return();
         }
+
         private static class Locator extends SpireInsertLocator {
             public int[] Locate(CtBehavior ctMethodToPatch) throws CannotCompileException, PatchingException {
                 Matcher finalMatcher = new Matcher.MethodCallMatcher(AbstractDungeon.class, "getCurrRoom");

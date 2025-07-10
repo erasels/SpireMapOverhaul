@@ -24,14 +24,14 @@ public class GremlinLavosCorePower extends AbstractSMOPower implements Invisible
     public static final String RETREAT = CardCrawlGame.languagePack.getMonsterStrings(ID).DIALOG[0];
 
     public GremlinLavosCorePower(AbstractCreature owner) {
-        super(POWER_ID,NAME,ZONE_ID, AbstractPower.PowerType.BUFF, false, owner, 1);
+        super(POWER_ID, NAME, ZONE_ID, AbstractPower.PowerType.BUFF, false, owner, 1);
     }
 
     public void onDeath() {
         //if gremlin leader is only monster alive, flee
-        if(Wiz.getEnemies().size()==1) {
+        if (Wiz.getEnemies().size() == 1) {
             for (AbstractMonster m : Wiz.getEnemies()) {
-                if (m instanceof GremlinLeader){
+                if (m instanceof GremlinLeader) {
                     AbstractDungeon.actionManager.addToBottom(new ShoutAction(m, RETREAT, 0.5F, 1.2F));
                     //the isDying check might be redundant but we're just copypasting at this point
                     if (!m.isDying) {

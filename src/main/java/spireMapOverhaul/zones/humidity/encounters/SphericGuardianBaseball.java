@@ -9,12 +9,12 @@ import spireMapOverhaul.zones.humidity.HumidityZone;
 import spireMapOverhaul.zones.humidity.powers.BaseballPower;
 
 public class SphericGuardianBaseball {
-    @SpirePatch2(clz= SphericGuardian.class,method= "usePreBattleAction")
+    @SpirePatch2(clz = SphericGuardian.class, method = "usePreBattleAction")
     public static class BaseballPatch {
         @SpirePostfixPatch
-        public static void Foo(SphericGuardian __instance){
-            if(HumidityZone.isNotInZone())return;
-            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(__instance, __instance, new BaseballPower(__instance,0)));
+        public static void Foo(SphericGuardian __instance) {
+            if (HumidityZone.isNotInZone()) return;
+            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(__instance, __instance, new BaseballPower(__instance, 0)));
         }
     }
 }

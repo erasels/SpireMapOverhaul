@@ -17,12 +17,12 @@ public class SneckoPlantPower extends AbstractSMOPower {
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
     public static String ZONE_ID = HumidityZone.ID;
 
-    public int nextTurnRoll=0;
-    public int thisTurnRoll=0;
+    public int nextTurnRoll = 0;
+    public int thisTurnRoll = 0;
 
     public SneckoPlantPower(AbstractCreature owner) {
-        super(POWER_ID,NAME,ZONE_ID, AbstractPower.PowerType.DEBUFF, false, owner, 0);
-        nextTurnRoll = monsterRng.random(0,3);
+        super(POWER_ID, NAME, ZONE_ID, AbstractPower.PowerType.DEBUFF, false, owner, 0);
+        nextTurnRoll = monsterRng.random(0, 3);
     }
 
     public void playApplyPowerSfx() {
@@ -31,8 +31,8 @@ public class SneckoPlantPower extends AbstractSMOPower {
 
     @Override
     public void atStartOfTurn() {
-        thisTurnRoll=nextTurnRoll;
-        nextTurnRoll=monsterRng.random(0,3);
+        thisTurnRoll = nextTurnRoll;
+        nextTurnRoll = monsterRng.random(0, 3);
     }
 
     public void updateDescription() {

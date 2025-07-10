@@ -18,7 +18,8 @@ public class PowerelicTemporaryDuplicateCard extends PowerelicCard {
         super(ID, -2, CardType.POWER, CardRarity.SPECIAL, AbstractCard.CardTarget.SELF);
         rawDescription = cardStrings.DESCRIPTION;
     }
-    public PowerelicTemporaryDuplicateCard(AbstractRelic temporaryDuplicateRelic){
+
+    public PowerelicTemporaryDuplicateCard(AbstractRelic temporaryDuplicateRelic) {
         super(ID, -2, CardType.POWER, CardRarity.SPECIAL, AbstractCard.CardTarget.SELF);
         rawDescription = cardStrings.DESCRIPTION;
         this.setRelicInfoForCopiedCard(temporaryDuplicateRelic);

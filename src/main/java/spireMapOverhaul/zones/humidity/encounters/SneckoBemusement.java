@@ -11,7 +11,7 @@ import spireMapOverhaul.zones.humidity.HumidityZone;
 import spireMapOverhaul.zones.humidity.powers.BemusementPower;
 
 public class SneckoBemusement {
-    @SpirePatch2(clz= Snecko.class,method="takeTurn")
+    @SpirePatch2(clz = Snecko.class, method = "takeTurn")
     public static class AttackTheCenturionPatch {
         @SpireInstrumentPatch
         public static ExprEditor patch() {
@@ -19,7 +19,7 @@ public class SneckoBemusement {
                 @Override
                 public void edit(NewExpr n) throws CannotCompileException {
                     if (n.getClassName().equals(ConfusionPower.class.getName())) {
-                        n.replace("{ $_ = "+HumidityZone.instrumentTerniary()+" $proceed($1) : new "+ BemusementPower.class.getName() +"($1); }");
+                        n.replace("{ $_ = " + HumidityZone.instrumentTerniary() + " $proceed($1) : new " + BemusementPower.class.getName() + "($1); }");
                     }
                 }
             };

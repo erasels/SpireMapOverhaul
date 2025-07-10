@@ -17,16 +17,17 @@ public class InvisibleDrawReductionSingleTurnPower extends DrawReductionSingleTu
     public InvisibleDrawReductionSingleTurnPower(AbstractCreature owner, int amount) {
         super(owner, amount);
     }
+
     public void atStartOfTurn() {
         //If centurion or mystic KO themselves via thorns, behavior goes back to normal.
         //Make sure the player can still draw cards on turn 2 in that case!
-        if(!JoustManagerPower.preJoustMonstersAreValid()) {
+        if (!JoustManagerPower.preJoustMonstersAreValid()) {
             //If we tried to addToTop RemoveSpecificPowerAction, it wouldn't get called until after cards were already drawn.
             //So instead, call onRemove to change the player's hand size NOW.
             onRemove();
             //Then, set the power's amount to 0
             //so the player's hand size doesn't get adjusted a second time when the power is removed automatically.
-            this.amount=0;
+            this.amount = 0;
         }
     }
 }

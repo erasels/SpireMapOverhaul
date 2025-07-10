@@ -10,31 +10,32 @@ import javassist.CtBehavior;
 import spireMapOverhaul.util.Wiz;
 
 public class BlockForAlliesOnlyPatch {
-    @SpirePatch (clz = GainBlockRandomMonsterAction.class,method="update")
-    public static class RandomBlockUpdatePatch{
+    @SpirePatch(clz = GainBlockRandomMonsterAction.class, method = "update")
+    public static class RandomBlockUpdatePatch {
         @SpireInsertPatch(locator = Locator.class)
-        public static void Foo(GainBlockRandomMonsterAction __instance){
-            if(!JoustManagerPower.joustMonstersAreValid())return;
+        public static void Foo(GainBlockRandomMonsterAction __instance) {
+            if (!JoustManagerPower.joustMonstersAreValid()) return;
 
             AbstractCreature blocker = __instance.source;
 
-            if(blocker==Wiz.getEnemies().get(0)){
+            if (blocker == Wiz.getEnemies().get(0)) {
                 //Left Centurion blocks for himself or the player
-                if(AbstractDungeon.aiRng.random.nextBoolean()){
-                    __instance.target=blocker;
-                }else{
-                    __instance.target=Wiz.adp();
+                if (AbstractDungeon.aiRng.random.nextBoolean()) {
+                    __instance.target = blocker;
+                } else {
+                    __instance.target = Wiz.adp();
                 }
-            }else if(blocker==Wiz.getEnemies().get(1)){
+            } else if (blocker == Wiz.getEnemies().get(1)) {
                 //Right Centurion blocks for himself or the Mystic
-                if(AbstractDungeon.aiRng.random.nextBoolean()){
-                    __instance.target=blocker;
-                }else{
-                    __instance.target=Wiz.getEnemies().get(2);
+                if (AbstractDungeon.aiRng.random.nextBoolean()) {
+                    __instance.target = blocker;
+                } else {
+                    __instance.target = Wiz.getEnemies().get(2);
                 }
             }
         }
     }
+
     private static class Locator extends SpireInsertLocator {
         public int[] Locate(CtBehavior ctMethodToPatch) throws CannotCompileException, PatchingException {
             Matcher finalMatcher = new Matcher.FieldAccessMatcher(AbstractDungeon.class, "effectList");

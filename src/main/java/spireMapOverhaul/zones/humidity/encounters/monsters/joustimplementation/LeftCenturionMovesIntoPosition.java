@@ -10,17 +10,17 @@ import spireMapOverhaul.zones.humidity.HumidityZone;
 
 public class LeftCenturionMovesIntoPosition {
     @SpirePatch2(clz = AbstractMonster.class, method = "update")
-    public static class UpdatePatch{
+    public static class UpdatePatch {
         @SpirePostfixPatch
-        public static void Foo(AbstractMonster __instance){
-            if(HumidityZone.isNotInZone())return;
-            if(!(__instance instanceof Centurion))return;
-            if(!CenturionAttacksOppositeCenturionPatch.Fields.isSolo.get(__instance))return;
-            int direction=1;
-            __instance.drawX += direction*Gdx.graphics.getDeltaTime() * 400.0F * Settings.scale;
-            float NEGATIVE_SIXTWENTYFIVE=(float)Settings.WIDTH * 0.75F + -625 * Settings.xScale;
-            if(__instance.drawX>NEGATIVE_SIXTWENTYFIVE){
-                __instance.drawX=NEGATIVE_SIXTWENTYFIVE;
+        public static void Foo(AbstractMonster __instance) {
+            if (HumidityZone.isNotInZone()) return;
+            if (!(__instance instanceof Centurion)) return;
+            if (!CenturionAttacksOppositeCenturionPatch.Fields.isSolo.get(__instance)) return;
+            int direction = 1;
+            __instance.drawX += direction * Gdx.graphics.getDeltaTime() * 400.0F * Settings.scale;
+            float NEGATIVE_SIXTWENTYFIVE = (float) Settings.WIDTH * 0.75F + -625 * Settings.xScale;
+            if (__instance.drawX > NEGATIVE_SIXTWENTYFIVE) {
+                __instance.drawX = NEGATIVE_SIXTWENTYFIVE;
             }
         }
     }

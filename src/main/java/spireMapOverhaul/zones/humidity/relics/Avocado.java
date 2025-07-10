@@ -11,21 +11,21 @@ import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 
 public class Avocado extends AbstractSMORelic implements CustomSavable<Integer> {
     public static final String ID = makeID(Avocado.class.getSimpleName());
-    public static final int MINIMUM_HP=7;
-    public int hpLost=0;
+    public static final int MINIMUM_HP = 7;
+    public int hpLost = 0;
 
     public Avocado() {
         super(ID, HumidityZone.ID, RelicTier.SPECIAL, LandingSound.FLAT);
     }
 
-    public int getHPGain(){
-        return Math.max(hpLost/2,MINIMUM_HP);
+    public int getHPGain() {
+        return Math.max(hpLost / 2, MINIMUM_HP);
     }
 
     public String getUpdatedDescription() {
-        if(getHPGain()<=MINIMUM_HP) {
+        if (getHPGain() <= MINIMUM_HP) {
             return this.DESCRIPTIONS[0] + this.DESCRIPTIONS[1] + MINIMUM_HP + this.DESCRIPTIONS[3];
-        }else{
+        } else {
             return this.DESCRIPTIONS[0] + this.DESCRIPTIONS[2] + getHPGain() + this.DESCRIPTIONS[3];
         }
     }
@@ -46,8 +46,9 @@ public class Avocado extends AbstractSMORelic implements CustomSavable<Integer> 
 
     @Override
     public void onLoad(Integer integer) {
-        this.hpLost=integer;
-        description=getUpdatedDescription();
+        if(integer==null) integer=0;
+        this.hpLost = integer;
+        description = getUpdatedDescription();
         tips.clear();
         tips.add(new PowerTip(name, description));
     }

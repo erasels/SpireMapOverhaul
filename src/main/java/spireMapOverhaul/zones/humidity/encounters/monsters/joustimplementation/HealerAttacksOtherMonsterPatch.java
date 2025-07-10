@@ -16,7 +16,7 @@ public class HealerAttacksOtherMonsterPatch {
 
     public static AbstractPlayer realPlayerTempStorage;
 
-    @SpirePatch2(clz=Healer.class,method="takeTurn")
+    @SpirePatch2(clz = Healer.class, method = "takeTurn")
     public static class AttackTheCenturionPatch {
         @SpireInstrumentPatch
         public static ExprEditor patch() {
@@ -29,8 +29,9 @@ public class HealerAttacksOtherMonsterPatch {
                 }
             };
         }
+
         public static String enemyCenturionJoustCheck() {
-            return "!("+ HumidityZone.class.getName()+".isInZone() && "+JoustManagerPower.class.getName()+".joustMonstersAreValid()) ?";
+            return "!(" + HumidityZone.class.getName() + ".isInZone() && " + JoustManagerPower.class.getName() + ".joustMonstersAreValid()) ?";
         }
     }
 

@@ -43,20 +43,20 @@ public class TaskmasterGetsEntangled {
     public static class RedSlaverActsFirst {
         @SpirePostfixPatch
         public static MonsterGroup Foo(MonsterGroup __result, String key) {
-            if(HumidityZone.isNotInZone()) return __result;
-            if(!key.equals(MonsterHelper.SLAVERS_ENC)) return __result;
+            if (HumidityZone.isNotInZone()) return __result;
+            if (!key.equals(MonsterHelper.SLAVERS_ENC)) return __result;
             SlaverRed red = new SlaverRed(125.0F, -30.0F);
-            HumidityTaskmasterField.isHumidity.set(red,true);
+            HumidityTaskmasterField.isHumidity.set(red, true);
             //Red is shuffled to first in the group
             return new MonsterGroup(new AbstractMonster[]{red, new SlaverBlue(-385.0F, -15.0F), new Taskmaster(-133.0F, 0.0F)});
         }
     }
 
-    @SpirePatch(clz=SlaverRed.class,method="getMove")
-    public static class RedSlaverEntangleIntent{
+    @SpirePatch(clz = SlaverRed.class, method = "getMove")
+    public static class RedSlaverEntangleIntent {
         @SpirePrefixPatch
         public static SpireReturn<Void> Foo(SlaverRed __instance) {
-            if(!HumidityTaskmasterField.isHumidity.get(__instance))return SpireReturn.Continue();
+            if (!HumidityTaskmasterField.isHumidity.get(__instance)) return SpireReturn.Continue();
             boolean firstTurn = ReflectionHacks.getPrivate(__instance, SlaverRed.class, "firstTurn");
             if (firstTurn) {
                 ReflectionHacks.setPrivate(__instance, SlaverRed.class, "firstTurn", false);
@@ -67,17 +67,17 @@ public class TaskmasterGetsEntangled {
         }
     }
 
-    @SpirePatch(clz=SlaverRed.class,method="takeTurn")
-    public static class RedSlaverEntangleTurn{
+    @SpirePatch(clz = SlaverRed.class, method = "takeTurn")
+    public static class RedSlaverEntangleTurn {
         @SpirePrefixPatch
         public static SpireReturn<Void> Foo(SlaverRed __instance) {
-            if(!HumidityTaskmasterField.isHumidity.get(__instance))return SpireReturn.Continue();
-            if(__instance.nextMove!=2)return SpireReturn.Continue();
-            ReflectionHacks.privateMethod(SlaverRed.class,"playSfx").invoke(__instance);
-            Wiz.atb(new TalkAction(__instance,SNEEZE));
+            if (!HumidityTaskmasterField.isHumidity.get(__instance)) return SpireReturn.Continue();
+            if (__instance.nextMove != 2) return SpireReturn.Continue();
+            ReflectionHacks.privateMethod(SlaverRed.class, "playSfx").invoke(__instance);
+            Wiz.atb(new TalkAction(__instance, SNEEZE));
             AbstractDungeon.actionManager.addToBottom(new ChangeStateAction(__instance, "Use Net"));
-            for(AbstractMonster m : Wiz.getEnemies()) {
-                if(m!=__instance) {
+            for (AbstractMonster m : Wiz.getEnemies()) {
+                if (m != __instance) {
                     //if (__instance.hb != null && m.hb != null && !Settings.FAST_MODE) {
                     if (__instance.hb != null && m.hb != null) {
                         AbstractDungeon.actionManager.addToBottom(new VFXAction(new EntangleEffect(__instance.hb.cX - 70.0F * Settings.scale, __instance.hb.cY + 10.0F * Settings.scale, m.hb.cX, m.hb.cY), 0.1F));
@@ -85,15 +85,15 @@ public class TaskmasterGetsEntangled {
                     //AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(m, __instance, new EntanglePower(m)));
                 }
             }
-            for(AbstractMonster m : Wiz.getEnemies()) {
-                if(m!=__instance) {
-                    Wiz.atb(new SetMoveAction(m,(byte)99,AbstractMonster.Intent.STUN));
+            for (AbstractMonster m : Wiz.getEnemies()) {
+                if (m != __instance) {
+                    Wiz.atb(new SetMoveAction(m, (byte) 99, AbstractMonster.Intent.STUN));
                     Wiz.atb(new UpdateIntentAction(m));
-                    Wiz.atb(new ApplyPowerAction(m,__instance,new FakeEntangledPower(m)));
+                    Wiz.atb(new ApplyPowerAction(m, __instance, new FakeEntangledPower(m)));
                 }
             }
-            Wiz.atb(new ApplyPowerAction(Wiz.adp(),__instance,new SwapTaskmasterEnemyOrderPower(Wiz.adp())));
-            ReflectionHacks.setPrivate(__instance,SlaverRed.class,"usedEntangle",true);
+            Wiz.atb(new ApplyPowerAction(Wiz.adp(), __instance, new SwapTaskmasterEnemyOrderPower(Wiz.adp())));
+            ReflectionHacks.setPrivate(__instance, SlaverRed.class, "usedEntangle", true);
 
             AbstractDungeon.actionManager.addToBottom(new RollMoveAction(__instance));
 

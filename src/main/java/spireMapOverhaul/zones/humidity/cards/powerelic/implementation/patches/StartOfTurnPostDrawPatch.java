@@ -19,9 +19,10 @@ import java.util.ArrayList;
 public class StartOfTurnPostDrawPatch {
     @SpireInsertPatch(locator = Locator.class)
     public static void Patch() {
-        if(!Loader.isModLoaded("anniv7"))
+        if (!Loader.isModLoaded("anniv7"))
             Wiz.adp().applyStartOfTurnPostDrawPowers();
     }
+
     static class Locator extends SpireInsertLocator {
         @Override
         public int[] Locate(CtBehavior ctBehavior) throws CannotCompileException, PatchingException {

@@ -26,29 +26,28 @@ public class JoustAction3 extends AbstractGameAction {
 
     RoomEventDialog roomEventText;
     public int enemyIndex;
-    public JoustAction3(RoomEventDialog roomEventText){
+
+    public JoustAction3(RoomEventDialog roomEventText) {
         //Left Centurion gets summoned into slot 0
-        this(roomEventText,0);
+        this(roomEventText, 0);
     }
 
-    public JoustAction3(RoomEventDialog roomEventText,int enemyIndex){
-        this.roomEventText=roomEventText;
-        this.enemyIndex=enemyIndex;
+    public JoustAction3(RoomEventDialog roomEventText, int enemyIndex) {
+        this.roomEventText = roomEventText;
+        this.enemyIndex = enemyIndex;
     }
 
 
     @Override
     public void update() {
-        boolean loopIsBroken=false;
-        if(AbstractDungeon.getMonsters().monsters.size()<3)
-            loopIsBroken=true;
-        AbstractEvent event=Wiz.curRoom().event;
-        if(event==null || !(event instanceof JoustMidcombatEvent)){
-            loopIsBroken=true;
+        boolean loopIsBroken = AbstractDungeon.getMonsters().monsters.size() < 3;
+        AbstractEvent event = Wiz.curRoom().event;
+        if (event == null || !(event instanceof JoustMidcombatEvent)) {
+            loopIsBroken = true;
         }
-        if(!JoustManagerPower.joustMonstersAreValid())
-            loopIsBroken=true;
-        if(!loopIsBroken) {
+        if (!JoustManagerPower.joustMonstersAreValid())
+            loopIsBroken = true;
+        if (!loopIsBroken) {
             AbstractMonster enemy = AbstractDungeon.getMonsters().monsters.get(enemyIndex);
             enemy.takeTurn();
             Wiz.atb(new RollMoveAction(enemy));
@@ -59,7 +58,7 @@ public class JoustAction3 extends AbstractGameAction {
             }
             Wiz.atb(new JoustAction3(roomEventText, nextEnemy));
             isDone = true;
-        }else{
+        } else {
             Wiz.att(new RemoveSpecificPowerAction(Wiz.adp(), Wiz.adp(), JoustManagerPower.POWER_ID));
             isDone = true;
             //Right Centurion and Mystic escape.
@@ -71,9 +70,10 @@ public class JoustAction3 extends AbstractGameAction {
             //If Right Centurion is dead, Left is still alive.
             //We want to postpone the end of battle until the player clicks out of the event,
             //so create a new unseen enemy.
-            AbstractMonster hidden=new ApologySlime();
-            hidden.drawX=-Settings.WIDTH;hidden.drawY=-Settings.HEIGHT;
-            Wiz.att(new SpawnMonsterAction(hidden,false));
+            AbstractMonster hidden = new ApologySlime();
+            hidden.drawX = -Settings.WIDTH;
+            hidden.drawY = -Settings.HEIGHT;
+            Wiz.att(new SpawnMonsterAction(hidden, false));
         }
     }
 }

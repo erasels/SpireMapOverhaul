@@ -23,14 +23,14 @@ public class DeadAdventurerPants {
         public static final SpireField<Boolean> receivedPants = new SpireField<>(() -> false);
     }
 
-    @SpirePatch2(clz=DeadAdventurer.class,method=SpirePatch.CONSTRUCTOR)
-    public static class DescriptionPatch{
+    @SpirePatch2(clz = DeadAdventurer.class, method = SpirePatch.CONSTRUCTOR)
+    public static class DescriptionPatch {
         @SpirePostfixPatch
-        public static void Foo(DeadAdventurer __instance){
+        public static void Foo(DeadAdventurer __instance) {
             final String[] DESCRIPTIONS = eventStrings.DESCRIPTIONS;
-            if(HumidityZone.isNotInZone())return;
+            if (HumidityZone.isNotInZone()) return;
             String body = DESCRIPTIONS[0];
-            switch ((int)ReflectionHacks.getPrivate(__instance, DeadAdventurer.class,"enemy")) {
+            switch ((int) ReflectionHacks.getPrivate(__instance, DeadAdventurer.class, "enemy")) {
                 case 0:
                     body = body + DeadAdventurer.DESCRIPTIONS[3];
                     break;
@@ -41,17 +41,17 @@ public class DeadAdventurerPants {
                     body = body + DeadAdventurer.DESCRIPTIONS[5];
             }
             body = body + DeadAdventurer.DESCRIPTIONS[6];
-            ReflectionHacks.setPrivate(__instance,AbstractEvent.class,"body",body);
+            ReflectionHacks.setPrivate(__instance, AbstractEvent.class, "body", body);
         }
     }
 
-    @SpirePatch2(clz=DeadAdventurer.class,method="update")
+    @SpirePatch2(clz = DeadAdventurer.class, method = "update")
     public static class PantsPatch {
         @SpirePrefixPatch
         public static void Foo(DeadAdventurer __instance) {
-            if(HumidityZone.isNotInZone())return;
-            if(!PantsField.receivedPants.get(__instance)) {
-                PantsField.receivedPants.set(__instance,true);
+            if (HumidityZone.isNotInZone()) return;
+            if (!PantsField.receivedPants.get(__instance)) {
+                PantsField.receivedPants.set(__instance, true);
                 AbstractRelic r = new Pants();
                 AbstractDungeon.getCurrRoom().spawnRelicAndObtain((float) Settings.WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F, r);
             }

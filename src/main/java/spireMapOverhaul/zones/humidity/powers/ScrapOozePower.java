@@ -21,14 +21,15 @@ public class ScrapOozePower extends AbstractSMOPower {
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
     public static String ZONE_ID = HumidityZone.ID;
 
-    private int totalDamageDealt=0;
+    private int totalDamageDealt = 0;
 
     public ScrapOozePower(AbstractCreature owner, int amount) {
-        super(POWER_ID,NAME,ZONE_ID, PowerType.BUFF, false, owner, amount);
+        super(POWER_ID, NAME, ZONE_ID, PowerType.BUFF, false, owner, amount);
     }
+
     @Override
     public void updateDescription() {
-        this.description = DESCRIPTIONS[0]+amount+DESCRIPTIONS[1];
+        this.description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1];
     }
 
     public void onInflictDamage(DamageInfo info, int damageAmount, AbstractCreature target) {
@@ -36,13 +37,13 @@ public class ScrapOozePower extends AbstractSMOPower {
             this.flash();
             this.totalDamageDealt += damageAmount;
             int random = AbstractDungeon.miscRng.random(0, 99);
-            if(random >= 99 - this.amount){
-                Wiz.atb(new RemoveSpecificPowerAction(this.owner,this.owner,this));
+            if (random >= 99 - this.amount) {
+                Wiz.atb(new RemoveSpecificPowerAction(this.owner, this.owner, this));
                 AbstractRelic r = AbstractDungeon.returnRandomScreenlessRelic(AbstractDungeon.returnRandomRelicTier());
                 AbstractEvent.logMetricObtainRelicAndDamage("Scrap Ooze", "Success", r, this.totalDamageDealt);
-                AbstractDungeon.getCurrRoom().spawnRelicAndObtain((float) Settings.WIDTH / 2.0F, (float)Settings.HEIGHT / 2.0F, r);
+                AbstractDungeon.getCurrRoom().spawnRelicAndObtain((float) Settings.WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F, r);
             }
-            this.amount+=10;
+            this.amount += 10;
             this.updateDescription();
         }
     }

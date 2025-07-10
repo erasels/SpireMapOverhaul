@@ -23,15 +23,16 @@ public class SpikyPower extends AbstractSMOPower {
     public static String ZONE_ID = HumidityZone.ID;
 
     public SpikyPower(AbstractCreature owner, int amount) {
-        super(POWER_ID,NAME,ZONE_ID, PowerType.BUFF, false, owner, amount);
+        super(POWER_ID, NAME, ZONE_ID, PowerType.BUFF, false, owner, amount);
     }
+
     @Override
     public void updateDescription() {
-        this.description = DESCRIPTIONS[0]+amount+DESCRIPTIONS[1];
+        this.description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1];
     }
 
     public void onUseCard(AbstractCard card, UseCardAction action) {
-        if (card.rarity==COMMON || card.rarity==UNCOMMON || card.rarity==RARE) {
+        if (card.rarity == COMMON || card.rarity == UNCOMMON || card.rarity == RARE) {
             this.addToTop(new ApplyPowerAction(this.owner, this.owner, new StrengthPower(this.owner, -amount), -amount));// 27
             if (!this.owner.hasPower(ArtifactPower.POWER_ID)) {// 29
                 this.addToTop(new ApplyPowerAction(this.owner, this.owner, new GainStrengthPower(this.owner, amount), amount));// 30

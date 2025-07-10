@@ -9,22 +9,23 @@ import spireMapOverhaul.util.Wiz;
 
 public class EventTextRenderEffect extends AbstractGameEffect {
     AbstractEvent event;
-    public EventTextRenderEffect(AbstractEvent event){
-        this.event=event;
-        color=new Color(1,1,1,1);
+
+    public EventTextRenderEffect(AbstractEvent event) {
+        this.event = event;
+        color = new Color(1, 1, 1, 1);
     }
 
     @Override
     public void update() {
         //several event processes are hardcoded to check for EVENT phase
-        AbstractRoom.RoomPhase actualPhase=Wiz.curRoom().phase;
+        AbstractRoom.RoomPhase actualPhase = Wiz.curRoom().phase;
         Wiz.curRoom().phase = AbstractRoom.RoomPhase.EVENT;
 
         event.update();
         event.updateDialog();
         Wiz.curRoom().eventControllerInput();
 
-        Wiz.curRoom().phase=actualPhase;
+        Wiz.curRoom().phase = actualPhase;
     }
 
     @Override

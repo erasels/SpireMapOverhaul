@@ -55,10 +55,12 @@ public class PowerelicCard extends AbstractSMOCard implements OnObtainCard, Cust
         super(ID, HumidityZone.ID, 1, CardType.POWER, CardRarity.SPECIAL, AbstractCard.CardTarget.SELF);
         rawDescription = cardStrings.DESCRIPTION;
     }
-    public PowerelicCard(final String cardID, final int cost, final CardType type, final CardRarity rarity, final CardTarget target){
+
+    public PowerelicCard(final String cardID, final int cost, final CardType type, final CardRarity rarity, final CardTarget target) {
         super(cardID, cost, type, rarity, target);
         rawDescription = cardStrings.DESCRIPTION;
     }
+
     //USE THESE INSTEAD.
     public static PowerelicCard fromActiveRelic(AbstractRelic relic) {
         //called only during the powerelic event
@@ -66,12 +68,14 @@ public class PowerelicCard extends AbstractSMOCard implements OnObtainCard, Cust
         card.setRelicInfoForNewlyConvertedCard(relic);
         return card;
     }
+
     public static PowerelicCard fromCopy(AbstractRelic relic) {
         //copy can be permanent (from master deck) or temporary (from duplication effect)
         PowerelicCard card = new PowerelicCard();
         card.setRelicInfoForCopiedCard(relic);
         return card;
     }
+
     public static PowerelicCard fromViolescentShard(AbstractRelic relic) {
         //called only from card rewards.
         //Violescent Shard swaps an existing card reward for a brand new PowerelicCard.
@@ -80,7 +84,7 @@ public class PowerelicCard extends AbstractSMOCard implements OnObtainCard, Cust
         //In order to connect the relic to the new copy, we need to set this card's capturedRelic field
         //but leave the relic itself untouched, as the relic will stick to the first copy it is assigned to.
         PowerelicCard card = new PowerelicCard();
-        card.capturedRelic=relic;
+        card.capturedRelic = relic;
         return card;
     }
 
@@ -107,32 +111,34 @@ public class PowerelicCard extends AbstractSMOCard implements OnObtainCard, Cust
     //do nothing special if a saved game is loaded, regardless of "activated" status
 
 
-    ////if any relic disappears due to an event, *first* unlink the relic from the card, then remove the card
+    /// /if any relic disappears due to an event, *first* unlink the relic from the card, then remove the card
     // we don't need to make any other adjustments as loseRelic will unequip everything for us
-
-    public void setRelicInfoForNewlyConvertedCard(AbstractRelic relic){
+    public void setRelicInfoForNewlyConvertedCard(AbstractRelic relic) {
         setRelicInfo(relic);
-        if(PowerelicAllowlist.isEssentialEquipRelic(capturedRelic)){
+        if (PowerelicAllowlist.isEssentialEquipRelic(capturedRelic)) {
             capturedRelic.onUnequip();
         }
     }
-    public void setRelicInfoForCopiedCard(AbstractRelic relic){
+
+    public void setRelicInfoForCopiedCard(AbstractRelic relic) {
         setRelicInfo(relic);
     }
+
     public void setRelicInfoFromSavedIndexData(int index) {
         //Data is saved in card.misc, pointing to a specific relic index.
         // We also add 999999999 to misc if the relic was currently active at time of saving,
         // so "index" is the original value of misc before these flags were added.
-        AbstractRelic relic=Wiz.adp().relics.get(index);
+        AbstractRelic relic = Wiz.adp().relics.get(index);
         setRelicInfo(relic);
     }
-    public void setRelicInfo(AbstractRelic relic){
+
+    public void setRelicInfo(AbstractRelic relic) {
         if (relic != null) {
             this.capturedRelic = relic;
             //we must check if the relic is already assigned to a card.
             //if it is, we are probably mid- makeCopy method and we don't want the original relic to be reassigned to the new card.
             //(It is still permissible for the new card to point to the same relic as the old one. It will be reassigned upon attempting to play the card.)
-            if(!PowerelicRelicContainmentFields.isContained.get(relic)) {
+            if (!PowerelicRelicContainmentFields.isContained.get(relic)) {
                 PowerelicRelicContainmentFields.isContained.set(relic, true);
                 PowerelicRelicContainmentFields.withinCard.set(relic, this);
             }
@@ -151,29 +157,25 @@ public class PowerelicCard extends AbstractSMOCard implements OnObtainCard, Cust
     }
 
 
-
     @Override
     public void use(AbstractPlayer abstractPlayer, AbstractMonster abstractMonster) {
         Wiz.atb(new ActivatePowerelicAction(this));
     }
 
 
-
-
-
     //start-of-next-combat removal patch
     @SpirePatch2(clz = AbstractPlayer.class, method = "preBattlePrep")
-    public static class RelicCardRecontainmentPatches{
+    public static class RelicCardRecontainmentPatches {
         @SpirePrefixPatch
         public static void patch(AbstractPlayer __instance) {
-            for(AbstractRelic relic : Wiz.adp().relics){
-                if(PowerelicRelicContainmentFields.isContained.get(relic)) {
-                    if (PowerelicAllowlist.isEssentialEquipRelic(relic)){
-                        int previousMaxEnergy=Wiz.adp().energy.energyMaster;
-                        int previousHandSize=Wiz.adp().masterHandSize;
+            for (AbstractRelic relic : Wiz.adp().relics) {
+                if (PowerelicRelicContainmentFields.isContained.get(relic)) {
+                    if (PowerelicAllowlist.isEssentialEquipRelic(relic)) {
+                        int previousMaxEnergy = Wiz.adp().energy.energyMaster;
+                        int previousHandSize = Wiz.adp().masterHandSize;
                         relic.onUnequip();
-                        if(PowerelicAllowlist.isImmediateOnequipRelic(relic)){
-                            Wiz.att(new PowerelicUpdateEnergyAndHandsizeAction(previousMaxEnergy,previousHandSize));
+                        if (PowerelicAllowlist.isImmediateOnequipRelic(relic)) {
+                            Wiz.att(new PowerelicUpdateEnergyAndHandsizeAction(previousMaxEnergy, previousHandSize));
                         }
                     }
                 }
@@ -197,9 +199,9 @@ public class PowerelicCard extends AbstractSMOCard implements OnObtainCard, Cust
         //...then the card (and captured relic) is not temp and should be equipped.
         //      (i.e. add another Necronomicurse to the deck.)
         //In addition to the previous condition, also do this if the card was from a ViolescentShard card reward.
-        boolean cardIsCopy=false;
-        for(AbstractCard card : Wiz.deck().group){
-            if(card!=this) {
+        boolean cardIsCopy = false;
+        for (AbstractCard card : Wiz.deck().group) {
+            if (card != this) {
                 if (card instanceof PowerelicCard) {
                     if (((PowerelicCard) card).capturedRelic == capturedRelic) {
                         cardIsCopy = true;
@@ -208,8 +210,8 @@ public class PowerelicCard extends AbstractSMOCard implements OnObtainCard, Cust
                 }
             }
         }
-        if(cardIsCopy || cardIsFromCardReward) {
-            cardIsFromCardReward=false;
+        if (cardIsCopy || cardIsFromCardReward) {
+            cardIsFromCardReward = false;
             if (PowerelicAllowlist.isNonessentialEquipRelic(capturedRelic)) {
                 if (PowerelicAllowlist.isSkipEquipIfTempRelic(capturedRelic)) {
                     capturedRelic.onEquip();
@@ -219,11 +221,9 @@ public class PowerelicCard extends AbstractSMOCard implements OnObtainCard, Cust
     }
 
 
-
-
     @Override
     public void onRemoveFromMasterDeck() {
-        if(capturedRelic!=null) {
+        if (capturedRelic != null) {
             PowerelicRelicContainmentFields.isContained.set(capturedRelic, false);
             PowerelicRelicContainmentFields.withinCard.set(capturedRelic, null);
             //Essential: if the card is removed from the deck *and* the relic is currently activated, run loseRelic (which will automatically onUnequip it for us)
@@ -231,9 +231,9 @@ public class PowerelicCard extends AbstractSMOCard implements OnObtainCard, Cust
             //Any other card: if the card is removed from the deck, run loseRelic (which will automatically onUnequip it for us)
             //      note that for those cards, we call loseRelic even if the relic isn't currently activated
             if (!PowerelicAllowlist.isEssentialEquipRelic(capturedRelic)
-                || Wiz.adp().relics.contains(capturedRelic)) {
+                    || Wiz.adp().relics.contains(capturedRelic)) {
                 boolean success = Wiz.adp().loseRelic(capturedRelic.relicId);
-                if(!success){
+                if (!success) {
                     //if we're here, then loseRelic failed because the relic wasn't in the player relic list
                     // (inactive) and we need to onUnequip it manually.
                     capturedRelic.onUnequip();
@@ -246,26 +246,25 @@ public class PowerelicCard extends AbstractSMOCard implements OnObtainCard, Cust
     }
 
 
-
     @Override
-    public AbstractCard makeStatEquivalentCopy(){
-        AbstractCard newCard=super.makeStatEquivalentCopy();
-        if(capturedRelic!=null){
+    public AbstractCard makeStatEquivalentCopy() {
+        AbstractCard newCard = super.makeStatEquivalentCopy();
+        if (capturedRelic != null) {
             setRelicInfoForCopiedCard(capturedRelic);
         }
         return newCard;
     }
 
 
-    public AbstractRelic replaceThisCardsRelicWithNewCopy(){
-        if(this.capturedRelic==null)return null;
-        AbstractRelic newRelic=this.capturedRelic.makeCopy();
+    public AbstractRelic replaceThisCardsRelicWithNewCopy() {
+        if (this.capturedRelic == null) return null;
+        AbstractRelic newRelic = this.capturedRelic.makeCopy();
         newRelic.setCounter(this.capturedRelic.counter);
-        this.capturedRelic=newRelic;
+        this.capturedRelic = newRelic;
         this.setRelicInfoForCopiedCard(newRelic);
         ReflectionHacks.privateMethod(AbstractRelic.class, "initializeTips").invoke(newRelic);
-        if(PowerelicAllowlist.isNonessentialEquipRelic(newRelic)){
-            if(!PowerelicAllowlist.isSkipEquipIfTempRelic(newRelic)) {
+        if (PowerelicAllowlist.isNonessentialEquipRelic(newRelic)) {
+            if (!PowerelicAllowlist.isSkipEquipIfTempRelic(newRelic)) {
                 newRelic.onEquip();
             }
         }
@@ -273,8 +272,7 @@ public class PowerelicCard extends AbstractSMOCard implements OnObtainCard, Cust
     }
 
     @SpirePatch(clz = AbstractRelic.class, method = SpirePatch.CLASS)
-    public static class PowerelicRelicContainmentFields
-    {
+    public static class PowerelicRelicContainmentFields {
         public static SpireField<Boolean> isContained = new SpireField<>(() -> false);
         public static SpireField<PowerelicCard> withinCard = new SpireField<>(() -> null);
         public static SpireField<Boolean> isActiveBetweenCombats = new SpireField<>(() -> false);
@@ -282,41 +280,43 @@ public class PowerelicCard extends AbstractSMOCard implements OnObtainCard, Cust
 
 
     @SpirePatch2(clz = AbstractCard.class, method = "renderPortrait")
-    public static class RenderPortraitPatches{
+    public static class RenderPortraitPatches {
         @SpirePostfixPatch
         public static void patch(AbstractCard __instance, SpriteBatch sb) {
-            if(__instance instanceof PowerelicCard){
-                ((PowerelicCard)__instance).renderRelicImage(sb);
+            if (__instance instanceof PowerelicCard) {
+                ((PowerelicCard) __instance).renderRelicImage(sb);
             }
         }
     }
+
     @SpirePatch2(clz = AbstractCard.class, method = "renderJokePortrait")
-    public static class RenderJokePortraitPatches{
+    public static class RenderJokePortraitPatches {
         @SpirePostfixPatch
         public static void patch(AbstractCard __instance, SpriteBatch sb) {
-            if(__instance instanceof PowerelicCard){
-                ((PowerelicCard)__instance).renderRelicImage(sb);
+            if (__instance instanceof PowerelicCard) {
+                ((PowerelicCard) __instance).renderRelicImage(sb);
             }
         }
     }
-    public void renderRelicImage(SpriteBatch sb){
+
+    public void renderRelicImage(SpriteBatch sb) {
         if (this.capturedRelic != null) {
             float drawX = this.current_x - 125.0F;
             float drawY = this.current_y - 95.0F;
             //this.capturedRelic.loadLargeImg();
             Texture img = this.capturedRelic.largeImg;
             Color renderColor = ReflectionHacks.getPrivate(this, AbstractCard.class, "renderColor");
-            if (false && img != null) {
+            if (false) {
                 //for later: add support for large images (draw parameters haven't been set yet)
                 // note that loadLargeImg causes logger WARNING spam if no such image exists!
                 sb.setColor(renderColor);
                 //sb.draw(img, drawX, drawY + 72.0F, 125.0F, 23.0F, 250.0F, 190.0F, 2*this.drawScale * Settings.scale, 2*this.drawScale * Settings.scale, this.angle, -60, -64, 250, 190, false, false);
-            }else{
+            } else {
                 img = this.capturedRelic.img;
-                sb.draw(img, drawX, drawY + 72.0F, 125.0F, 23.0F, 250.0F, 190.0F, 2*this.drawScale * Settings.scale, 2*this.drawScale * Settings.scale, this.angle, -60, -64, 250, 190, false, false);
+                sb.draw(img, drawX, drawY + 72.0F, 125.0F, 23.0F, 250.0F, 190.0F, 2 * this.drawScale * Settings.scale, 2 * this.drawScale * Settings.scale, this.angle, -60, -64, 250, 190, false, false);
             }
-            if(this.capturedRelic.counter>-1){
-                String text=Integer.toString(this.capturedRelic.counter);
+            if (this.capturedRelic.counter > -1) {
+                String text = Integer.toString(this.capturedRelic.counter);
                 topPanelInfoFont_L.getData().setScale(this.drawScale);
                 FontHelper.renderRotatedText(sb, topPanelInfoFont_L, text,
                         this.current_x, this.current_y, 87.0F * Settings.scale * this.drawScale / 2.0F, 90.0F * Settings.scale * this.drawScale / 2.0F, this.angle, true, Color.WHITE);
@@ -326,32 +326,32 @@ public class PowerelicCard extends AbstractSMOCard implements OnObtainCard, Cust
 
 
     @SpirePatch2(clz = SingleCardViewPopup.class, method = "renderPortrait")
-    public static class CardInspectScreenPatch{
+    public static class CardInspectScreenPatch {
         @SpirePostfixPatch
         public static void patch(SingleCardViewPopup __instance, SpriteBatch sb) {
-            AbstractCard card = ReflectionHacks.getPrivate(__instance, SingleCardViewPopup.class,"card");
-            if(card instanceof PowerelicCard){
-                PowerelicCard prCard=((PowerelicCard)card);
-                if(prCard.capturedRelic!=null){
+            AbstractCard card = ReflectionHacks.getPrivate(__instance, SingleCardViewPopup.class, "card");
+            if (card instanceof PowerelicCard) {
+                PowerelicCard prCard = ((PowerelicCard) card);
+                if (prCard.capturedRelic != null) {
                     float drawX = Settings.WIDTH / 2.0F - 250.0F;
                     float drawY = Settings.HEIGHT / 2.0F - 100.0F;
                     //this.capturedRelic.loadLargeImg();
                     Texture img = prCard.capturedRelic.largeImg;
                     Color renderColor = ReflectionHacks.getPrivate(prCard, AbstractCard.class, "renderColor");
-                    if (false && img != null) {
+                    if (false) {
                         //for later: add support for large images (draw parameters haven't been set yet)
                         // note that loadLargeImg causes logger WARNING spam if no such image exists!
                         sb.setColor(renderColor);
                         //sb.draw(img, drawX, drawY + 72.0F, 125.0F, 23.0F, 250.0F, 190.0F, 2*this.drawScale * Settings.scale, 2*this.drawScale * Settings.scale, this.angle, -60, -64, 250, 190, false, false);
-                    }else{
+                    } else {
                         img = prCard.capturedRelic.img;
-                        sb.draw(img, drawX+125F, drawY + 72.0F, 125.0F, 23.0F, 250.0F, 190.0F, 4 * Settings.scale, 4 * Settings.scale, 0.0F, -60, -64, 250, 190, false, false);
+                        sb.draw(img, drawX + 125F, drawY + 72.0F, 125.0F, 23.0F, 250.0F, 190.0F, 4 * Settings.scale, 4 * Settings.scale, 0.0F, -60, -64, 250, 190, false, false);
                     }
-                    if(prCard.capturedRelic.counter>-1){
-                        String text=Integer.toString(prCard.capturedRelic.counter);
-                        float current_x = ReflectionHacks.getPrivate(__instance, SingleCardViewPopup.class,"current_x");
-                        float current_y = ReflectionHacks.getPrivate(__instance, SingleCardViewPopup.class,"current_y");
-                        float drawScale = ReflectionHacks.getPrivate(__instance, SingleCardViewPopup.class,"drawScale");
+                    if (prCard.capturedRelic.counter > -1) {
+                        String text = Integer.toString(prCard.capturedRelic.counter);
+                        float current_x = ReflectionHacks.getPrivate(__instance, SingleCardViewPopup.class, "current_x");
+                        float current_y = ReflectionHacks.getPrivate(__instance, SingleCardViewPopup.class, "current_y");
+                        float drawScale = ReflectionHacks.getPrivate(__instance, SingleCardViewPopup.class, "drawScale");
                         topPanelInfoFont_L.getData().setScale(drawScale);
                         FontHelper.renderRotatedText(sb, topPanelInfoFont_L, text,
                                 current_x, current_y, 82.0F * Settings.scale * drawScale / 2.0F, 385.0F * Settings.scale * drawScale / 2.0F, 0.0F, true, Color.WHITE);
@@ -365,8 +365,8 @@ public class PowerelicCard extends AbstractSMOCard implements OnObtainCard, Cust
     @SpirePatch2(clz = AbstractPlayer.class, method = "loseRelic")
     public static class RemovingRelicAlsoRemovesCardPatch {
         @SpirePrefixPatch
-        public static void patch(AbstractPlayer __instance, String targetID){
-            if(!__instance.hasRelic(targetID)){
+        public static void patch(AbstractPlayer __instance, String targetID) {
+            if (!__instance.hasRelic(targetID)) {
                 return;
             }
             //As loseRelic takes a string instead of an object, we have to use a Prefix patch here.
@@ -389,32 +389,32 @@ public class PowerelicCard extends AbstractSMOCard implements OnObtainCard, Cust
 
     @Override
     public CardedRelicSaveData onSave() {
-        logger.info("PowerelicCard.onSave "+this.capturedRelic);
-        if(this.capturedRelic==null){
-            return new CardedRelicSaveData("EMPTY",0,false);
+        logger.info("PowerelicCard.onSave " + this.capturedRelic);
+        if (this.capturedRelic == null) {
+            return new CardedRelicSaveData("EMPTY", 0, false);
         }
-        return new CardedRelicSaveData(this.capturedRelic.relicId,this.capturedRelic.counter,Wiz.adp().relics.contains(this.capturedRelic));
+        return new CardedRelicSaveData(this.capturedRelic.relicId, this.capturedRelic.counter, Wiz.adp().relics.contains(this.capturedRelic));
     }
 
     @Override
     public void onLoad(CardedRelicSaveData cardedRelicSaveData) {
-        if(cardedRelicSaveData==null){
+        if (cardedRelicSaveData == null) {
             logger.info("PowerelicCard.onLoad, but savedata is null");
             return;
         }
-        logger.info("PowerelicCard.onLoad "+cardedRelicSaveData.relicID+" "+cardedRelicSaveData.counter+" "+cardedRelicSaveData.active);
-        boolean matchFound=false;
-        AbstractRelic relic=null;
-        if(cardedRelicSaveData.active){
+        logger.info("PowerelicCard.onLoad " + cardedRelicSaveData.relicID + " " + cardedRelicSaveData.counter + " " + cardedRelicSaveData.active);
+        boolean matchFound = false;
+        AbstractRelic relic = null;
+        if (cardedRelicSaveData.active) {
             //find the first relic in the player's relic list that
             //  1) matches the saved data and
             //  2) is not already captured, then
             //      flag it as temporary
-            for(AbstractRelic playerRelic : Wiz.adp().relics){
-                if(Objects.equals(playerRelic.relicId, cardedRelicSaveData.relicID)){
-                    if(playerRelic.counter==cardedRelicSaveData.counter){
-                        if(!PowerelicRelicContainmentFields.isContained.get(playerRelic)) {
-                            logger.info(cardedRelicSaveData.relicID+" with counter "+cardedRelicSaveData.counter+" will be restored to temporary status");
+            for (AbstractRelic playerRelic : Wiz.adp().relics) {
+                if (Objects.equals(playerRelic.relicId, cardedRelicSaveData.relicID)) {
+                    if (playerRelic.counter == cardedRelicSaveData.counter) {
+                        if (!PowerelicRelicContainmentFields.isContained.get(playerRelic)) {
+                            logger.info(cardedRelicSaveData.relicID + " with counter " + cardedRelicSaveData.counter + " will be restored to temporary status");
                             relic = playerRelic;
                             matchFound = true;
                             break;
@@ -422,22 +422,21 @@ public class PowerelicCard extends AbstractSMOCard implements OnObtainCard, Cust
                     }
                 }
             }
-            if(!matchFound){
-                logger.info("WARNING: "+cardedRelicSaveData.relicID+" reports that it is temporary, but we couldn't find a matching relic in player's list with counter "+cardedRelicSaveData.counter);
+            if (!matchFound) {
+                logger.info("WARNING: " + cardedRelicSaveData.relicID + " reports that it is temporary, but we couldn't find a matching relic in player's list with counter " + cardedRelicSaveData.counter);
             }
         }
-        if(!matchFound){
+        if (!matchFound) {
             relic = RelicLibrary.getRelic(cardedRelicSaveData.relicID).makeCopy();
             //note that if relicID was not found, RelicLibrary will return a Circlet
-            if(relic instanceof Circlet && !Objects.equals(cardedRelicSaveData.relicID, Circlet.ID)){
-                logger.info("WARNING: "+cardedRelicSaveData.relicID+" became a Circlet after loading");
+            if (relic instanceof Circlet && !Objects.equals(cardedRelicSaveData.relicID, Circlet.ID)) {
+                logger.info("WARNING: " + cardedRelicSaveData.relicID + " became a Circlet after loading");
             }
             relic.setCounter(cardedRelicSaveData.counter);
         }
 
         this.setRelicInfo(relic);
     }
-
 
 
     public AbstractCard makeCopy() {
@@ -447,9 +446,10 @@ public class PowerelicCard extends AbstractSMOCard implements OnObtainCard, Cust
     }
 
     public static BitmapFont topPanelInfoFont_L;
-    static{
+
+    static {
         FileHandle fontFile;
-        float fontScale=1.0f;
+        float fontScale = 1.0f;
         switch (Settings.language) {
             case ZHS:
                 fontFile = Gdx.files.internal("font/zhs/SourceHanSerifSC-Bold.otf");
@@ -488,10 +488,10 @@ public class PowerelicCard extends AbstractSMOCard implements OnObtainCard, Cust
             default:
                 fontFile = Gdx.files.internal("font/Kreon-Bold.ttf");
         }
-        ReflectionHacks.setPrivateStatic(FontHelper.class,"fontFile",fontFile);
-        ReflectionHacks.setPrivateStatic(FontHelper.class,"fontScale",fontScale);
+        ReflectionHacks.setPrivateStatic(FontHelper.class, "fontFile", fontFile);
+        ReflectionHacks.setPrivateStatic(FontHelper.class, "fontScale", fontScale);
 
-        FreeTypeFontGenerator.FreeTypeFontParameter param = ReflectionHacks.getPrivateStatic(FontHelper.class,"param");
+        FreeTypeFontGenerator.FreeTypeFontParameter param = ReflectionHacks.getPrivateStatic(FontHelper.class, "param");
         param.shadowColor = new Color(0.0F, 0.0F, 0.0F, 0.33F);// 454
         param.gamma = 2.0F;
         param.borderGamma = 2.0F;
@@ -500,6 +500,6 @@ public class PowerelicCard extends AbstractSMOCard implements OnObtainCard, Cust
         param.borderWidth = 4.0F * Settings.scale;
         param.shadowOffsetX = 2;
         param.shadowOffsetY = 2;
-        topPanelInfoFont_L= FontHelper.prepFont(42.0F, true);
+        topPanelInfoFont_L = FontHelper.prepFont(42.0F, true);
     }
 }

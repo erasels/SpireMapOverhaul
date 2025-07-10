@@ -15,11 +15,12 @@ public class GilTossPower extends AbstractSMOPower {
     public static String ZONE_ID = HumidityZone.ID;
 
     public GilTossPower(AbstractCreature owner, int amount) {
-        super(POWER_ID,NAME,ZONE_ID, PowerType.BUFF, false, owner, amount);
+        super(POWER_ID, NAME, ZONE_ID, PowerType.BUFF, false, owner, amount);
     }
+
     @Override
     public void updateDescription() {
-        this.description = this.owner.name+DESCRIPTIONS[0];
+        this.description = this.owner.name + DESCRIPTIONS[0];
     }
 
 

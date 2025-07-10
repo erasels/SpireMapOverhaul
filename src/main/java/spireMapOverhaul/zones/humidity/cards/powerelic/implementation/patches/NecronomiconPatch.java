@@ -22,7 +22,7 @@ public class NecronomiconPatch {
             return new ExprEditor() {
                 public void edit(FieldAccess m) throws CannotCompileException {
                     if (m.getClassName().equals(AbstractDungeon.class.getName()) && m.getFieldName().equals("effectList")) {
-                        m.replace("$_ = "+AbstractDungeon.class.getName()+".effectsQueue;");
+                        m.replace("$_ = " + AbstractDungeon.class.getName() + ".effectsQueue;");
                     }
                 }
             };

@@ -22,43 +22,43 @@ import spireMapOverhaul.zones.humidity.HumidityZone;
 
 public class JawWormAct1 {
 
-    @SpirePatch2(clz=JawWorm.class,method="usePreBattleAction")
-    public static class PowerPatch{
+    @SpirePatch2(clz = JawWorm.class, method = "usePreBattleAction")
+    public static class PowerPatch {
         @SpirePostfixPatch
-        public static void Foo(JawWorm __instance){
-            if(HumidityZone.isNotInZone())return;
+        public static void Foo(JawWorm __instance) {
+            if (HumidityZone.isNotInZone()) return;
             AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(__instance, __instance, new SurroundedPower(__instance)));
         }
     }
 
-    public static AbstractMonster findEarlyByrd(){
-        if(Wiz.getEnemies().size()<2)return null;
-        if(Wiz.getEnemies().get(1) instanceof Byrd)return Wiz.getEnemies().get(1);
-        if(Wiz.getEnemies().size()<3)return null;
-        if(Wiz.getEnemies().get(2) instanceof Byrd)return Wiz.getEnemies().get(2);
+    public static AbstractMonster findEarlyByrd() {
+        if (Wiz.getEnemies().size() < 2) return null;
+        if (Wiz.getEnemies().get(1) instanceof Byrd) return Wiz.getEnemies().get(1);
+        if (Wiz.getEnemies().size() < 3) return null;
+        if (Wiz.getEnemies().get(2) instanceof Byrd) return Wiz.getEnemies().get(2);
         return null;
     }
 
-    @SpirePatch2(clz = JawWorm.class, method="die")
+    @SpirePatch2(clz = JawWorm.class, method = "die")
     public static class WhenJawWormDies {
         @SpirePrefixPatch
-        public static SpireReturn<Void> Foo(AbstractMonster __instance){
-            if(HumidityZone.isNotInZone())return SpireReturn.Continue();
-            if(!AbstractDungeon.id.equals(Exordium.ID))return SpireReturn.Continue();
-            if(!(__instance instanceof JawWorm))return SpireReturn.Continue();
+        public static SpireReturn<Void> Foo(AbstractMonster __instance) {
+            if (HumidityZone.isNotInZone()) return SpireReturn.Continue();
+            if (!AbstractDungeon.id.equals(Exordium.ID)) return SpireReturn.Continue();
+            if (!(__instance instanceof JawWorm)) return SpireReturn.Continue();
             AbstractMonster byrd = findEarlyByrd();
-            if(byrd==null)return SpireReturn.Continue();
+            if (byrd == null) return SpireReturn.Continue();
 
             if (__instance.currentHealth <= 0 && !__instance.isEscaping) {
                 Wiz.att(new EscapeAction(__instance));
-                if(!byrd.hasPower(FlightPower.POWER_ID)) {
+                if (!byrd.hasPower(FlightPower.POWER_ID)) {
                     AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(byrd, byrd, new FlightPower(byrd, 4)));
-                    ReflectionHacks.privateMethod(AbstractCreature.class,"loadAnimation",String.class,String.class,float.class).invoke(byrd,"images/monsters/theCity/byrd/flying.atlas", "images/monsters/theCity/byrd/flying.json", 1.0F);
+                    ReflectionHacks.privateMethod(AbstractCreature.class, "loadAnimation", String.class, String.class, float.class).invoke(byrd, "images/monsters/theCity/byrd/flying.atlas", "images/monsters/theCity/byrd/flying.json", 1.0F);
                     AnimationState.TrackEntry e = byrd.state.setAnimation(0, "idle_flap", true);
                 }
                 Wiz.att(new EscapeAction(byrd));
-                EarlyByrd.CapturedEnemy.jawWorm.set(byrd,(JawWorm)__instance);
-                CapturingEnemy.byrd.set(__instance,(Byrd)byrd);
+                EarlyByrd.CapturedEnemy.jawWorm.set(byrd, (JawWorm) __instance);
+                CapturingEnemy.byrd.set(__instance, (Byrd) byrd);
 
                 for (AbstractPower p : __instance.powers) {
                     p.onDeath();
@@ -69,7 +69,7 @@ public class JawWormAct1 {
                 }
 
                 //if the only enemies in the room are jawworm and earlybyrd, the gold drop will be removed when they Escape. so add it back here.
-                if(AbstractDungeon.getMonsters().monsters.size()<3)
+                if (AbstractDungeon.getMonsters().monsters.size() < 3)
                     Wiz.curRoom().addGoldToRewards(AbstractDungeon.treasureRng.random(10, 20));
                 CardCrawlGame.sound.play("JAW_WORM_DEATH");
             }
@@ -77,14 +77,14 @@ public class JawWormAct1 {
         }
     }
 
-    @SpirePatch2(clz = AbstractMonster.class,method="updateEscapeAnimation")
-    public static class JawWormCancelEscapeAnimation{
+    @SpirePatch2(clz = AbstractMonster.class, method = "updateEscapeAnimation")
+    public static class JawWormCancelEscapeAnimation {
         @SpirePrefixPatch
-        public static SpireReturn<Void> Foo(AbstractMonster __instance){
-            if(HumidityZone.isNotInZone())return SpireReturn.Continue();
-            if(!AbstractDungeon.id.equals(Exordium.ID))return SpireReturn.Continue();
-            if(!(__instance instanceof JawWorm))return SpireReturn.Continue();
-            if(CapturingEnemy.byrd.get(__instance)==null) return SpireReturn.Continue();
+        public static SpireReturn<Void> Foo(AbstractMonster __instance) {
+            if (HumidityZone.isNotInZone()) return SpireReturn.Continue();
+            if (!AbstractDungeon.id.equals(Exordium.ID)) return SpireReturn.Continue();
+            if (!(__instance instanceof JawWorm)) return SpireReturn.Continue();
+            if (CapturingEnemy.byrd.get(__instance) == null) return SpireReturn.Continue();
 
             if (__instance.escapeTimer != 0.0F) {
                 __instance.escapeTimer -= Gdx.graphics.getDeltaTime();
@@ -102,8 +102,8 @@ public class JawWormAct1 {
     }
 
     @SpirePatch(
-            clz=JawWorm.class,
-            method=SpirePatch.CLASS
+            clz = JawWorm.class,
+            method = SpirePatch.CLASS
     )
     public static class CapturingEnemy {
         public static SpireField<Byrd> byrd = new SpireField<>(() -> null);

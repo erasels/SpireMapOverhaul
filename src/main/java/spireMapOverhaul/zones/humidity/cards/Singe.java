@@ -38,7 +38,7 @@ public class Singe extends AbstractSMOCard {
 
     @Override
     public void upp() {
-        this.baseMagicNumber=4;
-        this.magicNumber=baseMagicNumber;
+        this.baseMagicNumber = 4;
+        this.magicNumber = baseMagicNumber;
     }
 }

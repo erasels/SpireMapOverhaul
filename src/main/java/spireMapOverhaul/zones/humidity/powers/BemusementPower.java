@@ -19,7 +19,7 @@ public class BemusementPower extends AbstractSMOPower {
 
 
     public BemusementPower(AbstractCreature owner) {
-        super(POWER_ID,NAME,ZONE_ID, AbstractPower.PowerType.DEBUFF, false, owner, 0);
+        super(POWER_ID, NAME, ZONE_ID, AbstractPower.PowerType.DEBUFF, false, owner, 0);
     }
 
     public void playApplyPowerSfx() {

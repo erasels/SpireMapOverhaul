@@ -15,8 +15,9 @@ public class GremlinNobMinionPower extends AbstractSMOPower {
     public static String ZONE_ID = HumidityZone.ID;
 
     public GremlinNobMinionPower(AbstractCreature owner, int amount) {
-        super(POWER_ID,NAME,ZONE_ID, PowerType.BUFF, false, owner, amount);
+        super(POWER_ID, NAME, ZONE_ID, PowerType.BUFF, false, owner, amount);
     }
+
     @Override
     public void updateDescription() {
         this.description = DESCRIPTIONS[0];

@@ -21,16 +21,16 @@ public class TipHelperRenderPatch {
                 public void edit(MethodCall m) throws CannotCompileException {
                     String settings = Settings.class.getName();
                     if (m.getClassName().equals(SpriteBatch.class.getName()) && m.getMethodName().equals("draw")) {
-                        if(m.getSignature().equals("(Lcom/badlogic/gdx/graphics/Texture;FFFF)V")){
+                        if (m.getSignature().equals("(Lcom/badlogic/gdx/graphics/Texture;FFFF)V")) {
                             m.replace("{ " +
-                                    boolean.class.getName()+" isPowerelicTip="+TipHelperRelicDetection.class.getName()+".detectRelics($1);"+
+                                    boolean.class.getName() + " isPowerelicTip=" + TipHelperRelicDetection.class.getName() + ".detectRelics($1);" +
                                     "if(!isPowerelicTip){" +
                                     "   $proceed($$);" +
                                     "}else{" +
                                     //sb.draw(tip.img, x + TEXT_OFFSET_X + gl.width + 5.0F * Settings.scale, y - 10.0F * Settings.scale, 32.0F * Settings.scale, 32.0F * Settings.scale);
-                                    "   $proceed($1,$2-20F*"+settings+".scale,$3-16F*"+settings+".scale,$4*2F,$5*2F);" +
+                                    "   $proceed($1,$2-20F*" + settings + ".scale,$3-16F*" + settings + ".scale,$4*2F,$5*2F);" +
                                     "}"
-                               + "}");
+                                    + "}");
                         }
                     }
                 }

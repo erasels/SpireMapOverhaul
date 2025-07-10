@@ -12,10 +12,10 @@ import spireMapOverhaul.zones.humidity.powers.HallucinationCloudPower;
 public class FungiBeastHallucinations {
 
     @SpirePatch2(clz = FungiBeast.class, method = "usePreBattleAction")
-    public static class PowerPatch{
+    public static class PowerPatch {
         @SpirePrefixPatch
-        public static SpireReturn<Void> usePreBattleAction(FungiBeast __instance){
-            if(HumidityZone.isNotInZone())return SpireReturn.Continue();
+        public static SpireReturn<Void> usePreBattleAction(FungiBeast __instance) {
+            if (HumidityZone.isNotInZone()) return SpireReturn.Continue();
             AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(__instance, __instance, new HallucinationCloudPower(__instance, 2)));
             return SpireReturn.Return();
         }

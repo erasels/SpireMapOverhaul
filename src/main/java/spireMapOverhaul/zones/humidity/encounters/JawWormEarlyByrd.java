@@ -12,13 +12,13 @@ import spireMapOverhaul.zones.humidity.HumidityZone;
 
 public class JawWormEarlyByrd {
     @SpirePatch2(clz = MonsterHelper.class, method = "getEncounter")
-    public static class EncounterPatch{
+    public static class EncounterPatch {
         @SpirePrefixPatch
-        public static SpireReturn<MonsterGroup> Foo(String key){
-            if(HumidityZone.isNotInZone())return SpireReturn.Continue();
-            if(key.equals("Jaw Worm")){
+        public static SpireReturn<MonsterGroup> Foo(String key) {
+            if (HumidityZone.isNotInZone()) return SpireReturn.Continue();
+            if (key.equals("Jaw Worm")) {
                 return SpireReturn.Return(
-                        new MonsterGroup(new AbstractMonster[]{new JawWorm(-460.0F, 25.0F),new Byrd(0.0F, 70.0F)})
+                        new MonsterGroup(new AbstractMonster[]{new JawWorm(-460.0F, 25.0F), new Byrd(0.0F, 70.0F)})
                 );
             }
             return SpireReturn.Continue();

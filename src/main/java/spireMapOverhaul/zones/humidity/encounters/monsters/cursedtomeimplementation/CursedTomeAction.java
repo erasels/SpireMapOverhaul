@@ -12,38 +12,36 @@ public class CursedTomeAction extends AbstractGameAction {
 
     RoomEventDialog roomEventText;
     boolean alreadyCalledEvent = false;
-    int turnCount=0;
+    int turnCount = 0;
 
-    public CursedTomeAction(int turnCount){
+    public CursedTomeAction(int turnCount) {
         super();
-        this.turnCount=turnCount;
+        this.turnCount = turnCount;
     }
 
 
     @Override
     public void update() {
-        AbstractEvent event=Wiz.curRoom().event;
-        if(!alreadyCalledEvent){
+        AbstractEvent event = Wiz.curRoom().event;
+        if (!alreadyCalledEvent) {
             alreadyCalledEvent = true;
-            if(turnCount==1) {
+            if (turnCount == 1) {
                 AbstractEvent.type = AbstractEvent.EventType.ROOM;
                 AbstractEvent ctme = new CursedTomeMidcombatEvent();
                 Wiz.curRoom().event = ctme;
                 EventTextRenderEffect etre = new EventTextRenderEffect(ctme);
                 AbstractDungeon.topLevelEffectsQueue.add(etre);
-            }else if(event==null || !(event instanceof CursedTomeMidcombatEvent)){
+            } else if (event == null || !(event instanceof CursedTomeMidcombatEvent)) {
                 isDone = true;
-            }else{
-                ((CursedTomeMidcombatEvent)event).setScreen(turnCount);
+            } else {
+                ((CursedTomeMidcombatEvent) event).setScreen(turnCount);
             }
-        }
-        else
-        {
+        } else {
             if (event == null || !(event instanceof CursedTomeMidcombatEvent)) {
                 isDone = true;
             }
-            int screen=((CursedTomeMidcombatEvent)event).screen;
-            if(0 < screen && screen < 5) {
+            int screen = ((CursedTomeMidcombatEvent) event).screen;
+            if (0 < screen && screen < 5) {
                 isDone = true;
             }
         }

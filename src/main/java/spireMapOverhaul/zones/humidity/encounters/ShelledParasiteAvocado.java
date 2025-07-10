@@ -15,20 +15,21 @@ import spireMapOverhaul.zones.humidity.HumidityZone;
 import spireMapOverhaul.zones.humidity.relics.AvocadoReward;
 
 public class ShelledParasiteAvocado {
-    @SpirePatch(clz = ShelledParasite.class,method = SpirePatch.CLASS)
+    @SpirePatch(clz = ShelledParasite.class, method = SpirePatch.CLASS)
     public static class Fields {
-        public static SpireField<Integer> damageTaken = new SpireField<>(()->0);
+        public static SpireField<Integer> damageTaken = new SpireField<>(() -> 0);
     }
 
-    @SpirePatch2(clz= AbstractPlayer.class,method="damage")
+    @SpirePatch2(clz = AbstractPlayer.class, method = "damage")
     public static class RecordDamageTakenPatch {
-        @SpireInsertPatch(locator=Locator.class,localvars={"damageAmount"})
-        public static void Foo(AbstractPlayer __instance, DamageInfo info, int damageAmount){
-            if(info.owner instanceof ShelledParasite){
-                AbstractCreature m = (AbstractCreature) info.owner;
-                Fields.damageTaken.set(m, Fields.damageTaken.get(m)+damageAmount);
+        @SpireInsertPatch(locator = Locator.class, localvars = {"damageAmount"})
+        public static void Foo(AbstractPlayer __instance, DamageInfo info, int damageAmount) {
+            if (info.owner instanceof ShelledParasite) {
+                AbstractCreature m = info.owner;
+                Fields.damageTaken.set(m, Fields.damageTaken.get(m) + damageAmount);
             }
         }
+
         private static class Locator extends SpireInsertLocator {
             public int[] Locate(CtBehavior ctMethodToPatch) throws CannotCompileException, PatchingException {
                 Matcher finalMatcher = new Matcher.FieldAccessMatcher(GameActionManager.class, "damageReceivedThisCombat");
@@ -37,12 +38,12 @@ public class ShelledParasiteAvocado {
         }
     }
 
-    @SpirePatch2(clz= AbstractMonster.class,method="die",paramtypez = {boolean.class})
-    public static class AddAvocadoRelicToRewardsPatch{
+    @SpirePatch2(clz = AbstractMonster.class, method = "die", paramtypez = {boolean.class})
+    public static class AddAvocadoRelicToRewardsPatch {
         @SpirePostfixPatch
         public static void Foo(AbstractMonster __instance) {
-            if(HumidityZone.isNotInZone())return;
-            if(!(__instance instanceof ShelledParasite))return;
+            if (HumidityZone.isNotInZone()) return;
+            if (!(__instance instanceof ShelledParasite)) return;
             AvocadoReward reward = new AvocadoReward(Fields.damageTaken.get(__instance));
             AbstractDungeon.getCurrRoom().rewards.add(reward);
         }

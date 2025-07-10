@@ -24,30 +24,31 @@ import spireMapOverhaul.zones.humidity.HumidityZone;
 
 public class GremlinNobDemotivated {
 
-    @SpirePatch2(clz = AngerPower.class,method="onUseCard")
+    @SpirePatch2(clz = AngerPower.class, method = "onUseCard")
     public static class TemporaryStrength {
         @SpirePrefixPatch
         public static void Foo(AngerPower __instance, AbstractCard card, UseCardAction action) {
-            if(HumidityZone.isNotInZone())return;
-            if(Wiz.curRoom()!=null && Wiz.curRoom().event!=null && Wiz.curRoom().event instanceof Colosseum)return;
+            if (HumidityZone.isNotInZone()) return;
+            if (Wiz.curRoom() != null && Wiz.curRoom().event != null && Wiz.curRoom().event instanceof Colosseum)
+                return;
             if (card.type == AbstractCard.CardType.SKILL) {
                 Wiz.att(new ApplyPowerAction(__instance.owner, __instance.owner, new LoseStrengthPower(__instance.owner, __instance.amount), __instance.amount));
             }
         }
     }
 
-    @SpirePatch2(clz = AngerPower.class,method="updateDescription")
+    @SpirePatch2(clz = AngerPower.class, method = "updateDescription")
     public static class DescriptionPatch {
         @SpirePostfixPatch
         public static void Foo(AngerPower __instance) {
-            if(HumidityZone.isNotInZone())return;
-            if(SlaversBecomeSleevers.colosseumInProgress())return;
+            if (HumidityZone.isNotInZone()) return;
+            if (SlaversBecomeSleevers.colosseumInProgress()) return;
             __instance.name = POWERNAME;
             __instance.description = DESCRIPTIONS[0] + __instance.amount + DESCRIPTIONS[1];
         }
     }
 
-    @SpirePatch2(clz = GremlinNob.class,method="takeTurn")
+    @SpirePatch2(clz = GremlinNob.class, method = "takeTurn")
     public static class TalkReplacement {
         @SpireInstrumentPatch
         public static ExprEditor patch() {
@@ -57,7 +58,7 @@ public class GremlinNobDemotivated {
                     if (n.getClassName().equals(TalkAction.class.getName())) {
                         //We have to define gremlinNobTerniary in a different class.
                         // Defining it in GremlinNobDemotivated will cause a NPE due to "CardCrawlGame.languagePack.getPowerStrings(ID);" breaking in the static block below.
-                        n.replace("{$2 = " + HumidityZone.gremlinNobTerniary() + " $2 : "+GremlinNobDemotivated.class.getName()+".getCustomMessage(); $_ = $proceed($$);}");
+                        n.replace("{$2 = " + HumidityZone.gremlinNobTerniary() + " $2 : " + GremlinNobDemotivated.class.getName() + ".getCustomMessage(); $_ = $proceed($$);}");
                     }
                 }
             };
@@ -65,19 +66,18 @@ public class GremlinNobDemotivated {
     }
 
 
-    public static String getCustomMessage(){
+    public static String getCustomMessage() {
         return ROAR;
     }
 
 
-
-
-    private static MonsterStrings monsterStrings;
+    private static final MonsterStrings monsterStrings;
     public static String ROAR;
-    private static PowerStrings powerStrings;
+    private static final PowerStrings powerStrings;
     public static String POWERNAME;
     public static String[] DESCRIPTIONS;
-    static{
+
+    static {
         {
             String ID = SpireAnniversary6Mod.makeID("CustomAngryPower");
             powerStrings = CardCrawlGame.languagePack.getPowerStrings(ID);

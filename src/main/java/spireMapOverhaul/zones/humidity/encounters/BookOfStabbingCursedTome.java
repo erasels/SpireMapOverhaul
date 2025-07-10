@@ -29,8 +29,7 @@ import java.util.ArrayList;
 public class BookOfStabbingCursedTome {
 
     @SpirePatch(clz = AbstractRoom.class, method = SpirePatch.CLASS)
-    public static class BookOfStabbingCursedTomeFields
-    {
+    public static class BookOfStabbingCursedTomeFields {
         public static SpireField<AbstractRelic> relic = new SpireField<>(() -> null);
         public static SpireField<Boolean> hideMonsterAndShowOnlyBook = new SpireField<>(() -> false);
         public static SpireField<Boolean> escapeRight = new SpireField<>(() -> false);
@@ -39,17 +38,17 @@ public class BookOfStabbingCursedTome {
 
 
     @SpirePatch2(clz = BookOfStabbing.class, method = "usePreBattleAction")
-    public static class BookOfStabbingCursedTomeEventPowerPatch{
+    public static class BookOfStabbingCursedTomeEventPowerPatch {
         @SpirePostfixPatch
-        public static void usePreBattleAction(BookOfStabbing __instance){
-            if(HumidityZone.isNotInZone())return;
+        public static void usePreBattleAction(BookOfStabbing __instance) {
+            if (HumidityZone.isNotInZone()) return;
             assignTomeToBookOfStabbing(__instance);
             Wiz.att(new ApplyPowerAction(Wiz.adp(), Wiz.adp(), new CursedTomeManagerPower(Wiz.adp())));
         }
     }
 
 
-    public static void assignTomeToBookOfStabbing(BookOfStabbing book){
+    public static void assignTomeToBookOfStabbing(BookOfStabbing book) {
         ArrayList<AbstractRelic> possibleBooks = new ArrayList();
         if (!AbstractDungeon.player.hasRelic(Necronomicon.ID)) {
             possibleBooks.add(RelicLibrary.getRelic(Necronomicon.ID).makeCopy());
@@ -64,46 +63,46 @@ public class BookOfStabbingCursedTome {
         if (possibleBooks.size() == 0) {
             return;
         }
-        AbstractRelic r = (AbstractRelic)possibleBooks.get(AbstractDungeon.miscRng.random(possibleBooks.size() - 1));
+        AbstractRelic r = possibleBooks.get(AbstractDungeon.miscRng.random(possibleBooks.size() - 1));
 
-        BookOfStabbingCursedTomeFields.relic.set(Wiz.curRoom(),r);
+        BookOfStabbingCursedTomeFields.relic.set(Wiz.curRoom(), r);
         book.name = r.name;
     }
 
-    @SpirePatch2(clz= AbstractRoom.class,method="addRelicToRewards",paramtypez = {AbstractRelic.RelicTier.class})
-    public static class LootPatch{
+    @SpirePatch2(clz = AbstractRoom.class, method = "addRelicToRewards", paramtypez = {AbstractRelic.RelicTier.class})
+    public static class LootPatch {
         @SpirePrefixPatch
-        public static SpireReturn<Void> Foo(AbstractRoom __instance){
+        public static SpireReturn<Void> Foo(AbstractRoom __instance) {
             AbstractRelic relic = null;
             relic = BookOfStabbingCursedTomeFields.relic.get(__instance);
-            if(relic!=null){
+            if (relic != null) {
                 __instance.rewards.add(new RewardItem(relic));
                 return SpireReturn.Return();
-            }else{
+            } else {
                 return SpireReturn.Continue();
             }
         }
     }
 
-    @SpirePatch2(clz = AbstractMonster.class,method="update")
-    public static class BookDrawingPatch{
+    @SpirePatch2(clz = AbstractMonster.class, method = "update")
+    public static class BookDrawingPatch {
         @SpirePrefixPatch
-        public static void Foo(AbstractMonster __instance){
-            if(!(__instance instanceof BookOfStabbing))return;
-            if(HumidityZone.isNotInZone())return;
-            Skeleton skeleton = ReflectionHacks.getPrivate(__instance, AbstractCreature.class,"skeleton");
+        public static void Foo(AbstractMonster __instance) {
+            if (!(__instance instanceof BookOfStabbing)) return;
+            if (HumidityZone.isNotInZone()) return;
+            Skeleton skeleton = ReflectionHacks.getPrivate(__instance, AbstractCreature.class, "skeleton");
             //Ideally we fade out alpha instead of scale, but that doesn't seem to work for whatever reason
-            if(BookOfStabbingCursedTomeFields.hideMonsterAndShowOnlyBook.get(Wiz.curRoom())){
-                for(BoneData bone : skeleton.getData().getBones()){
-                    if(bone.getName().equals("spine")) {
+            if (BookOfStabbingCursedTomeFields.hideMonsterAndShowOnlyBook.get(Wiz.curRoom())) {
+                for (BoneData bone : skeleton.getData().getBones()) {
+                    if (bone.getName().equals("spine")) {
                         bone.setScaleX(MathHelper.slowColorLerpSnap(bone.getScaleX(), 0.0F));
                         bone.setScaleY(MathHelper.slowColorLerpSnap(bone.getScaleY(), 0.0F));
                     }
                 }
             }
-            if(BookOfStabbingCursedTomeFields.escapeRight.get(Wiz.curRoom())){
-                if(Wiz.adp().drawX>=__instance.drawX){
-                    if(!__instance.isDeadOrEscaped()) {
+            if (BookOfStabbingCursedTomeFields.escapeRight.get(Wiz.curRoom())) {
+                if (Wiz.adp().drawX >= __instance.drawX) {
+                    if (!__instance.isDeadOrEscaped()) {
                         __instance.die();
                     }
                 }
@@ -111,7 +110,7 @@ public class BookOfStabbingCursedTome {
         }
     }
 
-    @SpirePatch2(clz = AbstractPlayer.class,method="updateEscapeAnimation")
+    @SpirePatch2(clz = AbstractPlayer.class, method = "updateEscapeAnimation")
     public static class CollectTomeAnimationPatch {
         @SpirePrefixPatch
         public static SpireReturn<Void> Foo(AbstractPlayer __instance) {
