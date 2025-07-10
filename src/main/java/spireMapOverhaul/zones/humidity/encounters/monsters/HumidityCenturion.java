@@ -36,8 +36,8 @@ public class HumidityCenturion extends Centurion {
     public void takeTurn() {
         int furyHits = ReflectionHacks.getPrivate(this, Centurion.class, "furyHits");
         int blockAmount = ReflectionHacks.getPrivate(this, Centurion.class, "blockAmount");
-        AbstractCreature offenseTarget=Wiz.adp();
-        if(JoustManagerPower.joustMonstersAreValid())offenseTarget=findEnemyCenturion(this);
+        AbstractCreature offenseTarget = Wiz.adp();
+        if (JoustManagerPower.joustMonstersAreValid()) offenseTarget = findEnemyCenturion(this);
         switch (this.nextMove) {
             case 1:
                 ReflectionHacks.privateMethod(Centurion.class, "playSfx").invoke(this);

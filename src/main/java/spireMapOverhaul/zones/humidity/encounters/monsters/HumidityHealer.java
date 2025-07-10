@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.AnimateSlowAttackAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -28,8 +27,8 @@ public class HumidityHealer extends Healer {
     public void takeTurn() {
         int healAmt = ReflectionHacks.getPrivate(this, Healer.class, "healAmt");
         int strAmt = ReflectionHacks.getPrivate(this, Healer.class, "strAmt");
-        AbstractCreature offenseTarget=Wiz.adp();
-        if(JoustManagerPower.joustMonstersAreValid())offenseTarget=HumidityCenturion.findEnemyCenturion(this);
+        AbstractCreature offenseTarget = Wiz.adp();
+        if (JoustManagerPower.joustMonstersAreValid()) offenseTarget = HumidityCenturion.findEnemyCenturion(this);
         switch (this.nextMove) {// 77
             case 1:
                 ReflectionHacks.privateMethod(Healer.class, "playSfx").invoke(this);

@@ -46,7 +46,7 @@ public class Avocado extends AbstractSMORelic implements CustomSavable<Integer> 
 
     @Override
     public void onLoad(Integer integer) {
-        if(integer==null) integer=0;
+        if (integer == null) integer = 0;
         this.hpLost = integer;
         description = getUpdatedDescription();
         tips.clear();
