@@ -1,5 +1,6 @@
 package spireMapOverhaul.zones.humidity.powers;
 
+import com.evacipated.cardcrawl.mod.stslib.patches.NeutralPowertypePatch;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.InvisiblePower;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -16,6 +17,7 @@ public class InvisibleDrawReductionSingleTurnPower extends DrawReductionSingleTu
 
     public InvisibleDrawReductionSingleTurnPower(AbstractCreature owner, int amount) {
         super(owner, amount);
+        this.type = NeutralPowertypePatch.NEUTRAL;
     }
 
     public void atStartOfTurn() {

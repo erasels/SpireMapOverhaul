@@ -45,7 +45,6 @@ public class CursedTomeAction extends AbstractGameAction {
                 isDone = true;
             }
         }
-
     }
 }
 

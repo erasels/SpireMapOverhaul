@@ -1,6 +1,5 @@
 package spireMapOverhaul.zones.humidity.encounters.monsters.cursedtomeimplementation;
 
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.mod.stslib.patches.NeutralPowertypePatch;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.InvisiblePower;
 import com.megacrit.cardcrawl.core.AbstractCreature;

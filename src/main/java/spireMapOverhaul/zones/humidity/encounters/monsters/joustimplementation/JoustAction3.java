@@ -12,9 +12,9 @@ import com.megacrit.cardcrawl.events.AbstractEvent;
 import com.megacrit.cardcrawl.events.RoomEventDialog;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.monsters.city.Healer;
 import com.megacrit.cardcrawl.monsters.exordium.ApologySlime;
 import spireMapOverhaul.util.Wiz;
+import spireMapOverhaul.zones.humidity.encounters.monsters.HumidityHealer;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 
@@ -53,7 +53,7 @@ public class JoustAction3 extends AbstractGameAction {
             Wiz.atb(new RollMoveAction(enemy));
             Wiz.atb(new UpdateIntentAction(enemy));
             int nextEnemy = (enemyIndex + 1) % 3;
-            if (enemy instanceof Healer) {
+            if (enemy instanceof HumidityHealer) {
                 Wiz.atb(new BetweenTurnsPowersAction());
             }
             Wiz.atb(new JoustAction3(roomEventText, nextEnemy));

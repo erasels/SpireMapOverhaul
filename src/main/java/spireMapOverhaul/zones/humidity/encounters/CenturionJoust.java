@@ -1,29 +1,25 @@
 package spireMapOverhaul.zones.humidity.encounters;
 
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
+import com.megacrit.cardcrawl.helpers.MonsterHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.monsters.city.Centurion;
-import com.megacrit.cardcrawl.monsters.city.Healer;
-import spireMapOverhaul.util.Wiz;
+import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import spireMapOverhaul.zones.humidity.HumidityZone;
-import spireMapOverhaul.zones.humidity.encounters.monsters.joustimplementation.JoustManagerPower;
+import spireMapOverhaul.zones.humidity.encounters.monsters.HumidityCenturion;
+import spireMapOverhaul.zones.humidity.encounters.monsters.HumidityHealer;
 
 public class CenturionJoust {
-
-    @SpirePatch2(clz = AbstractMonster.class, method = "usePreBattleAction")
-    public static class JoustManagerPowerPatch {
-        @SpirePostfixPatch
-        public static void usePreBattleAction(AbstractMonster __instance) {
-            if (HumidityZone.isNotInZone()) return;
-            if (!(__instance instanceof Centurion)) return;
-            if (Wiz.getEnemies().size() == 2
-                    && Wiz.getEnemies().get(0) instanceof Centurion
-                    && Wiz.getEnemies().get(1) instanceof Healer) {
-                Wiz.att(new ApplyPowerAction(Wiz.adp(), Wiz.adp(), new JoustManagerPower(Wiz.adp())));
-            }
+    @SpirePatch2(clz = MonsterHelper.class, method = "getEncounter")
+    public static class CustomEncounterPatch {
+        @SpirePrefixPatch
+        public static SpireReturn<MonsterGroup> Foo(String key) {
+            if (HumidityZone.isNotInZone())
+                return SpireReturn.Continue();
+            if (key.equals("Centurion and Healer"))
+                return SpireReturn.Return(new MonsterGroup(new AbstractMonster[]{new HumidityCenturion(-200.0F, 15.0F), new HumidityHealer(120.0F, 0.0F)}));
+            return SpireReturn.Continue();
         }
     }
-
 }

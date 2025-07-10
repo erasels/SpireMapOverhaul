@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.SpeechBubble;
 import spireMapOverhaul.util.Wiz;
-import spireMapOverhaul.zones.humidity.encounters.BookOfStabbingCursedTome;
+import spireMapOverhaul.zones.humidity.encounters.monsters.HumidityBookOfStabbing;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 
@@ -100,8 +100,8 @@ public class CursedTomeMidcombatEvent extends AbstractEvent {
                 // and eventually crash via BlockModifierPatches$ClearMonsterContainersOnVictory.
                 // Use a custom flee sequence instead.
                 duration = 4.0f;
-                BookOfStabbingCursedTome.BookOfStabbingCursedTomeFields.hideMonsterAndShowOnlyBook.set(Wiz.curRoom(), true);
-                BookOfStabbingCursedTome.BookOfStabbingCursedTomeFields.escapeRight.set(Wiz.curRoom(), true);
+                HumidityBookOfStabbing.BookOfStabbingCursedTomeFields.hideMonsterAndShowOnlyBook.set(Wiz.curRoom(), true);
+                HumidityBookOfStabbing.BookOfStabbingCursedTomeFields.escapeRight.set(Wiz.curRoom(), true);
                 if (!Wiz.getEnemies().isEmpty()) {
                     AbstractMonster book = Wiz.getEnemies().get(0);
                     //can't use TalkAction here; combat is ending

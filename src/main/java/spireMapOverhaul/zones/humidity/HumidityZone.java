@@ -32,7 +32,7 @@ import java.util.Arrays;
 public class HumidityZone extends AbstractZone implements OnTravelZone, CombatModifyingZone, RenderableZone {
     public static final String ID = "Humidity";
 
-    public static final boolean DEBUG_PLAYER_IS_ALWAYS_IN_ZONE = false;
+    public static final boolean DEBUG_PLAYER_IS_ALWAYS_IN_ZONE = true;
     public static final String DEBUG_FORCE_EVENT_ID = "";
 
     private final Texture humidibot = TexLoader.getTexture(SpireAnniversary6Mod.makeBackgroundPath("humidity/humidibot.png"));

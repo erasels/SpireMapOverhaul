@@ -11,10 +11,10 @@ import com.megacrit.cardcrawl.events.AbstractEvent;
 import com.megacrit.cardcrawl.events.RoomEventDialog;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.monsters.city.Centurion;
 import com.megacrit.cardcrawl.monsters.city.Healer;
 import com.megacrit.cardcrawl.powers.MinionPower;
 import spireMapOverhaul.util.Wiz;
+import spireMapOverhaul.zones.humidity.encounters.monsters.HumidityCenturion;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 
@@ -39,10 +39,10 @@ public class JoustAction1 extends AbstractGameAction {
                     }
                     AbstractEvent.type = AbstractEvent.EventType.ROOM;
                     rightCenturion.name = eventStrings.DESCRIPTIONS[4];
-                    Centurion leftCenturion = new Centurion(-Settings.WIDTH * 0.75F / Settings.xScale - 200f, -15.0F);
+                    HumidityCenturion leftCenturion = new HumidityCenturion(-Settings.WIDTH * 0.75F / Settings.xScale - 200f, -15.0F);
                     leftCenturion.flipHorizontal = true;
                     leftCenturion.name = eventStrings.DESCRIPTIONS[5];
-                    CenturionAttacksOppositeCenturionPatch.Fields.isSolo.set(leftCenturion, true);
+                    HumidityCenturion.Fields.isSolo.set(leftCenturion, true);
                     AbstractEvent jme = new JoustMidcombatEvent();
                     Wiz.curRoom().event = jme;
                     EventTextRenderEffect etre = new EventTextRenderEffect(jme);

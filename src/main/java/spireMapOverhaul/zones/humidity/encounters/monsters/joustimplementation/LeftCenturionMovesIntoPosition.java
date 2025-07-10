@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.city.Centurion;
 import spireMapOverhaul.zones.humidity.HumidityZone;
+import spireMapOverhaul.zones.humidity.encounters.monsters.HumidityCenturion;
 
 public class LeftCenturionMovesIntoPosition {
     @SpirePatch2(clz = AbstractMonster.class, method = "update")
@@ -15,7 +16,7 @@ public class LeftCenturionMovesIntoPosition {
         public static void Foo(AbstractMonster __instance) {
             if (HumidityZone.isNotInZone()) return;
             if (!(__instance instanceof Centurion)) return;
-            if (!CenturionAttacksOppositeCenturionPatch.Fields.isSolo.get(__instance)) return;
+            if (!HumidityCenturion.Fields.isSolo.get(__instance)) return;
             int direction = 1;
             __instance.drawX += direction * Gdx.graphics.getDeltaTime() * 400.0F * Settings.scale;
             float NEGATIVE_SIXTWENTYFIVE = (float) Settings.WIDTH * 0.75F + -625 * Settings.xScale;

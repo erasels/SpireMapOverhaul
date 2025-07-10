@@ -3,6 +3,8 @@ package spireMapOverhaul.zones.humidity.encounters.monsters;
 import basemod.ReflectionHacks;
 import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.modthespire.lib.*;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
@@ -11,7 +13,6 @@ import com.megacrit.cardcrawl.dungeons.Exordium;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.monsters.city.Byrd;
-import com.megacrit.cardcrawl.monsters.city.Centurion;
 import com.megacrit.cardcrawl.monsters.city.Taskmaster;
 import com.megacrit.cardcrawl.monsters.exordium.GremlinNob;
 import com.megacrit.cardcrawl.monsters.exordium.JawWorm;
@@ -19,6 +20,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.SurroundedPower;
 import com.megacrit.cardcrawl.stances.AbstractStance;
 import com.megacrit.cardcrawl.stances.NeutralStance;
+import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import spireMapOverhaul.util.Wiz;
 import spireMapOverhaul.zones.humidity.HumidityZone;
 import spireMapOverhaul.zones.humidity.encounters.monsters.joustimplementation.JoustManagerPower;
@@ -37,7 +39,7 @@ public class MonsterVsMonsterDamageCalculation {
             return jawWorm;
         }
         if (JoustManagerPower.joustMonstersAreValid()) {
-            if (attacker instanceof Centurion) {
+            if (attacker instanceof HumidityCenturion || attacker instanceof HumidityHealer) {
                 if (attacker == Wiz.getEnemies().get(0))
                     return Wiz.getEnemies().get(1);
                 else
