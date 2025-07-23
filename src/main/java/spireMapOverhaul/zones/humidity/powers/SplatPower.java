@@ -21,19 +21,20 @@ public class SplatPower extends AbstractSMOPower {
     public static String ZONE_ID = HumidityZone.ID;
 
     public SplatPower(AbstractCreature owner, int amount) {
-        super(POWER_ID,NAME,ZONE_ID, PowerType.BUFF, false, owner, amount);
+        super(POWER_ID, NAME, ZONE_ID, PowerType.BUFF, false, owner, amount);
     }
+
     @Override
     public void updateDescription() {
         this.description = DESCRIPTIONS[0];
     }
 
-    @SpirePatch2(clz= AbstractMonster.class,method="damage")
-    public static class DamagePatch{
+    @SpirePatch2(clz = AbstractMonster.class, method = "damage")
+    public static class DamagePatch {
         @SpirePostfixPatch
-        public static void Foo(AbstractMonster __instance){
-            if(!__instance.hasPower(SplatPower.POWER_ID))return;
-            if (!__instance.isDying && (float)__instance.currentHealth <= (float)__instance.maxHealth / 2.0F) {
+        public static void Foo(AbstractMonster __instance) {
+            if (!__instance.hasPower(SplatPower.POWER_ID)) return;
+            if (!__instance.isDying && (float) __instance.currentHealth <= (float) __instance.maxHealth / 2.0F) {
                 Wiz.att(new StunMonsterAction(__instance, Wiz.adp()));
                 Wiz.att(new RemoveSpecificPowerAction(__instance, __instance, SplatPower.POWER_ID));
             }

@@ -15,19 +15,16 @@ import static java.lang.System.currentTimeMillis;
 
 public class RelicRenderPatches {
 
-    public static boolean relicsAreBlinking(){
-        if(currentTimeMillis()%1000<500){
-            return true;
-        }
-        return false;
+    public static boolean relicsAreBlinking() {
+        return currentTimeMillis() % 1000 < 500;
     }
 
     @SpirePatch(clz = AbstractRelic.class, method = "renderInTopPanel")
     public static class RenderPatch {
         @SpirePrefixPatch
         public static SpireReturn<Void> Patch(AbstractRelic __instance) {
-            if(PowerelicCard.PowerelicRelicContainmentFields.isContained.get(__instance)){
-                if(relicsAreBlinking()) {
+            if (PowerelicCard.PowerelicRelicContainmentFields.isContained.get(__instance)) {
+                if (relicsAreBlinking()) {
                     return SpireReturn.Return();
                 }
             }
@@ -35,10 +32,10 @@ public class RelicRenderPatches {
         }
     }
 
-    public static void moveInvisibleRelicsToEnd(AbstractPlayer __instance){
+    public static void moveInvisibleRelicsToEnd(AbstractPlayer __instance) {
         ArrayList<AbstractRelic> invisibleRelics = new ArrayList<>();
-        for(AbstractRelic relic : __instance.relics){
-            if(RelicContainmentDetection.isContained(relic)){
+        for (AbstractRelic relic : __instance.relics) {
+            if (RelicContainmentDetection.isContained(relic)) {
                 invisibleRelics.add(relic);
             }
         }
@@ -52,7 +49,7 @@ public class RelicRenderPatches {
         public static void Patch(AbstractPlayer __instance) {
             try {
                 moveInvisibleRelicsToEnd(__instance);
-            }catch(ConcurrentModificationException e){
+            } catch (ConcurrentModificationException e) {
                 SpireAnniversary6Mod.logger.info("RelicRenderPatches: comodexception while trying to rearrange relics.");
             }
         }

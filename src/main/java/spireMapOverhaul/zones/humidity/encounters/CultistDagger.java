@@ -30,22 +30,23 @@ public class CultistDagger {
     @SpirePatch(clz = Cultist.class, method = "takeTurn")
     public static class MovePatch {
         @SpireInsertPatch(
-            locator = Locator.class
+                locator = Locator.class
         )
         public static void Foo(Cultist __instance) {
             if (HumidityZone.isNotInZone()) return;
             RitualDagger card = new RitualDagger();
-            card.current_x=__instance.drawX;
-            card.current_y=__instance.drawY+150*Settings.scale;
+            card.current_x = __instance.drawX;
+            card.current_y = __instance.drawY + 150 * Settings.scale;
             Wiz.atb(new ShowCardAndPoofAction(card));
 
             //we can't use calculateCardDamage as it will apply player buffs too.
             //so just set damage to 15 and then check for enemy Vulnerable.
-            applyMonsterPowers(card,__instance);
+            applyMonsterPowers(card, __instance);
             RitualDaggerAction action = new RitualDaggerAction(__instance, new DamageInfo(__instance, card.damage, card.damageTypeForTurn), card.magicNumber, card.uuid);
-            TemporaryRitualDaggers.card.set(action,card);
+            TemporaryRitualDaggers.card.set(action, card);
             Wiz.atb(action);
         }
+
         private static class Locator extends SpireInsertLocator {
             @Override
             public int[] Locate(CtBehavior ctBehavior) throws Exception {
@@ -55,12 +56,12 @@ public class CultistDagger {
         }
     }
 
-    public static void applyMonsterPowers(AbstractCard card, AbstractMonster monster){
-        float tmp=card.baseDamage;
-        if(monster.hasPower(VulnerablePower.POWER_ID)){
-            if(Wiz.adp().hasRelic(PaperFrog.ID)) {
+    public static void applyMonsterPowers(AbstractCard card, AbstractMonster monster) {
+        float tmp = card.baseDamage;
+        if (monster.hasPower(VulnerablePower.POWER_ID)) {
+            if (Wiz.adp().hasRelic(PaperFrog.ID)) {
                 tmp *= 1.75f;
-            }else{
+            } else {
                 tmp *= 1.5f;
             }
         }
@@ -74,7 +75,7 @@ public class CultistDagger {
         Wiz.adp().stance = new NeutralStance();
         Wiz.adp().powers.clear();
         Wiz.adp().relics.clear();
-        card.calculateCardDamage((AbstractMonster)monster);
+        card.calculateCardDamage(monster);
         Wiz.adp().stance = actualStance;
         Wiz.adp().powers = actualPowers;
         Wiz.adp().relics = actualRelics;
@@ -84,15 +85,15 @@ public class CultistDagger {
     @SpirePatch2(clz = Cultist.class, method = "getMove")
     public static class NamePatch {
         @SpirePostfixPatch
-        public static void Foo(Cultist __instance, int num){
-            if(HumidityZone.isNotInZone()) return;
-            String INCANTATION_NAME= ReflectionHacks.getPrivateStatic(Cultist.class,"INCANTATION_NAME");
-            if(Objects.equals(__instance.moveName, INCANTATION_NAME))
-                __instance.moveName=new RitualDagger().name;
+        public static void Foo(Cultist __instance, int num) {
+            if (HumidityZone.isNotInZone()) return;
+            String INCANTATION_NAME = ReflectionHacks.getPrivateStatic(Cultist.class, "INCANTATION_NAME");
+            if (Objects.equals(__instance.moveName, INCANTATION_NAME))
+                __instance.moveName = new RitualDagger().name;
         }
     }
 
-    @SpirePatch(clz=RitualDaggerAction.class,method=SpirePatch.CLASS)
+    @SpirePatch(clz = RitualDaggerAction.class, method = SpirePatch.CLASS)
     public static class TemporaryRitualDaggers {
         public static SpireField<AbstractCard> card = new SpireField<>(() -> null);
     }
@@ -104,10 +105,10 @@ public class CultistDagger {
         )
         public static void Foo(RitualDaggerAction __instance) {
             if (HumidityZone.isNotInZone()) return;
-            UUID uuid = ReflectionHacks.getPrivate(__instance,RitualDaggerAction.class,"uuid");
-            int increaseAmount = ReflectionHacks.getPrivate(__instance,RitualDaggerAction.class,"increaseAmount");
+            UUID uuid = ReflectionHacks.getPrivate(__instance, RitualDaggerAction.class, "uuid");
+            int increaseAmount = ReflectionHacks.getPrivate(__instance, RitualDaggerAction.class, "increaseAmount");
             AbstractCard c = TemporaryRitualDaggers.card.get(__instance);
-            if(c!=null) {
+            if (c != null) {
                 if (c.uuid.equals(uuid)) {
                     c.misc += increaseAmount;
                     c.baseDamage = c.misc;
@@ -116,6 +117,7 @@ public class CultistDagger {
                 }
             }
         }
+
         private static class Locator extends SpireInsertLocator {
             @Override
             public int[] Locate(CtBehavior ctBehavior) throws Exception {

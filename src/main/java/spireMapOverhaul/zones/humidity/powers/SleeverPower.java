@@ -19,11 +19,12 @@ public class SleeverPower extends AbstractSMOPower {
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
     public static String ZONE_ID = HumidityZone.ID;
-    private boolean triggered=false;
+    private boolean triggered = false;
 
     public SleeverPower(AbstractCreature owner, int amount) {
-        super(POWER_ID,NAME,ZONE_ID, PowerType.BUFF, false, owner, amount);
+        super(POWER_ID, NAME, ZONE_ID, PowerType.BUFF, false, owner, amount);
     }
+
     @Override
     public void updateDescription() {
         this.description = DESCRIPTIONS[0];
@@ -33,12 +34,13 @@ public class SleeverPower extends AbstractSMOPower {
         if (!this.triggered && damageAmount > 0 && info.owner != null && info.type == DamageInfo.DamageType.NORMAL) {
             this.flash();
             this.triggered = true;
-            this.addToBot(new TalkAction(this.owner,SLEEVER_HIT));
+            this.addToBot(new TalkAction(this.owner, SLEEVER_HIT));
             this.addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, this));
             this.addToBot(new DiscoveryAction());
         }
         return damageAmount;
     }
+
     public static final String MONSTERID = makeID("Sleevers");
     public static final String SLEEVER_HIT = CardCrawlGame.languagePack.getMonsterStrings(MONSTERID).DIALOG[3];
 }

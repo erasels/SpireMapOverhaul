@@ -39,17 +39,50 @@
       "Sleever",
       "Sleever",
       "I'm busy sleeving these cards. Come back later.",
-      "@AAAAHHHH!@ NL @My@ @cards!@"
+      "@AAAAHHHH!@ NL @My@ @cards!@",
+      "AH - @CHOO!@ NL ...whoops"
     ]
+  },
+  "${ModID}:SneckoPlant": {
+    "NAME": "Snecko Plant",
+    "MOVES": [],
+    "DIALOG": []
   },
   "${ModID}:BanditBear": {
     "DIALOG": [
       "~Group~ ~hug,~ ~everybody!!~"
     ]
   },
-  "${ModID}:BookOfStabbing": {
-    "NAME": "Book of Punching",
-    "MOVES": [],
-    "DIALOG": []
+  "${ModID}:BookOfStabbingHumidity": {
+    "DIALOG": [
+      "[Read] #rLose #r?? #rHP.",
+      "[Leave]",
+      "[Continue]",
+      "[Take]",
+      "You exit, feeling a #p~dark~ #p~energy~ #p~emanating~ from the book.",
+      "...?"
+    ]
+  },
+  "${ModID}:GremlinLavos": {
+    "NAME": "Gremlin Lavos",
+    "DIALOG": [
+      "@Retreat@ NL @Retreaaat!@",
+      "@Ruuuuuuun!@",
+      "You saw through NL my ruse?!",
+      "The future... changed!?"
+    ]
+  },
+  "${ModID}:MaltreatedGremlinNob": {
+    "NAME": "Maltreated Gremlin Nob",
+    "DIALOG": [
+      "Uh oh."
+    ]
+  },
+  "${ModID}:MaskedBanditsGiveFreeHugs": {
+    "DIALOG": [
+      "Group hug, everybody!",
+      "I need a hug...",
+      "YAY!!!!"
+    ]
   }
 }

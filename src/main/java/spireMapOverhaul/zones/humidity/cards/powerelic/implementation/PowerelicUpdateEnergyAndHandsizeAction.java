@@ -7,7 +7,8 @@ import spireMapOverhaul.util.Wiz;
 
 public class PowerelicUpdateEnergyAndHandsizeAction extends AbstractGameAction {
     int previousMaxEnergy, previousHandSize;
-    public PowerelicUpdateEnergyAndHandsizeAction(int previousMaxEnergy,int previousHandSize) {
+
+    public PowerelicUpdateEnergyAndHandsizeAction(int previousMaxEnergy, int previousHandSize) {
         this.previousMaxEnergy = previousMaxEnergy;
         this.previousHandSize = previousHandSize;
     }
@@ -23,12 +24,12 @@ public class PowerelicUpdateEnergyAndHandsizeAction extends AbstractGameAction {
         {
             int diff = Wiz.adp().masterHandSize - previousHandSize;
             if (diff != 0) {
-                Wiz.adp().gameHandSize=Wiz.adp().masterHandSize;
+                Wiz.adp().gameHandSize = Wiz.adp().masterHandSize;
                 if (diff > 0) {
                     Wiz.att(new DrawCardAction(diff));
                 }
             }
         }
-        isDone=true;
+        isDone = true;
     }
 }

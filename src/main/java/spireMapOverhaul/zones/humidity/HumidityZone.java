@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.dungeons.Exordium;
+import com.megacrit.cardcrawl.dungeons.TheCity;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.FrozenEgg2;
 import com.megacrit.cardcrawl.rooms.MonsterRoom;
@@ -22,6 +23,7 @@ import spireMapOverhaul.zoneInterfaces.CombatModifyingZone;
 import spireMapOverhaul.zoneInterfaces.OnTravelZone;
 import spireMapOverhaul.zoneInterfaces.RenderableZone;
 import spireMapOverhaul.zones.humidity.cards.powerelic.implementation.PowerelicCard;
+import spireMapOverhaul.zones.humidity.encounters.SlaversBecomeSleevers;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -33,7 +35,7 @@ public class HumidityZone extends AbstractZone implements OnTravelZone, CombatMo
     public static final boolean DEBUG_PLAYER_IS_ALWAYS_IN_ZONE = false;
     public static final String DEBUG_FORCE_EVENT_ID = "";
 
-    private Texture humidibot = TexLoader.getTexture(SpireAnniversary6Mod.makeBackgroundPath("humidity/humidibot.png"));
+    private final Texture humidibot = TexLoader.getTexture(SpireAnniversary6Mod.makeBackgroundPath("humidity/humidibot.png"));
 
     public HumidityZone() {
         super(ID, Icons.MONSTER);
@@ -46,7 +48,7 @@ public class HumidityZone extends AbstractZone implements OnTravelZone, CombatMo
     @Override
     public boolean canSpawn() {
         //return !Loader.isModLoadedOrSideloaded("humility") && Arrays.asList(Exordium.ID, TheCity.ID, TheBeyond.ID).contains(AbstractDungeon.id);
-        return !Loader.isModLoadedOrSideloaded("humility") && Arrays.asList(Exordium.ID).contains(AbstractDungeon.id);
+        return !Loader.isModLoadedOrSideloaded("humility") && Arrays.asList(Exordium.ID, TheCity.ID).contains(AbstractDungeon.id);
     }
 
     @Override
@@ -77,7 +79,7 @@ public class HumidityZone extends AbstractZone implements OnTravelZone, CombatMo
 
     @Override
     public void onEnterRoom() {
-        recentlyGeneratedPowerelic=null;
+        recentlyGeneratedPowerelic = null;
     }
 
     @Override
@@ -85,18 +87,18 @@ public class HumidityZone extends AbstractZone implements OnTravelZone, CombatMo
         AbstractRelic relic;
         relic = CardedRareRelicList.fetchRelicForCarding();
 
-        relic.instantObtain(Wiz.adp(),Wiz.adp().relics.size(),true);
+        relic.instantObtain(Wiz.adp(), Wiz.adp().relics.size(), true);
 
         AbstractCard card;
 
-        if(!Loader.isModLoaded("anniv7")){
+        if (!Loader.isModLoaded("anniv7")) {
             card = PowerelicCard.fromActiveRelic(relic);
-        }else{
+        } else {
             //if Spire Cafe is installed, use the cafe version of the card so both mods will recognize it
             try {
                 Class<?> clz = Class.forName("spireCafe.interactables.patrons.powerelic.implementation.PowerelicCard");
-                Method m = clz.getMethod("fromActiveRelic",AbstractRelic.class);
-                card=(AbstractCard)m.invoke(null,relic);
+                Method m = clz.getMethod("fromActiveRelic", AbstractRelic.class);
+                card = (AbstractCard) m.invoke(null, relic);
             } catch (IllegalAccessException | ClassNotFoundException | NoSuchMethodException |
                      InvocationTargetException e) {
                 e.printStackTrace();
@@ -106,7 +108,7 @@ public class HumidityZone extends AbstractZone implements OnTravelZone, CombatMo
 
         //As a side effect of calling fromActiveRelic, the relic is automatically captured within the new card
         //We must still remove the relic from the player's equipped relic list manually
-        AbstractDungeon.effectsQueue.add(new ShowCardAndObtainEffect(card, (float) Settings.WIDTH/2f, (float)Settings.HEIGHT/2f));
+        AbstractDungeon.effectsQueue.add(new ShowCardAndObtainEffect(card, (float) Settings.WIDTH / 2f, (float) Settings.HEIGHT / 2f));
         Wiz.adp().relics.remove(relic);
         Wiz.adp().reorganizeRelics();
 
@@ -117,12 +119,12 @@ public class HumidityZone extends AbstractZone implements OnTravelZone, CombatMo
     }
 
     @Override
-    public void atPreBattle(){
-        if(AbstractDungeon.getCurrRoom() instanceof MonsterRoom) {
+    public void atPreBattle() {
+        if (AbstractDungeon.getCurrRoom() instanceof MonsterRoom) {
             if (recentlyGeneratedPowerelic != null) {
                 AbstractCard card = recentlyGeneratedPowerelic.makeSameInstanceOf();
                 //the new card, which has not been added to the deck at this point, has also not been upgraded yet
-                if(Wiz.adp().hasRelic(FrozenEgg2.ID))
+                if (Wiz.adp().hasRelic(FrozenEgg2.ID))
                     card.upgrade();
                 AbstractDungeon.player.drawPile.addToRandomSpot(card);
             }
@@ -130,7 +132,7 @@ public class HumidityZone extends AbstractZone implements OnTravelZone, CombatMo
     }
 
     public static boolean isInZone() {
-        if(DEBUG_PLAYER_IS_ALWAYS_IN_ZONE)return true;
+        if (DEBUG_PLAYER_IS_ALWAYS_IN_ZONE) return true;
         return Wiz.getCurZone() instanceof HumidityZone;
     }
 
@@ -138,44 +140,49 @@ public class HumidityZone extends AbstractZone implements OnTravelZone, CombatMo
         return !isInZone();
     }
 
-    public static String instrumentTerniary(){
-        return HumidityZone.class.getName()+".isNotInZone() ? ";
+    public static String instrumentTerniary() {
+        return HumidityZone.class.getName() + ".isNotInZone() ? ";
     }
 
-    public static float frameTimer=1/60f;
-    public static int humidibotShakeFrameCounter=0;
-    public static float humidibotShakePatternTimer=3.3f;
-    public static int humidibotShakeRate=2;
-    public static float humidibotShakeOffset=-1.0f;
+    public static String gremlinNobTerniary() {
+        return "(" + SlaversBecomeSleevers.class.getName() + ".colosseumInProgress() || " + HumidityZone.class.getName() + ".isNotInZone()) ? ";
+    }
+
+    public static float frameTimer = 1 / 60f;
+    public static int humidibotShakeFrameCounter = 0;
+    public static float humidibotShakePatternTimer = 3.3f;
+    public static int humidibotShakeRate = 2;
+    public static float humidibotShakeOffset = -1.0f;
+
     @Override
     public void postRenderCombatBackground(SpriteBatch sb) {
-        float humidibotX=Settings.WIDTH/2f-350*Settings.scale;
-        float humidibotY=375*Settings.scale;
+        float humidibotX = Settings.WIDTH / 2f - 350 * Settings.scale;
+        float humidibotY = 375 * Settings.scale;
 
-        humidibotShakePatternTimer-=Gdx.graphics.getDeltaTime();
-        if(humidibotShakePatternTimer<0f)humidibotShakePatternTimer+=1.0f+ MathUtils.random(10.0f);
+        humidibotShakePatternTimer -= Gdx.graphics.getDeltaTime();
+        if (humidibotShakePatternTimer < 0f) humidibotShakePatternTimer += 1.0f + MathUtils.random(10.0f);
         frameTimer -= Gdx.graphics.getDeltaTime();
-        if(frameTimer<0.0f){
-            frameTimer+=1/60f;
-            if(frameTimer<0.0f)frameTimer=0.0f;
+        if (frameTimer < 0.0f) {
+            frameTimer += 1 / 60f;
+            if (frameTimer < 0.0f) frameTimer = 0.0f;
 
-            if(humidibotShakePatternTimer<0.25f) {
+            if (humidibotShakePatternTimer < 0.25f) {
                 humidibotShakeFrameCounter -= 1;
                 if (humidibotShakeFrameCounter < 0) {
                     humidibotShakeFrameCounter += humidibotShakeRate;
                     humidibotShakeOffset *= -1;
                 }
-            }else{
-                humidibotShakeOffset=-Math.abs(humidibotShakeOffset);
+            } else {
+                humidibotShakeOffset = -Math.abs(humidibotShakeOffset);
             }
-            float steamX=humidibotX+160/2f*Settings.scale;
-            float steamY=humidibotY+205/2f*Settings.scale;
-            for(int i=0;i<20;i+=1) {
+            float steamX = humidibotX + 160 / 2f * Settings.scale;
+            float steamY = humidibotY + 205 / 2f * Settings.scale;
+            for (int i = 0; i < 20; i += 1) {
                 AbstractDungeon.effectsQueue.add(new SteamBlurEffect(steamX, steamY));
             }
         }
 
-        sb.draw(humidibot, humidibotX, humidibotY+humidibotShakeOffset*Settings.scale, humidibot.getWidth()/2f*Settings.scale, humidibot.getHeight()/2f*Settings.scale);
+        sb.draw(humidibot, humidibotX, humidibotY + humidibotShakeOffset * Settings.scale, humidibot.getWidth() / 2f * Settings.scale, humidibot.getHeight() / 2f * Settings.scale);
 
     }
 

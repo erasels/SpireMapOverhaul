@@ -39,14 +39,14 @@ public class HallucinationShader {
     public static class RenderHueShift {
         @SpirePrefixPatch
         public static void addShader(AbstractDungeon __instance, SpriteBatch sb) {
-            if(rs == AbstractDungeon.RenderScene.NORMAL && HallucinatingPower.isActive && getShaderConfig()) {
+            if (rs == AbstractDungeon.RenderScene.NORMAL && HallucinatingPower.isActive && getShaderConfig()) {
                 StartFbo(sb);
             }
         }
 
-        @SpireInsertPatch(rloc=26)
+        @SpireInsertPatch(rloc = 26)
         public static void removeShader(AbstractDungeon __instance, SpriteBatch sb) {
-            if(rs == AbstractDungeon.RenderScene.NORMAL && HallucinatingPower.isActive && getShaderConfig()) {
+            if (rs == AbstractDungeon.RenderScene.NORMAL && HallucinatingPower.isActive && getShaderConfig()) {
                 StopFbo(sb);
             }
         }
@@ -70,8 +70,8 @@ public class HallucinationShader {
         sb.setShader(hallucinationShader);
         sb.setColor(Color.WHITE);
 
-        hallucinationShader.setUniformf("hueShift", (float)Math.cos(HallucinatingPower.cycleTime/2));
-        hallucinationShader.setUniformf("intensity", HallucinatingPower.displayedIntensity*1.0f);
+        hallucinationShader.setUniformf("hueShift", (float) Math.cos(HallucinatingPower.cycleTime / 2));
+        hallucinationShader.setUniformf("intensity", HallucinatingPower.displayedIntensity);
 
         sb.setBlendFunction(GL20.GL_ONE, GL20.GL_ZERO);
         sb.draw(region, 0f, 0f);

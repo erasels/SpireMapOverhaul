@@ -15,11 +15,11 @@ import spireMapOverhaul.zones.humidity.HumidityZone;
 
 public class LousePatches {
 
-    @SpirePatch2(clz=LouseNormal.class,method="usePreBattleAction")
-    public static class RedLousePatch{
+    @SpirePatch2(clz = LouseNormal.class, method = "usePreBattleAction")
+    public static class RedLousePatch {
         @SpirePrefixPatch
-        public static SpireReturn<Void> Foo(){
-            if(HumidityZone.isNotInZone())return SpireReturn.Continue();
+        public static SpireReturn<Void> Foo() {
+            if (HumidityZone.isNotInZone()) return SpireReturn.Continue();
             return SpireReturn.Return();
         }
     }
@@ -37,12 +37,12 @@ public class LousePatches {
 //        }
 //    }
 
-    @SpirePatch2(clz= LouseDefensive.class,method="takeTurn")
+    @SpirePatch2(clz = LouseDefensive.class, method = "takeTurn")
     public static class GreenLousePatch {
         @SpirePostfixPatch
         public static void Foo(LouseDefensive __instance) {
-            if(HumidityZone.isNotInZone())return;
-            if(__instance.nextMove==4) {
+            if (HumidityZone.isNotInZone()) return;
+            if (__instance.nextMove == 4) {
                 for (AbstractMonster m : Wiz.getEnemies()) {
                     AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(m, __instance, new WeakPower(m, 2, true), 2));
                 }

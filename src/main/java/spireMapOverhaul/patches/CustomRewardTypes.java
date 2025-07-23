@@ -10,4 +10,6 @@ public class CustomRewardTypes {
     public static RewardItem.RewardType HEALREWARD;
     @SpireEnum
     public static RewardItem.RewardType SMO_ANYCOLORCARDREWARD;
+    @SpireEnum
+    public static RewardItem.RewardType SMO_AVOCADOREWARD;
 }

@@ -21,11 +21,12 @@ public class AcidicPower extends AbstractSMOPower {
     public static String ZONE_ID = HumidityZone.ID;
 
     public AcidicPower(AbstractCreature owner, int amount) {
-        super(POWER_ID,NAME,ZONE_ID, PowerType.BUFF, false, owner, amount);
+        super(POWER_ID, NAME, ZONE_ID, PowerType.BUFF, false, owner, amount);
     }
+
     @Override
     public void updateDescription() {
-        this.description = DESCRIPTIONS[0]+amount+DESCRIPTIONS[1];
+        this.description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1];
     }
 
     public void onUseCard(AbstractCard card, UseCardAction action) {

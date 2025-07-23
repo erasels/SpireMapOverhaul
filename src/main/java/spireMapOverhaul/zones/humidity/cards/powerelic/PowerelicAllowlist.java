@@ -6,10 +6,11 @@ import spireMapOverhaul.zones.humidity.cards.powerelic.implementation.PowerelicC
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 
 
-/////////////////////////TLDR/////////////////////////
+/// //////////////////////TLDR/////////////////////////
 // 1. if a relic overrides onEquip, it's automatically blocklisted
 // 2. if a relic doesn't override onEquip and you need to blocklist it, add it to blocklistedRelics
 // 3. if a relic overrides onEquip and you want to allow it anyway,
@@ -22,7 +23,7 @@ import java.util.HashSet;
 
 public class PowerelicAllowlist {
 
-    public static void populateEssentialEquipRelics(){
+    public static void populateEssentialEquipRelics() {
         //Relics whose functionality is tied to OnEquip/OnUnequip are listed here.
         //Modded relics may be added to the list.
         //Only allow a relic here if it is okay to repeatedly call OnEquip/OnUnequip on it.
@@ -66,6 +67,7 @@ public class PowerelicAllowlist {
                 TinyChest.ID
         ));
     }
+
     public static void populateImmediateOnequipRelics() {
         //A subset of essentialEquipRelics,
         //this modifies the card such that when the card is played,
@@ -94,15 +96,15 @@ public class PowerelicAllowlist {
         //onEquip/onUnequip will not be called unless the card is permanently added to the deck.
         //(Intended only for cards which contain permanent effects in onEquip which can still be undone by onUnequip.)
         //(This list does not affect the allowlist; relics on this list must still be added to the nonessentialEquipRelics list above.)
-        skipEquipIfTempRelics = new HashSet<>(Arrays.asList(
+        skipEquipIfTempRelics = new HashSet<>(Collections.singletonList(
                 Necronomicon.ID
         ));
     }
 
-    public static void populateBlocklistedRelics(){
+    public static void populateBlocklistedRelics() {
         //Modded relics which should never be converted to powers go here.
         //(Relics which override OnEquip are blocklisted by default.)
-        blocklistedRelics = new HashSet<>(Arrays.asList(
+        blocklistedRelics = new HashSet<>(Collections.singletonList(
                 //PowerelicRelic.ID,    //PowerelicRelic is exclusive to anniv7!
                 //for later: we might be able to unlock circlet if there aren't any issues with it
                 Circlet.ID
@@ -116,73 +118,73 @@ public class PowerelicAllowlist {
     public static HashSet<String> blocklistedRelics;
 
 
-    public static ArrayList<AbstractRelic>getAllConvertibleRelics(){
-        ArrayList<AbstractRelic>convertibleRelics=new ArrayList<>();
-        for(AbstractRelic relic : Wiz.adp().relics){
-            if(PowerelicAllowlist.isRelicConvertibleToCard(relic)){
+    public static ArrayList<AbstractRelic> getAllConvertibleRelics() {
+        ArrayList<AbstractRelic> convertibleRelics = new ArrayList<>();
+        for (AbstractRelic relic : Wiz.adp().relics) {
+            if (PowerelicAllowlist.isRelicConvertibleToCard(relic)) {
                 convertibleRelics.add(relic);
             }
         }
         return convertibleRelics;
     }
 
-    public static boolean isRelicConvertibleToCard(AbstractRelic relic){
-        if(PowerelicCard.PowerelicRelicContainmentFields.isContained.get(relic))
+    public static boolean isRelicConvertibleToCard(AbstractRelic relic) {
+        if (PowerelicCard.PowerelicRelicContainmentFields.isContained.get(relic))
             return false;
-        if(isBlocklistedRelic(relic))
+        if (isBlocklistedRelic(relic))
             return false;
-        if(!doesRelicOverrideOnEquip(relic))
+        if (!doesRelicOverrideOnEquip(relic))
             return true;
-        if(isEssentialEquipRelic(relic))
+        if (isEssentialEquipRelic(relic))
             return true;
-        if(isNonessentialEquipRelic(relic))
-            return true;
-        return false;
+        return isNonessentialEquipRelic(relic);
     }
-    public static boolean doesRelicOverrideOnEquip(AbstractRelic relic){
+
+    public static boolean doesRelicOverrideOnEquip(AbstractRelic relic) {
         Class<?> relicClass = relic.getClass();
         try {
-            return(relicClass.getMethod("onEquip").getDeclaringClass()!=AbstractRelic.class);
+            return (relicClass.getMethod("onEquip").getDeclaringClass() != AbstractRelic.class);
         } catch (NoSuchMethodException e) {
             throw new RuntimeException(e);
         }
     }
 
 
-    public static boolean isEssentialEquipRelic(AbstractRelic relic){
-        if(relic==null)return false;
-        if(essentialEquipRelics==null){
+    public static boolean isEssentialEquipRelic(AbstractRelic relic) {
+        if (relic == null) return false;
+        if (essentialEquipRelics == null) {
             populateEssentialEquipRelics();
         }
         return essentialEquipRelics.contains(relic.relicId);
     }
-    public static boolean isImmediateOnequipRelic(AbstractRelic relic){
-        if(relic==null)return false;
-        if(immediateOnequipRelics==null){
+
+    public static boolean isImmediateOnequipRelic(AbstractRelic relic) {
+        if (relic == null) return false;
+        if (immediateOnequipRelics == null) {
             populateImmediateOnequipRelics();
         }
         return immediateOnequipRelics.contains(relic.relicId);
     }
 
-    public static boolean isNonessentialEquipRelic(AbstractRelic relic){
-        if(relic==null)return false;
-        if(nonessentialEquipRelics==null){
+    public static boolean isNonessentialEquipRelic(AbstractRelic relic) {
+        if (relic == null) return false;
+        if (nonessentialEquipRelics == null) {
             populateNonessentialEquipRelics();
         }
         return nonessentialEquipRelics.contains(relic.relicId);
     }
 
-    public static boolean isSkipEquipIfTempRelic(AbstractRelic relic){
-        if(relic==null)return false;
-        if(skipEquipIfTempRelics==null){
+    public static boolean isSkipEquipIfTempRelic(AbstractRelic relic) {
+        if (relic == null) return false;
+        if (skipEquipIfTempRelics == null) {
             populateSkipEquipIfTempRelics();
         }
         return skipEquipIfTempRelics.contains(relic.relicId);
     }
 
-    public static boolean isBlocklistedRelic(AbstractRelic relic){
-        if(relic==null)return false;
-        if(blocklistedRelics==null){
+    public static boolean isBlocklistedRelic(AbstractRelic relic) {
+        if (relic == null) return false;
+        if (blocklistedRelics == null) {
             populateBlocklistedRelics();
         }
         return blocklistedRelics.contains(relic.relicId);

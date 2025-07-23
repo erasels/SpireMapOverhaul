@@ -20,7 +20,7 @@ public class GremlinsFewer {
     public static class OnlyThreeGremlins {
         @SpirePrefixPatch
         public static SpireReturn<MonsterGroup> Foo() {
-            if(HumidityZone.isNotInZone()) return SpireReturn.Continue();
+            if (HumidityZone.isNotInZone()) return SpireReturn.Continue();
             return SpireReturn.Return(spawnFewerGremlins());
         }
     }
@@ -37,15 +37,15 @@ public class GremlinsFewer {
         gremlinPool.add("GremlinWizard");
         AbstractMonster[] retVal = new AbstractMonster[3];
         int index = AbstractDungeon.miscRng.random(gremlinPool.size() - 1);
-        String key = (String)gremlinPool.get(index);
+        String key = gremlinPool.get(index);
         gremlinPool.remove(index);
         retVal[0] = MonsterHelper.getGremlin(key, -240.0F, 6.5F);
         index = AbstractDungeon.miscRng.random(gremlinPool.size() - 1);
-        key = (String)gremlinPool.get(index);
+        key = gremlinPool.get(index);
         gremlinPool.remove(index);
         retVal[1] = MonsterHelper.getGremlin(key, -67.5F, -23.5F);
         index = AbstractDungeon.miscRng.random(gremlinPool.size() - 1);
-        key = (String)gremlinPool.get(index);
+        key = gremlinPool.get(index);
         gremlinPool.remove(index);
         retVal[2] = MonsterHelper.getGremlin(key, 115.0F, -2.5F);
         return new MonsterGroup(retVal);

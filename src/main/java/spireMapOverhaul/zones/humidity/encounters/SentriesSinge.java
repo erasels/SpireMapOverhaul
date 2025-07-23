@@ -15,11 +15,11 @@ import spireMapOverhaul.zones.humidity.cards.Singe;
 
 public class SentriesSinge {
 
-    @SpirePatch2(clz = Sentry.class,method = "getMove")
-    public static class IntentPatch{
+    @SpirePatch2(clz = Sentry.class, method = "getMove")
+    public static class IntentPatch {
         @SpirePrefixPatch
         public static SpireReturn<Void> getMove(Sentry __instance) {
-            if(HumidityZone.isNotInZone())return SpireReturn.Continue();
+            if (HumidityZone.isNotInZone()) return SpireReturn.Continue();
             __instance.setMove((byte) 3, AbstractMonster.Intent.DEBUFF);
             return SpireReturn.Return();
         }
@@ -38,8 +38,8 @@ public class SentriesSinge {
         public static ExprEditor Foo() {
             return new ExprEditor() {
                 public void edit(NewExpr n) throws CannotCompileException {
-                    if(n.getClassName().equals(MakeTempCardInDiscardAction.class.getName())) {
-                        n.replace("{ $_ = $proceed("+HumidityZone.instrumentTerniary()+"$1 : new "+ Singe.class.getName() +"(), $2); }");
+                    if (n.getClassName().equals(MakeTempCardInDiscardAction.class.getName())) {
+                        n.replace("{ $_ = $proceed(" + HumidityZone.instrumentTerniary() + "$1 : new " + Singe.class.getName() + "(), $2); }");
                     }
                 }
             };
