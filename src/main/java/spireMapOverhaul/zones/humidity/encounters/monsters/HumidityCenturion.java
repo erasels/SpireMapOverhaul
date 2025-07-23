@@ -92,6 +92,9 @@ public class HumidityCenturion extends Centurion {
                 }
             }
 
+            if (Fields.isSolo.get(this))
+                aliveCount = 1;
+
             if (aliveCount > 1) {
                 this.setMove((byte) 2, Intent.DEFEND);
             } else {
