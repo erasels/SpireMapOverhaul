@@ -63,6 +63,7 @@ public class BaseballPower extends AbstractSMOPower {
         @SpirePrefixPatch
         public static void Foo(PowerBuffEffect __instance, @ByRef String[] msg) {
             if(msg[0]==null)return;
+            if(msg[0].isEmpty())return;
             //Don't say "+1 Bottom of the Ninth" when the player plays a Strike.
 
             if (msg[0].charAt(0) == '+' && msg[0].contains(powerStrings.NAME)) {
