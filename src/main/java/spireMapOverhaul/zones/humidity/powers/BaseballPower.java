@@ -62,7 +62,9 @@ public class BaseballPower extends AbstractSMOPower {
     public static class ReplaceOverheadTextPatch {
         @SpirePrefixPatch
         public static void Foo(PowerBuffEffect __instance, @ByRef String[] msg) {
-            //Don't say "+1 Bottom of the Ninth" when the player plays a Strike.
+            if(msg[0]==null)return;
+            if(msg[0].isEmpty())return;
+            //Don't say "+1 Bottom of the Ninth" when twhe player plays a Strike.
 
             if (msg[0].charAt(0) == '+' && msg[0].contains(powerStrings.NAME)) {
                 //unfortunately we don't have a reference to the original power to get the stack count.

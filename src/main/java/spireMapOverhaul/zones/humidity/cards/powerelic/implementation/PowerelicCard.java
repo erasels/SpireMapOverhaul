@@ -16,6 +16,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.RelicLibrary;
 import com.megacrit.cardcrawl.localization.CardStrings;
@@ -232,12 +233,7 @@ public class PowerelicCard extends AbstractSMOCard implements OnObtainCard, Cust
             //      note that for those cards, we call loseRelic even if the relic isn't currently activated
             if (!PowerelicAllowlist.isEssentialEquipRelic(capturedRelic)
                     || Wiz.adp().relics.contains(capturedRelic)) {
-                boolean success = Wiz.adp().loseRelic(capturedRelic.relicId);
-                if (!success) {
-                    //if we're here, then loseRelic failed because the relic wasn't in the player relic list
-                    // (inactive) and we need to onUnequip it manually.
-                    capturedRelic.onUnequip();
-                }
+                AbstractDungeon.effectsQueue.add(new RemoveRelicGameEffect(capturedRelic));
             }
             //Also note that if for whatever reason we have a permanent non-Powerelic relic in the player relic bar
             // and the player removes a card with the same relic ID, the above logic will become very confused
