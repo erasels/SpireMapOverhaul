@@ -23,6 +23,8 @@ public interface DivineBeing {
     return true;
   }
 
+  default boolean isEliteCombat() { return false; }
+
   default void doEnterCombat() {}
 
   default boolean hasUpdateLogic() {

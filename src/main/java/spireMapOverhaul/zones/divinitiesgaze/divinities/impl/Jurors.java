@@ -68,6 +68,11 @@ public class Jurors extends BaseDivineBeing {
   }
 
   @Override
+  public boolean isEliteCombat() {
+    return true;
+  }
+
+  @Override
   public void doEnterCombat() {
     super.doEnterCombat();
     Wiz.atb(new AbstractGameAction() {
