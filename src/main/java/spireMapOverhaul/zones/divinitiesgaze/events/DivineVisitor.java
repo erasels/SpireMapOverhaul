@@ -104,6 +104,7 @@ public class DivineVisitor extends PhasedEvent {
 
   @Override
   public void enterCombat() {
+    AbstractDungeon.getCurrRoom().eliteTrigger = this.divinity.isEliteCombat();
     super.enterCombat();
     this.divinity.doEnterCombat();
   }
