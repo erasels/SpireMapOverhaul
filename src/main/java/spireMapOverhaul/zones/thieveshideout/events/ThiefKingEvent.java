@@ -39,6 +39,10 @@ public class ThiefKingEvent extends Colosseum {
         this.imageEventText.setDialogOption(OPTIONS[0]);
     }
 
+    public static boolean bonusCondition() {
+        return false;
+    }
+
     @Override
     protected void buttonEffect(int buttonPressed) {
         switch(this.screen) {
