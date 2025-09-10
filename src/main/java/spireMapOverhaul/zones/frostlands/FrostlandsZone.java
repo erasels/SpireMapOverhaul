@@ -85,7 +85,7 @@ public class FrostlandsZone extends AbstractZone implements CombatModifyingZone,
     @Override
     public void update() {
         if(rand.nextInt(20) == 0)
-            Wiz.atb(new VFXAction(new SnowEffect()));
+            AbstractDungeon.effectList.add(new SnowEffect());
     }
 
     @Override
