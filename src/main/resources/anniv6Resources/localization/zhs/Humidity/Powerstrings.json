@@ -1,0 +1,112 @@
+{
+  "${ModID}:EarlyByrdMinionPower": {
+    "NAME": "友方",
+    "DESCRIPTIONS": [
+      "晚到的鸟儿有虫吃。"
+    ]
+  },
+  "${ModID}:ScrapOozePower": {
+    "NAME": "破烂软泥",
+    "DESCRIPTIONS": [
+      "当你受到这名敌人的攻击时，有 #b",
+      "% 几率找到一件 #y遗物 。（限一次）"
+    ]
+  },
+  "${ModID}:AcidicPower": {
+    "NAME": "酸性",
+    "DESCRIPTIONS": [
+      "每当你打出一张 #y基础 牌，这名敌人在本回合内失去 #b",
+      " 点 #y力量 。 NL NL (这是一个化学笑话)"
+    ]
+  },
+  "${ModID}:SpikyPower": {
+    "NAME": "带刺",
+    "DESCRIPTIONS": [
+      "每当你打出一张 #y普通 、 #y罕见 或 #y稀有 牌，这名敌人在本回合内失去 #b",
+      " 点 #y力量 。 NL NL (这不是一个化学笑话)"
+    ]
+  },
+  "${ModID}:SplatPower": {
+    "NAME": "散架",
+    "DESCRIPTIONS": [
+      "生命值低于 #b50% 时会被眩晕 #b1 回合。"
+    ]
+  },
+  "${ModID}:HallucinationCloudPower": {
+    "NAME": "孢子云",
+    "DESCRIPTIONS": [
+      "死亡时，施加 #b",
+      " 层 #y幻觉 。"
+    ]
+  },
+  "${ModID}:HallucinatingPower": {
+    "NAME": "幻觉",
+    "DESCRIPTIONS": [
+      " #r+15 倍 NL #g16 几回率结束合破回坏。",
+      "如果你开启了着色器，会发生一些有趣的现象。"
+    ]
+  },
+  "${ModID}:GilTossPower": {
+    "NAME": "扔钱",
+    "DESCRIPTIONS": [
+      "这名敌人的攻击方式是向你扔 #y金币 。"
+    ]
+  },
+  "${ModID}:CustomExplosivePower": {
+    "NAME": "爆炸",
+    "DESCRIPTIONS": []
+  },
+  "${ModID}:SleevingPower": {
+    "NAME": "全新卡套",
+    "DESCRIPTIONS": [
+      "受到攻击伤害时，从 #b3 张随机卡牌中选择 #b1 张加入手牌，这张牌在本回合的耗能为 #b0 。 (限一次)"
+    ]
+  },
+  "${ModID}:CustomAngryPower": {
+    "NAME": "小发雷霆",
+    "DESCRIPTIONS": [
+      "每打出一张 #y技能 牌，在本回合内获得 #b",
+      " 点 #y力量 。"
+    ]
+  },
+  "${ModID}:PowerelicPower": {
+    "NAME": "Powerelic",
+    "DESCRIPTIONS": [
+      "[DNT] You shouldn't see this message."
+    ]
+  },
+  "${ModID}:BaseballPower": {
+    "NAME": "最后时刻",
+    "DESCRIPTIONS": [
+      "打出 #b",
+      " ",
+      " ",
+      " ",
+      "张名字中带有 \"打击\" 的牌，直接击败这名敌人。",
+      "",
+      "出局",
+      "一振",
+      "二振",
+      "三振",
+      "+1击空"
+    ]
+  },
+  "${ModID}:BemusementPower": {
+    "NAME": "困惑",
+    "DESCRIPTIONS": [
+      "你抽到的每一张牌，耗能都会随机变化...?"
+    ]
+  },
+  "${ModID}:SneckoPlantPower": {
+    "NAME": "异蛇植物",
+    "DESCRIPTIONS": [
+      "攻击次数在0到3次之间随机变化。"
+    ]
+  },
+  "${ModID}:GremlinNobMinionPower": {
+    "NAME": "反叛",
+    "DESCRIPTIONS": [
+      "有人把它关在这个房间里饿了好几天，并且那个人不是你。"
+    ]
+  }
+}

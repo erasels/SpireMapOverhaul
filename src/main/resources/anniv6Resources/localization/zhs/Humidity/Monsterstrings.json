@@ -1,0 +1,88 @@
+{
+  "${ModID}:EarlyByrd": {
+    "NAME": "早起的异鸟",
+    "MOVES": [],
+    "DIALOG": []
+  },
+  "${ModID}:Looter": {
+    "MOVES": [
+      "投掷",
+      "猛撞"
+    ],
+    "NAME": "Looter",
+    "DIALOG": [
+      "拿着这个！",
+      "@真没礼貌...@",
+      "我烟雾弹在哪呢...我找找...",
+      "拜拜啦。"
+    ]
+  },
+  "${ModID}:CustomGremlinNob": {
+    "NAME": "Gremlin Nob",
+    "DIALOG": [
+      "~嗷嗷呜嗷...~"
+    ]
+  },
+  "${ModID}:Mugger": {
+    "MOVES": [
+      "投掷",
+      "猛撞"
+    ],
+    "NAME": "Mugger",
+    "DIALOG": [
+      "古流忍术！",
+      "我可溜了！"
+    ]
+  },
+  "${ModID}:Sleevers": {
+    "DIALOG": [
+      "牌佬",
+      "牌佬",
+      "我正忙着给我的卡上套呢，等会再来。",
+      " @啊啊啊啊！@ NL @我的卡！@ ",
+      "阿—— @嚏！@ NL ...哎哟"
+    ]
+  },
+  "${ModID}:SneckoPlant": {
+    "NAME": "异蛇植物",
+    "MOVES": [],
+    "DIALOG": []
+  },
+  "${ModID}:BanditBear": {
+    "DIALOG": [
+      "~大家一起来抱抱！~"
+    ]
+  },
+  "${ModID}:BookOfStabbingHumidity": {
+    "DIALOG": [
+      "[阅读] #r失去 #r?? #r生命。 ",
+      "[离开]",
+      "[继续]",
+      "[拿走]",
+      "你感觉到书本 #p散发出一股黑暗的能量 ,于是选择立即离开这里。",
+      "...?"
+    ]
+  },
+  "${ModID}:GremlinLavos": {
+    "NAME": "地精拉沃斯",
+    "DIALOG": [
+      "@撤退@ NL @撤退啊！@",
+      "@快跑啊！@",
+      "你竟然看穿了我的 NL 我的骗术！？",
+      "未来...发生了变动！？"
+    ]
+  },
+  "${ModID}:MaltreatedGremlinNob": {
+    "NAME": "受虐待的地精大块头",
+    "DIALOG": [
+      "哦豁。"
+    ]
+  },
+  "${ModID}:MaskedBanditsGiveFreeHugs": {
+    "DIALOG": [
+      "大家一起来抱抱！",
+      "我需要一个抱抱...",
+      "耶！！！！！"
+    ]
+  }
+}
