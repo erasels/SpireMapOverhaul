@@ -11,7 +11,6 @@ import spireMapOverhaul.zones.divinitiesgaze.divinities.BaseDivineBeing;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.UUID;
 import java.util.function.Consumer;
 
 @SuppressWarnings("unused")
@@ -28,11 +27,11 @@ public class Eclectic extends BaseDivineBeing {
     // [Learn] Choose 1 of 5 upgraded cards to add to your deck.
     return x -> {
       CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-      Set<UUID> cardUUIDs = new HashSet<>();
+      Set<String> cardIDs = new HashSet<>();
       while (group.size() < 5) {
         AbstractCard card = AbstractDungeon.getCard(AbstractDungeon.rollRarity()).makeCopy();
-        if(!cardUUIDs.contains(card.uuid)) {
-          cardUUIDs.add(card.uuid);
+        if(!cardIDs.contains(card.cardID)) {
+          cardIDs.add(card.cardID);
           card.upgrade();
           group.addToTop(card);
         }
