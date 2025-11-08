@@ -1,5 +1,6 @@
 package spireMapOverhaul.zones.brokenspace.relics;
 
+import basemod.ReflectionHacks;
 import com.evacipated.cardcrawl.mod.stslib.relics.BetterOnUsePotionRelic;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
@@ -9,8 +10,7 @@ import com.google.gson.JsonElement;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
-import com.megacrit.cardcrawl.potions.AbstractPotion;
-import com.megacrit.cardcrawl.potions.SmokeBomb;
+import com.megacrit.cardcrawl.potions.*;
 import com.megacrit.cardcrawl.relics.Sozu;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.ui.panels.PotionPopUp;
@@ -41,7 +41,7 @@ public class BrokenSozu extends BrokenRelic implements BetterOnUsePotionRelic {
 
     @Override
     public void betterOnUsePotion(AbstractPotion p) {
-        if (adp().hasRelic(makeID(ID)) && isInCombat() && !canUseOverridden(p)) {
+        if (adp().hasRelic(makeID(ID)) && isInCombat() && isValidForBrokenSozu(p)) {
             flash();
             adp().energy.use(POTION_COST);
             AbstractPotion secondPotion = null;
@@ -62,6 +62,18 @@ public class BrokenSozu extends BrokenRelic implements BetterOnUsePotionRelic {
         }
     }
 
+    private static boolean isValidForBrokenSozu(AbstractPotion p) {
+        // This validity check requires canUse not be overridden because our patch below only accounts for the method on
+        // AbstractPotion itself, plus special cases for base game potions that override it. We could get modded potions
+        // that override canUse to work by writing a dynamic patch, but we haven't done that because it's pretty niche.
+        // We omit Fairy in a Bottle here because it can't be used.
+        return p instanceof FruitJuice
+                || p instanceof BloodPotion
+                || p instanceof EntropicBrew
+                || p instanceof SmokeBomb
+                || !canUseOverridden(p);
+    }
+
     private static boolean canUseOverridden(AbstractPotion p) {
         try {
             Method method = p.getClass().getMethod("canUse");
@@ -76,11 +88,15 @@ public class BrokenSozu extends BrokenRelic implements BetterOnUsePotionRelic {
     }
 
     @SpirePatch2(clz = AbstractPotion.class, method = "canUse")
+    @SpirePatch2(clz = FruitJuice.class, method = "canUse")
+    @SpirePatch2(clz = BloodPotion.class, method = "canUse")
+    @SpirePatch2(clz = EntropicBrew.class, method = "canUse")
+    @SpirePatch2(clz = SmokeBomb.class, method = "canUse")
     public static class SozuPatch {
         @SpirePrefixPatch
         public static SpireReturn<Boolean> Prefix(AbstractPotion __instance) {
-            if (AbstractDungeon.player.hasRelic(makeID(ID)) && !canUseOverridden(__instance)) {
-                return SpireReturn.Return(canUsePotion(__instance));
+            if (AbstractDungeon.player.hasRelic(makeID(ID)) && !canUsePotion(__instance)) {
+                return SpireReturn.Return(false);
             }
             return SpireReturn.Continue();
         }
@@ -91,7 +107,10 @@ public class BrokenSozu extends BrokenRelic implements BetterOnUsePotionRelic {
         @SpireInsertPatch(locator = Locator.class, localvars = {"label"})
         public static void Insert(PotionPopUp __instance, @ByRef String[] label) {
             if (AbstractDungeon.player.hasRelic(makeID(ID))) {
-                label[0] = getEnergyText(__instance, label[0]);
+                AbstractPotion potion = ReflectionHacks.getPrivate(__instance, PotionPopUp.class, "potion");
+                if (!(potion instanceof FairyPotion)) {
+                    label[0] = getEnergyText(__instance, label[0]);
+                }
             }
         }
 
