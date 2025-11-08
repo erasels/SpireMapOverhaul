@@ -46,11 +46,13 @@ public class FlyAwayAction extends AbstractGameAction {
                 //darklings why
                 boolean temp = AbstractDungeon.getCurrRoom().cannotLose;
                 AbstractDungeon.getCurrRoom().cannotLose = false;
+                int goldReduction = m.currentHealth;
+                m.currentHealth = 0;
                 m.die();
                 AbstractDungeon.getCurrRoom().cannotLose = temp;
 
-                GoldRewardReductionPatch.combatGoldReduction += m.currentHealth;
-                AbstractDungeon.effectsQueue.add(new LoseGoldTextEffect(m.currentHealth, m));
+                GoldRewardReductionPatch.combatGoldReduction += goldReduction;
+                AbstractDungeon.effectsQueue.add(new LoseGoldTextEffect(goldReduction, m));
                 m.drawX = Settings.WIDTH * 2; //Prevent death based animations from playing on screen
                 if (AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
                     AbstractDungeon.getCurrRoom().cannotLose = false;
