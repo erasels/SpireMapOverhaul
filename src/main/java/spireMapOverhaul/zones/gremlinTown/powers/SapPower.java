@@ -18,7 +18,7 @@ public class SapPower extends AbstractSMOPower {
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     public SapPower(AbstractCreature owner, int amount) {
-        super(POWER_ID, NAME, GremlinTown.ID, PowerType.BUFF,false, owner, amount);
+        super(POWER_ID, NAME, GremlinTown.ID, PowerType.DEBUFF,false, owner, amount);
     }
 
     @Override
