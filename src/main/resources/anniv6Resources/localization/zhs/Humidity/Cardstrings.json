@@ -1,0 +1,14 @@
+{
+  "${ModID}:Singe": {
+    "NAME": "烫伤",
+    "DESCRIPTION": " 不能被打出 。 NL 回合结束时，受到 !M! 点伤害并 消耗 。"
+  },
+  "${ModID}:PowerelicCard": {
+    "NAME": "能力遗物",
+    "DESCRIPTION": "直到下场战斗开始前，获得此遗物的效果。"
+  },
+  "${ModID}:PowerelicTemporaryDuplicateCard": {
+    "NAME": "Powerelic Duplicate",
+    "DESCRIPTION": "[DNT] You REALLY shouldn't be able to see this message."
+  }
+}

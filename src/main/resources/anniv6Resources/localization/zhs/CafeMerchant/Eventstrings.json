@@ -1,0 +1,9 @@
+{
+  "${ModID}:CafeMerchantEvent": {
+    "NAME": "商人事件",
+    "DESCRIPTIONS": [
+    ],
+    "OPTIONS": [
+    ]
+  }
+}

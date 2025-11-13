@@ -1,0 +1,9 @@
+{
+  "${ModID}:Humidity": {
+    "TEXT": [
+      "虽化区域",
+      "糟糕！一群 #p不法分子 把这里糟蹋得面目全非！这片区域的描述变成了: NL NL \"所有敌人都获得了 #r胸脸 的 #r虽化 。 NL 进入这片区域时，获得一件 #g稀有遗物 [REMOVE_SPACE] 。 NL 作者: The Ooik [REMOVE_SPACE]\" NL NL 听上去这里的战斗会变得更 #g简单 ，不过...到底有什么猫腻？",
+      "Lua Viper"
+    ]
+  }
+}
