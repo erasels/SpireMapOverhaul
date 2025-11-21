@@ -138,7 +138,6 @@ public class CafeMerchantZone extends AbstractZone implements ModifiedEventRateZ
         try {
             this.merchantInteractable = cafeUtil.getMethod("createInteractable", String.class, float.class, float.class).invoke(null, merchantID, 0f, 0f);
             this.merchantName = (String) ReflectionHacks.getCachedField(abstractCafeInteractable, "name").get(merchantInteractable);
-            cafeUtil.getMethod("markInteractableAsSeen", String.class).invoke(null, merchantID);
         } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
             e.printStackTrace();
             throw new RuntimeException(String.format("Error retrieving interactable class (%s) from Spire Cafe", merchantID), e);
@@ -156,5 +155,13 @@ public class CafeMerchantZone extends AbstractZone implements ModifiedEventRateZ
 
         return ((CafeMerchantZone) currentZone).merchantID;
     }
-    
+
+    public void markMerchantSeen() {
+        try {
+            CafeMerchantZone.cafeUtil.getMethod("markInteractableAsSeen", String.class).invoke(null, this.merchantID);
+        } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new RuntimeException(String.format("Error marking interactable (%s) from Spire Cafe seen", this.merchantID), e);
+        }
+    }
 }
