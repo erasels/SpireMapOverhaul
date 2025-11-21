@@ -35,7 +35,7 @@ public class SmithsFolly extends AbstractZone implements CombatModifyingZone, On
     private Texture bg = TexLoader.getTexture(SpireAnniversary6Mod.makeBackgroundPath("smithsFolly/bg.png"));
 
     public SmithsFolly() {
-        super(ID, Icons.MONSTER);
+        super(ID, Icons.MONSTER, Icons.EVENT);
         this.width = 2;
         this.height = 4;
     }
