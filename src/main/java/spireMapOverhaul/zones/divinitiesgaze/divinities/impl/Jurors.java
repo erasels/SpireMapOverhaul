@@ -36,7 +36,8 @@ public class Jurors extends BaseDivineBeing {
   @Override
   public String getCombatPhaseKey() {
     if(AbstractDungeon.eliteMonsterList.isEmpty()) {
-      ReflectionHacks.privateMethod(AbstractDungeon.class, "generateElites").invoke(CardCrawlGame.dungeon);
+      ReflectionHacks.privateMethod(AbstractDungeon.class, "generateElites", int.class)
+          .invoke(CardCrawlGame.dungeon, 3);
     }
 
     String elite = AbstractDungeon.eliteMonsterList.get(0);
