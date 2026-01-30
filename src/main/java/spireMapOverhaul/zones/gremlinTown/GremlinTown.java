@@ -306,28 +306,33 @@ public class GremlinTown extends AbstractZone
     private ArrayList<AbstractCard> getGremlinCardReward(ArrayList<AbstractCard> cards) {
         ArrayList<AbstractCard> retVal = new ArrayList<>();
 
+        List<AbstractCard.CardRarity> normalRarities = Arrays.asList(AbstractCard.CardRarity.COMMON, AbstractCard.CardRarity.UNCOMMON, AbstractCard.CardRarity.RARE);
         AbstractCard card;
         for (AbstractCard ogCard : cards) {
             AbstractCard.CardRarity rarity = ogCard.rarity;
             card = null;
-
-            boolean containsDupe = true;
-            int attempts = 0;
-            while (containsDupe) {
-                containsDupe = false;
-                card = getGremlinCardByRarity(rarity);
-                if (attempts == 20 || card == null) {
-                    retVal.add(ogCard);
-                    break;
-                }
-
-                for (AbstractCard c : retVal) {
-                    if (c.cardID.equals(card.cardID)) {
-                        containsDupe = true;
-                        attempts++;
+            if (normalRarities.contains(rarity)) {
+                boolean containsDupe = true;
+                int attempts = 0;
+                while (containsDupe) {
+                    containsDupe = false;
+                    card = getGremlinCardByRarity(rarity);
+                    if (attempts == 20 || card == null) {
+                        retVal.add(ogCard);
                         break;
                     }
+
+                    for (AbstractCard c : retVal) {
+                        if (c.cardID.equals(card.cardID)) {
+                            containsDupe = true;
+                            attempts++;
+                            break;
+                        }
+                    }
                 }
+            }
+            else {
+                card = ogCard;
             }
 
             retVal.add(card);
