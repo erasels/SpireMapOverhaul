@@ -1,0 +1,18 @@
+{
+  "${ModID}:FrostSlimeM": {
+    "MOVES": [
+      "Frost Clench",
+      "Split",
+      "Lick"
+    ],
+    "NAME": "Frost Slime (M)"
+  },
+  "${ModID}:FrostSlimeL": {
+    "MOVES": [
+      "Frost Clench",
+      "Split",
+      "Lick"
+    ],
+    "NAME": "Frost Slime (L)"
+  }
+}
