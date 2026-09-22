@@ -14,6 +14,7 @@ import javassist.CtBehavior;
 import spireMapOverhaul.SpireAnniversary6Mod;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 import static spireMapOverhaul.SpireAnniversary6Mod.makeID;
 
@@ -22,8 +23,6 @@ public class ZonePotionsPatch {
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(makeID(ZonePotionsPatch.class.getSimpleName()));
     private static final String categoryTitle = uiStrings.TEXT[0];
     private static final String categoryDescription = uiStrings.TEXT[1];
-
-    private static ArrayList<String> tempList = new ArrayList<>();
 
     @SpirePatch2(
             clz = PotionViewScreen.class,
@@ -61,17 +60,22 @@ public class ZonePotionsPatch {
             paramtypez = {Random.class}
     )
     public static class NoZonePotionsFromHelper {
+        private static ArrayList<String> zonePotions = null;
+
         @SpirePrefixPatch
         public static void Prefix() {
-            tempList = new ArrayList<>();
-            tempList.addAll(PotionHelper.potions);
-            tempList.removeIf(str -> (PotionHelper.getPotion(str).rarity != SpireAnniversary6Mod.Enums.ZONE));
-            PotionHelper.potions.removeIf(str -> (PotionHelper.getPotion(str).rarity == SpireAnniversary6Mod.Enums.ZONE));
+            if(zonePotions == null) {
+                zonePotions = PotionHelper.potions
+                        .stream()
+                        .filter(pStr -> PotionHelper.getPotion(pStr).rarity == SpireAnniversary6Mod.Enums.ZONE)
+                        .collect(Collectors.toCollection(ArrayList::new));
+            }
+            PotionHelper.potions.removeAll(zonePotions);
         }
 
         @SpirePostfixPatch
         public static void Postfix() {
-            PotionHelper.potions.addAll(tempList);
+            PotionHelper.potions.addAll(zonePotions);
         }
     }
 
